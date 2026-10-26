@@ -1,0 +1,15 @@
+{
+  "version": "literal-preplacement-bound-v1",
+  "candidate_dot_budget": 37654,
+  "footprint_pixels": 5167373,
+  "uncovered_pixels": 6649,
+  "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "radius_px": 3,
+  "minimum_possible_overlap_fraction": 0.8234184947150369,
+  "maximum_allowed_fraction": 0.7,
+  "duplicate_stop": true,
+  "eligible_for_selector": false,
+  "ok_to_submit": false,
+  "result": "DUPLICATE STOP",
+  "scope": "Distinct in-footprint dots only; no surface or final candidate was generated. An inconclusive result is not a pass."
+}

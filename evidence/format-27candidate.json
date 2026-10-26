@@ -1,0 +1,38 @@
+{
+  "validator_version": "wbggemsdoe3-format-v1",
+  "artifact": "data/cache/priority/27candidate.tif",
+  "artifact_sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "metadata_checks": {
+    "geotiff_driver": true,
+    "one_band": true,
+    "float32": true,
+    "shape_matches": true,
+    "crs_matches": true,
+    "transform_matches": true,
+    "template_one_band": true,
+    "template_sha256_matches": true,
+    "no_external_mask_sidecar": true,
+    "single_file_dataset": true,
+    "bytes_unchanged_during_validation": true
+  },
+  "counts": {
+    "cells": 12279160,
+    "footprint_cells": 5167373,
+    "nonfinite_inside": 0,
+    "out_of_range_inside": 0,
+    "nonfinite_all": 0,
+    "out_of_range_finite_all": 0,
+    "invalid_inside_mask": 0,
+    "valid_outside_mask": 7111787,
+    "nonzero_outside": 0
+  },
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "format_gate_pass": false,
+  "failures": [
+    "valid_outside_mask"
+  ],
+  "scope": "Conservative local format check only. Neither organizer acceptance, geological merit, uniqueness, nor slot permission is established.",
+  "outside_policy": "All raw cells finite [0,1]; exact footprint encoded in a mask contained inside the TIFF; zero-valued outside. Portal behavior not confirmed."
+}

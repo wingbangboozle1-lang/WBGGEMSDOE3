@@ -1,0 +1,27 @@
+{
+  "notice": "Public owner mirror: hash-pinned, not an organizer-authenticated copy. Do not use sample pixel values as a feature or label.",
+  "repo": "buffedlizard55-lab/GEMSDOE24",
+  "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+  "files": [
+    {"path": "data/bridge/sample_submission.tif", "dest": "sample_submission.tif", "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc", "bytes": 1599597},
+    {"path": "data/bridge/existing_faults.tif", "dest": "existing_faults.tif", "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093", "bytes": 425830},
+    {"path": "data/bridge/labels.tif", "dest": "labels.tif", "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093", "bytes": 425830},
+    {"path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif", "dest": "registry-lattice.tif", "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2", "bytes": 1706456}
+  ],
+  "training_features": {
+    "repo": "buffedlizard55-lab/GEMSDOE",
+    "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+    "dest": "training_features.tif",
+    "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "bytes": 418912844,
+    "parts": [
+      {"path": "data/bridge/gems-geodawn-numerical-features.tif.part-000", "bytes": 94371840, "git_blob_sha1": "f34e5143d5e7c10014b5cfe01c85d01bcede4c0a"},
+      {"path": "data/bridge/gems-geodawn-numerical-features.tif.part-001", "bytes": 94371840, "git_blob_sha1": "4bd98099ae505f63cc6c3733954f259974efd290"},
+      {"path": "data/bridge/gems-geodawn-numerical-features.tif.part-002", "bytes": 94371840, "git_blob_sha1": "d6f883ba8822207ac2765445737ecd2ecdfd2914"},
+      {"path": "data/bridge/gems-geodawn-numerical-features.tif.part-003", "bytes": 94371840, "git_blob_sha1": "976977b4ac84c4c9b6fec72495c4e512341de872"},
+      {"path": "data/bridge/gems-geodawn-numerical-features.tif.part-004", "bytes": 41425484, "git_blob_sha1": "41a7bb7b7603c1e7669d8cc8405cfeb5efb5cf0c"}
+    ]
+  },
+  "official_data_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+  "missing": ["Organizer-authenticated copies", "1m_DEM_links.csv", "The shared precomputed feature-stack arrays", "Hidden test labels", "The team's submission receipts and current quota"]
+}

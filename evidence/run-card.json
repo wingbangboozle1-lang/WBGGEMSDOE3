@@ -1,0 +1,40 @@
+{
+  "run_id": "WBG3-TAD-GEO-preflight-20261026",
+  "hypothesis": "At gravity/magnetic contact intersections, the site-level difference between aqueous geothermometer estimates and measured spring/well temperatures may indicate a blind, catalogue-missing hydrothermal conduit.",
+  "mechanism": "Aggregate site-level repeated observations without catalogue-derived fields; use a thermal-disequilibrium support coupled to independent gravity and magnetic gradient orientations. This is a proposal, not a demonstrated discovery.",
+  "non_fault_process": "Aquifer mixing and cooling, non-equilibrium water chemistry, lithologic contacts, or sampling bias can mimic the signal.",
+  "experiments_run": 0,
+  "budget": {"maximum_experiments": 3, "maximum_hours": 2, "planned_dot_count": 37654},
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": "gems57-pooled-hide-v2 (pinned; not run)",
+    "withheld_positives": null,
+    "ci95": null,
+    "reason": "Stopped before placement; cached feature arrays absent; no simulated score or canary has been claimed."
+  },
+  "leakage_canaries": {"status": "not run; no features or fit", "maximum_auc": null},
+  "correlation_overlap_vs_registry": {
+    "registry_manifest_sha256": "846eddb9459f0e5b67f33da519bbd62c966bf5f539545ba3dad262fbfbc308c2",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "surface_spearman": null,
+    "surface_actual_overlap": null,
+    "final_dot_spearman": null,
+    "final_dot_actual_overlap": null,
+    "preplacement_minimum_possible_dot_overlap": 0.8234184947150369,
+    "reason": "A single registered raster mathematically forces >70% overlap at the proposed dot budget; no surface or final dots were constructed. The complete registry was not scanned."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster_exists": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate was written. The owner-mirror sample and witness grid/hash were checked; that is not candidate validation."
+  },
+  "submission_name": null,
+  "note": "Research only: pre-placement duplicate STOP; no TIFF or competition slot.",
+  "eligible_for_selector": false,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

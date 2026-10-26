@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="GEMS fault-discovery hypotheses, measured raster lineage, irregularities and official sources."
+    />
+    <title>Research &amp; sources — GEMS Fieldnote</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script defer src="../assets/app.js"></script>
+  </head>
+  <body data-feed="data/public-feed.json">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="../index.html" aria-label="GEMS Fieldnote home"
+          ><span class="brand-mark" aria-hidden="true">✳</span
+          ><span
+            >GEMS <strong>FIELDNOTE</strong
+            ><small>RESEARCH DESK / 03</small></span
+          ></a
+        >
+        <nav aria-label="Main navigation">
+          <a href="../index.html">Overview</a
+          ><a href="executive-summary.html">Executive summary</a
+          ><a class="active" href="research.html" aria-current="page"
+            >Research &amp; sources</a
+          >
+        </nav>
+        <a
+          class="top-link"
+          href="https://www.drivendata.org/competitions/306/competition-doe-gems/"
+          >Competition ↗</a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <section class="shell page-hero research-hero">
+        <div>
+          <p class="eyebrow">SCIENTIFIC NOTE / 26 OCTOBER 2026</p>
+          <h1>Grounded in<br /><em>what we can verify.</em></h1>
+          <p class="lead">
+            Fault mapping supports geothermal exploration; it does not
+            automatically discover a vent or prove a commercially viable
+            resource.
+          </p>
+        </div>
+        <div class="page-status subdued">
+          <span class="tag">RESEARCH POSITION</span
+          ><strong>Hypotheses, not discoveries.</strong>
+          <p>
+            Hidden labels, original submission receipts and the complete current
+            registry remain unavailable in this checkout.
+          </p>
+          <a href="../research/hypotheses.md">Read the preregistration ↗</a>
+        </div>
+      </section>
+      <section class="shell section" id="champion">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">01 / FORENSIC ANALYSIS</p>
+            <h2>Why might B2 have led?</h2>
+          </div>
+          <p>
+            We can establish the relationship between raster bytes, not the
+            causal composition of the hidden test labels.
+          </p>
+        </div>
+        <div class="two-col">
+          <article class="panel">
+            <span class="tag">MEASURED LINEAGE</span>
+            <h3>The same family, pruned.</h3>
+            <ol class="lineage">
+              <li>
+                <strong>44,090 dots</strong
+                ><span
+                  >GEMSDOE25 and GEMSDOE30 are identical inside the
+                  footprint.</span
+                >
+              </li>
+              <li>
+                <strong>40,199 dots</strong
+                ><span
+                  >GEMSDOE31 equals that set after removing dots at catalogue
+                  distance ≤ 1 pixel.</span
+                >
+              </li>
+              <li>
+                <strong>37,654 dots</strong
+                ><span
+                  >GEMSDOE32 B2 equals the same set after removing dots at
+                  distance ≤ 2 pixels.</span
+                >
+              </li>
+              <li>
+                <strong>38,854 dots</strong
+                ><span>GEMSDOE36 contains all B2 dots plus 1,200 others.</span>
+              </li>
+            </ol>
+            <a class="text-link" href="../evidence/priority-audit.json"
+              >Inspect measured counts and hashes →</a
+            >
+          </article>
+          <article class="panel">
+            <span class="tag warm">INTERPRETATION</span>
+            <h3>A plausible metric mechanism.</h3>
+            <p>
+              The
+              <a
+                href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric"
+                >official metric</a
+              >
+              uses a triangular 300 m kernel, α = 0.2 and β = 0.8. Spacing dots
+              can retain partial credit for nearby truth while reducing
+              false-positive mass; pruning low-yield dots may improve the index.
+            </p>
+            <p>
+              With weighted true positives <em>T</em>, false positives
+              <em>F</em> and fixed truth count <em>N</em>, the denominator is
+              <span class="formula">0.2F + 0.8N + 0.2T</span>. A removal helps
+              only when the decrease in false-positive penalty outweighs its
+              lost true-positive credit. Nearby mapped faults are excluded
+              pixel-exactly according to
+              <a
+                href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2"
+                >DrivenData staff</a
+              >.
+            </p>
+            <p class="fine">
+              The historical 0.2778 figure is user/owner-reported, not an
+              organizer receipt. It cannot prove which removed pixels were false
+              positives, nor that this approach wins on the private or expanded
+              labels.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="shell section compact" id="hypotheses">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">02 / BEFORE IMPLEMENTATION</p>
+            <h2>Four hypotheses, ranked.</h2>
+          </div>
+          <p>
+            Rank is qualitative expected value and cost, not a measured score.
+            None was fitted in this run.
+          </p>
+        </div>
+        <div class="hypothesis-grid">
+          <article class="hypothesis">
+            <span class="index-num">01</span>
+            <div>
+              <h3>Thermal disequilibrium at contacts</h3>
+              <p>
+                Repeated GDR site observations: compare geothermometer estimates
+                with observed water temperature, then locate support near
+                independent gravity/magnetic contact intersections. Potential
+                blind upflow signal; water mixing, lithology and sampling bias
+                are mimics.
+              </p>
+              <span class="micro"
+                >PROVISIONAL LANE · MEDIUM COST · CACHE BLOCKED</span
+              >
+            </div>
+          </article>
+          <article class="hypothesis">
+            <span class="index-num">02</span>
+            <div>
+              <h3>Time-varying displacement steps</h3>
+              <p>
+                NASA OPERA displacement time series plus persistent 3DEP scarps
+                may reveal motion across covered structures. Pumping, atmosphere
+                and coherence can imitate a tectonic step. Specific tiles and
+                access are not yet verified.
+              </p>
+              <span class="micro">HIGH COST · NOT YET RUNNABLE</span>
+            </div>
+          </article>
+          <article class="hypothesis">
+            <span class="index-num">03</span>
+            <div>
+              <h3>Signed gravity–magnetic offsets</h3>
+              <p>
+                Compare normal-direction gradient peaks across scales rather
+                than simply adding field amplitudes. A buried basin margin may
+                shift density and magnetization boundaries; dikes or lithologic
+                contacts are alternatives.
+              </p>
+              <span class="micro">MEDIUM COST · CACHE BLOCKED</span>
+            </div>
+          </article>
+          <article class="hypothesis">
+            <span class="index-num">04</span>
+            <div>
+              <h3>Coherent drainage offsets</h3>
+              <p>
+                Test whether multiple catchments show consistent signed channel
+                offsets across a persistent slope break. Fan switching,
+                landslides, shoreline benches and roads can look similar.
+              </p>
+              <span class="micro">HIGH COST · TILE LIST UNVERIFIED</span>
+            </div>
+          </article>
+        </div>
+        <p class="fine">
+          Prior lanes have used related ingredients. The distinguishing
+          calculations and limitations are in the
+          <a href="../research/hypotheses.md">preregistration</a>; novelty
+          across every parallel repository is not proven.
+        </p>
+      </section>
+      <section class="shell section" id="irregularities">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">03 / IRREGULARITIES</p>
+            <h2>What could mislead us.</h2>
+          </div>
+          <p>
+            Failing closed means recording both evidence and its boundaries.
+          </p>
+        </div>
+        <div class="issue-list">
+          <article>
+            <span class="issue-number">01</span>
+            <div>
+              <h3>
+                Registered lattice makes the historical budget infeasible.
+              </h3>
+              <p>
+                The 695-entry pinned registry includes a calibration raster
+                whose three-pixel halo covers 99.87% of the mirrored footprint.
+                At 37,654 dots, the minimum possible overlap is 82.34%. This
+                does not prove that every smaller-budget method is impossible,
+                nor does it authorize gaming the holes.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="issue-number">02</span>
+            <div>
+              <h3>The mirrored sample is not the described zero sample.</h3>
+              <p>
+                Its 60,988 positive cells exactly match the mirrored known-fault
+                raster, whereas the official page describes a total-absence
+                sample. Provenance is not authenticated. Read its validity mask
+                and grid only—never its values as features, truth, or
+                predictions.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="issue-number">03</span>
+            <div>
+              <h3>Range validity and outside-nodata conventions differ.</h3>
+              <p>
+                The shared pinned writer emits finite zeros outside without an
+                internal mask. Our conservative local validator also requires
+                the outside to be masked, so the two policies do not currently
+                produce a passing end-to-end artifact. This is a local caution,
+                not proof that the portal rejects the writer. No private fork or
+                unverified “fix” was made.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="issue-number">04</span>
+            <div>
+              <h3>Shared metric prose has an over-broad bound.</h3>
+              <p>
+                The pinned
+                <a
+                  href="https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/src/gems57/metric.py"
+                  >metric module's prose</a
+                >
+                says marginal truth credit is always at most the dot's
+                nearest-truth credit. A single dot can cover multiple truth
+                cells, so the sum can exceed that maximum. The default-parameter
+                arithmetic has not been shown wrong by this observation.
+                Upstream write access is unavailable; we report the issue rather
+                than silently maintain a private fork.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="issue-number">05</span>
+            <div>
+              <h3>Scores, data and permissions have different provenance.</h3>
+              <p>
+                Leaderboard claims in the nine-site table have no organizer
+                receipts; the current public leaderboard is a separate dated
+                observation. The input files are hash-pinned owner mirrors, not
+                authenticated by DrivenData. The cached band arrays, original
+                DEM link list, hidden truth and team quota are missing. GitHub
+                reports no identified license for the shared owner code.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="shell section compact" id="sources">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">04 / VERIFIED SOURCES</p>
+            <h2>Trace every claim.</h2>
+          </div>
+          <p>
+            Official sources establish the competition or data context. Owner
+            sites and mirror hashes are evidence of what was published, not
+            independent organizer confirmation.
+          </p>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Authority</th>
+                <th scope="col">What it supports</th>
+                <th scope="col">Limitation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a
+                    href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+                    >DrivenData problem description ↗</a
+                  >
+                </td>
+                <td>
+                  Fault target, DTI formula, datasets and submission format.
+                </td>
+                <td>Hidden labels and submission receipts are not public.</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2"
+                    >DrivenData staff clarification ↗</a
+                  >
+                </td>
+                <td>
+                  Existing mapped-fault pixels are excluded from evaluation.
+                </td>
+                <td>Does not disclose hidden chunk labels.</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550/2"
+                    >DrivenData staff on aggregation ↗</a
+                  >
+                </td>
+                <td>
+                  Public and private scoring pool pixels before calculating the
+                  index.
+                </td>
+                <td>Chunk boundaries are not disclosed.</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+                    >NLR official rules PDF ↗</a
+                  >
+                </td>
+                <td>
+                  Eligibility, prize structure and submission obligations.
+                </td>
+                <td>Follow the current official page for any amendments.</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://github.com/drivendataorg/gems-prize-reference-solution"
+                    >DrivenData reference code ↗</a
+                  >
+                </td>
+                <td>Official baseline and CPU/GPU setup.</td>
+                <td>It does not authenticate the owner-mirrored inputs.</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+                    >USGS GeoDAWN release ↗</a
+                  >
+                </td>
+                <td>
+                  Airborne magnetic, radiometric and coordinated 3DEP surveys;
+                  CC0 data release.
+                </td>
+                <td>
+                  Survey artefacts and variable flight clearance can affect
+                  interpretation.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://gdr.openei.org/submissions/1391"
+                    >DOE GDR 1391 / INGENIOUS ↗</a
+                  >
+                </td>
+                <td>
+                  Public regional well, spring, geochemical, fault and
+                  geophysical resources; CC BY 4.0.
+                </td>
+                <td>
+                  Sampling is not spatially uniform; verify each layer's
+                  metadata and attribution.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://www.usgs.gov/publications/discovery-a-blind-geothermal-system-southern-gabbs-valley-western-nevada-through"
+                    >USGS Southern Gabbs Valley study ↗</a
+                  >
+                </td>
+                <td>
+                  Example of a blind geothermal discovery supported by multiple
+                  geophysical observations.
+                </td>
+                <td>
+                  A case study, not proof that any proposed predictor transfers
+                  across the whole region.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://science.nasa.gov/science-research/earth-science/opera-addressing-societal-needs-with-satellite-data/"
+                    >NASA OPERA overview ↗</a
+                  >
+                </td>
+                <td>NASA describes public, free displacement products.</td>
+                <td>
+                  Specific GeoDAWN tiles, access and preprocessing are not
+                  verified here.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="shell footer-inner">
+        <div>
+          <strong>GEMS FIELDNOTE</strong>
+          <p>Evidence first. No leaderboard promises.</p>
+        </div>
+        <div>
+          <a href="../index.html">Overview</a
+          ><a href="executive-summary.html">Submission guide</a
+          ><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3"
+            >Source code ↗</a
+          >
+        </div>
+        <span>Built for reproducible research.</span>
+      </div>
+    </footer>
+  </body>
+</html>

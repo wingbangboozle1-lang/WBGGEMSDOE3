@@ -1,0 +1,10 @@
+# Reproducible but large or third-party source data are local-only.
+data/raw/
+data/cache/
+.cache/
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.part
+_site/
