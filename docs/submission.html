@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Submit — WBGGEMSDOE3 GEMS Prize</title>
+<style>
+  :root{--bg:#0b1120;--fg:#e8ecf1;--accent:#38b6ff;--pass:#10b981;--danger:#ef4444;--card:#111b30;--border:#1e2d45}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;padding:2rem 1rem;max-width:900px;margin:0 auto}
+  h1{font-size:1.8rem;font-weight:800;color:var(--accent);margin-bottom:.25rem}
+  .subtitle{color:#8899aa;margin-bottom:2rem}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+  .step h2{font-size:1.1rem;margin-bottom:.5rem;color:#fff;border-left:4px solid var(--accent);padding-left:.6rem}
+  .step ol{margin-left:1.2rem;line-height:1.8}
+  .step code{background:rgba(255,255,255,.06);padding:.05rem .2rem;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;color:#b0c4de}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .btn{display:inline-block;padding:.6rem 1rem;background:var(--accent);color:#0b1120;font-weight:800;border-radius:8px;text-decoration:none;margin-top:.75rem}
+  .btn:hover{filter:brightness(1.1)}
+  .warning{padding:.75rem 1rem;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;color:#f59e0b;margin-top:1rem}
+</style>
+</head>
+<body>
+<h1>How to Submit — WBGGEMSDOE3 GEMS Prize</h1>
+<p class="subtitle">Step-by-step instructions for downloading, validating, and submitting the unique TIF file to the DOE GEMS competition.</p>
+
+<div class="step">
+  <h2>1. Confirm You Have the Data</h2>
+  <ol>
+    <li>Run <code>bash scripts/download_competition_data.sh</code> on an unrestricted machine.</li>
+    <li>Place files in <code>data/</code>: <code>training_features.tif</code>, <code>labels.tif</code>, <code>sample_submission.tif</code>, <code>1m_DEM_links.csv</code>.</li>
+    <li>Run <code>python scripts/prepare_data.py</code> to build feature stacks.</li>
+  </ol>
+  <p><strong>Note:</strong> Without this data, only the synthetic demonstration file is available. The synthetic file is format-valid but should not be submitted as a score improvement.</p>
+</div>
+
+<div class="step">
+  <h2>2. Generate the Submission TIF</h2>
+  <ol>
+    <li>Run <code>python scripts/generate_submission.py</code>.</li>
+    <li>The script writes to <code>submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif</code> and a <code>.zip</code>.</li>
+    <li>The script verifies float32, [0,1] range, no NaN, EPSG:32611, and writes a manifest.</li>
+  </ol>
+</div>
+
+<div class="step">
+  <h2>3. Validate Before Submitting</h2>
+  <ol>
+    <li>Run <code>python scripts/validate_submission.py submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif</code>.</li>
+    <li>Confirm output says <strong>PASS</strong> for format, range, and CRS.</li>
+    <li>Read <code>evidence/run_card.json</code> — confirm <strong>VERDICT: PROMOTE</strong> (not NEGATIVE). Only submit if promoted.</li>
+  </ol>
+</div>
+
+<div class="step">
+  <h2>4. Download the File (Direct Link)</h2>
+  <p><a class="btn" href="../submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif">⬇ Download TIF</a> <a class="btn" href="../submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.zip">⬇ Download ZIP</a></p>
+  <p><strong>Current file status:</strong> <span style="color:#ef4444;font-weight:700;">DO NOT SUBMIT</span> — synthetic proxy; projected below champion. Download for audit/research only.</p>
+</div>
+
+<div class="step">
+  <h2>5. Submit to Competition</h2>
+  <ol>
+    <li>Visit <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition Submit Page</a>.</li>
+    <li>Click "Make new submission".</li>
+    <li>Upload the <code>.tif</code> or <code>.zip</code> file.</li>
+    <li>Fill the Note field with the submission name (≤140 chars): <code>H80 LLI-unique hydrothermal-conduit 49231d 35%novel | LLI proj 0.230-0.255 <0.2778 | HR 0.084 [0.068,0.101] | UNIQUE not duplicate</code>.</li>
+    <li>Click Submit. Confirm there is no error message like "Predicted values must be in range [0, 1]".</li>
+  </ol>
+  <div class="warning">
+    <strong>Warning:</strong> The current file passes format checks (values in [0,1], float32, EPSG:32611, no NaN) but is marked <strong>NEGATIVE</strong> in the run card. Do not spend a weekly submission slot on it unless the run card changes to PROMOTE after real feature training and holdout validation.
+  </div>
+</div>
+
+<div class="step">
+  <h2>6. Post-Submission Check</h2>
+  <ol>
+    <li>Confirm receipt appears on the submission page.</li>
+    <li>If a score appears, label it <strong>ORGANIZER-CONFIRMED</strong> in <code>evidence/run_card.json</code>.</li>
+    <li>If no improvement, treat as negative result (deliverable per protocol).</li>
+  </ol>
+</div>
+
+<p class="small" style="margin-top:2rem;color:#5a7085;">WBGGEMSDOE3 · Arena Lane Protocol · Last updated 2026-10-26</p>
+</body>
+</html>
