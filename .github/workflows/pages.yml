@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: "17 */6 * * *"
 permissions:
   contents: read
   pages: write
@@ -15,11 +15,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages_source: ${{ steps.source.outputs.mode }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Refresh public observations (fails closed)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,11 +30,25 @@ jobs:
         run: |
           python scripts/build_site.py
           touch _site/.nojekyll
+      - name: Record current Pages source
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mode="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq .build_type 2>/dev/null || echo unknown)"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "Pages source: $mode (workflow source is required for automatic deployment)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-source-observation
+          path: _site/docs/data/public-feed.json
       - uses: actions/upload-pages-artifact@v3
+        if: steps.source.outputs.mode == 'workflow'
         with:
           path: _site
   deploy:
     needs: build
+    if: needs.build.outputs.pages_source == 'workflow'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

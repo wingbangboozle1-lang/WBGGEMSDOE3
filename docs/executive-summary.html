@@ -521,9 +521,11 @@
             <h2>Observed, not assumed.</h2>
           </div>
           <p>
-            The scheduled Pages build fetches public sources. If refresh or
-            parsing fails, the last dated observation is visibly stale;
-            repository changes are not automatically audited.
+            Scheduled checks save a public-source observation as an Actions
+            artifact. This site currently uses legacy branch Pages, so the live
+            snapshot does not update automatically on that schedule. Failed
+            refreshes remain stale; changed repositories are not automatically
+            audited.
           </p>
         </div>
         <div class="feed-box">
@@ -546,6 +548,10 @@
           <a
             href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
             >View official source ↗</a
+          >
+          <a
+            href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/actions/workflows/pages.yml"
+            >View scheduled artifacts ↗</a
           >
         </div>
       </section>
