@@ -1,10 +1,18 @@
-# Reproducible but large or third-party source data are local-only.
+# Reproducible third-party sources and large local data remain local-only.
 data/raw/
 data/cache/
+data/downloads/
+data/*.tif
+data/scored/
+data/prepared_manifest.json
 .cache/
 .venv/
+venv/
 __pycache__/
 .pytest_cache/
 *.py[cod]
 *.part
+.pypirc
 _site/
+.DS_Store
+Thumbs.db

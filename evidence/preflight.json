@@ -11,5 +11,5 @@
   "eligible_for_selector": false,
   "ok_to_submit": false,
   "result": "DUPLICATE STOP",
-  "scope": "Distinct in-footprint dots only; no surface or final candidate was generated. An inconclusive result is not a pass."
+  "scope": "Distinct in-footprint dots only; this lane generated no surface or final candidate. An inconclusive result is not a pass."
 }

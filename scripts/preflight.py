@@ -52,7 +52,7 @@ def calculate(sample: Path, lattice: Path, budget: int) -> dict:
         "minimum_possible_overlap_fraction": bound, "maximum_allowed_fraction": 0.70,
         "duplicate_stop": stopped, "eligible_for_selector": False, "ok_to_submit": False,
         "result": "DUPLICATE STOP" if stopped else "INCONCLUSIVE: further checks required",
-        "scope": "Distinct in-footprint dots only; no surface or final candidate was generated. An inconclusive result is not a pass.",
+        "scope": "Distinct in-footprint dots only; this lane generated no surface or final candidate. An inconclusive result is not a pass.",
     }
 
 

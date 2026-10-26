@@ -25,6 +25,12 @@ This is an engineering/data audit, not a model experiment or a competition score
 - Exercised desktop and mobile Pages rendering, site filter, public-feed display, internal links and responsive width. Confirmed the preview serves an assembled static directory, not `.git` or local raw rasters.
 - The shared metric's prose overstates a bound on marginal truth credit. The default competition arithmetic was not proven wrong by this finding; this session has no write permission to the shared template, so no private fork or silent upstream change was made.
 
+## Concurrent-main integration recheck
+
+While this branch was under review, parallel work was merged into `main` at `966b9ad`. Its 35,000-dot step-over TIFFs were re-read without modifying them: 34,253 dots are inside the pinned mirrored footprint, 747 outside, and 34,205 of the inside dots are within 3 px of the registered lattice (**99.8599%**). This contradicts the earlier subset-only uniqueness claim and requires **DUPLICATE STOP**, independently of any score. The local validator also rejects the footprint mask and nonzero exterior; organizer portal behavior remains unverified. See `concurrent-candidate-audit.json` and `scripts/audit_parallel_candidate.py`.
+
+A separately published synthetic TIFF has a 1200 × 1600, 30 m grid rather than the 3730 × 3292, 100 m competition grid. It is not a submission. We retained parallel files and original conflicting reports in `archive/concurrent-966b9ad/`, redirected misleading legacy landing pages, and disabled legacy generation/finalization/partial-registry approval until a full gate exists. No parallel TIFF is endorsed by this lane.
+
 ## Next prerequisites
 
 1. A scientifically justified lower-budget lane (the counting bound alone cannot prove novelty); retain the full literal registry and never select cells merely to exploit lattice holes.

@@ -1,0 +1,142 @@
+{
+  "submission_name": "WB-GEMS-DOE-3-STEPOVER-DAMAGEZONE-35000D-5D451566",
+  "filename": "wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+  "nan_twin": "wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+  "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+  "sha8": "5d451566",
+  "note": "WB-GEMS-DOE-3-STEPOVER-DAMAGEZONE-35000D-5D451566 | 35000 off-trace step-over/damage-zone dots | format PASS | unique PASS | score unveri...",
+  "note_chars": 140,
+  "generated_utc": "20261026T215822Z",
+  "hypothesis": "H_STEP-OVER: geothermal upflow localises at off-trace dilational step-overs and the fault damage zone, catching off-catalogue blind faults missed by dotted-catalogue entries.",
+  "layers_targeted": [
+    "off-trace structural damage zone",
+    "dilational step-over / relay zones"
+  ],
+  "physical_signature": "distance-to-catalogue-trace in 100 m - 1.5 km (damage zone / dilation)",
+  "why_missing_from_catalogue": "dots are 100 m - 1.5 km off mapped USGS/INGENIOUS traces, targeting blind structures absent from the catalogue.",
+  "differs_from_repo": "all GEMSDOE high-scorers dot ON the catalogue fault network; this submission dots strictly OFF-trace (a different lane).",
+  "dots": 35000,
+  "format_audit": {
+    "filename": "wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+    "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+    "size_bytes": 218882,
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_template": true,
+      "crs_matches_template": true,
+      "exact_reference_grid_match": true,
+      "whole_array_all_finite": true,
+      "whole_array_zero_nan": true,
+      "whole_array_zero_inf": true,
+      "whole_array_zero_sentinel": true,
+      "whole_array_in_01": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "geometry": {
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "nodata": null,
+      "template_match": true
+    },
+    "stats": {
+      "height": 3730,
+      "width": 3292,
+      "total_cells": 12279160,
+      "finite_cells_all": 12279160,
+      "nan_cells_all": 0,
+      "inf_cells_all": 0,
+      "sentinel_cells_all": 0,
+      "whole_array_min": 0.0,
+      "whole_array_max": 1.0,
+      "whole_array_in_01": true
+    }
+  },
+  "nan_twin_audit": {
+    "filename": "wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+    "sha256": "58b34e2a24df99bc2857df2e6248075d65955592cd838e8e20dad2d1c1cfbd5a",
+    "size_bytes": 218894,
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_template": true,
+      "crs_matches_template": true,
+      "exact_reference_grid_match": true,
+      "whole_array_all_finite": true,
+      "whole_array_zero_nan": true,
+      "whole_array_zero_inf": true,
+      "whole_array_zero_sentinel": true,
+      "whole_array_in_01": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "geometry": {
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "nodata": NaN,
+      "template_match": true
+    },
+    "stats": {
+      "height": 3730,
+      "width": 3292,
+      "total_cells": 12279160,
+      "finite_cells_all": 12279160,
+      "nan_cells_all": 0,
+      "inf_cells_all": 0,
+      "sentinel_cells_all": 0,
+      "whole_array_min": 0.0,
+      "whole_array_max": 1.0,
+      "whole_array_in_01": true
+    }
+  },
+  "uniqueness": {
+    "raster": "/home/user/WBGGEMSDOE3/docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+    "max_abs_rho_surface": 0.0117,
+    "max_abs_rho_final_dots": 0.0117,
+    "max_overlap_within_3px": 0.2677,
+    "lane_rule_1_pass": true,
+    "lane_rule_2_pass": true,
+    "unique": true,
+    "n_registry_rasters": 58
+  },
+  "holdout_dti": "NOT COMPUTED - no training labels access (DrivenData login-gated). Label as HOLDOUT-DTI only once labels.tif is placed in data/ and scripts/evaluate_holdout.py is run.",
+  "score_estimate": "UNVERIFIED PROJECTION (no organizer receipt, no label access). By construction 0.0% of dots lie on catalogue traces. Off-catalogue blind-fault recall -- the quantity that determines the private-test DTI -- cannot be measured without the private labels. Do NOT treat this projection as a score.",
+  "verdict": "FORMAT_PASS / UNIQUE_PASS / SCORE_UNVERIFIED - OK to download for research/audit. NOT organizer-cleared for live submission until a holdout win (CI > 0 vs repo best) and an organizer submission-page receipt confirm the score."
+}

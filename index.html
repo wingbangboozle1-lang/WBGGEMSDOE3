@@ -59,7 +59,7 @@
           <div class="hero-meta">
             <span><strong>09</strong> priority sites</span
             ><span><strong>01</strong> registered witness</span
-            ><span><strong>00</strong> slots spent</span>
+            ><span><strong>00</strong> slots spent by this lane</span>
           </div>
         </div>
         <aside class="decision-card" aria-labelledby="decision-title">
@@ -72,8 +72,8 @@
           <div class="decision-icon" aria-hidden="true">!</div>
           <h2 id="decision-title">No file is ready<br />to submit.</h2>
           <p>
-            A registered raster makes the proposed dot budget fail the literal
-            uniqueness rule before placement. No new TIFF was created.
+            This lane stopped before creating a TIFF. A separate parallel
+            candidate also fails the registered-lattice rule.
           </p>
           <button
             class="button disabled"
@@ -100,7 +100,7 @@
             <span>PRE-PLACEMENT</span
             ><strong class="red-text">Duplicate stop</strong>
           </div>
-          <div><span>GEOLOGICAL MODEL</span><strong>Not run</strong></div>
+          <div><span>THIS LANE'S MODEL</span><strong>Not run</strong></div>
           <div><span>HOLDOUT-DTI</span><strong>Not available</strong></div>
           <div>
             <span>ORGANIZER RECEIPT</span><strong>Not available</strong>
@@ -152,6 +152,14 @@
             </p>
             <a class="text-link" href="evidence/preflight.json"
               >Inspect preflight evidence →</a
+            >
+            <p class="fine">
+              A parallel 35,000-dot candidate also fails: 99.86% of its
+              in-footprint dots overlap this lattice, and 747 dots lie outside
+              the mirrored footprint.
+            </p>
+            <a class="text-link" href="evidence/concurrent-candidate-audit.json"
+              >Inspect parallel candidate audit →</a
             >
           </article>
           <article class="panel champion-panel">

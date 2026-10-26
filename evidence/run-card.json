@@ -1,5 +1,6 @@
 {
   "run_id": "WBG3-TAD-GEO-preflight-20261026",
+  "scope": "This lane only. A separate parallel artifact exists but is not eligible; see concurrent-candidate-audit.json.",
   "hypothesis": "At gravity/magnetic contact intersections, the site-level difference between aqueous geothermometer estimates and measured spring/well temperatures may indicate a blind, catalogue-missing hydrothermal conduit.",
   "mechanism": "Aggregate site-level repeated observations without catalogue-derived fields; use a thermal-disequilibrium support coupled to independent gravity and magnetic gradient orientations. This is a proposal, not a demonstrated discovery.",
   "non_fault_process": "Aquifer mixing and cooling, non-equilibrium water chemistry, lithologic contacts, or sampling bias can mimic the signal.",
@@ -26,7 +27,7 @@
   },
   "raster_sha256": null,
   "validator_output": {
-    "new_raster_exists": false,
+    "new_raster_from_this_lane_exists": false,
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform_match": null,
@@ -35,6 +36,7 @@
   "submission_name": null,
   "note": "Research only: pre-placement duplicate STOP; no TIFF or competition slot.",
   "eligible_for_selector": false,
+  "approved_for_submission": false,
   "ok_to_submit": false,
   "verdict": "negative"
 }

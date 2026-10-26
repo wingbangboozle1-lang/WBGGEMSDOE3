@@ -1,0 +1,19 @@
+{
+  "status": "SUPERSEDED — DUPLICATE STOP",
+  "scope": "Correction to the concurrently committed H_STEP-OVER research artifact; this is not the TAD-GEO session run card.",
+  "source_main_commit": "966b9ad722df057ca21ac5d6666c54e4626c957c",
+  "artifact_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+  "prior_subset_uniqueness_claim": "UNIQUE PASS against 58 comparators; does not account for the registered lattice witness",
+  "registered_lattice_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "positive_pixels_inside_owner_mirrored_footprint": 34253,
+  "positive_pixels_outside_owner_mirrored_footprint": 747,
+  "lattice_directional_overlap_within_3px": 0.9985986628908416,
+  "local_format_validator": "FAIL — mask and nonzero-outside mismatch against the pinned owner mirror; this conservative policy is not verified as portal behavior",
+  "holdout_dti": null,
+  "organizer_receipt": null,
+  "unique": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "audit": "concurrent-candidate-audit.json",
+  "original_report": "../archive/concurrent-966b9ad/evidence/run_card.json"
+}

@@ -1,6 +1,6 @@
 # WBGGEMSDOE3 — evidence-first GEMS research
 
-> **Current decision: DO NOT SUBMIT.** No new TIFF was generated, no competition slot was selected, and no organizer score for a new candidate exists. The proposed 37,654-dot lane hit the user's literal pre-placement duplicate stop. See the [executive summary](docs/executive-summary.html), [run card](evidence/run-card.json), and [research and sources](docs/research.html).
+> **Current decision: DO NOT SUBMIT.** This lane generated no TIFF or competition upload. Its proposed 37,654-dot budget hit the literal pre-placement duplicate stop. A TIFF committed by a parallel session also fails the registered-lattice rule and is research-only; no organizer score or slot authorization is known. See the [executive summary](docs/executive-summary.html), [run card](evidence/run-card.json), and [parallel-candidate audit](evidence/concurrent-candidate-audit.json).
 
 [Project dashboard](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/) · [Nine-site review](docs/executive-summary.html#site-table) · [Competition](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
 
@@ -16,6 +16,8 @@ A SHA-256-pinned [registered lattice](evidence/priority-audit.json) has only 6,6
 
 The strongest supplied historical claim is GEMSDOE32 B2, **0.2778 user/owner-reported and unverified**; its exact pixels are a known-catalogue-distance-pruned subset of GEMSDOE25/30. No score-to-byte organizer receipt was found, and hidden truth is unavailable, so no causal explanation or new leaderboard score can be proven. The dated public leaderboard snapshot is a distinct observation, not a receipt for our file.
 
+Concurrent `main` work added `wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif` and claimed uniqueness against 58 rasters. On our pinned owner-mirrored footprint, **34,205 / 34,253 in-footprint dots (99.86%)** lie within three pixels of the registered lattice; 747 positive cells also lie outside that footprint. This fails the literal >70% rule and the conservative local footprint policy. The encoding's portal acceptance is unknown, not guaranteed. Both twins and the alias remain available only as historical research artifacts. See the [reproducible audit](evidence/concurrent-candidate-audit.json). An unrelated synthetic stand-in has the wrong grid and is not a competition file. The unsafe legacy generator and subset uniqueness gate are disabled; their original source is preserved under `archive/concurrent-966b9ad/`.
+
 ## Reproduce the audit
 
 Python 3.11+ and a GIS-capable environment are needed. The commands restore **public owner mirrors**, not authenticated DrivenData originals; the derived files are ignored by Git and no credentials are stored in the repository.
@@ -27,6 +29,7 @@ python -m pip install -r requirements.txt
 bash scripts/download_competition_data.sh      # hash-pinned mirrors; ~419 MB feature raster
 python scripts/restore_shared_template.py     # unchanged pinned upstream evaluator/writer
 python scripts/audit_priority.py             # fetch and re-read nine historical rasters + witness
+python scripts/audit_parallel_candidate.py    # recheck the parallel TIFFs against the same witness
 python scripts/prepare_data.py               # exits 2: cache/provenance/permission not verified
 python scripts/preflight.py --dots 37654      # exits 2: literal duplicate stop
 python -m pytest -q

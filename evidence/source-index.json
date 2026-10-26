@@ -1,0 +1,380 @@
+[
+  {
+    "local": "evidence/upstream/GEMSDOE24/README.md",
+    "commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+    "blob": "1734c392b1b6063f1a711bf12f90d25a9b773cab",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/1734c392b1b6063f1a711bf12f90d25a9b773cab",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE24/registry/live_scores.json",
+    "commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+    "blob": "b903e93797cc3b638ed5f0917e97b67e7ead7254",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/b903e93797cc3b638ed5f0917e97b67e7ead7254",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/registry/live_scores.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE24/scripts/evaluate_holdout.py",
+    "commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+    "blob": "c880b0576c3bc0bdf6657c5671e47cf7d5c40e71",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/c880b0576c3bc0bdf6657c5671e47cf7d5c40e71",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/scripts/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE24/scripts/submission_writer.py",
+    "commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+    "blob": "f5c5d2384a884f2928ec18368577c06a126a6852",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/f5c5d2384a884f2928ec18368577c06a126a6852",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/scripts/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE25/README.md",
+    "commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+    "blob": "0dc843831e740ab8658acc6d370c5845db04763e",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/blobs/0dc843831e740ab8658acc6d370c5845db04763e",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE25/registry/data_manifest.json",
+    "commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+    "blob": "89768a4165f05a1c538e03c93822eac3347f758a",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/blobs/89768a4165f05a1c538e03c93822eac3347f758a",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE25/registry/live_scores.json",
+    "commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+    "blob": "a8140596b383163245d14dcb523d5181b12c8ce7",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/blobs/a8140596b383163245d14dcb523d5181b12c8ce7",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/registry/live_scores.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE27/README.md",
+    "commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+    "blob": "3a168122b5e6bcd5d41c149adf3d89bd472ff840",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/blobs/3a168122b5e6bcd5d41c149adf3d89bd472ff840",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE27/docs/downloads/manifest.json",
+    "commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+    "blob": "114afc7cdecbdf46d121fcafa90e35a61c2cb2e2",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/blobs/114afc7cdecbdf46d121fcafa90e35a61c2cb2e2",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE27/registry/live_scores.json",
+    "commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+    "blob": "757c3ea99fefcd9819243d9f7a5f6d486478b4af",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/blobs/757c3ea99fefcd9819243d9f7a5f6d486478b4af",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/registry/live_scores.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE28/README.md",
+    "commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+    "blob": "1979fb56c345f2f5b020dacf9eae85b507b1a854",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/blobs/1979fb56c345f2f5b020dacf9eae85b507b1a854",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE28/docs/downloads/manifest.json",
+    "commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+    "blob": "a489de2edef54b1e3eb73868e367e8aa7198c0ba",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/blobs/a489de2edef54b1e3eb73868e367e8aa7198c0ba",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE28/registry/data_manifest.json",
+    "commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+    "blob": "5fb8c3acc74973e90cf6af2a3048ce606e6783c8",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/blobs/5fb8c3acc74973e90cf6af2a3048ce606e6783c8",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE28/registry/live_scores.json",
+    "commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+    "blob": "58cc809ea12970d066bea4275afa432e24c87845",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/blobs/58cc809ea12970d066bea4275afa432e24c87845",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/registry/live_scores.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE30/README.md",
+    "commit": "9c0d637c0171407196b61b780444bc772ce75438",
+    "blob": "c7360f6df16897ef16082ccdb983c7f3498c7c97",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE30/git/blobs/c7360f6df16897ef16082ccdb983c7f3498c7c97",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/README.md",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "a370f4b7703abf8f72dfada8329460f3fa2c517f",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/a370f4b7703abf8f72dfada8329460f3fa2c517f",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/registry/data_manifest.json",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "a38f3d05018b1229f8432a7c1cd6f17cbcfb38be",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/a38f3d05018b1229f8432a7c1cd6f17cbcfb38be",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/registry/shared_template.json",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "27050cab4b694b6bd6d59f15d7c6fdee8fbd794c",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/27050cab4b694b6bd6d59f15d7c6fdee8fbd794c",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/registry/shared_template.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/registry/template_pins.json",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "2eec019f80e0a8c5174ad459d5b610950de046db",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/2eec019f80e0a8c5174ad459d5b610950de046db",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/registry/template_pins.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/scripts/evaluate_holdout.py",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "bcc573675c6acdc4e369ad592d835bbfee64fe84",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/bcc573675c6acdc4e369ad592d835bbfee64fe84",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/scripts/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/scripts/submission_writer.py",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "7c4498580e992d69947aba08ec6d44e985697d29",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/7c4498580e992d69947aba08ec6d44e985697d29",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/scripts/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/vendor/gems57/evaluate_holdout.py",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/vendor/gems57/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/vendor/gems57/holdout.py",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/vendor/gems57/holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE31/vendor/gems57/submission_writer.py",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "blob": "5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/vendor/gems57/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/README.md",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "95166dd3f33ef1df1b0c4dc0f990153918137d09",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/95166dd3f33ef1df1b0c4dc0f990153918137d09",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/docs/downloads/submissions_manifest.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "9aa759db43c2ee093ea1b4fd6dab8db0661d1005",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/9aa759db43c2ee093ea1b4fd6dab8db0661d1005",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/submissions_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/docs/research/focus-sites-executive-summary.md",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "eb9086906b7bd70d3cc20f1ed8b157e840e9bf97",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/eb9086906b7bd70d3cc20f1ed8b157e840e9bf97",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/research/focus-sites-executive-summary.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/evidence/h33_holdout.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "9f4a79a8e6fee38cc23d3eb03cca1c7a19c29358",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/9f4a79a8e6fee38cc23d3eb03cca1c7a19c29358",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/evidence/h33_holdout.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/registry/claims.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "e2e782ad83120d7ba0e4c73b11a5552233d56c90",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/e2e782ad83120d7ba0e4c73b11a5552233d56c90",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/registry/claims.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/registry/data_manifest.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "9b291ec7f020ef406bb1aebf20faf98ae73dc679",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/9b291ec7f020ef406bb1aebf20faf98ae73dc679",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/registry/feature_receipt.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "264940211353f505f246f3435e98fc15433b8fbc",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/264940211353f505f246f3435e98fc15433b8fbc",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/registry/feature_receipt.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/registry/submission_build.json",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "1f1a0afc133e5e7ca7fd9b807c87c6ce8cc36c77",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/1f1a0afc133e5e7ca7fd9b807c87c6ce8cc36c77",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/registry/submission_build.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/scripts/evaluate_holdout.py",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "7773e40cda724395a323e54da4f607b0e9e59a2e",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/7773e40cda724395a323e54da4f607b0e9e59a2e",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/scripts/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/scripts/submission_writer.py",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "c3cc5cf23056d46e577c00ecec39a6f01c771260",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/c3cc5cf23056d46e577c00ecec39a6f01c771260",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/scripts/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/vendor/gems57/evaluate_holdout.py",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/vendor/gems57/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/vendor/gems57/holdout.py",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/vendor/gems57/holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE32/vendor/gems57/submission_writer.py",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "blob": "5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/vendor/gems57/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/README.md",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "20620c5d4706b3a287571e9b6cb66a1a3a29a280",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/20620c5d4706b3a287571e9b6cb66a1a3a29a280",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/docs/downloads/manifest.json",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "b5323f34920734c9b3cc266f6cde5e5a4cb7eb94",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/b5323f34920734c9b3cc266f6cde5e5a4cb7eb94",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/docs/downloads/manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/registry/data_manifest.json",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "5a5771acd6365e285edcc19f24f154d3cf03c9c7",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/5a5771acd6365e285edcc19f24f154d3cf03c9c7",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/registry/leaderboard_review.json",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "e55cf8c8b05fdc21f3a3c5c805b4bba785aac00c",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/e55cf8c8b05fdc21f3a3c5c805b4bba785aac00c",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/registry/leaderboard_review.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/registry/live_scores.json",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "93a84d9ddef49ba2df25ef22b18d65975d08073a",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/93a84d9ddef49ba2df25ef22b18d65975d08073a",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/registry/live_scores.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/registry/score_ledger.json",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "a61da21982401be144cd60b8b78d1002fa646b87",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/a61da21982401be144cd60b8b78d1002fa646b87",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/registry/score_ledger.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/scripts/evaluate_holdout.py",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "80472c07999b8163b8f4fd377e4d374abf32986b",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/80472c07999b8163b8f4fd377e4d374abf32986b",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/scripts/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/scripts/submission_writer.py",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "6f26b561d209f2f879939ed2d2ebd360eacf402a",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/6f26b561d209f2f879939ed2d2ebd360eacf402a",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/scripts/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/vendor/gems57/evaluate_holdout.py",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/9c65eb9de1468fecfc909d9b2c1348bed52f67ca",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/vendor/gems57/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/vendor/gems57/holdout.py",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/8c71ef3055cfdf130fd9ea617c986b232632f401",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/vendor/gems57/holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE33/vendor/gems57/submission_writer.py",
+    "commit": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+    "blob": "5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/5a04a2b0d5d4137f0aad39d862889ef1b92198ea",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/vendor/gems57/submission_writer.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/README.md",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "81fc055ed31fb3ba731fc1637a497fca97de116e",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/81fc055ed31fb3ba731fc1637a497fca97de116e",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/README.md"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/docs/downloads/submissions_manifest.json",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "ce33c85a86ffa17ad344d0a35e37616855500895",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/ce33c85a86ffa17ad344d0a35e37616855500895",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/docs/downloads/submissions_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/registry/data_manifest.json",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "0469596bbb420a8199fe7062595129cf3d35c2ca",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/0469596bbb420a8199fe7062595129cf3d35c2ca",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/registry/data_manifest.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/registry/template_pins.json",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "e8ebf5174e93c238a8fe37910f3605fd84f4711b",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/e8ebf5174e93c238a8fe37910f3605fd84f4711b",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/registry/template_pins.json"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/scripts/evaluate_holdout.py",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "c99c7e591c3b8a9a839f4ee78ea45b0424d7dc42",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/c99c7e591c3b8a9a839f4ee78ea45b0424d7dc42",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/scripts/evaluate_holdout.py"
+  },
+  {
+    "local": "evidence/upstream/GEMSDOE36/scripts/submission_writer.py",
+    "commit": "f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a",
+    "blob": "cf146cc8bbd8d2bf839ad9e9aa0f458665037453",
+    "api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/cf146cc8bbd8d2bf839ad9e9aa0f458665037453",
+    "review_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a/scripts/submission_writer.py"
+  }
+]
