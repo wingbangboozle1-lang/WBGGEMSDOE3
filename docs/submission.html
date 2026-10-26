@@ -1,1 +1,89 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMS submission guide</title><style>body{font:18px/1.65 system-ui;max-width:850px;margin:40px auto;padding:20px;color:#183440}a{color:#00667c}.warning{background:#fff0ed;padding:20px;border-left:5px solid #ad3324}code{overflow-wrap:anywhere}</style><a href="index.html">← Executive summary</a><h1>How to submit — only after clearance</h1><p class="warning"><strong>DO NOT SUBMIT:</strong> no new competition TIFF is available. Format validity, scientific validation, novelty and weekly-slot authorization are separate gates. None should be replaced by a manual visual inspection.</p><ol><li>The project must finish the automated protocol: buffered segment holdout, fold-local features, canaries, paired improvement, complete-registry surface/dot novelty, and exact template validation.</li><li>The independent selector must check the current weekly cap and approve a slot. We have not accessed the authenticated submission page or its current usage.</li><li>Download only the TIFF whose SHA-256 matches the cleared run card. A future cleared release should put this link at the top of the executive page; there is deliberately no placeholder download now.</li><li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition</a> and its New submission form. Choose the single-band .tif (or ZIP containing only that TIFF). Use the generated unique name and note, limited to 140 characters by this project's policy.</li><li>Retain the organizer receipt, timestamp, file hash and returned score. Only a matching submission-page receipt justifies ORGANIZER-CONFIRMED. A local holdout is not an organizer score.</li></ol><h2>Preventing “Predicted values must be in range [0, 1]”</h2><p>Check every cell after writing, not just the footprint. NaN, infinity, negative nodata sentinels and values above one are disallowed by this project's all-finite policy. Set nodata to None for the all-finite release, verify the grid exactly against the sample, and read the result back. Do not silently clip a failed model to make it appear valid.</p><p>Local format-only command: <code>.venv/bin/python scripts/audit.py raster candidate.tif data/sample_submission.tif</code>. This command never grants submission clearance.</p><h2>Run identity</h2><p>Reserved research name: <code>wbggemsdoe3-unassigned-20261026</code><br>Note: <code>Prerequisite audit only; no assigned lane, no validated prediction, no submission authorized.</code><br>No submission file corresponds to this name.</p></html>
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>GEMS submission guide</title
+  ><style>
+    body {
+      font: 18px/1.65 system-ui;
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 20px;
+      color: #183440;
+    }
+    a {
+      color: #00667c;
+    }
+    .warning {
+      background: #fff0ed;
+      padding: 20px;
+      border-left: 5px solid #ad3324;
+    }
+    code {
+      overflow-wrap: anywhere;
+    }</style
+  ><a href="index.html">← Executive summary</a>
+  <h1>How to submit — only after clearance</h1>
+  <p class="warning">
+    <strong>DO NOT SUBMIT:</strong> no eligible new competition TIFF is
+    available. A parallel candidate exists but fails the literal registry rule.
+    Format validity, scientific validation, novelty and weekly-slot
+    authorization are separate gates. None should be replaced by a manual visual
+    inspection.
+  </p>
+  <ol>
+    <li>
+      The project must finish the automated protocol: buffered segment holdout,
+      fold-local features, canaries, paired improvement, complete-registry
+      surface/dot novelty, and exact template validation.
+    </li>
+    <li>
+      The independent selector must check the current weekly cap and approve a
+      slot. We have not accessed the authenticated submission page or its
+      current usage.
+    </li>
+    <li>
+      Download only the TIFF whose SHA-256 matches the cleared run card. A
+      future cleared release should put this link at the top of the executive
+      page; there is deliberately no placeholder download now.
+    </li>
+    <li>
+      Open
+      <a
+        href="https://www.drivendata.org/competitions/306/competition-doe-gems/"
+        >the competition</a
+      >
+      and its New submission form. Choose the single-band .tif (or ZIP
+      containing only that TIFF). Use the generated unique name and note,
+      limited to 140 characters by this project's policy.
+    </li>
+    <li>
+      Retain the organizer receipt, timestamp, file hash and returned score.
+      Only a matching submission-page receipt justifies ORGANIZER-CONFIRMED. A
+      local holdout is not an organizer score.
+    </li>
+  </ol>
+  <h2>Preventing “Predicted values must be in range [0, 1]”</h2>
+  <p>
+    Check every cell after writing, not just the footprint. NaN, infinity,
+    negative nodata sentinels and values above one are disallowed by this
+    project's all-finite policy. Set nodata to None for the all-finite release,
+    verify the grid exactly against the sample, and read the result back. Do not
+    silently clip a failed model to make it appear valid.
+  </p>
+  <p>
+    Local format-only command:
+    <code>.venv/bin/python scripts/validate_raster.py candidate.tif</code>. This
+    command never grants submission clearance.
+  </p>
+  <h2>Run identity</h2>
+  <p>
+    Reserved research name: <code>wbggemsdoe3-unassigned-20261026</code
+    ><br />Note:
+    <code
+      >Prerequisite audit only; no assigned lane, no validated prediction, no
+      submission authorized.</code
+    ><br />No submission file corresponds to this name.
+  </p>
+</html>

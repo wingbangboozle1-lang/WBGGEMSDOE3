@@ -1,0 +1,143 @@
+{
+  "evidence_class": "DATA-READINESS; NOT A SCORE",
+  "computed_utc": "2026-10-26T22:11:24.997938+00:00",
+  "local_file_prerequisites_passed": false,
+  "ready_for_holdout": false,
+  "ready_for_holdout_reason": "Official provenance and authorization to reuse the shared code are not verified by this script.",
+  "raw_owner_mirror_checks": {
+    "sample_submission.tif": true,
+    "existing_faults.tif": true,
+    "labels.tif": true,
+    "registry-lattice.tif": true,
+    "training_features.tif": true
+  },
+  "grid": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "footprint_pixels": 5167373,
+    "grid_match": true,
+    "sample_positive_pixels": 60988,
+    "known_fault_pixels": 60988
+  },
+  "training_grid_matches": true,
+  "shared_template_unchanged": true,
+  "feature_cache": [
+    {
+      "band": 1,
+      "path": "data/cache/shared-features/band-01.npy",
+      "verified": false
+    },
+    {
+      "band": 2,
+      "path": "data/cache/shared-features/band-02.npy",
+      "verified": false
+    },
+    {
+      "band": 3,
+      "path": "data/cache/shared-features/band-03.npy",
+      "verified": false
+    },
+    {
+      "band": 4,
+      "path": "data/cache/shared-features/band-04.npy",
+      "verified": false
+    },
+    {
+      "band": 5,
+      "path": "data/cache/shared-features/band-05.npy",
+      "verified": false
+    },
+    {
+      "band": 6,
+      "path": "data/cache/shared-features/band-06.npy",
+      "verified": false
+    },
+    {
+      "band": 7,
+      "path": "data/cache/shared-features/band-07.npy",
+      "verified": false
+    },
+    {
+      "band": 8,
+      "path": "data/cache/shared-features/band-08.npy",
+      "verified": false
+    },
+    {
+      "band": 9,
+      "path": "data/cache/shared-features/band-09.npy",
+      "verified": false
+    },
+    {
+      "band": 10,
+      "path": "data/cache/shared-features/band-10.npy",
+      "verified": false
+    },
+    {
+      "band": 11,
+      "path": "data/cache/shared-features/band-11.npy",
+      "verified": false
+    },
+    {
+      "band": 12,
+      "path": "data/cache/shared-features/band-12.npy",
+      "verified": false
+    },
+    {
+      "band": 13,
+      "path": "data/cache/shared-features/band-13.npy",
+      "verified": false
+    },
+    {
+      "band": 14,
+      "path": "data/cache/shared-features/band-14.npy",
+      "verified": false
+    },
+    {
+      "band": 15,
+      "path": "data/cache/shared-features/band-15.npy",
+      "verified": false
+    },
+    {
+      "band": 16,
+      "path": "data/cache/shared-features/band-16.npy",
+      "verified": false
+    },
+    {
+      "band": 17,
+      "path": "data/cache/shared-features/band-17.npy",
+      "verified": false
+    },
+    {
+      "band": 18,
+      "path": "data/cache/shared-features/band-18.npy",
+      "verified": false
+    },
+    {
+      "band": 19,
+      "path": "data/cache/shared-features/band-19.npy",
+      "verified": false
+    }
+  ],
+  "sample_equals_existing_faults": true,
+  "sample_warning": "The owner-mirrored 'sample' positives match known labels, unlike the official page's zero-sample wording. Use its mask/grid only; official provenance not verified.",
+  "missing": [
+    "Organizer-authenticated copies",
+    "1m_DEM_links.csv",
+    "The shared precomputed feature-stack arrays",
+    "Hidden test labels",
+    "The team's submission receipts and current quota"
+  ],
+  "experiments_run": 0,
+  "license_warning": "No license was identified for the shared owner code; confirm permission before reuse or redistribution."
+}

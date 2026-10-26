@@ -1,0 +1,163 @@
+{
+  "evidence_class": "RASTER AUDIT; NOT HOLDOUT-DTI OR ORGANIZER SCORE",
+  "source_main_commit": "966b9ad722df057ca21ac5d6666c54e4626c957c",
+  "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "registry_sha256": "846eddb9459f0e5b67f33da519bbd62c966bf5f539545ba3dad262fbfbc308c2",
+  "scope": "Measured final dots against one pinned registry witness; no surface replay or full-registry pass.",
+  "radius_px_euclidean_inclusive": 3,
+  "prior_claim": "A subset-only report claimed UNIQUE PASS; its result did not account for this registered lattice witness.",
+  "qualification": "Footprint is from an owner mirror, not organizer-authenticated. Local mask failure is not proof of portal rejection.",
+  "rasters": [
+    {
+      "file": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+      "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+      "nodata_metadata": null,
+      "positive_pixels_inside_mirrored_footprint": 34253,
+      "positive_pixels_outside_mirrored_footprint": 747,
+      "positive_pixels_inside_lattice_halo": 34205,
+      "directional_overlap_inside_footprint": 0.9985986628908416,
+      "duplicate_stop": true,
+      "local_format_validator": {
+        "validator_version": "wbggemsdoe3-format-v1",
+        "artifact": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+        "artifact_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+        "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "metadata_checks": {
+          "geotiff_driver": true,
+          "one_band": true,
+          "float32": true,
+          "shape_matches": true,
+          "crs_matches": true,
+          "transform_matches": true,
+          "template_one_band": true,
+          "template_sha256_matches": true,
+          "no_external_mask_sidecar": true,
+          "single_file_dataset": true,
+          "bytes_unchanged_during_validation": true
+        },
+        "counts": {
+          "cells": 12279160,
+          "footprint_cells": 5167373,
+          "nonfinite_inside": 0,
+          "out_of_range_inside": 0,
+          "nonfinite_all": 0,
+          "out_of_range_finite_all": 0,
+          "invalid_inside_mask": 0,
+          "valid_outside_mask": 7111787,
+          "nonzero_outside": 747
+        },
+        "min_inside": 0.0,
+        "max_inside": 1.0,
+        "format_gate_pass": false,
+        "failures": [
+          "valid_outside_mask",
+          "nonzero_outside"
+        ],
+        "scope": "Conservative local format check only. Neither organizer acceptance, geological merit, uniqueness, nor slot permission is established.",
+        "outside_policy": "All raw cells finite [0,1]; exact footprint encoded in a mask contained inside the TIFF; zero-valued outside. Portal behavior not confirmed."
+      }
+    },
+    {
+      "file": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+      "sha256": "58b34e2a24df99bc2857df2e6248075d65955592cd838e8e20dad2d1c1cfbd5a",
+      "nodata_metadata": "NaN",
+      "positive_pixels_inside_mirrored_footprint": 34253,
+      "positive_pixels_outside_mirrored_footprint": 747,
+      "positive_pixels_inside_lattice_halo": 34205,
+      "directional_overlap_inside_footprint": 0.9985986628908416,
+      "duplicate_stop": true,
+      "local_format_validator": {
+        "validator_version": "wbggemsdoe3-format-v1",
+        "artifact": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+        "artifact_sha256": "58b34e2a24df99bc2857df2e6248075d65955592cd838e8e20dad2d1c1cfbd5a",
+        "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "metadata_checks": {
+          "geotiff_driver": true,
+          "one_band": true,
+          "float32": true,
+          "shape_matches": true,
+          "crs_matches": true,
+          "transform_matches": true,
+          "template_one_band": true,
+          "template_sha256_matches": true,
+          "no_external_mask_sidecar": true,
+          "single_file_dataset": true,
+          "bytes_unchanged_during_validation": true
+        },
+        "counts": {
+          "cells": 12279160,
+          "footprint_cells": 5167373,
+          "nonfinite_inside": 0,
+          "out_of_range_inside": 0,
+          "nonfinite_all": 0,
+          "out_of_range_finite_all": 0,
+          "invalid_inside_mask": 0,
+          "valid_outside_mask": 7111787,
+          "nonzero_outside": 747
+        },
+        "min_inside": 0.0,
+        "max_inside": 1.0,
+        "format_gate_pass": false,
+        "failures": [
+          "valid_outside_mask",
+          "nonzero_outside"
+        ],
+        "scope": "Conservative local format check only. Neither organizer acceptance, geological merit, uniqueness, nor slot permission is established.",
+        "outside_policy": "All raw cells finite [0,1]; exact footprint encoded in a mask contained inside the TIFF; zero-valued outside. Portal behavior not confirmed."
+      }
+    },
+    {
+      "file": "docs/downloads/wb-gems-doe-3-latest-submission-zeros.tif",
+      "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+      "nodata_metadata": null,
+      "positive_pixels_inside_mirrored_footprint": 34253,
+      "positive_pixels_outside_mirrored_footprint": 747,
+      "positive_pixels_inside_lattice_halo": 34205,
+      "directional_overlap_inside_footprint": 0.9985986628908416,
+      "duplicate_stop": true,
+      "local_format_validator": {
+        "validator_version": "wbggemsdoe3-format-v1",
+        "artifact": "docs/downloads/wb-gems-doe-3-latest-submission-zeros.tif",
+        "artifact_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+        "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "metadata_checks": {
+          "geotiff_driver": true,
+          "one_band": true,
+          "float32": true,
+          "shape_matches": true,
+          "crs_matches": true,
+          "transform_matches": true,
+          "template_one_band": true,
+          "template_sha256_matches": true,
+          "no_external_mask_sidecar": true,
+          "single_file_dataset": true,
+          "bytes_unchanged_during_validation": true
+        },
+        "counts": {
+          "cells": 12279160,
+          "footprint_cells": 5167373,
+          "nonfinite_inside": 0,
+          "out_of_range_inside": 0,
+          "nonfinite_all": 0,
+          "out_of_range_finite_all": 0,
+          "invalid_inside_mask": 0,
+          "valid_outside_mask": 7111787,
+          "nonzero_outside": 747
+        },
+        "min_inside": 0.0,
+        "max_inside": 1.0,
+        "format_gate_pass": false,
+        "failures": [
+          "valid_outside_mask",
+          "nonzero_outside"
+        ],
+        "scope": "Conservative local format check only. Neither organizer acceptance, geological merit, uniqueness, nor slot permission is established.",
+        "outside_policy": "All raw cells finite [0,1]; exact footprint encoded in a mask contained inside the TIFF; zero-valued outside. Portal behavior not confirmed."
+      }
+    }
+  ],
+  "verdict": "DUPLICATE STOP \u2014 all three files are research/audit only, not eligible for submission",
+  "ok_to_submit": false,
+  "holdout_dti": null,
+  "organizer_receipt": null
+}

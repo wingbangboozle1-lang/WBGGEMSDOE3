@@ -1,1 +1,326 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=docs/index.html"><title>GEMS Evidence Lab</title></head><body><p><a href="docs/index.html">Open the submission decision and nine-site executive summary.</a></p></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An evidence-first research dashboard for the DOE GEMS Prize. Current submission status, nine-site review, and reproducible validation."
+    />
+    <title>GEMS Fieldnote — evidence before upload</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body data-feed="docs/data/public-feed.json">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="index.html" aria-label="GEMS Fieldnote home"
+          ><span class="brand-mark" aria-hidden="true">✳</span
+          ><span
+            >GEMS <strong>FIELDNOTE</strong
+            ><small>RESEARCH DESK / 03</small></span
+          ></a
+        >
+        <nav aria-label="Main navigation">
+          <a class="active" href="index.html" aria-current="page">Overview</a
+          ><a href="docs/executive-summary.html">Executive summary</a
+          ><a href="docs/research.html">Research &amp; sources</a>
+        </nav>
+        <a
+          class="top-link"
+          href="https://www.drivendata.org/competitions/306/competition-doe-gems/"
+          target="_blank"
+          rel="noreferrer"
+          >Competition <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="live-dot"></span> DOE GEMS PRIZE
+            <span class="slash">/</span> RESEARCH &amp; VALIDATION
+          </div>
+          <h1>Find the signal.<br /><em>Protect the slot.</em></h1>
+          <p class="lead">
+            A clear-eyed view of the strongest historical submissions, the
+            science behind them, and whether there is actually a file worth
+            submitting.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="docs/executive-summary.html"
+              >Open executive summary <span aria-hidden="true">↗</span></a
+            ><a class="text-link" href="docs/research.html"
+              >Explore the research <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <div class="hero-meta">
+            <span><strong>09</strong> priority sites</span
+            ><span><strong>01</strong> registered witness</span
+            ><span><strong>00</strong> slots spent by this lane</span>
+          </div>
+        </div>
+        <aside class="decision-card" aria-labelledby="decision-title">
+          <div class="decision-top">
+            <span class="eyebrow">CURRENT DECISION</span
+            ><span class="pill danger"
+              ><span class="status-dot"></span> BLOCKED</span
+            >
+          </div>
+          <div class="decision-icon" aria-hidden="true">!</div>
+          <h2 id="decision-title">No file is ready<br />to submit.</h2>
+          <p>
+            This lane stopped before creating a TIFF. A separate parallel
+            candidate also fails the registered-lattice rule.
+          </p>
+          <button
+            class="button disabled"
+            type="button"
+            disabled
+            aria-describedby="download-reason"
+          >
+            <span aria-hidden="true">↓</span> Submission download unavailable
+          </button>
+          <small id="download-reason"
+            >Format, novelty and a comparable holdout win are required before a
+            separate selector can consider a file.</small
+          >
+          <a class="card-link" href="evidence/run-card.json"
+            >View machine-readable run card
+            <span aria-hidden="true">↗</span></a
+          >
+        </aside>
+      </section>
+
+      <section class="strip" aria-label="Evidence status">
+        <div class="shell strip-inner">
+          <div>
+            <span>PRE-PLACEMENT</span
+            ><strong class="red-text">Duplicate stop</strong>
+          </div>
+          <div><span>THIS LANE'S MODEL</span><strong>Not run</strong></div>
+          <div><span>HOLDOUT-DTI</span><strong>Not available</strong></div>
+          <div>
+            <span>ORGANIZER RECEIPT</span><strong>Not available</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell section" id="why-stop">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">01 / THE DECISION</p>
+            <h2>Why the gate stopped.</h2>
+          </div>
+          <p>
+            One verified counterexample is enough to prevent a false uniqueness
+            claim. It is not a prediction of leaderboard performance.
+          </p>
+        </div>
+        <div class="two-col">
+          <article class="panel constraint-panel">
+            <div class="panel-top">
+              <span class="tag">LITERAL REGISTRY RULE</span
+              ><span class="muted mono">PRE-PLACEMENT</span>
+            </div>
+            <h3>A nearly space-filling witness.</h3>
+            <p>
+              Only <strong>6,649</strong> of the
+              <strong>5,167,373</strong> footprint cells lie farther than three
+              pixels from one registered calibration lattice. At the proposed
+              37,654-dot budget, even the most favorable placement must exceed
+              the 70% overlap limit.
+            </p>
+            <div class="bar-label">
+              <span>Minimum possible overlap</span><strong>82.34%</strong>
+            </div>
+            <div
+              class="bar"
+              role="img"
+              aria-label="Minimum possible overlap 82.34 percent; limit 70 percent"
+            >
+              <span style="width: 82.34%"></span><i style="left: 70%"></i>
+            </div>
+            <div class="bar-caption">
+              <span>0%</span><span>70% limit</span><span>100%</span>
+            </div>
+            <p class="fine">
+              Counting bound for this dot budget only. Smaller budgets are not
+              automatically ruled out, and the full registry was not rescanned.
+            </p>
+            <a class="text-link" href="evidence/preflight.json"
+              >Inspect preflight evidence →</a
+            >
+            <p class="fine">
+              A parallel 35,000-dot candidate also fails: 99.86% of its
+              in-footprint dots overlap this lattice, and 747 dots lie outside
+              the mirrored footprint.
+            </p>
+            <a class="text-link" href="evidence/concurrent-candidate-audit.json"
+              >Inspect parallel candidate audit →</a
+            >
+          </article>
+          <article class="panel champion-panel">
+            <div class="panel-top">
+              <span class="tag warm">HISTORICAL REFERENCE</span
+              ><span class="muted mono">GEMSDOE32</span>
+            </div>
+            <h3>The strongest reported result.</h3>
+            <div class="big-number">
+              0.2778 <span>user / owner reported</span>
+            </div>
+            <p>
+              The historical B2 raster is exactly the GEMSDOE25/30 dot set with
+              points within two pixels of the visible catalogue removed. Pruning
+              may reduce false-positive mass, but the hidden truth and
+              submission receipt are unavailable.
+            </p>
+            <div class="callout">
+              <span aria-hidden="true">↗</span>
+              <div>
+                <strong>Useful evidence, not a new submission.</strong><br />Do
+                not re-upload or disguise a previous raster.
+              </div>
+            </div>
+            <a class="text-link" href="docs/research.html#champion"
+              >Read the measured lineage →</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section class="shell section compact">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">02 / PRIORITY PORTFOLIO</p>
+            <h2>Nine sites. One standard.</h2>
+          </div>
+          <a class="text-link" href="docs/executive-summary.html#site-table"
+            >See all nine sites →</a
+          >
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Site</th>
+                <th scope="col">Best historical claim</th>
+                <th scope="col">Leaderboard estimate</th>
+                <th scope="col">Literal uniqueness</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a
+                    href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html"
+                    >GEMSDOE32</a
+                  >
+                </td>
+                <td><strong>0.2778</strong> <small>unverified claim</small></td>
+                <td>Not estimable</td>
+                <td><span class="badge no">Fail</span></td>
+                <td>Research only</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/"
+                    >GEMSDOE36</a
+                  >
+                </td>
+                <td><strong>0.2750</strong> <small>unverified claim</small></td>
+                <td>Not estimable</td>
+                <td><span class="badge no">Fail</span></td>
+                <td>Research only</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://buffedlizard55-lab.github.io/GEMSDOE28/"
+                    >GEMSDOE28</a
+                  >
+                </td>
+                <td><strong>0.2710</strong> <small>unverified claim</small></td>
+                <td>Not estimable</td>
+                <td><span class="badge no">Fail</span></td>
+                <td>Research only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">
+          Reported values are not organizer-confirmed receipts. Estimates are
+          deliberately not fabricated; a holdout proxy is not a leaderboard
+          score.
+        </p>
+      </section>
+
+      <section class="monitor-section">
+        <div class="shell monitor-grid">
+          <div>
+            <p class="eyebrow">03 / PUBLIC MONITOR</p>
+            <h2>Know what changed.</h2>
+            <p>
+              The scheduled feed checks the public leaderboard and repository
+              heads. A changed source is flagged—not silently treated as
+              audited.
+            </p>
+            <a
+              class="text-link light-link"
+              href="docs/executive-summary.html#monitor"
+              >How the feed works →</a
+            >
+          </div>
+          <div class="monitor-card">
+            <span class="eyebrow">PUBLIC LEADERBOARD · TOP VALUE</span>
+            <div class="monitor-value" data-board-value>0.4437</div>
+            <p data-board-status>
+              Snapshot observed 2026-10-26 UTC; not a submission receipt.
+            </p>
+            <div class="monitor-rule"></div>
+            <span class="monitor-note" data-repo-status
+              >Repository freshness is loaded from the public feed.</span
+            ><a
+              href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+              target="_blank"
+              rel="noreferrer"
+              >Open official leaderboard ↗</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="shell next-section">
+        <div>
+          <p class="eyebrow">THE NEXT RESEARCH QUESTION</p>
+          <h2>Follow the evidence,<br />not a filename.</h2>
+          <p>
+            We have ranked four physical hypotheses and preserved the negative
+            result. A smaller-budget lane would require a new preregistration
+            and all the same checks.
+          </p>
+        </div>
+        <a class="button secondary" href="docs/research.html"
+          >View hypotheses &amp; sources <span aria-hidden="true">→</span></a
+        >
+      </section>
+    </main>
+    <footer>
+      <div class="shell footer-inner">
+        <div>
+          <strong>GEMS FIELDNOTE</strong>
+          <p>Evidence first. No leaderboard promises.</p>
+        </div>
+        <div>
+          <a href="docs/executive-summary.html">Submission guide</a
+          ><a href="docs/research.html">Sources &amp; methods</a
+          ><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3"
+            >Source code ↗</a
+          >
+        </div>
+        <span>Built for reproducible research.</span>
+      </div>
+    </footer>
+  </body>
+</html>

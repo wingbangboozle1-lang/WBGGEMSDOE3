@@ -1,102 +1,47 @@
-import hashlib
-import json
-from pathlib import Path
-import sys
-
 import numpy as np
 import pytest
-import rasterio
-from rasterio.transform import from_origin
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'scripts'))
-from audit import inspect, overlap_bound
+from audit_priority import binary_rank_correlation, min_overlap_bound
+from preflight import exceeds_overlap_limit
 
 
-def write(path, a, transform=None):
-    with rasterio.open(path, 'w', driver='GTiff', height=a.shape[0], width=a.shape[1], count=1,
-                       dtype='float32', crs='EPSG:32611', transform=transform or from_origin(100, 100, 10, 10), nodata=np.nan) as r:
-        r.write(a.astype('float32'), 1)
-
-
-def test_strict_threshold_boundary():
-    assert not overlap_bound(100, 97, 10)['guaranteed_duplicate']  # exactly 70%
-    assert overlap_bound(100, 97, 11)['guaranteed_duplicate']
-    assert overlap_bound(5167373, 5160724, 22164)['guaranteed_duplicate']
-    assert not overlap_bound(5167373, 5160724, 22163)['guaranteed_duplicate']
-
-
-@pytest.mark.parametrize('args', [(1,2,1), (1,0,0), (1,0,2), (1,-1,1)])
-def test_invalid_bound(args):
+def test_lattice_lower_bound_and_boundary():
+    assert min_overlap_bound(6649, 37654, 5167373) == pytest.approx(0.8234184947150369)
+    assert min_overlap_bound(6649, 22163, 5167373) <= 0.70
+    assert min_overlap_bound(6649, 22164, 5167373) > 0.70
+    assert min_overlap_bound(10, 5, 20) == 0
     with pytest.raises(ValueError):
-        overlap_bound(*args)
+        min_overlap_bound(1, 0, 20)
+    with pytest.raises(ValueError):
+        min_overlap_bound(21, 5, 20)
+    with pytest.raises(ValueError):
+        min_overlap_bound(1, 21, 20)
 
 
-@pytest.mark.parametrize('bad', [-1, 1.01, np.nan, np.inf, -np.inf])
-def test_inside_invalid(tmp_path, bad):
-    t = tmp_path/'template.tif'; p = tmp_path/'p.tif'
-    write(t, np.array([[0., np.nan],[0.,0.]]))
-    write(p, np.array([[bad, np.nan],[0.,1.]]))
-    _, _, report = inspect(p,t)
-    assert not report['inside_values_in_0_1']
+def test_strict_overlap_limit_uses_exact_integer_boundary():
+    assert not exceeds_overlap_limit(3, 10)  # exactly 70% is not >70%
+    assert exceeds_overlap_limit(2, 10)
+    assert not exceeds_overlap_limit(4, 10)
+    assert not exceeds_overlap_limit(100, 10)
+    with pytest.raises(ValueError):
+        exceeds_overlap_limit(0, 0)
 
 
-def test_outside_sentinel_rejected(tmp_path):
-    t = tmp_path/'template.tif'; p = tmp_path/'p.tif'
-    write(t, np.array([[0., np.nan],[0.,0.]]))
-    write(p, np.array([[0., -9999.],[0.,1.]]))
-    _, _, report = inspect(p,t)
-    assert report['inside_values_in_0_1']
-    assert not report['all_finite_values_in_0_1']
+def test_binary_spearman_with_ties_and_constant():
+    footprint = np.ones((2, 3), bool)
+    a = np.array([[1, 0, 1], [0, 0, 1]], bool)
+    assert binary_rank_correlation(a, a, footprint) == pytest.approx(1)
+    assert binary_rank_correlation(a, ~a, footprint) == pytest.approx(-1)
+    assert binary_rank_correlation(a, np.zeros_like(a), footprint) is None
+    # Pixels outside the footprint must not influence the statistic.
+    footprint[0, 0] = False
+    changed = a.copy()
+    changed[0, 0] = not changed[0, 0]
+    assert binary_rank_correlation(a, changed, footprint) == pytest.approx(1)
 
 
-def test_grid_mismatch(tmp_path):
-    t = tmp_path/'template.tif'; p = tmp_path/'p.tif'
-    write(t, np.zeros((2,2)));write(p,np.zeros((2,2)),from_origin(101,100,10,10))
-    with pytest.raises(ValueError, match='Grid mismatch'):
-        inspect(p,t)
-
-
-def test_pinned_shared_instruments_unchanged():
-    for row in json.loads((ROOT/'vendor/pins.json').read_text()):
-        path = ROOT/'vendor/template24'/row['local']
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == row['sha256']
-
-
-def test_sources_unchanged():
-    for row in json.loads((ROOT/'research/source_hashes.json').read_text()):
-        assert hashlib.sha256((ROOT/row['file']).read_bytes()).hexdigest() == row['sha256']
-
-
-def test_decision_is_negative():
-    card=json.loads((ROOT/'docs/run-card.json').read_text())
-    assert card['verdict']=='negative' and card['ok_to_submit'] is False
-    assert card['raster_sha256'] is None and card['holdout']['dti'] is None
-    assert len(card['note']) <= 140
-    audit=json.loads((ROOT/'docs/audit.json').read_text())
-    assert len(audit['rows']) == 9
-    assert all(not x['unique_among_focus9'] for x in audit['rows'].values())
-    assert audit['champion_forensics']['equals_d28_euclidean_fault_distance_gt_2px']
-
-
-def test_local_html_links_resolve():
-    from html.parser import HTMLParser
-    from urllib.parse import urlsplit
-    class Links(HTMLParser):
-        def handle_starttag(self,tag,attrs):
-            if tag=='a':
-                for key, val in attrs:
-                    if key=='href':
-                        p=urlsplit(val)
-                        if not p.scheme and p.path:
-                            assert (ROOT/'docs'/p.path).is_file(), val
-    for page in (ROOT/'docs').glob('*.html'):
-        Links().feed(page.read_text())
-
-
-def test_site_is_reproducible():
-    from build_site import build
-    names=['index.html','executive-summary.html','research.html']
-    previous={name:(ROOT/'docs'/name).read_bytes() for name in names}
-    build()
-    assert all((ROOT/'docs'/name).read_bytes()==previous[name] for name in names)
+def test_one_dot_can_cover_multiple_truth_pixels():
+    # This is a synthetic arithmetic counterexample, not a holdout score.
+    nearest_credit = 1.0
+    marginal_truth_credit = 1.0 + (1.0 - 1.0 / 3.0)
+    assert marginal_truth_credit > nearest_credit

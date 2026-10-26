@@ -58,7 +58,11 @@ def test_negative_card_and_no_fake_download():
     assert card['raster_sha256'] is None and not card['approved_for_submission']
     rows=json.loads((ROOT/'knowledge/focus-sites.json').read_text())
     assert len(rows)==9 and all(r['estimate'] is None and not r['approved_for_submission'] for r in rows)
-    assert not list((ROOT/'docs').rglob('*.tif'))
+    # Parallel TIFFs are retained for traceability, not promoted as downloads.
+    concurrent=json.loads((ROOT/'evidence/concurrent-candidate-audit.json').read_text())
+    assert not concurrent['ok_to_submit']
+    assert all(r['duplicate_stop'] for r in concurrent['rasters'])
+    assert 'docs/downloads/' not in (ROOT/'index.html').read_text()
 
 def test_snapshot_blob_identity():
     import hashlib

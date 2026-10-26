@@ -1,22 +1,11 @@
-"""WB-GEMS-DOE-3 submission GeoTIFF builder and strict range/format validator.
+"""Legacy parallel-session writer; NOT the pinned shared submission writer.
 
-Implements the DrivenData GEMS Prize submission format (verified from the official
-problem description, page 967):
-
-* single-band GeoTIFF, float32
-* CRS: EPSG:32611 (UTM zone 11N), 100 m resolution
-* bounds/geotransform matching the competition template grid
-* all in-footprint cells finite and inside [0, 1]
-* zero NaN / sentinel inside the footprint (fixes `Predicted values must be in
-  range [0, 1]`)
-
-Two paired variants are emitted for every candidate:
-  - `-zeros.tif`: 0.0 outside the scored footprint (whole array in [0,1], portal-safe)
-  - `-nan.tif`:   NaN outside the scored footprint (historical convention; in-footprint
-                  cells remain finite and in [0, 1])
-
-The strict audit below is run on the *saved bytes*, so a PASS means the file you
-download is the file that passes validation. No human inspection required.
+Retained for research only. Its original template was not authenticated and did
+not encode the pinned mirrored footprint, so the associated candidate failed the
+literal registry rule and conservative footprint check. A local format result
+cannot prove portal acceptance or correct the cause of a past portal rejection.
+Do not use this file to bypass the shared-template or selector requirements.
+See evidence/concurrent-candidate-audit.json and scripts/validate_raster.py.
 """
 
 from __future__ import annotations

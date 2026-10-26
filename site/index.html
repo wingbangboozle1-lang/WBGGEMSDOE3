@@ -1,110 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBGGEMSDOE3 — GEMS Competition Submission Pipeline</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-<header>
-  <div class="container">
-    <div>
-      <h1>WBGGEMSDOE3</h1>
-      <div class="tag">GEMS Geothermal Discovery &nbsp;|&nbsp; DrivenData Competition #306</div>
-    </div>
-    <nav>
-      <a href="#download">Download submission</a>
-      <a href="executive-summary.html">Executive summary</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#validation">Validation gates</a>
-    </nav>
-  </div>
-</header>
-
-<div class="container">
-  <p class="tagline">
-    An auditable, end-to-end pipeline that produces a <strong>single-band GeoTIFF (.tif)</strong>
-    ready to upload to the GEMS competition submission page, with built-in validation gates
-    so it is obvious whether the file is OK to download and submit.
-  </p>
-
-  <section id="download" class="card section block">
-    <h2>1. Download the submission TIF</h2>
-    <p>
-      <strong>File to download:</strong>
-      <code class="code">gems-hnew01-stepper-dblind-unique.tif</code><br>
-      <strong>Format:</strong> single-band GeoTIFF, values in [0, 1], no NaN,<br>
-      <strong>CRS:</strong> EPSG:32611 (see <a href="https://epsg.io/32611">epsg.io/32611</a>)
-    </p>
-    <p class="center" style="margin: 1.25rem 0;">
-      <a class="btn btn-download" href="assets/downloads/gems-hnew01-stepper-dblind-unique.tif" download>
-        &#8627; Download submission TIF
-      </a>
-    </p>
-    <div class="status status-block">
-      <span class="status-dot"></span>
-      <strong>NOT OK to submit to the real competition as-is.</strong>
-      This is a <em>format-valid stand-in</em> produced on synthetic test data so you can
-      verify the pipeline end-to-end. It passes every format gate below, but its geometry
-      does <em>not</em> match the real competition grid. To get a submission that can score,
-      run the pipeline against real competition data (see <a href="#how-it-works">How it works</a>).
-    </div>
-  </section>
-
-  <section id="how-it-works" class="card section">
-    <h2>2. How it works</h2>
-    <ol>
-      <li><strong>Data:</strong> place competition rasters in <code class="code">data/raw/</code>
-        (requires DrivenData login; see <code class="code">scripts/download_competition_data.sh</code>).</li>
-      <li><strong>Prepare:</strong> <code class="code">python scripts/prepare_data.py</code>
-        writes <code class="code">data/manifest.json</code> (CRS, shape, transform, dtype per raster).</li>
-      <li><strong>Generate:</strong> <code class="code">python scripts/generate_submission.py</code>
-        builds a favourability raster from the top-ranked hypothesis
-        (H-NEW-01 blind stepover / relay-ramp density), conforms it to
-        <code class="code">sample_submission.tif</code>, and writes <code class="code">submission/*.tif</code>.</li>
-      <li><strong>Validate:</strong> <code class="code">scripts/submission_writer.py</code> /
-        <code class="code">src/validate.py</code> runs the validation gates below and writes a JSON report.</li>
-      <li><strong>Submit:</strong> upload the TIF to the DrivenData submission page with a note
-        (max 140 chars).</li>
-    </ol>
-  </section>
-
-  <section id="validation" class="card section">
-    <h2>3. Validation gates (no human inspection needed)</h2>
-    <p>The generated TIF must pass ALL gates before it is considered OK to submit:</p>
-    <ul>
-      <li>Single-band GeoTIFF</li>
-      <li>No NaN / inf inside the footprint</li>
-      <li>All values in [0, 1]</li>
-      <li>CRS / shape / geotransform match the competition reference grid (<code class="code">sample_submission.tif</code>)</li>
-    </ul>
-    <p class="small">
-      Any failure is a hard block: the file is flagged NOT OK to submit. This replaces manual
-      human inspection with automated, project-level validation.
-    </p>
-  </section>
-
-  <section class="card section">
-    <h2>4. Executive summary</h2>
-    <p>
-      Site-by-site scoring summary, the best submission per GEMSDOE site, uniqueness vs duplicates,
-      and the full hypothesis table. See the dedicated page:
-      <a href="executive-summary.html">Executive summary &rarr;</a>
-    </p>
-  </section>
-
-  <div class="footer">
-    <p>
-      Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a> &middot;
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Overview</a> &middot;
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data tab (login required)</a> &middot;
-      <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a> &middot;
-      <a href="https://gdr.openei.org/submissions/1391">GEODAWN survey (USGS GDR #1391)</a> &middot;
-      <a href="https://epsg.io/32611">EPSG:32611</a>
-    </p>
-    <p class="small">WBGGEMSDOE3 &mdash; branch <code class="code">arena/9d03eeec-wbggemsdoe3</code>. Generated 2026-10-26.</p>
-  </div>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=../index.html" />
+    <title>GEMS audit — current decision</title>
+  </head>
+  <body>
+    <main>
+      <h1>DO NOT SUBMIT</h1>
+      <p>
+        The former file on this page is a synthetic stand-in with the wrong
+        grid. It is not eligible for competition submission.
+      </p>
+      <p>
+        Continue to the <a href="../index.html">current dashboard</a> or
+        <a href="../docs/executive-summary.html">executive summary</a>.
+      </p>
+    </main>
+  </body>
 </html>

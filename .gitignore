@@ -1,18 +1,18 @@
-# Python
+# Reproducible third-party sources and large local data remain local-only.
+data/raw/
+data/cache/
+data/downloads/
+data/*.tif
+data/scored/
+data/prepared_manifest.json
+.cache/
 .venv/
 venv/
 __pycache__/
-*.pyc
-*.pyo
+.pytest_cache/
+*.py[cod]
+*.part
 .pypirc
-
-# Data caches (large; competition rasters are login-gated and restored via scripts/)
-data/downloads/
-.cache/
-data/prepared_manifest.json
-
-# OS
+_site/
 .DS_Store
 Thumbs.db
-
-# Committed deliverables (kept): docs/ (site + submission TIF), evidence/, scripts/, README.md, data/template_grid.tif

@@ -1,5 +1,7 @@
 # Executive research review — 2026-10-26
 
+> Historical review of one parallel session. A TIFF was later committed by another session; it fails the literal lattice rule. See the [current concurrent-candidate audit](../evidence/concurrent-candidate-audit.json) and [active executive summary](../docs/executive-summary.html).
+
 ## Decision: negative; no new submission authorized
 
 This repository started at `891b84e` with only a 13-byte README. There was no prior pipeline, feature cache, experiment, or local next-step implementation to continue. The supplied statement that data placement is the only blocker does not describe this checkout. No geological experiment was run and no weekly slot was used. The requested high-scoring, unique downloadable TIFF has **not** been produced. Generating random pixels, perturbing an old TIFF, or renaming it would not meet the brief.

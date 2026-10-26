@@ -1,14 +1,9 @@
-"""WB-GEMS-DOE-3 lane-uniqueness audit.
+"""Disabled legacy subset checker, retained for research/provenance.
 
-Two mandatory lane rules (parallel-run protocol):
-
-  1. Surface rank-correlation (Spearman |rho|) <= 0.90 vs every registry raster,
-     checked on the pre-placement surface AND on the final dots.
-  2. <= 70% of final dots fall within 3 px of any one registry raster's dots.
-
-A raster that trips either rule has drifted into another lane: log as duplicate
-and stop. Values are computed on saved bytes, so the audit is reproducible
-without human inspection.
+The former entry point could mark a caller-supplied subset as unique, used
+sampled correlations and conflated final dots with the pre-placement surface.
+It cannot satisfy the user's full-registry rule. The prior candidate actually
+fails a registered lattice witness; see evidence/concurrent-candidate-audit.json.
 """
 
 from __future__ import annotations
@@ -89,6 +84,11 @@ class UniquenessResult:
 
 
 def audit_uniqueness(candidate_tif: Path, registry_tifs: list[Path]) -> UniquenessResult:
+    raise RuntimeError(
+        "DISABLED: a caller-supplied subset, sampled correlation and no separate "
+        "pre-placement surface cannot prove the required full-registry gate. "
+        "See evidence/concurrent-candidate-audit.json."
+    )
     candidate_surface = _load_surface(candidate_tif)
     candidate_dots = _load_binary(candidate_tif)
 

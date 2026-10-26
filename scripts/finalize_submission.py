@@ -1,11 +1,8 @@
-"""Finalize the generated WB-GEMS-DOE-3 submission: format audit + lane-uniqueness audit + run card.
+"""Disabled legacy finalizer; its subset-only uniqueness claim was disproven.
 
-Run this after scripts/generate_submission.py. It audits the *saved bytes* of the
-downloadable -zeros.tif (and its -nan twin), checks lane uniqueness against every
-local registry raster with the competition grid, and writes evidence/run_card.json.
-
-No DrivenData auth or labels are required for the format and uniqueness gates.
-The score estimate is explicitly labelled as an unverified projection.
+The original source is preserved in archive/concurrent-966b9ad/. This entry
+point must not overwrite the corrected negative audit or label a candidate
+unique without a complete registry and a pre-placement surface check.
 """
 
 from __future__ import annotations
@@ -39,6 +36,11 @@ def find_latest_zeros():
 
 
 def main():
+    raise SystemExit(
+        "DISABLED: subset-only checks cannot authorize uniqueness; the existing "
+        "candidate fails the registered-lattice rule. See "
+        "evidence/concurrent-candidate-audit.json."
+    )
     zeros_path = find_latest_zeros()
     nan_path = zeros_path.with_name(zeros_path.name.replace("-zeros.tif", "-nan.tif"))
 

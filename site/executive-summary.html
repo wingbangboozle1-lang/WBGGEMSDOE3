@@ -1,216 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive Summary — GEMSDOE 24/25/27/28/30/31/32/33/36</title>
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-<header>
-  <div class="container">
-    <div>
-      <h1>Executive Summary</h1>
-      <div class="tag">GEMSDOE sites 24, 25, 27, 28, 30, 31, 32, 33, 36 &nbsp;|&nbsp; WBGGEMSDOE3</div>
-    </div>
-    <nav>
-      <a href="index.html">&larr; Home</a>
-      <a href="#download">Download our stand-in TIF</a>
-    </nav>
-  </div>
-</header>
-
-<div class="container">
-  <section class="card section">
-    <h2>Purpose</h2>
-    <p>
-      This page reviews the highest-scoring submissions reported on the GEMSDOE
-      sites listed in the brief, identifies the best submission to use as a
-      starting point, and states clearly whether each is a unique submission
-      (not an exact duplicate of another focus-site submission). It also links
-      to our own generated TIF and explains how to submit it to the
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS competition</a>.
-    </p>
-    <div class="status status-block">
-      <span class="status-dot"></span>
-      <strong>Scores are as reported on each site.</strong> They have not been
-      independently re-scored by us and are not organiser-confirmed for our
-      submission. Treat them as historical reference only.
-    </div>
-  </section>
-
-  <section class="card section">
-    <h2>Comparison table — focus sites</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Site</th>
-          <th>Best submission (file to download)</th>
-          <th>Est. score</th>
-          <th>Unique vs other focus sites?</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>GEMSDOE32</strong> <span class="small">(highest of the focus sites)</span></td>
-          <td>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td>
-          <td><strong>0.2778</strong></td>
-          <td><strong>No</strong> — uses a "-zeros" (zero-filled) pattern also seen on GEMSDOE36, GEMSDOE37, GEMSDOE39-44 etc.</td>
-          <td>Highest reported score among the 9 focus sites. "-zeros" suffix suggests a degenerate / zero-filled raster; may not reflect a real model.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE36</td>
-          <td>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</td>
-          <td>0.2750</td>
-          <td><strong>No</strong> — "-zeros" pattern</td>
-          <td>Second-highest among focus sites. Also zero-filled.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE28</td>
-          <td>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td>
-          <td>0.2710</td>
-          <td>Yes (within focus set)</td>
-          <td>Tied with h27-4-r1-solo-d2-8 (0.2708) and h38-1-hf-euler-r30-r1 (0.2707). "-nan" flag.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE31</td>
-          <td>h27-4-solo-d28-20261004-8acb75e1-nan</td>
-          <td>0.2708</td>
-          <td><strong>No</strong> — effectively duplicate of GEMSDOE28 h27-4-r1-solo-d2-8 (same score, same family)</td>
-          <td>Same score / family as GEMSDOE28 h27-4 submission.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE28</td>
-          <td>h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan</td>
-          <td>0.2708</td>
-          <td><strong>No</strong> — duplicate family of GEMSDOE31 h27-4-solo-d28</td>
-          <td>"-nan" flag; NaN values would fail the competition's [0,1] validation gate.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE28</td>
-          <td>h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan</td>
-          <td>0.2707</td>
-          <td>Yes (within focus set)</td>
-          <td>"-nan" flag.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE33</td>
-          <td>h33d-analog-tip-stepover-r30-20261004-cb490425926e</td>
-          <td>0.2632</td>
-          <td>Yes (within focus set)</td>
-          <td>Tip / stepover family — conceptually closest to our H-NEW-01 hypothesis.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE25</td>
-          <td>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td>
-          <td>0.2600</td>
-          <td>Yes (within focus set)</td>
-          <td>Same score as GEMSDOE30 (0.2600) but different file; "-nan" flag.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE30</td>
-          <td>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td>
-          <td>0.2600</td>
-          <td>Yes (within focus set)</td>
-          <td>Same score as GEMSDOE25 (0.2600) but different file.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE24</td>
-          <td>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</td>
-          <td>0.2477</td>
-          <td>Yes (within focus set)</td>
-          <td>"-nan" flag.</td>
-        </tr>
-        <tr>
-          <td>GEMSDOE27</td>
-          <td>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</td>
-          <td>0.2449</td>
-          <td>Yes (within focus set)</td>
-          <td>"-nan" flag.</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="small">
-      Among the focus sites, <strong>GEMSDOE32 (0.2778)</strong> reports the
-      highest score. However, its "-zeros" suffix and the prevalence of "-nan"
-      / "-zeros" submissions across many sites indicate that several of these
-      files would fail the competition's validation gate
-      (<em>predicted values must be in range [0, 1]</em> and no NaN inside the
-      footprint). A "-nan" file cannot be submitted as-is.
-    </p>
-  </section>
-
-  <section class="card section">
-    <h2>Best submission to build on</h2>
-    <p>
-      <strong>GEMSDOE32 h33-h33-2-b2-...-zeros (0.2778)</strong> is the
-      highest-reported score, but it is <em>not</em> a safe submission to copy:
-      it is flagged "-zeros" (degenerate) and is not unique vs the "-zeros"
-      pattern used across GEMSDOE36, 37, 39&ndash;44. Copying it would produce a
-      duplicate submission.
-    </p>
-    <p>
-      Instead, our generated submission targets the same high-scoring
-      neighbourhood (stepover / tip / relay-ramp density, cf. GEMSDOE33's
-      h33d tip-stepover at 0.2632) through a <strong>unique</strong> method:
-      H-NEW-01 "Blind stepover / relay-ramp pull-apart density" derived from
-      DEM curvature texture plus local lineament density around visible faults.
-      It is not a copy of any GEMSDOE 24&ndash;36 submission.
-    </p>
-  </section>
-
-  <section id="download" class="card section block">
-    <h2>3. Our generated submission TIF</h2>
-    <p>
-      <strong>File to download:</strong>
-      <code class="code">gems-hnew01-stepper-dblind-unique.tif</code><br>
-      <strong>Format:</strong> single-band GeoTIFF, values in [0, 1], no NaN,
-      single band, CRS EPSG:32611.<br>
-      <strong>Method:</strong> H-NEW-01 blind stepover / relay-ramp density
-      (curvature + lineament density). Unique vs all GEMSDOE focus sites.
-    </p>
-    <p class="center" style="margin: 1.25rem 0;">
-      <a class="btn btn-download" href="assets/downloads/gems-hnew01-stepper-dblind-unique.tif" download>
-        &#8627; Download submission TIF
-      </a>
-    </p>
-    <div class="status status-block">
-      <span class="status-dot"></span>
-      <strong>NOT OK to submit to the real competition as-is.</strong>
-      This is a format-valid stand-in produced on synthetic test data. It passes
-      every format gate (single band, [0, 1], no NaN) but its geometry does not
-      match the real competition grid. To produce a scorable submission:
-      <ol style="display:inline-block; text-align:left; margin:0.4rem 0 0 1.2rem;">
-        <li>Download real competition data via the DrivenData data tab (login required) into <code class="code">data/raw/</code>.</li>
-        <li>Create <code class="code">data/raw/REAL_COMPETITION_DATA_CONFIRMED</code>.</li>
-        <li>Run <code class="code">python scripts/prepare_data.py</code> then <code class="code">python scripts/generate_submission.py</code>.</li>
-        <li>Upload the validated TIF to the DrivenData submission page.</li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="card section warn">
-    <h2>4. Submission warnings (read before uploading)</h2>
-    <ul>
-      <li>The DrivenData form returned <em>"Predicted values must be in range [0, 1]"</em> for out-of-range / NaN rasters. Our validator rejects NaN and enforces [0, 1] automatically.</li>
-      <li>Every submission needs a <strong>unique name</strong> and an optional <strong>note</strong> (max 140 chars), e.g. "clustering with k=25". Our run card proposes note: <q>Unique blind stepover/relay-ramp density (H-NEW-01); not a copy of any GEMSDOE 24-36 submission.</q></li>
-      <li>The file must match the submission format's CRS, shape, and geotransform — use <code class="code">sample_submission.tif</code> as the reference grid.</li>
-    </ul>
-  </section>
-
-  <div class="footnote">
-    <p>
-      Sources reviewed (as reported on each site, not independently verified):<br>
-      GEMSDOE24 &middot; GEMSDOE25 &middot; GEMSDOE27 &middot; GEMSDOE28 &middot;
-      GEMSDOE30 &middot; GEMSDOE31 &middot; GEMSDOE32 &middot; GEMSDOE33 &middot;
-      GEMSDOE36 — buffedlizard55-lab.github.io.<br>
-      Official: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a> &middot;
-      <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a> &middot;
-      <a href="https://gdr.openei.org/submissions/1391">GEODAWN survey (USGS GDR #1391)</a> &middot;
-      <a href="https://epsg.io/32611">EPSG:32611</a>
-    </p>
-  </div>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="refresh"
+      content="0; url=../docs/executive-summary.html"
+    />
+    <title>GEMS executive summary</title>
+  </head>
+  <body>
+    <main>
+      <h1>DO NOT SUBMIT</h1>
+      <p>
+        The earlier stand-in is synthetic, has the wrong grid, and is not a
+        competition submission.
+      </p>
+      <p>
+        See the
+        <a href="../docs/executive-summary.html"
+          >current nine-site executive summary</a
+        >.
+      </p>
+    </main>
+  </body>
 </html>
