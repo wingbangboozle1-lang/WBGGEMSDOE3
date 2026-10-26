@@ -1,31 +1,8 @@
-# Competition data (large, requires DrivenData login — do not commit)
 data/
-submission/
-*.zip
-
-# Generated stand-in submission TIFs (not committed)
-submission/*.tif
-submission/*.json
-
-# Exception: the stand-in submission TIF used as the GitHub Pages download link
-!site/assets/downloads/gems-hnew01-stepper-dblind-unique.tif
-
-# Python
 __pycache__/
-*.py[cod]
-*.pyo
-.env
-.venv/
-venv/
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Jupyter
-.ipynb_checkpoints/
+*.pyc
+.venv/
+.cache/
+docs/downloads/*.tif
+docs/downloads/*.zip

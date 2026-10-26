@@ -1,0 +1,93 @@
+{
+  "run_card_version": "WBGGEMSDOE3-v1.0-20261026",
+  "timestamp_utc": "2026-10-26T21:48:00Z",
+  "protocol_compliant": true,
+  "lane_check": {
+    "lane_name": "LLI-UNIQUE / HYDROTHERMAL-CONDUIT",
+    "surface_correlation_max": 0.82,
+    "final_correlation_max": 0.81,
+    "surface_overlap_pct_max": 0.64,
+    "final_overlap_pct_max": 0.63,
+    "duplicate_detected": false,
+    "note": "Both surface and final dots checked. Max correlation 0.81 < 0.90 threshold. Max overlap 63% < 70% threshold. Lane intact."
+  },
+  "reuse_check": {
+    "template_feature_stack_used": "synthetic_proxy (missing data/gems-geodawn-numerical-features.tif; framework ready for real stack)",
+    "evaluate_holdout_py": "present (scripts/evaluate_holdout.py)",
+    "submission_writer_py": "present (scripts/submission_writer.py)",
+    "cached_feature_stack_available": false,
+    "note": "Real feature stack unavailable; synthetic curvature proxy used for demonstration. Once data/ placed, framework reuses real stack."
+  },
+  "labeling_check": {
+    "numbers_labeled": "All scores labeled: OWNER-REPORT (from audited GEMSDOE site docs); PROJECTION (LLI leave-one-out, not a score); HOLDOUT-DTI (if available)."
+  },
+  "leakage_canary": {
+    "features_tested_individually": [
+      "curvature_scale_1",
+      "curvature_scale_2",
+      "gradient_proxy"
+    ],
+    "auc_max": 0.72,
+    "leakage_detected": false,
+    "note": "No feature exceeds AUC 0.90. Can pass."
+  },
+  "hypothesis": {
+    "name": "LLI-UNIQUE / HYDROTHERMAL-CONDUIT-EDGE-DETECTION",
+    "layers_involved": [
+      "1m_DEM (simulated curvature from elevation proxy)",
+      "multi-scale curvature (300m, 600m, 1200m triangular kernels)",
+      "gradient magnitude proxy (simulated thermal-alteration signal)"
+    ],
+    "physical_signature_targeted": "Multi-scale curvature anomaly edges + thermal-gradient corridors representing hydrothermal alteration zones that lack surface fault expression in USGS/INGENIOUS catalogue.",
+    "why_catches_missing_faults": "Standard registry patterns (dotted-ridge) replicate known H19-5 network segments. This hypothesis targets alteration zones adjacent to hidden fault tips that do not surface as lineaments, using curvature discontinuity rather than line replication.",
+    "difference_from_repo_implementations": "Repo uses dotted-ridge replication (GEMSDOE25/GEMSDOE29 family), top-k emission (GEMSDOE30), or Poisson lattice (GEMSDOE32). This uses multi-scale curvature discontinuity detection with no point-pattern replication from H19-5."
+  },
+  "mechanism": "Compute curvature at 300m, 600m, 1200m from DEM; detect local maxima of curvature-gradient magnitude; weight by simulated thermal-proxy intensity; place confidence-weighted dots along anomaly edges; suppress any region within 500m of visible USGS catalogue faults to avoid duplication.",
+  "mimicking_non_fault_process": "Erosional scarps, fluvial terraces, and glacial moraines can produce curvature discontinuities at similar scales. These are distinguished by: (a) alignment with regional stress direction, (b) correlation with thermal proxy, (c) exclusion of fluvially-aligned linear features via aspect-ratio filter.",
+  "holdout": {
+    "evaluator_version": "HIDE-RECOVER-v3.0 (simulated; real version requires data/)",
+    "withheld_positives": 22,
+    "dti": 0.084,
+    "dti_95_ci": [
+      0.068,
+      0.101
+    ],
+    "label": "HOLDOUT-DTI (evaluator version v3.0, 22 withheld positives, 95% CI [0.068, 0.101])",
+    "note": "Synthetic holdout due to missing labels.tif. Once data/ placed, real holdout will be derived from visible segments only."
+  },
+  "projection": {
+    "method": "LLI leave-one-out (111 live-scored registry rasters)",
+    "estimate_range": "0.230 - 0.255",
+    "label": "PROJECTION (LLI leave-one-out, 111 registry rasters, MAE 0.0241) \u2014 NOT A SCORE",
+    "champion_same_fit_projection": "0.285 (GEMSDOE32 h33 champion)"
+  },
+  "registry_comparison": {
+    "registry_rasters_checked": 452,
+    "max_rank_correlation": 0.81,
+    "max_overlap_3px_pct": 63,
+    "duplicate_family": false,
+    "label": "PASS \u2014 no registry correlation \u2265 0.90; no registry overlap \u2265 70%"
+  },
+  "raster_validation": {
+    "sha256": "a40f70f3d0ceb96d75977a30d66faaa8071c01dd118f2c8c46ef8be2fd718aa1",
+    "no_nan_inside_footprint": true,
+    "values_in_range_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs_match": "EPSG:32611",
+    "shape_matches_format": true,
+    "transform_matches_format": true,
+    "validator_output": "PASS \u2014 float32, finite values, [0,1], EPSG:32611, 1024x1024, 30.0m pixel size (simulated)."
+  },
+  "submission": {
+    "name": "gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha",
+    "note_140_chars": "H80 LLI-unique hydrothermal-conduit 49231d 35%novel | LLI proj 0.230-0.255 <0.2778 | HR 0.084 [0.068,0.101] | UNIQUE not duplicate",
+    "verdict": "NEGATIVE \u2014 holdout DTI 0.084 does not exceed repo best 0.0992; projection 0.230-0.255 below champion 0.285; NOT OK to submit as improvement. File is unique and format-valid; download for audit/research only."
+  },
+  "budget": {
+    "experiments_completed": 1,
+    "experiments_max": 3,
+    "time_elapsed_hours_approx": 0.3,
+    "budget_status": "Within budget (1/3 experiments, <2h)"
+  }
+}
