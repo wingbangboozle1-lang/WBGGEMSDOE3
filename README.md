@@ -185,3 +185,12 @@ single lane and comparator inventory, run feature canaries and buffered whole-se
 holdout against a matched same-evaluator incumbent, and only then use the unchanged
 shared writer and separate selector. The current instruction makes producing an
 eligible unique TIFF impossible, so the project must not imply otherwise.
+
+## Parallel lane LST1 — Ledger-Supervised Tomography (research-only, **NEGATIVE**)
+
+A second lane ran on branch `arena/7d6b3b9f-wbggemsdoe3` and is merged under its own namespace so nothing above is overwritten:
+[lane README](LST1_README.md) · [lane site](docs/lst1/index.html) · [lane run card](evidence/lst1_run_card.json) · code in `src/gemsw/` and `scripts/*lst*|build_submission|run_holdout|…`.
+It produced `submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif` (32,810 dots; format validator PASS; independent verifier PASS). Its HOLDOUT-DTI is **0.0667 vs 0.0992** for the champion proxy
+(paired Δ −0.0325, 95 % CI −0.041 to −0.024) — verdict **negative**, consistent with this README's **DO NOT SUBMIT** decision. It is **not** a cleared file: its uniqueness holds only under two
+documented deviations from the literal registry rule (whole-footprint feature layers excluded; excess-over-null for lattice-like references), and the project's stricter reading above declines such exemptions.
+It has no organizer-confirmed score and no slot was selected. Use it for learning (e.g. the ledger-model calibration, the uniqueness-price decomposition in the lane site's Evidence page), not for upload.

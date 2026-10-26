@@ -6,3 +6,11 @@ __pycache__/
 *.py[cod]
 /data/
 /out/
+
+data/raw/
+data/ledger/
+data/work/
+*.pyc
+data/external
+data/processed
+submission_tmp

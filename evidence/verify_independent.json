@@ -1,0 +1,131 @@
+{
+ "checks": {},
+ "delivered_files": {
+  "zeros.tif": {
+   "sha256": "676ca865e86a4ff220548253d3f574e374fc3d470239fbc89aa8fb261d409e34",
+   "matches_run_card": true,
+   "bytes": 770721,
+   "checks": {
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape_ok": true,
+    "transform_ok": true,
+    "footprint_px": 5167373,
+    "nan_in_footprint": 0,
+    "inf_in_footprint": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "in_range": true,
+    "dots": 32810,
+    "on_catalogue": 0,
+    "outside_ok": true
+   }
+  },
+  "nan.tif": {
+   "sha256": "c0a24f8284eee4a3c17b1c6c2ff49a422cbcf97a73289275e533982b0dfe4acc",
+   "matches_run_card": true,
+   "bytes": 1533231,
+   "checks": {
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape_ok": true,
+    "transform_ok": true,
+    "footprint_px": 5167373,
+    "nan_in_footprint": 0,
+    "inf_in_footprint": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "in_range": true,
+    "dots": 32810,
+    "on_catalogue": 0,
+    "outside_ok": true
+   }
+  },
+  "zeros.zip": {
+   "sha256": "7068a3818de9df451a1a626b7884c3fb132e26cb52218b31ece237127cb363f1",
+   "matches_run_card": true,
+   "bytes": 130624,
+   "zip_inner_equals_zeros_tif": true
+  }
+ },
+ "ledger_overlap_top8": [
+  {
+   "ref": "20261001_r13-lattice-s5_v2_nan-outside",
+   "n_ref": 206895,
+   "overlap": 0.9995123437976227,
+   "null": 0.9987132726822701,
+   "lattice_like": true,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+   "n_ref": 155021,
+   "overlap": 0.7825053337397135,
+   "null": 0.7350464152674869,
+   "lattice_like": true,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+   "n_ref": 155021,
+   "overlap": 0.7461749466626029,
+   "null": 0.7341343464077394,
+   "lattice_like": true,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054",
+   "n_ref": 121131,
+   "overlap": 0.6199939042974703,
+   "null": 0.19609480484571173,
+   "lattice_like": false,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+   "n_ref": 516738,
+   "overlap": 0.6161840902163974,
+   "null": 0.5343281779736048,
+   "lattice_like": false,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+   "n_ref": 335879,
+   "overlap": 0.6149344711978055,
+   "null": 0.41313429473738394,
+   "lattice_like": false,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "h19-4-multiline-corroborated-openness-thermal-pop-20260930-6",
+   "n_ref": 123779,
+   "overlap": 0.5999085644620542,
+   "null": 0.20359048979046027,
+   "lattice_like": false,
+   "exact_same": false,
+   "passes_rule": true
+  },
+  {
+   "ref": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "n_ref": 61328,
+   "overlap": 0.5760743675708625,
+   "null": 0.1852153889413441,
+   "lattice_like": false,
+   "exact_same": false,
+   "passes_rule": true
+  }
+ ],
+ "exact_duplicate_of_any_ledger_raster": false,
+ "max_overlap_non_lattice_ledger": 0.6199939042974703,
+ "n_refs_failing_rule": [],
+ "independent_pass": true
+}
