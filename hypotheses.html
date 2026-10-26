@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ranked, untested geological hypotheses for the DOE GEMS fault prediction task.">
+  <title>Hypotheses | WBGGEMSDOE3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">WBGGEMSDOE3<small>DOE GEMS research workbench</small></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="executive-summary.html">Executive summary</a>
+        <a href="hypotheses.html" aria-current="page">Hypotheses</a>
+        <a href="submission.html">Submission guide</a>
+        <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/README.md">Project brief</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Research queue · not results</p>
+      <h1>Four hypotheses to review before any implementation</h1>
+      <p class="lede">These are qualitative, falsifiable research ideas. They are not score forecasts, not “promote” candidates, and not proof that no other GEMSDOE site has explored a related idea. The public summaries and experiment indexes were searched for overlap; exact global novelty remains unverified.</p>
+    </section>
+
+    <section class="decision">
+      <strong>NO EXPERIMENT RUN — THE SINGLE AUTHORIZED LANE IS UNSPECIFIED</strong>
+      <p>The most feasible proposal uses potential-field and strain-rate bands listed in a public owner-maintained feature manifest. The actual cache, labels, sample grid, shared holdout evaluator, writer, and registry are absent from this checkout. We did not invent a lane from a sibling project or use a submission slot.</p>
+    </section>
+
+    <section>
+      <h2>Ranked proposal set</h2>
+      <p class="section-intro">Rank is a qualitative research priority combining possible geological signal and feasibility, not a numerical DTI estimate. All candidates remain untested here. For any idea that requires new data, its access check is explicitly marked blocked rather than assumed viable.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Research hypotheses only — no submission has been generated from these ideas.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Priority</th>
+              <th scope="col">Hypothesis / layer(s)</th>
+              <th scope="col">Target signature and missing-fault rationale</th>
+              <th scope="col">Difference from prior work / novelty status</th>
+              <th scope="col">Non-fault mimic</th>
+              <th scope="col">Expected improvement<br><span class="small">Qualitative only</span></th>
+              <th scope="col">Cost / official source check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1<br>Best feasible first test</th>
+              <td><b>Depth-consistent basement step plus kinematic support</b><br><span class="small">Potential-field and strain-rate bands: <code>depth_to_base_surf</code>, <code>tmi_vg</code>, <code>iso_grav_anom_vg</code>, <code>geod_shearrate</code>, <code>geod_dilaterate</code>, optionally <code>geod_2ndinv</code> and <code>rtp</code>.</span></td>
+              <td>Require a coherent step/boundary across magnetic and gravity features plus aligned shear/dilation. Buried basement offset and localized strain can persist where surface traces are unmapped. Train and score only against fold-visible catalogue data; keep the target's withheld segment and buffer isolated.</td>
+              <td>Not just a thresholded lineament, a single-sensor ridge, or a new thinning rule: require cross-domain depth/kinematic agreement and reject isolated edges. Related geophysical, Euler/depth, and strain approaches exist; the exact composite was not found in the inspected focus-site summaries, but global novelty is not proven. Band semantics must be checked against the canonical metadata before use.</td>
+              <td>Lithologic contact, basin margin, intrusive boundary, or airborne flight-line/leveling seam.</td>
+              <td><b>Medium, conditional.</b> Most feasible because the bands appear in the owner-maintained prepared manifest, but no numeric gain is justified.</td>
+              <td><b>Medium.</b> No new external dataset if the shared feature cache contains these channels. The cache is absent here; the official inputs and band metadata have not been restored. <span class="badge amber">BLOCKED</span></td>
+            </tr>
+            <tr>
+              <th scope="row">2<br>New external data</th>
+              <td><b>Multi-epoch InSAR deformation-gradient persistence</b><br><span class="small">Sentinel-1 line-of-sight displacement and coherence time series, e.g. NASA/JPL OPERA DISP-S1.</span></td>
+              <td>Search for persistent, localized shear/extension gradients across repeat acquisitions. Deformation associated with active concealed structures can reveal faults absent from a surface-fault compilation.</td>
+              <td>Distinct from static potential-field lineaments and point temperature records. No time-series InSAR displacement layer was found in the reviewed focus-site summaries. This is not a claim that no related work exists anywhere.</td>
+              <td>Groundwater withdrawal, landslides, geothermal reservoir compaction, atmospheric delay, decorrelation, or infrastructure motion.</td>
+              <td><b>Medium–high if faults are active; low if dormant.</b> Not a leaderboard projection.</td>
+              <td><b>High.</b> Named source/product: NASA/JPL OPERA DISP-S1 via <a href="https://www.earthdata.nasa.gov/">NASA Earthdata</a>. The product landing page, host access, coverage, and terms were not checked here; not viable until access is verified. <span class="badge amber">BLOCKED</span></td>
+            </tr>
+            <tr>
+              <th scope="row">3<br>New external data</th>
+              <td><b>Geochemical mixing and geothermometry at springs/wells</b><br><span class="small">DOE GDR, USGS NWIS, or NGDS chemistry if location/metadata coverage is adequate; candidate measures include silica, chloride/boron, alkali ratios, and stable isotopes.</span></td>
+              <td>Look for coherent fluid-composition gradients or mixing fronts along off-catalogue corridors. Deep geothermal fluids may rise through permeable fault pathways not mapped at the surface.</td>
+              <td>The reviewed records discuss probe-temperature points and mapped geothermal manifestations; they do not establish a well-curated chemical-composition layer. This tests fluid chemistry rather than reusing the same point locations.</td>
+              <td>Bedrock chemistry, evaporation, shallow-water mixing, sparse sampling, well bias, or human contamination.</td>
+              <td><b>Medium, potentially specific but sparse.</b> No numeric estimate.</td>
+              <td><b>High.</b> Official starting points: <a href="https://gdr.openei.org/submissions/1391">DOE GDR submission 1391</a> and <a href="https://waterdata.usgs.gov/nwis/">USGS NWIS</a>. The pages and chemistry coverage were not checked. <span class="badge amber">BLOCKED</span></td>
+            </tr>
+            <tr>
+              <th scope="row">4<br>New external data</th>
+              <td><b>Seasonally normalized land-surface thermal residual</b><br><span class="small">Multiyear Landsat Collection 2 surface temperature plus vegetation/land-cover covariates.</span></td>
+              <td>Estimate persistent warm/cool anomalies after controlling for season, elevation, aspect, and land cover. Fault-fed geothermal discharge can create repeated thermal/vegetation anomalies near concealed conduits.</td>
+              <td>Different from static airborne radiometrics and point temperature records. The reviewed materials do not verify a multitemporal satellite-temperature anomaly test; exact novelty remains uncertain.</td>
+              <td>Solar exposure, irrigation, roads/urban heat, wildfire, emissivity, and seasonal soil moisture.</td>
+              <td><b>Low–medium.</b> Surface expressions are intermittent and confounded; not a score forecast.</td>
+              <td><b>High.</b> Official source: <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2">USGS Landsat Collection 2</a>. The host and footprint coverage were not checked. <span class="badge amber">BLOCKED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="callout" style="margin-top:28px">
+      <h2 style="margin-top:0">Why these proposals are not experiments</h2>
+      <ul>
+        <li>The prompt did not specify the one method lane. A public site for another GEMSDOE repository is not permission to adopt its lane.</li>
+        <li>The feature cache, withheld-segment labels, shared evaluator, writer, registry and sample grid are not present.</li>
+        <li>New-data ideas are marked blocked because the non-GitHub official source hosts could not be reached from this environment. No unverified source is presented as obtainable.</li>
+        <li>The experiment budget remains unused. No weekly submission slot has been used or selected.</li>
+      </ul>
+      <p><a href="research/repo-review-2026-10-26.md">Read the review report and unblock checklist</a>.</p>
+    </section>
+
+    <section>
+      <h2>Official references and evidence limits</h2>
+      <ul class="source-list">
+        <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a> — inspected from GitHub. Its notebook is a baseline, not the required shared hide-and-recover evaluator.</li>
+        <li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/data/prepared_manifest.json">GEMSDOE32 prepared feature manifest</a> — owner-maintained band inventory; not an official data receipt and not present in this checkout.</li>
+        <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> and <a href="https://gdr.openei.org/submissions/1391">DOE GDR 1391</a> — supplied official data sources; not fetched in this environment.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p><b>WBGGEMSDOE3</b> · These are falsifiable proposals, not validated scores or submission approvals.</p>
+      <p><a href="index.html">Overview</a> · <a href="executive-summary.html">Executive summary</a> · <a href="submission.html">Submission guide</a></p>
+    </div>
+  </footer>
+</body>
+</html>

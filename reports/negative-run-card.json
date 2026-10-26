@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "run_status": "NOT_RUN_FAIL_CLOSED",
+  "hypothesis": "Proposal only, not authorized or tested: a fault is more likely where a basement-depth step and magnetic/gravity boundary are spatially concordant with geodetic shear or dilation in the cached stack. The prompt did not specify a single lane paragraph, so this was not selected as an experiment.",
+  "mechanism": "Potential-field contrasts can mark a buried offset or fractured basement boundary; a coincident strain-rate feature could support active faulting. This is a testable mechanism, not an observed result.",
+  "named_non_fault_mimic_process": "Lithologic contact or airborne geophysical flight-line/leveling seam can create co-located edge-like anomalies without a fault.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "point_estimate": null,
+    "ci95": null,
+    "reason": "No local labels, cached feature stack, or shared evaluate_holdout.py; no compliant fold-local result can be calculated."
+  },
+  "registry_comparison": {
+    "status": "NOT RUN",
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_overlap_max_within_3px": null,
+    "stop_thresholds": {
+      "absolute_rank_correlation_greater_than": 0.9,
+      "dot_fraction_within_3px_greater_than": 0.7
+    },
+    "reason": "No candidate surface or final-dot raster, and no registry rasters/manifest in this checkout."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate TIFF or sample_submission.tif in this checkout. No download-ready artifact exists."
+  },
+  "submission": {
+    "name": null,
+    "note": "No TIF generated; do not submit.",
+    "download_allowed": false,
+    "submit_allowed": false
+  },
+  "experiment_budget": {
+    "experiments_run": 0,
+    "maximum_experiments": 3,
+    "hours_used": 0,
+    "maximum_hours": 2,
+    "weekly_submission_slots_used": 0
+  },
+  "verdict": "negative"
+}

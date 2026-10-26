@@ -1,0 +1,116 @@
+{
+  "report_date_utc": "2026-10-26",
+  "scope": ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"],
+  "source_basis": {
+    "primary_owner_audit": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/evidence/nine_site_executive_audit_20261026.json",
+    "cross_check": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/knowledge/24_focus_sites_executive_summary_2026-10-26.md",
+    "score_provenance": "The reviewed public site records do not contain a receipt tying each TIFF's bytes to a DrivenData score. All scores below are therefore OWNER-REPORTED and unverified by this checkout.",
+    "uniqueness_provenance": "The owner-maintained cross-site audit reports family identity/overlap. This checkout did not recompute the audits because no registry rasters, candidate, or geospatial stack are present."
+  },
+  "current_candidate": {
+    "file": null,
+    "score_estimate": null,
+    "score_estimate_status": "NOT COMPUTED: no new candidate, data, shared evaluator, or sample grid in this checkout",
+    "unique_status": "NOT TESTED: no new candidate raster",
+    "download_allowed": false,
+    "submit_allowed": false,
+    "verdict": "negative"
+  },
+  "historical_site_bests": [
+    {
+      "site": "GEMSDOE24",
+      "file_stem": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "owner_reported_score": 0.2477,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit classifies the D1.5 H19-5 thinning family as non-unique/high-overlap; the local raster-level overlap was not recomputed.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE25",
+      "file_stem": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "owner_reported_score": 0.26,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit reports a dot-for-dot alias with GEMSDOE30's D2.8 raster and a parent/ancestor relationship to the GEMSDOE32 B2 raster.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE27",
+      "file_stem": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "owner_reported_score": 0.2449,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit describes this as a topographic gap-closure addition to the shared D1.5 H19-5 family; full registry novelty was not recomputed here.",
+      "decision": "Historical reference only; do not submit. A later different method in this site is also already scored and is not a new candidate."
+    },
+    {
+      "site": "GEMSDOE28",
+      "file_stem": "h36-1-rung30-blind-r1-20261003-b531dae0a36f",
+      "owner_reported_score": 0.271,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit places this in the same closely related H19-5/D2.8 prune family; site materials contain both NaN-outside and all-finite variants, so a precise download must be hash-pinned.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE30",
+      "file_stem": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "owner_reported_score": 0.26,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit reports a pixel-identical dot set to GEMSDOE25's D2.8 raster.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE31",
+      "file_stem": "h27-4-solo-d28-20261004-8acb75e1",
+      "owner_reported_score": 0.2708,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit reports the same positive-pixel mask as GEMSDOE28's H27-4 solo raster.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE32",
+      "file_stem": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "owner_reported_score": 0.2778,
+      "score_label": "OWNER-REPORTED (unverified; no receipt with a byte-to-score binding was present in the reviewed public files)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit describes H33-B2 as a nested H19-5/D2.8 prune; GEMSDOE36 is a near-superset, and the broader registry audit reports many >70% overlaps.",
+      "decision": "Best historic reference among the focus sites; already scored according to owner records; do not submit or copy."
+    },
+    {
+      "site": "GEMSDOE33",
+      "file_stem": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "owner_reported_score": 0.2632,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit describes analog tip/step-over additions to the shared H19-5/D2.8 family; broader registry novelty is not established here.",
+      "decision": "Historical reference only; do not submit."
+    },
+    {
+      "site": "GEMSDOE36",
+      "file_stem": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "owner_reported_score": 0.275,
+      "score_label": "OWNER-REPORTED (unverified; no receipt copied into this checkout)",
+      "new_candidate_score_estimate": null,
+      "unique_vs_other_focus_sites": false,
+      "uniqueness_basis": "Owner audit says this contains all GEMSDOE32 H33-B2 positives plus 1,200 additions (Jaccard 0.969); under the stated directed dot-overlap rule this is not unique.",
+      "decision": "Historical reference only; do not submit."
+    }
+  ],
+  "important_discrepancies": [
+    "The prompt contains two different values for the claimed current leaderboard high: 0.3195 and 0.4413.",
+    "A GEMSDOE32 owner-maintained public-leaderboard snapshot records 0.4437 at 2026-10-26T21:20:39Z; this checkout did not fetch the DrivenData leaderboard directly, so that observation is not independently verified here.",
+    "Some historical GEMSDOE32 records call 0.2778 organizer-confirmed, while later GEMSDOE32 and GEMSDOE27 reviews downgrade group scores to OWNER-REPORTED because no byte-linked submission receipt is present. This report uses the conservative OWNER-REPORTED label."
+  ]
+}
