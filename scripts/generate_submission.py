@@ -152,6 +152,15 @@ def poisson_disk_select(candidate_mask: np.ndarray, min_dist_px: float,
 
 
 def main():
+    # Historical implementation retained for reproducibility only. Its grid
+    # marks the whole rectangle valid, and the literal registry witness makes
+    # every nonempty in-footprint candidate fail before placement. Never emit a
+    # candidate or overwrite another run's evidence from this unsafe entrypoint.
+    raise RuntimeError(
+        "DISABLED / DO NOT SUBMIT: the literal registry witness blocks candidate "
+        "generation and the mirrored footprint differs from the all-valid grid. "
+        "See evidence/concurrent_audit.json and README.md."
+    )
     profile, footprint, transform, crs = load_template()
     trace_src, trace = load_catalogue_trace()
 

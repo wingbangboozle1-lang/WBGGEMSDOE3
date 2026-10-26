@@ -1,18 +1,8 @@
-# Python
+# Local environments, restored mirrors, caches and generated outputs are not project source.
 .venv/
-venv/
-__pycache__/
-*.pyc
-*.pyo
-.pypirc
-
-# Data caches (large; competition rasters are login-gated and restored via scripts/)
-data/downloads/
 .cache/
-data/prepared_manifest.json
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Committed deliverables (kept): docs/ (site + submission TIF), evidence/, scripts/, README.md, data/template_grid.tif
+__pycache__/
+.pytest_cache/
+*.py[cod]
+/data/
+/out/

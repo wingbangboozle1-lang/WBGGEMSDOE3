@@ -89,6 +89,13 @@ class UniquenessResult:
 
 
 def audit_uniqueness(candidate_tif: Path, registry_tifs: list[Path]) -> UniquenessResult:
+    # This historical checker is not the shared tool: it excludes positive
+    # values <= 0.5, skips mismatched grids, permits an empty registry, and
+    # substitutes final dots for a pre-placement surface. It cannot clear a file.
+    raise RuntimeError(
+        "DISABLED: incomplete historical registry check cannot authorize a file; "
+        "use the verified shared template after the documented protocol/tool issues are resolved."
+    )
     candidate_surface = _load_surface(candidate_tif)
     candidate_dots = _load_binary(candidate_tif)
 

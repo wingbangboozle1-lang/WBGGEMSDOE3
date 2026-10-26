@@ -1,0 +1,44 @@
+{
+  "evidence_class": "NEGATIVE preflight, not a competition score",
+  "hypothesis": "CSPES: cross-scale collinear gravity and reduced-to-pole magnetic gradient edges, conditioned on detrended elevation.",
+  "mechanism": "A persistent multi-domain discontinuity may mark a buried structural boundary lacking a surface catalogue trace.",
+  "named_non_fault_mimic": "Lithologic contact or aeromagnetic survey stripe.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": "gems57-pooled-hide-v2 (planned, not run)",
+    "withheld_positives": null,
+    "ci_95": null,
+    "reason": "Mandatory universal-registry STOP occurred before a surface, canary, placement, or holdout."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_spearman": null,
+    "final_dot_overlap": null,
+    "candidate_tested": false,
+    "witness_positive_inside_fraction": 1.0,
+    "witness_implied_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "registry_coverage": "One registered witness proves failure; the current full registry was not exhaustively re-audited."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN: this lane created no candidate raster",
+    "required": "No NaN in footprint; values in [0,1]; single float32 band; CRS, shape and affine equal verified sample."
+  },
+  "submission_name": null,
+  "submission_note": "No lane candidate; registry duplicate stop. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "selector_approval": false,
+  "experiments": 0,
+  "slots_spent": 0,
+  "run_time_utc": "2026-10-26T22:12:59.141647+00:00",
+  "source_audit_sha256": "17a807a6ec5b53559354bd6d312f45f5b1fb3e0fc6bae29f53dce8cc2194a542",
+  "follow_up": "Resolve the literal registry support definition by explicit protocol revision; reconcile the shared tool's one-sided rho and outside-footprint convention upstream; then rerun canaries, blocked holdout, registry checks and validation.",
+  "parallel_artifact_review": {
+    "evidence_sha256": "a9240a3d81a53f891eec724977e39da86b2ff137562583b0aca65196513fc42b",
+    "reviewed_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+    "forward_overlap_vs_registered_witness": 0.9854857142857143,
+    "outside_mirrored_footprint": 747,
+    "verdict": "negative; research only, not this lane's candidate"
+  }
+}

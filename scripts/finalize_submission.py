@@ -39,6 +39,13 @@ def find_latest_zeros():
 
 
 def main():
+    # Preserve the earlier investigation, but never overwrite the authoritative
+    # negative card with the incomplete 58-reference audit or a format claim.
+    raise RuntimeError(
+        "DISABLED / DO NOT SUBMIT: this historical audit omits a blocking "
+        "registered witness and uses an all-valid substitute grid. "
+        "See evidence/concurrent_audit.json and evidence/run_card.json."
+    )
     zeros_path = find_latest_zeros()
     nan_path = zeros_path.with_name(zeros_path.name.replace("-zeros.tif", "-nan.tif"))
 
