@@ -1,0 +1,214 @@
+[
+  {
+    "file": "research/sources/GEMSDOE31/tree.json",
+    "sha256": "1334267999ab1602c6871ca82a8af55f2d46e2841fe81d7119a39b891b38e8e6"
+  },
+  {
+    "file": "research/sources/GEMSDOE31/README.md",
+    "sha256": "7e9f1b22703a7a49dd986da4a3400c1d76432d2db7f88ee00f24616a7f13854c"
+  },
+  {
+    "file": "research/sources/GEMSDOE31/docs_index.html",
+    "sha256": "4f15d57348fea6eb90d726d323a3c6e6e8f67df9d88d322fd19bc8735ff02c54"
+  },
+  {
+    "file": "research/sources/GEMSDOE31/index.html",
+    "sha256": "317a591311da033cfa38d9d71b3e51d0f13cf1127c5cf03adbbfc9b413049045"
+  },
+  {
+    "file": "research/sources/GEMSDOE27/tree.json",
+    "sha256": "3fa2dc5bb618ab400cf1f3b3e585d7497900bea303c7a0bfd5a1ff3e769fc986"
+  },
+  {
+    "file": "research/sources/GEMSDOE27/README.md",
+    "sha256": "8adb9b0e0dbcace7f322bbbfbda6a11d806ef7d546eda1d9c7a6451b5de1493b"
+  },
+  {
+    "file": "research/sources/GEMSDOE27/docs_index.html",
+    "sha256": "4a363ba3c7b21fd1c5b0e4b0dd822992e478a7ac3377735825132f3251b31594"
+  },
+  {
+    "file": "research/sources/GEMSDOE27/index.html",
+    "sha256": "de5ffe4e86444646cfc74944a27b1edfde5d5d7d4d3fcaddb9e5f73c5c26d73b"
+  },
+  {
+    "file": "research/sources/GEMSDOE25/tree.json",
+    "sha256": "3ef4b86e90c8387f01d3de41a4d8011c591540dcb9c59d54aea00d356e6c7d51"
+  },
+  {
+    "file": "research/sources/GEMSDOE25/README.md",
+    "sha256": "1925eeaf1a45ce901615e228a71e39dd61714cfa7b6b5b3ad93f6d98473bd06f"
+  },
+  {
+    "file": "research/sources/GEMSDOE25/docs_index.html",
+    "sha256": "c60e7c58838e8f2a33efaf0a796ddcdae57f14bac63654d3adcb37affbd8d57f"
+  },
+  {
+    "file": "research/sources/GEMSDOE25/index.html",
+    "sha256": "0f1a0e7f6746265e5227e89067f1503fa89e8be62f6d2b7e59b994eb72c87540"
+  },
+  {
+    "file": "research/sources/GEMSDOE24/tree.json",
+    "sha256": "1e6bdf3dabec4ccd39f18b0f484cab50f3d74bdabc36acd99e10d5b19a6d7bed"
+  },
+  {
+    "file": "research/sources/GEMSDOE24/README.md",
+    "sha256": "dcd83a1c878cf60ce230d1c6d8bee120db0bfb814089650ec742f7a3c8565168"
+  },
+  {
+    "file": "research/sources/GEMSDOE24/docs_index.html",
+    "sha256": "861c2b589379c8e7a9a5ff36bbf7a67d9c4623ee4e7248c9f16bb3f371b817b6"
+  },
+  {
+    "file": "research/sources/GEMSDOE24/index.html",
+    "sha256": "a1716d246a7833bebe2e2bd87c73cde77b96cfd3c8a5e2f6d6ec945a448da850"
+  },
+  {
+    "file": "research/sources/GEMSDOE28/tree.json",
+    "sha256": "575575b1d4d1dffce9c9b1d8ab9913c7b5c803d2f4af8935fa812780c11eed7b"
+  },
+  {
+    "file": "research/sources/GEMSDOE28/README.md",
+    "sha256": "a4cad06519e5e8908bf929a9c6e6a281b5861b58715bb54fc7c77510dfe1f00c"
+  },
+  {
+    "file": "research/sources/GEMSDOE28/docs_index.html",
+    "sha256": "711fb69dae61fd24ad54c9e50dfab59c4c78199b0181d4f7b55bdbfa8ae75bd1"
+  },
+  {
+    "file": "research/sources/GEMSDOE28/index.html",
+    "sha256": "72575dc7f334397b5ee555d171d2fcfd916cf1a98da63d6dfedfb4ff06498b4a"
+  },
+  {
+    "file": "research/sources/GEMSDOE30/tree.json",
+    "sha256": "a737ef7a21ad25ec65b7f1ecd4137d382e1b7a7b86820987b0650147287b8e67"
+  },
+  {
+    "file": "research/sources/GEMSDOE30/README.md",
+    "sha256": "609f0e1d986f54589e01fd87624d0d6c70bd96dddc850f88113b8b9c78dd45c5"
+  },
+  {
+    "file": "research/sources/GEMSDOE30/docs_index.html",
+    "sha256": "7b24402562566eeec7f4045c9e9bdf1e3196720192cc5943d961fdf7491f785c"
+  },
+  {
+    "file": "research/sources/GEMSDOE30/index.html",
+    "sha256": "685b4763c5aee7d0d59139570073b5ba51ff71fb9db848b1eddd30239956fc03"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/tree.json",
+    "sha256": "1fc78136b821b183bc1b0b3fd5ce9d1eee00101e69afca6841b0d1f4ec9a03a5"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/README.md",
+    "sha256": "d958e87937034f9b2ed2b27f782cf63055bd8484d799505f745aa9eba79c2878"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/docs_index.html",
+    "sha256": "44e6e51b871df82da9355c1cdacb51954e4579b9f6193992d0ed17c66a2bcd4d"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/index.html",
+    "sha256": "fac0b1cd3eea7f112330b94a505999884fa08df79fb40da3f87d9ed8ce9d73fb"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/registry_data_manifest.json",
+    "sha256": "e28b33ba35216e6b699bc0dd7a61926706276b558d21d2152f044b366b4cf795"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/scripts_submission_writer.py",
+    "sha256": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/scripts_evaluate_holdout.py",
+    "sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c"
+  },
+  {
+    "file": "research/sources/GEMSDOE32/registry_claims.json",
+    "sha256": "88d666ad28b066856e0367a1ad78aeb967dfb57d86eed1bd7598b976becf5969"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/tree.json",
+    "sha256": "c4e268ae993d48bf00f1c117b1dd728efd15fd152a7b93c26a2032900e3166a5"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/README.md",
+    "sha256": "dd276aeaed467c39050c5b1328c1ed17ab07e22dba782e639a6d27a35bb9f50b"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/docs_index.html",
+    "sha256": "44275c7853c59c61986a34c6910e27966ca68cad3056f500f28d156e61e79249"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/index.html",
+    "sha256": "7167063f8b8c90fbf6fe6429ec4d1df118b7aa85dd030e5ccc245a13b0cd9ef5"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/docs_research_registry-preflight-20261026.md",
+    "sha256": "e99d6425797c6f43359e75b3cfd52c0c121639e2850d25135a35a1d42de5d91d"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/scripts_registry_feasibility.py",
+    "sha256": "c68f6fe75a14677fa10861cc7902442c96958c38869e7c74396d932ab39342cc"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/registry_template_pins.json",
+    "sha256": "078a6ac411b0bb2ad8578bb46f825356a10d4e7b356ae053b5ff37a01d2418c9"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/evidence_registry_preflight_run_card_20261026.json",
+    "sha256": "92689ae1c51e66fd159b2b29b869bc47f8716ee00834735b4c17dd34a99a7980"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/registry_data_manifest.json",
+    "sha256": "ed854b467c257ba3698a5b96eef1aabba622e431aebc4ed2fbfca2775c836b02"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/evidence_scored_registry_analysis.json",
+    "sha256": "f2852889032be4026f084ecf71e761785e77c23728e264321a4a190b78a37b08"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/scripts_cache_focus9_audit.py",
+    "sha256": "cbcb5dad98a43f467ebf431be1373c6d1c427f83b956576237a7255613a514e4"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/evidence_focus_sites_9repo_summary_20261026.json",
+    "sha256": "67047f61c2dc6747bd667a34dadd48fea3da2f82c3399985c24b44cbbad835f7"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/registry_scored_registry.json",
+    "sha256": "4008b9c45e6965610b0926136a3b8cd8b4d0274585a563e181354024a42adcc8"
+  },
+  {
+    "file": "research/sources/GEMSDOE36/src_gemsdoe36_feasibility.py",
+    "sha256": "9f5a8445c582d0131de42e81e2b50c2c0e8fa25f317d1f1c8713a2a27a8cad32"
+  },
+  {
+    "file": "research/sources/GEMSDOE33/tree.json",
+    "sha256": "c548a7ddbd4d6a3fe25f028a68560e084d7ba90b40e4e3b15a29759435830ef8"
+  },
+  {
+    "file": "research/sources/GEMSDOE33/README.md",
+    "sha256": "f6cc52e873819a018716d7c554ebdf0abad9cdf4e65200db34bb7703dde564ce"
+  },
+  {
+    "file": "research/sources/GEMSDOE33/docs_index.html",
+    "sha256": "034396ee700bbb00680358225ea7ee9473d6300c62c28fd541e9013e377726af"
+  },
+  {
+    "file": "research/sources/GEMSDOE33/index.html",
+    "sha256": "8adf6a087f93f378de538d8908b52745cb59409ea5ace9f811278ce9a1548848"
+  },
+  {
+    "file": "research/sources/gems-prize-reference-solution/tree.json",
+    "sha256": "a1a45fa0559211d9e5843ce1f26ef72a493658a8cf60ffdff13217f98837db47"
+  },
+  {
+    "file": "research/sources/gems-prize-reference-solution/README.md",
+    "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239"
+  },
+  {
+    "file": "research/sources/gems-prize-reference-solution/unet-mc-cv-reference-solution.ipynb",
+    "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0"
+  }
+]

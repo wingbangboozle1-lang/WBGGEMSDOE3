@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+.venv/
+data/
+.cache/
+docs/downloads/*.tif
+docs/downloads/*.zip

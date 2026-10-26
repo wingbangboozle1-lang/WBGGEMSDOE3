@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-04",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "evidence_class": "ONE-TIME OFFICIAL PAGE STATUS REVIEW RECORDED; raw rows/page capture intentionally not retained; conflicting owner-published third-party summary also observed",
+  "review_scope": "The owner's brief describes 0.3195 as the current highest score. A prior one-time official-page status note dated 2026-10-04 recorded that the spot-check did not support treating 0.3195 as current/top, but the page capture/method is not retained. During an unrelated read of the GEMSDOE28 owner site, its static page was found to contain a manual leaderboard summary dated 2026-10-03 that includes the user-provided 0.3195 claim. That is a third-party owner report, not an independent/current official check. The discrepancy is unresolved; no score row proves which local TIFF, account, or submission produced a participant score.",
+  "terms_notice": "DrivenData Terms of Use, last modified 2014-08-07, prohibit using automatic processes to monitor/copy site material and manual processes to monitor/copy without prior written consent. Permission for repeated review or public reproduction is not established. This repository does not poll; do not refresh or publish copied leaderboard contents without written consent or an authorized API.",
+  "retained_content": "No participant roster, ranks, score table, or copied leaderboard HTML is stored in this record.",
+  "decision": "Treat 0.3195 as an unverified user-supplied target, not a confirmed current leader. The two dated observations conflict and neither is retained as official row-level evidence. This project maintains no leaderboard feed or refresh schedule; do not refresh or republish copied rows without prior written consent or an authorized API."
+}
