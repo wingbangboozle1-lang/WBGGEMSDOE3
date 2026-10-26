@@ -1,0 +1,11 @@
+.venv/
+.cache/
+data/raw/
+data/ledger/
+data/work/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/external
+data/processed
+submission_tmp

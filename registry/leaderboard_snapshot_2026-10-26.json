@@ -1,0 +1,145 @@
+{
+ "observed_utc": "2026-10-26",
+ "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+ "method": "agent fetch_page, 3 chunks; the page lists the top 50. Only rows actually read are stored; ranks 7-22 were read as a range only (0.3261-0.3418).",
+ "evidence_class": "OBSERVED-PUBLIC-PAGE (not an organizer receipt for any of OUR submissions)",
+ "rows": [
+  {
+   "rank": 1,
+   "participant": "xiaofanhu",
+   "score": 0.4437,
+   "submissions": 31
+  },
+  {
+   "rank": 2,
+   "participant": "cfld__",
+   "score": 0.3916,
+   "submissions": null
+  },
+  {
+   "rank": 3,
+   "participant": "Batik Shirt Brothers",
+   "score": 0.3904,
+   "submissions": null
+  },
+  {
+   "rank": 4,
+   "participant": "BrandenKMurray",
+   "score": 0.3724,
+   "submissions": null
+  },
+  {
+   "rank": 5,
+   "participant": "No Fault of Our Own",
+   "score": 0.3561,
+   "submissions": null
+  },
+  {
+   "rank": 6,
+   "participant": "joeyfezster",
+   "score": 0.3447,
+   "submissions": null
+  },
+  {
+   "rank": 23,
+   "participant": "like60986",
+   "score": 0.3217,
+   "submissions": 7
+  },
+  {
+   "rank": 24,
+   "participant": "twang",
+   "score": 0.3169,
+   "submissions": 6
+  },
+  {
+   "rank": 25,
+   "participant": "kinneso_outlook",
+   "score": 0.3167,
+   "submissions": 4
+  },
+  {
+   "rank": 26,
+   "participant": "like2",
+   "score": 0.316,
+   "submissions": 6
+  },
+  {
+   "rank": 27,
+   "participant": "drjy",
+   "score": 0.3113,
+   "submissions": 19
+  },
+  {
+   "rank": 28,
+   "participant": "nsabaj",
+   "score": 0.3111,
+   "submissions": 26
+  },
+  {
+   "rank": 29,
+   "participant": "ndavis7",
+   "score": 0.3093,
+   "submissions": 17
+  },
+  {
+   "rank": 30,
+   "participant": "kpomazi",
+   "score": 0.3051,
+   "submissions": 32
+  },
+  {
+   "rank": 31,
+   "participant": "Gibbous",
+   "score": 0.3033,
+   "submissions": 7
+  },
+  {
+   "rank": 32,
+   "participant": "sws-jonathan",
+   "score": 0.3004,
+   "submissions": 12
+  },
+  {
+   "rank": 33,
+   "participant": "anna_ms",
+   "score": 0.3004,
+   "submissions": 21
+  },
+  {
+   "rank": 34,
+   "participant": "faultsofthy",
+   "score": 0.2987,
+   "submissions": 5
+  },
+  {
+   "rank": 35,
+   "participant": "pberlizov",
+   "score": 0.2967,
+   "submissions": 16
+  },
+  {
+   "rank": 40,
+   "participant": "haiderz",
+   "score": 0.293,
+   "submissions": 3
+  },
+  {
+   "rank": 45,
+   "participant": "roison",
+   "score": 0.2871,
+   "submissions": 15
+  },
+  {
+   "rank": 50,
+   "participant": "jorgeschmidt",
+   "score": 0.2826,
+   "submissions": 35
+  }
+ ],
+ "ranks_7_to_22_range": [
+  0.3261,
+  0.3418
+ ],
+ "note": "Rank 50 = 0.2826 so a 0.2778 score would sit outside the top 50. The 0.3195 and 0.4413 in the owner brief are stale; 0.4437 observed."
+}

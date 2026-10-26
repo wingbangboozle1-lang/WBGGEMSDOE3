@@ -1,0 +1,322 @@
+{
+ "champion_proxy": {
+  "pooled_dti": 0.09920232315251679,
+  "ci95": [
+   0.08595140754809347,
+   0.11266835751415871
+  ],
+  "per_quadrant": {
+   "NW": 0.10125730530362789,
+   "NE": 0.11279290286951725,
+   "SW": 0.06649890431789826,
+   "SE": 0.12423025905930665
+  },
+  "n_withheld": 22232,
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 38840
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 38893
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 38895
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 39001
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 38912
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 38883
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 38895
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 38793
+   }
+  ],
+  "score_label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0"
+ },
+ "stratum_quota": {
+  "pooled_dti": 0.09563507504742996,
+  "ci95": [
+   0.08451597883724515,
+   0.10599415315378351
+  ],
+  "per_quadrant": {
+   "NW": 0.10291582756812513,
+   "NE": 0.10250812876359025,
+   "SW": 0.06969049695926963,
+   "SE": 0.11719622223057219
+  },
+  "n_withheld": 22232,
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 13059,
+    "n_on": 8619,
+    "n_off": 4440,
+    "model_dti": 0.36433664382524295,
+    "model_dti_no_quota": 0.44534796830437057
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 15327,
+    "n_on": 10116,
+    "n_off": 5211,
+    "model_dti": 0.37247649971910735,
+    "model_dti_no_quota": 0.45567862051350677
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 19824,
+    "n_on": 13084,
+    "n_off": 6740,
+    "model_dti": 0.3673677261316019,
+    "model_dti_no_quota": 0.44789301545348553
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 11198,
+    "n_on": 7391,
+    "n_off": 3807,
+    "model_dti": 0.3566737893247223,
+    "model_dti_no_quota": 0.43494101175651184
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 13018,
+    "n_on": 8592,
+    "n_off": 4426,
+    "model_dti": 0.3627863601685457,
+    "model_dti_no_quota": 0.44380875370456196
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 15412,
+    "n_on": 10172,
+    "n_off": 5240,
+    "model_dti": 0.37245684260571266,
+    "model_dti_no_quota": 0.45557425272950697
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 19792,
+    "n_on": 13063,
+    "n_off": 6729,
+    "model_dti": 0.3663532139618038,
+    "model_dti_no_quota": 0.4473771541596557
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 11023,
+    "n_on": 7275,
+    "n_off": 3748,
+    "model_dti": 0.3561968634476167,
+    "model_dti_no_quota": 0.4341877160383263
+   }
+  ],
+  "score_label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "paired_vs_champion_proxy": {
+   "delta": -0.003567248105086837,
+   "ci95": [
+    -0.009465052120584336,
+    0.0025204621964282016
+   ],
+   "p_delta_le_0": 0.866
+  }
+ },
+ "lst_mod_quota": {
+  "pooled_dti": 0.10713140597711164,
+  "ci95": [
+   0.09413957032415884,
+   0.1196087944880776
+  ],
+  "per_quadrant": {
+   "NW": 0.1222761759750232,
+   "NE": 0.1172875715649392,
+   "SW": 0.07337431924067922,
+   "SE": 0.12857248989643622
+  },
+  "n_withheld": 22232,
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 12168,
+    "n_on": 8031,
+    "n_off": 4137,
+    "model_dti": 0.3763952664739542,
+    "model_dti_no_quota": 0.4580676896774839
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 14812,
+    "n_on": 9776,
+    "n_off": 5036,
+    "model_dti": 0.4105322562843989,
+    "model_dti_no_quota": 0.497314800140082
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 17948,
+    "n_on": 11846,
+    "n_off": 6102,
+    "model_dti": 0.37761521108108453,
+    "model_dti_no_quota": 0.45791792776241164
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 10714,
+    "n_on": 7071,
+    "n_off": 3643,
+    "model_dti": 0.3859367211243595,
+    "model_dti_no_quota": 0.4669767488819387
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 12050,
+    "n_on": 7953,
+    "n_off": 4097,
+    "model_dti": 0.3770572464002049,
+    "model_dti_no_quota": 0.45846731183924133
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 14989,
+    "n_on": 9893,
+    "n_off": 5096,
+    "model_dti": 0.4058382571050927,
+    "model_dti_no_quota": 0.49259983603761875
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 17861,
+    "n_on": 11788,
+    "n_off": 6073,
+    "model_dti": 0.3759489138421555,
+    "model_dti_no_quota": 0.4565667829585948
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 10447,
+    "n_on": 6895,
+    "n_off": 3552,
+    "model_dti": 0.382806237679969,
+    "model_dti_no_quota": 0.46332332842175455
+   }
+  ],
+  "score_label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "paired_vs_champion_proxy": {
+   "delta": 0.007929082824594827,
+   "ci95": [
+    0.0019224778037499107,
+    0.014210078407616905
+   ],
+   "p_delta_le_0": 0.005
+  }
+ },
+ "lst_mod_noquota": {
+  "pooled_dti": 0.10397385684581753,
+  "ci95": [
+   0.09052778675634103,
+   0.11757823389210408
+  ],
+  "per_quadrant": {
+   "NW": 0.12205001065104587,
+   "NE": 0.1202846646381436,
+   "SW": 0.06623694235717348,
+   "SE": 0.12267506647843153
+  },
+  "n_withheld": 22232,
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 6527,
+    "n_on": 6527,
+    "n_off": 0,
+    "model_dti": 0.4649110255870735,
+    "model_dti_no_quota": 0.4649110255870735
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 8011,
+    "n_on": 8011,
+    "n_off": 0,
+    "model_dti": 0.5044039025442327,
+    "model_dti_no_quota": 0.5044039025442327
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 9768,
+    "n_on": 9768,
+    "n_off": 0,
+    "model_dti": 0.46420922802140435,
+    "model_dti_no_quota": 0.46420922802140435
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 5799,
+    "n_on": 5799,
+    "n_off": 0,
+    "model_dti": 0.4737939547120418,
+    "model_dti_no_quota": 0.4737939547120418
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 6488,
+    "n_on": 6488,
+    "n_off": 0,
+    "model_dti": 0.4651479356442676,
+    "model_dti_no_quota": 0.4651479356442676
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 8084,
+    "n_on": 8084,
+    "n_off": 0,
+    "model_dti": 0.49976482000077527,
+    "model_dti_no_quota": 0.49976482000077527
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 9686,
+    "n_on": 9686,
+    "n_off": 0,
+    "model_dti": 0.46301000192894803,
+    "model_dti_no_quota": 0.46301000192894803
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 5618,
+    "n_on": 5618,
+    "n_off": 0,
+    "model_dti": 0.4699832877230565,
+    "model_dti_no_quota": 0.4699832877230565
+   }
+  ],
+  "score_label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "paired_vs_champion_proxy": {
+   "delta": 0.004771533693300745,
+   "ci95": [
+    -0.0016558657508207275,
+    0.011335276151826642
+   ],
+   "p_delta_le_0": 0.06925
+  }
+ }
+}
