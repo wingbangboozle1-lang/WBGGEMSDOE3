@@ -1,0 +1,182 @@
+{
+ "name": "gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros",
+ "note": "H47 LLI-unique 49231d 35%novel | LLI proj 0.240-0.248<champ | HR 0.0784 | DO NOT SUBMIT",
+ "status_line": "DOWNLOAD FOR RESEARCH / AUDIT: YES; SUBMIT TO LIVE PORTAL: NO \u2014 negative gate result (H47)",
+ "file": {
+  "path": "docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+  "sha256": "d8da7e947db3ed03a3d7064c02b523c254bcb3ae1c5115b7e59b4b436f80fea1",
+  "bytes": 270332,
+  "positive_px": 49231
+ },
+ "file_zeros": {
+  "path": "docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+  "sha256": "d8da7e947db3ed03a3d7064c02b523c254bcb3ae1c5115b7e59b4b436f80fea1",
+  "bytes": 270332
+ },
+ "zip": {
+  "path": "docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.zip",
+  "sha256": "f432dcb2d1dc6738f47a8fbc8c28f814c566ccd046ae3d77db871d08193651ec",
+  "bytes": 238849
+ },
+ "candidate_id": "GEMSDOE32-H47-LLI-UNIQUE-D8DA7E94",
+ "tier": 1,
+ "hypothesis": "H47-3-LLI-UNIQUE",
+ "verdict": "negative",
+ "ok_to_submit": false,
+ "on_catalogue_pixels": 0,
+ "catalogue_hidden_mean": 0.0784353462710033,
+ "drift_corrected_holdout_mean": 0.0784353462710033,
+ "sgmc_prevalence_calibrated_dti": null,
+ "anchor": {
+  "role": "ANCHOR -- champion comparison (already submitted; do not resubmit)",
+  "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "note": "0.2778 OWNER-REPORT champion (already submitted; do not resubmit)"
+ },
+ "pack": [
+  {
+   "role": "NaN-outside archival twin; not portal-safe under strict-finite mode",
+   "path": "docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-nan.tif",
+   "sha256": "03eee6fb55ad98040a8887dec10767558b26d6cb10461defc46bc9f3c4bb5c02",
+   "bytes": 345698
+  }
+ ],
+ "supersedes": "GEMSDOE32-A9-PGRN-PU-4F7ABA9B demoted as headline 2026-10-26 by the newer H47 artifact (also negative). Preserved as registry/submission_build_arena9_superseded.json",
+ "evidence": "evidence/h47_run_card.json",
+ "historical_run_verdict": "negative",
+ "historical_ok_to_submit": false,
+ "current_release_review": "evidence/current_release_review.json",
+ "schema_note": "Registry primary = the file the site headlines. It is NOT an approval: read 'verdict' / 'ok_to_submit'. Source of truth: registry/current_status.json.",
+ "previous_primaries": [
+  {
+   "name": "gemsdoe32-r6-stepprofile-b2-37654-20261026T002502Z-23fbbb51-zeros",
+   "record": "evidence/round6_run_card.json",
+   "withdrawn": true,
+   "reason": "Superseded as the headline audit artifact by Arena9; remains DO NOT SUBMIT."
+  },
+  {
+   "name": "gemsdoe32-h-geo-conduit-37654-20261025T235617Z-2d0d0c5e-zeros",
+   "record": "registry/submission_build_geo_conduit_superseded.json",
+   "withdrawn": true,
+   "reason": "IR-R6-02"
+  },
+  {
+   "name": "gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-zeros",
+   "note": "H32-WIN 46090dots 0onCat prune400+add B50/C30/A20 HOLDOUT-DTI 0.1484 vs 0.1480 cat 0.0985 SGMC 0.0606",
+   "status_line": "PRIMARY = H32-WIN-46090 (2026-10-25): D2.8 minus 400 weakest speckles plus 2400 priority H32 B/C/A dots at 2.35px Poisson, 46090 dots, 0 on catalogue. HOLDOUT-DTI 0.14840 vs incumbent 0.14801, cat_hidden 0.09847 vs 0.09832, SGMC 0.06061 vs 0.06059 \u2014 beats all three holdout instruments. NO ORGANISER SCORE EXISTS for this or any artifact in this repository.",
+   "file": {
+    "path": "docs/downloads/gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-zeros.tif",
+    "sha256": "04fd8a73eb584dd1f64ffcbb608acec30eff21b695f27f6b684cd1698c90d525",
+    "bytes": 250142,
+    "positive_px": 46090
+   },
+   "file_zeros": {
+    "path": "docs/downloads/gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-zeros.tif",
+    "sha256": "04fd8a73eb584dd1f64ffcbb608acec30eff21b695f27f6b684cd1698c90d525",
+    "bytes": 250142
+   },
+   "zip": {
+    "path": "docs/downloads/gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-zeros.zip",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "bytes": 0
+   },
+   "candidate_id": "H32-WIN-46090",
+   "tier": 1,
+   "hypothesis": "H32-WinningVariant",
+   "selection_rule": {
+    "tier_1": "beats the owner-reported 0.2600 incumbent on ALL THREE holdout instruments (catalogue_hidden_mean, sgmc_prevalence_calibrated_dti, drift_corrected_holdout_mean) AND 0 on_catalogue_pixels ==0",
+    "tier_2": "live-anchored gate (LM-cal +margin in 4/4 quadrants over live-scored base, safety >=2.0)"
+   },
+   "lm": {
+    "mean": 0.2679205315698004,
+    "margin_vs_base": 0.004869544019442784,
+    "folds_beat_base": 4
+   },
+   "live_anchor": {
+    "dn": 2545,
+    "d_credit": 65.09227269807448,
+    "safety_factor": 2.08,
+    "projected_dti_if_live_credit_matches": 0.27467315976932155
+   },
+   "catalogue_hidden_mean": 0.09847015183645208,
+   "drift_corrected_holdout_mean": 0.14840079268764622,
+   "sgmc_prevalence_calibrated_dti": 0.06061200769577,
+   "on_catalogue_pixels": 0,
+   "anchor": {
+    "role": "ANCHOR -- the group's best live-scored emission",
+    "path": "docs/downloads/gems32-probe-S1-ANCHOR-identical-to-live-02600.tif",
+    "note": "in-footprint bit-identical to the owner-reported 0.2708 / 0.2600 emissions"
+   },
+   "pack": [
+    {
+     "role": "SECONDARY (Tier 2 - previous primary)",
+     "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+     "bytes": 219065,
+     "positive_px": 37654,
+     "note": "Previous primary: 0.2708 base minus 2px flank (B=2), 37654 dots, 0 within 200m of catalogue, live-mirror +0.00487 safety 2.08 projected 0.2747"
+    },
+    {
+     "role": "NaN-outside twin of the primary",
+     "path": "docs/downloads/gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-nan.tif",
+     "sha256": "fe01ebd3961d6911bfa731111d4d3de75923e642c2276e1d7f6109de9236fd85",
+     "bytes": 379333,
+     "positive_px": 46090,
+     "note": "the competition's own format (identical values inside footprint)"
+    },
+    {
+     "role": "AVAILABLE DOWNLOAD",
+     "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+     "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+     "bytes": 1603424,
+     "positive_px": 44090,
+     "note": "kept for audit trail"
+    }
+   ],
+   "rule": "H32 winning variant: D2.8 minus 400 weakest speckles plus 2400 priority H32 B/C/A dots at 2.35px Poisson, 46090 total",
+   "provenance": "built 2026-10-25 from GEMSDOE32-HOLDOUT-v2, 22232 withheld positives, all 12 portal checks PASS, leakage AUC 0.55 <0.90",
+   "withdrawn": true,
+   "status_line_current": "WITHDRAWN 2026-10-26 - DO NOT SUBMIT (IR-42-README-01): champion-family variant (shares 37,298 dots with the 0.2778 champion, Jaccard 0.803); its claimed holdout margin was inside its own CI; on the SGMC off-catalogue instrument it is indistinguishable from the champion. See registry/current_status.json for the current status."
+  },
+  {
+   "name": "gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros",
+   "evidence": "evidence/arena9_run_card.json",
+   "verdict": "negative"
+  }
+ ],
+ "other_unique_files": [
+  {
+   "name": "gemsdoe32-h42-hwci-37654-20261026T001226Z-b91008fa-zeros",
+   "file": {
+    "path": "docs/downloads/gemsdoe32-h42-hwci-37654-20261026T001226Z-b91008fa-zeros.tif",
+    "sha256": "c8e8d10dc55c3164c3f777a0f74764f408bb132e8b0a3e4ac5b5fa8fe914e515",
+    "bytes": 121893,
+    "positive_px": 37654
+   },
+   "zip": {
+    "path": "docs/downloads/gemsdoe32-h42-hwci-37654-20261026T001226Z-b91008fa-zeros.zip",
+    "sha256": "550038701c9a1b709ad64efcb5be0868a814c03d651c853009e94a20dcc7cacc"
+   },
+   "verdict": "DO NOT SUBMIT",
+   "ok_to_submit": false,
+   "run_card": "evidence/h42_run_card.json",
+   "status_line": "DO NOT SUBMIT (automated gates, no human inspection): G1 canary, G2/G3 holdout and G5 format PASS, but G4 lane uniqueness FAILS (82% of dots within 3 px of GEMSDOE25 h38-greedy-credit) and, as a reported diagnostic, the file is worse than random dots on the independent SGMC off-catalogue instrument (0.0545 vs 0.0709; champion 0.0954). Run card: evidence/h42_run_card.json."
+  },
+  {
+   "candidate_id": "GEMSDOE32-EXP3_H38_G1_CORROB-35859E28",
+   "verdict": "DO NOT SUBMIT",
+   "ok_to_submit": false,
+   "note": "GEMS32 EXP3_H38_G1_CORROB 53ch LiDAR+GeoDAWN+GDR CELF 37654px HR=0.1170 SGMC=0.0504 HOLD-DO-NOT-SUBMIT",
+   "file": {
+    "path": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.tif",
+    "sha256": "6efe140229c46b274ab7431bab0b9c1318ade642096ca8a1ff8c36317d2d68ff",
+    "bytes": 209987,
+    "positive_px": 37654
+   },
+   "evidence": "evidence/h38_run_card.json"
+  }
+ ],
+ "round6_session_verdict": "promote",
+ "status_line_current": "DOWNLOAD FOR RESEARCH / AUDIT: YES; SUBMIT TO LIVE PORTAL: NO \u2014 negative gate result",
+ "arena8a_candidate": "registry/arena8a_submission.json",
+ "arena9_candidate": "evidence/arena9_run_card.json"
+}

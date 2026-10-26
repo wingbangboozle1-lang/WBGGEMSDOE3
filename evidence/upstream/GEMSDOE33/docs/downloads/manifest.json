@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-10-04T18:58:10Z",
+  "status": "REFERENCE_BASELINE_ONLY \u2014 no new candidate passed an independent slot-approval gate",
+  "evidence_class": "OWNER-MIRROR for source model and reported 0.2600; organizer score/file pairing unverified",
+  "source": {
+    "file": "data/dotted_h19_5_d2_8_nan.tif",
+    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "reported_score": 0.26,
+    "reported_score_class": "OWNER-REPORT; no organizer receipt in this repository",
+    "note": "the score is not authenticated as the score for these exact bytes"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "pixel_m": 100,
+    "transform_gdal": [
+      243350.0,
+      100.0,
+      0.0,
+      4508550.0,
+      0.0,
+      -100.0
+    ],
+    "bands": 1,
+    "dtype": "float32",
+    "footprint_cells": 5167373
+  },
+  "name": "gemsdoe33-d28-reference-20261004",
+  "note": "GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab",
+  "note_chars": 158,
+  "note_file": "note-gemsdoe33-d28-reference-20261004-426073b6b4ab.txt",
+  "emitted_pixels": 44090,
+  "recommended": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+  "recommended_variant": "-nan.tif \u2014 official wording says outside data is null or NaN",
+  "alternate": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+  "alternate_warning": "0.0 outside footprint; provided only as a troubleshooting alternative",
+  "artifacts": [
+    {
+      "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+      "zip": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip",
+      "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
+      "bytes": 499842,
+      "outside": "NaN",
+      "validation": {
+        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "bytes": 499842,
+        "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
+        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      }
+    },
+    {
+      "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+      "zip": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip",
+      "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+      "bytes": 423456,
+      "outside": "0.0",
+      "validation": {
+        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "bytes": 423456,
+        "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      }
+    }
+  ]
+}
