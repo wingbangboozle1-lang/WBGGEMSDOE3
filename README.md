@@ -171,7 +171,7 @@ python -m http.server 8000 --bind 0.0.0.0 --directory docs
 
 The static [GitHub Pages dashboard](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/)
 is built from the evidence. Its scheduled workflow refreshes the public leaderboard
-observation where reachable; failed refreshes retain a visibly stale snapshot. A feed
+observation using the official public HTMX table fragment; failed refreshes retain a visibly stale snapshot. A feed
 cannot reveal account quota, private labels, actual uploaded bytes or selector approval.
 The repository currently also has legacy branch-based Pages enabled; the scheduled
 workflow stages the same `/docs/` URL layout to avoid broken links when both publish.
