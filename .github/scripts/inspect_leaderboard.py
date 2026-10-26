@@ -1,20 +1,17 @@
-"""Temporary public-page HTMX endpoint diagnostic; prints no credentials."""
+"""Temporary public-fragment diagnostic; emits a score, not account data."""
 from html.parser import HTMLParser
 import json
 import sys
 from pathlib import Path
 import urllib.request
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
-from refresh_feed import URL
-req=urllib.request.Request(URL, headers={'User-Agent':'GEMS-evidence-monitor/1.0'})
+from refresh_feed import Rows, PARTIAL_URL, parse_first_place
+req=urllib.request.Request(PARTIAL_URL,headers={'User-Agent':'GEMS-evidence-monitor/1.0','HX-Request':'true'})
 with urllib.request.urlopen(req, timeout=20) as response:
-    text=response.read(8000000).decode('utf-8',errors='replace')
-class Tags(HTMLParser):
-    def __init__(self): super().__init__(); self.htmx=[]
-    def handle_starttag(self,tag,attrs):
-        d=dict(attrs)
-        if any(k.startswith('hx-') for k in d):
-            self.htmx.append({'tag':tag, 'attrs':{k:v for k,v in d.items() if k.startswith('hx-') or k in ('id','class')}})
-p=Tags();p.feed(text)
-message=json.dumps(p.htmx[:12],ensure_ascii=True).replace('%','%25').replace('\r','%0D').replace('\n','%0A')
-print('::notice title=HTMX endpoint::'+message)
+    target=response.geturl();text=response.read(8000000).decode('utf-8',errors='replace')
+p=Rows();p.feed(text)
+try: score=parse_first_place(text)
+except ValueError as e: score=str(e)
+info={'target':target,'rows':len(p.rows),'first_rows':[r[:5] for r in p.rows[:3]],'score':score}
+message=json.dumps(info,ensure_ascii=True).replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+print('::notice title=HTMX fragment parser::'+message)

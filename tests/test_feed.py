@@ -23,3 +23,27 @@ def test_failed_refresh_preserves_snapshot_and_marks_stale(tmp_path):
     assert result['best_public_dti'] == '0.4437'
     assert result['last_success_utc'] == '2026-01-01T00:00:00+00:00'
     assert result['last_attempt_error'].startswith('OSError')
+
+
+def test_refresh_reads_public_htmx_fragment_and_rejects_redirect(tmp_path):
+    from io import BytesIO
+    from refresh_feed import PARTIAL_URL, URL
+    markup = b'<table><tr><th>Rank</th><th>Score</th><th>Team</th></tr><tr><td>#1</td><td>0.4567</td><td>public team</td></tr></table>'
+
+    class Response(BytesIO):
+        def __init__(self, target):
+            super().__init__(markup)
+            self.target = target
+        def geturl(self):
+            return self.target
+
+    path = tmp_path / 'leaderboard.json'
+    with patch('urllib.request.urlopen', return_value=Response(PARTIAL_URL)) as request:
+        result = refresh(path)
+    assert request.call_args.args[0].full_url == PARTIAL_URL
+    assert result['source'] == URL and result['best_public_dti'] == '0.4567'
+    assert result['last_attempt_error'] is None and result['last_success_utc']
+    with patch('urllib.request.urlopen', return_value=Response('https://www.drivendata.org/accounts/login/')):
+        rejected = refresh(path)
+    assert rejected['best_public_dti'] == '0.4567'
+    assert rejected['last_attempt_error'].startswith('ValueError: leaderboard fragment redirected')

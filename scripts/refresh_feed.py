@@ -12,6 +12,9 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
 PATH = ROOT / "registry/leaderboard.json"
 URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+# The public page loads its table via this official HTMX fragment. The top-level
+# HTML is only a shell, so parsing that document alone cannot refresh the score.
+PARTIAL_URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1"
 
 
 class Rows(HTMLParser):
@@ -67,10 +70,11 @@ def refresh(path: Path = PATH) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     old["last_attempt_utc"] = now
     try:
-        request = urllib.request.Request(URL, headers={"User-Agent": "GEMS-evidence-monitor/1.0"})
+        request = urllib.request.Request(PARTIAL_URL, headers={
+            "User-Agent": "GEMS-evidence-monitor/1.0", "HX-Request": "true"})
         with urllib.request.urlopen(request, timeout=20) as r:
-            if r.geturl().split("?", 1)[0].rstrip("/") != URL.rstrip("/"):
-                raise ValueError("leaderboard redirected; not accepting login or another page")
+            if r.geturl() != PARTIAL_URL:
+                raise ValueError("leaderboard fragment redirected; not accepting login or another page")
             html = r.read(8_000_001)
         if len(html) > 8_000_000:
             raise ValueError("leaderboard response too large")
