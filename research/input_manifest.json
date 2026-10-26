@@ -1,0 +1,107 @@
+[
+  {
+    "id": "GEMSDOE24",
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "ref": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+    "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+    "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "dest": "GEMSDOE24.tif"
+  },
+  {
+    "id": "GEMSDOE25",
+    "repo": "buffedlizard55-lab/GEMSDOE25",
+    "ref": "e40b9b5e3871cb34d138f586bde97f5099658d01",
+    "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "dest": "GEMSDOE25.tif"
+  },
+  {
+    "id": "GEMSDOE27",
+    "repo": "buffedlizard55-lab/GEMSDOE27",
+    "ref": "927322eadbde56be42ae129ccdfb9b37540d8e60",
+    "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+    "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+    "dest": "GEMSDOE27.tif"
+  },
+  {
+    "id": "GEMSDOE28",
+    "repo": "buffedlizard55-lab/GEMSDOE28",
+    "ref": "e6321461066f89080e3b1bb670d3951ab20d3638",
+    "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+    "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "dest": "GEMSDOE28.tif"
+  },
+  {
+    "id": "GEMSDOE30",
+    "repo": "buffedlizard55-lab/GEMSDOE30",
+    "ref": "760af3005dd40b9f36d8fef97d6dc384fd9f2a2f",
+    "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+    "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+    "dest": "GEMSDOE30.tif"
+  },
+  {
+    "id": "GEMSDOE31",
+    "repo": "buffedlizard55-lab/GEMSDOE31",
+    "ref": "597b04cd1afb65d1ebbe3e9417fd952be48e3d74",
+    "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+    "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "dest": "GEMSDOE31.tif"
+  },
+  {
+    "id": "GEMSDOE32",
+    "repo": "buffedlizard55-lab/GEMSDOE32",
+    "ref": "5fc7792c5887735ecd3aa9a612787da588a7bf2c",
+    "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "dest": "GEMSDOE32.tif"
+  },
+  {
+    "id": "GEMSDOE33",
+    "repo": "buffedlizard55-lab/GEMSDOE33",
+    "ref": "f618cc54773bd9b4d6c2b3ebf78103a05cc10cb6",
+    "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+    "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+    "dest": "GEMSDOE33.tif"
+  },
+  {
+    "id": "GEMSDOE36",
+    "repo": "buffedlizard55-lab/GEMSDOE36",
+    "ref": "c5a8ae7da3bd2fcff5aa5855afd44c7a3346c16f",
+    "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "dest": "GEMSDOE36.tif"
+  },
+  {
+    "id": "existing_faults",
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+    "path": "data/bridge/existing_faults.tif",
+    "dest": "existing_faults.tif",
+    "group": "core",
+    "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "bytes": 425830,
+    "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated (byte-identical to labels.tif)"
+  },
+  {
+    "id": "sample_submission",
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+    "path": "data/bridge/sample_submission.tif",
+    "dest": "sample_submission.tif",
+    "group": "core",
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "bytes": 1599597,
+    "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)"
+  },
+  {
+    "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+    "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "dest": "scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "group": "scored",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "bytes": 1706456,
+    "provenance": "calibration raster copied unchanged from the owner siblings"
+  }
+]

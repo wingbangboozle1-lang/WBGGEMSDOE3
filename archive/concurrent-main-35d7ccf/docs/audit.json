@@ -1,0 +1,371 @@
+{
+  "review_date": "2026-10-26",
+  "approved_for_submission": false,
+  "sites": [
+    {
+      "site": 24,
+      "file": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2477",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; upstream reports parent of the d2.8 family.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/tree/7ab1c8f77f0b4b8644e3929403a0dab65838b008"
+    },
+    {
+      "site": 25,
+      "file": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2600",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; upstream reports identical support to GEMSDOE30.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE25/tree/af2b6f2543e5422a7e917638b70e038e6fd91cad"
+    },
+    {
+      "site": 27,
+      "file": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2449",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; reported gap-closure variant of d1.5.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE27/tree/bef7ae8e8f63b69d299c9214c75988c8f5055f9c"
+    },
+    {
+      "site": 28,
+      "file": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2710",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; reported related pruning family. Not the 0.2708 solo file.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE28/tree/2c839d10f57ec9b074829e93c84bc39935f52896"
+    },
+    {
+      "site": 30,
+      "file": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2600",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; upstream reports duplicate support of GEMSDOE25.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE30/tree/9c0d637c0171407196b61b780444bc772ce75438"
+    },
+    {
+      "site": 31,
+      "file": "h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2708",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; upstream reports same lineage as GEMSDOE28 solo.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE31/tree/776bf4668a8c10631908c9bba9443a8f11ce5036"
+    },
+    {
+      "site": 32,
+      "file": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2778",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Historical reference only; no complete novelty computation here.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/tree/07806249f4ed3efe70b4fbf866183c32392b7853"
+    },
+    {
+      "site": 33,
+      "file": "h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2632",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Reported analog geometry; independent all-registry clearance absent.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE33/tree/08380a2e6f2a76d733ee6144d6de33e2907c13b8"
+    },
+    {
+      "site": 36,
+      "file": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "filename_status": "user-supplied submission identifier plus .tif; exact artifact path not verified",
+      "reported": "0.2750",
+      "evidence_class": "USER-REPORTED historical result; not accepted score evidence",
+      "estimate": null,
+      "uniqueness": "Unverified here; upstream reports superset of GEMSDOE32 support.",
+      "approved_for_submission": false,
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE36/tree/f7ad7e61cf03842c6e6410a96ee5ee6cbbc6a08a"
+    }
+  ],
+  "snapshots": [
+    {
+      "path": "evidence/upstream/GEMSDOE24/README.md",
+      "sha256": "dcd83a1c878cf60ce230d1c6d8bee120db0bfb814089650ec742f7a3c8565168"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE24/registry/live_scores.json",
+      "sha256": "b66db0610d7a873e1abd901104239ddbe4d766c4a3d1d473c95d4783a920146a"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE24/scripts/evaluate_holdout.py",
+      "sha256": "66fbe1a696c0fe48b1d277619eaf810aa2d91866a92bc2a5d819c49fe4143da1"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE24/scripts/submission_writer.py",
+      "sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE24-tree.json",
+      "sha256": "ce46186d886532ba8db8cc1562a427adaef7ca365d379892b58f1520721b24b2"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE25/README.md",
+      "sha256": "1925eeaf1a45ce901615e228a71e39dd61714cfa7b6b5b3ad93f6d98473bd06f"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE25/registry/data_manifest.json",
+      "sha256": "5a0f9b95efd7a8e77f2e0a3162fda235f8dd0253cef187165ad7c0c003321c66"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE25/registry/live_scores.json",
+      "sha256": "da07ce0537e89b17b482382c794ea899c8c8a6e3d49f3c2a53b477fc0e6da44d"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE25-tree.json",
+      "sha256": "7b39ff67166e508d32251686cde0d3d3b6ecee548c7a1718bfe683421148e470"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE27/README.md",
+      "sha256": "8adb9b0e0dbcace7f322bbbfbda6a11d806ef7d546eda1d9c7a6451b5de1493b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE27/docs/downloads/manifest.json",
+      "sha256": "f0d0e556e362436e0dba0df4e8e7d2cecbb77d69371ef4aa36e378b084142343"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE27/registry/live_scores.json",
+      "sha256": "7bb10b2bbed7738ee2fc63d555560a7de079626d2a9ec2753f786cbc65b92d23"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE27-tree.json",
+      "sha256": "a08fc5f1155069c54ee0722539fb03f90c066244a467baf34075aa7fb61a89ef"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE28/README.md",
+      "sha256": "a4cad06519e5e8908bf929a9c6e6a281b5861b58715bb54fc7c77510dfe1f00c"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE28/docs/downloads/manifest.json",
+      "sha256": "bfe52f5383582ac264210a7dd0d86adc18996c71dc0a882234630cb455d6a47f"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE28/registry/data_manifest.json",
+      "sha256": "cd31840ccff6ce889f342d54332401e6861342ae7e1462df2272c1236482d16a"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE28/registry/live_scores.json",
+      "sha256": "ae67e0d6bba22efbdfe2813497de8ade2bb1a2b5a60ed6a5fda63d292588d4e7"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE28-tree.json",
+      "sha256": "860ae74e93a364cd224f52907013f809e4e878e5fe8a4d52200db5d57285c820"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE30/README.md",
+      "sha256": "609f0e1d986f54589e01fd87624d0d6c70bd96dddc850f88113b8b9c78dd45c5"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE30-tree.json",
+      "sha256": "7467159c854872a636f333fe7f9dd856288d76684add15fefbb2f71786dd679f"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/README.md",
+      "sha256": "7e9f1b22703a7a49dd986da4a3400c1d76432d2db7f88ee00f24616a7f13854c"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/registry/data_manifest.json",
+      "sha256": "89d4e23523298e28c644f315201da32d3319779dc082c2b2513a0d760d5d1e44"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/registry/shared_template.json",
+      "sha256": "c25b455d2c44828508bbfbb94d4145ca7ca7b7a3df35d9916f643ad48b24656c"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/registry/template_pins.json",
+      "sha256": "de953c958cb08091ee47740aec28b36824ce7801b4f1713e339122fe2ec3e4d3"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/scripts/evaluate_holdout.py",
+      "sha256": "8114d61a29b7d6b84bcc76855541f051ab6a8fa0253998488ba058c756ef8aaf"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/scripts/submission_writer.py",
+      "sha256": "407ffbdff1b7c61a5c146a98bf54faac2fa6aed5be61466ae13cedaf232cee4c"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/vendor/gems57/evaluate_holdout.py",
+      "sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/vendor/gems57/holdout.py",
+      "sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31/vendor/gems57/submission_writer.py",
+      "sha256": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE31-tree.json",
+      "sha256": "3c9edf9366c1e732986e37368088cff6631fe90e685683b8b909de818dea8544"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/README.md",
+      "sha256": "d958e87937034f9b2ed2b27f782cf63055bd8484d799505f745aa9eba79c2878"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/docs/downloads/submissions_manifest.json",
+      "sha256": "091c4c94fca660bce2aec6f4a531d4735964666c587abbdfc8be9b85f5f9a634"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/docs/research/focus-sites-executive-summary.md",
+      "sha256": "ab4c6b0b57c774d55cbef92de57f375bf3fa7a2cd0dbe70354e3b62e4c622385"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/evidence/h33_holdout.json",
+      "sha256": "45d3e86ecbc3caa98b5a29a4ae0dd1702d55950df117802bd6e4d3066bddca7b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/registry/claims.json",
+      "sha256": "88d666ad28b066856e0367a1ad78aeb967dfb57d86eed1bd7598b976becf5969"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/registry/data_manifest.json",
+      "sha256": "e28b33ba35216e6b699bc0dd7a61926706276b558d21d2152f044b366b4cf795"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/registry/feature_receipt.json",
+      "sha256": "abcff44f5f1fe73787caf7e4fcbb43ed240890fc03c73467297a79698928c2a6"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/registry/submission_build.json",
+      "sha256": "9768b12f3e0542ba8e1f283656eb1070b3e7349800d2bafa6b93a30f16530fed"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/scripts/evaluate_holdout.py",
+      "sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/scripts/submission_writer.py",
+      "sha256": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/vendor/gems57/evaluate_holdout.py",
+      "sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/vendor/gems57/holdout.py",
+      "sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32/vendor/gems57/submission_writer.py",
+      "sha256": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE32-tree.json",
+      "sha256": "d24ec15c11297e130ea2a18ad9910108a8ec3b00c60638d5aa991844faee0360"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/README.md",
+      "sha256": "f6cc52e873819a018716d7c554ebdf0abad9cdf4e65200db34bb7703dde564ce"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/docs/downloads/manifest.json",
+      "sha256": "6acc91072518be3ba8b056ae019e4456489638ac28d12310587de3a382ec8d87"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/registry/data_manifest.json",
+      "sha256": "446679f5f68084837f7b4e274f19b1162db2dc00576e59667e2f68efb85930a0"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/registry/leaderboard_review.json",
+      "sha256": "f6071418ff88f0b7f44ace212ade6cfa9b7709aa30f8ca8b630011c7df83e613"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/registry/live_scores.json",
+      "sha256": "ddaa1d0161bb08c38f90dbb6a52a7b6292322f588199c9f5659a9134faecb2e1"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/registry/score_ledger.json",
+      "sha256": "c398f8c371bc856f722d20a232cf425ffff7c60136a6b995898167bf6891b726"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/scripts/evaluate_holdout.py",
+      "sha256": "3d87f7aa4a611246d8c9b7d411f77732c4f3211b643e76a7d73d5ec489c2cd2e"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/scripts/submission_writer.py",
+      "sha256": "7ba67965f4cae1d74406864e8255a0ab95b3dcdf492011d61947f649d86b17c6"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/vendor/gems57/evaluate_holdout.py",
+      "sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/vendor/gems57/holdout.py",
+      "sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33/vendor/gems57/submission_writer.py",
+      "sha256": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE33-tree.json",
+      "sha256": "22942817a36430b62f4e68f16adbf7aaf0c45d458ca60147f962e5cc44ff5b1b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/README.md",
+      "sha256": "dd276aeaed467c39050c5b1328c1ed17ab07e22dba782e639a6d27a35bb9f50b"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/docs/downloads/submissions_manifest.json",
+      "sha256": "56904c28f731a6a3c89b8fbecb0ad0419cb9a799d5b2614aa05cb06727e290f7"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/registry/data_manifest.json",
+      "sha256": "ed854b467c257ba3698a5b96eef1aabba622e431aebc4ed2fbfca2775c836b02"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/registry/template_pins.json",
+      "sha256": "078a6ac411b0bb2ad8578bb46f825356a10d4e7b356ae053b5ff37a01d2418c9"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/scripts/evaluate_holdout.py",
+      "sha256": "c4b2196445f91b05598ef6bee733384b2f6dc900dd355ffcac05b4e218be8f8d"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36/scripts/submission_writer.py",
+      "sha256": "552621e4f1a8836922cbd0557c56e409b22e98d90d8b091baaa77a2fa0ef0717"
+    },
+    {
+      "path": "evidence/upstream/GEMSDOE36-tree.json",
+      "sha256": "f8fdffe49e20dbd01cb2dbaafee07137e5a305227570ff01cfc3be3368259f00"
+    },
+    {
+      "path": "evidence/upstream/official-README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239"
+    },
+    {
+      "path": "evidence/upstream/official-reference-tree.json",
+      "sha256": "a1a45fa0559211d9e5843ce1f26ef72a493658a8cf60ffdff13217f98837db47"
+    },
+    {
+      "path": "evidence/upstream/official-unet-mc-cv-reference-solution.ipynb",
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0"
+    }
+  ]
+}

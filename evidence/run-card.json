@@ -1,0 +1,33 @@
+{
+  "hypothesis": "No geological hypothesis selected: required method lane is missing",
+  "mechanism": "Prerequisite and provenance audit; no detector executed",
+  "non_fault_mimic": "Dipping lithologic contacts can mimic the first proposed magnetic/gravity hypothesis",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2 (restored only)",
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null
+  },
+  "registry": {
+    "status": "NOT_MEASURED",
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "complete": false
+  },
+  "raster_sha256": null,
+  "validator": {
+    "status": "NOT_RUN_NO_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": "wbggemsdoe3-unassigned-20261026",
+  "note": "Prerequisite audit only; no assigned lane, no validated prediction, no submission authorized.",
+  "verdict": "negative",
+  "negative_kind": "blocked prerequisites; not a negative geological experiment",
+  "approved_for_submission": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0
+}
