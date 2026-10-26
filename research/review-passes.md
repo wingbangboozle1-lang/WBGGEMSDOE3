@@ -46,3 +46,12 @@ site/build files were archived, not silently discarded. Explicit pytest testpath
 exclude historical archive test copies from active discovery. The integrated suite
 passes **38 tests**. Template-family ambiguity remains a blocker to scientific
 execution; no attempt was made to merge their metric definitions or change bytes.
+
+## Deployment follow-up
+
+After merge, both the legacy Pages publisher (main/root) and an inherited custom
+workflow published successfully, but the latter uploaded only docs/ to the root.
+That creates a race between two different URL layouts. Removed the competing
+custom publisher (historical YAML archived) and retained the confirmed existing
+legacy configuration, root redirect and stable /docs/ URLs. Other CI and source
+freshness workflows remain active. Both integrated CI checks passed after PR #4.
