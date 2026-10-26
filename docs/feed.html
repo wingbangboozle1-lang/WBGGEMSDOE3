@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Automated public GitHub activity feed for the nine GEMSDOE focus repositories.">
+  <title>Focus Repository Feed — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html">Knowledge base</a><a href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a aria-current="page" href="feed.html">Feed</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Automatic public feed · GitHub API</p>
+  <h1>Focus-site repository activity</h1>
+  <p class="lede">This page automatically checks the latest public <code>main</code> commit in each of the nine requested GEMSDOE repositories. It is a repository-change feed only—not a leaderboard feed, score extractor, submission monitor, or proof of model quality.</p>
+  <div class="callout warning"><strong>Score feed unavailable:</strong> this page does not contact DrivenData. Competition scores remain owner-reported unless a receipt is archived. The feed cannot see private weekly caps, private submissions, or organizer receipts.</div>
+  <p id="feed-status" class="small" role="status">Loading feed…</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Repository</th><th>Latest main commit</th><th>Committed (UTC)</th><th>Checked (UTC)</th><th>Status</th></tr></thead>
+    <tbody id="feed-rows"><tr><td colspan="5">Loading public repository metadata…</td></tr></tbody>
+  </table></div>
+  <p class="small">The scheduled GitHub Pages build refreshes this file from the public GitHub REST API. If an API request fails, the item is shown as an error; do not infer a score or a submission from a commit message.</p>
+  <p><a class="button secondary" href="data/focus-repo-feed.json">Open raw feed JSON</a></p>
+  <noscript><p class="callout">JavaScript is disabled. View the raw JSON for the latest feed snapshot.</p></noscript>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · public repository activity, not competition results.</p><p><a href="executive-summary.html">Executive summary</a> · <a href="irregularities.html">Irregularities</a></p></div></footer>
+<script>
+(async function () {
+  const status = document.getElementById('feed-status');
+  const body = document.getElementById('feed-rows');
+  try {
+    const response = await fetch('data/focus-repo-feed.json', {cache: 'no-store'});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const feed = await response.json();
+    body.replaceChildren();
+    for (const item of (feed.items || [])) {
+      const row = document.createElement('tr');
+      const repoCell = document.createElement('td');
+      const link = document.createElement('a');
+      link.href = item.url || `https://github.com/${feed.owner}/${item.repository}`;
+      link.textContent = item.repository;
+      link.rel = 'noopener';
+      repoCell.append(link);
+      const commitCell = document.createElement('td');
+      if (item.status === 'ok' && item.commit_sha) {
+        const commitLink = document.createElement('a');
+        commitLink.href = item.url;
+        commitLink.textContent = (item.commit_sha.slice(0, 8) + ' — ' + (item.message || 'commit'));
+        commitLink.rel = 'noopener';
+        commitCell.append(commitLink);
+      } else {
+        commitCell.textContent = item.error || 'No commit metadata';
+      }
+      const committedCell = document.createElement('td');
+      committedCell.textContent = item.committed_at_utc || '—';
+      const checkedCell = document.createElement('td');
+      checkedCell.textContent = item.checked_at_utc || feed.checked_at_utc || '—';
+      const resultCell = document.createElement('td');
+      resultCell.textContent = item.status === 'ok' ? 'OK · public metadata' : 'ERROR · check source';
+      row.append(repoCell, commitCell, committedCell, checkedCell, resultCell);
+      body.append(row);
+    }
+    status.textContent = `${feed.repositories_updated} of ${feed.repositories_checked} repositories checked at ${feed.checked_at_utc}. ${feed.official_leaderboard.status}: ${feed.official_leaderboard.reason}`;
+  } catch (error) {
+    body.replaceChildren();
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 5;
+    cell.textContent = `Could not load the feed: ${error.message}. Open the raw JSON or retry after the next build.`;
+    row.append(cell);
+    body.append(row);
+    status.textContent = 'Feed unavailable.';
+  }
+})();
+</script>
+</body>
+</html>

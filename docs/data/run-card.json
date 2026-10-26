@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "run_id": "WBGGEMSDOE3-baseline-review-2026-10-26",
+  "hypothesis": "No geological candidate hypothesis was tested. The prompt does not identify an unambiguous single-method lane, and this checkout has no competition rasters, cached feature stack, shared evaluator/writer, or authenticated data access.",
+  "mechanism": "Not measured. No prediction surface or candidate raster was constructed; historical TIFFs were read only for byte-level learning and duplicate analysis.",
+  "named_non_fault_process": "Pleistocene Lake Lahontan shoreline terraces and playa margins can mimic scarp-like topographic edges; this is a planned confounder, not a measured finding in this run.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "Required template inputs/cache and the shared evaluator are absent; no holdout result is claimed."
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": {
+      "status": "NOT RUN; no candidate surface",
+      "max_abs_spearman": null
+    },
+    "candidate_final_dot_overlap": {
+      "status": "NOT APPLICABLE; no candidate TIFF",
+      "maximum_fraction_within_3px": null
+    },
+    "historical_focus_winner_audit": {
+      "label": "FINAL-DOT OVERLAP AUDIT — not a score",
+      "scope": "nine historical focus-site winners only",
+      "directed_pairwise_comparisons": 72,
+      "minimum_directed_fraction_within_3px": 0.8671895382207149,
+      "protocol_limit_fraction": 0.7,
+      "focus_winners_passing_uniqueness": 0,
+      "source": "docs/data/focus-site-audit.json"
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN; there is no candidate TIFF",
+    "no_nan_inside_footprint": null,
+    "no_nan_anywhere": null,
+    "values_in_0_1": null,
+    "crs_matches_template": null,
+    "shape_matches_template": null,
+    "transform_matches_template": null,
+    "reason": "No candidate bytes or official sample template are present in this checkout."
+  },
+  "score_projection": "NOT PROVIDED. A projection is not a score; no defensible estimate can be derived here without a compliant holdout and organizer receipt evidence.",
+  "budget": {
+    "candidate_experiments_used": 0,
+    "maximum_candidate_experiments": 3,
+    "candidate_experiment_time_cap_hours": 2,
+    "candidate_experiment_time_used_hours": 0,
+    "status": "No candidate or holdout experiment started; engineering and historical byte audit only."
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_character_limit": 140,
+    "download_link": null,
+    "status": "NO FILE — DO NOT DOWNLOAD OR SUBMIT"
+  },
+  "verdict": "negative",
+  "slot_used": false
+}

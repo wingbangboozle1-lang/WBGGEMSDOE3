@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Competition, geoscience, and repository links with explicit access and verification status.">
+  <title>Sources — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html">Knowledge base</a><a href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a href="feed.html">Feed</a><a aria-current="page" href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Source register · links for review</p>
+  <h1>Sources and verification status</h1>
+  <p class="lede">Primary sources are preferred for competition rules, data definitions, and geoscience claims. The links below were supplied in the project brief or identified as official endpoints. The current sandbox could query GitHub, but could not fetch the DrivenData, NLR, USGS, GDR, or other non-GitHub sites directly. A link here is not a claim that its current content was fetched.</p>
+
+  <h2>Competition and format</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Source</th><th>Link</th><th>Role</th><th>Verification in this run</th></tr></thead>
+    <tbody>
+      <tr><td>DrivenData competition overview</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a></td><td>Competition overview, schedule, rules, and entry point.</td><td>Not fetched in this sandbox; supplied by the project brief.</td></tr>
+      <tr><td>DrivenData problem description</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page</a></td><td>Metric, target, and submission format.</td><td>Not fetched in this sandbox. The DTI form in the research note is cross-checked against the linked shared-code implementation, not freshly confirmed with the organizer.</td></tr>
+      <tr><td>DrivenData about page</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About / resources</a></td><td>Additional competition context.</td><td>Not fetched in this sandbox.</td></tr>
+      <tr><td>DrivenData data page</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data download page</a></td><td>Training rasters and sample submission.</td><td>Not fetched in this sandbox. The project brief reports a login redirect; this repository has no competition credentials or data.</td></tr>
+      <tr><td>DrivenData leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>Public score snapshots.</td><td>Not fetched in this sandbox; current value is not claimed.</td></tr>
+      <tr><td>NLR/DOE competition rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS rules, document 96647</a></td><td>Competition rules and entry requirements.</td><td>Not fetched in this sandbox; supplied by the project brief.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Geoscience and spatial references</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Source</th><th>Link</th><th>Potential use</th><th>Verification in this run</th></tr></thead>
+    <tbody>
+      <tr><td>USGS GeoDAWN survey</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN magnetic/radiometric data</a></td><td>Official survey metadata and magnetic/radiometric observations referenced by the problem.</td><td>Not fetched from USGS in this sandbox. Do not infer individual band details from this link alone.</td></tr>
+      <tr><td>DOE Geothermal Data Repository</td><td><a href="https://gdr.openei.org/submissions/1391">INGENIOUS project submission 1391</a></td><td>Potential geothermal, fault, and temperature-study data source.</td><td>Not fetched from GDR in this sandbox; license, coverage, file version, and downloadable bytes must be verified before use.</td></tr>
+      <tr><td>USGS 3DEP / National Map Downloader</td><td><a href="https://apps.nationalmap.gov/downloader/">National Map Downloader</a> · <a href="https://www.usgs.gov/3d-elevation-program">3D Elevation Program</a></td><td>Official elevation products for a possible native-resolution scarplet test.</td><td>Not fetched from USGS here. An upstream project health record says the landing page responded, but regional tile coverage and file checksums were not verified.</td></tr>
+      <tr><td>USGS FDSN event service / ComCat</td><td><a href="https://earthquake.usgs.gov/fdsnws/event/1/">FDSN Event API</a></td><td>Potential raw earthquake locations and available mechanism products.</td><td>Not queried here. A landing-page health record is not evidence of useful local event coverage.</td></tr>
+      <tr><td>EPSG registry</td><td><a href="https://epsg.io/32611">EPSG:32611</a></td><td>CRS reference used by the inspected historical TIFFs.</td><td>Not fetched in this sandbox; raster CRS tags were independently read as EPSG:32611.</td></tr>
+      <tr><td>Tversky index overview</td><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></td><td>General background only; not a competition authority.</td><td>Not fetched; prefer DrivenData's problem page for the competition's exact metric.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Code and historical evidence (not official organizer sources)</h2>
+  <ul>
+    <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference-solution URL supplied in the brief</a>. In this run, the GitHub API returned 404 and `git ls-remote` returned “Repository not found”; the URL may have changed or be unavailable. No code from it was reviewed. An older upstream project record says it once returned a page, so this remains an availability inconsistency.</li>
+    <li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/tree/07806249f4ed3efe70b4fbf866183c32392b7853">GEMSDOE32 owner research repository, pinned to the inspected main commit</a>. It contains shared research scripts and historical artifacts, but is not an official data source. Its raster feature cache is ignored and absent from the clone.</li>
+    <li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/scripts/evaluate_holdout.py">Shared holdout CLI</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/scripts/submission_writer.py">shared writer</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/src/gems32/metric.py">metric implementation</a>.</li>
+    <li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/400b60d4a6d99f425ee90504e6c4552227556dd1/evidence/h50_tmspi_run_card.json">Latest upstream GEMSDOE32 H50 run card (pinned current source commit)</a>. It is an owner-reported research artifact whose own verdict is negative; the updated README and run card conflict about the literal lattice record. It is not independently reproduced here and is not a score receipt.</li>
+    <li>Per-site TIFFs are linked at immutable commits in the <a href="data/focus-site-audit.json">nine-site raster audit</a>. Their file hashes and geospatial metadata were independently checked via the GitHub API and Rasterio. Their attached competition scores remain owner-reported.</li>
+    <li>The <a href="feed.html">activity feed</a> uses <a href="https://api.github.com/">GitHub's public REST API</a> to retrieve latest public <code>main</code> commit metadata for the nine focus repositories. After Pages is enabled, its deployment workflow refreshes the feed every six hours; it does not request scores or contact DrivenData.</li>
+  </ul>
+
+  <div class="callout warning"><strong>Data and access constraint:</strong> automated competition download/submission cannot be performed without authorized DrivenData access. Do not put passwords, cookies, tokens, or private competition files in Git or chat. The public source links are provided for review; no credential is requested.</div>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · sources are evidence only when the exact artifact and retrieval are recorded.</p><p><a href="irregularities.html">Open irregularities</a></p></div></footer>
+</body>
+</html>

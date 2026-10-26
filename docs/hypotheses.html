@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ranked, unvalidated geological hypotheses for unseen Great Basin faults.">
+  <title>Hypotheses — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a aria-current="page" href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html">Knowledge base</a><a href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a href="feed.html">Feed</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Pre-registration backlog · planning only</p>
+  <h1>Three testable geological hypotheses</h1>
+  <p class="lede">These rank candidate tests by qualitative expected information gain per effort. They are not score forecasts. “Untried” here means no completed, compliant result for the specific transform was found in the inspected research records; related concepts have been discussed or tested elsewhere, so no claim of global novelty is made.</p>
+
+  <div class="callout warning"><strong>No experiment was run.</strong> The prompt does not identify the required single-method lane, and this checkout lacks the official rasters and shared cached feature stack. The top-ranked idea has not been validated on a spatially blocked holdout. No submission slot was used.</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Rank</th><th>Hypothesis and layers</th><th>Physical signature</th><th>Why it could detect a missing fault</th><th>Difference from inspected prior work</th><th>Expected DTI upside / cost</th><th>Data availability and decision</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong><br><span class="badge gold">Best first test</span></td>
+          <td><strong>Signed magnetic–gravity phase pairing</strong><br>Competition template bands reported as RTP / TMI and isostatic gravity, including their horizontal/vertical derivatives. Use the exact template feature names only after checking its band manifest.</td>
+          <td>At more than one spatial scale, compare the sign and orientation of magnetic and gravity curvature/zero-crossing ridges; retain line segments only where the independent potential fields show compatible phase and strike.</td>
+          <td>A buried basement fault can offset susceptibility and density contrasts even where alluvium removes the surface scarp. Requiring cross-field agreement may reject single-field lithologic edges.</td>
+          <td>Earlier work includes edge magnitudes, gradient cross-products, and upward-continuation persistence. The narrow proposed difference is a polarity-aware signed phase/curvature relationship, not another magnitude-only fusion. A related phase-pairing idea is already in the upstream backlog, but no completed compliant test for this precise transform was located.</td>
+          <td><strong>Moderate, conditional</strong>; low-to-medium compute. No numeric DTI gain is claimed.</td>
+          <td>Uses existing competition layers; no new external source is required. The actual TIFF/cache is absent here. <strong>Not viable to test in this checkout</strong>; restore inputs and run the shared evaluator first.</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>Native-resolution LiDAR scarplet graph</strong><br>USGS 3DEP 1 m elevation tiles, retaining native elevation and acquisition/quality masks before aggregation.</td>
+          <td>Detect short asymmetric scarps at native resolution, link en-échelon segments by strike and bounded gaps, and measure whether chains persist across adjacent topographic panels before summarizing to the competition grid.</td>
+          <td>Low-throw discontinuous scarplets can be averaged away in a 100 m cell. A chain spanning multiple drainages may be a structural trace even when each individual scarp is weak.</td>
+          <td>Prior inspected systems use 100 m LiDAR-derived channels and pixel-level/short-window chains. The proposed object is a native-resolution segment graph, not simply a stronger 100 m scarp edge.</td>
+          <td><strong>Moderate, exposure-dependent</strong>; high storage/processing cost.</td>
+          <td>Official source listed for review: <a href="https://apps.nationalmap.gov/downloader/">USGS National Map Downloader / 3DEP</a>. An upstream source-health log reports the landing page responded, but tile coverage, native resolution, license, and download bytes were not checked in this run. <strong>Do not call viable until a geospatial manifest and checksums are verified.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>Unsmoothed microseismic plane geometry</strong><br>Raw hypocenter locations, depth uncertainty, and available focal-mechanism nodal planes from USGS ComCat/FDSN; compare with the template's heavily smoothed seismicity layers.</td>
+          <td>Fit uncertainty-weighted planes/lineaments to compact hypocenter clusters and project the supported strike to the map; require temporal and spatial coherence rather than using event density alone.</td>
+          <td>Active buried structures may have microseismic expression without a clear surface scarp. The supplied smoothed count/distance layers can erase fault-scale geometry.</td>
+          <td>Prior feature stacks use smoothed seismic layers; related raw-catalogue proposals were registered but not completed as a compliant holdout test. This would test point geometry and mechanism constraints, not another density raster.</td>
+          <td><strong>Potentially high but uncertain</strong>; high cost and potentially sparse coverage.</td>
+          <td>Official source listed for review: <a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS FDSN Event API (ComCat)</a>. An upstream source-health log reports the API landing page responded, but a region/date query, mechanism coverage, licensing, and uncertainty quality were not verified here. <strong>Not viable until the actual query and coverage are checked.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Required test sequence for rank 1</h2>
+  <ol class="steps">
+    <li>Resolve the missing single-method lane paragraph. Freeze one method and its expected confounders before code changes.</li>
+    <li>Restore official `training_features.tif`, `labels.tif`, `existing_faults.tif`, `sample_submission.tif`, and the template's cached stack. Verify hashes and band descriptions; do not infer band numbers from prior prose.</li>
+    <li>Build each proposed signed/phase feature strictly from input layers. For every single feature, run the fold-local leakage canary on the shared whole-segment holdout; stop if oriented AUC exceeds 0.90 without a proven non-leakage explanation.</li>
+    <li>Run the shared `evaluate_holdout.py` on the pre-registered candidate and an incumbent under the same folds, pooled metric, withheld positives, and 95% CI. Do not substitute a live-ledger projection for HOLDOUT-DTI.</li>
+    <li>Before point placement, compute surface Spearman against the refreshed registry; after emission, compute directed 3-pixel dot overlap. Any threshold breach is a negative duplicate result, with no lattice exemption.</li>
+    <li>Only if the holdout beats the current same-evaluator best and all other gates pass, write a new TIFF using the shared writer and validate the saved bytes. A separate selector—not this experiment—decides whether to use a live weekly slot.</li>
+  </ol>
+  <p class="small">Source review: the public GEMSDOE32 history contains older preregistrations, holdouts, and a current no-data checkout. Those are research records, not official geology literature and not evidence that a new hypothesis will improve the hidden score. Official source links are collected on the <a href="sources.html">Sources</a> page.</p>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · hypotheses are tests, not results.</p><p><a href="data/run-card.json">Current negative run card</a></p></div></footer>
+</body>
+</html>

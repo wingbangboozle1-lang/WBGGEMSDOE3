@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Living research notes on fault mapping, raster evidence, validation, and score terminology for DOE GEMS.">
+  <title>Research Knowledge Base — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html" aria-current="page">Knowledge base</a><a href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a href="feed.html">Feed</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Research reference · evidence-tagged notes</p>
+  <h1>Knowledge base</h1>
+  <p class="lede">A concise reference for distinguishing fault evidence from convenient raster geometry, and scientific validation from public score reporting. Every statement about this checkout is scoped to the files and sources actually reviewed.</p>
+
+  <h2>Core mapping concepts</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Term</th><th>Working meaning</th><th>Important caveat</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fault</strong></td><td>A fracture or zone of displacement in bedrock, potentially expressed by aligned geophysical contrasts, topographic displacement, or seismicity.</td><td>A linear feature is not automatically a fault. Lithologic contacts, drainage, roads, survey edges, alteration, and processing artifacts can mimic fault-like traces.</td></tr>
+      <tr><td><strong>Catalogue / known fault</strong></td><td>A fault or fault segment represented in the provided label/catalogue data and masked according to the official scoring rules.</td><td>The exact catalogue source and scoring mask must be read from official inputs and organizer rules. Do not infer the mask from filenames or public geology maps.</td></tr>
+      <tr><td><strong>Magnetic response</strong></td><td>Potential evidence of spatial changes in magnetic properties, possibly caused by lithologic boundaries or structures.</td><td>Magnetic edges are non-unique: source depth, remanence, field direction, rock type, and processing affect the pattern. An edge alone is not a fault label.</td></tr>
+      <tr><td><strong>Gravity response</strong></td><td>Potential evidence of density contrasts and subsurface geometry.</td><td>Basin fill and unfaulted lithologic contacts can produce gravity lineaments; agreement with independent structure is useful but not proof.</td></tr>
+      <tr><td><strong>Lineament</strong></td><td>A mapped or raster-derived linear pattern that may be tested as a candidate structural trace.</td><td>Lineament detection is a hypothesis generator. It requires confounder tests and spatial holdout validation before emission.</td></tr>
+      <tr><td><strong>Emission / dots</strong></td><td>The discrete positive cells saved in a final candidate raster after any thinning, ridge tracing, or packing.</td><td>Final dots and the continuous pre-placement surface are distinct validation objects: compare the surface before placement and the dots after placement.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Evidence labels (use literally)</h2>
+  <ul>
+    <li><strong>HOLDOUT-DTI:</strong> spatial hide-and-recover score from a named evaluator, with withheld-positive count and 95% interval. It measures the stated holdout, not the organizer's hidden test.</li>
+    <li><strong>ORGANIZER-CONFIRMED:</strong> a score copied from an archived organizer submission receipt bound to the uploaded file. A public leaderboard line or owner README is not a private submission receipt.</li>
+    <li><strong>OWNER-REPORTED:</strong> a score asserted by a project owner without the reviewed organizer receipt. All nine historical focus-site scores currently shown use this label.</li>
+    <li><strong>Projection:</strong> not a score; do not publish as a result. This site makes no new-score projection.</li>
+    <li><strong>BYTE-VERIFIED:</strong> a file hash, raster grid, finite/range property, or mask relation recomputed from exact saved bytes. Byte verification does not establish score causality.</li>
+  </ul>
+
+  <h2>Spatial holdout and leakage checks</h2>
+  <ol>
+    <li>Withhold whole fault segments with a spatial buffer; do not random-split neighboring pixels.</li>
+    <li>Construct every catalogue-derived feature from visible faults only, inside each fold. Mask visible fault pixels exactly before evaluation.</li>
+    <li>Evaluate pooled distance-weighted Tversky with the specified <code>alpha=0.2</code>, <code>beta=0.8</code>, and <code>300 m</code> triangular kernel using the canonical shared evaluator.</li>
+    <li>Test each feature alone as a leakage canary. AUC above <code>0.90</code> is treated as leakage until explained with evidence.</li>
+    <li>Report evaluator version, withheld-positive count, and a 95% CI with every HOLDOUT-DTI result. A holdout is a research instrument, not a leaderboard prediction.</li>
+    <li>Compare the continuous surface against the full registry before placement; compare final dots against that same registry after placement. Stop if absolute Spearman exceeds <code>0.90</code> or more than <code>70%</code> of candidate dots lie within <code>3</code> pixels of any registry raster.</li>
+  </ol>
+  <p>These protocol values are retained from the project prompt. The official competition metric and catalogue treatment should be checked against the <a href="sources.html">organizer's pages</a> before a future experiment.</p>
+
+  <h2>Raster handling and release gate</h2>
+  <ul>
+    <li>The inspected nine historical TIFFs are single-band float32, EPSG:32611, 3730 × 3292, affine transform <code>(100, 0, 243350, 0, -100, 4508550)</code>. These values describe the audited files, not an assumed replacement for the official sample template.</li>
+    <li>A future output must match the official sample template's band count, data type, shape, CRS, and transform; save every stored value finite in [0,1], use exact zero outside the valid footprint, and omit a NoData tag unless the official format requires otherwise.</li>
+    <li>Run <code>scripts/validate_submission.py</code> against the official template and labels after writing the file. Reopen the saved bytes, not only the in-memory prediction.</li>
+    <li>A validator pass does not establish holdout superiority, leakage safety, uniqueness, weekly-slot availability, or submission authorization. The run card remains the source of the release decision.</li>
+  </ul>
+  <p><a class="button secondary" href="data/run-card.json">Read the current negative run card</a> <a class="button secondary" href="data/focus-site-audit.json">Read the nine-site byte audit</a></p>
+
+  <h2>Known data and provenance limits</h2>
+  <ul>
+    <li>The official training features, labels, sample submission, existing-fault mask, and shared cached feature stack are not present in this checkout. No experiment was run here.</li>
+    <li>The precise assignment lane is absent from this session. A lane recorded in a sibling Arena branch is not transferable; see <a href="irregularities.html">IR-002</a>.</li>
+    <li>The nine historic scores remain owner-reported; the two selected historical variants from GEMSDOE30 and GEMSDOE33 contain non-finite cells outside the finite footprint.</li>
+    <li>The nine focus-site winners fail the stated pairwise final-dot overlap threshold against other focus winners. This is a subset audit, not the full registry check required of a future candidate.</li>
+    <li>Official USGS, DOE GDR, and competition pages are listed with access status on the <a href="sources.html">Sources</a> page. An unverified URL is not treated as proof of coverage or availability.</li>
+  </ul>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · geology is a hypothesis; validation is an experiment.</p><p><a href="hypotheses.html">Candidate hypotheses</a> · <a href="irregularities.html">Open issues</a></p></div></footer>
+</body>
+</html>

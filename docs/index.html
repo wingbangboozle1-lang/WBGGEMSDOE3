@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable DOE GEMS fault-discovery research and a fail-closed submission status.">
+  <title>Great Basin Fault Discovery — Submission Gate</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a aria-current="page" href="index.html">Overview</a>
+      <a href="executive-summary.html">Executive summary</a>
+      <a href="hypotheses.html">Hypotheses</a>
+      <a href="knowledge-base.html">Knowledge base</a>
+      <a href="why-02778.html">0.2778 review</a>
+      <a href="irregularities.html">Irregularities</a>
+      <a href="feed.html">Feed</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <p class="kicker">Release decision · 2026-10-26</p>
+  <h1>A rigorous path to a better fault map</h1>
+  <p class="lede">The goal is a high-scoring, scientifically defensible, genuinely unique GeoTIFF. This project will not call a raster a winner until it has survived the shared spatial holdout, leakage canary, strict saved-byte validation, and the literal registry-uniqueness rule.</p>
+
+  <section class="status-card" aria-labelledby="release-status">
+    <p class="status-label">🔴 NOT READY — DO NOT SUBMIT</p>
+    <h2 id="release-status">No new candidate file is available</h2>
+    <p><strong>There is no TIFF download from this project.</strong> The current checkout has no official competition inputs, cached feature stack, or shared holdout/writer tools, and the requested single-method lane is not specified. No candidate was generated, no HOLDOUT-DTI was measured, and no weekly slot was used.</p>
+    <p class="status-meta">Do not use an old GEMSDOE TIFF as a replacement: all nine historical focus-site winners fail the requested 70% final-dot uniqueness gate against at least one other winner in the focus set. The score-to-file values are owner-reported, not backed by organizer receipts in the reviewed evidence.</p>
+    <div class="button-row">
+      <span class="button disabled" aria-disabled="true">Candidate TIFF — unavailable</span>
+      <a class="button secondary" href="executive-summary.html">Read the executive summary</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <p class="kicker">Historical leader in focus set</p>
+      <h3>GEMSDOE32 H33-B2</h3>
+      <p><strong>0.2778</strong> — <span class="badge gold">OWNER-REPORTED</span></p>
+      <p class="small">No submission receipt links this number to the inspected TIFF hash. It is a historical report, not a HOLDOUT-DTI, score estimate, or upload recommendation.</p>
+    </article>
+    <article class="card">
+      <p class="kicker">Uniqueness audit</p>
+      <h3>Historical winners overlap</h3>
+      <p>Minimum directed pairwise overlap is <strong>86.72%</strong> within a 3-pixel radius; the protocol limit is 70%.</p>
+      <p class="small">Computed from exact TIFF bytes at pinned GitHub commits. The audit covers only the nine requested winners, not the broader registry.</p>
+    </article>
+    <article class="card">
+      <p class="kicker">Validation status</p>
+      <h3>No science run yet</h3>
+      <p>Spatial holdout, per-feature canary, candidate-surface correlation, and candidate-raster validation are all <strong>not run</strong>.</p>
+      <p class="small">The included Python validator checks saved bytes once a genuine candidate and official inputs exist. A format pass can never authorize upload by itself.</p>
+    </article>
+  </div>
+
+  <h2>What is ready now</h2>
+  <ul>
+    <li><strong>Nine-site evidence table:</strong> best historical file per focus site, score provenance, exact hashes, and pairwise overlap.</li>
+    <li><strong>Scientific review:</strong> a careful, non-causal explanation of why thinning may improve a distance-weighted Tversky score—and why the evidence does not prove that it caused the reported result.</li>
+    <li><strong>Automatic preflight and uniqueness tools:</strong> saved-byte format/catalogue checks plus a separate surface-correlation and final-dot registry checker. No full registry manifest is present, so no candidate can clear uniqueness yet; see <a href="registry-check.html">manifest requirements</a>.</li>
+    <li><strong>Public repository activity feed:</strong> scheduled checks of the latest public commit in each of the nine focus repositories. It is not a competition-score feed.</li>
+    <li><strong>Fail-closed decision:</strong> no false “download and submit” button and no fabricated prediction raster.</li>
+  </ul>
+
+  <div class="callout warning">
+    <strong>Important:</strong> This status is intentionally not green. An old TIFF, a promising geology story, a leaderboard projection, or a passing GeoTIFF validator is not enough. The full release gate is described in the <a href="executive-summary.html#submission">submission procedure</a>.
+  </div>
+
+  <p class="small">Machine-readable decision: <a href="data/run-card.json">negative run card</a>. Focus-site byte and overlap evidence: <a href="data/focus-site-audit.json">audit JSON</a>. This site is static; it does not have DrivenData authentication or a live score feed.</p>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · evidence first, slots second.</p><p>Official source links are listed for manual review. Where a source was not reachable from this run, that is stated rather than inferred.</p></div></footer>
+</body>
+</html>

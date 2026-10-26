@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to supply a complete literal registry manifest for automatic novelty checks.">
+  <title>Registry Uniqueness Check — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html">Knowledge base</a><a href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a href="feed.html">Feed</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Machine check · literal registry rule</p>
+  <h1>Automatic uniqueness validation</h1>
+  <div class="callout warning"><strong>Current result: NOT RUN.</strong> There is no candidate surface, candidate TIFF, official sample template, or complete canonical registry manifest in this checkout. The nine-site focus audit is not the full registry and cannot clear a future candidate.</div>
+
+  <h2>What the checker evaluates</h2>
+  <ul>
+    <li><strong>Before placement:</strong> maximum absolute Spearman rank-correlation between the continuous candidate surface and every registry surface, on the common official template footprint. The run fails if any <code>|rho| &gt; 0.90</code>.</li>
+    <li><strong>After placement:</strong> for each registry dot raster, the fraction of candidate positive cells within Euclidean distance <code>≤3</code> pixels of a registry positive cell. The run fails if any fraction is <code>&gt;70%</code>.</li>
+    <li><strong>All entries:</strong> exact grid match, single-band rasters, and SHA-256 verification for both each registry surface and dot raster. No resampling, selection, or lattice exemption is implemented.</li>
+    <li><strong>Fail-closed manifest:</strong> requires an explicit completeness claim, a version and source, all nine focus-site winner IDs, and at least one literal-lattice ID.</li>
+  </ul>
+
+  <h2>Prepare a local complete registry manifest</h2>
+  <p>Use the canonical shared template's refreshed registry export—not only these nine historical winners. Keep all input rasters local and ignored by Git. Every entry must supply the exact surface file, final-dot file, and SHA-256 for both.</p>
+  <pre><code>{
+  "schema_version": 1,
+  "registry_version": "canonical-version-or-commit",
+  "source": "canonical shared-template registry location",
+  "complete": true,
+  "includes_literal_lattice": true,
+  "includes_all_focus_site_winners": true,
+  "entries": [
+    {
+      "id": "GEMSDOE24-registry-record",
+      "surface_file": "rasters/GEMSDOE24-surface.tif",
+      "surface_sha256": "64-character SHA-256",
+      "dots_file": "rasters/GEMSDOE24-dots.tif",
+      "dots_sha256": "64-character SHA-256"
+    },
+    {
+      "id": "r13-lattice-s5",
+      "surface_file": "rasters/r13-lattice-s5-surface.tif",
+      "surface_sha256": "64-character SHA-256",
+      "dots_file": "rasters/r13-lattice-s5-dots.tif",
+      "dots_sha256": "64-character SHA-256"
+    }
+  ]
+}</code></pre>
+  <p>The example omits most rows and is explanatory only; it is not a usable manifest. In the actual file, each registry raster pair has a distinct ID. At minimum include IDs containing `GEMSDOE24`, `GEMSDOE25`, `GEMSDOE27`, `GEMSDOE28`, `GEMSDOE30`, `GEMSDOE31`, `GEMSDOE32`, `GEMSDOE33`, and `GEMSDOE36`, plus the literal lattice. The completion flags must be backed by the canonical source/version and a reproducible inventory.</p>
+
+  <h2>Run and interpret</h2>
+  <pre><code>python scripts/validate_submission.py candidate.tif \
+  --template data/sample_submission.tif \
+  --labels data/labels.tif \
+  --out reports/preflight.json
+python scripts/validate_registry_uniqueness.py \
+  --surface candidate-surface.tif \
+  --candidate candidate.tif \
+  --template data/sample_submission.tif \
+  --registry-manifest data/registry/manifest.json \
+  --out reports/uniqueness.json</code></pre>
+  <p>The uniqueness report describes comparisons against every manifest entry. It cannot independently discover a raster omitted from the manifest, so it records that completeness is asserted by the manifest and not independently verified. It never sets <code>submission_authorized=true</code>. The shared holdout, leakage canary, official score receipt, independent slot selector, and reviewer-approved registry provenance remain separate gates.</p>
+  <p>Local file placement guidance is in the repository's <code>data/registry/README.md</code> (that local-only file is not served by GitHub Pages). The historical focus-site-only comparison is in <a href="data/focus-site-audit.json">focus-site-audit.json</a>.</p>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · a uniqueness pass is not a submission approval.</p><p><a href="executive-summary.html#submission">Submission procedure</a> · <a href="irregularities.html">Known blockers</a></p></div></footer>
+</body>
+</html>

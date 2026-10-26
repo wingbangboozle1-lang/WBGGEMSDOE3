@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "audit_date_utc": "2026-10-26",
+  "scope": "Nine historical high-score TIFFs from the nine focus repositories only; this is not the full 452-raster registry.",
+  "source_method": "Retrieved the exact TIFF blobs from api.github.com at the immutable source commits below; SHA-256 re-computed locally; metadata and positive masks read with Rasterio; pairwise Euclidean within-3-pixel directed overlap computed with SciPy distance_transform_edt and independently re-run with scripts/audit_focus_site_masks.py (circular disk dilation; all pairwise values matched); no resampling.",
+  "score_provenance": "All historical leaderboard numbers are OWNER-REPORTED from the upstream project ledger. No organizer receipt binds a number to the exact bytes in this audit. They are not HOLDOUT-DTI values or independently confirmed competition scores.",
+  "uniqueness_rule": {
+    "metric_label": "final-dot directed overlap audit (not a score)",
+    "distance_pixels": 3,
+    "maximum_allowed_fraction": 0.7,
+    "direction_definition": "fraction of candidate positive pixels at Euclidean raster distance <= 3 px from any positive pixel in the reference raster",
+    "all_9_focus_winners_unique_against_each_other": false,
+    "every_pairwise_direction_exceeds_limit": true,
+    "minimum_pairwise_directed_fraction": 0.8671895382207149,
+    "preplacement_surface_rank_correlation": "NOT MEASURED; historical output TIFFs are not pre-placement continuous surfaces"
+  },
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "submission_id": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite",
+      "historical_score": 0.2477,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "source_commit": "063b04e2ff3154d0ffd017bb5723f4f717d1754d",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/063b04e2ff3154d0ffd017bb5723f4f717d1754d/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/raw/063b04e2ff3154d0ffd017bb5723f4f717d1754d/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+      "positive_pixels": 60069,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE25",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE25",
+      "submission_id": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros",
+      "historical_score": 0.26,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "source_commit": "78064a194f97fee45b0d81b1bb3b6385729c5c2b",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/78064a194f97fee45b0d81b1bb3b6385729c5c2b/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/raw/78064a194f97fee45b0d81b1bb3b6385729c5c2b/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "positive_pixels": 44090,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE27",
+      "submission_id": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite",
+      "historical_score": 0.2449,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "source_commit": "cf8b4c201f2cc2ef649b6ca7cd32f235c2f6743a",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/cf8b4c201f2cc2ef649b6ca7cd32f235c2f6743a/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/raw/cf8b4c201f2cc2ef649b6ca7cd32f235c2f6743a/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+      "positive_pixels": 61328,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 0.9801884946517089,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE28",
+      "submission_id": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite",
+      "historical_score": 0.271,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "source_commit": "12ec4fea4c97a7887a7ca8a06f9bd94c7609ea07",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/12ec4fea4c97a7887a7ca8a06f9bd94c7609ea07/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/raw/12ec4fea4c97a7887a7ca8a06f9bd94c7609ea07/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+      "positive_pixels": 37660,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE30",
+      "submission_id": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside",
+      "historical_score": 0.26,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "source_commit": "35ce8911e2c3287eed973eacd12c252e8cb3f34c",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+      "positive_pixels": 44090,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": NaN,
+        "bands": 1,
+        "finite": 5167373,
+        "nonfinite": 7111787,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE31",
+      "submission_id": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite",
+      "historical_score": 0.2708,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "source_commit": "78f9bf3ae82e5c78ca348aa37c0660c339e72f0e",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+      "positive_pixels": 40199,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": NaN,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE32",
+      "submission_id": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "historical_score": 0.2778,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "source_commit": "9155d44d9bc3d57f96fbf9f7db2d18e083ab6e2b",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/9155d44d9bc3d57f96fbf9f7db2d18e083ab6e2b/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/raw/9155d44d9bc3d57f96fbf9f7db2d18e083ab6e2b/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 1.0,
+        "reference_site": "GEMSDOE24",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE33",
+      "submission_id": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside",
+      "historical_score": 0.2632,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "source_commit": "0384d793b5a23151425f45505ac745b54f84c7c9",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/0384d793b5a23151425f45505ac745b54f84c7c9/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/raw/0384d793b5a23151425f45505ac745b54f84c7c9/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+      "positive_pixels": 41865,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": NaN,
+        "bands": 1,
+        "finite": 5167373,
+        "nonfinite": 7111787,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 0.9970858712528365,
+        "reference_site": "GEMSDOE27",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    },
+    {
+      "site": "GEMSDOE36",
+      "submission_id": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "historical_score": 0.275,
+      "score_label": "OWNER-REPORTED; no organizer receipt links this score to the exact raster bytes",
+      "file_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "source_commit": "2c78770e0544259082b0b6b73ce8e4d0749c175d",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/2c78770e0544259082b0b6b73ce8e4d0749c175d/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/raw/2c78770e0544259082b0b6b73ce8e4d0749c175d/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "positive_pixels": 38854,
+      "raster": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "bands": 1,
+        "finite": 12279160,
+        "nonfinite": 0,
+        "min_finite": 0.0,
+        "max_finite": 1.0
+      },
+      "maximum_directed_within_3px_overlap_vs_other_focus_winners": {
+        "fraction": 0.9757811293560509,
+        "reference_site": "GEMSDOE27",
+        "unique_under_70_percent_rule": false
+      },
+      "preplacement_surface_spearman": "NOT MEASURED; no pre-placement surface artifact was present in the historical winner downloads",
+      "competition_score_receipt_present": false,
+      "historical_file_disposition": "AUDIT / LEARNING ONLY \u2014 not a new, unique candidate; do not submit as a fresh entry"
+    }
+  ],
+  "pairwise_directed_within_3px_fraction": {
+    "GEMSDOE25__to__GEMSDOE24": 1.0,
+    "GEMSDOE27__to__GEMSDOE24": 0.9801884946517089,
+    "GEMSDOE28__to__GEMSDOE24": 1.0,
+    "GEMSDOE30__to__GEMSDOE24": 1.0,
+    "GEMSDOE31__to__GEMSDOE24": 1.0,
+    "GEMSDOE32__to__GEMSDOE24": 1.0,
+    "GEMSDOE33__to__GEMSDOE24": 0.9970619849516302,
+    "GEMSDOE36__to__GEMSDOE24": 0.9756781798527822,
+    "GEMSDOE24__to__GEMSDOE25": 1.0,
+    "GEMSDOE27__to__GEMSDOE25": 0.9801558831202714,
+    "GEMSDOE28__to__GEMSDOE25": 1.0,
+    "GEMSDOE30__to__GEMSDOE25": 1.0,
+    "GEMSDOE31__to__GEMSDOE25": 1.0,
+    "GEMSDOE32__to__GEMSDOE25": 1.0,
+    "GEMSDOE33__to__GEMSDOE25": 0.997038098650424,
+    "GEMSDOE36__to__GEMSDOE25": 0.9749832707057189,
+    "GEMSDOE24__to__GEMSDOE27": 1.0,
+    "GEMSDOE25__to__GEMSDOE27": 1.0,
+    "GEMSDOE28__to__GEMSDOE27": 1.0,
+    "GEMSDOE30__to__GEMSDOE27": 1.0,
+    "GEMSDOE31__to__GEMSDOE27": 1.0,
+    "GEMSDOE32__to__GEMSDOE27": 1.0,
+    "GEMSDOE33__to__GEMSDOE27": 0.9970858712528365,
+    "GEMSDOE36__to__GEMSDOE27": 0.9757811293560509,
+    "GEMSDOE24__to__GEMSDOE28": 0.9347916562619654,
+    "GEMSDOE25__to__GEMSDOE28": 0.9318212746654571,
+    "GEMSDOE27__to__GEMSDOE28": 0.9161557526741456,
+    "GEMSDOE30__to__GEMSDOE28": 0.9318212746654571,
+    "GEMSDOE31__to__GEMSDOE28": 0.9956217816363591,
+    "GEMSDOE32__to__GEMSDOE28": 0.9987517926382323,
+    "GEMSDOE33__to__GEMSDOE28": 0.9705004180102711,
+    "GEMSDOE36__to__GEMSDOE28": 0.9731301796468832,
+    "GEMSDOE24__to__GEMSDOE30": 1.0,
+    "GEMSDOE25__to__GEMSDOE30": 1.0,
+    "GEMSDOE27__to__GEMSDOE30": 0.9801558831202714,
+    "GEMSDOE28__to__GEMSDOE30": 1.0,
+    "GEMSDOE31__to__GEMSDOE30": 1.0,
+    "GEMSDOE32__to__GEMSDOE30": 1.0,
+    "GEMSDOE33__to__GEMSDOE30": 0.997038098650424,
+    "GEMSDOE36__to__GEMSDOE30": 0.9749832707057189,
+    "GEMSDOE24__to__GEMSDOE31": 0.9407847641878506,
+    "GEMSDOE25__to__GEMSDOE31": 0.937151281469721,
+    "GEMSDOE27__to__GEMSDOE31": 0.9220910513957735,
+    "GEMSDOE28__to__GEMSDOE31": 0.9975570897503983,
+    "GEMSDOE30__to__GEMSDOE31": 0.937151281469721,
+    "GEMSDOE32__to__GEMSDOE31": 1.0,
+    "GEMSDOE33__to__GEMSDOE31": 0.9747999522273976,
+    "GEMSDOE36__to__GEMSDOE31": 0.9745714726926442,
+    "GEMSDOE24__to__GEMSDOE32": 0.88476585260284,
+    "GEMSDOE25__to__GEMSDOE32": 0.8817192107053754,
+    "GEMSDOE27__to__GEMSDOE32": 0.8671895382207149,
+    "GEMSDOE28__to__GEMSDOE32": 0.9547265002655337,
+    "GEMSDOE30__to__GEMSDOE32": 0.8817192107053754,
+    "GEMSDOE31__to__GEMSDOE32": 0.9539043259782581,
+    "GEMSDOE33__to__GEMSDOE32": 0.9264301922847247,
+    "GEMSDOE36__to__GEMSDOE32": 0.9740309878004839,
+    "GEMSDOE24__to__GEMSDOE33": 0.9623932477650702,
+    "GEMSDOE25__to__GEMSDOE33": 0.9605806305284645,
+    "GEMSDOE27__to__GEMSDOE33": 0.9432885468301592,
+    "GEMSDOE28__to__GEMSDOE33": 0.9984067976633032,
+    "GEMSDOE30__to__GEMSDOE33": 0.9605806305284645,
+    "GEMSDOE31__to__GEMSDOE33": 0.9990547028533048,
+    "GEMSDOE32__to__GEMSDOE33": 0.9998406543793488,
+    "GEMSDOE36__to__GEMSDOE33": 0.9750347454573531,
+    "GEMSDOE24__to__GEMSDOE36": 0.8856148762256738,
+    "GEMSDOE25__to__GEMSDOE36": 0.8826491267861193,
+    "GEMSDOE27__to__GEMSDOE36": 0.8680374380380903,
+    "GEMSDOE28__to__GEMSDOE36": 0.9552044609665428,
+    "GEMSDOE30__to__GEMSDOE36": 0.8826491267861193,
+    "GEMSDOE31__to__GEMSDOE36": 0.9544018507923082,
+    "GEMSDOE32__to__GEMSDOE36": 1.0,
+    "GEMSDOE33__to__GEMSDOE36": 0.9271228950197062
+  },
+  "exact_and_nested_mask_relations": [
+    {
+      "site_a": "GEMSDOE25",
+      "site_b": "GEMSDOE30",
+      "n_a": 44090,
+      "n_b": 44090,
+      "xor": 0,
+      "a_only": 0,
+      "b_only": 0,
+      "a_share_within3_b": 1.0,
+      "b_share_within3_a": 1.0,
+      "interpretation": "positive masks are exactly identical (bytes differ because TIFF metadata/outside-footprint encoding may differ)"
+    },
+    {
+      "site_a": "GEMSDOE32",
+      "site_b": "GEMSDOE31",
+      "n_a": 37654,
+      "n_b": 40199,
+      "xor": 2545,
+      "a_only": 0,
+      "b_only": 2545,
+      "a_share_within3_b": 1.0,
+      "b_share_within3_a": 0.9539043259782581,
+      "interpretation": "GEMSDOE32 positive mask is a strict subset of GEMSDOE31; 2,545 positives occur in GEMSDOE31 only"
+    },
+    {
+      "site_a": "GEMSDOE32",
+      "site_b": "GEMSDOE36",
+      "n_a": 37654,
+      "n_b": 38854,
+      "xor": 1200,
+      "a_only": 0,
+      "b_only": 1200,
+      "a_share_within3_b": 1.0,
+      "b_share_within3_a": 0.9740309878004839,
+      "interpretation": "GEMSDOE32 positive mask is a strict subset of GEMSDOE36; 1,200 positives occur in GEMSDOE36 only"
+    },
+    {
+      "site_a": "GEMSDOE32",
+      "site_b": "GEMSDOE25",
+      "n_a": 37654,
+      "n_b": 44090,
+      "xor": 6436,
+      "a_only": 0,
+      "b_only": 6436,
+      "a_share_within3_b": 1.0,
+      "b_share_within3_a": 0.8817192107053754,
+      "interpretation": "GEMSDOE32 positive mask is a strict subset of GEMSDOE25; 6,436 positives occur in GEMSDOE25 only"
+    },
+    {
+      "site_a": "GEMSDOE24",
+      "site_b": "GEMSDOE25",
+      "n_a": 60069,
+      "n_b": 44090,
+      "xor": 44461,
+      "a_only": 30220,
+      "b_only": 14241,
+      "a_share_within3_b": 1.0,
+      "b_share_within3_a": 1.0,
+      "interpretation": "not nested despite one upstream note describing D2.8 as a subset of D1.5; 14,241 D2.8 positives are absent from this D1.5 raster"
+    }
+  ],
+  "independent_checks": {
+    "all_nine_source_hashes_match_expected_manifest": true,
+    "all_nine_share_crs_shape_transform": true,
+    "all_nine_are_single_band_float32": true,
+    "GEMSDOE30_literal_nan_pixels": 7111787,
+    "GEMSDOE33_literal_nan_pixels": 7111787,
+    "GEMSDOE31_literal_nan_pixels": 0
+  },
+  "limitations": [
+    "No competition data, sample_submission.tif, labels.tif, or cached feature stack is included in the current repository.",
+    "No spatially blocked HOLDOUT-DTI or feature-alone leakage canary was run.",
+    "No candidate surface or newly generated candidate TIFF was created; candidate-vs-registry surface Spearman is not applicable.",
+    "No exact score-to-raster receipt was available; historical values remain OWNER-REPORTED.",
+    "The audit covers the nine focus-site winners only, not every raster in the broader GEMSDOE registry."
+  ]
+}

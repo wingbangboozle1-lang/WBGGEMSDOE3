@@ -1,0 +1,22 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Competition inputs and local feature caches must never be committed.
+data/*
+!data/.gitkeep
+!data/README.md
+!data/registry/
+data/registry/*
+!data/registry/README.md
+.cache/
+*.npy
+*.npz
+
+# Local generated candidates/reports. Release artifacts require a separate review.
+docs/downloads/*.tif
+docs/downloads/*.zip

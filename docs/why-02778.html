@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-based analysis of the reported GEMSDOE32 H33-B2 result.">
+  <title>Why the 0.2778 report? — Great Basin Fault Discovery</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>Great Basin Fault Discovery</strong><small>DOE GEMS · research, evidence, and safe submissions</small></span></a>
+  <nav aria-label="Primary navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="knowledge-base.html">Knowledge base</a><a aria-current="page" href="why-02778.html">0.2778 review</a><a href="irregularities.html">Irregularities</a><a href="feed.html">Feed</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main">
+  <p class="kicker">Forensic review · no hidden-label claim</p>
+  <h1>Why did GEMSDOE32 report 0.2778?</h1>
+  <div class="callout warning"><strong>Short answer:</strong> the most plausible mechanism is sparse-emission efficiency, but the available evidence does not prove that mechanism caused the reported value. The number is <strong>OWNER-REPORTED</strong>, not organizer-confirmed in the reviewed evidence; no receipt binds it to the exact TIFF hash.</div>
+
+  <h2>What is directly verified about the file</h2>
+  <ul>
+    <li>The immutable historical TIFF at the inspected GitHub commit has SHA-256 <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>.</li>
+    <li>Its stored raster is single-band float32, EPSG:32611, 3730 × 3292, with affine transform <code>(100, 0, 243350, 0, -100, 4508550)</code>; all stored cells are finite in [0,1]. It has 37,654 positive cells.</li>
+    <li>Its positive mask is an exact subset of the selected GEMSDOE25 D2.8 positive mask: D2.8 contains 44,090 positive cells and 6,436 of them are absent from H33-B2. This is independently computed raster lineage, not a score explanation.</li>
+    <li>The H33-B2 mask is not unique under the requested final-dot rule: 100% of its positive pixels are within 3 pixels of the audited GEMSDOE24 winner, above the 70% limit.</li>
+  </ul>
+  <p>These are byte-level properties. None reveals whether a dot landed near an unseen expert-mapped fault, what the hidden test truth contains, or how the organizer's private score components were distributed.</p>
+
+  <h2>Why thinning can help under a distance-weighted Tversky objective</h2>
+  <p>The competition description and the shared research implementation specify a distance-weighted Tversky form. With prediction mass <code>P</code>, hidden truth set <code>G</code>, weighted true-positive credit <code>TP</code>, false-positive mass <code>FP</code>, and false-negative mass <code>FN</code>, the index is:</p>
+  <pre><code>DTI = TP / (TP + α·FP + β·FN)
+α = 0.2, β = 0.8
+k(d) = max(1 − d/R, 0), with R = 300 m</code></pre>
+  <p>Under the triangular kernel, a prediction near a hidden trace can earn partial credit. A thick, adjacent ribbon can therefore pay repeatedly for overlapping neighborhoods while barely increasing new coverage. Removing one such redundant pixel may reduce false-positive mass with almost no loss of credited truth; conversely, removing a unique bridge pixel can reduce recall. The right quantity is the <em>marginal</em> change in TP, FP, and FN—not dot count alone. The exact general condition for a change to improve the ratio is:</p>
+  <pre><code>ΔTP · D &gt; TP · (ΔTP + α·ΔFP + β·ΔFN)
+where D = TP + α·FP + β·FN</code></pre>
+  <p>This explains how a sparse descendant <em>could</em> rank better than a denser parent if it preferentially deletes low-credit redundant mass. It does not show that this happened for the unseen labels. The hidden test truth and official TP/FP/FN accounting are not available in this checkout.</p>
+
+  <h2>What the evidence does—and does not—say</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Claim</th><th>Evidence status</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td>H33-B2 was reported as 0.2778.</td><td><span class="badge gold">OWNER-REPORTED</span></td><td>Recorded by the project history and supplied in the prompt. No submission-page receipt links that figure to the inspected hash.</td></tr>
+      <tr><td>H33-B2 is a sparse subset of D2.8.</td><td><span class="badge green">BYTE-VERIFIED</span></td><td>Positive-mask subset relation and counts were recomputed from pinned TIFF bytes.</td></tr>
+      <tr><td>Thinning caused the score increase.</td><td><span class="badge red">NOT PROVEN</span></td><td>There is no hidden truth or paired official ablation receipt. The observed lineage supports a mechanism hypothesis, not causal attribution.</td></tr>
+      <tr><td>H33-B2 is a new unique candidate.</td><td><span class="badge red">FALSE UNDER THIS RULE</span></td><td>Final-dot overlap against a focus-site winner exceeds the user's 70% cutoff. It is a historical artifact, not a new lane.</td></tr>
+      <tr><td>A numeric new-file leaderboard estimate can be produced here.</td><td><span class="badge red">NO</span></td><td>No shared spatial holdout ran in this checkout. A live-ledger projection would still be a projection, not a score.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Can a new unique submission beat it?</h2>
+  <p>In principle, yes: a genuinely different detector could find hidden fault segments that the historical masks missed, and a well-calibrated emission could reduce false-positive mass. The available evidence does not support predicting that it will beat the reported H33-B2 result. The immediate decision is therefore <strong>not to submit</strong>, not because improvement is impossible, but because no candidate can be validated without the missing source rasters, cached features, shared holdout, explicit lane, and a valid score receipt.</p>
+  <p>A newer sibling GEMSDOE32 H50 research card reports <strong>HOLDOUT-DTI 0.0126076</strong> (evaluator <code>GEMSDOE32-HOLDOUT-v3-visible-gated</code>, 22,232 withheld positives, 95% CI [0.0109144, 0.0141996]); this is an upstream report, not independently reproduced here and not a leaderboard score. Its own card records a negative verdict and <code>literal_lattice_passed=false</code> with 99.849% lattice overlap. It therefore supplies no validated evidence that a new submission can beat 0.2778. See <a href="irregularities.html">IR-013</a> for the source and conflicting README/card note.</p>
+  <p>The prompt also gives conflicting public-leader values. The owner-maintained GEMSDOE32 project records a later 0.4437 public-leader snapshot, while the prompt cites 0.4413 and later calls 0.3195 current. This run could not access the live DrivenData page, so none is asserted to be current here. Public leaderboard rank is also not a receipt for the user's private submission.</p>
+
+  <h2>Next scientifically valid step</h2>
+  <ol class="steps">
+    <li>Restore the official sample grid, feature/label rasters, and cached feature stack in the shared template; record file hashes.</li>
+    <li>Resolve the missing single-method lane paragraph and preregister one method.</li>
+    <li>Run a fold-local leakage canary, then whole-segment buffered hide-and-recover with visible-only catalogue features and the shared evaluator.</li>
+    <li>Require the candidate to beat the same-evaluator incumbent with a paired confidence interval; independently test registry surface correlation and final-dot overlap against the literal rule.</li>
+    <li>Write through the shared submission writer, validate the saved TIFF, and retain the exact hash and automatic report. Only the separate selector may consider a weekly slot.</li>
+  </ol>
+  <p class="small">References: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page and metric</a> · shared-code source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/src/gems32/metric.py">GEMSDOE32 metric implementation at inspected commit</a> · full file/overlap metadata in <a href="data/focus-site-audit.json">focus-site audit</a>. Official page content was not fetched from this sandbox; see <a href="sources.html">source access notes</a>.</p>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>WBGGEMSDOE3</strong> · plausible mechanism is not proof.</p><p><a href="executive-summary.html">Submission procedure</a> · <a href="data/run-card.json">Negative run card</a></p></div></footer>
+</body>
+</html>
