@@ -1,0 +1,26 @@
+name: Verify audit and site
+on:
+  pull_request:
+  push:
+    branches: [main, arena/7fad62b5-wbggemsdoe3]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python scripts/build_site.py && git diff --exit-code -- docs
+      - name: Reproduce pinned raster audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/restore_comparators.py
+          python scripts/audit.py
+          git diff --exit-code -- docs/audit.json

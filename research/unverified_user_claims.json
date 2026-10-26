@@ -1,0 +1,18 @@
+{
+  "warning": "QUARANTINED USER CLAIMS, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED. No receipt supplied. Not used for model selection or numerical forecasts.",
+  "claims": {
+    "GEMSDOE24": ".2477",
+    "GEMSDOE25": ".2600",
+    "GEMSDOE27": ".2449",
+    "GEMSDOE28": ".2710",
+    "GEMSDOE30": ".2600",
+    "GEMSDOE31": ".2708",
+    "GEMSDOE32": ".2778",
+    "GEMSDOE33": ".2632",
+    "GEMSDOE36": ".2750"
+  },
+  "conflicting_current_leader_claims": [
+    "0.4413",
+    "0.3195"
+  ]
+}
