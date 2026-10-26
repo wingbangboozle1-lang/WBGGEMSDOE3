@@ -164,3 +164,30 @@ without a correctly constructed holdout and ultimately an organizer receipt.
   incumbent; perform the registry gates before placement and on final dots; write and
   reread via the shared writer; run the separate quota selector. Do not treat a proxy as
   a leaderboard score.
+
+## Three review passes completed
+
+1. **Source and preflight review.** Checked the official task and metric, pinned the
+   shared template and owner-mirrored data, hash-checked historical files and measured
+   the full-footprint witness. Corrected a mistyped reference digest and a Python 3.11
+   archive-extraction compatibility defect in the local bootstrap before rerunning it.
+2. **Scientific, format and concurrency review.** Recorded four ranked unrun physical
+   hypotheses and official-source confounders. Distinguished historical claims from
+   receipts; corrected outside-bounds versus all-finite-writer wording; exposed the
+   shared rank gate's one-sided behavior with a synthetic test. Independently measured
+   the subsequently merged parallel TIFFs; preserved their original files and prior
+   claims, replaced approval language with a negative decision, and disabled incomplete
+   legacy generator/finalizer/uniqueness entrypoints rather than silently changing the
+   shared tool.
+3. **Integration and release review.** Merged concurrent main history into this session's
+   branch without dropping its artifacts, adapted the preexisting test that assumed no
+   research TIFF could exist, and added negative-guard tests. Verified the complete test
+   suite, hash-bound audit/card, reproducible site, and local links. Headless Chromium
+   exercised all four pages at desktop and mobile widths, checked response codes and
+   banners, and found no page-wide overflow; a swipe hint and keyboard-focusable table
+   were added for the mobile table. Leaderboard staleness is determined at view time so
+   an interrupted scheduled deployment cannot leave an old observation labeled fresh.
+
+The shared repository is read-only to this integration. Neither the one-sided rank gate
+nor the uncertain outside-footprint convention was patched in a private fork; both need
+upstream maintainer/organizer resolution before any future clearance.

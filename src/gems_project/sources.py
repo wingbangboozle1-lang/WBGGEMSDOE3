@@ -32,8 +32,8 @@ def download_github_file(repo: str, ref: str, source: str, dest: Path,
     """Read an immutable GitHub file into cache and require its pinned digest.
 
     The GitHub CLI uses the environment's existing connection; it never writes
-    credentials into this project. An unauthenticated HTTPS fallback is used only
-    if `gh` is not installed. Corrupt downloads are never promoted into cache.
+    credentials into this project. An unauthenticated HTTPS fallback supports public
+    files when `gh` is absent or cannot fetch them. Corrupt downloads are never cached.
     """
     dest = Path(dest)
     if dest.is_file() and sha256_file(dest) == sha256:
@@ -46,13 +46,14 @@ def download_github_file(repo: str, ref: str, source: str, dest: Path,
     tmp = Path(tmp_name)
     endpoint = f"repos/{repo}/contents/{source}?ref={ref}"
     try:
+        fetched = False
         if shutil.which("gh"):
             with tmp.open("wb") as out:
                 result = subprocess.run(["gh", "api", "-H", "Accept: application/vnd.github.raw+json", endpoint],
                                         stdout=out, stderr=subprocess.PIPE, timeout=180, check=False)
-            if result.returncode:
-                raise RuntimeError(f"GitHub fetch failed for {repo}/{source}: {result.stderr.decode(errors='replace')[:300]}")
-        else:
+            fetched = result.returncode == 0
+        if not fetched:
+            # Reopen with wb so a partial CLI response cannot contaminate fallback bytes.
             req = urllib.request.Request(f"https://api.github.com/{endpoint}", headers={
                 "Accept": "application/vnd.github.raw+json", "User-Agent": "GEMS-research-audit/1.0"})
             with urllib.request.urlopen(req, timeout=180) as stream, tmp.open("wb") as out:

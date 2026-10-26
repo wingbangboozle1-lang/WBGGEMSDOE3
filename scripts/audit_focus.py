@@ -23,7 +23,7 @@ def main():
     card = make_card(dest)
     (ROOT / "evidence/run_card.json").write_text(json.dumps(card, indent=2, allow_nan=False) + "\n")
     print(f"{result['status']}: {result['witness']['witness_positive_inside']} / {result['witness']['footprint_cells']} footprint cells positive in registered witness")
-    print(f"Evidence: {dest.relative_to(ROOT)}. No candidate, experiment, or competition slot was used.")
+    print(f"Evidence: {dest.relative_to(ROOT)}. This audit created no candidate, ran no experiment, and used no competition slot.")
     return 0
 
 

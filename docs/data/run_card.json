@@ -22,11 +22,11 @@
   },
   "raster_sha256": null,
   "validator_output": {
-    "status": "NOT_RUN: no new candidate raster exists",
+    "status": "NOT_RUN: this lane created no candidate raster",
     "required": "No NaN in footprint; values in [0,1]; single float32 band; CRS, shape and affine equal verified sample."
   },
   "submission_name": null,
-  "submission_note": "No candidate; mandatory registry duplicate stop. DO NOT SUBMIT.",
+  "submission_note": "No lane candidate; registry duplicate stop. DO NOT SUBMIT.",
   "verdict": "negative",
   "selector_approval": false,
   "experiments": 0,

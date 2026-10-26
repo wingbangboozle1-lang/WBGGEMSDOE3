@@ -163,6 +163,7 @@ needed and calls the pinned shared template without forking its evaluator/writer
 ```bash
 bash scripts/restore_shared_data.sh   # restore template + public mirror + 19 cached bands
 .venv/bin/python scripts/audit_focus.py      # proof, nine-site comparison, negative run card
+.venv/bin/python scripts/audit_concurrent.py # recheck parallel artifacts and rebind card
 .venv/bin/python -m pytest -q               # synthetic and evidence checks
 python scripts/build_site.py && python scripts/check_site.py
 python -m http.server 8000 --bind 0.0.0.0 --directory docs

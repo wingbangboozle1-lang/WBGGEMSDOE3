@@ -42,12 +42,14 @@ def main():
     card = json.loads((DOCS / 'data/run_card.json').read_text())
     if card.get('verdict') != 'negative' or card.get('raster_sha256') is not None or card.get('selector_approval'):
         errors.append('run card does not match a negative, no-raster decision')
-    if len(list(DOCS.glob('*.html'))) != 4:
-        errors.append('expected four generated pages')
+    required = {'index.html', 'executive-summary.html', 'research.html', 'evidence.html'}
+    present = {page.name for page in DOCS.glob('*.html')}
+    if not required <= present:
+        errors.append(f'missing required generated pages: {sorted(required - present)}')
     if errors:
         print('\n'.join(errors), file=sys.stderr)
         return 1
-    print('Site check: four pages, local links and negative status PASS.')
+    print('Site check: required pages, local links and negative status PASS.')
     return 0
 
 

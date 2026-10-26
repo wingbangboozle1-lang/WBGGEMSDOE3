@@ -25,3 +25,22 @@ def test_nan_twin_is_not_a_distinct_positive_mask_and_standins_fail_grid():
     for key in ('standin', 'h80_archive'):
         assert not audit['artifacts'][key]['matches_mirrored_sample_grid']
         assert not audit['artifacts'][key]['eligible_to_submit']
+
+
+def test_unsafe_parallel_entrypoints_fail_closed_without_overwriting_card():
+    import subprocess
+    import sys
+    before = (ROOT / 'evidence/run_card.json').read_bytes()
+    for script in ('generate_submission.py', 'finalize_submission.py'):
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts' / script)],
+                                cwd=ROOT, capture_output=True, text=True)
+        assert result.returncode != 0
+        assert 'DISABLED / DO NOT SUBMIT' in result.stderr
+    assert (ROOT / 'evidence/run_card.json').read_bytes() == before
+
+
+def test_incomplete_parallel_uniqueness_checker_is_disabled():
+    import pytest
+    from uniqueness_audit import audit_uniqueness
+    with pytest.raises(RuntimeError, match='incomplete historical registry'):
+        audit_uniqueness(ROOT / 'not-a-candidate.tif', [])
