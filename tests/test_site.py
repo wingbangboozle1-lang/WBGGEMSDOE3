@@ -23,3 +23,11 @@ def test_every_published_page_contains_negative_decision_and_checked_json_exists
         assert 'assets/status.js' in body
     assert (docs / 'data/run_card.json').exists()
     assert (docs / 'data/focus_audit.json').exists()
+
+
+def test_pages_publishers_use_the_same_docs_url_layout():
+    workflow = (ROOT / '.github/workflows/pages.yml').read_text()
+    root_redirect = (ROOT / 'index.html').read_text()
+    assert 'url=docs/index.html' in root_redirect
+    assert 'cp -a docs .cache/pages-release/docs' in workflow
+    assert 'path: .cache/pages-release' in workflow
