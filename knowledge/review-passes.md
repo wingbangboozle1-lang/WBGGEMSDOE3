@@ -40,3 +40,11 @@ complete byte-level peer raster comparisons, independent organizer score
 receipts, official literature/metadata outside GitHub, and weekly selector
 approval. These cannot honestly be certified by this audit. No hidden labels,
 no submission slot use, no claim of beating any leaderboard value.
+
+## Publication access check
+
+Pages is already configured as legacy publishing from main at root. Changing
+it to Actions deployment was denied by GitHub integration permissions (403).
+Retained the existing mode and added a root entry page pointing to docs; removed
+the incompatible Actions deployment workflow. Publication still requires the
+existing GitHub Pages build to succeed; do not claim deployment before checking.

@@ -104,7 +104,9 @@ No code here downloads hidden labels or submits to DrivenData.
   and [rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf): supplied links,
   not fetched through this sandbox's network allowlist.
 
-GitHub Pages deployment uses `.github/workflows/pages.yml` for `docs/` on main.
+GitHub Pages is already configured for legacy publishing from `main` at `/`.
+The root `index.html` directs visitors to `docs/`. Changing Pages to Actions
+publishing returned HTTP 403, so the existing publishing configuration is retained.
 A scheduled audit workflow refreshes GitHub tree identities into an artifact;
 **it does not silently change score claims or certify a release**. Published
 summaries are explicitly dated snapshots, not a live organizer feed.
