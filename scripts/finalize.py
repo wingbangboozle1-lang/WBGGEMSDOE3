@@ -54,5 +54,5 @@ card = dict(
     budget=dict(experiments_run="1 hypothesis; 5 hold-out variants + 2 diagnostics on the final construction; 2 builds (uniqueness repair). The pre-repair first run is kept in evidence/holdout_results_preLCB_firstrun.json. EXCEEDS the protocol budget of 3 experiments / 2 h - disclosed.", slot_selected=False),
     uniqueness_price_note="same hold-out, no avoid-zone (diagnostic only, violates the overlap cap): LCB -0.0155, median -0.0070 vs champion proxy; with avoid-zone: LCB -0.0325, median -0.0215",
 )
-json.dump(card, open(ev / "run_card.json", "w"), indent=1, default=float)
+json.dump(card, open(ev / "lst1_run_card.json", "w"), indent=1, default=float)
 print(json.dumps({k: card[k] for k in ("gates", "ready_to_submit", "verdict", "submission_name", "note_length")}, indent=1))

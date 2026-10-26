@@ -30,6 +30,12 @@
 9. **Licence of vendored code.** `metric.py` and `holdout.py` come from GEMSDOE32 @ 07806249, which has no LICENSE file (see NOTICE.md).
 10. **Per-site "unscored" picks** use the same ledger projection, which over-states pure H19-5-network files by about 0.02–0.03 and under-states independent hybrids by about 0.12.
 
+11. **Uniqueness is judged under two documented deviations from the literal rule.** (a) Registry rasters with >1,000,000 positive cells are excluded as feature layers
+   (`acquisition_block_id_100m` = 5,167,373 cells, `tiger_road_distance_m` 4,790,468, `blm_closed_claim_distance_m` 3,007,873); (b) lattice-like references (random-placement
+   overlap ≥ 0.70) use an excess-over-null limit of 0.05 that this session chose before seeing the final result. The repo-wide README independently found that the literal rule is
+   unsatisfiable for any non-empty file against a whole-footprint raster and declined any exemption; this lane's file is therefore labelled **research-only** and is not claimed as
+   "cleared" under that stricter reading. Under the literal rule it fails against `r13-lattice-s5` (0.9995), `pindrop-v4-nodes` (0.783) and `pindrop-v4-discovery` (0.746).
+
 ## Irregularities flagged
 * Literal rule "> 70 % of dots within 3 px of one registry raster ⇒ duplicate" is *unsatisfiable* against rasters that already
   cover ≥ 70 % of the footprint within 3 px at random (lattice-like rasters). They are judged by excess over a random-placement

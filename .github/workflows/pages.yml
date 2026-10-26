@@ -1,0 +1,48 @@
+name: Publish evidence dashboard
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Refresh public leaderboard or retain a marked stale snapshot
+        run: python scripts/refresh_feed.py
+      - name: Render site from evidence and check links
+        run: python scripts/build_site.py && python scripts/check_site.py
+      # The repository still has branch-based Pages enabled. Keep the same
+      # /docs/... URL layout in either publisher so a scheduled deployment does
+      # not break links if both publishers race on a main push.
+      - name: Stage stable Pages URL layout
+        run: |
+          mkdir -p .cache/pages-release
+          cp index.html .cache/pages-release/index.html
+          cp -a docs .cache/pages-release/docs
+          touch .cache/pages-release/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .cache/pages-release
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

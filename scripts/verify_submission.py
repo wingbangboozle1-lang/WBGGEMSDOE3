@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np, rasterio
 from scipy import ndimage as ndi
 ROOT = Path(__file__).resolve().parents[1]
-card = json.load(open(ROOT / "evidence/run_card.json"))
+card = json.load(open(ROOT / "evidence/lst1_run_card.json"))
 name = card["submission_name"]
 out = {"checks": {}}
 def sha(b): return hashlib.sha256(b).hexdigest()
@@ -16,12 +16,12 @@ with rasterio.open(ROOT / "data/raw/labels.tif") as t:
     lab = (t.read(1) > 0) & foot
 rows = {}
 for kind in ("zeros.tif", "nan.tif", "zeros.zip"):
-    p = ROOT / "docs/downloads" / f"{name}-{kind}"
+    p = ROOT / "docs/lst1/downloads" / f"{name}-{kind}"
     raw = p.read_bytes()
     rows[kind] = dict(sha256=sha(raw), matches_run_card=sha(raw) == card["raster_sha256"][p.name], bytes=len(raw))
     if kind.endswith("zip"):
         z = zipfile.ZipFile(p); assert len(z.namelist()) == 1 and z.namelist()[0].endswith(".tif"), z.namelist()
-        inner = z.read(z.namelist()[0]); rows[kind]["zip_inner_equals_zeros_tif"] = inner == (ROOT / "docs/downloads" / f"{name}-zeros.tif").read_bytes()
+        inner = z.read(z.namelist()[0]); rows[kind]["zip_inner_equals_zeros_tif"] = inner == (ROOT / "docs/lst1/downloads" / f"{name}-zeros.tif").read_bytes()
         continue
     with rasterio.open(p) as ds:
         a = ds.read(1)
