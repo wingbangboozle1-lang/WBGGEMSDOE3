@@ -203,3 +203,14 @@ race-dependent `/docs/` links, the scheduled workflow stages the same root redir
 protected repository setting or pushing a different branch. The public snapshot is
 explicitly timestamped, and a failed refresh remains stale rather than being presented
 as live.
+
+### Public leaderboard feed uses a dynamic fragment
+
+The public leaderboard's top-level HTML is a JavaScript/HTMX shell, not the actual
+score table. Initial GitHub Pages refresh attempts therefore correctly marked the old
+snapshot stale. An isolated GitHub Actions diagnostic identified the same-origin
+`leaderboard_partial/?page=1` fragment declared by the public page. The refresh tool now
+reads only that exact HTTPS endpoint, rejects redirects and ambiguous score rows, and
+keeps the previous observation on failure. A real GitHub runner returned 50 public
+rows and parsed the first-place 0.4437 successfully on 2026-10-26; this is not a score
+for any candidate or an organizer receipt. The temporary diagnostics were removed.

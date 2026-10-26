@@ -22,5 +22,3 @@ jobs:
       - run: python scripts/build_site.py && python scripts/check_site.py
       - name: Require committed site to match its evidence
         run: git diff --exit-code -- docs
-      - name: Inspect public leaderboard page shape
-        run: python .github/scripts/inspect_leaderboard.py
