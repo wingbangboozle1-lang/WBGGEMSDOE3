@@ -1,27 +1,34 @@
 """Temporary public-page schema diagnostic; prints no credentials."""
 from html.parser import HTMLParser
 import json
+import re
+import shutil
 import sys
 from pathlib import Path
 import urllib.request
-
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
 from refresh_feed import Rows, URL
 req=urllib.request.Request(URL, headers={'User-Agent':'GEMS-evidence-monitor/1.0'})
 with urllib.request.urlopen(req, timeout=20) as response:
     text=response.read(8000000).decode('utf-8',errors='replace')
-class Title(HTMLParser):
-    def __init__(self): super().__init__(); self.on=False; self.parts=[]; self.tables=0
+class Tags(HTMLParser):
+    def __init__(self): super().__init__(); self.scripts=[]; self.title=[]; self.on=False
     def handle_starttag(self,t,a):
         if t=='title': self.on=True
-        if t=='table': self.tables+=1
+        if t=='script':
+            d=dict(a)
+            if d.get('src'): self.scripts.append(d['src'])
     def handle_endtag(self,t):
         if t=='title': self.on=False
     def handle_data(self,d):
-        if self.on: self.parts.append(d)
-p=Rows();p.feed(text);t=Title();t.feed(text)
-info={'title':' '.join(''.join(t.parts).split())[:120], 'tables':t.tables,
-      'rows':len(p.rows), 'first_rows':[r[:5] for r in p.rows[:4]],
-      'has_4437':'0.4437' in text, 'length':len(text)}
+        if self.on: self.title.append(d)
+p=Rows();p.feed(text);t=Tags();t.feed(text)
+snippets=[]
+for m in re.finditer('leaderboard|api/|<iframe',text,re.I):
+    part=' '.join(text[max(0,m.start()-90):m.end()+120].split())
+    if part not in snippets: snippets.append(part[:220])
+    if len(snippets)==8: break
+info={'title':' '.join(''.join(t.title).split()),'rows':len(p.rows), 'scripts':t.scripts,
+      'snippets':snippets,'browsers':{n:shutil.which(n) for n in ('google-chrome','chromium','chromium-browser')}}
 message=json.dumps(info,ensure_ascii=True).replace('%','%25').replace('\r','%0D').replace('\n','%0A')
 print('::notice title=Leaderboard schema::'+message)
