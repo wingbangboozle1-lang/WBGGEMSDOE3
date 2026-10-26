@@ -48,3 +48,11 @@ it to Actions deployment was denied by GitHub integration permissions (403).
 Retained the existing mode and added a root entry page pointing to docs; removed
 the incompatible Actions deployment workflow. Publication still requires the
 existing GitHub Pages build to succeed; do not claim deployment before checking.
+
+## Concurrent-main integration review
+
+Main advanced to 8488b95 during PR creation. Preserved its synthetic generator,
+TIFF/ZIP, manifest, earlier docs and cards under archive/concurrent-8488b95;
+none are accepted as actual holdout, full-registry measurements or a matched
+competition grid. Resolved executive-summary conflicts to the fail-closed page.
+Retained the existing Pages workflow from main (prior GitHub run succeeded).

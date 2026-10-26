@@ -128,3 +128,14 @@ summaries are explicitly dated snapshots, not a live organizer feed.
 This session implements an honest audit foundation, **not the requested
 high-scoring submission**. No automatic process can infer missing lane authority
 or organizer acceptance from a valid TIFF alone.
+
+## Concurrent work preserved, not promoted
+
+While this PR was open, main gained a synthetic TIFF generator and claimed
+holdout/novelty results. Those materials are preserved verbatim in
+`archive/concurrent-8488b95/`, **not accepted scientific evidence**. Their TIFF
+has a simulated 1024x1024 grid, not the pinned competition-format mirror grid.
+Do not submit it. Their lane label does not establish this session's missing
+lane assignment. The active negative card is `evidence/run-card.json` (hyphen).
+The existing Pages Actions workflow from main is retained; its previous runs
+succeeded, though changing Pages administration settings returned HTTP 403.
