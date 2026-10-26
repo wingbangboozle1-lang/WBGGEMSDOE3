@@ -36,3 +36,13 @@ A genuinely new high-scoring, validated TIFF is **not delivered**. No HOLDOUT-DT
 Not all original external sources or prior submissions were independently reviewed. Only GitHub-hosted official reference code and peer artifacts were reachable; the nine historical audit rasters are a subset of the full evolving registry. Organizer score receipts, live cap, official data licenses and portal acceptance remain unverified.
 
 The next session should resolve these preconditions before further model work. Do not silently weaken the rule, choose uncovered lattice pixels to evade it, regenerate a known baseline or spend a submission slot to test an invalid candidate.
+
+## Concurrent-main integration recheck
+
+Main advanced to `35d7ccf` during PR creation. Merged it into the session branch,
+retained its evidence and full pinned 57GEMSDOE package, and preserved its audit
+APIs under `scripts/audit_preflight.py` plus 18 active tests. Conflicting historical
+site/build files were archived, not silently discarded. Explicit pytest testpaths
+exclude historical archive test copies from active discovery. The integrated suite
+passes **38 tests**. Template-family ambiguity remains a blocker to scientific
+execution; no attempt was made to merge their metric definitions or change bytes.

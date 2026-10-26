@@ -3,3 +3,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 .venv/
+.cache/
+docs/downloads/*.tif
+docs/downloads/*.zip

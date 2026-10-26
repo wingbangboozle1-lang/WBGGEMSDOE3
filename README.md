@@ -92,3 +92,16 @@ Pass 1: implement and verify. Pass 2: review bugs, omissions, assumptions and ed
 3. Verify external-source access before selecting a data-dependent hypothesis; see the four ranked candidates in the scientific review.
 4. Reconstruct the best baseline out-of-fold and execute the feature canaries and at most three preregistered experiments. Do not use historical full-catalogue predictions as a leakage-free baseline.
 5. Only after all gates pass, generate, validate and offer a genuinely new TIFF. A separate selector checks slots and receipts. Until then the current negative decision remains authoritative.
+
+## Concurrent-session integration
+
+While PR #4 was being prepared, main advanced through PR #3. That session's
+`vendor/gems57` package, hash pins, evidence, hypothesis notes and evaluator/writer
+adapters are preserved. Its read-only audit now lives at
+`scripts/audit_preflight.py` (commands `preflight` and `raster`); its 18 tests remain
+active in `tests/test_preflight.py`. Use our `scripts/audit.py` for the new measured
+historical raster audit. The two template families must not be treated as
+interchangeable until reconciled. The old conflicting site/build files are retained
+as historical evidence in `archive/concurrent-main-35d7ccf/`, not active entry points.
+Previously quarantined synthetic artifacts remain research-only and are not
+submission files. The current authoritative decision is `docs/run-card.json`.
