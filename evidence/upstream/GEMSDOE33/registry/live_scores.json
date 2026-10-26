@@ -1,0 +1,67 @@
+{
+  "schema": 2,
+  "as_of": "2026-10-04",
+  "convention": "Scores below are kept as reports, not verified file/score pairs. Official leaderboard rows identify participants, not local TIFF bytes. No DrivenData receipt or authenticated account session is available in this workspace.",
+  "owner_reported_emissions": [
+    {
+      "emission": "H19-5 solid ridge parent",
+      "owner_reported_score": 0.1922,
+      "owner_mirror_file": "data/h19_5_nan.tif",
+      "file_sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "reported_source_project": "GEMSDOE19/24",
+      "status": "owner report only; score-to-exact-file pairing is not organizer-confirmed"
+    },
+    {
+      "emission": "H19-5 Poisson-disk thinning, minimum spacing 1.5 pixels",
+      "owner_reported_score": 0.2477,
+      "owner_mirror_file": "data/dotted_h19_5_d1_5_nan.tif",
+      "file_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "reported_source_project": "GEMSDOE24",
+      "status": "owner report only; score-to-exact-file pairing is not organizer-confirmed"
+    },
+    {
+      "emission": "H19-5 Poisson-disk thinning, minimum spacing 2.8 pixels (D2.8 reference)",
+      "owner_reported_score": 0.26,
+      "owner_mirror_file": "data/dotted_h19_5_d2_8_nan.tif",
+      "file_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "reported_source_project": "GEMSDOE25 / historical owner materials",
+      "official_board_observation": "No row-level board content is retained; an official observation cannot authenticate this file or account association.",
+      "status": "owner report only; exact score/file pairing remains unconfirmed"
+    }
+  ],
+  "h27_4_attribution": {
+    "artifact_name_in_owner_brief": "h27-4-r1-solo-d2-8",
+    "owner_brief_claimed_score": 0.2708,
+    "owner_site_observation": "GEMSDOE28 says NO GEMSDOE28 SCORE and describes the artifacts as unscored/research-only.",
+    "official_board_observation": "No row-to-file association is authenticated; raw leaderboard rows are not retained or reproduced due to the Terms-of-Use restriction.",
+    "verified_score_for_artifact": null,
+    "status": "unsupported; do not report 0.2708 as GEMSDOE28 or H27-4 score"
+  },
+  "other_historical_artifacts": [
+    {
+      "name": "H36-1 rung-3.0 re-pack + catalogue-flank pruning",
+      "score": null,
+      "reported_projection": "owner materials described a local projection, not a verified competition score",
+      "status": "unscored / not comparable validated evidence"
+    },
+    {
+      "name": "H38-1 heat-flow + Euler corroboration",
+      "score": null,
+      "reported_projection": "owner materials described a local projection, not a verified competition score",
+      "status": "unscored / not comparable validated evidence"
+    }
+  ],
+  "withdrawn_model_estimates": {
+    "status": "WITHDRAWN_FROM_PROMOTION",
+    "description": "The previous registry version inverted owner-reported scores into an inferred hidden-truth size and local DTI calibration. Those numbers depended on unverified score/file assumptions and the first-pass truth-conditioned reconstruction instrument; they are not current estimates or promotion evidence.",
+    "archived_record": "archive/withdrawn_first_pass/evidence/live_scores_inversion_withdrawn.json",
+    "see": "evidence/first_pass_disposition.json"
+  },
+  "official_leaderboard_review": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "read_utc": "2026-10-04",
+    "status": "one-time official-page status note dated 2026-10-04 said the user claim was not supported as then-current/top; a third-party GEMSDOE28 owner summary dated 2026-10-03 reports it, so current status remains unresolved",
+    "retention": "no row-level participant/rank/score values are stored or republished here; no automated or recurring access is used",
+    "file_identity_limitation": "A public leaderboard row does not identify local TIFF bytes or prove an account association. Do not refresh or republish leaderboard contents without prior written consent or an authorized API."
+  }
+}
