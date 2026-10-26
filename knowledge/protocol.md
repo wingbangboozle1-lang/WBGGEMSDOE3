@@ -34,7 +34,12 @@
    current submission-page cap and usage. Neither is available here. No upload
    automation or submission credentials are included.
 9. Stop after three experiments or two hours. Negative results are retained.
-   No geological experiment was run in this session; no data-free score exists.
+   This review ran no new geological experiment and no slot was used. The
+   merged base contains an earlier 35,000-dot H_STEP-OVER TIFF; the current card
+   reviews it as an existing artifact, not a new run. A commit-pinned owner-mirror
+   recheck measured 97.87% of all its dots within 3 px of the registered lattice,
+   failing the >70% stop rule. The mirrors are not organizer-authenticated. No
+   data-free score exists.
 
 ## Shared-tool irregularity
 

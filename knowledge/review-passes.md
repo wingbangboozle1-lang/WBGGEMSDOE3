@@ -7,8 +7,11 @@ Retrieved selected manifests, evaluator/writer code and peer summaries with
 blob identities. Retrieved the organizer reference README/notebook. Restored
 57GEMSDOE package using exact hash pins, not a rewritten scorer/writer. Built
 the dated nine-site executive page, submission instructions, qualitative
-hypotheses and fail-closed prerequisite/format/novelty tooling. No geological
-experiment or competition TIFF was produced.
+hypotheses and fail-closed prerequisite/format/novelty tooling. This branch
+produced no geological experiment or TIFF. The subsequently integrated base
+contains an earlier PR #7 candidate, now reviewed in `evidence/run_card.json`;
+it is audit-only and the pinned owner-mirror recheck measures 97.87% of all its
+dots within 3 px of the registered lattice, above the literal 70% stop rule.
 
 ## Pass 2 — assumptions, edge cases, fixes
 
@@ -19,6 +22,7 @@ experiment or competition TIFF was produced.
   verified artifact paths; no dead/fake download buttons.
 * Did not import upstream claims of byte-level equality as our measurements.
 * Kept dense calibration lattice entries subject to the literal stop rule.
+* After noticing the owner manifest marks `existing_faults.tif` byte-identical to `labels.tif`, changed the default restore/audit path to skip that label alias. The sample raster is used only for its finite/nodata mask, not its pixel values.
 * Kept preflight file-presence separate from validated inputs and release approval.
 * Tested NaN, infinity, range violations, CRS/shape/transform mismatch, nodata,
   duplicate overlap, degenerate novelty, template identity and source blob hashes.

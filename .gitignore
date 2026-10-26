@@ -6,8 +6,9 @@ __pycache__/
 *.pyo
 .pypirc
 
-# Data caches (large; competition rasters are login-gated and restored via scripts/)
-data/downloads/
+# Local competition data and derived caches stay out of Git; keep only the small placeholder grid.
+data/*
+!data/template_grid.tif
 .cache/
 data/prepared_manifest.json
 

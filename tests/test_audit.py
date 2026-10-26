@@ -24,6 +24,8 @@ def test_strict_threshold_boundary():
     assert overlap_bound(100, 97, 11)['guaranteed_duplicate']
     assert overlap_bound(5167373, 5160724, 22164)['guaranteed_duplicate']
     assert not overlap_bound(5167373, 5160724, 22163)['guaranteed_duplicate']
+    candidate = overlap_bound(5167373, 5160724, 35000)
+    assert candidate['minimum_overlap'] > .81 and candidate['guaranteed_duplicate']
 
 
 @pytest.mark.parametrize('args', [(1,2,1), (1,0,0), (1,0,2), (1,-1,1)])
@@ -70,13 +72,28 @@ def test_sources_unchanged():
 
 def test_decision_is_negative():
     card=json.loads((ROOT/'docs/run-card.json').read_text())
-    assert card['verdict']=='negative' and card['ok_to_submit'] is False
-    assert card['raster_sha256'] is None and card['holdout']['dti'] is None
-    assert len(card['note']) <= 140
+    assert card['verdict']=='negative'
+    assert card['submission']['submit_allowed'] is False
+    assert card['submission']['download_for_audit_allowed'] is True
+    assert card['holdout_dti']['point_estimate'] is None and card['holdout_dti']['ci95'] is None
+    assert card['lane']['status']=='UNASSIGNED'
+    measured=card['registry_comparison']['measured_subset']
+    assert measured['candidate_total_dot_overlap_max_within_3px'] > .70
+    assert measured['candidate_in_footprint_dot_overlap_with_lattice_within_3px'] > .70
+    assert measured['candidate_final_binary_max_abs_spearman'] < .90
+    assert card['validator_output']['owner_mirrored_sample_footprint_check']['candidate_positive_pixels_outside_footprint']==747
+    assert card['submission']['note_characters'] == len(card['submission']['note']) <= 140
+    raster=ROOT/card['artifact']['path']
+    assert hashlib.sha256(raster.read_bytes()).hexdigest() == card['raster_sha256']
     audit=json.loads((ROOT/'docs/audit.json').read_text())
     assert len(audit['rows']) == 9
     assert all(not x['unique_among_focus9'] for x in audit['rows'].values())
-    assert audit['champion_forensics']['equals_d28_euclidean_fault_distance_gt_2px']
+    recheck=audit['candidate_recheck']
+    assert recheck['candidate_sha256']==card['raster_sha256']
+    assert abs(recheck['all_dot_overlap_max_within_3px']-measured['candidate_total_dot_overlap_max_within_3px']) < 1e-12
+    assert recheck['candidate_positive_pixels_outside_scored_footprint']==747
+    assert recheck['preplacement_surface_spearman'] is None
+    assert audit['champion_forensics']['catalogue_distance_pruning_identity'].startswith('NOT EVALUATED')
 
 
 def test_local_html_links_resolve():
@@ -96,7 +113,7 @@ def test_local_html_links_resolve():
 
 def test_site_is_reproducible():
     from build_site import build
-    names=['index.html','executive-summary.html','research.html']
+    names=['index.html','executive-summary.html','hypotheses.html','research.html','submission.html','run-card.json']
     previous={name:(ROOT/'docs'/name).read_bytes() for name in names}
     build()
     assert all((ROOT/'docs'/name).read_bytes()==previous[name] for name in names)

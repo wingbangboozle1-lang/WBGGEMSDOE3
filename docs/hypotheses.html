@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranked geological hypotheses · GEMS Evidence Lab</title><style>
+:root{color-scheme:light;--ink:#172d36;--muted:#48616b;--line:#d5e0e2;--accent:#087e83;--danger:#9b2727;--danger-bg:#fff0ed;--amber:#8a4a08;--amber-bg:#fff7e9}*{box-sizing:border-box}body{margin:0;background:#f3f7f7;color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}a{color:#08666b;text-underline-offset:3px}a:focus-visible{outline:3px solid #ca6e20}header{background:#122f39;color:#fff;padding:22px max(5%,calc((100% - 1200px)/2))}header a{color:#acedef}.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase}.brand{font-size:1.05rem;font-weight:700;margin:0 0 12px}nav{display:flex;gap:16px 24px;flex-wrap:wrap}main{max-width:1240px;margin:auto;padding:34px 24px 64px}h1{font-size:clamp(2rem,4vw,3.35rem);line-height:1.12;letter-spacing:-.04em;max-width:22ch}h2{margin:2.2rem 0 .65rem;line-height:1.3}p{max-width:95ch}.muted,small{color:var(--muted)}small{display:block;font-size:.86em}code{overflow-wrap:anywhere;font-size:.9em}pre{white-space:pre-wrap;background:#e5eeee;padding:16px;overflow:auto}.banner{border-left:7px solid var(--danger);background:var(--danger-bg);padding:22px 26px;margin:22px 0;border-radius:8px}.banner strong{display:block;color:var(--danger);font-size:1.35rem;letter-spacing:.02em}.audit{border-left-color:var(--amber);background:var(--amber-bg)}.audit strong{color:var(--amber)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:20px 0}.card{padding:20px;background:#fff;border:1px solid var(--line);border-radius:12px}.card b.metric{display:block;font-size:1.8rem;line-height:1.25}.button{display:inline-block;background:var(--accent);color:white;padding:10px 15px;border-radius:6px;text-decoration:none;margin:6px 8px 6px 0;font-weight:650}.button.danger{background:var(--danger)}.button.secondary{background:#38515b}.scroll{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;font-size:14px;min-width:760px}th,td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#e5f0ef}tr:last-child td{border-bottom:0}li{margin-bottom:9px}.pill{display:inline-block;border-radius:999px;padding:2px 9px;background:#f4dfdd;color:var(--danger);font-weight:700;font-size:.82em}.good{background:#e0f1e9;color:#185a3a}.callout{padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:10px}footer{border-top:1px solid var(--line);padding:22px;color:var(--muted);font-size:.9em}hr{border:0;border-top:1px solid var(--line);margin:30px 0}@media(max-width:640px){main{padding:24px 16px 48px}header{padding:18px 16px}nav{gap:10px 16px}.banner{padding:18px}}
+</style></head>
+<body><header><div class="brand">WB-GEMS-DOE-3 · GEMS Evidence Lab</div><nav aria-label="Main"><a href="index.html">Decision</a><a href="executive-summary.html">Nine-site summary</a><a href="hypotheses.html" aria-current=page>Hypotheses</a><a href="research.html">Research review</a><a href="submission.html">Submission guide</a><a href="run-card.json">Run card</a></nav></header>
+<main id="content"><h1>Preregistered candidates — proposals only, not experiments or score projections</h1>
+<p>The user-supplied parallel protocol refers to one method paragraph, but no lane was explicitly assigned in the available request. These are therefore a <strong>ranked research queue, not a lane selection</strong>. No hypothesis below is implemented or validated in this review. The merged base contains an earlier H_STEP-OVER TIFF; its literal uniqueness gate fails and it has no compliant holdout, so it is not evidence to repeat that method or a new-science baseline.</p>
+<p>Ranks reflect qualitative expected utility per implementation cost. “Expected DTI effect” is a directional scientific hypothesis only: no numeric gain, score projection, or promise is made. Novelty against every peer implementation remains to be established from code and registry comparisons, not titles.</p>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Hypothesis / layers</th>
+<th>Physical signature</th>
+<th>Why it might find uncatalogued faults</th>
+<th>Named non-fault mimic / rejection test</th>
+<th>Difference from prior work</th>
+<th>Expected DTI effect (qualitative only)</th>
+<th>Cost / readiness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Cross-scale displacement of radiometric domains</strong> — potassium, thorium, uranium plus reduced-to-pole magnetics</td>
+<td>Oriented cross-correlation of radioelement texture on opposite sides of a persistent magnetic edge; require consistent lateral offset across scales instead of simple gradient coincidence</td>
+<td>A displaced shallow-material boundary may reveal a concealed structural continuation without tracing the mapped catalogue</td>
+<td>Fluvial sorting, alluvial-fan margins, lithologic contacts, or survey seams; require independent-element and scale agreement, compare a zero-offset ablation, and test geology-matched controls</td>
+<td>Targets coherent cross-boundary displacement rather than raw band ratios or edge coincidence</td>
+<td>Could improve recall if offsets track blind faults; likely neutral or negative if contacts/sediment transport dominate. Must pass paired holdout CI.</td>
+<td>Medium; blocked until physical band names, units, and cache provenance are verified</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Depth-consistent oblique contact discontinuity</strong> — magnetic field, gravity, magnetic-source depth</td>
+<td>Multi-height upward continuation with cross-scale horizontal-gradient displacement; fit consistent dip direction and penalize mismatched depth</td>
+<td>A buried-source offset can mark a concealed contact/fault beyond mapped traces, without catalogue-distance features</td>
+<td>Dipping non-fault lithologic contact or remanent magnetization; compare to a fixed-edge model and depth-scrambled control</td>
+<td>Requires coherent displacement across heights, not a single Euler cluster or edge vote</td>
+<td>Potentially positive if the depth-consistent displacement predicts withheld fault segments; magnitude unknown and lithologic confounding could erase or reverse it</td>
+<td>Medium CPU; blocked on layer dictionary, provenance, and explicit lane</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Scale-conditioned demagnetization halo</strong> — magnetic and conductivity grids</td>
+<td>Signed low-magnetization residual across a narrow conductivity crest, conditioned on regional background and tested on symmetric cross-profiles</td>
+<td>Alteration associated with a buried permeable structure could leave a halo without a mapped surface trace</td>
+<td>Conductive clay, basin fill, fresh volcanic contacts; use geology-matched nulls and lateral shifts</td>
+<td>Joint signed residual geometry rather than generic conductivity ridge or raw edge magnitude</td>
+<td>A modest recall gain is plausible only if halo polarity persists in held-out regions; high false-positive risk, so no expected score claim</td>
+<td>Medium; blocked until channel units and meanings are verified</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Repeated stratigraphic displacement across independent drainages</strong> — elevation, slope, drainage profiles, with magnetic context</td>
+<td>Require aligned elevation/knickpoint offsets across separate catchments and reject local channel-convergence geometry</td>
+<td>Repeated displacement may reveal a buried or eroded fault where no single scarp is obvious</td>
+<td>Resistant beds, terraces, shorelines, base-level changes; leave-one-catchment-out tests and lithology controls</td>
+<td>Uses replicated cross-catchment displacement rather than stand-alone slope, curvature, or drainage density</td>
+<td>Low-to-moderate possible gain; likely negative if geomorphic controls explain the signal; only a paired spatial holdout can decide</td>
+<td>High; resolution/provenance and drainage independence must be checked</td>
+</tr>
+</tbody>
+</table>
+<h2>Feasibility and official sourcing</h2>
+<p>All four proposals initially use channels expected in the competition feature stack; no unverified external dataset is required for a first test. The upstream feature receipt uses anonymous <code>band01</code>…<code>band19</code>, which is not enough to establish physical meaning, units, or provenance. <strong>No candidate is execution-ready until the data dictionary and cached stack are authenticated and the method lane is assigned.</strong></p>
+<p>Potential external controls—not required inputs to the four initial proposals—include official USGS GeoDAWN survey metadata, USGS geologic mapping, and USGS 3DEP elevation. Their pages are listed in <code>research/REVIEW.md</code> and <code>docs/sources.json</code>, but they were not fetched in this environment; local coverage, licensing, and availability are therefore unverified. None is represented as a verified/free downloaded layer. Do not promote an external-data idea until its official source and relevant coverage are checked.</p>
+<h2>Required preregistration before any experiment</h2>
+<ol>
+<li>Obtain an explicit single-lane method paragraph and its matching cached feature-stack provenance.</li>
+<li>Freeze a complete registry, including calibration/null rasters. Screen the continuous surface before placement; stop at <code>|Spearman| &gt; 0.90</code> or more than 70% within-3-pixel dot overlap. No dense-lattice exemption or adversarial placement is allowed.</li>
+<li>Use whole-segment buffered hide-and-recover folds; rebuild catalogue-derived inputs from visible faults only; pixel-mask visible faults exactly.</li>
+<li>Run each feature alone as a leakage canary (AUC &gt;0.90 is leakage until disproven), then score pooled DTI with the shared evaluator and report evaluator version, withheld-positive count, and 95% CI.</li>
+<li>Compare paired against a same-fold incumbent, then reuse the shared writer and validate saved bytes. A separate selector—not the experiment—checks live slot availability.</li>
+</ol>
+<p>Stop at three experiments or two hours. No scores or leaderboard projections are claimed by this hypothesis register.</p></main><footer>Snapshot: 2026-10-26 · No competition upload performed · Research/audit only · Evidence over optimism</footer></body></html>

@@ -1,33 +1,27 @@
 {
-  "hypothesis": "No geological hypothesis selected: required method lane is missing",
-  "mechanism": "Prerequisite and provenance audit; no detector executed",
-  "non_fault_mimic": "Dipping lithologic contacts can mimic the first proposed magnetic/gravity hypothesis",
-  "holdout": {
-    "evidence_class": "HOLDOUT-DTI",
-    "status": "NOT_RUN",
-    "evaluator_version": "gems57-pooled-hide-v2 (restored only)",
-    "withheld_positives": null,
-    "dti": null,
-    "ci95": null
+  "schema_version": 2,
+  "record_kind": "SUPERSEDED_PREFLIGHT_SNAPSHOT",
+  "status": "SUPERSEDED",
+  "captured_context": "This prerequisite-only card described a checkout before the PR #7 candidate was integrated from origin/main. It is retained for audit history and is not the current candidate decision.",
+  "current_card": "run_card.json",
+  "current_artifact_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+  "current_download_decision": "AUDIT ONLY",
+  "current_submission_decision": "DO NOT SUBMIT",
+  "current_verdict": "negative",
+  "superseded_claims": [
+    "The earlier statement that no TIFF exists in the repository is stale relative to the merged base.",
+    "This snapshot did not account for the exact 97.87% candidate-dot overlap measured against the registered lattice on the pinned owner-mirror subset or the incomplete 58-raster report."
+  ],
+  "prerequisite_status": {
+    "method_lane": "UNASSIGNED",
+    "competition_labels": "MISSING",
+    "cached_feature_stack": "MISSING",
+    "segment_folds": "MISSING",
+    "complete_registry_manifest": "MISSING",
+    "holdout_dti": "NOT RUN",
+    "leakage_canary": "NOT RUN",
+    "organizer_receipt": null,
+    "weekly_slot_selected": false
   },
-  "registry": {
-    "status": "NOT_MEASURED",
-    "surface_rank_correlation": null,
-    "final_dot_overlap_within_3px": null,
-    "complete": false
-  },
-  "raster_sha256": null,
-  "validator": {
-    "status": "NOT_RUN_NO_RASTER",
-    "no_nan_inside_footprint": null,
-    "values_in_0_1": null,
-    "crs_shape_transform_match": null
-  },
-  "submission_name": "wbggemsdoe3-unassigned-20261026",
-  "note": "Prerequisite audit only; no assigned lane, no validated prediction, no submission authorized.",
-  "verdict": "negative",
-  "negative_kind": "blocked prerequisites; not a negative geological experiment",
-  "approved_for_submission": false,
-  "experiments_run": 0,
-  "weekly_slots_used": 0
+  "approved_for_submission": false
 }

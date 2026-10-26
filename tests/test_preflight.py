@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import sys
 from pathlib import Path
 import numpy as np
 import pytest
@@ -52,13 +53,31 @@ def test_missing_common_footprint_rejected():
     a=np.zeros((5,5))
     with pytest.raises(ValueError):audit.novelty(a,a,a,a)
 
-def test_negative_card_and_no_fake_download():
+def test_legacy_candidate_scripts_are_fail_closed():
+    import subprocess
+    for name in ('generate_submission.py','finalize_submission.py'):
+        result=subprocess.run([sys.executable,str(ROOT/'scripts'/name)],cwd=ROOT,capture_output=True,text=True)
+        assert result.returncode==2
+        assert 'BLOCKED' in result.stdout or 'NOT_FINALIZED' in result.stdout
+
+
+def test_negative_card_and_audit_only_download():
     card=json.loads((ROOT/'evidence/run-card.json').read_text())
-    assert len(card['note'])<=140 and card['verdict']=='negative'
-    assert card['raster_sha256'] is None and not card['approved_for_submission']
+    assert card['status']=='SUPERSEDED'
+    assert card['current_verdict']=='negative'
+    assert card['current_download_decision']=='AUDIT ONLY'
+    assert not card['approved_for_submission']
+    current=json.loads((ROOT/'evidence/run_card.json').read_text())
+    assert current['verdict']=='negative' and current['submission']['submit_allowed'] is False
+    assert current['submission']['note_characters']<=140
+    raster=ROOT/current['artifact']['path']
+    import hashlib
+    assert raster.is_file() and hashlib.sha256(raster.read_bytes()).hexdigest()==current['raster_sha256']
     rows=json.loads((ROOT/'knowledge/focus-sites.json').read_text())
     assert len(rows)==9 and all(r['estimate'] is None and not r['approved_for_submission'] for r in rows)
-    assert not list((ROOT/'docs').rglob('*.tif'))
+    index=(ROOT/'docs/index.html').read_text()
+    assert 'DO NOT SUBMIT' in index and 'audit only' in index.lower()
+    assert 'Download submission' not in index
 
 def test_snapshot_blob_identity():
     import hashlib

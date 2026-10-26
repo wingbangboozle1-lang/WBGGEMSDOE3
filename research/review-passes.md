@@ -4,8 +4,8 @@
 
 * Inspected the starting checkout: only README.md; no existing model pipeline.
 * Retrieved nine GitHub source inventories and source pages plus the organizer reference README/notebook. Stored source pins and SHA-256 receipts.
-* Restored 12 comparison inputs from commit-pinned mirrors with SHA-256 validation; kept the TIFFs out of Git.
-* Independently computed all directed focus-nine pairwise overlaps and binary Spearman correlations, exact support identities, catalogue-distance pruning identity and lattice coverage bound.
+* The earlier audit restored 12 comparison inputs from commit-pinned mirrors and kept the TIFFs out of Git. A later provenance review found the owner mirror declares `existing_faults.tif` byte-identical to `labels.tif`; the current restore/audit path now skips that file and never treats it as an independent catalogue.
+* Independently computed the directed focus-nine pairwise overlaps and binary Spearman correlations, support-set identities and lattice coverage bound. The claimed catalogue-distance pruning explanation is quarantined because its source was the label-identical file.
 * Preserved seven shared instruments byte-for-byte, with checksum tests. No shared tool was privately modified.
 * Built the static site, executive guide, research review, four prospective hypotheses, evidence downloads and negative run card.
 * No model experiment, candidate-generation step, holdout performance estimate, live-slot selection or upload was executed.

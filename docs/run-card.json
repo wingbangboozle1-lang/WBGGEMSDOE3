@@ -1,44 +1,247 @@
 {
-  "hypothesis": "Preflight: the literal registry may preclude a conventional sparse-dot submission budget.",
-  "mechanism": "Compute exact 3-pixel coverage and the unavoidable overlap lower bound before any placement. No geological model tested.",
-  "named_non_fault_process": "Magnetic lithologic contacts and alluvial channel sorting can mimic proposed geological signals.",
-  "lane": "Unassigned: method paragraph absent; read-only audit only",
-  "holdout": {
-    "label": "NOT RUN",
-    "evaluator_version": null,
-    "withheld_positives": null,
-    "dti": null,
-    "ci95": null
+  "schema_version": 2,
+  "record_kind": "REVIEW_OF_EXISTING_ARTIFACT_NOT_NEW_EXPERIMENT",
+  "review_date_utc": "2026-10-26",
+  "artifact": {
+    "submission_name": "WB-GEMS-DOE-3-STEPOVER-DAMAGEZONE-35000D-5D451566",
+    "filename": "wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+    "path": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+    "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+    "dots": 35000,
+    "origin": "Already present on the merged base from PR #7; this branch did not generate or rerun it."
   },
-  "correlation_overlap_vs_registry": {
-    "candidate_surface": null,
-    "candidate_final_dots": null,
-    "historical_audit": "audit.json",
-    "scope": "Nine historical rasters plus one lattice; not a full live registry",
-    "preflight_bound": {
-      "footprint_pixels": 5167373,
-      "covered_pixels": 5160724,
-      "uncovered_pixels": 6649,
-      "dots": 37654,
-      "minimum_overlap": 0.8234184947150369,
-      "guaranteed_duplicate": true
+  "hypothesis": "H_STEP-OVER: geothermal upflow may localize at off-trace dilational step-overs and fault damage zones, potentially revealing uncatalogued structures. This is the prior artifact's hypothesis, not a lane selected or experiment run in this review.",
+  "mechanism": "The existing binary raster places dots 100 m–1.5 km from mapped catalogue traces, representing an asserted damage-zone / relay geometry. No compliant hide-and-recover evidence establishes that this geometry predicts withheld faults.",
+  "named_non_fault_mimic_process": "Dipping lithologic contacts, alluvial-fan boundaries, magnetic survey seams, and remanent magnetization can mimic step-over or damage-zone signals without a fault.",
+  "lane": {
+    "status": "UNASSIGNED",
+    "selected": false,
+    "reason": "No single method paragraph was explicitly supplied for this run; the prior artifact does not itself assign a lane."
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "point_estimate": null,
+    "ci95": null,
+    "reason": "Required labels, cached features, segment folds, and a lane are absent. No compliant buffered whole-segment hide-and-recover evaluation was performed."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "feature_auc": null,
+    "reason": "No authenticated feature stack or holdout labels/folds are available."
+  },
+  "registry_comparison": {
+    "status": "DUPLICATE_STOP_MEASURED_ON_PINNED_OWNER_MIRROR_SUBSET; FULL REGISTRY NOT AVAILABLE",
+    "complete_registry": false,
+    "preplacement_surface_spearman_abs_max": null,
+    "preplacement_surface_check": "NOT RUN: no continuous pre-placement surface is available. The prior audit function loaded the emitted binary TIFF as both its purported surface and final-dot raster.",
+    "measured_subset": {
+      "registry_rasters": [
+        "GEMSDOE24",
+        "GEMSDOE25",
+        "GEMSDOE27",
+        "GEMSDOE28",
+        "GEMSDOE30",
+        "GEMSDOE31",
+        "GEMSDOE32",
+        "GEMSDOE33",
+        "GEMSDOE36",
+        "registered_r13_lattice_s5"
+      ],
+      "registry_raster_count": 10,
+      "source_class": "Commit-pinned public owner mirrors; not organizer-authenticated and not the complete live registry",
+      "candidate_final_binary_max_abs_spearman": 0.006998699874269417,
+      "candidate_total_dot_overlap_max_within_3px": 0.9786857142857143,
+      "candidate_total_dot_overlap_max_raster": "registered_r13_lattice_s5",
+      "candidate_in_footprint_dot_overlap_with_lattice_within_3px": 0.9985986628908416,
+      "candidate_dot_overlap_stop_threshold": 0.7,
+      "strict_dot_overlap_rule_fails": true,
+      "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "sample_source_commit": "buffedlizard55-lab/GEMSDOE24@07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "registry_comparisons": {
+        "GEMSDOE24": {
+          "candidate_total_dot_overlap_within_3px": 0.2692,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.27460368434881616,
+          "final_binary_spearman_on_scored_footprint": -0.0008272096356198629,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE25": {
+          "candidate_total_dot_overlap_within_3px": 0.255,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.26015239541062096,
+          "final_binary_spearman_on_scored_footprint": -0.006125974453577875,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE27": {
+          "candidate_total_dot_overlap_within_3px": 0.27377142857142855,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.27927480804601057,
+          "final_binary_spearman_on_scored_footprint": -0.0007603189958214259,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE28": {
+          "candidate_total_dot_overlap_within_3px": 0.23365714285714287,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.23837328117245205,
+          "final_binary_spearman_on_scored_footprint": -0.0038309962018388925,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE30": {
+          "candidate_total_dot_overlap_within_3px": 0.255,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.26015239541062096,
+          "final_binary_spearman_on_scored_footprint": -0.006125974453577875,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE31": {
+          "candidate_total_dot_overlap_within_3px": 0.23765714285714284,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.24246051440749716,
+          "final_binary_spearman_on_scored_footprint": -0.006690253780096878,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE32": {
+          "candidate_total_dot_overlap_within_3px": 0.22454285714285716,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.2290602283011707,
+          "final_binary_spearman_on_scored_footprint": -0.006998699874269417,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE33": {
+          "candidate_total_dot_overlap_within_3px": 0.24691428571428573,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.25189034537120836,
+          "final_binary_spearman_on_scored_footprint": -0.00408389663593882,
+          "same_support_on_scored_footprint": false
+        },
+        "GEMSDOE36": {
+          "candidate_total_dot_overlap_within_3px": 0.22997142857142858,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.23460718769158906,
+          "final_binary_spearman_on_scored_footprint": -0.006778896642952508,
+          "same_support_on_scored_footprint": false
+        },
+        "registered_r13_lattice_s5": {
+          "candidate_total_dot_overlap_within_3px": 0.9786857142857143,
+          "candidate_in_footprint_dot_overlap_within_3px": 0.9985986628908416,
+          "final_binary_spearman_on_scored_footprint": 0.0010163864536278397,
+          "same_support_on_scored_footprint": false
+        }
+      },
+      "audit_record": "docs/audit.json:candidate_recheck"
+    },
+    "registered_lattice_coverage_bound": {
+      "scored_footprint_pixels": 5167373,
+      "pixels_covered_within_3px": 5160724,
+      "pixels_uncovered": 6649,
+      "coverage_fraction": 0.9987132726822701,
+      "candidate_dots_inside_scored_footprint": 34253,
+      "candidate_dots_outside_scored_footprint": 747,
+      "minimum_overlap_if_all_35000_dots_were_in_footprint": 0.8100285714285714,
+      "note": "The lower bound is conditional on dots being in the scored footprint; this candidate has 747 dots outside the owner-mirrored footprint, so the measured exact subset overlap above is the decision basis."
+    },
+    "prior_58_raster_report": {
+      "reported_abs_spearman_max": 0.0117,
+      "reported_overlap_fraction_max_within_3px": 0.2677,
+      "reported_registry_raster_count": 58,
+      "correlation_interpretation": "The prior audit loaded the final binary TIFF for its purported surface comparison; this is not a pre-placement continuous-surface correlation.",
+      "status": "INCOMPLETE OR INCONSISTENT WITH THE REGISTERED-LATTICE RECHECK: prior project report, not independently reproducible as a full-registry pass. Its scope/manifest is not supplied as complete evidence."
     }
   },
-  "raster_sha256": null,
+  "raster_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
   "validator_output": {
-    "status": "NOT RUN: no candidate",
-    "no_nan_inside_footprint": null,
-    "values_in_0_1": null,
-    "crs_shape_transform_match": null
+    "status": "LOCAL NUMERIC/GRID CHECK PASSED AGAINST REPOSITORY GRID; FOOTPRINT-MASK REVIEW FLAGS 747 POSITIVE CELLS OUTSIDE THE OWNER-MIRRORED SAMPLE MASK",
+    "repository_grid_check": {
+      "template": "data/template_grid.tif (all-zero repository grid; not the authenticated organizer sample)",
+      "single_band": true,
+      "crs_shape_transform_match": true,
+      "all_finite_values_in_0_1": true,
+      "no_inf_anywhere": true,
+      "no_nan_or_inf_inside": true,
+      "inside_values_in_0_1": true,
+      "whole_grid_finite": true,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "dot_count_gt_0_5": 35000,
+      "format_preflight_passed": true,
+      "ok_to_submit": false
+    },
+    "owner_mirrored_sample_footprint_check": {
+      "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "organizer_authenticated": false,
+      "grid_match": true,
+      "valid_footprint_pixels": 5167373,
+      "candidate_dots_inside_footprint": 34253,
+      "candidate_positive_pixels_outside_footprint": 747,
+      "sample_nodata": "NaN",
+      "candidate_whole_grid_finite": true,
+      "outside_footprint_convention_confirmed_by_organizer": false,
+      "numeric_grid_preflight": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "all_finite_values_in_0_1": true,
+        "no_inf_anywhere": true,
+        "no_nan_or_inf_inside": true,
+        "inside_values_in_0_1": true,
+        "outside_all_nan": false,
+        "whole_grid_finite": true,
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+        "format_preflight_passed": true,
+        "ok_to_submit": false,
+        "reason": "Format is necessary, not sufficient. Full scientific/novelty gates and separate selector required."
+      },
+      "mask_source_note": "Only the finite/nodata mask was used to identify scored-footprint cells; sample pixel values were not used as labels or features."
+    },
+    "portal_acceptance_verified": false
   },
-  "submission_name": null,
-  "note": "No candidate released: lane missing, historical duplicates, lattice budget infeasible. No weekly slot used.",
+  "score": {
+    "holdout_dti": null,
+    "organizer_confirmed": null,
+    "defensible_leaderboard_estimate": null,
+    "reason": "No labels, compliant holdout, or byte-linked organizer receipt. No number is represented as a score."
+  },
+  "submission": {
+    "name": "WB-GEMS-DOE-3-STEPOVER-DAMAGEZONE-35000D-5D451566",
+    "note": "WB-GEMS-DOE-3-STEPOVER-DAMAGEZONE-35000D-5D451566 | audit only; 97.87% lattice overlap; no HOLDOUT-DTI; DO NOT SUBMIT",
+    "note_characters": 117,
+    "download_for_audit_allowed": true,
+    "submit_allowed": false,
+    "organizer_receipt": null,
+    "weekly_slot_selected": false
+  },
+  "experiment_budget": {
+    "experiments_run_in_this_review": 0,
+    "maximum_experiments": 3,
+    "wall_budget_seconds": 7200,
+    "weekly_submission_slots_used": 0
+  },
   "verdict": "negative",
-  "ok_to_download_new_submission": false,
-  "ok_to_submit": false,
-  "experiments_run": 0,
-  "experiment_budget": 3,
-  "wall_budget_seconds": 7200,
-  "slots_used": 0,
-  "organizer_receipt": null
+  "negative_kind": "Measured duplicate stop against the registered calibration lattice; missing prerequisites; not a negative geological experiment"
 }

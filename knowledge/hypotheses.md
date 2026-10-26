@@ -1,38 +1,28 @@
-# Preregistered candidates — NOT experiments or score projections
+# Preregistered candidates — proposals only, not experiments or score projections
 
-No method paragraph was supplied after the user's “LANE” instruction. These
-are ranked **research options only**, not a lane selection. Nothing in this
-list is certified new across all peer code. In this checkout, no detector was
-implemented before this audit. Upstream has already attempted many edge,
-curvature, conductivity, relay and depth methods; naming alone is not novelty.
-The alternatives below require a full code/registry comparison after lane
-assignment. Ranks are qualitative expected benefit per cost, not estimated DTI.
+The user-supplied parallel protocol refers to one method paragraph, but no lane was explicitly assigned in the available request. These are therefore a **ranked research queue, not a lane selection**. No hypothesis below is implemented or validated in this review. The merged base contains an earlier H_STEP-OVER TIFF; its literal uniqueness gate fails and it has no compliant holdout, so it is not evidence to repeat that method or a new-science baseline.
 
-| Priority | Hypothesis / layers | Physical signature and transform | Why potentially unmapped, rather than a catalogue copier | Non-fault mimic / falsification | Difference and cost |
-|---|---|---|---|---|---|
-| 1 | Depth-consistent oblique contact discontinuity; provided magnetic field, gravity, magnetic-source depth | Multi-height upward continuation followed by cross-scale horizontal-gradient displacement; fit a consistent dip direction, penalize mismatched depth | Uses buried-source displacement without proximity-to-catalogue features; may expose blind contacts. Does not guarantee a fault | Dipping lithologic contact; compare to geologic boundaries and depth-scrambled control | Requires coherent displacement across heights, not a single Euler cluster or edge vote. Novelty against upstream depth-projection code not established. Medium CPU cost |
-| 2 | Scale-conditioned demagnetization halo; provided magnetic and conductivity grids | Signed low-magnetization residual across a narrow conductivity crest, conditioned on regional background; symmetric cross-profile rather than raw edge magnitude | Alteration along a buried permeable structure could leave a halo without a surface trace; not trained to reproduce catalogue distances | Conductive clay, basin fill, fresh volcanic contacts; geology-matched null and lateral shifts | Joint signed residual geometry rather than generic conductivity ridge. Requires units/channel provenance before use. Medium cost |
-| 3 | Drainage-independent displaced scarp pairs; provided elevation and magnetic grid | Match offset curvature zero-crossings on opposite sides of a magnetic edge, rejecting drainage-aligned curvature and long planar terraces | Small displaced surfaces may be absent from regional mapping; no fault catalogue used to construct transform | Shoreline terraces, roads and alluvial channels; reject with drainage/terrace nulls | Paired displacement residual, not stand-alone slope, step, curvature or tip continuation. High cost and DEM resolution may be inadequate |
-| 4 | Radiometric mixture-boundary discordance; provided K/Th/U grids plus magnetic grid | Fit a local compositional mixing manifold, score spatially persistent residuals normal to magnetic discontinuities, not raw band ratios | Hydrothermal redistribution can depart from lithologic mixing at buried structures | Soil moisture, survey seams, transported sediments; flight-block and moisture controls needed | Residual to a local multiband manifold, not an edge-concordance vote. High confounding risk; medium/high cost |
+Ranks reflect qualitative expected utility per implementation cost. “Expected DTI effect” is a directional scientific hypothesis only: no numeric gain, score projection, or promise is made. Novelty against every peer implementation remains to be established from code and registry comparisons, not titles.
+
+| Priority | Hypothesis / layers | Physical signature | Why it might find uncatalogued faults | Named non-fault mimic / rejection test | Difference from prior work | Expected DTI effect (qualitative only) | Cost / readiness |
+|---|---|---|---|---|---|---|---|
+| 1 | **Cross-scale displacement of radiometric domains** — potassium, thorium, uranium plus reduced-to-pole magnetics | Oriented cross-correlation of radioelement texture on opposite sides of a persistent magnetic edge; require consistent lateral offset across scales instead of simple gradient coincidence | A displaced shallow-material boundary may reveal a concealed structural continuation without tracing the mapped catalogue | Fluvial sorting, alluvial-fan margins, lithologic contacts, or survey seams; require independent-element and scale agreement, compare a zero-offset ablation, and test geology-matched controls | Targets coherent cross-boundary displacement rather than raw band ratios or edge coincidence | Could improve recall if offsets track blind faults; likely neutral or negative if contacts/sediment transport dominate. Must pass paired holdout CI. | Medium; blocked until physical band names, units, and cache provenance are verified |
+| 2 | **Depth-consistent oblique contact discontinuity** — magnetic field, gravity, magnetic-source depth | Multi-height upward continuation with cross-scale horizontal-gradient displacement; fit consistent dip direction and penalize mismatched depth | A buried-source offset can mark a concealed contact/fault beyond mapped traces, without catalogue-distance features | Dipping non-fault lithologic contact or remanent magnetization; compare to a fixed-edge model and depth-scrambled control | Requires coherent displacement across heights, not a single Euler cluster or edge vote | Potentially positive if the depth-consistent displacement predicts withheld fault segments; magnitude unknown and lithologic confounding could erase or reverse it | Medium CPU; blocked on layer dictionary, provenance, and explicit lane |
+| 3 | **Scale-conditioned demagnetization halo** — magnetic and conductivity grids | Signed low-magnetization residual across a narrow conductivity crest, conditioned on regional background and tested on symmetric cross-profiles | Alteration associated with a buried permeable structure could leave a halo without a mapped surface trace | Conductive clay, basin fill, fresh volcanic contacts; use geology-matched nulls and lateral shifts | Joint signed residual geometry rather than generic conductivity ridge or raw edge magnitude | A modest recall gain is plausible only if halo polarity persists in held-out regions; high false-positive risk, so no expected score claim | Medium; blocked until channel units and meanings are verified |
+| 4 | **Repeated stratigraphic displacement across independent drainages** — elevation, slope, drainage profiles, with magnetic context | Require aligned elevation/knickpoint offsets across separate catchments and reject local channel-convergence geometry | Repeated displacement may reveal a buried or eroded fault where no single scarp is obvious | Resistant beds, terraces, shorelines, base-level changes; leave-one-catchment-out tests and lithology controls | Uses replicated cross-catchment displacement rather than stand-alone slope, curvature, or drainage density | Low-to-moderate possible gain; likely negative if geomorphic controls explain the signal; only a paired spatial holdout can decide | High; resolution/provenance and drainage independence must be checked |
 
 ## Feasibility and official sourcing
 
-All four are conditional on the competition numerical stack actually containing
-the named quantities with documented units. The retrieved upstream feature
-receipt lists anonymous `band01`…`band19`; **that is insufficient to identify
-physical channels**. No viable execution is claimed until descriptions and
-provenance are recovered. The official reference README confirms data must be
-obtained separately, not that any given mirror is authentic.
+All four proposals initially use channels expected in the competition feature stack; no unverified external dataset is required for a first test. The upstream feature receipt uses anonymous `band01`…`band19`, which is not enough to establish physical meaning, units, or provenance. **No candidate is execution-ready until the data dictionary and cached stack are authenticated and the method lane is assigned.**
 
-No candidate requires a new external dataset for an initial numerical test.
-External confounder validation would benefit from official USGS GeoDAWN survey
-metadata, USGS geologic maps and USGS 3DEP elevation. Their domains are outside
-this environment's allowed outbound hosts. Sources named in the user request:
+Potential external controls—not required inputs to the four initial proposals—include official USGS GeoDAWN survey metadata, USGS geologic mapping, and USGS 3DEP elevation. Their pages are listed in `research/REVIEW.md` and `docs/sources.json`, but they were not fetched in this environment; local coverage, licensing, and availability are therefore unverified. None is represented as a verified/free downloaded layer. Do not promote an external-data idea until its official source and relevant coverage are checked.
 
-* https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
-* https://www.usgs.gov/3d-elevation-program
-* https://gdr.openei.org/submissions/1391
+## Required preregistration before any experiment
 
-These URLs are **not fetched or verified as obtainable here**. No inaccessible
-external-data hypothesis is proposed as immediately viable. Scientific
-mechanisms above are hypotheses, not conclusions backed by a literature review.
+1. Obtain an explicit single-lane method paragraph and its matching cached feature-stack provenance.
+2. Freeze a complete registry, including calibration/null rasters. Screen the continuous surface before placement; stop at `|Spearman| > 0.90` or more than 70% within-3-pixel dot overlap. No dense-lattice exemption or adversarial placement is allowed.
+3. Use whole-segment buffered hide-and-recover folds; rebuild catalogue-derived inputs from visible faults only; pixel-mask visible faults exactly.
+4. Run each feature alone as a leakage canary (AUC >0.90 is leakage until disproven), then score pooled DTI with the shared evaluator and report evaluator version, withheld-positive count, and 95% CI.
+5. Compare paired against a same-fold incumbent, then reuse the shared writer and validate saved bytes. A separate selector—not the experiment—checks live slot availability.
+
+Stop at three experiments or two hours. No scores or leaderboard projections are claimed by this hypothesis register.

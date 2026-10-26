@@ -1,6 +1,10 @@
 {
   "kind": "RASTER AUDIT \u2014 not HOLDOUT-DTI or organizer score",
   "scope": "Nine pinned historical leaders plus a registered lattice; not the full live registry",
+  "input_provenance": "Commit-pinned owner mirrors; not organizer-authenticated. The sample raster was used only for its finite/nodata footprint mask, not its values.",
+  "skipped_label_aliases": [
+    "existing_faults"
+  ],
   "rows": {
     "GEMSDOE24": {
       "format": {
@@ -686,11 +690,118 @@
     "minimum_overlap": 0.8234184947150369,
     "guaranteed_duplicate": true
   },
+  "candidate_recheck": {
+    "kind": "FINAL DOTS ONLY \u2014 not a surface audit, holdout, or organizer score",
+    "source_class": "Commit-pinned public owner mirrors; not organizer-authenticated or a complete live registry",
+    "candidate_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "scored_footprint_pixels": 5167373,
+    "candidate_dots_total": 35000,
+    "candidate_dots_inside_scored_footprint": 34253,
+    "candidate_positive_pixels_outside_scored_footprint": 747,
+    "all_dot_overlap_max_within_3px": 0.9786857142857143,
+    "all_dot_overlap_max_raster": "registered_r13_lattice_s5",
+    "in_footprint_overlap_with_lattice_within_3px": 0.9985986628908416,
+    "max_abs_final_binary_spearman": 0.006998699874269417,
+    "preplacement_surface_spearman": null,
+    "preplacement_surface_status": "NOT RUN: no continuous surface was supplied",
+    "format_against_owner_mirror_sample": {
+      "single_band": true,
+      "crs_shape_transform_match": true,
+      "all_finite_values_in_0_1": true,
+      "no_inf_anywhere": true,
+      "no_nan_or_inf_inside": true,
+      "inside_values_in_0_1": true,
+      "outside_all_nan": false,
+      "whole_grid_finite": true,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059"
+    },
+    "registry_raster_count": 10,
+    "registry_comparisons": {
+      "GEMSDOE24": {
+        "candidate_total_dot_overlap_within_3px": 0.2692,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.27460368434881616,
+        "final_binary_spearman_on_scored_footprint": -0.0008272096356198629,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE25": {
+        "candidate_total_dot_overlap_within_3px": 0.255,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.26015239541062096,
+        "final_binary_spearman_on_scored_footprint": -0.006125974453577875,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE27": {
+        "candidate_total_dot_overlap_within_3px": 0.27377142857142855,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.27927480804601057,
+        "final_binary_spearman_on_scored_footprint": -0.0007603189958214259,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE28": {
+        "candidate_total_dot_overlap_within_3px": 0.23365714285714287,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.23837328117245205,
+        "final_binary_spearman_on_scored_footprint": -0.0038309962018388925,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE30": {
+        "candidate_total_dot_overlap_within_3px": 0.255,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.26015239541062096,
+        "final_binary_spearman_on_scored_footprint": -0.006125974453577875,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE31": {
+        "candidate_total_dot_overlap_within_3px": 0.23765714285714284,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.24246051440749716,
+        "final_binary_spearman_on_scored_footprint": -0.006690253780096878,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE32": {
+        "candidate_total_dot_overlap_within_3px": 0.22454285714285716,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.2290602283011707,
+        "final_binary_spearman_on_scored_footprint": -0.006998699874269417,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE33": {
+        "candidate_total_dot_overlap_within_3px": 0.24691428571428573,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.25189034537120836,
+        "final_binary_spearman_on_scored_footprint": -0.00408389663593882,
+        "same_support_on_scored_footprint": false
+      },
+      "GEMSDOE36": {
+        "candidate_total_dot_overlap_within_3px": 0.22997142857142858,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.23460718769158906,
+        "final_binary_spearman_on_scored_footprint": -0.006778896642952508,
+        "same_support_on_scored_footprint": false
+      },
+      "registered_r13_lattice_s5": {
+        "candidate_total_dot_overlap_within_3px": 0.9786857142857143,
+        "candidate_in_footprint_dot_overlap_within_3px": 0.9985986628908416,
+        "final_binary_spearman_on_scored_footprint": 0.0010163864536278397,
+        "same_support_on_scored_footprint": false
+      }
+    }
+  },
   "champion_forensics": {
     "b2_subset_of_d28": true,
     "d28_removed_dots": 6436,
     "d28_added_dots": 0,
-    "equals_d28_euclidean_fault_distance_gt_2px": true,
-    "d25_d30_same_support": true
+    "d25_d30_same_support": true,
+    "catalogue_distance_pruning_identity": "NOT EVALUATED: the only pinned owner-mirrored existing_faults.tif is declared byte-identical to labels.tif and was deliberately not fetched or used."
   }
 }
