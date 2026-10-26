@@ -173,7 +173,11 @@ The static [GitHub Pages dashboard](https://wingbangboozle1-lang.github.io/WBGGE
 is built from the evidence. Its scheduled workflow refreshes the public leaderboard
 observation where reachable; failed refreshes retain a visibly stale snapshot. A feed
 cannot reveal account quota, private labels, actual uploaded bytes or selector approval.
-The source and checks are in `.github/workflows/` and `scripts/refresh_feed.py`.
+The repository currently also has legacy branch-based Pages enabled; the scheduled
+workflow stages the same `/docs/` URL layout to avoid broken links when both publish.
+The integration could not change the Pages source setting (GitHub returned 403); both
+publishers were observed to deploy successfully. The source and checks are in
+`.github/workflows/` and `scripts/refresh_feed.py`.
 
 **Next session:** resolve the registry-support contradiction through an explicit
 protocol revision; then verify official data provenance and band semantics, freeze the

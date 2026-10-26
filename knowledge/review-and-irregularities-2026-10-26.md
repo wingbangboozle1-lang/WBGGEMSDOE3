@@ -191,3 +191,15 @@ without a correctly constructed holdout and ultimately an organizer receipt.
 The shared repository is read-only to this integration. Neither the one-sided rank gate
 nor the uncertain outside-footprint convention was patched in a private fork; both need
 upstream maintainer/organizer resolution before any future clearance.
+
+### Pages publishing permissions and stable paths
+
+PR #11 merged and its tests and Pages deployment succeeded. The repository's Pages
+setting still reports legacy `main` `/`; attempting to switch the source to `workflow`
+with the GitHub integration returned `403 Resource not accessible by integration`.
+Both the branch-based publisher and the custom Actions deployment succeeded. To avoid
+race-dependent `/docs/` links, the scheduled workflow stages the same root redirect and
+`docs/` layout as the branch source. This workaround does not require changing the
+protected repository setting or pushing a different branch. The public snapshot is
+explicitly timestamped, and a failed refresh remains stale rather than being presented
+as live.

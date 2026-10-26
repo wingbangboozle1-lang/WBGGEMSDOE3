@@ -24,10 +24,19 @@ jobs:
         run: python scripts/refresh_feed.py
       - name: Render site from evidence and check links
         run: python scripts/build_site.py && python scripts/check_site.py
+      # The repository still has branch-based Pages enabled. Keep the same
+      # /docs/... URL layout in either publisher so a scheduled deployment does
+      # not break links if both publishers race on a main push.
+      - name: Stage stable Pages URL layout
+        run: |
+          mkdir -p .cache/pages-release
+          cp index.html .cache/pages-release/index.html
+          cp -a docs .cache/pages-release/docs
+          touch .cache/pages-release/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: .cache/pages-release
   deploy:
     environment:
       name: github-pages
