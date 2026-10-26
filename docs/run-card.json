@@ -1,0 +1,44 @@
+{
+  "hypothesis": "Preflight: the literal registry may preclude a conventional sparse-dot submission budget.",
+  "mechanism": "Compute exact 3-pixel coverage and the unavoidable overlap lower bound before any placement. No geological model tested.",
+  "named_non_fault_process": "Magnetic lithologic contacts and alluvial channel sorting can mimic proposed geological signals.",
+  "lane": "Unassigned: method paragraph absent; read-only audit only",
+  "holdout": {
+    "label": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface": null,
+    "candidate_final_dots": null,
+    "historical_audit": "audit.json",
+    "scope": "Nine historical rasters plus one lattice; not a full live registry",
+    "preflight_bound": {
+      "footprint_pixels": 5167373,
+      "covered_pixels": 5160724,
+      "uncovered_pixels": 6649,
+      "dots": 37654,
+      "minimum_overlap": 0.8234184947150369,
+      "guaranteed_duplicate": true
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no candidate",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "No candidate released: lane missing, historical duplicates, lattice budget infeasible. No weekly slot used.",
+  "verdict": "negative",
+  "ok_to_download_new_submission": false,
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "experiment_budget": 3,
+  "wall_budget_seconds": 7200,
+  "slots_used": 0,
+  "organizer_receipt": null
+}
