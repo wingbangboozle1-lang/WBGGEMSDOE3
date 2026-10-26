@@ -2,7 +2,7 @@
 
 > This file documents one parallel lane. The repository-wide README (project prompt, current decision, protocol) is [README.md](README.md); its **DO NOT SUBMIT** decision is consistent with this lane's NEGATIVE verdict below.
 
-> **Read this first.** Clean site: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/lst1/> (GitHub Pages from `/docs`; if it 404s open `docs/lst1/lst1/index.html`).
+> **Read this first.** Clean site: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/docs/lst1/> (URL layout not yet verified live) (GitHub Pages from `/docs`; if it 404s open `docs/lst1/lst1/index.html`).
 
 ## 1 · The file (download, name, note)
 | | |
