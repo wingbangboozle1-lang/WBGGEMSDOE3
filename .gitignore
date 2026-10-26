@@ -1,0 +1,8 @@
+# Local environments, restored mirrors, caches and generated outputs are not project source.
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+/data/
+/out/
