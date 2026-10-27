@@ -1,12 +1,110 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="An evidence-first research and submission audit for the DOE GEMS Prize.">
-<title>How to submit · GEMS Field Notes</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/status.js" defer></script></head>
-<body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>GEMS FIELD NOTES<small>FAULT DISCOVERY / RESEARCH</small></span></a>
-<nav class="navigation" aria-label="Main navigation"><a  href="index.html">Overview</a><a class=active href="executive-summary.html">How to submit</a><a  href="research.html">Research</a><a  href="evidence.html">Evidence</a></nav><span class="nav-status"><i class="dot"></i> No file approved</span></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Executive summary / Submission guide</div><div class="title-line"><div><h1>How to submit,<br>when it is ready.</h1><p class="subhead">The checklist is automatic; a portal upload is a separate, explicitly authorized action.</p></div></div><div class="decision"><div class="decision-inner"><div><div class="decision-label"><i class="dot"></i> Automated verdict · negative</div>
-<h2>No competition file is cleared.</h2><p>This lane stopped before modeling. A parallel candidate fails the literal registry rule and footprint check. Historical and concurrent files are research only; format checks alone cannot authorize a submission.</p></div>
-<div class="actions"><a class="button" href="executive-summary.html">Submission guide <span>↗</span></a><a class="button secondary" href="data/run_card.json" download>Download run card ↓</a></div></div></div></div></section>
-<div class="wrap content"><section class="section"><div class="section-head"><div><div class="kicker">Current state</div><h2>There is no cleared file to upload today.</h2><p>Do not submit old references, a renamed copy, or a research-only artifact.</p></div></div><div class="card panel"><div class="readiness"><i class="dot"></i> NOT OK TO SUBMIT · no TIFF is cleared</div><p style="margin-top:12px">The decision is produced from raster bytes and the literal registry rule. It does not require a human geologic inspection. An upload action would require an authenticated competition account, which this environment does not have.</p></div></section>
-<section class="section"><div class="section-head"><div><div class="kicker">Only after all gates pass</div><h2>Steps at the competition portal</h2></div></div><div class="steps"><article class="card step"><span class="step-number">01</span><div><h3>Confirm an approved, unique file</h3><p>Open this page and verify that the automatic candidate, feature canaries, same-evaluator holdout, full literal registry checks, saved-file validator and separate weekly selector all pass. The parallel candidate fails the registry and footprint checks; no release has cleared the full sequence.</p></div></article><article class="card step"><span class="step-number">02</span><div><h3>Download the exact approved GeoTIFF</h3><p>Use the download shown beside its SHA-256 and compare the bytes with its receipt. The file must be one float32 band, match the sample CRS, shape and transform, and have no nonfinite or out-of-range values in the footprint. The official text requires null/NaN outside bounds, whereas the shared writer emits unmasked zeros outside the mirrored footprint. Confirm the meaning of bounds with organizers and reconcile the shared writer before upload.</p></div></article><article class="card step"><span class="step-number">03</span><div><h3>Check available weekly slots</h3><p>Sign in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a>. The official rules state up to three submissions per week; check the live portal and team quota before using one. We cannot see your account quota.</p></div></article><article class="card step"><span class="step-number">04</span><div><h3>Upload once, with the approved note</h3><p>Select “Submit” then “Make new submission”, choose the exact TIFF or single-TIFF ZIP, and paste the generated name/note if provided (note ≤ 140 characters in this project). Preserve the organizer receipt and uploaded hash together. Do not report a local holdout as a portal result.</p></div></article><article class="card step"><span class="step-number">05</span><div><h3>Select one final submission before the deadline</h3><p>The same selected submission is scored for both prize rounds. Review eligibility, reproducible code, external-data licensing and the required disclosure of generative AI use in the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>.</p></div></article></div></section>
-<section class="section"><div class="grid2"><article class="card panel"><h3>About the range error</h3><p>“Predicted values must be in range [0, 1]” can reflect invalid values or an encoding issue, but the exact cause of the reported rejection has not been established. The writer rejects NaN, infinities, sentinels and values outside [0,1] rather than silently clipping predictions. The official text says outside bounds must be null/NaN, but the mirrored sample has NaNs outside its footprint and the shared writer emits unmasked zeros. The meaning of bounds and acceptance are unresolved; investigate with organizers and reconcile the shared writer before any future upload.</p></article><article class="card panel"><h3>Automated checks are necessary, not sufficient</h3><p>A file passing the local validator is only structurally compatible with the mirrored sample. It still needs uniqueness, leakage, scientifically valid holdout, and selector approval. The hidden test labels remain inaccessible.</p><a href="evidence.html">Review the negative run card →</a></article></div></section></div></main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No slot spent by this audit.</span></div></footer></body></html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nine-site analysis · WB-GEMS-DOE-3</title>
+<style>
+:root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{background:#0d1b1e;color:#fff}header.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.top a{color:#cfe3e8;text-decoration:none;margin-right:14px;font-size:14px}header.top a.active{color:#fff;font-weight:600}
+.brand{font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:34px;line-height:1.15;margin:26px 0 10px}h2{font-size:24px;margin:34px 0 10px}h3{font-size:18px;margin:18px 0 8px}
+p.lead{font-size:18px;color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.verdict{border-left:6px solid var(--ok)}.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
+.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:700;font-size:17px}
+.btn.sec{background:#fff;color:var(--accent);border:1px solid var(--line);font-weight:600;font-size:15px;padding:11px 16px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{background:#eef3f4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+tr.best td{background:#eefaf3}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.yes{background:#e3f6ec;color:var(--ok)}.no{background:#fbe8eb;color:var(--bad)}.mid{background:#fdf0e0;color:var(--warn)}
+.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:6px 14px;font-size:14px}
+.kv div:nth-child(odd){color:var(--muted)}
+footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
+ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
+.scroll{overflow-x:auto}
+</style></head>
+<body>
+<header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
+<nav><a class="" href="index.html">Executive summary</a><a class="active" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a></nav></div></header>
+<main class="wrap">
+
+<h1>Nine-site analysis</h1>
+<p class="lead">The nine focus sites, their best claimed file, a single comparable estimate, and a
+measured uniqueness verdict. Instrument: <code>gemsw.inversion</code> v2 — the official DTI formula
+inverted on 118 published sibling scores; site-grouped CV MAE 0.037, Spearman
+0.946, R² 0.638.</p>
+
+<div class="card scroll"><table>
+<thead><tr><th>Site</th><th>Best historical file</th><th>Dots</th><th>Owner-reported</th>
+<th>LEDGER-INVERSION estimate</th><th>Unique? (max |ρ| / overlap)</th><th>Overlaps</th></tr></thead>
+<tbody><tr><td>GEMSDOE32</td><td class='mono'>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</td><td>37,654</td><td>0.2778</td><td>0.3599</td><td><span class='tag no'>NO</span> 0.984 / 1.000</td><td>GEMSDOE24</td></tr><tr><td>GEMSDOE36</td><td class='mono'>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</td><td>38,854</td><td>0.2750</td><td>0.3588</td><td><span class='tag no'>NO</span> 0.984 / 0.976</td><td>GEMSDOE27</td></tr><tr><td>GEMSDOE28</td><td class='mono'>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</td><td>37,660</td><td>0.2710</td><td>0.3475</td><td><span class='tag no'>NO</span> 0.714 / 1.000</td><td>GEMSDOE24</td></tr><tr><td>GEMSDOE31</td><td class='mono'>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</td><td>40,199</td><td>0.2708</td><td>0.3545</td><td><span class='tag no'>NO</span> 0.968 / 1.000</td><td>GEMSDOE24</td></tr><tr><td>GEMSDOE33</td><td class='mono'>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</td><td>41,865</td><td>0.2632</td><td>0.3469</td><td><span class='tag no'>NO</span> 0.819 / 0.997</td><td>GEMSDOE27</td></tr><tr><td>GEMSDOE25</td><td class='mono'>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</td><td>44,090</td><td>0.2600</td><td>0.3460</td><td><span class='tag no'>NO</span> 1.000 / 1.000</td><td>GEMSDOE24</td></tr><tr><td>GEMSDOE30</td><td class='mono'>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</td><td>44,090</td><td>0.2600</td><td>0.3460</td><td><span class='tag no'>NO</span> 1.000 / 1.000</td><td>GEMSDOE24</td></tr><tr><td>GEMSDOE24</td><td class='mono'>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</td><td>60,069</td><td>0.2477</td><td>0.3292</td><td><span class='tag no'>NO</span> 0.990 / 1.000</td><td>GEMSDOE25</td></tr><tr><td>GEMSDOE27</td><td class='mono'>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</td><td>61,328</td><td>0.2449</td><td>0.3271</td><td><span class='tag no'>NO</span> 0.990 / 0.980</td><td>GEMSDOE24</td></tr></tbody></table></div>
+<p class="small">Owner-reported scores come from the pinned sibling repositories and carry no DrivenData
+receipt. The estimate column applies the <em>same</em> model to <em>every</em> file, which is why it can be
+compared across sites; it over-predicts the top of the ledger by about 0.08 (champion 0.2778 observed vs
+0.3599 predicted), so treat absolute
+values as an upper envelope and the ordering as the reliable signal.</p>
+
+<h2>Our candidate in the same frame</h2>
+<div class="card verdict warn">
+<div class="kv">
+<div>File</div><div class="mono">wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</div>
+<div>Dots</div><div>30,000 (1.5 px Poisson-disk, every cell within 2 px of the catalogue excluded)</div>
+<div>LEDGER-INVERSION estimate</div><div><strong>0.2687</strong> raw · 0.2074 bias-corrected</div>
+<div>HOLDOUT-DTI (catalogue, 10 km tiles)</div><div>0.0722 · 95 % CI 0.0684–0.0755 · n = 60,988</div>
+<div>Uniqueness vs 118 verified rasters</div><div>max |ρ| 0.025 · worst overlap 0.631 · <span class="tag yes">PASS</span></div>
+<div>Uniqueness vs the nine focus files</div><div>max |ρ| 1.000 for those files; ours is not a descendant of H19-5</div>
+</div>
+</div>
+
+<h2>Reference fields under the same two instruments</h2>
+<div class="card scroll"><table>
+<thead><tr><th>Field</th><th>Dots</th><th>LEDGER-INVERSION estimate</th><th>HOLDOUT-DTI (catalogue)</th></tr></thead>
+<tbody>
+<tr><td>Our candidate (TDE-30k)</td><td>30,000</td><td>0.2687</td><td>0.0722</td></tr>
+<tr><td>H19-5 solid network (GEMSDOE19)</td><td>121,131</td>
+<td>0.2768</td>
+<td>0.1646</td></tr>
+<tr><td>Champion H33-B2 (GEMSDOE32)</td><td>37,654</td>
+<td>0.3599</td>
+<td>0.0065</td></tr>
+<tr><td>Public catalogue used as the prediction</td><td>60,988</td>
+<td>0.0016</td>
+<td>1.0000</td></tr>
+</tbody></table></div>
+<p class="small">The last row is the clearest evidence that the catalogue is masked: uploading the mapped
+faults scores ~0 on the ledger instrument even though it is “perfect” against the catalogue holdout
+(1.0000 by construction). The two instruments answer different questions — catalogue recovery versus
+recovery of the private, unmapped truth — and they are never mixed.</p>
+
+<h2>The metric, and why the champion's recipe worked</h2>
+<div class="card">
+<p>For a binary dot field of <em>n</em> dots, with <em>M</em> hidden-truth cells,</p>
+<p class="mono" style="font-size:13px">T = Σ<sub>g∈G</sub> max<sub>x∈P</sub> k(d(x,g)),&nbsp;
+FP<sub>w</sub> = Σ<sub>x∈P</sub> k(dist(x,G)),&nbsp; DTI = T / (T + 0.2·FP<sub>w</sub> + 0.8·(M−T))</p>
+<p>Adding one dot changes DTI by ≥ 0 only if its marginal credit exceeds ≈ 0.2·DTI. At DTI ≈ 0.28 that
+bar is ≈ 0.056 kernel-credit units, i.e. a local hidden-truth fraction of roughly 0.6 % inside the
+3-pixel kernel footprint. Everything in the champion family is a consequence of that threshold:
+thinning removes dots below it, and the catalogue-annulus deletions remove dots inside the masked band
+where credit is impossible. It is a pruning family, so it has no remaining source of <em>new</em>
+information — which is exactly why the score saturates near 0.28.</p>
+</div>
+
+</main>
+<footer><div class="wrap">
+<p><strong>Evidence classes used on this site.</strong> <em>LEDGER-INVERSION ESTIMATE</em> = this
+project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
+no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
+<em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
+read from the DrivenData leaderboard page. No number here is an organizer-confirmed score of a file
+we produced, and no submission slot has been spent.</p>
+<p>Independent research; not affiliated with the DOE or DrivenData. Generated from
+<code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
+</div></footer>
+</body></html>

@@ -110,9 +110,16 @@ def main():
 
 
 def build():
-    """Compatibility alias for the preserved site reproducibility tests."""
-    main()
+    """Compatibility alias: the dossier owns docs/index.html and friends.
+
+    The pages above are superseded by scripts/build_dossier.py, which renders from
+    evidence/*.json only (the negative-era pages claimed no file could ever be cleared,
+    which is no longer the project's finding).  This alias is kept so the existing CI
+    workflows keep calling one entry point.
+    """
+    from build_dossier import main as dossier_main
+    return dossier_main()
 
 
 if __name__ == "__main__":
-    main()
+    build()
