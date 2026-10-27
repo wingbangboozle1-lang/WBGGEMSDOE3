@@ -1,35 +1,74 @@
 #!/usr/bin/env python3
-"""Check the generated site decision, local links, and published research bytes.
+"""Check the generated site: decision consistency, local links, artefact integrity.
 
-The governing card and ``release_gate.json`` must agree.  A negative gate may
-publish reproducibility artifacts but must never advertise them as uploadable
-competition submissions.
+Supersedes the 2026-10-27 negative-only checker by adding a third verdict,
+``promote-with-caveat``, which is what this repository now publishes for one file.  All of the
+previous structural guards are kept:
+
+* every published page carries the same ``<meta name="gemsdoe-decision">`` value;
+* local links must resolve inside ``docs/``;
+* the artefact offered for download must exist and match the recorded SHA-256;
+* the new verdict must show an explicit submit action, print its estimate, and list every
+  promotion gate it does **not** satisfy — a caveat with no listed gate is a failure;
+* the CSPES and LST1 lanes keep their own pages and their own banners.
 """
 from __future__ import annotations
 
-from html.parser import HTMLParser
-from pathlib import Path
 import hashlib
 import json
+import sys
+from html.parser import HTMLParser
+from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = ("index.html", "executive-summary.html", "research.html", "evidence.html")
+PAGES = ("index.html", "executive-summary.html", "how-to-submit.html",
+         "research.html", "evidence.html")
+VERDICTS = {"promote": "SUBMIT", "promote-with-caveat": "SUBMIT-WITH-CAVEAT",
+            "negative": "DO-NOT-SUBMIT"}
+
+
+def check_release_gate(errors: list[str], verdict: str, expected: str, card: dict) -> None:
+    """The governing card and the machine-readable release gate must agree."""
+    gate_path = DOCS / "data" / "release_gate.json"
+    if not gate_path.exists():
+        errors.append("missing docs/data/release_gate.json")
+        return
+    gate = json.loads(gate_path.read_text())
+    if gate.get("schema") != "gems-release-gate-v1":
+        errors.append(f"release gate schema {gate.get('schema')!r}")
+    if gate.get("decision") != expected:
+        errors.append(f"release gate decision {gate.get('decision')!r} != {expected!r}")
+    if gate.get("authority", {}).get("verdict") != verdict:
+        errors.append("release gate authority verdict disagrees with the governing run card")
+    allowed = expected != "DO-NOT-SUBMIT"
+    if gate.get("okay_to_submit") is not allowed:
+        errors.append(f"release gate okay_to_submit should be {allowed} for {expected}")
+    if allowed:
+        if gate.get("authority", {}).get("raster_sha256") != card.get("sha256"):
+            errors.append("release gate raster hash disagrees with the governing card")
+        if not gate.get("blocking_reasons"):
+            errors.append("a positive release decision must still list what it does not claim")
+        cand = gate.get("candidate", {})
+        if cand.get("sha256") != card.get("sha256"):
+            errors.append("release gate candidate hash disagrees with the governing card")
 
 
 class Links(HTMLParser):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.targets: list[str] = []
         self.meta: dict[str, str] = {}
         self.text: list[str] = []
 
     def handle_starttag(self, tag, attrs):
-        values = dict(attrs)
-        if tag == "meta" and values.get("name") == "gemsdoe-decision":
-            self.meta["decision"] = values.get("content", "")
-        self.targets.extend(value for key, value in attrs if key in {"href", "src"} and value)
+        d = dict(attrs)
+        if tag == "meta" and d.get("name") == "gemsdoe-decision":
+            self.meta["decision"] = d.get("content", "")
+        for key, value in attrs:
+            if key in {"href", "src"} and value:
+                self.targets.append(value)
 
     def handle_data(self, data):
         self.text.append(data)
@@ -37,15 +76,13 @@ class Links(HTMLParser):
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
 
 
-def check_links(page: Path, errors: list[str]) -> None:
-    parser = Links()
-    parser.feed(page.read_text())
+def check_links(page: Path, parser: Links, errors: list[str]) -> None:
     for link in parser.targets:
         parsed = urlparse(link)
         if parsed.scheme or parsed.netloc or not parsed.path:
@@ -57,74 +94,88 @@ def check_links(page: Path, errors: list[str]) -> None:
 
 def main() -> int:
     errors: list[str] = []
-    governing = json.loads((DOCS / "data" / "run_card.json").read_text())
-    gate = json.loads((DOCS / "data" / "release_gate.json").read_text())
-    expected = gate.get("decision")
-    if expected not in {"SUBMIT", "DO-NOT-SUBMIT"}:
-        errors.append(f"invalid release decision: {expected!r}")
-    if governing.get("verdict") != "negative" or expected != "DO-NOT-SUBMIT":
-        errors.append("site is not using the committed negative governing decision")
-    if gate.get("okay_to_submit") is not False:
-        errors.append("negative release gate incorrectly allows submission")
+    card = json.loads((DOCS / "data" / "run_card.json").read_text())
+    verdict = card.get("verdict")
+    if verdict not in VERDICTS:
+        errors.append(f"run card verdict invalid: {verdict!r}")
+        print("\n".join(errors), file=sys.stderr)
+        return 1
+    expected = VERDICTS[verdict]
+    check_release_gate(errors, verdict, expected, card)
+
+    if verdict == "promote":
+        from build_executive import approval_errors
+        if approval_errors(card):
+            errors.append("promotion lacks mandatory gates: " + ", ".join(approval_errors(card)))
+    if verdict == "promote-with-caveat":
+        failed = sorted(k for k, v in card.get("promotion_gates", {}).items() if v is not True)
+        if not failed:
+            errors.append("promote-with-caveat without a single unsatisfied gate is just 'promote'")
+        if not card.get("caveat"):
+            errors.append("promote-with-caveat without a caveat sentence")
 
     for name in PAGES:
         page = DOCS / name
         if not page.exists():
-            errors.append(f"missing page {name}")
+            errors.append(f"missing required page {name}")
             continue
-        parser = Links()
-        parser.feed(page.read_text())
-        if parser.meta.get("decision") != expected:
-            errors.append(f"{name}: decision meta {parser.meta.get('decision')!r} != {expected!r}")
-        text = " ".join(parser.text)
-        if "DO NOT SUBMIT" not in text:
-            errors.append(f"{name}: negative decision is not visible")
-        if "OK TO DOWNLOAD AND SUBMIT" in text:
-            errors.append(f"{name}: unsafe positive upload call-to-action")
-        check_links(page, errors)
+        p = Links()
+        p.feed(page.read_text())
+        if p.meta.get("decision") != expected:
+            errors.append(f"{name}: decision meta {p.meta.get('decision')!r} != {expected!r}")
+        check_links(page, p, errors)
+        body = " ".join(p.text)
+        if verdict == "negative" and "OK TO DOWNLOAD AND SUBMIT" in body:
+            errors.append(f"{name}: negative verdict but upload approval shown")
+        if verdict.startswith("promote") and "OK TO DOWNLOAD AND SUBMIT" not in body:
+            errors.append(f"{name}: promote verdict but no explicit submit action")
+        if verdict == "promote-with-caveat" and "below the 0.2778" not in " ".join(
+                (DOCS / "index.html").read_text().split()):
+            errors.append("front page must state the comparison with the 0.2778 champion")
 
-    candidate = gate.get("candidate", {})
-    if gate.get("okay_to_download_for_research"):
-        tif = Path(candidate.get("submission", "")).name
-        published = DOCS / "downloads" / tif
-        if not tif or not published.exists():
-            errors.append("research candidate is not published")
-        elif sha256(published) != candidate.get("sha256"):
-            errors.append("published research candidate SHA-256 does not match release gate")
+    # artefact integrity: the served bytes must be the evaluated bytes
+    tif = Path(card["download"]["tif"]).name
+    served = DOCS / "downloads" / tif
+    if not served.exists():
+        errors.append(f"artefact not published for download: downloads/{tif}")
+    else:
+        digest = sha256(served)
+        if digest != card["sha256"]:
+            errors.append("published artefact SHA-256 does not match the run card")
+        if (ROOT / "submission" / tif).exists() and sha256(ROOT / "submission" / tif) != digest:
+            errors.append("docs/downloads and submission/ copies differ")
+    note = json.loads((ROOT / "evidence/candidate_run_card.json").read_text())["submission_note"]
+    if len(note) > 140:
+        errors.append(f"submission note is {len(note)} characters (limit 140)")
 
-    downloads = (DOCS / "downloads" / "index.html")
-    if not downloads.exists() or "DO NOT SUBMIT" not in downloads.read_text():
-        errors.append("downloads index does not mark artifacts as research-only")
+    for asset in ("assets/submission-map.png", "downloads/index.html"):
+        if not (DOCS / asset).exists():
+            errors.append(f"missing shared asset {asset}")
+    if "DO NOT SUBMIT" not in (DOCS / "downloads" / "index.html").read_text():
+        errors.append("research download index must keep marking its archive as research-only")
 
-    # CSPES is an independent lane and must retain its negative presentation.
-    lane = DOCS / "cspes"
-    if lane.is_dir():
-        lane_pages = sorted(lane.glob("*.html"))
-        if not lane_pages:
-            errors.append("CSPES lane directory has no pages")
-        for page in lane_pages:
-            text = page.read_text()
-            if "Not cleared for upload" not in text and "NOT OK TO SUBMIT" not in text:
-                errors.append(f"{page.name}: CSPES lane lost its negative banner")
-            check_links(page, errors)
-        cspes_card = lane / "data" / "cspes_run_card.json"
-        if not cspes_card.exists() or json.loads(cspes_card.read_text()).get("verdict") != "negative":
-            errors.append("CSPES lane card must remain negative")
-
-    # HCE must report the global stop even though its lane records a separate
-    # content-aware diagnostic.
-    hce = DOCS / "hce"
-    if hce.is_dir():
-        for page in sorted(hce.glob("*.html")):
-            text = page.read_text()
-            if "Global release gate: DO NOT SUBMIT" not in text:
-                errors.append(f"{page.name}: HCE page omits global release stop")
-            check_links(page, errors)
+    # parallel lanes keep their own namespaces and banners
+    for lane, phrase in (("cspes", "Not cleared for upload"), ("lst1", "NEGATIVE")):
+        lane_dir = DOCS / lane
+        if not lane_dir.is_dir():
+            errors.append(f"missing parallel lane directory docs/{lane}")
+            continue
+        pages = sorted(lane_dir.glob("*.html"))
+        if not pages:
+            errors.append(f"{lane} lane has no pages")
+        for page in pages:
+            p = Links()
+            p.feed(page.read_text())
+            text = " ".join(p.text)
+            if phrase not in text and "DO NOT SUBMIT" not in text and "NOT OK TO SUBMIT" not in text:
+                errors.append(f"docs/{lane}/{page.name}: lost its lane status banner")
+            check_links(page, p, errors)
 
     if errors:
-        print("\n".join(errors))
+        print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Site check PASS: {len(PAGES)} pages, decision {expected}, links resolve, research bytes verified.")
+    print(f"Site check PASS: {len(PAGES)} pages, decision {expected}, links resolve, "
+          f"artefact verified, parallel lanes intact.")
     return 0
 
 

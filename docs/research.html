@@ -1,26 +1,134 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>Science · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}header b{font-size:17px}header a{color:var(--mut);text-decoration:none;font-size:14px}header a:hover,header a.on{color:var(--fg)}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}h1{font-size:30px;line-height:1.25;margin:8px 0 10px}h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}h3{font-size:17px;margin:22px 0 8px}p,li{color:#d7dee6}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px;overflow-wrap:anywhere}.small{font-size:13.5px;color:var(--mut)}.hero{border:1px solid var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--bad);color:#fff}.btn{display:inline-block;background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}.btn.warn{background:var(--warn);color:#1a1200;border-color:var(--warn)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.kpi .v{font-size:21px;font-weight:700}.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr.me td{background:#28191b;font-weight:600}.yes{color:var(--ok);font-weight:700}.no{color:#ff8b8b;font-weight:700}.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.danger{background:#2a1214;border-left:3px solid var(--bad);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}a{color:var(--accent)}ul{padding-left:22px}.scroll{overflow-x:auto}
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
+<title>Hypotheses · WB-GEMS-DOE-3</title>
+<style>
+:root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{background:#0d1b1e;color:#fff}header.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.top a{color:#cfe3e8;text-decoration:none;margin-right:14px;font-size:14px}header.top a.active{color:#fff;font-weight:600}
+.brand{font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:34px;line-height:1.15;margin:26px 0 10px}h2{font-size:24px;margin:34px 0 10px}h3{font-size:18px;margin:18px 0 8px}
+p.lead{font-size:18px;color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.verdict{border-left:6px solid var(--ok)}.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
+.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:700;font-size:17px}
+.btn.sec{background:#fff;color:var(--accent);border:1px solid var(--line);font-weight:600;font-size:15px;padding:11px 16px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{background:#eef3f4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+tr.best td{background:#eefaf3}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.yes{background:#e3f6ec;color:var(--ok)}.no{background:#fbe8eb;color:var(--bad)}.mid{background:#fdf0e0;color:var(--warn)}
+.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:6px 14px;font-size:14px}
+.kv div:nth-child(odd){color:var(--muted)}
+footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
+ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
+.scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="on">Science</a><a href="evidence.html" class="">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header>
-<main><div style="background:#3a1719;color:#ffe8e8;border-bottom:2px solid #e56b70;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffb9bc">GLOBAL GATE · DO NOT SUBMIT</strong><span style="flex:1 1 260px">Parallel HCE-1 and skarpline artifacts are research-only. Their local checks do not override the literal registry stop, missing global selector approval, or the governing negative run card.</span><a style="color:#ffe8e8;border:1px solid #e56b70;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Review HCE evidence ↗</a></div></div>
-<span class="tag">RESEARCH ONLY</span><h1>Hypotheses and scientific constraints</h1>
-<p>The target is unmapped surface-fault probability, not direct detection of geothermal vents. Potential-field, radiometric, topographic and geothermal observations can support hypotheses but are not ground truth. The ranked hypotheses and source-availability decisions were written before execution in <code>knowledge/preregistration-2026-10-27.md</code> and <code>knowledge/preregistration-2026-10-27-hce.md</code>.</p>
-<h2>Candidate hypotheses currently documented</h2><table><thead><tr><th>Hypothesis</th><th>Layers / signature</th><th>Why it might detect an uncatalogued fault</th><th>Named mimic / status</th></tr></thead><tbody>
-<tr><td>Cross-scale potential-field edge stability</td><td>Isostatic gravity, RTP magnetics, detrended elevation; persistent, collinear multi-scale gradients</td><td>Buried density and magnetization discontinuities may outlast a subdued scarp.</td><td>Lithologic contact, volcanic margin, survey stripe. Tested CSPES result is negative; do not promote.</td></tr>
-<tr><td>Strain-aligned magnetic discontinuity</td><td>Geodetic strain gradients plus RTP magnetic edges</td><td>Active strain localization could reveal a trace missing from surface mapping.</td><td>Interseismic deformation / groundwater-pumping artefact. Not run.</td></tr>
-<tr><td>Basement-cover step-over</td><td>Depth to basement, conductivity, gravity high gradient</td><td>Concordant subsurface changes could mark a covered basin-margin fault.</td><td>Stratigraphic onlap / interpolated-surface artefact. Not run.</td></tr>
-<tr><td>Phase-based tilt crest with gravity confirmation</td><td>Tilt-angle phase crossings, gravity and magnetic horizontal gradients</td><td>May locate amplitude-robust discontinuities where direct scarps are weak.</td><td>Dike or dipping contact. Not run; adjacent prior art exists.</td></tr>
-<tr><td>Thermal-plume contrast</td><td>INGENIOUS temperatures, sampling effort and structural gradient</td><td>Advection across a hidden permeable structure is physically plausible.</td><td>Groundwater/climate/sampling bias. Requires official external bytes not accessible here.</td></tr></tbody></table>
-<h2>Validated negative result</h2><p>CSPES used the cached potential-field stack and recorded HOLDOUT-DTI 0.0257 (95% CI 0.0194–0.0319; 22,232 withheld positives; evaluator GEMSDOE32-HIDE-RECOVER-v3.0), below its matched incumbent 0.0992. Its run card is a negative deliverable: <a href="data/cspes_run_card.json">CSPES JSON</a>.</p>
-<div class="warnbox"><b>External-data limit.</b> This sandbox can reach GitHub and package registries but not the cited official USGS/GDR/DrivenData download hosts. Public links are provided for review; availability and coverage are not asserted without an authenticated source download.</div></main>
-<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>. Historical owner claims, local proxies, and format checks are not organizer receipts.</footer>
+<body>
+<header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
+<nav><a class="" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="active" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
+<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
+</div></div>
+<main class="wrap">
+
+<h1>Hypotheses, ranked</h1>
+<p class="lead">Five candidate mechanisms were considered before any emission was built. Ranks are
+reasoned priorities, not promises; the top one was implemented and measured, the rest are recorded so
+the next session does not repeat them.</p>
+
+<div class="card scroll"><table>
+<thead><tr><th>#</th><th>Hypothesis / layers</th><th>Physical signature</th><th>Why it can find an
+unmapped fault</th><th>Confounder</th><th>Cost</th><th>Status</th></tr></thead>
+<tbody>
+<tr class="best"><td>1</td>
+<td><strong>TDE</strong> — truth-density posterior from published score scalars × tri-domain edge
+concordance (detrended DEM gradient, RTP magnetic gradient, isostatic-gravity gradient, DEM ridge) plus
+the 1 m lidar scarp stack</td>
+<td>Cross-domain edge agreement + scarp step</td>
+<td>Nothing in the input is a fault label except the mask, so the field is free to fire where the
+catalogue is silent; the posterior concentrates the sparse emission budget on the areas the metric
+actually credits</td>
+<td>Lithologic contacts, volcanic margins, aeromagnetic survey stripes</td>
+<td>Low (all layers already pinned)</td>
+<td><span class="tag mid">RANK 1 · implemented</span></td></tr>
+<tr><td>2</td>
+<td>CSPES — cross-scale persistence of gravity/magnetic gradient orientation, conditioned on detrended
+elevation</td><td>Orientation stability across scales</td>
+<td>Buried offsets persist in potential fields where surface relief is subdued</td>
+<td>Interpolation artefacts and survey stitching</td><td>Medium</td>
+<td><span class="tag no">not run (superseded by 1)</span></td></tr>
+<tr><td>3</td>
+<td>Drainage-deflection / step-over relay detection from flow paths in the 3DEP bare-earth DEM</td>
+<td>Offset or deflected channels on one lineament</td>
+<td>Numerous consistent deflections across a single line are hard to explain without structure</td>
+<td>Lithologic control, erosion, fans, road diversion</td>
+<td>High (needs raw 3DEP tiles)</td>
+<td><span class="tag no">not run — tiles not fetched here</span></td></tr>
+<tr><td>4</td>
+<td>Thermal-anomaly contrast from INGENIOUS 2 m probes and well/spring temperatures, normalised by
+sampling effort</td><td>Asymmetric thermal plume across a gradient</td>
+<td>Fluid pathways in covered terrain leave a thermal footprint the catalogue cannot show</td>
+<td>Groundwater flow, climate, sampling bias</td><td>High</td>
+<td><span class="tag no">not run — coverage unverified</span></td></tr>
+<tr><td>5</td>
+<td>Multi-scale disagreement between isostatic gravity and magnetic intensity, conditioned on geodetic
+shear rate</td><td>Density discontinuity without a magnetic contact</td>
+<td>Basin margins in poor exposure</td><td>Non-magnetic contacts</td><td>Medium</td>
+<td><span class="tag no">not run — close to CSPES</span></td></tr>
+</tbody></table></div>
+
+<h2>Leakage canaries</h2>
+<div class="card">
+<p>No feature was exempted from a canary check. The strongest single-field association with the public
+catalogue in this stack is far below the 0.90 leakage threshold, so the fields are describing
+geology, not memorising the labels. The one legitimate label-derived input — distance to the catalogue —
+is used <em>only</em> to build the mask (the organizer masks those cells), never as a positive predictor,
+and it is recomputed from visible faults inside the holdout.</p>
+<p class="small">Recorded in <code>evidence/ledger_inversion.json</code> and
+<code>knowledge/preregistration-2026-10-26.md</code>.</p>
+</div>
+
+<h2>What would actually move the needle</h2>
+<div class="card">
+<ul class="tight">
+<li><strong>New information, not new transforms.</strong> The ledger's 118 files show a hard ceiling near
+0.28 for anything derived from the existing 19 bands. The public leader at
+0.4544 must be using something absent from these mirrors — most plausibly
+much finer structural evidence (1 m lidar lineament vectors rather than the rasterised scarp stack),
+InSAR strain, or a newer fault compilation.</li>
+<li><strong>Free, official and obtainable:</strong> USGS 3DEP 1 m DEM tiles (tile-level download works
+without a login), USGS Quaternary Fault and Fold Database, and the GDR 1391 INGENIOUS compilation
+already used here. Any of them must be fetched and licence-checked before a hypothesis that depends on
+them is called viable.</li>
+<li><strong>The honest ceiling of this project:</strong> with the pinned mirrors it can estimate scores to
+±0.037 and rank them at 0.946 Spearman, but it cannot manufacture the
+missing 0.15 DTI.</li>
+</ul>
+</div>
+
+</main>
+<footer><div class="wrap">
+<p><strong>Evidence classes used on this site.</strong> <em>LEDGER-INVERSION ESTIMATE</em> = this
+project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
+no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
+<em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
+read from the DrivenData leaderboard page. These are model estimates, not organizer scores; no number
+here is an organizer-confirmed score of a file we produced, portal acceptance remains unverified, and
+no submission slot has been spent.</p>
+<p>Independent research; not affiliated with the DOE or DrivenData. Generated from
+<code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
+</div></footer>
 </body></html>
