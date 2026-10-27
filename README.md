@@ -1,11 +1,24 @@
-# WBGGEMSDOE3 — DOE GEMS Prize research and submission audit
+# WBGGEMSDOE3 — DOE GEMS Prize: fault-mapping research and release evidence
 
-> **CURRENT DECISION: DO NOT SUBMIT.** The earlier skarpline approval is withdrawn: an external-catalogue proxy and fitted forecast do not satisfy the required fold-local holdout or literal registry gates.
-> Existing TIFFs remain **research-only downloads**, not newly generated submissions in this session.
-> [Executive summary](docs/executive-summary.html) · [three-pass review and research queue](knowledge/session-review-8c70511f.md) · [decision evidence](evidence/gemsdoe_run_card.json).
-> CSPES lane is negative; HCE-1's method-level win does not authorize its repaired artifact under the literal rule.
-> Read [PROJECT_PROMPT.md](PROJECT_PROMPT.md) and this README every session. No weekly slot has been spent by this review.
-> Status conflict independently identified by the parallel [current review](knowledge/review-current-2026-10-27.md); this change reconciles the generated top-level pages as well.
+> **CURRENT DECISION: DO NOT SUBMIT.** The repository-wide release gate is fail-closed.
+> No file currently has (1) a compliant whole-segment HOLDOUT-DTI, (2) literal all-registry
+> uniqueness clearance, and (3) separate selector approval for its exact saved SHA-256.
+> See [the machine-readable release gate](evidence/release_gate.json), the
+> [governing run card](evidence/run_card.json), and the [executive summary](docs/executive-summary.html).
+>
+> [`submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`](submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif)
+> is retained as a **format-valid research artifact only** (SHA-256
+> `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). Its candidate card records
+> a proxy metric and a restricted comparator audit; neither is submission clearance. Do not upload it.
+>
+> The parallel **CSPES** and **HCE-1** artifacts are also research-only. CSPES has a negative
+> HOLDOUT-DTI; HCE-1 reports a literal-registry failure alongside a content-aware diagnostic. Neither
+> overrides the governing release card. [CSPES card](evidence/cspes_run_card.json) ·
+> [HCE card](evidence/hce_run_card.json) · [site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/).
+>
+> The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this
+> README at every session start. The latest three-pass reconciliation is in
+> [knowledge/release-gate-review-2026-10-27.md](knowledge/release-gate-review-2026-10-27.md).
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
@@ -220,7 +233,7 @@ reproduces the nine archived scores.
 
 ## Results and limitations of this session
 
-- **The cleared artifact.** `submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`:
+- **Format-valid but blocked research artifact.** `submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`:
   97,608 positive cells (1.89% of the scored footprint), 58,941 disconnected crests (median 1 px), zero dots
   on the catalogue, zero mass outside the footprint, 0/1 only, SHA-256 `610acf58…`. Validator 9/9 PASS on the
   re-read bytes. Uniqueness 20/20 comparators clear.

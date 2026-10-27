@@ -1,83 +1,87 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>index · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
---ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-header b{font-size:17px}
-header a{color:var(--mut);text-decoration:none;font-size:14px}
-header a:hover,header a.on{color:var(--fg)}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
-h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-h3{font-size:17px;margin:22px 0 8px}
-p,li{color:#d7dee6}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
-.small{font-size:13.5px;color:var(--mut)}
-.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
-.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
-.tag.no{background:var(--bad);color:#fff}
-.tag.warn{background:var(--warn);color:#1a1200}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
-.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .v{font-size:23px;font-weight:700}
-.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-tr.me td{background:#0f2418;font-weight:600}
-.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
-footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
-a{color:var(--accent)}
-ul{padding-left:22px}
+<title>Start · WBGGEMSDOE3</title><style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}header b{font-size:17px}header a{color:var(--mut);text-decoration:none;font-size:14px}header a:hover,header a.on{color:var(--fg)}
+main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}h1{font-size:30px;line-height:1.25;margin:8px 0 10px}h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}h3{font-size:17px;margin:22px 0 8px}p,li{color:#d7dee6}
+code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px;overflow-wrap:anywhere}.small{font-size:13.5px;color:var(--mut)}.hero{border:1px solid var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--bad);color:#fff}.btn{display:inline-block;background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}.btn.warn{background:var(--warn);color:#1a1200;border-color:var(--warn)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.kpi .v{font-size:21px;font-weight:700}.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr.me td{background:#28191b;font-weight:600}.yes{color:var(--ok);font-weight:700}.no{color:#ff8b8b;font-weight:700}.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.danger{background:#2a1214;border-left:3px solid var(--bad);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}a{color:var(--accent)}ul{padding-left:22px}.scroll{overflow-x:auto}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="on">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="">Science</a><a href="evidence.html" class="">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><div style="background:#0d3327;color:#e8fff5;border-bottom:2px solid #29c78a;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#7ff0bd">NEW · HCE-1 lane (2026-10-27)</strong><span style="flex:1 1 260px">A unique, format-validated GeoTIFF is ready to download. The legacy audit keeps its own verdict; the new lane owns its decision.</span><a style="background:#29c78a;color:#04231a;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/downloads/wbggems3-hce1-latest.tif" download>Download TIF ↓</a><a style="color:#bff7dd;border:1px solid #4b9e7c;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Executive summary ↗</a></div></div><section class="hero no"><span class="tag no">DO NOT SUBMIT — research downloads only</span>
-<h1>No file clears the requested protocol</h1><p>The earlier SUBMIT recommendation is withdrawn.
-A proxy forecast is not an organizer score or HOLDOUT-DTI. The literal registry gate fails;
-no weekly slot was used or selected by this review.</p>
-<a class="btn alt" href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>Download existing research TIFF — NOT for submission</a>
-<p class="small">wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif<br>SHA-256 <code>610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2</code></p>
-<p>Leaderboard estimate: <b>not defensibly estimable</b>. The archived ESTIMATE is unvalidated and is not a performance gate.</p></section><h2>Nine-site executive summary</h2><p>Best historical file by the pinned owner ledger, not a current live ranking.
-No submission-page receipt was available: none of these figures is ORGANIZER-CONFIRMED.
-Protocol duplication is not the same as byte identity. All linked files are historical, not newly generated.</p>
-<div style="overflow:auto"><table><tr><th>Site</th><th>Historical download</th><th>Historical owner claim</th>
-<th>Leaderboard estimate</th><th>Unique under requested gate?</th><th>Submit?</th></tr><tr><td>GEMSDOE32</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a><small> — research only</small></td>
-<td>0.2778 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE36</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><small> — research only</small></td>
-<td>0.2750 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE28</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a><small> — research only</small></td>
-<td>0.2710 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE31</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a><small> — research only</small></td>
-<td>0.2708 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE33</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a><small> — research only</small></td>
-<td>0.2632 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE25</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a><small> — research only</small></td>
-<td>0.2600 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE30</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a><small> — research only</small></td>
-<td>0.2600 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE24</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a><small> — research only</small></td>
-<td>0.2477 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr><tr><td>GEMSDOE27</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a><small> — research only</small></td>
-<td>0.2449 (owner claim; unverified)</td><td>Not estimable</td>
-<td>NO — protocol duplicate</td><td>NO — already scored; historical research only</td></tr></table></div><h2>Why GEMSDOE32 B2 may have helped</h2><p>The pinned raster audit finds B2 is a subset of GEMSDOE31 H27-4,
-with 2,545 dots removed 1.41–2 pixels from the catalogue. Sparse placement and pruning can reduce redundant
-false-positive mass under an asymmetric distance-tolerant metric. That is a plausible mechanism, not proof that pruning caused
-the owner's reported result. Neither hidden truth nor a byte-linked upload receipt is available. A higher real result is possible,
-but no defensible claim of beating the historical result follows from the local proxy.</p>
-<p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official organizer reference code</a> ·
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem / format</a> ·
-<a href="data/h6_1_proximity_pruning_holdout.json">Historical holdout evidence (not rerun)</a></p></main>
-<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
-Historical owner claims are unverified, not ORGANIZER-CONFIRMED. No leaderboard estimate is validated. A predicted fault is not a
-geothermal vent. Site generated by <code>scripts/build_executive.py</code> from <code>docs/data/*.json</code>.</footer>
+<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="on">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="">Science</a><a href="evidence.html" class="">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header>
+<main><div style="background:#3a1719;color:#ffe8e8;border-bottom:2px solid #e56b70;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffb9bc">GLOBAL GATE · DO NOT SUBMIT</strong><span style="flex:1 1 260px">Parallel HCE-1 and skarpline artifacts are research-only. Their local checks do not override the literal registry stop, missing global selector approval, or the governing negative run card.</span><a style="color:#ffe8e8;border:1px solid #e56b70;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Review HCE evidence ↗</a></div></div>
+<div class="hero"><span class="tag">DO NOT SUBMIT</span><h1>No competition file is cleared</h1>
+<p><b>wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif</b> is a format-valid <em>research artifact</em>, not an approved competition submission.
+The global release gate is fail-closed and requires a correct holdout, literal uniqueness clearance, and a separate selector approval for the exact SHA-256. Those requirements are not met.</p>
+<a class="btn warn" href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>Download research GeoTIFF — NOT for upload</a>
+<a class="btn" href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.zip" download>Research ZIP — NOT for upload</a>
+<p class="small">SHA-256 <code>610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2</code> · suggested future note (not authorized now): <code>GEMS-DOE-3 skarpline union 60k+40k, dti-optimised binary, cat-suppressed r=0</code></p></div>
+<div class="danger"><b>Blocking release checks:</b><ul><li>The governing run card verdict is not promote.</li><li>No separate selector approval is recorded.</li><li>The governing run card does not approve this candidate SHA-256.</li><li>The candidate lane itself is not marked promote.</li><li>The candidate has no compliant HOLDOUT-DTI result; PROXY-DTI is not a release metric.</li><li>The candidate does not record a passing literal all-registry uniqueness gate.</li></ul><p>Local byte validation is PASS; that is necessary but never sufficient for portal acceptance, uniqueness, or a leaderboard result.</p></div>
+<div class="kpis"><div class="kpi"><div class="k">Competition-score estimate</div><div class="v">NOT ESTIMABLE</div><div class="small">No compliant common holdout or organizer receipt</div></div>
+<div class="kpi"><div class="k">Candidate metric</div><div class="v">PROXY ONLY</div><div class="small">Not a required HOLDOUT-DTI</div></div>
+<div class="kpi"><div class="k">Literal all-registry gate</div><div class="v no">FAIL</div><div class="small">Dense registered control makes the current rule a stop</div></div>
+<div class="kpi"><div class="k">Saved-byte preflight</div><div class="v yes">PASS</div><div class="small">single-band float32, [0,1], exact grid — local check</div></div>
+<div class="kpi"><div class="k">Weekly slots used</div><div class="v">0</div><div class="small">No portal action taken</div></div>
+<div class="kpi"><div class="k">Public leaderboard observation</div><div class="v">0.4544</div><div class="small">observed 2026-10-27; not this project</div></div></div>
+<h2>Decision in plain language</h2>
+<p>There is <b>no file to upload today</b>. The downloadable TIFF is retained so that the automated format checks can be reproduced; downloading it is not permission to submit it. The nine historical leaders are also research references only. The global gate is based on the binding literal protocol, not an optional lane-level reinterpretation.</p>
+<h2>The nine focus sites</h2><div class="scroll"><table><thead><tr><th>Site</th><th>Best pinned historical file</th><th>Claim</th><th>New-file estimate</th><th>Unique vs focus set?</th><th>Decision</th></tr></thead><tbody><tr><td><b>GEMSDOE32</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" rel="noopener"><code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></a><div class="small">research only · SHA-256 c55bafc470054e82…</div></td>
+<td>0.2778<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE36</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif" rel="noopener"><code>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code></a><div class="small">research only · SHA-256 e15891020b9c5705…</div></td>
+<td>0.2750<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 97.6%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE28</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif" rel="noopener"><code>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code></a><div class="small">research only · SHA-256 5556aa1438fd6737…</div></td>
+<td>0.2710<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE31</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif" rel="noopener"><code>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code></a><div class="small">research only · SHA-256 07b6db440535404b…</div></td>
+<td>0.2708<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE33</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" rel="noopener"><code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code></a><div class="small">research only · SHA-256 87f857d505e23247…</div></td>
+<td>0.2632<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 99.7%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE25</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif" rel="noopener"><code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></a><div class="small">research only · SHA-256 91eae1ca42ec845e…</div></td>
+<td>0.2600<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE30</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif" rel="noopener"><code>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</code></a><div class="small">research only · SHA-256 8cf893ead5667df2…</div></td>
+<td>0.2600<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE24</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif" rel="noopener"><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></a><div class="small">research only · SHA-256 68d0e2e4fcc594f9…</div></td>
+<td>0.2477<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 100.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr>
+<tr><td><b>GEMSDOE27</b></td>
+<td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif" rel="noopener"><code>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></a><div class="small">research only · SHA-256 33003374335d84bf…</div></td>
+<td>0.2449<div class="small">OWNER-REPORTED; no receipt tied to these bytes</div></td>
+<td>NOT ESTIMABLE<div class="small">no compliant common HOLDOUT-DTI or receipt-linked calibration</div></td>
+<td class="no">NO — worst measured focus overlap 98.0%</td>
+<td class="no">DO NOT SUBMIT — already scored / not unique</td></tr></tbody></table></div>
+<p class="small">The values in the claim column are copied from owner materials and are not organizer scores or ORGANIZER-CONFIRMED receipts. The score-estimate column deliberately says NOT ESTIMABLE rather than converting a proxy or owner claim into a predicted leaderboard result.</p>
+<h2>Automated next steps before any submission</h2><ol><li>Resolve the literal registry-support definition with the protocol owner; do not silently exempt a dense control.</li><li>Use one assigned lane and the shared hide-and-recover evaluator to produce HOLDOUT-DTI with whole-segment buffering, positive count and 95% CI.</li><li>Run per-feature leakage canaries, then rerun the full literal registry check on the surface and final dots.</li><li>Re-read saved bytes against an organizer-authenticated template and obtain a separate selector approval for the exact SHA-256.</li><li>Only then use the submission-page quota and preserve the organizer receipt.</li></ol></main>
+<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>. Historical owner claims, local proxies, and format checks are not organizer receipts.</footer>
 </body></html>
