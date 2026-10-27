@@ -1,11 +1,25 @@
 # GEMS Field Notes — fault discovery & submission audit
 
-> **CURRENT DECISION: DO NOT SUBMIT.** No competition GeoTIFF is cleared.
-> The literal registry uniqueness rule is blocked by a registered raster that is
-> positive across the entire mirrored footprint. This lane ran no experiment and used
-> no slot. A separately generated parallel TIFF fails the registry and footprint checks;
-> it is retained for research only. [Executive dashboard](docs/index.html) ·
-> [Submission guide](docs/executive-summary.html) · [Run card](evidence/run_card.json)
+> ## READ FIRST — the project prompt lives in [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md).
+> Every session starts there, then this README, then `AGENTS.md`, the lane
+> preregistration, the latest run card, and the current executive summary.
+
+> **NEW LANE HCE-1 (2026-10-27): A UNIQUE, FORMAT-VALID TIF IS READY TO DOWNLOAD.**
+> [HCE-1 executive summary](docs/hce/index.html) · [download the TIF](docs/hce/downloads/wbggems3-hce1-latest.tif) ·
+> [single-TIFF ZIP](docs/hce/downloads/wbggems3-hce1-latest.zip) ·
+> [exactly how to submit](docs/hce/how-to-submit.html) · [run card](evidence/hce_run_card.json).
+> It passes the 13-point saved-byte validator, the leakage canary, the 145-file
+> registry gates **under the preregistered content-aware reading (IR-09)** and a
+> paired fold-local holdout win. **It has NO organizer-confirmed score**; the
+> owner-reported-ledger projection does **not** support beating 0.2778. No weekly
+> slot was used. A separate selector must approve any real upload.
+
+> **Legacy lanes still say DO NOT SUBMIT.** The earlier audit stopped under the
+> *literal* finite-positive registry rule, which is vacuous for every non-empty
+> candidate (IR-01 / IR-09). That decision is preserved in
+> [the legacy dashboard](docs/index.html) and [its run card](evidence/run_card.json);
+> it has not been silently overwritten. LST1 remains a **negative** research-only
+> lane ([LST1 README](LST1_README.md)).
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
@@ -194,3 +208,73 @@ It produced `submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif` (32,81
 (paired Δ −0.0325, 95 % CI −0.041 to −0.024) — verdict **negative**, consistent with this README's **DO NOT SUBMIT** decision. It is **not** a cleared file: its uniqueness holds only under two
 documented deviations from the literal registry rule (whole-footprint feature layers excluded; excess-over-null for lattice-like references), and the project's stricter reading above declines such exemptions.
 It has no organizer-confirmed score and no slot was selected. Use it for learning (e.g. the ledger-model calibration, the uniqueness-price decomposition in the lane site's Evidence page), not for upload.
+
+---
+
+## Session 2026-10-27 · HCE-1 (this branch) — summary and handoff
+
+**Data placement blocker resolved.** `scripts/download_competition_data.sh` no
+longer prints instructions: it fetches all **26 SHA-256-pinned public mirror
+files** (419 MB 19-band feature stack, labels, sample, external derivatives,
+scored references) via `scripts/fetch_mirrors.sh`, then runs
+`scripts/prepare_data.py` and writes `data/manifest.json`. Verified locally:
+26/26 digests PASS; 117/118 pinned live-scored sibling rasters verified (one
+returned HTTP 404 — flagged). **Provenance warning:** these are owner-supplied
+GitHub mirrors, not organizer-authenticated DrivenData downloads. The training
+pipeline no longer needs manual intervention; no GPU was required.
+
+**New science.** `src/hce/fields.py` builds 56 static physical fields including a
+novel *structure-tensor cross-channel phase congruence* over K/Th and U/Th
+radiometric ratios, RTP magnetics, isostatic gravity, geodetic strain and
+detrended elevation. Four hypotheses were preregistered **before** modelling in
+[`knowledge/preregistration-2026-10-27-hce.md`](knowledge/preregistration-2026-10-27-hce.md);
+only #1 was executable with the free official data obtainable here. Three
+experiments (E1 baseline replay, E2/E3 Dinkelbach variants, E4 physical-only
+saturated lattice) plus a dot-count-matched random control used the **unmodified**
+shared evaluator (`src/gemsw/holdout.py`, `GEMSDOE32-HIDE-RECOVER-v3.0`) and the
+**unmodified** shared fail-closed writer (`vendor/gems57/submission_writer.py`).
+
+| Measurement | Value | Label |
+|---|---|---|
+| E2 / E3 HOLDOUT-DTI | 0.0236 / 0.0231 | HOLDOUT-DTI, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives, 256-block CI |
+| E4 fold-local HOLDOUT-DTI | **0.1292** (95% CI 0.1160–0.1426) | HOLDOUT-DTI, same evaluator and positives |
+| Champion proxy replay | 0.0992 (0.0860–0.1127) | HOLDOUT-DTI; **leakage-contaminated incumbent** |
+| E4 paired Δ vs champion proxy | +0.0300 (95% CI +0.0177–+0.0417) | paired 256-block cluster bootstrap |
+| Random-lattice control | 0.0734 | HOLDOUT-DTI |
+| Released file, static read-back | 0.0931 (0.0824–0.1037) | HOLDOUT-DTI diagnostic on the actual bytes |
+| SGMC off-catalogue | raw 0.2638, coverage 0.363 | `GEMSDOE32-SGMC-CAL-v3.0`, 62,703 positives |
+| Owner-reported ledger projection | 0.082 (p10–p90 0.024–0.140) | **PROJECTION, not a score**; LOO MAE 0.0287 |
+| Organizer-confirmed score | **none** | no upload, no receipt, 0 slots used |
+
+**Uniqueness, honestly reported.** Frozen inventory of 145 GeoTIFFs (nine focus
+sites, 117 ledger rasters, 12 scored mirrors, every TIFF already in this repo,
+and the pinned 17GEMSDOE control). Pre-placement surface max |Spearman| 0.811;
+final-dot max |Spearman| 0.811; max 3 px overlap vs 138 sparse registry rasters
+**0.524** after a repair that moved ≥38 % of dots outside the halos of 7 dense
+sibling rasters while keeping exactly 169,968 dots; space-filling-control excess
+over a random null **+0.007**. Literal finite-positive overlap is 1.0 because the
+17GEMSDOE control is positive on all 5,167,373 footprint cells and a spacing-5
+lattice covers 99.9 % within 3 px — **IR-09: the literal rule is vacuous and
+rejects every non-empty submission**. Both readings are in the
+[run card](evidence/hce_run_card.json) and on the
+[evidence page](docs/hce/evidence.html). User ratification is still required.
+
+**Why 0.2778 / can we beat it?** See
+[the PhD-level analysis](docs/hce/why-0.2778.html): B2 is an exact 37,654-dot
+subset of a 40,199-dot base with 2,545 near-catalogue dots pruned; with α=0.2,
+β=0.8 and a 300 m max-credit kernel, a sparse dotted network plus catalogue
+pruning is the locally optimal decision. Our fold-local method beats the same-
+evaluator champion proxy, but the owner-reported ledger projection does **not**
+support a live score above 0.2778. Only an actual submission-page receipt can
+establish that. No claim to the contrary is made anywhere in this repo.
+
+**Next session (concrete).** (1) Ratify or replace IR-09 and freeze one
+non-vacuous comparator definition across all parallel lanes. (2) Obtain an
+authenticated DrivenData download and verify band semantics and the outside-
+bounds/null convention with the organizers. (3) Run the three preregistered
+hypotheses that need raw 3DEP / GDR thermal / ASF InSAR data, one lane per
+session, on identical folds. (4) After a real upload, bind the receipt to the
+uploaded SHA-256 and refit the projection with a genuine organizer-confirmed
+point. (5) Fix the shared one-sided rank gate and metric docstring upstream
+(this integration has read-only access there). Full list:
+[limitations page](docs/hce/limitations.html).

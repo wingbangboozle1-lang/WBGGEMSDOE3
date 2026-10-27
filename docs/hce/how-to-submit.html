@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · HCE-1 · WBGGEMSDOE3</title><link rel="stylesheet" href="assets/hce.css"></head>
+<body><header class="top"><div class="wrap"><div class="brand">⌁ WBGGEMSDOE3 · HCE-1 LANE <span class="small">/ DOE GEMS PRIZE</span></div><nav><a href="index.html">Executive summary</a><a style="color:#7cf0b8;font-weight:800" href="how-to-submit.html">How to submit</a><a href="why-0.2778.html">Why 0.2778</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="limitations.html">Limitations</a></nav></div></header>
+<main><div class="wrap">
+<div class="hero"><div class="wrap"><div class="small">EXECUTIVE SUMMARY / SUBMISSION GUIDE</div><h1>Exactly how to submit.</h1>
+<p>Five steps, the exact file, the exact name and the exact note. The portal upload is the only step you must do yourself.</p></div></div>
+<div class="big"><div style="flex:1 1 420px"><div class="yes">STEP 1 — DOWNLOAD THE EXACT BYTES</div><div class="small">One single-band float32 GeoTIFF, 3,730 × 3,292, EPSG:32611, 100 m, all values in [0,1], no NaN inside the footprint.</div></div>
+<div><a class="btn" href="downloads/wbggems3-hce1-latest.tif" download>DOWNLOAD TIF ↓</a> <a class="btn sec" href="downloads/wbggems3-hce1-latest.zip" download>OR ZIP ↓</a></div></div>
+<div class="grid"><div class="card"><h3>File</h3><div class="small"><code>wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif</code><br>SHA-256 <code>0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2</code><br>183,134 bytes · 169,968 positive pixels</div></div>
+<div class="card"><h3>Name</h3><div class="small"><code>wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros</code></div></div>
+<div class="card"><h3>Note (129/140 chars)</h3><div class="small">HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt.</div></div></div>
+<h2>Step 2 — sign in and check the weekly cap</h2>
+<p>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a> and the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>. The
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> set a weekly submission limit (up to
+three per week in the rules text) — check the live portal for your team's remaining quota. We cannot see your
+account. <strong>This project used zero slots.</strong></p>
+<h2>Step 3 — upload</h2>
+<p>Choose “Submit” → “New submission” → select the single <code>.tif</code> (or the single-TIFF <code>.zip</code>).
+The form accepts a single-band GeoTIFF or a ZIP containing exactly one GeoTIFF with the sample's CRS, shape and
+geotransform. Paste the note above into the optional comment. Keep the organizer receipt and the uploaded file's
+SHA-256 together — that receipt is the only ORGANIZER-CONFIRMED score.</p>
+<h2>Step 4 — avoid the “Predicted values must be in range [0, 1]” error</h2>
+<p>The saved bytes were re-opened and checked: one band, float32, all 12,279,160 cells finite, all values in
+[0,1], zero NaNs/infinities/sentinels, zero positive cells outside the mirrored footprint, zero positive cells on
+mapped catalogue faults, CRS/shape/transform identical to the sample. Causes of that historic portal error include
+a float32 nodata sentinel (−3.4×10³⁸) or NaN inside the footprint; our writer refuses such input instead of
+silently clipping. <strong>Outstanding format risk:</strong> the official text says data outside bounds must be
+null/NaN while the shared writer emits zeros there. Confirm the meaning of “bounds” with the organizers before a
+high-stakes upload; see <a href="limitations.html">limitations</a>.</p>
+<h2>Step 5 — select one final submission</h2>
+<p>The same selected file is scored in both prize rounds and later re-scored against an expanded label set.
+Review eligibility, reproducible solution assets, external-data licences and the required generative-AI-use
+disclosure in the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a>.
+Never report a local HOLDOUT-DTI or projection as a leaderboard score.</p>
+<div class="note"><strong>Selector step, not an upload.</strong> This lane's verdict is
+“DOWNLOAD OK — unique under the audited content-aware rule and format-valid. NOT an organizer-confirmed score; the owner-reported-ledger projection does not support beating 0.2778. A real weekly slot is a separate selector step and is NOT taken here.”. A separate selector must read the live weekly cap and approve the slot; no credentials
+or quota are available here.</div>
+</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>

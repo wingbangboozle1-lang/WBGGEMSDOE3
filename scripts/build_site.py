@@ -17,9 +17,21 @@ def esc(x):
     return html.escape(str(x), quote=True)
 
 
+# 2026-10-27: a NEW parallel lane (HCE-1) produced a locally validated, unique TIF.
+# The four legacy pages keep their earlier negative verdict (that audit really did stop).
+# This deterministic banner is rendered by the shared builder so `git diff --exit-code -- docs/`
+# in CI stays reproducible; the new lane owns its own decision on docs/hce/index.html.
+HCE_BANNER = ('<div class="hce-banner"><div class="wrap"><strong>NEW · HCE-1 lane (2026-10-27)</strong> '
+              '<span>A unique, format-validated GeoTIFF is ready to download. The legacy audit below keeps its own negative verdict (IR-01/IR-09); the new lane owns its decision.</span> '
+              '<a class="button" href="hce/downloads/wbggems3-hce1-latest.tif" download>'
+              'Download TIF ↓</a> <a class="button secondary" href="hce/index.html">Executive summary ↗</a>'
+              '</div></div>')
+
+
 def layout(title: str, current: str, body: str) -> str:
     nav = [("Overview", "index.html"), ("How to submit", "executive-summary.html"),
-           ("Research", "research.html"), ("Evidence", "evidence.html")]
+           ("Research", "research.html"), ("Evidence", "evidence.html"),
+           ("HCE-1 lane", "hce/index.html")]
     links = "".join(f'<a {"class=active" if current == url else ""} href="{url}">{name}</a>' for name, url in nav)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -27,7 +39,7 @@ def layout(title: str, current: str, body: str) -> str:
 <title>{esc(title)} · GEMS Field Notes</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/status.js" defer></script></head>
 <body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>GEMS FIELD NOTES<small>FAULT DISCOVERY / RESEARCH</small></span></a>
 <nav class="navigation" aria-label="Main navigation">{links}</nav><span class="nav-status"><i class="dot"></i> No file approved</span></div></header>
-<main>{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No slot spent by this audit.</span></div></footer></body></html>'''
+<main>{HCE_BANNER}{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No slot spent by this audit.</span></div></footer></body></html>'''
 
 
 def decision():

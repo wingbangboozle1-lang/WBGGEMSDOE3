@@ -1,0 +1,133 @@
+{
+  "file": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+  "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+  "bytes": 183134,
+  "submission_name": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros",
+  "note": "HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt.",
+  "note_chars": 129,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE3/docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+    "bytes": 183134,
+    "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.013841989450156689,
+    "emitted_positive_pixels": 169968,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 169968,
+    "footprint_fraction": 0.03289253553014269
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE3/docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+    "bytes": 183134,
+    "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.013841989450156689,
+    "n_nonzero": 169968,
+    "mass": 169968.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.zip",
+  "zip_sha256": "26deb8f6dd30207589429e9bc1b5d792defa538377e02d504287a4b5380eb306",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "HCE-1",
+    "holdout_dti": 0.12921320211901738,
+    "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "config": {
+      "q": 0.3,
+      "spacing": 3,
+      "threshold": 0.010366076603531837,
+      "n_dots": 169968,
+      "sgmc_raw_dti": 0.29686325462657365,
+      "sgmc_coverage": 0.4093843448788561
+    },
+    "approved_for_weekly_slot": false
+  }
+}

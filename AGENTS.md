@@ -1,6 +1,8 @@
 # Working agreement
 
-At the start of every session read `README.md`, `knowledge/preregistration-2026-10-26.md`,
+At the start of every session read `PROJECT_PROMPT.md` (the stored project brief),
+then `README.md`, `knowledge/preregistration-2026-10-27-hce.md` (the active lane),
+`knowledge/preregistration-2026-10-26.md`,
 `knowledge/review-and-irregularities-2026-10-26.md`, `research/REVIEW.md`, and the latest
 `evidence/run_card.json` before working. Preserve the user's parallel-run protocol and
 literal stop rules. Never present a proxy, owner report, or projection as an

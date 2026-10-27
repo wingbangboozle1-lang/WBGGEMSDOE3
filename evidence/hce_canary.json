@@ -1,0 +1,415 @@
+{
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "n_withheld_positives_pooled": 22232,
+  "n_background_sampled": 40000,
+  "n_cells": 8,
+  "threshold": 0.9,
+  "max_auc": 0.59251,
+  "flagged_fields": [],
+  "usable_fields": [
+    "joint_edge_strength",
+    "gradmag_det_elev_s3",
+    "gradmag_det_elev_s6",
+    "gradmag_det_elev_s1.5",
+    "congruent_channel_count",
+    "lidar_upface_max",
+    "band_ieq_n100a15",
+    "relief7_det_elev",
+    "lidar_downface_max",
+    "band_geod_shearrate",
+    "lidar_lapneg_max",
+    "lidar_ex_max",
+    "band_geod_2ndinv",
+    "band_deq_n100a15",
+    "band_det_elev_slope",
+    "lidar_step_max",
+    "lidar_relief",
+    "gradmag_iso_grav_anom_s2",
+    "band_iso_grav_anom_vg",
+    "gradmag_iso_grav_anom_s5",
+    "phase_congruence",
+    "band_iso_grav_anom_slope",
+    "ext_UTh",
+    "gradmag_geod_2ndinv_s4",
+    "gradmag_rtp_s2",
+    "gradmag_rtp_s5",
+    "ext_UK",
+    "band_tmi_hg",
+    "gradmag_mag_anom_s2",
+    "gradmag_tc_s2",
+    "band_rtp",
+    "band_geod_dilaterate",
+    "band_depth_to_base_surf",
+    "dist_wellspring",
+    "logratio_U_Th",
+    "band_tmi_vg",
+    "ext_TMI_up150",
+    "band_cond_surf",
+    "band_iso_grav_anom_hg",
+    "band_tmi",
+    "lidar_coh100",
+    "ext_ThK",
+    "band_mag_anom",
+    "band_det_elev",
+    "dist_tiger_road_m",
+    "rad_U",
+    "dist_vent",
+    "band_iso_grav_anom",
+    "logratio_K_Th",
+    "rad_Th",
+    "band_tc",
+    "rad_TC",
+    "rad_K",
+    "log_det_elev_s1.5",
+    "log_det_elev_s3",
+    "dist_sgmc_fault",
+    "dyn_d_visible",
+    "dyn_d_tips"
+  ],
+  "all_pass": true,
+  "top10": [
+    {
+      "field": "joint_edge_strength",
+      "family": "static",
+      "auc": 0.59251
+    },
+    {
+      "field": "gradmag_det_elev_s3",
+      "family": "static",
+      "auc": 0.57689
+    },
+    {
+      "field": "gradmag_det_elev_s6",
+      "family": "static",
+      "auc": 0.57355
+    },
+    {
+      "field": "gradmag_det_elev_s1.5",
+      "family": "static",
+      "auc": 0.57055
+    },
+    {
+      "field": "congruent_channel_count",
+      "family": "static",
+      "auc": 0.56821
+    },
+    {
+      "field": "lidar_upface_max",
+      "family": "static",
+      "auc": 0.55936
+    },
+    {
+      "field": "band_ieq_n100a15",
+      "family": "static",
+      "auc": 0.55819
+    },
+    {
+      "field": "relief7_det_elev",
+      "family": "static",
+      "auc": 0.55602
+    },
+    {
+      "field": "lidar_downface_max",
+      "family": "static",
+      "auc": 0.5534
+    },
+    {
+      "field": "band_geod_shearrate",
+      "family": "static",
+      "auc": 0.55257
+    }
+  ],
+  "rows": [
+    {
+      "field": "joint_edge_strength",
+      "family": "static",
+      "auc": 0.59251
+    },
+    {
+      "field": "gradmag_det_elev_s3",
+      "family": "static",
+      "auc": 0.57689
+    },
+    {
+      "field": "gradmag_det_elev_s6",
+      "family": "static",
+      "auc": 0.57355
+    },
+    {
+      "field": "gradmag_det_elev_s1.5",
+      "family": "static",
+      "auc": 0.57055
+    },
+    {
+      "field": "congruent_channel_count",
+      "family": "static",
+      "auc": 0.56821
+    },
+    {
+      "field": "lidar_upface_max",
+      "family": "static",
+      "auc": 0.55936
+    },
+    {
+      "field": "band_ieq_n100a15",
+      "family": "static",
+      "auc": 0.55819
+    },
+    {
+      "field": "relief7_det_elev",
+      "family": "static",
+      "auc": 0.55602
+    },
+    {
+      "field": "lidar_downface_max",
+      "family": "static",
+      "auc": 0.5534
+    },
+    {
+      "field": "band_geod_shearrate",
+      "family": "static",
+      "auc": 0.55257
+    },
+    {
+      "field": "lidar_lapneg_max",
+      "family": "static",
+      "auc": 0.54954
+    },
+    {
+      "field": "lidar_ex_max",
+      "family": "static",
+      "auc": 0.54873
+    },
+    {
+      "field": "band_geod_2ndinv",
+      "family": "static",
+      "auc": 0.54833
+    },
+    {
+      "field": "band_deq_n100a15",
+      "family": "static",
+      "auc": 0.54757
+    },
+    {
+      "field": "band_det_elev_slope",
+      "family": "static",
+      "auc": 0.54745
+    },
+    {
+      "field": "lidar_step_max",
+      "family": "static",
+      "auc": 0.54685
+    },
+    {
+      "field": "lidar_relief",
+      "family": "static",
+      "auc": 0.5452
+    },
+    {
+      "field": "gradmag_iso_grav_anom_s2",
+      "family": "static",
+      "auc": 0.53132
+    },
+    {
+      "field": "band_iso_grav_anom_vg",
+      "family": "static",
+      "auc": 0.53064
+    },
+    {
+      "field": "gradmag_iso_grav_anom_s5",
+      "family": "static",
+      "auc": 0.52988
+    },
+    {
+      "field": "phase_congruence",
+      "family": "static",
+      "auc": 0.52849
+    },
+    {
+      "field": "band_iso_grav_anom_slope",
+      "family": "static",
+      "auc": 0.52841
+    },
+    {
+      "field": "ext_UTh",
+      "family": "static",
+      "auc": 0.5257
+    },
+    {
+      "field": "gradmag_geod_2ndinv_s4",
+      "family": "static",
+      "auc": 0.52463
+    },
+    {
+      "field": "gradmag_rtp_s2",
+      "family": "static",
+      "auc": 0.52388
+    },
+    {
+      "field": "gradmag_rtp_s5",
+      "family": "static",
+      "auc": 0.52333
+    },
+    {
+      "field": "ext_UK",
+      "family": "static",
+      "auc": 0.52076
+    },
+    {
+      "field": "band_tmi_hg",
+      "family": "static",
+      "auc": 0.51893
+    },
+    {
+      "field": "gradmag_mag_anom_s2",
+      "family": "static",
+      "auc": 0.51856
+    },
+    {
+      "field": "gradmag_tc_s2",
+      "family": "static",
+      "auc": 0.51722
+    },
+    {
+      "field": "band_rtp",
+      "family": "static",
+      "auc": 0.51561
+    },
+    {
+      "field": "band_geod_dilaterate",
+      "family": "static",
+      "auc": 0.5154
+    },
+    {
+      "field": "band_depth_to_base_surf",
+      "family": "static",
+      "auc": 0.50792
+    },
+    {
+      "field": "dist_wellspring",
+      "family": "static",
+      "auc": 0.50481
+    },
+    {
+      "field": "logratio_U_Th",
+      "family": "static",
+      "auc": 0.50144
+    },
+    {
+      "field": "band_tmi_vg",
+      "family": "static",
+      "auc": 0.50111
+    },
+    {
+      "field": "ext_TMI_up150",
+      "family": "static",
+      "auc": 0.50011
+    },
+    {
+      "field": "band_cond_surf",
+      "family": "static",
+      "auc": 0.49758
+    },
+    {
+      "field": "band_iso_grav_anom_hg",
+      "family": "static",
+      "auc": 0.49739
+    },
+    {
+      "field": "band_tmi",
+      "family": "static",
+      "auc": 0.4965
+    },
+    {
+      "field": "lidar_coh100",
+      "family": "static",
+      "auc": 0.49502
+    },
+    {
+      "field": "ext_ThK",
+      "family": "static",
+      "auc": 0.49348
+    },
+    {
+      "field": "band_mag_anom",
+      "family": "static",
+      "auc": 0.49039
+    },
+    {
+      "field": "band_det_elev",
+      "family": "static",
+      "auc": 0.48805
+    },
+    {
+      "field": "dist_tiger_road_m",
+      "family": "static",
+      "auc": 0.48165
+    },
+    {
+      "field": "rad_U",
+      "family": "static",
+      "auc": 0.48053
+    },
+    {
+      "field": "dist_vent",
+      "family": "static",
+      "auc": 0.47617
+    },
+    {
+      "field": "band_iso_grav_anom",
+      "family": "static",
+      "auc": 0.47487
+    },
+    {
+      "field": "logratio_K_Th",
+      "family": "static",
+      "auc": 0.46667
+    },
+    {
+      "field": "rad_Th",
+      "family": "static",
+      "auc": 0.46562
+    },
+    {
+      "field": "band_tc",
+      "family": "static",
+      "auc": 0.46334
+    },
+    {
+      "field": "rad_TC",
+      "family": "static",
+      "auc": 0.46329
+    },
+    {
+      "field": "rad_K",
+      "family": "static",
+      "auc": 0.45689
+    },
+    {
+      "field": "log_det_elev_s1.5",
+      "family": "static",
+      "auc": 0.42776
+    },
+    {
+      "field": "log_det_elev_s3",
+      "family": "static",
+      "auc": 0.42002
+    },
+    {
+      "field": "dist_sgmc_fault",
+      "family": "static",
+      "auc": 0.34372
+    },
+    {
+      "field": "dyn_d_visible",
+      "family": "dynamic_fold_legal",
+      "auc": 0.26755
+    },
+    {
+      "field": "dyn_d_tips",
+      "family": "dynamic_fold_legal",
+      "auc": 0.24153
+    }
+  ],
+  "note": "AUC computed on quantile-bin codes; a high value means the field alone separates withheld catalogue faults. AUC<=0.90 does not prove absence of leakage."
+}
