@@ -49,7 +49,7 @@ code {{ word-break:break-all; }}
 .tag-warn {{ background:#4d3a17; color:#ffe2b0; }} .tag-mut {{ background:#2a313c; color:#c6cdd8; }}
 </style></head>
 <body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>CSPES LANE<small>2026-10-27 · RESEARCH ARTIFACT</small></span></a>
-<nav class="navigation" aria-label="Lane navigation">{links}</nav><span class="nav-status"><i class="dot"></i> Not cleared for upload</span></div></header>
+<nav class="navigation" aria-label="Lane navigation">{links}</nav><span class="nav-status"><i class="dot"></i> No competition file is cleared · Not cleared for upload</span></div></header>
 <main>{body}</main>
 <footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · CSPES lane · independent research, not affiliated with DOE or DrivenData.</span><span>HOLDOUT-DTI is a local proxy, never a leaderboard score.</span></div></footer>
 </body></html>"""

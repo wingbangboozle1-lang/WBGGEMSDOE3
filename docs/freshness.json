@@ -1,4 +1,5 @@
 {
+  "_archive_notice": "HISTORICAL 2026-10-26 identity check; see data/latest-upstream-check.json for the scheduled dashboard feed.",
   "checked_utc": "2026-10-26T21:55:32.390698+00:00",
   "scope": "GitHub source HEAD only; not a live leaderboard or complete raster registry",
   "rows": [

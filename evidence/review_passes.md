@@ -1,3 +1,5 @@
+> **Historical and superseded:** the reported LST1 uniqueness/readiness PASS below used unauthorized registry exemptions, and the historical holdout/canary have not been shown fold-local. Both archived TIFFs fail the literal witness rule. No current submission is approved. See [current card](run_card.json) and [archive audit](archive_audit.json). The unchecked claims below are retained only as provenance, not current decisions.
+
 # Three-pass record
 
 **Pass 1 – implement.** Registry (522 TIFs / 296 masks), ledger (118 verified live-scored rasters), design matrices, nested leave-site-out fit, allocator, candidate builder with uniqueness repair, writer + validator, hold-out runner, run card, site, README.

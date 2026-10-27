@@ -1,1 +1,15 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Research-only artifacts</title><style>body{font:16px/1.6 system-ui;max-width:50rem;margin:3rem auto;padding:1rem;color:#18342b}a{color:#176b50}</style></head><body><h1>DO NOT SUBMIT</h1><p>Files retained in this directory are historical research artifacts, not cleared competition submissions. The parallel 35,000-dot candidate fails the literal registry rule and the mirrored-footprint check.</p><p><a href="../evidence.html">Read the independent artifact audit</a> · <a href="../index.html">Return to the current decision</a></p></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Research-only artifacts</title><style>body{font:16px/1.6 system-ui,max-width:55rem;margin:3rem auto;padding:1rem;color:#18342b}a{color:#176b50}code{word-break:break-all}.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.8rem;font-weight:600}.neg{background:#5a2230;color:#ffd7de}.ok{background:#1d4430;color:#c9f3dc}.warn{background:#4d3a17;color:#ffe2b0}</style></head><body>
+<h1>DO NOT SUBMIT FOR SCORE</h1>
+<p><strong>No competition file is cleared for a weekly slot.</strong> Every file in this directory is a research artifact. The automated evidence behind each one — not the filename — decides whether it could ever be promoted, and a separate selector owns any real upload.</p>
+<h2>2026-10-27 CSPES lane artifact (generated, not copied)</h2>
+<p><code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif</code> (+ single-TIFF <code>.zip</code> and writer receipt <code>.json</code>).</p>
+<ul>
+<li><span class="tag ok">format validator PASS</span> single float32 band, EPSG:32611, exact sample shape/transform, zero NaN, all values in [0,1], nothing outside the footprint or on the catalogue.</li>
+<li><span class="tag ok">unique vs 117 sparse historical masks</span> no exact duplicate; max |Spearman| 0.108; max 3-px overlap 62.3% (&le; 70% gate).</li>
+<li><span class="tag warn">literal dense-witness rule FAIL</span> the space-filling 17GEMSDOE witness overlaps every nonempty raster 100% (IR-01); not exempted.</li>
+<li><span class="tag neg">negative holdout</span> HOLDOUT-DTI 0.0257 vs 0.0992 incumbent (paired 95% CI &minus;0.0883 to &minus;0.0587); do not promote to a slot.</li>
+</ul>
+<p>Full evidence, the nine-site executive table and portal instructions: <a href="../cspes/index.html">CSPES lane summary</a> · <a href="../cspes/how-to-submit.html">how to submit (only after selector approval)</a> · <a href="../cspes/data/cspes_run_card.json">run card JSON</a>.</p>
+<h2>Older research artifacts</h2>
+<p>The parallel 35,000-dot step-over candidate and earlier files fail the literal registry rule and/or the mirrored-footprint check; see the <a href="../evidence.html">independent artifact audit</a> and <a href="../index.html">the current decision dashboard</a>.</p>
+</body></html>
