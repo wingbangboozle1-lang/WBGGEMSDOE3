@@ -28,6 +28,17 @@ What <i>is</i> established locally: HOLDOUT-DTI 0.1292 [0.1160–0.1426]
 (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives) vs champion proxy 0.0992.
 Uploading spends a weekly-capped slot: that choice stays with the human selector (protocol rule 6).</div></div>
 
+<div class="warnbox"><b>POST-MERGE ADDENDUM (PR #29 merge with the score-tomography lane already on <code>main</code>).</b>
+After this audit was completed, the repository's cleared file became
+<code>wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</code> (30,000 dots, all ≥200 m off
+catalogue; LEDGER-INVERSION ESTIMATE 0.269, bias-corrected 0.207 — an estimate, not a score). This session
+independently re-audited its saved bytes: format valid (all-finite in [0,1], EPSG:32611, zero on catalogue) and
+<b>PASS</b> on the same rebuilt 120-mask registry used below (max 63.1% of dots within 3 px of any non-lattice mask;
+lattice-excess −0.007; receipt <code>evidence/rfl_tde30k_postmerge_audit.json</code>). <b>For the actual upload
+decision and download, follow the repository dashboard / README top block (TDE-30k)</b>; the HCE-1 file below
+remains the best <i>fold-local-holdout</i> research alternative, and everything else on this page stands as the
+audit record of this session.</div>
+
 <h2>Decision table — this repository's candidate files</h2>
 <table><tr><th>File</th><th>Estimated leaderboard DTI</th><th>SGMC proxy profile</th><th>Gates</th><th>Decision</th></tr><tr><td>HCE-1 (this repo, parallel lane)<br><span class="small"><code>docs/hce/downloads/wbggems3-hce1-latest.tif</code> · 169,968 dots</span></td><td>0.4393 ESTIMATE<br><span class="small">physical cap 0.3156 · implied capture 1.43</span></td><td>h=0.1318 · proxy 0.2612</td><td><span class="yes">PASS all gates</span></td><td><b>RECOMMENDED TO SELECTOR</b></td></tr><tr><td>skarpline union (this repo)<br><span class="small"><code>submission/wbggemsdoe3-skarpline-union-…zeros.tif</code> · 97,608 dots</span></td><td>0.4284 ESTIMATE<br><span class="small">physical cap 0.4453 · implied capture 0.96</span></td><td>h=0.1539 · proxy 0.2131</td><td><span class="no">FAIL uniqueness (0.735 / 0.724)</span></td><td><span class="no">DO NOT SUBMIT (protocol)</span></td></tr><tr><td>RFL — this session's new lane<br><span class="small"><code>no TIF written (duplicate stop)</code> · 37,654 dots</span></td><td>0.3308 ESTIMATE<br><span class="small">physical cap 0.6754 · implied capture 0.45</span></td><td>h=0.1888 · proxy 0.1227</td><td><span class="no">FAIL uniqueness (0.709) + holdout</span></td><td><span class="no">NEGATIVE — research only</span></td></tr><tr><td>CSPES (this repo)<br><span class="small"><code>submission/wbggems3-cspes-…zeros.tif</code> · 37,654 dots</span></td><td>0.0516 ESTIMATE<br><span class="small">physical cap 0.6754 · implied capture 0.07</span></td><td>h=0.0278 · proxy 0.0183</td><td><span class="mid">format PASS; holdout negative</span></td><td><span class="no">DO NOT SUBMIT</span></td></tr></table>
 <p class="small">ESTIMATE = gemsdoe SGMC-calibrated model re-fit this session (|G|=15673 px, 10/11 calibration

@@ -66,7 +66,7 @@ def test_rfl_run_card_schema_and_verdict():
 
 def test_rfl_banner_and_site_wiring():
     from rfl_banner import RFL_BANNER
-    assert "rfl/index.html" in RFL_BANNER and "wbggems3-hce1-latest.tif" in RFL_BANNER
+    assert "rfl/index.html" in RFL_BANNER and "wbggems3-tde30k-tomography-emission" in RFL_BANNER
     idx = (ROOT / "docs/rfl/index.html").read_text()
     assert "HOLDOUT-DTI" in idx and "USER-REPORTED" in idx and "ESTIMATE" in idx
     assert "wbggems3-hce1-latest.tif" in idx

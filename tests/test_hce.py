@@ -87,31 +87,32 @@ def test_uniqueness_and_canary_thresholds_are_unchanged():
     assert c["threshold"] == 0.90 and c["all_pass"] and c["max_auc"] <= 0.90
 
 
-def test_site_has_obvious_download_and_no_broken_links():
+def test_site_marks_hce_artifact_research_only_and_has_no_broken_links():
     pages = ["index.html", "how-to-submit.html", "why-0.2778.html", "hypotheses.html",
              "evidence.html", "sources.html", "limitations.html"]
     assert all((DOCS / p).exists() for p in pages)
     idx = (DOCS / "index.html").read_text()
-    assert "OK TO DOWNLOAD" in idx
+    assert "DO NOT SUBMIT" in idx
+    assert "DOWNLOAD RESEARCH TIF" in idx
     assert "downloads/wbggems3-hce1-latest.tif" in idx
-    assert "projection, NOT a score" in idx.lower() or "not a score" in idx.lower()
     for p in pages:
+        text = (DOCS / p).read_text()
+        assert "Global release gate: DO NOT SUBMIT" in text
         parser = _Links()
-        parser.feed((DOCS / p).read_text())
+        parser.feed(text)
         for link in parser.targets:
             if link.startswith(("http", "mailto:", "#", "data:")):
                 continue
             assert (DOCS / link.split("#")[0]).exists(), (p, link)
-    # the legacy root pages must link to the new lane deterministically
     root = (ROOT / "docs" / "index.html").read_text()
-    assert "hce/downloads/wbggems3-hce1-latest.tif" in root
     assert "hce/index.html" in root
 
 
-def test_site_builder_is_deterministic_and_banner_is_stable():
+def test_site_builder_is_deterministic_and_banner_is_fail_closed():
     from build_site import HCE_BANNER, main
     before = {p.name: _sha(p) for p in (ROOT / "docs").glob("*.html")}
     main()
     after = {p.name: _sha(p) for p in (ROOT / "docs").glob("*.html")}
     assert before == after
-    assert "wbggems3-hce1-latest.tif" in HCE_BANNER
+    assert "DO NOT SUBMIT" in HCE_BANNER
+    assert "hce/index.html" in HCE_BANNER

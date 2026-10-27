@@ -259,6 +259,17 @@ What <i>is</i> established locally: HOLDOUT-DTI {f(hce_hold['candidate'])} [{f(h
 (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives) vs champion proxy {f(champ['pooled_dti'])}.
 Uploading spends a weekly-capped slot: that choice stays with the human selector (protocol rule 6).</div></div>
 
+<div class="warnbox"><b>POST-MERGE ADDENDUM (PR #29 merge with the score-tomography lane already on <code>main</code>).</b>
+After this audit was completed, the repository's cleared file became
+<code>wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</code> (30,000 dots, all ≥200 m off
+catalogue; LEDGER-INVERSION ESTIMATE 0.269, bias-corrected 0.207 — an estimate, not a score). This session
+independently re-audited its saved bytes: format valid (all-finite in [0,1], EPSG:32611, zero on catalogue) and
+<b>PASS</b> on the same rebuilt 120-mask registry used below (max 63.1% of dots within 3 px of any non-lattice mask;
+lattice-excess −0.007; receipt <code>evidence/rfl_tde30k_postmerge_audit.json</code>). <b>For the actual upload
+decision and download, follow the repository dashboard / README top block (TDE-30k)</b>; the HCE-1 file below
+remains the best <i>fold-local-holdout</i> research alternative, and everything else on this page stands as the
+audit record of this session.</div>
+
 <h2>Decision table — this repository's candidate files</h2>
 <table><tr><th>File</th><th>Estimated leaderboard DTI</th><th>SGMC proxy profile</th><th>Gates</th><th>Decision</th></tr>{cand_rows}</table>
 <p class="small">ESTIMATE = gemsdoe SGMC-calibrated model re-fit this session (|G|={f(m_fit,0)} px, {fit['n_used']}/{fit['n_total']} calibration
@@ -329,6 +340,10 @@ Official sources: <a href="https://www.drivendata.org/competitions/306/competiti
     (OUT / "index.html").write_text(page("Executive summary (corrected)", body))
 
     sub = f"""
+<div class="warnbox"><b>POST-MERGE NOTE:</b> the repository's cleared upload is now the TDE-30k file on the
+<a href="../index.html">dashboard</a> (note: <code>TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots &gt;=200 m off catalogue</code>).
+The steps below document this session's gated HCE-1 file and the [0,1]-error analysis; do not spend a slot on
+both files without a selector decision.</div>
 <h1>Exactly how to submit the gated file</h1>
 <ol>
 <li>Download <a href="../hce/downloads/wbggems3-hce1-latest.tif" download><code>wbggems3-hce1-latest.tif</code></a>
