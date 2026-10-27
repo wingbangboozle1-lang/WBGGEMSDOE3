@@ -52,3 +52,24 @@ This session produced no candidate or valid local holdout estimate. The literal
 registry definition stops every nonempty in-footprint candidate because a registered
 soft raster is positive throughout the footprint; do not submit or silently exempt it.
 See the [current dashboard](../docs/index.html) and [negative card](../evidence/run_card.json).
+
+## Verification addendum — 2026-10-27 (independent recomputation)
+
+Every number here was recomputed this session from SHA-pinned bytes. Labels: owner-reported and
+projection figures are **not** scores.
+
+1. **Arithmetic.** GEMSDOE31's base has 40,199 positive cells; GEMSDOE32's B2 file has 37,654
+   (`evidence/nine_site_table.json`). Difference **2,545**, matching the earlier statement.
+2. **Near-duplicate structure (new).** `scripts/verify_focus_uniqueness.py` → `focus_vs_focus_pairwise`:
+   every GEMSDOE32 dot lies within 3 px of a dot in GEMSDOE24, 25, 27, 30, 31 and 36 (overlap
+   1.000 each), and within 0.9988–0.9998 of 28 and 33. In the other direction, GEMSDOE32 covers only
+   0.867–0.974 of those files' dots. So 0.2778's file is a sparser subset of the other top-scoring
+   files, within the 3-px tolerance, and it is **not unique** against them.
+3. **Why it could score highest — hypothesis, not established.** The public data cannot separate the
+   effect of the 2,545 removed cells (1.4–2 px from the catalogue) from the hidden labels. A plausible
+   mechanism is that the removal lowers false-positive mass while keeping most true-positive credit under
+   the 300 m kernel. The same public data could not confirm it, and no receipt ties 0.2778 to these bytes.
+4. **Can a new TIF beat 0.2778? Not demonstrated.** The unique SGCE candidate's projection is 0.0669
+   (80 % 0.0285–0.1053); the TDE-30k candidate's bias-corrected ledger estimate is 0.2074 but its
+   holdout is 0.0722 and both are circular (`docs/data/decision.json`). Neither is a validated gain.
+   See `knowledge/irregularities-2026-10-27.md` IR-28-06 to IR-28-08.
