@@ -1,0 +1,126 @@
+{
+ "lane": "RFL - range-front relief-discontinuity lineaments (self-assigned; no external lane was identified)",
+ "session": "arena/bd44f94b-wbggemsdoe3, 2026-10-27",
+ "preregistration": "knowledge/preregistration-2026-10-27-rfl.md (incl. transparent Amendment 1)",
+ "hypothesis": "Multi-scale persistent gradients of focal relief (500 m / 1.1 km) in detrended elevation mark Basin-and-Range range-front normal faults that are buried under alluvium and therefore absent from the scarp-mapped USGS/INGENIOUS catalogue.",
+ "mechanism": "R= focal max-min of det_elev; S=min(rank|grad R500|, rank|grad R1100|); shared greedy top-K 2px-NMS placement, K=37,654; label-independent surface.",
+ "named_non_fault_mimic": "Lithologic range fronts (resistant-rock boundaries), alluvial-fan heads and pluvial shorelines also produce persistent relief steps.",
+ "canary": {
+  "experiment": "E1",
+  "max_single_feature_auc": 0.5943102397445124,
+  "threshold": 0.9,
+  "all_pass": true,
+  "detail": {
+   "raw_det_elev": {
+    "auc": 0.4914795094064861,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "relief_r2_500m": {
+    "auc": 0.5571744690929741,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "relief_r5_1100m": {
+    "auc": 0.5598428222831954,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "grad_relief_g2": {
+    "auc": 0.5943102397445124,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "grad_relief_g5": {
+    "auc": 0.573805387504498,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "rank_r5": {
+    "auc": 0.5598428222831954,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   },
+   "rfl_full": {
+    "auc": 0.5854338263820169,
+    "n_pos": 22232,
+    "n_neg": 32000,
+    "leakage_alarm_gt_0.90": false
+   }
+  }
+ },
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "value": 0.05380097642691198,
+  "ci95": [
+   0.043670211105169596,
+   0.06415200174610412
+  ],
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "n_withheld_positives": 22232,
+  "champion_proxy_value": 0.09920232315251679,
+  "champion_proxy_ci95": [
+   0.08595140754809347,
+   0.11266835751415871
+  ],
+  "paired_delta_vs_champion": {
+   "delta": -0.04540134672560482,
+   "ci95": [
+    -0.05538646642430255,
+    -0.03564992891142698
+   ],
+   "p_delta_le_0": 1.0
+  },
+  "paired_delta_vs_random_null": {
+   "delta": 0.02250542757286144,
+   "ci95": [
+    0.012124460383716167,
+    0.03309201854740975
+   ],
+   "p_delta_le_0": 0.0
+  },
+  "experiment": "E2 (E3 budget sweep not run: preregistered reach condition failed)"
+ },
+ "correlation_overlap_vs_registry": {
+  "registry_scope": "rebuilt lane-local registry: 151 files / 120 unique dot masks (119 sparse + 1 dense witness); committed 522-file index not fully rebuilt",
+  "surface_max_abs_spearman": 0.7196474851997778,
+  "final_max_abs_spearman": 0.7196474851997778,
+  "final_max_overlap_nonlattice": 0.709353587932225,
+  "final_worst_nonlattice": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+  "final_max_excess_lattice_like": 0.07876985180857288,
+  "sparse_gate_pass": false,
+  "literal_any_raster_max_overlap": 1.0,
+  "literal_pass": false,
+  "outcome": "DUPLICATE under protocol rule 1 - logged, stopped, no raster packaged"
+ },
+ "raster_sha256": null,
+ "dots_sha256_packed_bits": "1c3b60066541ef9c5194560d1e0ca7bf72910ec61ba8489a8081629da0c6e311",
+ "n_dots": 37654,
+ "validator_output": {
+  "status": "NOT RUN - no candidate raster was written (duplicate stop before packaging)",
+  "required": "no NaN in footprint; values in [0,1]; CRS/shape/transform = sample"
+ },
+ "submission_name": null,
+ "submission_note": null,
+ "verdict": "negative",
+ "verdict_reason": "HOLDOUT-DTI 0.0538 loses paired comparison vs champion proxy 0.0992 (delta -0.0454, CI excludes 0) AND final dots breach the 70% uniqueness gate (0.709 vs GEMSDOE22 h23-b; lattice excess +0.079). RFL does beat the same-K random null (+0.0225, CI excludes 0) and has the highest SGMC-proxy hit-rate measured (h=0.189), so the relief-gradient signal is real but neither unique nor holdout-competitive as specified.",
+ "experiments_used": [
+  "E1 canary",
+  "E2 holdout battery"
+ ],
+ "experiments_budget": 3,
+ "slots_spent": 0,
+ "selector_recommendation_separate_step": {
+  "recommended_file_for_selector": "docs/hce/downloads/wbggems3-hce1-latest.tif",
+  "why": "Only saved file passing every protocol gate on bytes re-audited this session: format VALIDATOR PASS (evidence/rfl_recommended_validation.json), full 120-mask registry uniqueness PASS (max overlap 0.524, max |rho| 0.325), lane canary PASS, fold-local HOLDOUT-DTI 0.1292 [0.1160,0.1426] (GEMSDOE32-HIDE-RECOVER-v3.0, 22232 withheld) beating champion proxy 0.0992. Leaderboard expectation is NOT established to beat the owner-reported 0.2778: estimator-dependent (see site). Slot selection and weekly cap remain the human selector's step.",
+  "skarpline_correction": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif FAILS full-registry uniqueness (0.735 GEMSDOE23 h30, 0.724 GEMSDOE50 h59; ex-self) and has no fold-local holdout - superseded."
+ },
+ "elapsed_note": "within 3-experiment / 2-hour modelling budget for E1+E2; E0/Pass-2 are read-only audits",
+ "created_utc": "2026-10-27"
+}

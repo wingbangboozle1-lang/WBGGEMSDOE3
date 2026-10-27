@@ -1,0 +1,53 @@
+{
+ "status": "pass",
+ "canary": {
+  "raw_iso_grav_anom": {
+   "auc": 0.47170457420609935,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "raw_rtp": {
+   "auc": 0.516492899452366,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "raw_det_elev": {
+   "auc": 0.4914795094064861,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "P_grav_persist": {
+   "auc": 0.528534988979849,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "P_mag_persist": {
+   "auc": 0.5233874939557844,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "align_collinear": {
+   "auc": 0.5136041875168675,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "topo_rank": {
+   "auc": 0.5716796087846348,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  },
+  "cspes_full_surface": {
+   "auc": 0.5228709222629542,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm": false
+  }
+ }
+}

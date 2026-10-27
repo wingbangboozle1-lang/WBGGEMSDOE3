@@ -1,0 +1,3 @@
+RESEARCH ARTIFACTS — DO NOT SUBMIT.
+No file in this directory is cleared by the repository-wide release gate.
+wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif is locally format-valid but blocked by the literal registry, holdout, and selector gates.

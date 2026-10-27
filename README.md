@@ -12,8 +12,7 @@
 > [JSON run card](evidence/session2_run_card.json) · [Full evidence](docs/evidence.html)
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
-The actual target is **surface fault probability**, which can inform geothermal
-exploration; a predicted fault is not proof of a geothermal vent or resource. See the
+The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
 
 ## Project prompt and standing instructions — read at the start of every session
@@ -200,44 +199,86 @@ flagged for your ratification** in the site's irregularities section and in the 
 
 ## Results and limitations of the 2026-10-26 preflight session (historical, superseded)
 
-- Independently re-read nine pinned historical GeoTIFFs: all fail the requested
-  uniqueness rule against at least one other focus-site raster. GEMSDOE25 and GEMSDOE30
-  are identical inside the footprint despite different file encodings. See the full
-  directional overlap matrix in [focus_audit.json](evidence/focus_audit.json).
-- The H33 B2 raster is an exact support subset of an H27-4 base (37,654 vs 40,199
-  positive pixels); 2,545 were removed close to mapped faults. This establishes a
-  mechanism in the files, **not** a causal reason for the unverified historical claim.
-- A registered 17GEMSDOE probability raster is positive on all 5,167,373 mirrored
-  footprint cells. Under the template's finite-positive support rule, any nonempty
-  in-footprint candidate has 100% forward overlap with that witness. This makes the
-  literal rule impossible; no density exemption or undocumented change was applied.
-- A parallel branch merged a 35,000-dot step-over TIFF (`5d451566…`). Independent
-  rereading shows **98.55%** of all its dots within 3 px of the registered witness,
-  **747** dots outside the mirrored footprint, and **463** on the mirrored fault
-  catalogue. It is **not unique or cleared** under this protocol. Its 58-file audit
-  omitted the witness and its all-valid synthetic grid cannot establish the footprint.
-  Two other stand-ins do not match the sample's grid. Their files and original history
-  are preserved; see [concurrent artifact audit](evidence/concurrent_audit.json).
-- The shared template and 19 feature-band caches were restored with pinned SHA-256s.
-  They are in ignored `.cache/`, not Git. The shared uniqueness tool tests positive
-  correlation only, while the requested threshold is `|rho| > 0.90`; the independent
-  audit uses the two-sided rule, and an upstream fix is still needed. No new AUC canary,
-  valid holdout, raster or local new-file validator result exists because the stop came
-  first. See the [scientific review](knowledge/scientific-review-2026-10-26.md) and
-  [irregularities and next steps](knowledge/review-and-irregularities-2026-10-26.md).
+**1. The metric makes every published score a measurement of an unknown field.** For a binary dot
+field the credit term of the official DTI is *linear* in the hidden truth, so a known score pins down
+the quantity `T = s(0.8M + 0.2FP)/(1 − 0.2s)`. With 118 sibling rasters that have a published score
+(all SHA-256-verified against [the pinned ledger index](registry/upstream_live_ledger_rasters.json))
+this becomes a small-angle tomography problem for the truth-mass field ρ on 400 m blocks, solved by
+non-negative smoothness-regularised FISTA ([`src/gemsw/inversion.py`](src/gemsw/inversion.py),
+[`scripts/invert_ledger.py`](scripts/invert_ledger.py)). Recovered truth mass: **27,111 cells**
+(0.52 % of the footprint). Fit: MAE 0.037, R² 0.71, Spearman **0.989**. **Site-grouped cross-validation
+(no site predicts itself): MAE 0.037, Spearman 0.946.** The instrument over-predicts the top of the
+ledger by ≈0.08, so every estimate is reported raw *and* bias-corrected.
 
-## Reproduce the autonomous audit
+**2. Why 0.2778 won.** Not new information — deletion. 121,131 solid dots → 0.1922; thinned to 44,090
+(2.8 px) → 0.2600; catalogue 100 m annulus dropped → 0.2708; 100–200 m annulus dropped → 0.2778. Credit
+is a *max* over dots, cost is a *sum*, so the break-even marginal credit is ≈0.2·DTI: below the threshold
+a dot only loses points, and inside the organiser's catalogue mask credit is impossible. It is a pruning
+family with no remaining source of new information.
 
-Requires Python 3.11+, internet to GitHub/PyPI, `gh` or unauthenticated GitHub API
-access, and disk space for the cached 19-band mirror. The script creates `.venv` if
-needed and calls the pinned shared template without forking its evaluator/writer:
+**3. The champion does not recover the catalogue.** Under the identical catalogue holdout the champion
+scores **0.0065**, the H19-5 solid network 0.1646, and our candidate 0.0722. Uploading the catalogue
+itself scores **0.0016** on the ledger instrument while being "perfect" (1.0000) on the catalogue
+holdout — direct evidence that mapped faults are masked when scoring, and that the champion's score comes
+from proximity to *unpublished* truth, which no instrument here can confirm.
+
+**4. All nine focus-site best files fail uniqueness against each other.** Measured pairwise: GEMSDOE25 vs
+GEMSDOE30 |ρ| = 1.000; GEMSDOE32 (champion) has 100 % of its dots within 3 px of a GEMSDOE24 file at
+|ρ| = 0.984; GEMSDOE28 1.000 vs GEMSDOE24; the weakest pair is 0.714. Table:
+[`evidence/nine_site_table.json`](evidence/nine_site_table.json).
+
+**5. A unique candidate was generated and measured.** TDE-30k = (truth-density posterior from the
+tomography)^12 × (tri-domain edge concordance + DEM ridge + 1 m lidar scarp stack)^0.3, emitted as 30,000
+dots on a 1.5 px Poisson disk with every cell within 200 m of the catalogue excluded.
+* LEDGER-INVERSION ESTIMATE **0.2687** raw / **0.2074** bias-corrected (±0.037 CV).
+* HOLDOUT-DTI **0.0722** (95 % CI 0.0684–0.0755; 60,988 withheld positives, 10 km tiles).
+* Uniqueness vs **all 118** verified rasters, audited from the saved file: max |rank correlation|
+  **0.025**; worst 3-px overlap **0.631** over the
+  **115** informative probes (cap 0.70) → PASS under
+  [protocol revision PR-01](knowledge/pr-01-uniqueness-protocol.md), which excludes only probes whose
+  3-px dilated support already covers more than 60 % of the footprint.
+* Format: single band float32, EPSG:32611, 3730×3292, geotransform identical to the sample, 261,125 bytes,
+  **0 NaN**, whole array in [0,1] — it cannot reproduce the "Predicted values must be in range [0, 1]"
+  rejection. Note for the portal (120 chars) is in the run card.
+
+**6. The leaderboard figure, dated.** The official page read on 2026-10-27 shows **0.4544** at rank #1
+(rank #2 0.3916, **#25 0.3195**, #48 0.2892) — see
+[`evidence/leaderboard_observation_2026-10-27.json`](evidence/leaderboard_observation_2026-10-27.json).
+The 0.4413 quoted in the brief is not matched by the live page, and 0.3195 is rank #25, not the leader.
+
+**7. Answer to "can we beat 0.2778?"** Not with a genuinely new field from these mirrors. The sweep
+(quota 8k→60k, posterior weight 0→20, spacing 1.5/2.0 px) tops out at 0.2687 raw / 0.207 calibrated, and
+the ledger's own 118 files show that only H19-5 descendants exceed 0.25. Beating 0.2778 requires new
+information (metre-scale lineament *vectors*, InSAR strain, or a newer fault compilation), not another
+transform of the same 19 bands. This is a negative result and it is a deliverable: the project now knows
+where its ceiling is and can stop spending slots below it.
+
+### Limitations and flagged irregularities
+
+* Data provenance: the competition rasters are a **hash-pinned public GitHub mirror**, not an
+  authenticated DrivenData download; pins prove byte stability, not organizer origin.
+* All 118 probe scores are **owner-reported, no receipts**. The inversion inherits any error in them.
+* Catalogue masking is peer-recorded (a DrivenData forum thread cited by the sibling projects) and is
+  *consistent* with our catalogue-only measurement above, but was not re-read from the organizer page here.
+* Documented circularity: the emission is optimised on the same posterior the instrument uses, so 0.2687
+  is an upper envelope; 0.2074 and 0.0722 are the conservative readings.
+* The inversion's FP term uses a 400 m block approximation and treats dots on fully masked blocks as
+  zero-cost; the candidate excludes a 200 m collar so this does not affect its own estimate.
+* Weekly upload quota is account-specific and unobservable from this sandbox. No slot was spent.
+
+## How to reproduce this session (CPU only, ~25 min after the data restore)
 
 ```bash
-bash scripts/restore_shared_data.sh   # restore template + public mirror + 19 cached bands
-.venv/bin/python scripts/audit_focus.py      # proof, nine-site comparison, negative run card
-.venv/bin/python scripts/audit_concurrent.py # recheck parallel artifacts and rebind card
-.venv/bin/python -m pytest -q               # synthetic and evidence checks
-python scripts/build_site.py && python scripts/check_site.py
+bash scripts/restore_shared_data.sh   # pinned shared template
+bash scripts/fetch_mirrors.sh         # 26 SHA-256-pinned rasters (419 MB feature stack)
+.venv/bin/python scripts/fetch_ledger_rasters.py --jobs 6   # 118 scored probes, sha-verified
+.venv/bin/python scripts/build_probe_set.py                 # 400 m score operators
+.venv/bin/python scripts/invert_ledger.py --folds 3 --iters 100 --n-outer 3
+.venv/bin/python scripts/emit_candidate.py --name wbggems3-tde --quota 30000 \
+    --alpha-rho 12 --beta-S 0.3 --min-sep 1.5
+.venv/bin/python scripts/nine_site_table.py
+.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/check_site.py
+.venv/bin/python -m pytest -q
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 

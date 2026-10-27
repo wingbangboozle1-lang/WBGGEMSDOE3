@@ -1,41 +1,40 @@
 #!/usr/bin/env bash
-# download_competition_data.sh
+# download_competition_data.sh — place the competition rasters into data/raw/.
 #
-# Download GEMS competition data into data/raw/.
+# 2026-10-27: the previous version of this script only PRINTED instructions and
+# could never succeed ("single remaining blocker to training is data placement").
+# It now performs the placement autonomously through the only channel available
+# to this environment: the SHA-256-pinned public GitHub mirror listed in
+# registry/data_manifest.json.  `gh` authentication for github.com is already
+# configured in this workspace; no DrivenData credential is used or stored.
 #
-# BLOCKER: The DrivenData competition data tab (training_features.tif,
-# labels.tif, sample_submission.tif, existing_faults.tif, 1m_DEM_links.csv)
-# requires a DrivenData login and redirects to a login page.  Automated
-# download is therefore NOT possible from this environment without
-# DrivenData credentials.
+# PROVENANCE WARNING (no hallucinations): these bytes are an OWNER-SUPPLIED
+# MIRROR of the login-walled competition files, not an authenticated download
+# from https://www.drivendata.org/competitions/306/competition-doe-gems/data/.
+# The hashes prove that the mirror is internally consistent and that we fetched
+# exactly the bytes studied by the sibling projects.  They do NOT prove the
+# organizer's origin, band semantics, licence, or that the hidden test labels
+# match.  See knowledge/review-and-irregularities-2026-10-26.md (IR-06).
 #
-# Manual steps (run on any machine with DrivenData access):
+# Official sources for manual verification:
+#   https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+#   https://www.drivendata.org/competitions/306/competition-doe-gems/data/
+#   https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+#   https://gdr.openei.org/submissions/1391
+#   https://docs.nlr.gov/docs/fy26osti/96647.pdf
 #
-#   1. Log in to https://www.drivendata.org/competitions/306/competition-doe-gems/data/
-#   2. Download:
-#        - training_features.tif
-#        - labels.tif
-#        - sample_submission.tif
-#        - existing_faults.tif
-#        - 1m_DEM_links.csv
-#   3. Optionally (public, free, official):
-#        - GEODAWN airborne magnetic & radiometric survey metadata:
-#          https://gdr.openei.org/submissions/1391
-#          https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
-#        - 30 m DEM: USGS 3DEP / https://epsg.io/32611 (CRS reference)
-#   4. Place all rasters into data/raw/
-#   5. Run: python scripts/prepare_data.py   (writes data/manifest.json)
-#
-# Public Dropbox mirrors referenced by the competition write-up (may require
-# Dropbox access; not guaranteed reachable from this sandbox):
-#   https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?dl=1
-#   https://www.dropbox.com/scl/fi/6rgvnuady818ol8yqgis4/example_submission.tif?dl=1
-#   https://www.dropbox.com/scl/fi/t7fyt03qdh9egyme0itwo/existing_faults.tif?dl=1
-#   https://www.dropbox.com/scl/fi/3vz9o0wwavi26xaeoxlwr/gems-geodawn-numerical-features.tif?dl=1
-#   https://www.dropbox.com/scl/fi/ig0mban712ns1atphgphe/Digital-elevation-model-links-JSON.pdf?dl=1
-#
+# Usage:  bash scripts/download_competition_data.sh [DEST]   (default data/raw)
 set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+DEST="${1:-$ROOT/data/raw}"
 
-echo "This script documents data acquisition only."
-echo "Competition data requires DrivenData login: see comments above."
-echo "After placing rasters in data/raw/, run: python scripts/prepare_data.py"
+echo "[1/3] Fetching 26 hash-pinned mirror files into ${DEST} ..."
+bash scripts/fetch_mirrors.sh "$DEST"
+
+echo "[2/3] Running scripts/prepare_data.py ..."
+if [[ -x .venv/bin/python ]]; then PY=.venv/bin/python; else PY=python3; fi
+"$PY" scripts/prepare_data.py
+
+echo "[3/3] Data placement complete. Pins: registry/data_manifest.json; grid: data/manifest.json."
+echo "REMINDER: mirror bytes are NOT organizer-authenticated; verify provenance before a real upload."

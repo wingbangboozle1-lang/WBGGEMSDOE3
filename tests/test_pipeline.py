@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.dti import pooled_dti
 from src.features import curvature_like, openness_proxy, combine_features, lineament_density
 from src.validate import validate_submission
+from rasterio.transform import from_origin
 
 
 def test_pooled_dti_bounds():
@@ -63,25 +64,25 @@ def test_combine_features_in_range():
 
 
 def test_validation_gates(tmp_path):
-    # valid tif
     arr = np.random.default_rng(3).random((20, 30)).astype(np.float32)
-    valid = tmp_path / "valid.tif"
-    with rasterio.open(valid, "w", driver="GTiff", dtype="float32", width=30,
-                       height=20, count=1, compress="deflate") as s:
-        s.write(arr, 1)
-    res = validate_submission(str(valid))
-    assert res.ok is True
-    assert res.metrics["value_min"] >= 0.0
-    assert res.metrics["value_max"] <= 1.0
+    profile = dict(driver='GTiff', dtype='float32', width=30, height=20, count=1,
+                   crs='EPSG:32611', transform=from_origin(243350, 4508550, 100, 100))
+    sample = tmp_path / 'sample.tif'
+    valid = tmp_path / 'valid.tif'
+    with rasterio.open(sample, 'w', **profile) as dst:
+        dst.write(np.zeros_like(arr), 1)
+    with rasterio.open(valid, 'w', **profile) as dst:
+        dst.write(arr, 1)
+    assert not validate_submission(str(valid)).ok  # no reference is never enough
+    res = validate_submission(str(valid), str(sample))
+    assert res.ok and not res.metrics['approved_for_submission']
+    assert res.metrics['value_min'] >= 0 and res.metrics['value_max'] <= 1
+    assert not validate_submission(str(valid), str(sample), require_single_band=False).ok
 
-    # out-of-range tif
-    bad = tmp_path / "bad.tif"
-    arr2 = (np.random.default_rng(4).random((20, 30)) * 2).astype(np.float32)
-    with rasterio.open(bad, "w", driver="GTiff", dtype="float32", width=30,
-                       height=20, count=1, compress="deflate") as s:
-        s.write(arr2, 1)
-    res2 = validate_submission(str(bad))
-    assert res2.ok is False
+    bad = tmp_path / 'bad.tif'
+    with rasterio.open(bad, 'w', **profile) as dst:
+        dst.write(arr * 2, 1)
+    assert not validate_submission(str(bad), str(sample)).ok
 
 
 if __name__ == "__main__":

@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why 0.2778 · HCE-1 · WBGGEMSDOE3</title><link rel="stylesheet" href="assets/hce.css"></head>
+<body><header class="top"><div class="wrap"><div class="brand">⌁ WBGGEMSDOE3 · HCE-1 LANE <span class="small">/ DOE GEMS PRIZE</span></div><nav><a href="index.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a style="color:#7cf0b8;font-weight:800" href="why-0.2778.html">Why 0.2778</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="limitations.html">Limitations</a></nav></div></header>
+<main><div class="wrap"><div class="danger"><strong>Global release gate: DO NOT SUBMIT.</strong> This lane's card reports a content-aware diagnostic but a literal-registry failure. It has no repository-level selector approval and cannot override the governing negative run card. Downloads are for reproducibility only; see the <a href="../executive-summary.html">repository-wide decision</a>.</div>
+<div class="hero"><div class="wrap"><div class="small">PHD-LEVEL ANALYSIS / GEMSDOE32 H33 B2</div><h1>Why did 0.2778 happen?</h1>
+<p>And can a scientifically different method beat it? The honest answer separates what the bytes prove, what the
+metric implies, and what only an organizer receipt can establish.</p></div></div>
+<h2>1 · What is actually measured</h2>
+<p>The value 0.2778 is an <strong>owner-reported claim</strong> for
+<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>. No submission-page receipt linking those bytes to that
+number was available; the public leaderboard is a time-stamped observation about other teams, not a receipt.</p>
+<p>Independently re-reading the pinned TIFFs showed B2 is an <strong>exact support subset</strong> of GEMSDOE28's
+H27-4 base: 37,654 positive cells retained from 40,199. All 2,545 removed cells lie 1.41–2.00 px from the mapped
+fault mask; the closest kept cell is 2.24 px away. This is catalogue-proximity pruning — a measured property of
+the file, not a proven cause of the score.</p>
+<h2>2 · The decision-theoretic mechanism</h2>
+<p>The official metric is a distance-weighted Tversky index with α=0.2 (false positives cheap), β=0.8 (false
+negatives expensive), and a triangular kernel k(d)=max(1−d/3, 0) at 100 m/px. Written in the official notation,
+TP<sub>w</sub>=Σ<sub>g∈G</sub>max<sub>x</sub> p(x)k(d(x,g)). Three consequences follow:</p>
+<ul>
+<li><strong>Max-credit, not sum-credit.</strong> Each ground-truth pixel takes its single best prediction within
+300 m. A 2–3 px dotted lattice along a line yields almost the same credit as a solid line at a fraction of the
+false-positive mass. The B2/D2.8 family is exactly such a lattice on the H19-5 ridge network.</li>
+<li><strong>False positives are discounted 5:1.</strong> DTI = TP/(TP+0.2FP+0.8FN). With ~37.6 k dots and an
+estimated ~12.7 k hidden truth pixels, the denominator is dominated by 0.8·FN, so broad coverage of plausible
+traces beats a timid, high-precision set — as long as the extra dots are not mostly far from truth.</li>
+<li><strong>Catalogue exclusion matters.</strong> The hidden test set consists of expert-labeled faults <em>not</em>
+in the public USGS/INGENIOUS catalogue. Dots on mapped traces cannot become true positives and are pure 0.2-cost
+false positives. Removing the 2,545 near-catalogue dots is the rational move.</li>
+</ul>
+<p>Formally, for a fixed truth set G with coverage c=TP/|G| and N emitted dots,
+DTI ≈ c|G| / (0.2c|G| + 0.8|G| + 0.2N). Solving for the observed 0.2778 with N=37,654 and |G|≈12,691 requires
+c≈0.41 — i.e. roughly 41% kernel credit on hidden faults. That is far above the ~9% credit these files obtain on
+the independent off-catalogue SGMC trace population measured here, which tells us the hidden expert labels are
+much more aligned with the H19-5 lineament network than SGMC traces are (or that the |G| estimate is wrong).
+Both explanations are unverified; only the hidden labels and a receipt can decide.</p>
+<h2>3 · Can we do better?</h2>
+<p>Three distinct evidence streams disagree, and all three are reported:</p>
+<div class="grid"><div class="card"><h3>Fold-legal holdout — YES</h3><p class="small">Our E4 physical-susceptibility
+lattice scores HOLDOUT-DTI 0.1292 (95% CI 0.1160–0.1426,
+22,232 withheld positives, GEMSDOE32-HIDE-RECOVER-v3.0) against the replayed champion
+proxy 0.0992; paired Δ +0.0300, 95% CI
++0.0177–+0.0417.
+A dot-count-matched random lattice control scores 0.0734, so the ranking adds signal.
+Caveat: the champion proxy is leakage-contaminated (H19-5 was built from the full catalogue).</p></div>
+<div class="card"><h3>Released-file static holdout — MIXED</h3><p class="small">After the mandatory registry-novel
+repair, the actual downloaded bytes score 0.0931 (95% CI 0.0824–0.1037)
+as a static read-back. It is a diagnostic, not fold-local out-of-fold scoring.</p></div>
+<div class="card"><h3>Owner-reported ledger projection — NO</h3><p class="small">A leave-one-out ridge model on 117
+owner-reported sibling scores (LOO MAE 0.0287) projects 0.082
+(p10–p90 0.024–0.140) for our pattern. The top of that ledger is one tightly related dot
+family, so the projection is severely out-of-distribution and probably pessimistic — but it is not evidence that
+we beat 0.2778.</p></div></div>
+<div class="danger"><strong>Conclusion.</strong> We can produce a genuinely new, format-valid, holdout-winning
+submission. We cannot honestly claim a score above 0.2778 (or above the current public leaderboard) without an
+organizer submission-page receipt tied to our uploaded SHA-256. Any statement to the contrary would be a
+projection dressed up as a score.</div>
+<h2>4 · Sources</h2><p class="small"><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official metric &amp; format</a> ·
+<a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About the data</a> ·
+<a href="data/run_card.json">our run card</a> · <a href="data/uniqueness.json">uniqueness measurements</a></p>
+</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>

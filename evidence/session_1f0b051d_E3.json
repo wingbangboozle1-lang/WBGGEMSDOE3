@@ -1,0 +1,1091 @@
+{
+ "name": "E3_hybrid",
+ "n_dots": 40000,
+ "holdout": {
+  "label": "HOLDOUT-DTI (fold-legal: catalogue-free fields; trim applied to VISIBLE faults only)",
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "n_withheld_positives": 22232,
+  "pooled_dti": 0.0053488373357834015,
+  "ci95": [
+   0.004604587701802335,
+   0.006104786124286903
+  ],
+  "per_quadrant": {
+   "NW": 0.0040937935357043915,
+   "NE": 0.005672940262936452,
+   "SW": 0.005634192777400177,
+   "SE": 0.005687389429755876
+  }
+ },
+ "strata_control": {
+  "pooled_dti": 0.00039137610033836715,
+  "ci95": [
+   0.0003373913940560217,
+   0.0004496502346538828
+  ],
+  "paired_delta": 0.004957461235445034,
+  "paired_delta_ci95": [
+   0.004222562696889646,
+   0.005714495904671688
+  ],
+  "p_delta_le_0": 0.0
+ },
+ "lst": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.11759758943091612,
+  "tp_hat": 1828.710643666171,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 39322.64510696613,
+  "mass": 40000.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "density_matched": {
+  "label": "PROXY-DTI (density-matched SGMC segments; same seeds as audit)",
+  "by_target": {
+   "8430": {
+    "E3_hybrid": {
+     "mean": 0.04113997878723999,
+     "p2.5": 0.034748611840834144,
+     "p97.5": 0.04832233996793012
+    },
+    "champion_GEMSDOE32": {
+     "mean": 0.05218046817241101,
+     "p2.5": 0.043859513510411396,
+     "p97.5": 0.06671918275040058
+    },
+    "skarpline_union": {
+     "mean": 0.07824512403916747,
+     "p2.5": 0.07310790586064302,
+     "p97.5": 0.08641945020145418
+    }
+   },
+   "12691": {
+    "E3_hybrid": {
+     "mean": 0.04907688248432463,
+     "p2.5": 0.04177237210524614,
+     "p97.5": 0.055935746095711884
+    },
+    "champion_GEMSDOE32": {
+     "mean": 0.06239608586857794,
+     "p2.5": 0.052133537245602046,
+     "p97.5": 0.0756005413002945
+    },
+    "skarpline_union": {
+     "mean": 0.1042296685990068,
+     "p2.5": 0.09891737868617503,
+     "p97.5": 0.11447503278271778
+    }
+   },
+   "15672": {
+    "E3_hybrid": {
+     "mean": 0.053409785159232094,
+     "p2.5": 0.04579960165920708,
+     "p97.5": 0.06089152397868984
+    },
+    "champion_GEMSDOE32": {
+     "mean": 0.06783803085655743,
+     "p2.5": 0.05833892219294595,
+     "p97.5": 0.07864416447684634
+    },
+    "skarpline_union": {
+     "mean": 0.11861748993183986,
+     "p2.5": 0.1114081003997149,
+     "p97.5": 0.12851557943182162
+    }
+   }
+  }
+ },
+ "uniqueness": {
+  "rows": [
+   {
+    "comparator": "GEMSDOE32::h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "n_other": 37654,
+    "jaccard": 0.015762142081649205,
+    "class": "sparse",
+    "cand_within3": 0.460675,
+    "density_spearman": 0.5277699329217428
+   },
+   {
+    "comparator": "GEMSDOE36::anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+    "n_other": 38854,
+    "jaccard": 0.01559702742037273,
+    "class": "sparse",
+    "cand_within3": 0.463575,
+    "density_spearman": 0.5259666862666627
+   },
+   {
+    "comparator": "GEMSDOE28::h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+    "n_other": 37660,
+    "jaccard": 0.014884802864573124,
+    "class": "sparse",
+    "cand_within3": 0.4668,
+    "density_spearman": 0.5197760310937667
+   },
+   {
+    "comparator": "GEMSDOE28::h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+    "n_other": 40199,
+    "jaccard": 0.015254323113147833,
+    "class": "sparse",
+    "cand_within3": 0.4715,
+    "density_spearman": 0.5184135029471872
+   },
+   {
+    "comparator": "GEMSDOE31::h27-4-solo-d28-20261004-8acb75e1-nan",
+    "n_other": 40199,
+    "jaccard": 0.015254323113147833,
+    "class": "sparse",
+    "cand_within3": 0.4715,
+    "density_spearman": 0.5184135029471872
+   },
+   {
+    "comparator": "GEMSDOE28::h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+    "n_other": 37860,
+    "jaccard": 0.014885685236841419,
+    "class": "sparse",
+    "cand_within3": 0.467575,
+    "density_spearman": 0.5189237083677204
+   },
+   {
+    "comparator": "GEMSDOE28::h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+    "n_other": 42294,
+    "jaccard": 0.015047980856994844,
+    "class": "sparse",
+    "cand_within3": 0.47715,
+    "density_spearman": 0.5093859117977458
+   },
+   {
+    "comparator": "GEMSDOE33::h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+    "n_other": 41865,
+    "jaccard": 0.015140618024899558,
+    "class": "sparse",
+    "cand_within3": 0.478675,
+    "density_spearman": 0.5110969804534596
+   },
+   {
+    "comparator": "GEMSDOE25::dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+    "n_other": 44090,
+    "jaccard": 0.014538215599927611,
+    "class": "sparse",
+    "cand_within3": 0.479925,
+    "density_spearman": 0.5011814435919503
+   },
+   {
+    "comparator": "GEMSDOE30::d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+    "n_other": 44090,
+    "jaccard": 0.014538215599927611,
+    "class": "sparse",
+    "cand_within3": 0.479925,
+    "density_spearman": 0.5011814435919503
+   },
+   {
+    "comparator": "GEMSDOE29::efd28-repro-20261003-1cc7dc534d51-nan",
+    "n_other": 44090,
+    "jaccard": 0.014538215599927611,
+    "class": "sparse",
+    "cand_within3": 0.479925,
+    "density_spearman": 0.5011814435919503
+   },
+   {
+    "comparator": "GEMSDOE29::wormrank-d28-20261003-59dcaf6dd11d-zeros",
+    "n_other": 41338,
+    "jaccard": 0.014189526184538653,
+    "class": "sparse",
+    "cand_within3": 0.479775,
+    "density_spearman": 0.5010675148421286
+   },
+   {
+    "comparator": "GEMSDOE70::gems70-p5-dual-submod300-oof38k-20261020",
+    "n_other": 37654,
+    "jaccard": 0.008690004546340196,
+    "class": "sparse",
+    "cand_within3": 0.2302,
+    "density_spearman": 0.2998104899716254
+   },
+   {
+    "comparator": "GEMSDOE24::h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+    "n_other": 60069,
+    "jaccard": 0.016579131830510886,
+    "class": "sparse",
+    "cand_within3": 0.501825,
+    "density_spearman": 0.4985198627058307
+   },
+   {
+    "comparator": "GEMSDOE27::topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+    "n_other": 61328,
+    "jaccard": 0.016390153870844786,
+    "class": "sparse",
+    "cand_within3": 0.50415,
+    "density_spearman": 0.49209697327916374
+   },
+   {
+    "comparator": "GEMSDOE49::gate_ortho_w0.25-40k-20261006T213721Z-nan",
+    "n_other": 40000,
+    "jaccard": 0.005391411443867741,
+    "class": "sparse",
+    "cand_within3": 0.203275,
+    "density_spearman": 0.1869269780561812
+   },
+   {
+    "comparator": "GEMSDOE76::gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+    "n_other": 39200,
+    "jaccard": 0.008634522808894323,
+    "class": "sparse",
+    "cand_within3": 0.261875,
+    "density_spearman": 0.2877320804082544
+   },
+   {
+    "comparator": "GEMSDOE63::cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+    "n_other": 54864,
+    "jaccard": 0.01269282092340539,
+    "class": "sparse",
+    "cand_within3": 0.5307,
+    "density_spearman": 0.48939718402682264
+   },
+   {
+    "comparator": "GEMSDOE48::h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+    "n_other": 37723,
+    "jaccard": 0.013601982263954095,
+    "class": "sparse",
+    "cand_within3": 0.44265,
+    "density_spearman": 0.5073872005446911
+   },
+   {
+    "comparator": "GEMSDOE27::gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+    "n_other": 37654,
+    "jaccard": 0.008375644405199393,
+    "class": "sparse",
+    "cand_within3": 0.224675,
+    "density_spearman": 0.2391261719086524
+   },
+   {
+    "comparator": "19GEMSDOE::h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+    "n_other": 121131,
+    "jaccard": 0.019545437288821958,
+    "class": "sparse",
+    "cand_within3": 0.5141,
+    "density_spearman": 0.4889580297138712
+   },
+   {
+    "comparator": "GEMSDOE73::gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+    "n_other": 37654,
+    "jaccard": 0.008231628148532849,
+    "class": "sparse",
+    "cand_within3": 0.2761,
+    "density_spearman": 0.30436584777355585
+   },
+   {
+    "comparator": "19GEMSDOE::h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+    "n_other": 123779,
+    "jaccard": 0.02001681561984243,
+    "class": "sparse",
+    "cand_within3": 0.50655,
+    "density_spearman": 0.4888346834727508
+   },
+   {
+    "comparator": "20GEMSDOE::h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+    "n_other": 123829,
+    "jaccard": 0.01953450743667932,
+    "class": "sparse",
+    "cand_within3": 0.48745,
+    "density_spearman": 0.4798920862640794
+   },
+   {
+    "comparator": "GEMSDOE82::gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros",
+    "n_other": 37654,
+    "jaccard": 0.008663800381882655,
+    "class": "sparse",
+    "cand_within3": 0.24945,
+    "density_spearman": 0.2779140878876712
+   },
+   {
+    "comparator": "20GEMSDOE::h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+    "n_other": 121258,
+    "jaccard": 0.018576653170537593,
+    "class": "sparse",
+    "cand_within3": 0.467525,
+    "density_spearman": 0.4675457035598806
+   },
+   {
+    "comparator": "16GEMSDOE::h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+    "n_other": 123939,
+    "jaccard": 0.019724074442675158,
+    "class": "sparse",
+    "cand_within3": 0.494125,
+    "density_spearman": 0.4869162354049634
+   },
+   {
+    "comparator": "GEMSDOE10::h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+    "n_other": 69281,
+    "jaccard": 0.007532453164183508,
+    "class": "sparse",
+    "cand_within3": 0.404975,
+    "density_spearman": 0.2564514604452446
+   },
+   {
+    "comparator": "GEMSDOE91::gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros",
+    "n_other": 37654,
+    "jaccard": 0.005945980957315888,
+    "class": "sparse",
+    "cand_within3": 0.218475,
+    "density_spearman": 0.17724111099376966
+   },
+   {
+    "comparator": "GEMSDOE75::gems75-trlt-radon-loco-ridge-20261021-zeros",
+    "n_other": 36800,
+    "jaccard": 0.007966611106007113,
+    "class": "sparse",
+    "cand_within3": 0.257375,
+    "density_spearman": 0.23605966920091875
+   },
+   {
+    "comparator": "GEMSDOE46::r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+    "n_other": 44090,
+    "jaccard": 0.007065868263473054,
+    "class": "sparse",
+    "cand_within3": 0.297625,
+    "density_spearman": 0.19124884597633834
+   },
+   {
+    "comparator": "GEMSDOE78::gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros",
+    "n_other": 44090,
+    "jaccard": 0.006824712643678161,
+    "class": "sparse",
+    "cand_within3": 0.282075,
+    "density_spearman": 0.2831924556204842
+   },
+   {
+    "comparator": "5GEMSDOE::gems-submission-20260926T175114Z-7f00890a",
+    "n_other": 172974,
+    "jaccard": 0.010926938558517505,
+    "class": "sparse",
+    "cand_within3": 0.39785,
+    "density_spearman": 0.36876796052143684
+   },
+   {
+    "comparator": "8GEMSDOE::Hedge-v2_submission",
+    "n_other": 227507,
+    "jaccard": 0.008680077675760262,
+    "class": "sparse",
+    "cand_within3": 0.422625,
+    "density_spearman": 0.3143192748740367
+   },
+   {
+    "comparator": "GEMSDOE2::gemsdoe2-dual-family-union-20260925T160406Z-f68e590f",
+    "n_other": 183642,
+    "jaccard": 0.0109209586576623,
+    "class": "sparse",
+    "cand_within3": 0.401175,
+    "density_spearman": 0.3616566736441578
+   },
+   {
+    "comparator": "GEMSDOE76::gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+    "n_other": 37654,
+    "jaccard": 0.008218537801378845,
+    "class": "sparse",
+    "cand_within3": 0.24945,
+    "density_spearman": 0.3295788858915521
+   },
+   {
+    "comparator": "GEMSDOE30::gems30-MSDB1-edge44090-20261025-e7856ec3f14a",
+    "n_other": 44090,
+    "jaccard": 0.005716882744103717,
+    "class": "sparse",
+    "cand_within3": 0.281775,
+    "density_spearman": 0.25493147848391934
+   },
+   {
+    "comparator": "7GEMSDOE::lidarscarp-ridge-top2pct-36c3a3f341c8",
+    "n_other": 76859,
+    "jaccard": 0.010794820562057243,
+    "class": "sparse",
+    "cand_within3": 0.3429,
+    "density_spearman": 0.3022704855682071
+   },
+   {
+    "comparator": "GEMSDOE67::ovtr-ml-cover-tau3p0-20261012-nan",
+    "n_other": 167597,
+    "jaccard": 0.009477359371352991,
+    "class": "sparse",
+    "cand_within3": 0.7419,
+    "density_spearman": 0.43258180772929833
+   },
+   {
+    "comparator": "GEMSDOE91::gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros",
+    "n_other": 37654,
+    "jaccard": 0.005581238750113308,
+    "class": "sparse",
+    "cand_within3": 0.2329,
+    "density_spearman": 0.23724141773945367
+   },
+   {
+    "comparator": "GEMSDOE23::h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+    "n_other": 91533,
+    "jaccard": 0.012898704739022625,
+    "class": "sparse",
+    "cand_within3": 0.594475,
+    "density_spearman": 0.19154757607774056
+   },
+   {
+    "comparator": "12GEMSDOE::r7-nms3-dem10-scarp_0c9199f14e62",
+    "n_other": 103347,
+    "jaccard": 0.011030941650268368,
+    "class": "sparse",
+    "cand_within3": 0.473975,
+    "density_spearman": 0.26923298337728463
+   },
+   {
+    "comparator": "12GEMSDOE::r7-nms3-dem10-scarp_0c9199f14e62_allfinite",
+    "n_other": 103347,
+    "jaccard": 0.011030941650268368,
+    "class": "sparse",
+    "cand_within3": 0.473975,
+    "density_spearman": 0.26923298337728463
+   },
+   {
+    "comparator": "GEMSDOE10::H25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+    "n_other": 174232,
+    "jaccard": 0.009980435141314853,
+    "class": "sparse",
+    "cand_within3": 0.387675,
+    "density_spearman": 0.237733018411865
+   },
+   {
+    "comparator": "GEMSDOE26::dilcond-oof-v1-20261003-47629f496133-nan",
+    "n_other": 60068,
+    "jaccard": 0.008556828833187192,
+    "class": "sparse",
+    "cand_within3": 0.291425,
+    "density_spearman": 0.2591092617831668
+   },
+   {
+    "comparator": "GEMSDOE3::pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+    "n_other": 155021,
+    "jaccard": 0.005828016772310216,
+    "class": "sparse",
+    "cand_within3": 0.766525,
+    "density_spearman": 0.0891130621316893
+   },
+   {
+    "comparator": "GEMSDOE37::h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+    "n_other": 80000,
+    "jaccard": 0.008793315062965516,
+    "class": "sparse",
+    "cand_within3": 0.384625,
+    "density_spearman": 0.18780468189773322
+   },
+   {
+    "comparator": "GEMSDOE3::pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+    "n_other": 155021,
+    "jaccard": 0.006414556864040293,
+    "class": "sparse",
+    "cand_within3": 0.239825,
+    "density_spearman": 0.1363355145364847
+   },
+   {
+    "comparator": "GEMSDOE66::gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+    "n_other": 37654,
+    "jaccard": 0.0058026578245214105,
+    "class": "sparse",
+    "cand_within3": 0.21615,
+    "density_spearman": 0.09568107495679767
+   },
+   {
+    "comparator": "GEMSDOE85::gemsdoe85-hjcd-ventbridge-submod-zeros",
+    "n_other": 21334,
+    "jaccard": 0.004865901010862264,
+    "class": "sparse",
+    "cand_within3": 0.147,
+    "density_spearman": 0.17442982201840648
+   },
+   {
+    "comparator": "GEMSDOE51::h53-twostage-20261008T040951Z-9a0b32c871",
+    "n_other": 44069,
+    "jaccard": 0.007973238693587837,
+    "class": "sparse",
+    "cand_within3": 0.2128,
+    "density_spearman": 0.13385997926573506
+   },
+   {
+    "comparator": "GEMSDOE22::h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+    "n_other": 335879,
+    "jaccard": 0.019440700168967023,
+    "class": "sparse",
+    "cand_within3": 0.681575,
+    "density_spearman": 0.5255596519187438
+   },
+   {
+    "comparator": "GEMSDOE40::h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+    "n_other": 43038,
+    "jaccard": 0.006021250045431967,
+    "class": "sparse",
+    "cand_within3": 0.268,
+    "density_spearman": 0.24054277695092177
+   },
+   {
+    "comparator": "16GEMSDOE::h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+    "n_other": 122120,
+    "jaccard": 0.016541051654732197,
+    "class": "sparse",
+    "cand_within3": 0.3349,
+    "density_spearman": 0.2932061980709783
+   },
+   {
+    "comparator": "GEMSDOE77::gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+    "n_other": 201260,
+    "jaccard": 0.007769423558897243,
+    "class": "sparse",
+    "cand_within3": 0.691325,
+    "density_spearman": 0.2217970784830805
+   },
+   {
+    "comparator": "GEMSDOE80::gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+    "n_other": 51667,
+    "jaccard": 0.007772647317502199,
+    "class": "sparse",
+    "cand_within3": 0.230475,
+    "density_spearman": 0.1855859985002145
+   },
+   {
+    "comparator": "GEMSDOE10::h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+    "n_other": 153957,
+    "jaccard": 0.009278050100429818,
+    "class": "sparse",
+    "cand_within3": 0.274175,
+    "density_spearman": 0.19249963428085146
+   },
+   {
+    "comparator": "13GEMSDOE::20261001_r13-lattice-s5_v2_nan-outside",
+    "n_other": 206895,
+    "jaccard": 0.006600727343890148,
+    "class": "sparse",
+    "cand_within3": 0.9984,
+    "density_spearman": 0.03275035945552795
+   },
+   {
+    "comparator": "GEMSDOE24::gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+    "n_other": 37654,
+    "jaccard": 0.008428024154275696,
+    "class": "sparse",
+    "cand_within3": 0.208625,
+    "density_spearman": 0.1277814169040348
+   },
+   {
+    "comparator": "GEMSDOE52::h97b-candidate",
+    "n_other": 25400,
+    "jaccard": 0.006912903573463072,
+    "class": "sparse",
+    "cand_within3": 0.181,
+    "density_spearman": 0.30407680023201533
+   },
+   {
+    "comparator": "GEMSDOE46::r12-scarp-rad-concordance-23e807e2de9f-zeros",
+    "n_other": 37654,
+    "jaccard": 0.005425001618437237,
+    "class": "sparse",
+    "cand_within3": 0.27265,
+    "density_spearman": 0.2548992104637891
+   },
+   {
+    "comparator": "GEMSDOE3::pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+    "n_other": 155021,
+    "jaccard": 0.006840616223360317,
+    "class": "sparse",
+    "cand_within3": 0.756125,
+    "density_spearman": 0.1316779458920226
+   },
+   {
+    "comparator": "15GEMSDOE::gems-tso1-20260929T005627Z-conj_alteration_mag",
+    "n_other": 99999,
+    "jaccard": 0.005949515344432389,
+    "class": "sparse",
+    "cand_within3": 0.484075,
+    "density_spearman": 0.17199300219620783
+   },
+   {
+    "comparator": "GEMSDOE34::h34-scatter-q50-arr-matched-20261004T223317Z",
+    "n_other": 37654,
+    "jaccard": 0.004540574104497885,
+    "class": "sparse",
+    "cand_within3": 0.2441,
+    "density_spearman": 0.22742137276236066
+   },
+   {
+    "comparator": "GEMSDOE50::h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite",
+    "n_other": 90000,
+    "jaccard": 0.004473771644478099,
+    "class": "sparse",
+    "cand_within3": 0.294,
+    "density_spearman": 0.2103617723125586
+   },
+   {
+    "comparator": "GEMSDOE38::D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+    "n_other": 36171,
+    "jaccard": 0.0059030162167872805,
+    "class": "sparse",
+    "cand_within3": 0.1912,
+    "density_spearman": 0.16818033034677304
+   },
+   {
+    "comparator": "61GEMSDOE::h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+    "n_other": 40000,
+    "jaccard": 0.0017907008778191016,
+    "class": "sparse",
+    "cand_within3": 0.139775,
+    "density_spearman": 0.14389884627035954
+   },
+   {
+    "comparator": "GEMSDOE90::gems90-cnc-35000dots-20261024T084324Z",
+    "n_other": 35000,
+    "jaccard": 0.006603317764535352,
+    "class": "sparse",
+    "cand_within3": 0.0495,
+    "density_spearman": 0.10795243682568771
+   },
+   {
+    "comparator": "GEMSDOE22::h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+    "n_other": 516738,
+    "jaccard": 0.01698450971795996,
+    "class": "sparse",
+    "cand_within3": 0.773125,
+    "density_spearman": 0.5466211162478382
+   },
+   {
+    "comparator": "GEMSDOE25::gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+    "n_other": 44832,
+    "jaccard": 0.005917019434859426,
+    "class": "sparse",
+    "cand_within3": 0.273575,
+    "density_spearman": 0.1530857635422703
+   },
+   {
+    "comparator": "GEMSDOE44::h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+    "n_other": 42000,
+    "jaccard": 0.005592072991268518,
+    "class": "sparse",
+    "cand_within3": 0.1544,
+    "density_spearman": 0.07574166139230809
+   },
+   {
+    "comparator": "GEMSDOE74::gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros",
+    "n_other": 37654,
+    "jaccard": 0.009083230459359366,
+    "class": "sparse",
+    "cand_within3": 0.27885,
+    "density_spearman": 0.2501981392549561
+   },
+   {
+    "comparator": "56GEMSDOE::h56-final-dotted-ridge-d2p8-20261009T190421Z",
+    "n_other": 37654,
+    "jaccard": 0.005047628908676744,
+    "class": "sparse",
+    "cand_within3": 0.249025,
+    "density_spearman": 0.29742770990853723
+   },
+   {
+    "comparator": "GEMSDOE42::xscale-worm-persistence-20261006T000541Z-nan",
+    "n_other": 60069,
+    "jaccard": 0.005910676410570863,
+    "class": "sparse",
+    "cand_within3": 0.226075,
+    "density_spearman": 0.1712526914696339
+   },
+   {
+    "comparator": "GEMSDOE83::gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+    "n_other": 37654,
+    "jaccard": 0.0058677996399010375,
+    "class": "sparse",
+    "cand_within3": 0.2373,
+    "density_spearman": 0.16159834386823746
+   },
+   {
+    "comparator": "GEMSDOE71::gems71-hydro-conduit-38800-20261020T120000Z-zeros",
+    "n_other": 38800,
+    "jaccard": 0.00461511002320304,
+    "class": "sparse",
+    "cand_within3": 0.190175,
+    "density_spearman": 0.19501357022162072
+   },
+   {
+    "comparator": "GEMSDOE29::wormsurv-filter-20261003-921f10960d6e-zeros",
+    "n_other": 38907,
+    "jaccard": 0.005517751102275913,
+    "class": "sparse",
+    "cand_within3": 0.205625,
+    "density_spearman": 0.11033445435760414
+   },
+   {
+    "comparator": "GEMSDOE29::sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+    "n_other": 44090,
+    "jaccard": 0.004311528860968123,
+    "class": "sparse",
+    "cand_within3": 0.132125,
+    "density_spearman": 0.09171930659668592
+   },
+   {
+    "comparator": "GEMSDOE87::h87-h87-cmgep-20261022T060000Z-8f394f43",
+    "n_other": 35200,
+    "jaccard": 0.005051990056400524,
+    "class": "sparse",
+    "cand_within3": 0.14375,
+    "density_spearman": 0.13500036015984576
+   },
+   {
+    "comparator": "59GEMSDOE::h59j-coherence-consensus-dotted-20261011T043000Z",
+    "n_other": 30815,
+    "jaccard": 0.005937753029248405,
+    "class": "sparse",
+    "cand_within3": 0.133625,
+    "density_spearman": 0.2257099243232502
+   },
+   {
+    "comparator": "GEMSDOE72::gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros",
+    "n_other": 27823,
+    "jaccard": 0.0039968617233875625,
+    "class": "sparse",
+    "cand_within3": 0.095775,
+    "density_spearman": 0.08381530918777963
+   },
+   {
+    "comparator": "GEMSDOE10::h16-continuation-20260927T065521077735Z-3431b83c7c",
+    "n_other": 310042,
+    "jaccard": 0.008975925840520224,
+    "class": "sparse",
+    "cand_within3": 0.2304,
+    "density_spearman": 0.14721284631900725
+   },
+   {
+    "comparator": "GEMSDOE54::h54c-manifest-edge-20261009T025732Z-73454bc5",
+    "n_other": 18880,
+    "jaccard": 0.002110422765334604,
+    "class": "sparse",
+    "cand_within3": 0.067075,
+    "density_spearman": -0.04328521210119135
+   },
+   {
+    "comparator": "GEMSDOE29::xfit-c0-habitat-20261003-ca879db0089a-zeros",
+    "n_other": 33766,
+    "jaccard": 0.005397301349325337,
+    "class": "sparse",
+    "cand_within3": 0.197825,
+    "density_spearman": 0.1282828669100046
+   },
+   {
+    "comparator": "GEMSDOE68::gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+    "n_other": 35000,
+    "jaccard": 0.009095312415908724,
+    "class": "sparse",
+    "cand_within3": 0.343075,
+    "density_spearman": 0.3955552185291623
+   },
+   {
+    "comparator": "GEMSDOE68::gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros",
+    "n_other": 35000,
+    "jaccard": 0.009095312415908724,
+    "class": "sparse",
+    "cand_within3": 0.343075,
+    "density_spearman": 0.3955552185291623
+   },
+   {
+    "comparator": "GEMSDOE65::sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros",
+    "n_other": 39802,
+    "jaccard": 0.003760864369897991,
+    "class": "sparse",
+    "cand_within3": 0.088675,
+    "density_spearman": 0.0044715177930426215
+   },
+   {
+    "comparator": "GEMSDOE47::h60-lidarscarp-s2p0-20261007-nanoutside",
+    "n_other": 37654,
+    "jaccard": 0.0046185492321823614,
+    "class": "sparse",
+    "cand_within3": 0.1288,
+    "density_spearman": 0.18595226853621646
+   },
+   {
+    "comparator": "GEMSDOE43::sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+    "n_other": 40000,
+    "jaccard": 0.006719855032340875,
+    "class": "sparse",
+    "cand_within3": 0.265175,
+    "density_spearman": 0.1292921605154502
+   },
+   {
+    "comparator": "GEMSDOE35::h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+    "n_other": 39530,
+    "jaccard": 0.006123016977456165,
+    "class": "sparse",
+    "cand_within3": 0.025,
+    "density_spearman": 0.04257211317979532
+   },
+   {
+    "comparator": "GEMSDOE40::h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+    "n_other": 40000,
+    "jaccard": 0.003701147983188006,
+    "class": "sparse",
+    "cand_within3": 0.131175,
+    "density_spearman": -0.08079740467904749
+   },
+   {
+    "comparator": "16GEMSDOE::h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan",
+    "n_other": 57783,
+    "jaccard": 0.004303438642619449,
+    "class": "sparse",
+    "cand_within3": 0.08895,
+    "density_spearman": 0.07867159233811129
+   },
+   {
+    "comparator": "GEMSDOE29::xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+    "n_other": 33739,
+    "jaccard": 0.004947121674662015,
+    "class": "sparse",
+    "cand_within3": 0.194225,
+    "density_spearman": 0.11920514916717945
+   },
+   {
+    "comparator": "GEMSDOE67::h67a-orientip-lane-29447dots-20261012T021226Z-allfinite",
+    "n_other": 29447,
+    "jaccard": 0.0036128733904649047,
+    "class": "sparse",
+    "cand_within3": 0.045875,
+    "density_spearman": 0.0655973971726205
+   },
+   {
+    "comparator": "GEMSDOE40::h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1",
+    "n_other": 40000,
+    "jaccard": 0.003701147983188006,
+    "class": "sparse",
+    "cand_within3": 0.131175,
+    "density_spearman": -0.08079740467904749
+   },
+   {
+    "comparator": "60GEMSDOE::h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+    "n_other": 12000,
+    "jaccard": 0.004113001332380713,
+    "class": "sparse",
+    "cand_within3": 0.060575,
+    "density_spearman": 0.0732553931661166
+   },
+   {
+    "comparator": "GEMSDOE39::h40-e-disc-h40e-30k-zeros",
+    "n_other": 30000,
+    "jaccard": 0.006166362421123744,
+    "class": "sparse",
+    "cand_within3": 0.123875,
+    "density_spearman": 0.08827900913920689
+   },
+   {
+    "comparator": "GEMSDOE89::gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+    "n_other": 37654,
+    "jaccard": 0.006402280974598238,
+    "class": "sparse",
+    "cand_within3": 0.200225,
+    "density_spearman": 0.09260804346629137
+   },
+   {
+    "comparator": "18GEMSDOE::H19-C_20260930T212401Z_c11e495e",
+    "n_other": 513786,
+    "jaccard": 0.00518031263386407,
+    "class": "sparse",
+    "cand_within3": 0.32665,
+    "density_spearman": 0.13270415440252803
+   },
+   {
+    "comparator": "55GEMSDOE::tensor_full-n16000-sep3-20261009T211747Z-nan",
+    "n_other": 16000,
+    "jaccard": 0.0022550739163117012,
+    "class": "sparse",
+    "cand_within3": 0.093175,
+    "density_spearman": 0.07246786985478368
+   },
+   {
+    "comparator": "6GEMSDOE::gems6_hgb88-topk03_33cec71ff0",
+    "n_other": 155021,
+    "jaccard": 0.005791704917018226,
+    "class": "sparse",
+    "cand_within3": 0.102875,
+    "density_spearman": 0.06035395326747392
+   },
+   {
+    "comparator": "GEMSDOE92::gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
+    "n_other": 37654,
+    "jaccard": 0.008912794927762186,
+    "class": "sparse",
+    "cand_within3": 0.19615,
+    "density_spearman": 0.047610304234770084
+   },
+   {
+    "comparator": "57GEMSDOE::h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros",
+    "n_other": 38000,
+    "jaccard": 0.0034735623311462757,
+    "class": "sparse",
+    "cand_within3": 0.11265,
+    "density_spearman": -0.060553484224404694
+   },
+   {
+    "comparator": "GEMSDOE41::h42-submission-primary",
+    "n_other": 40000,
+    "jaccard": 0.005505140645031548,
+    "class": "sparse",
+    "cand_within3": 0.2947,
+    "density_spearman": 0.30636803925473083
+   },
+   {
+    "comparator": "GEMSDOE28::gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
+    "n_other": 11082,
+    "jaccard": 0.001804275348107472,
+    "class": "sparse",
+    "cand_within3": 0.052725,
+    "density_spearman": 0.03596626591855738
+   },
+   {
+    "comparator": "11GEMSDOE::gems-structural-area06-v1",
+    "n_other": 343526,
+    "jaccard": 0.007807018696377659,
+    "class": "sparse",
+    "cand_within3": 0.22325,
+    "density_spearman": 0.09733392916849988
+   },
+   {
+    "comparator": "17GEMSDOE::17GEMSDOE_F-ensemble-2pct_20260930T050626Z",
+    "n_other": 103347,
+    "jaccard": 0.006431184222535824,
+    "class": "sparse",
+    "cand_within3": 0.05465,
+    "density_spearman": 0.01028840129856581
+   },
+   {
+    "comparator": "58GEMSDOE::ml-binary-ridge-20261012T000000Z",
+    "n_other": 45355,
+    "jaccard": 0.00384579197440843,
+    "class": "sparse",
+    "cand_within3": 0.0271,
+    "density_spearman": 0.01486654213000347
+   },
+   {
+    "comparator": "GEMSDOE53::h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+    "n_other": 80000,
+    "jaccard": 0.008920539099874726,
+    "class": "sparse",
+    "cand_within3": 0.236625,
+    "density_spearman": 0.07057193073245112
+   },
+   {
+    "comparator": "GEMSDOE84::gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+    "n_other": 58000,
+    "jaccard": 0.007318477098922786,
+    "class": "sparse",
+    "cand_within3": 0.22305,
+    "density_spearman": 0.0971031704966328
+   },
+   {
+    "comparator": "GEMSDOE9::2314b599",
+    "n_other": 147684,
+    "jaccard": 0.006483442820753452,
+    "class": "sparse",
+    "cand_within3": 0.0663,
+    "density_spearman": 0.017068313743733597
+   },
+   {
+    "comparator": "GEMSDOE45::h51-km-faultzone-20261006-zeros",
+    "n_other": 37654,
+    "jaccard": 0.004787536876973242,
+    "class": "sparse",
+    "cand_within3": 0.12755,
+    "density_spearman": 0.05425065658061197
+   },
+   {
+    "comparator": "GEMSDOE69::h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+    "n_other": 38669,
+    "jaccard": 0.008525203835700733,
+    "class": "sparse",
+    "cand_within3": 0.01875,
+    "density_spearman": 0.055674994007038084
+   },
+   {
+    "comparator": "GEMSDOE29::repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+    "n_other": 37913,
+    "jaccard": 0.003115705990652882,
+    "class": "sparse",
+    "cand_within3": 0.125875,
+    "density_spearman": 0.051439862736852485
+   },
+   {
+    "comparator": "GEMSDOE81::gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+    "n_other": 44090,
+    "jaccard": 0.010126491044722333,
+    "class": "sparse",
+    "cand_within3": 0.14585,
+    "density_spearman": 0.04548468904370225
+   },
+   {
+    "comparator": "14GEMSDOE::GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f",
+    "n_other": 116225,
+    "jaccard": 0.005975646664133885,
+    "class": "sparse",
+    "cand_within3": 0.063125,
+    "density_spearman": 0.060922834597296124
+   },
+   {
+    "comparator": "61GEMSDOE::h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros",
+    "n_other": 25285,
+    "jaccard": 0.0024260291430589463,
+    "class": "sparse",
+    "cand_within3": 0.00695,
+    "density_spearman": -0.025999432370573887
+   },
+   {
+    "comparator": "62GEMSDOE::datum-lahontan-strain-gauge-defensible-440dots-zeros",
+    "n_other": 440,
+    "jaccard": 0.00014838996883810655,
+    "class": "sparse",
+    "cand_within3": 0.00225,
+    "density_spearman": 0.015419583950708516
+   },
+   {
+    "comparator": "skarpline_union",
+    "n_other": 97608,
+    "jaccard": 0.003478425738892008,
+    "class": "sparse",
+    "cand_within3": 0.175025,
+    "density_spearman": 0.180698559546347
+   },
+   {
+    "comparator": "cspes_edgestab",
+    "n_other": 37654,
+    "jaccard": 0.003956146248125355,
+    "class": "sparse",
+    "cand_within3": 0.071875,
+    "density_spearman": 0.039256674006483624
+   },
+   {
+    "comparator": "lst1_hybrid",
+    "n_other": 32810,
+    "jaccard": 0.006497097041747305,
+    "class": "sparse",
+    "cand_within3": 0.22165,
+    "density_spearman": 0.37966322227714655
+   },
+   {
+    "comparator": "hce1_congruence",
+    "n_other": 169968,
+    "jaccard": 0.006808984022862842,
+    "class": "sparse",
+    "cand_within3": 0.44745,
+    "density_spearman": -0.05917981727583103
+   }
+  ],
+  "max_cand_within3_sparse": 0.9984,
+  "worst_sparse": "13GEMSDOE::20261001_r13-lattice-s5_v2_nan-outside",
+  "max_jaccard": 0.02001681561984243,
+  "max_abs_density_spearman": 0.5466211162478382
+ },
+ "pools": {
+  "A_corridor_dots": 20000,
+  "B_novel_dots": 20000,
+  "frac_within3_champion": 0.460675,
+  "frac_within3_skarpline": 0.175025,
+  "frac_dh_gt2": 0.5
+ }
+}

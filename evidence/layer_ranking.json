@@ -1,0 +1,751 @@
+{
+ "proxy": "USGS SGMC faults >300 m from every catalogue fault",
+ "n_proxy_positives": 62122,
+ "n_dots_per_layer": 20000,
+ "selection": "top-N by |value - footprint median| (two-polarity), within footprint",
+ "evaluator_version": "gemsdoe-dti-v1.0",
+ "label": "PROXY (not a competition score)",
+ "rows": [
+  {
+   "feature": "mag_anom",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.007275334152386242,
+   "capture": 0.0023422729958424526,
+   "dti_proxy": 0.0027123088536107533
+  },
+  {
+   "feature": "rtp",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.009461574469190475,
+   "capture": 0.0030461268050579423,
+   "dti_proxy": 0.003527334636907754
+  },
+  {
+   "feature": "tmi_hg",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.023847909317152808,
+   "capture": 0.0076777661109277895,
+   "dti_proxy": 0.008892653197707033
+  },
+  {
+   "feature": "geod_2ndinv",
+   "family": "geodetic strain",
+   "mass": 20000.0,
+   "hit_rate": 0.0028528595479208967,
+   "capture": 0.0009184699616628237,
+   "dti_proxy": 0.0010632699471092952
+  },
+  {
+   "feature": "iso_grav_anom_slope",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.0008054634338107164,
+   "capture": 0.00025931664589379493,
+   "dti_proxy": 0.0003000480776284676
+  },
+  {
+   "feature": "tc",
+   "family": "thermal-conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.012143770604571766,
+   "capture": 0.00390965216978583,
+   "dti_proxy": 0.004525138793000205
+  },
+  {
+   "feature": "geod_shearrate",
+   "family": "geodetic strain",
+   "mass": 20000.0,
+   "hit_rate": 0.0014833333333333335,
+   "capture": 0.00047755491881566384,
+   "dti_proxy": 0.0005526396986740347
+  },
+  {
+   "feature": "geod_dilaterate",
+   "family": "geodetic strain",
+   "mass": 20000.0,
+   "hit_rate": 0.00345,
+   "capture": 0.0011107176201667686,
+   "dti_proxy": 0.0012858164662989957
+  },
+  {
+   "feature": "tmi_vg",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.02678573104169351,
+   "capture": 0.008623589402045493,
+   "dti_proxy": 0.009985443812881037
+  },
+  {
+   "feature": "deq_n100a15",
+   "family": "seismicity (distance)",
+   "mass": 20000.0,
+   "hit_rate": 0.0055,
+   "capture": 0.0017707092495412252,
+   "dti_proxy": 0.0020505598963682222
+  },
+  {
+   "feature": "iso_grav_anom_vg",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.006948737558351601,
+   "capture": 0.0022371261576741254,
+   "dti_proxy": 0.002590021749715312
+  },
+  {
+   "feature": "det_elev",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.06741865173228544,
+   "capture": 0.021705241857082978,
+   "dti_proxy": 0.025277998931175737
+  },
+  {
+   "feature": "iso_grav_anom",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.00555216570524852,
+   "capture": 0.0017875038489580245,
+   "dti_proxy": 0.0020707174280233743
+  },
+  {
+   "feature": "tmi",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.010689277548638904,
+   "capture": 0.003441382295688775,
+   "dti_proxy": 0.003985477935846251
+  },
+  {
+   "feature": "depth_to_base_surf",
+   "family": "depth-to-basement",
+   "mass": 20000.0,
+   "hit_rate": 0.0,
+   "capture": 0.0,
+   "dti_proxy": 0.0
+  },
+  {
+   "feature": "ieq_n100a15",
+   "family": "seismicity (inter-event)",
+   "mass": 20000.0,
+   "hit_rate": 0.013352859547920898,
+   "capture": 0.004298914892605163,
+   "dti_proxy": 0.00498553028576365
+  },
+  {
+   "feature": "cond_surf",
+   "family": "conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.004066666666666667,
+   "capture": 0.0013092516875395728,
+   "dti_proxy": 0.0015159903170995103
+  },
+  {
+   "feature": "iso_grav_anom_hg",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.001789506478323414,
+   "capture": 0.0005761264860511297,
+   "dti_proxy": 0.0006666580099969822
+  },
+  {
+   "feature": "det_elev_slope",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.1421082177791964,
+   "capture": 0.04575133375589852,
+   "dti_proxy": 0.05274432986255947
+  },
+  {
+   "feature": "de_log_s1",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.12847282328110746,
+   "capture": 0.041361457545187684,
+   "dti_proxy": 0.047707910309140275
+  },
+  {
+   "feature": "de_slope_s1",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.07414180806887712,
+   "capture": 0.023869742786412903,
+   "dti_proxy": 0.02765811522081138
+  },
+  {
+   "feature": "de_log_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.07486290067719892,
+   "capture": 0.02410189648665494,
+   "dti_proxy": 0.02790575662274206
+  },
+  {
+   "feature": "de_slope_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.053658530641390055,
+   "capture": 0.017275210277000113,
+   "dti_proxy": 0.020045169196969734
+  },
+  {
+   "feature": "de_log_s3",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.05714907649084952,
+   "capture": 0.018398981517288405,
+   "dti_proxy": 0.02132981177248592
+  },
+  {
+   "feature": "de_slope_s3",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.046525759877889615,
+   "capture": 0.014978835155947851,
+   "dti_proxy": 0.017392083128789752
+  },
+  {
+   "feature": "de_log_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.04546516164574915,
+   "capture": 0.01463737859236636,
+   "dti_proxy": 0.016991313857442483
+  },
+  {
+   "feature": "de_slope_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.039548582796563654,
+   "capture": 0.012732552975294954,
+   "dti_proxy": 0.014790019403829499
+  },
+  {
+   "feature": "de_log_s8",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.04250936855198175,
+   "capture": 0.013685769470391084,
+   "dti_proxy": 0.01589518504029395
+  },
+  {
+   "feature": "de_slope_s8",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.03145541235801093,
+   "capture": 0.01012697992917515,
+   "dti_proxy": 0.011760653774862686
+  },
+  {
+   "feature": "de_cprof_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.07967299344444939,
+   "capture": 0.025650492078313443,
+   "dti_proxy": 0.029685146183530662
+  },
+  {
+   "feature": "de_cplan_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.11090053277725073,
+   "capture": 0.03570410893958686,
+   "dti_proxy": 0.04126448350550906
+  },
+  {
+   "feature": "de_coh_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.14228142155598808,
+   "capture": 0.04580709621582952,
+   "dti_proxy": 0.05269831261336704
+  },
+  {
+   "feature": "de_ori_cos_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.09618120165877249,
+   "capture": 0.030965262438032416,
+   "dti_proxy": 0.0356835668350905
+  },
+  {
+   "feature": "de_ori_sin_s2",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.10418934730118222,
+   "capture": 0.03354346199452117,
+   "dti_proxy": 0.03864592378685821
+  },
+  {
+   "feature": "de_cprof_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.04691946598395772,
+   "capture": 0.015105587709332513,
+   "dti_proxy": 0.01752234906611368
+  },
+  {
+   "feature": "de_cplan_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.07072245919361143,
+   "capture": 0.022768893208078112,
+   "dti_proxy": 0.02640853640240225
+  },
+  {
+   "feature": "de_coh_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.062069345522698015,
+   "capture": 0.019983048041820294,
+   "dti_proxy": 0.023111408703814937
+  },
+  {
+   "feature": "de_ori_cos_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.06585618669005508,
+   "capture": 0.02120221071119896,
+   "dti_proxy": 0.02448067545957599
+  },
+  {
+   "feature": "de_ori_sin_s5",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.06709587534704682,
+   "capture": 0.021601324924196523,
+   "dti_proxy": 0.024946023430528937
+  },
+  {
+   "feature": "de_relief_s8",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.04963975053972131,
+   "capture": 0.01598137553192792,
+   "dti_proxy": 0.01853535455922001
+  },
+  {
+   "feature": "de_paired_scarp",
+   "family": "detrended topo",
+   "mass": 20000.0,
+   "hit_rate": 0.10005783487212738,
+   "capture": 0.03221333339948082,
+   "dti_proxy": 0.037282350329655566
+  },
+  {
+   "feature": "rtp_hg_s1",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.020421181450278682,
+   "capture": 0.006574540887376029,
+   "dti_proxy": 0.007616089662205252
+  },
+  {
+   "feature": "rtp_log_s1",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.03416634076467092,
+   "capture": 0.010999755566360039,
+   "dti_proxy": 0.0127345033374193
+  },
+  {
+   "feature": "rtp_hg_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.016962372852355766,
+   "capture": 0.005460987364333332,
+   "dti_proxy": 0.006327974224695289
+  },
+  {
+   "feature": "rtp_log_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.02267768925989287,
+   "capture": 0.0073010171146752735,
+   "dti_proxy": 0.008454753153836456
+  },
+  {
+   "feature": "rtp_hg_s4",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.014869573650137568,
+   "capture": 0.004787216654369649,
+   "dti_proxy": 0.005549317465919132
+  },
+  {
+   "feature": "rtp_log_s4",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.014335703454842186,
+   "capture": 0.004615338673848938,
+   "dti_proxy": 0.005346307091361232
+  },
+  {
+   "feature": "rtp_fabric_kink",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.026567227305259296,
+   "capture": 0.00855324274983397,
+   "dti_proxy": 0.009904578868657884
+  },
+  {
+   "feature": "rtp_coh_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.09212951122043853,
+   "capture": 0.029660832304316837,
+   "dti_proxy": 0.03418044091750219
+  },
+  {
+   "feature": "iso_grav_anom_hg_s2",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.0027022386786984174,
+   "capture": 0.0008699780041526086,
+   "dti_proxy": 0.0010067376157951989
+  },
+  {
+   "feature": "iso_grav_anom_log_s2",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.02397818471544803,
+   "capture": 0.007719707902336703,
+   "dti_proxy": 0.008940529438426398
+  },
+  {
+   "feature": "iso_grav_anom_hg_s4",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.0008915467699046216,
+   "capture": 0.0002870309294306756,
+   "dti_proxy": 0.0003321234309020682
+  },
+  {
+   "feature": "iso_grav_anom_log_s4",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.017863135003752546,
+   "capture": 0.0057509851594451395,
+   "dti_proxy": 0.00666386355527286
+  },
+  {
+   "feature": "iso_grav_anom_hg_s8",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.0007546441774710273,
+   "capture": 0.00024295553184734147,
+   "dti_proxy": 0.00028111928396456364
+  },
+  {
+   "feature": "iso_grav_anom_log_s8",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.015153908928391769,
+   "capture": 0.00487875758294703,
+   "dti_proxy": 0.0056537285846678595
+  },
+  {
+   "feature": "iso_grav_anom_fabric_kink",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.03178922129820075,
+   "capture": 0.010234448761533997,
+   "dti_proxy": 0.0118613594785401
+  },
+  {
+   "feature": "iso_grav_anom_coh_s2",
+   "family": "gravity",
+   "mass": 20000.0,
+   "hit_rate": 0.0526176316476754,
+   "capture": 0.016940095826816715,
+   "dti_proxy": 0.019588723386575763
+  },
+  {
+   "feature": "depth_hg_s2",
+   "family": "depth-to-basement",
+   "mass": 20000.0,
+   "hit_rate": 0.0012558286410021186,
+   "capture": 0.00040431043462931605,
+   "dti_proxy": 0.0004678342687018337
+  },
+  {
+   "feature": "depth_hg_s4",
+   "family": "depth-to-basement",
+   "mass": 20000.0,
+   "hit_rate": 0.0011724953076687854,
+   "capture": 0.0003774815066059642,
+   "dti_proxy": 0.0004367868195017734
+  },
+  {
+   "feature": "depth_hinge",
+   "family": "depth-to-basement",
+   "mass": 20000.0,
+   "hit_rate": 0.0013066478973418076,
+   "capture": 0.0004206715486757695,
+   "dti_proxy": 0.00048677646923526774
+  },
+  {
+   "feature": "cond_log_s1",
+   "family": "conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.024234293701876363,
+   "capture": 0.007802161457092934,
+   "dti_proxy": 0.00903242426659918
+  },
+  {
+   "feature": "cond_log_s2",
+   "family": "conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.019076461341003464,
+   "capture": 0.006141612099096444,
+   "dti_proxy": 0.0071144572521451505
+  },
+  {
+   "feature": "cond_hg_s2",
+   "family": "conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.013183896927641948,
+   "capture": 0.004244517860867953,
+   "dti_proxy": 0.004917742372994292
+  },
+  {
+   "feature": "tmi_hg_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.016683120102184854,
+   "capture": 0.005371082741117431,
+   "dti_proxy": 0.006223941195916933
+  },
+  {
+   "feature": "tmi_log_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.02420244394946351,
+   "capture": 0.007791907520512382,
+   "dti_proxy": 0.00902500037555938
+  },
+  {
+   "feature": "tmi_vg_hg_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.02260130589700671,
+   "capture": 0.007276425709734622,
+   "dti_proxy": 0.008429784886863268
+  },
+  {
+   "feature": "tc_log_s1",
+   "family": "thermal-conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.11472085203039428,
+   "capture": 0.036934049782812624,
+   "dti_proxy": 0.042677024572284464
+  },
+  {
+   "feature": "tc_log_s2",
+   "family": "thermal-conductivity",
+   "mass": 20000.0,
+   "hit_rate": 0.0693207585759717,
+   "capture": 0.02231761970830678,
+   "dti_proxy": 0.025838014168873186
+  },
+  {
+   "feature": "mag_anom_log_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.018225846500924108,
+   "capture": 0.005867759087255436,
+   "dti_proxy": 0.0067956380206559246
+  },
+  {
+   "feature": "tmi_hg_log_s2",
+   "family": "magnetic",
+   "mass": 20000.0,
+   "hit_rate": 0.029077554176832648,
+   "capture": 0.009361435297264303,
+   "dti_proxy": 0.010840863213584667
+  },
+  {
+   "feature": "ieq_g_s2",
+   "family": "seismicity (inter-event)",
+   "mass": 20000.0,
+   "hit_rate": 0.013325354855589683,
+   "capture": 0.00429005983567486,
+   "dti_proxy": 0.004975234380156465
+  },
+  {
+   "feature": "ieq_g_s4",
+   "family": "seismicity (inter-event)",
+   "mass": 20000.0,
+   "hit_rate": 0.013258797734083339,
+   "capture": 0.004268631961006838,
+   "dti_proxy": 0.0049502976586540725
+  },
+  {
+   "feature": "deq_g_s2",
+   "family": "seismicity (distance)",
+   "mass": 20000.0,
+   "hit_rate": 0.005602859547920897,
+   "capture": 0.0018038245864334364,
+   "dti_proxy": 0.0020889428025921914
+  },
+  {
+   "feature": "ieq_hg_s2",
+   "family": "seismicity (inter-event)",
+   "mass": 20000.0,
+   "hit_rate": 0.008456992401329771,
+   "capture": 0.002722704485151724,
+   "dti_proxy": 0.0031521250868630857
+  },
+  {
+   "feature": "des_g_s2",
+   "family": "seismicity (distance)",
+   "mass": 20000.0,
+   "hit_rate": 0.04465494431933613,
+   "capture": 0.014376531444363069,
+   "dti_proxy": 0.01668214673193188
+  },
+  {
+   "feature": "des_log_s2",
+   "family": "seismicity (distance)",
+   "mass": 20000.0,
+   "hit_rate": 0.08963006035826761,
+   "capture": 0.028856141256967775,
+   "dti_proxy": 0.033371006901487615
+  },
+  {
+   "feature": "ex_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.14939067287226668,
+   "capture": 0.04809589931820182,
+   "dti_proxy": 0.05551942099231266
+  },
+  {
+   "feature": "ex_mean",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.1729466300050132,
+   "capture": 0.055679672259429255,
+   "dti_proxy": 0.0641366906650339
+  },
+  {
+   "feature": "step_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.14597822824090767,
+   "capture": 0.04699727254142097,
+   "dti_proxy": 0.05426592521149144
+  },
+  {
+   "feature": "lapneg_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.1492279056345698,
+   "capture": 0.04804349687214507,
+   "dti_proxy": 0.055426221513089714
+  },
+  {
+   "feature": "lappos_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.1470961204375704,
+   "capture": 0.04735717473280654,
+   "dti_proxy": 0.05465853474657717
+  },
+  {
+   "feature": "downface_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.14935722515907654,
+   "capture": 0.048085130922725136,
+   "dti_proxy": 0.055500439398292696
+  },
+  {
+   "feature": "upface_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.1634699963247053,
+   "capture": 0.052628697184477415,
+   "dti_proxy": 0.06064108230489204
+  },
+  {
+   "feature": "cross_max",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.1384702849704568,
+   "capture": 0.04458011170614494,
+   "dti_proxy": 0.05146697246603626
+  },
+  {
+   "feature": "relief",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.11169165604522437,
+   "capture": 0.03595880881015562,
+   "dti_proxy": 0.041537860200306746
+  },
+  {
+   "feature": "coh100",
+   "family": "2 m LiDAR scarp",
+   "mass": 20000.0,
+   "hit_rate": 0.028837167531655866,
+   "capture": 0.009284043505249627,
+   "dti_proxy": 0.010729256423337538
+  }
+ ],
+ "family_best": {
+  "2 m LiDAR scarp": {
+   "best_hit_rate": 0.1729466300050132,
+   "median_hit_rate": 0.1481620130360701,
+   "n_features": 10
+  },
+  "detrended topo": {
+   "best_hit_rate": 0.14228142155598808,
+   "median_hit_rate": 0.06725726353966613,
+   "n_features": 24
+  },
+  "thermal-conductivity": {
+   "best_hit_rate": 0.11472085203039428,
+   "median_hit_rate": 0.0693207585759717,
+   "n_features": 3
+  },
+  "magnetic": {
+   "best_hit_rate": 0.09212951122043853,
+   "median_hit_rate": 0.021511243673642697,
+   "n_features": 18
+  },
+  "seismicity (distance)": {
+   "best_hit_rate": 0.08963006035826761,
+   "median_hit_rate": 0.025128901933628513,
+   "n_features": 4
+  },
+  "gravity": {
+   "best_hit_rate": 0.0526176316476754,
+   "median_hit_rate": 0.006250451631800061,
+   "n_features": 12
+  },
+  "conductivity": {
+   "best_hit_rate": 0.024234293701876363,
+   "median_hit_rate": 0.016130179134322707,
+   "n_features": 4
+  },
+  "seismicity (inter-event)": {
+   "best_hit_rate": 0.013352859547920898,
+   "median_hit_rate": 0.013292076294836511,
+   "n_features": 4
+  },
+  "geodetic strain": {
+   "best_hit_rate": 0.00345,
+   "median_hit_rate": 0.0028528595479208967,
+   "n_features": 3
+  },
+  "depth-to-basement": {
+   "best_hit_rate": 0.0013066478973418076,
+   "median_hit_rate": 0.001214161974335452,
+   "n_features": 4
+  }
+ },
+ "note": "One feature alone is never the submission; this ranks which physical observables carry off-catalogue fault information at all."
+}

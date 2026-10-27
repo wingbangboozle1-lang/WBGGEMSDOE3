@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""PASS 2 — independent re-verification of the delivered bytes. Deliberately shares NO code with src/gemsw/{writer,uniq}.py:
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+PASS 2 — independent re-verification of the delivered bytes. Deliberately shares NO code with src/gemsw/{writer,uniq}.py:
 rasterio+numpy+scipy only, distance-transform overlap instead of binary dilation, checks against every verified ledger raster."""
+
+# Preserved below for provenance, but no longer executable or importable.
+raise SystemExit("BLOCKED: legacy verification excludes registered rasters and changes the threshold. See evidence/run_card.json.")
 import hashlib, json, sys, zipfile, io
 from pathlib import Path
 import numpy as np, rasterio
