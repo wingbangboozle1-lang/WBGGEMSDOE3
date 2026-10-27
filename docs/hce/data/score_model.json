@@ -1,0 +1,253 @@
+{
+  "kind": "PROJECTION from OWNER-REPORTED scores \u2014 NOT an organizer-confirmed score",
+  "n_training": 117,
+  "features": [
+    "log10_n_dots",
+    "sgmc_coverage",
+    "catalogue_hidden_mean",
+    "frac_near_h19_5",
+    "frac_near_d28",
+    "mean_dist_to_catalogue",
+    "frac_near_catalogue",
+    "block_occupancy",
+    "frac_near_champion_b2"
+  ],
+  "loo_mae": 0.028688446707551434,
+  "loo_abs_err_q90": 0.058328018323970644,
+  "loo_spearman": 0.8952586400321321,
+  "ridge_coefficients": {
+    "log10_n_dots": -0.0033159318504860876,
+    "sgmc_coverage": -0.0012916783898917514,
+    "catalogue_hidden_mean": 0.0068443481060093524,
+    "frac_near_h19_5": 0.019161701075012253,
+    "frac_near_d28": 0.016507592865886926,
+    "mean_dist_to_catalogue": 0.008403164421733545,
+    "frac_near_catalogue": -0.015061381686596388,
+    "block_occupancy": 0.017639535421263484,
+    "frac_near_champion_b2": 0.026395143515001697
+  },
+  "focus_sites": [
+    {
+      "site": "GEMSDOE24",
+      "file": "GEMSDOE24.tif",
+      "n_dots": 60069,
+      "sgmc_coverage": 0.10118674066264544,
+      "catalogue_hidden_mean": 0.09449039902261719,
+      "projection_p50": 0.24782509803505448,
+      "projection_p10": 0.18949707971108384,
+      "projection_p90": 0.30615311635902515,
+      "owner_reported_unverified": 0.2477
+    },
+    {
+      "site": "GEMSDOE25",
+      "file": "GEMSDOE25.tif",
+      "n_dots": 44090,
+      "sgmc_coverage": 0.09057505387996088,
+      "catalogue_hidden_mean": 0.09832378835263812,
+      "projection_p50": 0.24984730770145186,
+      "projection_p10": 0.19151928937748122,
+      "projection_p90": 0.3081753260254225,
+      "owner_reported_unverified": 0.26
+    },
+    {
+      "site": "GEMSDOE27",
+      "file": "GEMSDOE27.tif",
+      "n_dots": 61328,
+      "sgmc_coverage": 0.10291932253962446,
+      "catalogue_hidden_mean": 0.09411710858500714,
+      "projection_p50": 0.2440859958600456,
+      "projection_p10": 0.18575797753607495,
+      "projection_p90": 0.30241401418401626,
+      "owner_reported_unverified": 0.2449
+    },
+    {
+      "site": "GEMSDOE28",
+      "file": "GEMSDOE28.tif",
+      "n_dots": 37660,
+      "sgmc_coverage": 0.08774462927525933,
+      "catalogue_hidden_mean": 0.02984187212014274,
+      "projection_p50": 0.2579523838923146,
+      "projection_p10": 0.19962436556834398,
+      "projection_p90": 0.3162804022162853,
+      "owner_reported_unverified": 0.271
+    },
+    {
+      "site": "GEMSDOE30",
+      "file": "GEMSDOE30.tif",
+      "n_dots": 44090,
+      "sgmc_coverage": 0.09057505387996088,
+      "catalogue_hidden_mean": 0.09832378835263812,
+      "projection_p50": 0.24984730770145186,
+      "projection_p10": 0.19151928937748122,
+      "projection_p90": 0.3081753260254225,
+      "owner_reported_unverified": 0.26
+    },
+    {
+      "site": "GEMSDOE31",
+      "file": "GEMSDOE31.tif",
+      "n_dots": 40199,
+      "sgmc_coverage": 0.09032441645345367,
+      "catalogue_hidden_mean": 0.031042014839025488,
+      "projection_p50": 0.2576592570099315,
+      "projection_p10": 0.19933123868596084,
+      "projection_p90": 0.31598727533390214,
+      "owner_reported_unverified": 0.2708
+    },
+    {
+      "site": "GEMSDOE32",
+      "file": "GEMSDOE32.tif",
+      "n_dots": 37654,
+      "sgmc_coverage": 0.08934591544258991,
+      "catalogue_hidden_mean": 0.004600104084398947,
+      "projection_p50": 0.26630805305011856,
+      "projection_p10": 0.20798003472614793,
+      "projection_p90": 0.32463607137408923,
+      "owner_reported_unverified": 0.2778
+    },
+    {
+      "site": "GEMSDOE33",
+      "file": "GEMSDOE33.tif",
+      "n_dots": 41865,
+      "sgmc_coverage": 0.09130894406960097,
+      "catalogue_hidden_mean": 0.05303666414388171,
+      "projection_p50": 0.254949173267631,
+      "projection_p10": 0.19662115494366036,
+      "projection_p90": 0.31327719159160167,
+      "owner_reported_unverified": 0.2632
+    },
+    {
+      "site": "GEMSDOE36",
+      "file": "GEMSDOE36.tif",
+      "n_dots": 38854,
+      "sgmc_coverage": 0.09101422184025117,
+      "catalogue_hidden_mean": 0.004661795366142248,
+      "projection_p50": 0.25988029859566997,
+      "projection_p10": 0.20155228027169933,
+      "projection_p90": 0.31820831691964063,
+      "owner_reported_unverified": 0.275
+    }
+  ],
+  "candidates": [
+    {
+      "q": 0.08,
+      "spacing": 3,
+      "n_dots": 45414,
+      "sgmc_coverage": 0.21749984307910175,
+      "catalogue_hidden_mean": 0.16029463812131944,
+      "projection_p50": 0.07351122456465282,
+      "projection_p10": 0.01518320624068218,
+      "projection_p90": 0.13183924288862348
+    },
+    {
+      "q": 0.12,
+      "spacing": 3,
+      "n_dots": 68079,
+      "sgmc_coverage": 0.27073303123125864,
+      "catalogue_hidden_mean": 0.15256990437196066,
+      "projection_p50": 0.07893277181802616,
+      "projection_p10": 0.020604753494055515,
+      "projection_p90": 0.1372607901419968
+    },
+    {
+      "q": 0.16,
+      "spacing": 3,
+      "n_dots": 90873,
+      "sgmc_coverage": 0.3115892213062305,
+      "catalogue_hidden_mean": 0.14294387407300285,
+      "projection_p50": 0.08114608095900061,
+      "projection_p10": 0.022818062635029966,
+      "projection_p90": 0.13947409928297125
+    },
+    {
+      "q": 0.2,
+      "spacing": 3,
+      "n_dots": 113408,
+      "sgmc_coverage": 0.34374993143190913,
+      "catalogue_hidden_mean": 0.13389484203355675,
+      "projection_p50": 0.0819651807024154,
+      "projection_p10": 0.023637162378444758,
+      "projection_p90": 0.14029319902638604
+    },
+    {
+      "q": 0.25,
+      "spacing": 3,
+      "n_dots": 141703,
+      "sgmc_coverage": 0.37878433284332397,
+      "catalogue_hidden_mean": 0.12199825691607338,
+      "projection_p50": 0.0823162587450874,
+      "projection_p10": 0.023988240421116754,
+      "projection_p90": 0.14064427706905805
+    },
+    {
+      "q": 0.3,
+      "spacing": 3,
+      "n_dots": 169968,
+      "sgmc_coverage": 0.4093843448788561,
+      "catalogue_hidden_mean": 0.1111851490571542,
+      "projection_p50": 0.08212325680559157,
+      "projection_p10": 0.023795238481620927,
+      "projection_p90": 0.1404512751295622
+    },
+    {
+      "q": 0.08,
+      "spacing": 4,
+      "n_dots": 25511,
+      "sgmc_coverage": 0.14813455477214782,
+      "catalogue_hidden_mean": 0.14021454689529259,
+      "projection_p50": 0.07101419550185367,
+      "projection_p10": 0.012686177177883028,
+      "projection_p90": 0.1293422138258243
+    },
+    {
+      "q": 0.12,
+      "spacing": 4,
+      "n_dots": 38344,
+      "sgmc_coverage": 0.1859032236892035,
+      "catalogue_hidden_mean": 0.14298797528808224,
+      "projection_p50": 0.0786422001892634,
+      "projection_p10": 0.02031418186529276,
+      "projection_p90": 0.13697021851323404
+    },
+    {
+      "q": 0.16,
+      "spacing": 4,
+      "n_dots": 51007,
+      "sgmc_coverage": 0.21542704984450395,
+      "catalogue_hidden_mean": 0.1401758706859736,
+      "projection_p50": 0.08100185590827827,
+      "projection_p10": 0.022673837584307625,
+      "projection_p90": 0.1393298742322489
+    },
+    {
+      "q": 0.2,
+      "spacing": 4,
+      "n_dots": 63728,
+      "sgmc_coverage": 0.24078450575180832,
+      "catalogue_hidden_mean": 0.13453738716105335,
+      "projection_p50": 0.08316040303020955,
+      "projection_p10": 0.024832384706238907,
+      "projection_p90": 0.1414884213541802
+    },
+    {
+      "q": 0.25,
+      "spacing": 4,
+      "n_dots": 79730,
+      "sgmc_coverage": 0.2667394034388827,
+      "catalogue_hidden_mean": 0.12817810773438743,
+      "projection_p50": 0.0848243779710998,
+      "projection_p10": 0.02649635964712916,
+      "projection_p90": 0.14315239629507046
+    },
+    {
+      "q": 0.3,
+      "spacing": 4,
+      "n_dots": 95805,
+      "sgmc_coverage": 0.28914137081926033,
+      "catalogue_hidden_mean": 0.11968702560294267,
+      "projection_p50": 0.08584462761616367,
+      "projection_p10": 0.027516609292193024,
+      "projection_p90": 0.14417264594013432
+    }
+  ],
+  "caution": "Off-network, dense or physically novel rasters are out of distribution; intervals use the LOO 90th-percentile absolute error and can still under-cover."
+}

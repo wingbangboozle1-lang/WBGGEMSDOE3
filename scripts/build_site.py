@@ -19,11 +19,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 # and the historical dashboards keep their helpers (overview, guide, historical_h6_section).
 # None of its page writers are called any more: the four top-level pages are built by
 # build_executive.py from evidence JSON.
+from hce_banner import HCE_BANNER  # noqa: E402,F401
 from build_site_legacy import (  # noqa: E402,F401
     decision, esc, guide, historical_h6_section, human_age, layout, overview,
 )
 
-__all__ = ["build", "main", "human_age", "overview", "guide", "historical_h6_section"]
+__all__ = ["build", "main", "human_age", "overview", "guide", "historical_h6_section", "HCE_BANNER"]
 
 
 def build() -> int:

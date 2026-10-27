@@ -1,0 +1,25 @@
+{
+  "history": [
+    {
+      "iteration": 0,
+      "max_overlap": 0.8365221688788478,
+      "worst": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+      "n_bad": 7,
+      "forbidden_px": 0,
+      "quota": 0.41
+    },
+    {
+      "iteration": 1,
+      "max_overlap": 0.5239103831309423,
+      "worst": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+      "n_bad": 0,
+      "forbidden_px": 4273068,
+      "quota": 0.41
+    }
+  ],
+  "forbidden_px": 4273068,
+  "n_forbidden_rasters": 7,
+  "cap": 0.62,
+  "final_max_overlap": 0.5239103831309423,
+  "n_dots": 169968
+}

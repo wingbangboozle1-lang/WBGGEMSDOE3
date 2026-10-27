@@ -153,3 +153,19 @@ edge cases; fix. Pass 3: re-check against the original request; improve
 accuracy, reliability, completeness, code quality. Then create a pull
 request and merge it onto main, and suggest remaining work and limitations
 for the next session.
+
+
+---
+
+## Session reading order (maintained by every lane)
+
+1. `PROJECT_PROMPT.md` (this verbatim brief) — the requirements.
+2. `README.md` — current repository-wide decision and each lane's status.
+3. `AGENTS.md`, `knowledge/preregistration-2026-10-27-hce.md` (HCE-1 lane +
+   four ranked hypotheses), `knowledge/preregistration-2026-10-26.md` and
+   `knowledge/review-and-irregularities-2026-10-26.md` (IR-01…IR-08).
+4. `evidence/hce_run_card.json` — the HCE-1 run card; also read
+   `evidence/gemsdoe_run_card.json` and `evidence/cspes_run_card.json` for the
+   other parallel lanes. Never merge their verdicts without checking the bytes.
+5. `docs/hce/index.html` — HCE-1 executive summary and one-click download;
+   `docs/index.html` — repository-wide executive summary.

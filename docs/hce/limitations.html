@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Limitations · HCE-1 · WBGGEMSDOE3</title><link rel="stylesheet" href="assets/hce.css"></head>
+<body><header class="top"><div class="wrap"><div class="brand">⌁ WBGGEMSDOE3 · HCE-1 LANE <span class="small">/ DOE GEMS PRIZE</span></div><nav><a href="index.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why-0.2778.html">Why 0.2778</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a style="color:#7cf0b8;font-weight:800" href="limitations.html">Limitations</a></nav></div></header>
+<main><div class="wrap">
+<div class="hero"><div class="wrap"><div class="small">IRREGULARITIES / LIMITATIONS / NEXT SESSION</div>
+<h1>What is still in the way.</h1><p>Flagged for review, not hidden. None of these is fixed by renaming a file.</p></div></div>
+<h2>Release-critical</h2><div class="grid">
+<div class="card"><h3>IR-09 — vacuous literal uniqueness rule</h3><p class="small">IR-09: literal finite-positive reading is vacuous because one pinned control is positive on all 5,167,373 footprint cells and a spacing-5 lattice covers 99.9 % of them within 3 px. Both verdicts are reported; user ratification needed. The lane delivers a file under the content-aware reading. If the user insists on the literal reading, the correct verdict is <b>duplicate / stop</b> — exactly as the earlier session concluded. This needs an explicit protocol revision, not a silent exemption.</p></div>
+<div class="card"><h3>No organizer receipt, no hidden labels</h3><p class="small">0 organizer-confirmed scores. Every number here is HOLDOUT-DTI (evaluator + positives + CI), an owner report, or a projection. A score above 0.2778 cannot be claimed without an actual upload receipt.</p></div>
+<div class="card"><h3>Weekly cap &amp; selector</h3><p class="small">The portal's live quota is behind login. This lane used 0 slots. A separate selector must approve a slot; the same selected file is used for both prize rounds.</p></div>
+<div class="card"><h3>Outside-bounds convention</h3><p class="small">Official text says null/NaN outside bounds; the shared writer emits all-finite zeros. The mirrored sample's 60,988 ones also contradict the “total absence” wording. Reconcile with organizers before a high-stakes upload.</p></div></div>
+<h2>Scientific limitations</h2><ul>
+<li><b>Holdout ≠ hidden test.</b> Hide-and-recover withholds catalogue faults, while the competition's private set is expert-labeled <em>new</em> faults. The released file's static read-back HOLDOUT-DTI is 0.0931 (95% CI 0.0824–0.1037); the fold-local method result is 0.1292. Neither is a leaderboard score.</li>
+<li><b>Champion proxy is leakage-contaminated.</b> The H19-5/D2.8 network was built from the full catalogue, so the 0.0992 incumbent contains hidden segments. The paired win is real but the comparison is conservative in an unusual way.</li>
+<li><b>Projection is out of family.</b> LOO MAE 0.0287 on 117 owner-reported scores, but the top of that ledger is one related dot family; a novel pattern is extrapolated. Use the p10–p90 band 0.024–0.140, not the point estimate.</li>
+<li><b>Uniqueness has a price.</b> The repair moved ≥38% of dots into registry-novel cells and reduced static holdout DTI. Max sparse overlap is now 0.524; the unconstrained pattern was 0.837 (a duplicate).</li>
+<li><b>Mirror provenance &amp; band semantics.</b> SHA-256 pins prove mirror consistency, not official origin. Some 19-band names (notably <code>tc</code>) remain ambiguous; do not assert physical meaning from the mirror description alone.</li>
+<li><b>One ledger raster unavailable.</b> One of 118 pinned live-scored rasters returned HTTP 404 from GitHub; 117 were verified. Flag for the owner to re-pin.</li>
+<li><b>Shared tool defects upstream.</b> The shared uniqueness tool tests one-sided ρ&gt;0.90 while the protocol needs |ρ|; the shared metric docstring's marginal-credit bound is wrong. Neither was forked; both need maintainer fixes.</li>
+<li><b>External data not obtained.</b> Raw 1 m 3DEP tiles, ASF InSAR and GDR thermal archives were not downloaded; hypotheses 2–4 remain untested. All are free/official but need byte-level verification and licence review.</li>
+<li><b>Compute/data placement.</b> <code>bash scripts/download_competition_data.sh</code> now performs placement autonomously via pinned public mirrors; GPU is not required for this lane, but the 419 MB feature stack must be re-fetched on a fresh clone.</li>
+</ul>
+<h2>Next session — concrete work</h2><ol>
+<li>Ratify or replace IR-09; freeze one explicit comparator inventory and one non-vacuous uniqueness definition for all parallel lanes.</li>
+<li>Obtain an authenticated DrivenData download and verify band names, nodata semantics and sample provenance against the official data tab.</li>
+<li>Run the three untested hypotheses with the named official datasets, one lane per session, against the same shared evaluator and the SAME fold definitions.</li>
+<li>After a real upload, store the submission-page receipt with the uploaded SHA-256 and refit the projection model including a genuine organizer-confirmed point.</li>
+<li>Fix the shared uniqueness/metric defects upstream (this integration is read-only on that repository).</li>
+</ol>
+<div class="note"><b>Core values applied.</b> Maximize P(Win): do not spend a scarce slot on an unvalidated guess; publish the negative results too. Own the Outcome: the downloadable TIF, its validator output, the run card and this limitations page are all delivered together.</div>
+</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>

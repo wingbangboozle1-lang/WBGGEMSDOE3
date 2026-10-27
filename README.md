@@ -19,6 +19,24 @@
 > The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this
 > README at every session start.
 
+> **PARALLEL LANE HCE-1 (branch `arena/50217887-wbggemsdoe3`, 2026-10-27): a second
+> independently audited unique TIF.**
+> [HCE-1 executive summary](docs/hce/index.html) ·
+> [one-click TIF](docs/hce/downloads/wbggems3-hce1-latest.tif) ·
+> [single-TIFF ZIP](docs/hce/downloads/wbggems3-hce1-latest.zip) ·
+> [exactly how to submit](docs/hce/how-to-submit.html) ·
+> [run card](evidence/hce_run_card.json) · [limitations](docs/hce/limitations.html).
+> It passes the 13-point saved-byte validator, the single-feature leakage canary, a
+> 145-file registry audit under the preregistered **content-aware** reading of the
+> uniqueness rule (IR-09), and a paired fold-local HOLDOUT-DTI win
+> (0.1292, 95% CI 0.1160–0.1426, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld
+> positives) over the replayed 0.0992 champion proxy.
+> **No organizer-confirmed score.** Its owner-reported-ledger projection (0.082) does
+> not support beating 0.2778; the literal finite-positive registry reading remains
+> vacuous and is reported as IR-09. No weekly slot was used. This lane is an
+> independent research deliverable, not a replacement for the repository-wide
+> selector decision above.
+
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
 exploration; a predicted fault is not proof of a geothermal vent or resource. See the
@@ -1193,3 +1211,24 @@ Do not stop after the first pass. Each pass must build on the previous one. Befo
 Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project. It should be worked on in this next session or the next session. Work line by line verify everything no hallucinations.
 
 </details>
+
+
+---
+
+## HCE-1 data placement and reproduction (2026-10-27)
+
+`scripts/download_competition_data.sh` now performs the placement autonomously:
+it fetches 26 SHA-256-pinned public mirror files (419 MB 19-band stack, labels,
+sample, external derivatives, 12 scored references) through
+`scripts/fetch_mirrors.sh`, then runs `scripts/prepare_data.py` and writes
+`data/manifest.json`. 26/26 digests verified; 117/118 pinned live-scored sibling
+rasters verified (one 404). These are **owner-supplied GitHub mirrors, not
+organizer-authenticated DrivenData downloads**. Full lane reproduction, measured
+numbers and the three-pass review are in
+[`knowledge/preregistration-2026-10-27-hce.md`](knowledge/preregistration-2026-10-27-hce.md),
+`evidence/hce_*.json`, `scripts/hce_*.py` and `src/hce/`.
+
+Next session: ratify IR-09, obtain an authenticated competition download, run the
+three preregistered hypotheses that need raw 3DEP / GDR thermal / ASF InSAR data,
+and bind any real upload receipt to the uploaded SHA-256. See the
+[HCE-1 limitations page](docs/hce/limitations.html).
