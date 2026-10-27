@@ -3,6 +3,13 @@
    READY      = validator passes on both files AND U1 AND U2 AND U3(non-lattice literal) AND U3(lattice excess)
    PROMOTE    = READY AND paired HOLDOUT-DTI delta vs champion-proxy has CI95 lower bound > 0
    otherwise NEGATIVE (a READY file can still be delivered as an exploratory unique file; no slot is selected here)."""
+
+# Historical LST1 path is quarantined: do not regenerate approval claims or
+# place/repair dots after the literal any-registry duplicate STOP.
+raise SystemExit(
+    "DISABLED / DO NOT SUBMIT: LST1 used an unauthorized dense-registry "
+    "exception and failed the promotion gate. See evidence/run_card.json."
+)
 import json, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]

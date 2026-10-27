@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Build the LST1 lane pages into docs/lst1/ (main's own dashboard lives in docs/index.html) from evidence/*.json and content/*.md (no hand-typed numbers)."""
 from __future__ import annotations
+
+# Historical LST1 path is quarantined: do not regenerate approval claims or
+# place/repair dots after the literal any-registry duplicate STOP.
+raise SystemExit(
+    "DISABLED / DO NOT SUBMIT: LST1 used an unauthorized dense-registry "
+    "exception and failed the promotion gate. See evidence/run_card.json."
+)
 import html, json, shutil, sys
 from pathlib import Path
 import markdown

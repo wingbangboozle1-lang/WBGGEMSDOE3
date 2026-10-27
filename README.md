@@ -12,6 +12,21 @@ The actual target is **surface fault probability**, which can inform geothermal
 exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
 
+## Session recheck — 2026-10-27
+
+Read the standing prompt below and `AGENTS.md` before further work. This session
+re-fetched the pinned nine historical references and universal registry witness;
+the duplicate STOP is reproduced, not merely inherited. See
+[`evidence/recheck-2026-10-27.json`](evidence/recheck-2026-10-27.json) and
+[three-pass review](knowledge/session-review-2026-10-27.md).
+No new geological experiment, candidate TIFF, estimated leaderboard result or slot.
+
+**Safety correction:** the archived LST1 finalizer, candidate builder and site
+publisher are disabled. Their dense-reference exception was not authorized by the
+literal protocol. Historical `ready_to_submit=true` claims are revoked, including
+all published LST1 deep links. Research binaries remain available for audit only.
+The nine live GitHub HEAD identities were refreshed; this is not a fresh score audit.
+
 ## Project prompt and standing instructions — read at the start of every session
 
 The following is the operational project brief, preserving the user's mandatory
