@@ -78,7 +78,7 @@ def novelty(surface, dots, peer, valid):
     overlap = float((distance_transform_edt(~peer_dots)[selected] <= 3).mean()) if peer_dots.any() else 0.0
     rho = float(spearmanr(a[v], b[v]).statistic)
     # Protocol says exceeds, so equality alone is not duplicate.
-    duplicate = rho > .90 or overlap > .70
+    duplicate = abs(rho) > .90 or overlap > .70
     return dict(status='DUPLICATE_STOP' if duplicate else 'PASS_THIS_PEER_ONLY',
                 spearman=rho, directed_overlap_within_3px=overlap, passed=not duplicate)
 

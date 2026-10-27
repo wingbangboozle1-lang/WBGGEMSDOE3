@@ -3767,5 +3767,11 @@
    }
   ],
   "unique_pass": true
- }
+ },
+ "record_kind": "HISTORICAL_LST1_BUILD_DIAGNOSTIC",
+ "current_protocol_status": "DO NOT SUBMIT: literal registry overlap is not cleared and registry scope is incomplete.",
+ "approved_for_submission": false,
+ "leaderboard_estimate": "NOT_ESTIMABLE",
+ "projection_status": "QUARANTINED_NOT_A_SCORE",
+ "projection_warning": "lst_stratum_projection_band and calibrators are archived method-dependent diagnostics; no validated mapping to leaderboard performance; not used for current approval or user-facing score estimates."
 }

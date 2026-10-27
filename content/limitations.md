@@ -1,56 +1,43 @@
-# Limitations, irregularities and what access is needed
+# Current limitations, irregularities and blocked work
 
-## Limitations
-0. **Performance gate failed.** The delivered file is valid and unique but scored below the champion proxy on the spatial hold-out (paired Δ −0.0325, 95 % CI −0.041 to −0.024). It is not recommended for a submission slot.
-1. **No organizer-confirmed score exists for the delivered file.** Every number for it is a PROJECTION (ledger model, with
-   leave-site-out error) or HOLDOUT-DTI. The hold-out hides *catalogue* segments, so it measures recovery of faults that look like
-   the catalogue, not recovery of the new expert-labelled faults that are actually scored (the champion proxy scores ≈0.10 there
-   but 0.2778 owner-reported live).
-2. **The ledger is owner-reported.** 112 unique rasters, 83 submitting sites; scores come from sibling repos' own records, not DrivenData receipts.
-3. **The ledger cannot rank independent fields.** Nested leave-site-out CV shows no field beats the stratum baseline; the
-   within-stratum ranking used by the candidate (a naive-Bayes modulation from the *visible catalogue*) is validated only on the
-   catalogue-based hold-out, which is partly circular.
-4. **Uniqueness forces a price, and the hold-out measured it.** To keep ≤ 70 % of dots near any registry raster, 38 % of dots are
-   off-network and must avoid ~90 % of the footprint (the union of dense prior rasters), i.e. they sit on low-prior ground. On the
-   hold-out (HOLDOUT-DTI, champion proxy 0.0992) the same construction without the avoid-zone is −0.0155 (LCB λ) / −0.0070 (median λ); with the
-   avoid-zone it is −0.0325 / −0.0215. So uniqueness costs ≈0.014–0.017 and the conservative λ ≈0.009–0.014 (diagnostic runs in
-   `evidence/holdout_results.json`, keys `…__DIAGNOSTIC_no_avoid_zone`; those no-avoid variants violate the overlap cap and are not deliverable).
-   **Verdict: NEGATIVE** — the delivered file is the one with the worst combination because it is the one that passes uniqueness
-   with margin. A median-λ build (−0.0215) was run only as a hold-out variant; its pre-declared adoption rule (paired CI lower bound > 0) failed, so it was not built.
-5. **The projection band is wide.** Leave-site-out MAE 0.026 (top-20 rasters 0.040), 90th-percentile error 0.065, and the
-   bootstrap interquartile range of the total hidden-truth mass is ≈ 4.3k–10.1k pixels.
-6. **Mirrors are hash-pinned, not organizer-authenticated.** `sample_submission.tif` in the mirror has 1s on the catalogue, so it
-   is not organizer bytes; only its footprint (5,167,373 finite pixels) is used.
-7. **Submit-form wording is unverified.** The Submissions page is behind login; the steps on the how-to page follow the official
-   format rules and the portal error text the owner reported.
+## Current decision (2026-10-27)
 
-8. **Protocol budget exceeded (disclosed).** The run protocol allows 3 experiments / 2 hours. This session ran 1 hypothesis with 5 hold-out variants,
-   2 diagnostics and 2 builds (the second build was the uniqueness repair). Results from the pre-repair first hold-out run (+0.0079, a non-unique 49k-dot build)
-   are kept in `evidence/holdout_results_preLCB_firstrun.json` and are **not** the delivered file's result.
-9. **Licence of vendored code.** `metric.py` and `holdout.py` come from GEMSDOE32 @ 07806249, which has no LICENSE file (see NOTICE.md).
-10. **Per-site "unscored" picks** use the same ledger projection, which over-states pure H19-5-network files by about 0.02–0.03 and under-states independent hybrids by about 0.12.
+- **DO NOT SUBMIT any historical artifact.** The current audit records a registry witness with positive support across the full mirrored sample footprint. Under the binding literal `>70% within 3 px` stop, every nonempty in-footprint candidate fails. The mirror is hash-pinned, not organizer-authenticated; that provenance limit does not authorize bypassing the stop.
+- **No candidate, holdout run, or experiment was created in this review.** There is no new-file score and no leaderboard estimate. A real submission slot remains a separate selector decision and none was selected.
+- User/owner score figures, including the GEMSDOE32 B2 report, are unverified without an organizer receipt tied to exact bytes. The public leaderboard snapshot last observed on 2026-10-26 is stale for this review; conflicting values are not reconciled without a fresh attributable observation.
+- The `restore_shared_data.sh` wrapper previously targeted a missing Python script. It is now repaired to call the pinned template's own `prepare_data.py`. The public mirror bridge is not an authenticated organizer download, and no training stack was fetched in this review.
 
-11. **Uniqueness is judged under two documented deviations from the literal rule.** (a) Registry rasters with >1,000,000 positive cells are excluded as feature layers
-   (`acquisition_block_id_100m` = 5,167,373 cells, `tiger_road_distance_m` 4,790,468, `blm_closed_claim_distance_m` 3,007,873); (b) lattice-like references (random-placement
-   overlap ≥ 0.70) use an excess-over-null limit of 0.05 that this session chose before seeing the final result. The repo-wide README independently found that the literal rule is
-   unsatisfiable for any non-empty file against a whole-footprint raster and declined any exemption; this lane's file is therefore labelled **research-only** and is not claimed as
-   "cleared" under that stricter reading. Under the literal rule it fails against `r13-lattice-s5` (0.9995), `pindrop-v4-nodes` (0.783) and `pindrop-v4-discovery` (0.746).
+## Historical LST1 record — superseded, not current approval
 
-## Irregularities flagged
-* Literal rule "> 70 % of dots within 3 px of one registry raster ⇒ duplicate" is *unsatisfiable* against rasters that already
-  cover ≥ 70 % of the footprint within 3 px at random (lattice-like rasters). They are judged by excess over a random-placement
-  null and listed separately in the run card, never silently exempted.
-* Two files in the GEMSDOE24 repo (`acquisition_block_id_100m.tif`, `tiger_road_distance_m.tif`) are feature layers, not submissions; four registry TIFs have a different grid.
-* Owner brief quotes leaderboard tops of 0.4413 / 0.3195; the live page showed 0.4437 on 2026-10-26.
-* Several sibling files contain the float32 sentinel −3.4×10³⁸ or NaN *inside* the footprint; this is the root cause of "Predicted values must be in range [0, 1]".
+The old LST1 run used evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, with 22,232 withheld positives. For example, its `lst_mod_quota` candidate pooled DTI was 0.06668 (95% CI 0.05688–0.07655); the champion proxy was 0.09920 (95% CI 0.08595–0.11267); paired delta −0.03252 (95% CI −0.04103 to −0.02372). These are archived **HOLDOUT-DTI** diagnostics, not results from the currently prescribed `gems57-pooled-hide-v2`, not a leaderboard estimate, and not an organizer-confirmed score.
 
-## Access that would unlock more
-* Unrestricted network (this sandbox reaches only github.com, api.github.com, codeload.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org).
-* DrivenData login for the data page / `1m_DEM_links.csv` and for the Submissions page.
-* Free official sources named in `hypotheses`: USGS 3DEP 1 m DEM, NASA ASF Sentinel-1/OPERA, USGS Quaternary Fault & Fold database.
-* An organizer-confirmed score for *this* file (needs one submission; promotion is a separate selector step and no slot was used or selected here).
+The historical finalizer omitted the literal overlap result from its readiness decision; its LST1 card could say `ready_to_submit=true` even though `literal_rule_pass=false`. It also used a lattice-excess exception. This contradiction is corrected in the reclassified run card: literal gate fails; unknown registry scope fails closed; selector approval is false. `scripts/build_submission.py` is disabled and writes no TIFF. Old `ready_to_submit`, “unique,” “valid,” exploratory-upload, or projection wording must not be treated as current approval.
 
-## Next session
-1. Read the confirmed score of this file (if submitted) and add it to `registry/upstream_score_ledger.csv`; refit `scripts/lst_fit.py`.
-2. Execute W3 (3DEP 1 m scarp matched filter) on an unrestricted runner.
-3. Replace the circular catalogue hold-out with a split that hides *post-catalogue* mapped faults if such a layer can be obtained.
+The ledger-model projection is retained only in archived evidence for reproducibility and is marked `NOT_A_SCORE`; current-facing summaries suppress it. No estimate is published because there is no validated mapping from the legacy holdout to the hidden leaderboard.
+
+## Technical and provenance limits
+
+- The local preflight applies the required two-sided `abs(Spearman) > 0.90` stop. The vendored/shared uniqueness helper still has a one-sided rank gate; no private fork was made. That upstream defect needs maintainer resolution.
+- The local historical uniqueness audit excludes registry entries it cannot classify under its processing guard; those entries now make `U3_literal_scope_complete=false` and cannot pass. The literal rule must not silently ignore large/continuous rasters or rely on a lattice/null exemption.
+- Some historical shared data came from a peer-maintained GitHub mirror. Pinned hashes establish byte consistency, not organizer origin, completeness, official-grid conventions, or current-label leakage clearance.
+- The official competition pages, rules, submission portal, and current public leaderboard were not re-fetched in this review. Account quota, portal field names, and organizer acceptance are unknown.
+- Old LST1 work exceeded its stated three-experiment/two-hour budget. This is historical disclosure only; it does not grant a new budget or permission to cross the current stop.
+- Repository hypotheses are proposed options, not an assigned method lane. Anonymous `band01`–`band19` identifiers do not establish geophysical semantics; no new-feature experiment is justified by the current evidence.
+
+## Protocol-owner / upstream actions required
+
+1. Resolve explicitly whether the literal registry stop applies to every positive pixel in continuous/dense registry rasters, how the witness should be classified, and what registry is authoritative. Any exception or support definition must be approved and preregistered; do not infer one from a failed candidate.
+2. Correct the shared uniqueness package's signed-correlation check and clarify how registry raster roles are represented. This repository did not patch or fork shared code.
+3. Only after the stop is lifted may an authorized lane use the unchanged shared feature stack, hide whole fault segments with a buffer, derive catalog features from visible faults only, run feature-only leakage canaries, evaluate pooled DTI under `gems57-pooled-hide-v2`, and use the shared writer.
+4. Report performance only as `HOLDOUT-DTI` with evaluator version, withheld-positive count, and 95% CI, or `ORGANIZER-CONFIRMED` with an organizer receipt. Keep slot selection separate.
+
+## Reproducible safe checks
+
+```bash
+.venv/bin/python -m pytest -q
+python scripts/build_site.py && python scripts/check_site.py
+bash scripts/restore_shared_data.sh --template-only
+bash scripts/restore_shared_data.sh --dry-run
+```
+
+Do not invoke `scripts/build_submission.py`, old holdout scripts, `scripts/finalize.py` to create a new run, or any slot selector until the blocker is explicitly resolved. The old evidence is preserved for audit; it is not a current candidate.

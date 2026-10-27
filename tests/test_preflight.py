@@ -36,7 +36,7 @@ def test_shape_rejected(tmp_path):
     assert not audit.raster_report(p,s)['format_ok']
 
 def test_format_pass_is_not_approval(tmp_path):
-    s=tmp_path/'s.tif';p=tmp_path/'p.tif';write(s,np.zeros((8,8)));write(p,np.zeros((8,8)))
+    s=tmp_path/'s.tif';p=tmp_path/'p.tif';a=np.zeros((8,8));write(s,a);write(p,a)
     report=audit.raster_report(p,s)
     assert report['format_ok'] and not report['approved_for_submission']
 
@@ -44,6 +44,15 @@ def test_duplicate_stops():
     a=np.arange(400).reshape(20,20)/399;d=np.zeros_like(a);d[10,10]=1
     result=audit.novelty(a,d,d,np.ones_like(a,bool))
     assert result['status']=='DUPLICATE_STOP' and result['directed_overlap_within_3px']==1
+
+def test_negative_rank_correlation_is_also_a_duplicate():
+    surface=np.arange(400,dtype=float).reshape(20,20)
+    peer=200.0-surface
+    dots=np.zeros_like(surface);dots[19,19]=1
+    result=audit.novelty(surface,dots,peer,np.ones_like(surface,bool))
+    assert result['spearman'] < -0.90
+    assert result['directed_overlap_within_3px'] == 0
+    assert result['status']=='DUPLICATE_STOP'
 
 def test_constant_field_indeterminate():
     a=np.zeros((5,5));assert not audit.novelty(a,a,a,np.ones_like(a,bool))['passed']

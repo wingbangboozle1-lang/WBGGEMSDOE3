@@ -91,11 +91,12 @@ before that lane is run.
   writer emits unmasked zeros there. The meaning of “bounds” and portal acceptance are
   not established; reconcile with organizers and fix the shared writer upstream before
   any future upload. See [IR-04](knowledge/review-and-irregularities-2026-10-26.md).
-- [Official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) state up to three
-  submissions per week and require one final choice across both prize rounds, complete
-  reproducible solution assets, license compliance, and generative-AI-use disclosure.
-  Check the current account's actual quota before any upload. No account or private labels
-  are accessible here.
+- The repository retains a link to the [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf),
+  which an earlier review summarized as allowing up to three submissions per week and
+  requiring a final choice across both prize rounds, reproducible solution assets,
+  license compliance, and generative-AI-use disclosure. The PDF and live portal were not
+  re-fetched in this review; verify current rules and account quota before any future
+  upload. No account or private labels are accessible here.
 - Focus-site links: [24](https://buffedlizard55-lab.github.io/GEMSDOE24/),
   [25](https://buffedlizard55-lab.github.io/GEMSDOE25/), [27](https://buffedlizard55-lab.github.io/GEMSDOE27/),
   [28](https://buffedlizard55-lab.github.io/GEMSDOE28/), [30](https://buffedlizard55-lab.github.io/GEMSDOE30/),
@@ -103,9 +104,11 @@ before that lane is run.
   [33](https://buffedlizard55-lab.github.io/GEMSDOE33/), [36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/).
   Exact pinned research file links and independently computed overlaps are in the
   [dashboard](docs/index.html) and [audit](evidence/focus_audit.json).
-- The user supplied multiple historical leaderboard figures; they are time-dependent and
-  not a receipt. The public leaderboard is monitored separately and always timestamped.
-  Never infer a current private score or an uploaded-file identity from it.
+- The user supplied conflicting, time-dependent leaderboard figures; none is a receipt.
+  The public leaderboard feed is monitored separately and timestamped, but its last
+  successful observation may be stale. Never infer a current private score or an
+  uploaded-file identity from it. A leaderboard estimate for a new TIFF is **not
+  estimable** from these owner reports or the legacy projection model.
 
 ### Sources and required access
 
@@ -128,6 +131,12 @@ before that lane is run.
 
 ## Results and limitations of this session
 
+- **2026-10-27 review:** repaired the broken shared-data restore wrapper, corrected a
+  local preflight's one-sided Spearman gate, and hardened the historical LST1 finalizer
+  so its nonliteral lattice-null exception or incomplete registry scope cannot be
+  treated as clearance. The old candidate builder and lattice-exempt verifier are
+  disabled. The dependency-backed suite passes **90 tests** and the site check passes;
+  both report the negative decision. No experiment or new candidate generation was run.
 - Independently re-read nine pinned historical GeoTIFFs: all fail the requested
   uniqueness rule against at least one other focus-site raster. GEMSDOE25 and GEMSDOE30
   are identical inside the footprint despite different file encodings. See the full
@@ -146,28 +155,34 @@ before that lane is run.
   omitted the witness and its all-valid synthetic grid cannot establish the footprint.
   Two other stand-ins do not match the sample's grid. Their files and original history
   are preserved; see [concurrent artifact audit](evidence/concurrent_audit.json).
-- The shared template and 19 feature-band caches were restored with pinned SHA-256s.
-  They are in ignored `.cache/`, not Git. The shared uniqueness tool tests positive
-  correlation only, while the requested threshold is `|rho| > 0.90`; the independent
-  audit uses the two-sided rule, and an upstream fix is still needed. No new AUC canary,
-  valid holdout, raster or local new-file validator result exists because the stop came
-  first. See the [scientific review](knowledge/scientific-review-2026-10-26.md) and
-  [irregularities and next steps](knowledge/review-and-irregularities-2026-10-26.md).
+- A prior session restored the shared template and 19 feature-band caches with pinned
+  SHA-256s. Those files are ignored in `.cache/` and may not survive a workspace reset;
+  `bash scripts/restore_shared_data.sh` now restores them through the pinned template.
+  The shared uniqueness tool still tests positive correlation only, while the requested
+  threshold is `|rho| > 0.90`; the independent audit uses the two-sided rule, and an
+  upstream fix is still needed. No new AUC canary, compliant holdout, TIFF, or local
+  new-file validation exists because the literal registry stop came first. See the
+  [scientific review](knowledge/scientific-review-2026-10-26.md),
+  [irregularities and next steps](knowledge/review-and-irregularities-2026-10-26.md),
+  and [current three-pass review](evidence/review_passes.md).
 
 ## Reproduce the autonomous audit
 
-Requires Python 3.11+, internet to GitHub/PyPI, `gh` or unauthenticated GitHub API
-access, and disk space for the cached 19-band mirror. The script creates `.venv` if
-needed and calls the pinned shared template without forking its evaluator/writer:
+Requires Python 3.11+, GitHub/PyPI access for the pinned template code, and the
+project dependencies. The safe restoration modes below do not fetch competition bands.
+Do not run the full data fetch while the literal registry blocker remains unresolved:
 
 ```bash
-bash scripts/restore_shared_data.sh   # restore template + public mirror + 19 cached bands
-.venv/bin/python scripts/audit_focus.py      # proof, nine-site comparison, negative run card
-.venv/bin/python scripts/audit_concurrent.py # recheck parallel artifacts and rebind card
+bash scripts/restore_shared_data.sh --template-only
+bash scripts/restore_shared_data.sh --dry-run
 .venv/bin/python -m pytest -q               # synthetic and evidence checks
 python scripts/build_site.py && python scripts/check_site.py
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
+
+Only after explicit protocol resolution and authorization should a maintainer run
+`bash scripts/restore_shared_data.sh` for the public mirror and 19 ignored band caches.
+That SHA-pinned bridge is not an organizer-authenticated data download.
 
 The static [GitHub Pages dashboard](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/)
 is built from the evidence. Its scheduled workflow refreshes the public leaderboard
@@ -188,9 +203,18 @@ eligible unique TIFF impossible, so the project must not imply otherwise.
 
 ## Parallel lane LST1 — Ledger-Supervised Tomography (research-only, **NEGATIVE**)
 
-A second lane ran on branch `arena/7d6b3b9f-wbggemsdoe3` and is merged under its own namespace so nothing above is overwritten:
-[lane README](LST1_README.md) · [lane site](docs/lst1/index.html) · [lane run card](evidence/lst1_run_card.json) · code in `src/gemsw/` and `scripts/*lst*|build_submission|run_holdout|…`.
-It produced `submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif` (32,810 dots; format validator PASS; independent verifier PASS). Its HOLDOUT-DTI is **0.0667 vs 0.0992** for the champion proxy
-(paired Δ −0.0325, 95 % CI −0.041 to −0.024) — verdict **negative**, consistent with this README's **DO NOT SUBMIT** decision. It is **not** a cleared file: its uniqueness holds only under two
-documented deviations from the literal registry rule (whole-footprint feature layers excluded; excess-over-null for lattice-like references), and the project's stricter reading above declines such exemptions.
-It has no organizer-confirmed score and no slot was selected. Use it for learning (e.g. the ledger-model calibration, the uniqueness-price decomposition in the lane site's Evidence page), not for upload.
+A historical LST1 lane is retained for audit/education: [lane README](LST1_README.md) ·
+[lane site](docs/lst1/index.html) · [reclassified run card](evidence/lst1_run_card.json) ·
+code in `src/gemsw/` and the `lst*` scripts. The old TIFF is a research artifact only;
+its local format and byte-integrity checks do not clear it. The historic run card now
+fails the literal overlap and registry-scope gates, records no selector approval, and
+is explicitly **DO NOT SUBMIT**. Its old custom verifier and lattice-null exception
+are not authoritative.
+
+The archived values are **HOLDOUT-DTI** under legacy evaluator
+`GEMSDOE32-HIDE-RECOVER-v3.0` with 22,232 withheld positives: candidate 0.06668
+(95% CI 0.05688–0.07655) vs champion proxy 0.09920 (95% CI 0.08595–0.11267);
+paired Δ −0.03252 (95% CI −0.04103 to −0.02372). These historical metrics are not from the current
+shared `gems57-pooled-hide-v2` and are not a leaderboard estimate. The model projection
+is quarantined as `NOT_A_SCORE`. No organizer-confirmed score or slot exists. Do not
+run the retired builder, old holdout, or uploader.

@@ -10,157 +10,89 @@ main{max-width:1020px;margin:0 auto;padding:18px 20px 60px}h1{font-size:1.7rem}h
 table{border-collapse:collapse;width:100%;background:#fff;font-size:.92rem}th,td{border:1px solid #d7dde4;padding:6px 8px;text-align:left;vertical-align:top}th{background:#eef1f5}
 code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;word-break:break-all}.pass{color:var(--g);font-weight:700}.fail{color:var(--r);font-weight:700}
 .copy{background:#eef6ff;border:1px solid #b9d4f5;border-radius:8px;padding:8px 10px;margin:4px 0}small{color:#4a5866}
-</style></head><body><header><a href="index.html">Download &amp; submit</a><a href="summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why.html">Why 0.2778?</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="limitations.html">Limitations</a><a href="../index.html">◀ Repo dashboard</a></header><main><h1>Untried hypotheses (written BEFORE implementation; ranked)</h1>
-<p>Registry check performed on 2026-10-26 by <code>grep</code> over the nine sibling repos (commits pinned in
-<code>registry/upstream_pins.json</code>). Honest novelty statements are included; where an idea overlaps prior work it says so.</p>
+</style></head><body><header><a href="index.html">Download &amp; submit</a><a href="summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why.html">Why 0.2778?</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="limitations.html">Limitations</a><a href="../index.html">◀ Repo dashboard</a></header><main><h1>Historical hypothesis slate — not current score estimates</h1>
+<p>The following slate was preregistered on 2026-10-26, before its historical LST1 work. Any “expected gain” below is only a speculative planning prior from that older document; it is <strong>not</strong> a score, a current leaderboard estimate, or a result. The registry witness now blocks every nonempty in-footprint candidate under the literal rule. No new experiment was run during this review, and none of these hypotheses authorizes bypassing that stop.</p>
+<p>The user-specified study set is GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, and 36. Prior work was inspected through pinned public repositories/mirrors; those hashes establish local byte identity, not organizer provenance. Novelty is not established merely by this repository review.</p>
 <table>
 <thead>
 <tr>
-<th>Rank</th>
-<th>ID</th>
-<th>One-line</th>
-<th>Expected DTI gain (labelled guess, not a result)</th>
-<th>Cost</th>
-<th>Data</th>
+<th>Historical rank</th>
+<th>Hypothesis</th>
+<th>Layers / proposed mechanism</th>
+<th>Off-catalogue rationale</th>
+<th>Main confounder</th>
+<th>Novelty vs. repo</th>
+<th>Cost / external data</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td><strong>W1</strong></td>
-<td>Ledger-supervised density tomography over 66 independent fields, used to <strong>allocate</strong> dots (Dinkelbach/greedy) under an H19-5 overlap cap</td>
-<td>0 to +0.02 vs champion lineage; main value is a <em>unique</em> file at a known projected score</td>
-<td>medium (done)</td>
-<td>all in repo</td>
+<td>W1 — ledger-supervised density tomography</td>
+<td>19 training bands, lidar and derived terrain/geophysical fields; fit a density model from historical raster/score associations, then allocate dots</td>
+<td>Could rank uncatalogued-fault locations if independent submission patterns identify signal beyond the catalogue</td>
+<td>Score/raster claims are unreceipted, submission lineages are correlated, and the old holdout/evaluator is not the current shared protocol</td>
+<td>Overlaps with GEMSDOE28/27 tomography and GEMSDOE32 LLI; old LST1 added more fields and nested CV, but novelty and generalization are unproven</td>
+<td>Medium; historical mirror data only</td>
+<td>Historical run; negative under legacy evaluator; not current validation</td>
 </tr>
 <tr>
 <td>2</td>
-<td>W2</td>
-<td>Ledger-residual gap fill: place the off-network quota where the fitted density is high but the champion network has no dot</td>
-<td>folded into W1 (the quota arm)</td>
-<td>low</td>
-<td>in repo</td>
+<td>W2 — residual gap-fill quota</td>
+<td>Reallocate a preregistered share to high model-density areas lacking a nearby H19-5 network dot</td>
+<td>Attempts to find off-network faults using residual model signal</td>
+<td>Inherits W1 leakage, lineage, and calibration limitations</td>
+<td>Related to W1 quota arm and GEMSDOE27 annulus allocation</td>
+<td>Low; no new external data</td>
+<td>Not separately validated under current protocol</td>
 </tr>
 <tr>
 <td>3</td>
-<td>W3</td>
-<td>Metre-scale scarp matched filter from the official USGS 3DEP 1 m DEM tiles</td>
-<td>+0.02 to +0.08 if scarps in the hidden labels are metre-scale (unknown)</td>
-<td>high</td>
-<td><strong>not obtainable here</strong> (see below)</td>
+<td>W3 — metre-scale scarp matched filter</td>
+<td>3DEP 1 m elevation / profile curvature and scarp cross-section filters</td>
+<td>Fault scarps may be visible in fine-scale terrain but absent from the training catalogue</td>
+<td>Erosion, roads, lithology, and the fact that not every labelled fault has a surface scarp</td>
+<td>Similar ideas appear in sibling notes; no novelty claim</td>
+<td>High; requires official tiles and substantial storage</td>
+<td>Not run; source availability/provenance must be rechecked</td>
 </tr>
 <tr>
 <td>4</td>
-<td>W4</td>
-<td>Sentinel-1/OPERA InSAR line-of-sight velocity steps across faults</td>
-<td>unknown, probably small in an arid, slowly deforming basin</td>
-<td>high</td>
-<td><strong>not obtainable here</strong></td>
+<td>W4 — InSAR velocity steps</td>
+<td>Sentinel-1 / OPERA line-of-sight velocity discontinuities</td>
+<td>Active deformation may expose uncatalogued structures</td>
+<td>Arid basin may be slowly deforming; atmospheric and processing artifacts</td>
+<td>Prior sibling notes mention related data; novelty unclear</td>
+<td>High; NASA ASF/Earthdata access and preprocessing</td>
+<td>Not run; access not verified in this review</td>
 </tr>
 <tr>
 <td>5</td>
-<td>W5</td>
-<td>Newer-vintage Quaternary-fault database difference (faults mapped after the training catalogue)</td>
-<td>unknown; only helps if hidden labels overlap newly mapped traces</td>
-<td>medium</td>
-<td><strong>not obtainable here</strong></td>
+<td>W5 — newer-vintage fault mapping</td>
+<td>Compare current USGS Quaternary fault mapping with training catalogue</td>
+<td>Newly mapped traces might add off-catalogue geometry</td>
+<td>Catalogue changes may reflect terminology or source updates, not new truth</td>
+<td>Related sibling variants exist; novelty unclear</td>
+<td>Medium; official source and dates must be checked</td>
+<td>Not run; source availability/provenance must be rechecked</td>
 </tr>
 </tbody>
 </table>
-<h2>W1 — Ledger-supervised tomography (LST), executed</h2>
+<h2>Historical W1 record — explicitly not current-protocol evidence</h2>
+<p>The archived LST1 artifacts contain a spatially blocked <strong>HOLDOUT-DTI</strong> analysis under evaluator <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, with 22,232 withheld positives. For example, <code>lst_mod_quota</code> candidate pooled DTI is 0.06668 (95% CI 0.05688–0.07655); its champion proxy is 0.09920 (95% CI 0.08595–0.11267); paired delta −0.03252 (95% CI −0.04103 to −0.02372). These are historical metrics only: the evaluator differs from the prescribed <code>gems57-pooled-hide-v2</code>, the old construction exceeds the experiment budget, and no result establishes a leaderboard score.</p>
+<p>The old run card's ledger projection is quarantined as <strong>NOT_A_SCORE</strong>. Its historical “unique” status used a lattice-null exception and is superseded: the literal rule fails. Do not interpret “delivered,” “unique,” or <code>ready_to_submit</code> from older documents as current approval.</p>
+<h2>Gate before any future test</h2>
+<ol>
+<li>A protocol owner must clarify the registry rule's treatment of dense/continuous rasters and the universal witness. No support mask, threshold, registry scope, or exception may be changed silently.</li>
+<li>Only after that stop is explicitly resolved may an authorized lane run single-feature leakage canaries (AUC &gt;0.90 is leakage until disproved), whole-segment buffered holdout tests, and the shared <code>gems57-pooled-hide-v2</code> evaluator/writer.</li>
+<li>Report performance only as <code>HOLDOUT-DTI</code> with evaluator version, withheld-positive count and 95% CI, or <code>ORGANIZER-CONFIRMED</code> with a submission receipt. Use a separate selector for any real slot.</li>
+</ol>
+<h2>Official source pointers</h2>
+<p>These links were retained from earlier research and were <strong>not fetched during the current review</strong>. Recheck them before planning data acquisition:</p>
 <ul>
-<li><strong>Layers (all in the repo mirror):</strong> 19 training bands, 12-band lidar-scarp stack (11 used), GeoDAWN radiometric
-  (4) and extension (4) rasters, derived SGMC fault-distance, TIGER road distance, plus derived: gradient magnitude,
-  Laplacian-of-Gaussian, local relief and gravity×magnetic cross-gradient at several scales, and distances to
-  wellsprings/vents.  66 fields total (<code>evidence/field_canary.json</code>).</li>
-<li><strong>Physical signature:</strong> none by assumption.  The method does not assert a fault signature; it <em>measures</em> which
-  field bins carry hidden-truth density, using the only off-catalogue supervision that exists — the live scores of
-  112 distinct submitted rasters (each a "sensing pattern" of the hidden-truth field).</li>
-<li><strong>Why it can find uncatalogued faults:</strong> the official scoring masks catalogued pixels, so a model fitted to the
-  catalogue learns where the <em>known</em> faults are; the ledger instead constrains where the <em>new</em> labels are.</li>
-<li><strong>Difference from prior work (stated narrowly):</strong> live-score inversion exists in GEMSDOE28
-  (<code>knowledge/07_live_score_inversion.md</code>, 20 rasters), GEMSDOE27 <code>src/gems27/tomography.py</code> (20 rasters, recorded as
-  refuted) and GEMSDOE32 LLI (strata = catalogue distance × H19-5 distance, optional few factors).  LST differs in:
-  (i) 112 unique rasters instead of ≤ 60, (ii) 66 independent fields screened with <em>nested</em> leave-family-out CV so the
-  reported error is not selection-biased, (iii) the fitted density is used to <em>place</em> dots with a Dinkelbach
-  marginal-gain greedy, not only to rank existing files, (iv) an explicit cap on overlap with the H19-5 network
-  because the ledger is confounded by that lineage.  Verdict is by nested CV, not by assertion.</li>
-<li><strong>Failure modes recorded in advance:</strong> collinearity with the H19-5 lineage (all top ledger scores descend from it),
-  so the on-network density is not identified; 112 measurements cannot resolve 5.2 M pixels; scores are
-  owner-reported.  If nested-CV MAE is not clearly below the nuisance-only baseline the verdict is NEGATIVE.</li>
-</ul>
-<h2>W2 — Ledger-residual gap fill (quota arm of W1)</h2>
-<p>Same machinery, but the allocation reserves a fixed fraction of dots for places the density model rates high and
-H19-5 has no dot within 3 px.  Differs from GEMSDOE27 "H27-10 annulus" (a fixed geometric reallocation) by being
-density-driven.  Cost is a parameter of the allocator.</p>
-<h2>W3 — 1 m scarp matched filter (not run)</h2>
-<ul>
-<li><strong>Layers:</strong> USGS 3DEP 1 m DEM tiles listed in the competition's <code>1m_DEM_links.csv</code>.</li>
-<li><strong>Signature:</strong> metre-scale vertical offsets (fault scarps) with a characteristic cross-section; a matched filter on
-  profile curvature picks them out of 1 m topography far below the 100 m grid.</li>
-<li><strong>Prior status:</strong> registered, never executed, as H61-5 in the sibling repos ("official <code>1m_DEM_links.csv</code> 3DEP
-  tiles ... unverified").  Not new, but never tested.</li>
-<li><strong>Free official source:</strong> USGS 3DEP via The National Map, https://www.usgs.gov/3d-elevation-program ; competition
-  data page https://www.drivendata.org/competitions/306/competition-doe-gems/data/ .</li>
-<li><strong>Obtainable here?</strong> NO.  This sandbox may reach only github.com, api.github.com, codeload.github.com,
-  registry.npmjs.org, pypi.org and files.pythonhosted.org; <code>curl</code> to drivendata.org/usgs.gov was blocked in this
-  session (HTTP 000), so the link table and the tiles could not be fetched.  Needs: an unrestricted runner, the
-  DrivenData data page (login), and ~100s of GB of 1 m tiles.</li>
-</ul>
-<h2>W4 — InSAR velocity steps (not run)</h2>
-<p>Sentinel-1 / OPERA products from NASA ASF (https://asf.alaska.edu , free Earthdata login).  Prior sibling note: "data-blocked in sandbox".
-Not obtainable here (host not reachable; login required).</p>
-<h2>W5 — Newer-vintage fault database difference (not run)</h2>
-<p>USGS Quaternary Fault and Fold Database, https://www.usgs.gov/programs/earthquake-hazards/faults ; difference against
-the competition catalogue.  Not obtainable here (host not reachable).  Prior siblings registered variants (H60-x).</p>
-<h2>Ranking logic</h2>
-<p>W1 is the only hypothesis that is (a) executable with data verified in the repo, (b) testable before a slot is spent
-(nested ledger-CV plus the spatial hold-out), and (c) able to yield a file that is provably distinct from the
-registry.  W3–W5 may have higher ceilings but are gated by access, so their <em>expected</em> gain is unrealizable today.</p>
-<h2>Outcome of W1 (added after execution; HOLDOUT-DTI, spatially-blocked, cluster-bootstrap CI)</h2>
-<p>Precedent cited: GEMSDOE32 <strong>H47</strong> (LLI-unique, 49,231 dots) was also NEGATIVE on its hold-out (0.0784 vs 0.0992), and GEMSDOE27/28 tomography lanes were refuted.</p>
-<table>
-<thead>
-<tr>
-<th>Variant (final, unique construction)</th>
-<th>HOLDOUT-DTI [95 % CI]</th>
-<th>Paired Δ vs champion proxy 0.0992</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>stratum quota</td>
-<td>0.0632 [0.0552, 0.0711]</td>
-<td>−0.0360 [−0.0448, −0.0270]</td>
-</tr>
-<tr>
-<td><strong>LST modulation + quota, LCB λ (delivered)</strong></td>
-<td>0.0667 [0.0569, 0.0765]</td>
-<td>−0.0325 [−0.0410, −0.0237]</td>
-</tr>
-<tr>
-<td>LST modulation, no quota</td>
-<td>0.0632 [0.0538, 0.0731]</td>
-<td>−0.0360 [−0.0445, −0.0275]</td>
-</tr>
-<tr>
-<td>LST modulation + quota, median λ</td>
-<td>0.0777 [0.0664, 0.0883]</td>
-<td>−0.0215 [−0.0302, −0.0127]</td>
-</tr>
-<tr>
-<td><em>diagnostic:</em> LCB λ, no avoid-zone (not deliverable)</td>
-<td>0.0837 [0.0738, 0.0932]</td>
-<td>−0.0155 [−0.0233, −0.0074]</td>
-</tr>
-<tr>
-<td><em>diagnostic:</em> median λ, no avoid-zone (not deliverable)</td>
-<td>0.0922 [0.0817, 0.1024]</td>
-<td>−0.0070 [−0.0143, +0.0006]</td>
-</tr>
-</tbody>
-</table>
-<p>Conclusion: the expected gain of W1 (0 to +0.02) was <strong>not</strong> realised once the uniqueness constraints were enforced. Verdict <strong>NEGATIVE</strong> for a submission slot.
-An earlier non-unique build (49k dots, point λ, no avoid-zone) measured +0.0079, but it failed the uniqueness gate (0.859 overlap with GEMSDOE22 <code>h23-b</code>) and is not the delivered file.
-The pinned upstream commits for all nine sites and the reference solution are in <code>registry/upstream_pins.json</code>.
-W3 (3DEP 1 m scarp matched filter) remains the best-ranked untried hypothesis for a runner with unrestricted network access.</p></main></body></html>
+<li>USGS 3DEP: https://www.usgs.gov/3d-elevation-program</li>
+<li>DrivenData competition and data page: https://www.drivendata.org/competitions/306/competition-doe-gems/data/</li>
+<li>NASA ASF: https://asf.alaska.edu/</li>
+<li>USGS Quaternary Fault and Fold Database: https://www.usgs.gov/programs/earthquake-hazards/faults</li>
+</ul></main></body></html>

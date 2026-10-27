@@ -10,83 +10,31 @@ main{max-width:1020px;margin:0 auto;padding:18px 20px 60px}h1{font-size:1.7rem}h
 table{border-collapse:collapse;width:100%;background:#fff;font-size:.92rem}th,td{border:1px solid #d7dde4;padding:6px 8px;text-align:left;vertical-align:top}th{background:#eef1f5}
 code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;word-break:break-all}.pass{color:var(--g);font-weight:700}.fail{color:var(--r);font-weight:700}
 .copy{background:#eef6ff;border:1px solid #b9d4f5;border-radius:8px;padding:8px 10px;margin:4px 0}small{color:#4a5866}
-</style></head><body><header><a href="index.html">Download &amp; submit</a><a href="summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why.html">Why 0.2778?</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="limitations.html">Limitations</a><a href="../index.html">◀ Repo dashboard</a></header><main><h1>Why <code>h33-h33-2-b2</code> scored 0.2778 — and whether higher is possible</h1>
-<p><strong>Evidence classes used on this page.</strong> <code>OWNER-REPORTED</code> = a score written down by a sibling repo (no DrivenData receipt is
-available to us). <code>OBSERVED-PUBLIC-PAGE</code> = read from drivendata.org today. <code>COMPUTED-HERE</code> = recomputed in this repo from bytes
-we hash-checked. <code>HOLDOUT-DTI</code> = our spatially-blocked evaluator. Nothing here is an <code>ORGANIZER-CONFIRMED</code> score of a file we produced.</p>
-<h2>1. The metric, algebraically</h2>
-<p>Official definitions (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">metric page</a>): kernel
-k(d) = max(1 − d/300 m, 0); TPw = Σ_g max_x p(x)k(d(x,g)); FPw = Σ_x p(x)[1 − max_g k(d(x,g))]; FNw = Σ_g [1 − max_x p(x)k].
-With a binary emission of N dots and |G| truth pixels, let M = Σ_x p(x) max_g k. Then FPw = N − M, FNw = |G| − TPw and</p>
-<p><strong>DTI = TPw / [ 0.2 (TPw + N − M) + 0.8 |G| ]</strong>.</p>
-<p>Two asymmetries drive everything: credit is a <strong>max</strong> (a second dot beside an already-credited truth pixel adds nothing)
-but false-positive mass is a <strong>sum</strong> (every extra dot costs 0.2 unless it sits near truth). Because the 3-px kernel pays
-partial credit out to 300 m, a <em>sparse dotted lattice</em> keeps almost all credit of a solid line while paying a fraction of the N term.</p>
-<p><strong>Break-even rule (COMPUTED-HERE).</strong> Adding one isolated dot changes DTI by ≥ 0 iff its marginal credit exceeds about
-0.2·DTI. At DTI = 0.2778 that is 0.056 kernel-credit units; with Σk = 9.38 over the 25-offset (radius-3-pixel) kernel support this means the hidden-truth
-density around the dot must exceed ≈ 0.006 per 100 m pixel — several times the footprint-wide average (≈ 0.001–0.002 for a
-hidden-truth mass of 4–10 thousand pixels, the bootstrap range found here). A dot below that density <em>lowers</em> the score.</p>
-<h2>2. The nested family that produced 0.2778 (all OWNER-REPORTED)</h2>
-<table>
-<thead>
-<tr>
-<th>step</th>
-<th>dots</th>
-<th>score</th>
-<th>what changed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>H19-5 solid network</td>
-<td>121,131</td>
-<td>0.1922</td>
-<td>many adjacent, redundant dots</td>
-</tr>
-<tr>
-<td>thinned to ≥2.8 px spacing (d2.8)</td>
-<td>44,090</td>
-<td>0.2600</td>
-<td>N cut by 64 %, credit nearly kept</td>
-</tr>
-<tr>
-<td>remove dots within 100 m of catalogue (B=1)</td>
-<td>40,199</td>
-<td>0.2708</td>
-<td>those pixels are masked in scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>); a dot there earns ~no credit but costs 0.2</td>
-</tr>
-<tr>
-<td>also remove the 100–200 m annulus (B=2)</td>
-<td>37,654</td>
-<td><strong>0.2778</strong></td>
-<td>same logic; annulus dots fall below the break-even density</td>
-</tr>
-<tr>
-<td>+ 1,200 "Anderson" mechanics dots</td>
-<td>38,854</td>
-<td>0.2750</td>
-<td>the added dots are below break-even on average</td>
-</tr>
-</tbody>
-</table>
-<p>Each row is a <em>deletion or an addition that crosses the break-even density</em>, which is why the improvements are small and
-monotone — the champion is a locally optimal pruning of one network, not a new source of information.</p>
-<h2>3. What the ledger does and does not show (COMPUTED-HERE)</h2>
+</style></head><body><header><a href="index.html">Download &amp; submit</a><a href="summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why.html">Why 0.2778?</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="limitations.html">Limitations</a><a href="../index.html">◀ Repo dashboard</a></header><main><h1>GEMSDOE32 B2: what the raster evidence does — and does not — establish</h1>
+<blockquote>
+<p><strong>Evidence status:</strong> the reported <code>0.2778</code> B2 value is an unverified user/owner-reported claim. No organizer receipt, submission identifier, or authenticated SHA-256 ties that value to a particular uploaded file. It is not an organizer-confirmed score and is not used as a current leaderboard value or estimate.</p>
+<p>The public-feed snapshot last recorded on 2026-10-26 is stale for the 2026-10-27 review. No fresh, attributable public observation was obtained here, so no leaderboard values are reconciled or inferred.</p>
+</blockquote>
+<h2>What the local raster comparison shows</h2>
+<p>The pinned H33 B2 raster's decoded positive support is a subset of the H27-4 reference: the comparison shows pixels removed and no pixels added. This is consistent with a pruning operation. It does <strong>not</strong> establish that the uploaded B2 bytes were identical, that the reported score came from those bytes, or that pruning caused a score change. Those links require a submission receipt or another authenticated record.</p>
+<p>The nested score sequence historically written in sibling-repository files is owner-reported only. Treat its rows as claims to investigate, not as confirmed organizer measurements. No row is a validated causal experiment because the exact uploaded bytes and receipts are absent.</p>
+<h2>Metric intuition (historical analysis, not a score prediction)</h2>
+<p>The repository's archived analysis uses the official competition metric link (not re-fetched during this review): a distance-weighted Tversky index with a 300 m triangular kernel, <code>alpha=0.2</code>, and <code>beta=0.8</code>. For binary predicted dots, if <code>N</code> is the number of emitted dots, <code>M</code> the summed nearby-truth kernel credit, <code>TPw</code> the credited positive mass, and <code>|G|</code> the positive truth count, the archived derivation writes:</p>
+<p><code>DTI = TPw / [0.2 (TPw + N - M) + 0.8 |G|]</code>.</p>
+<p>This algebra explains a <strong>possible mechanism</strong>: removing redundant or low-credit dots can reduce the penalty term while retaining much of the credit. It does not identify why an unreceipted score was obtained, nor does it predict a score for a new raster.</p>
+<h2>What the repository's historical analysis found</h2>
 <ul>
-<li>112 distinct live-scored rasters were hash-verified and re-measured. Independent rasters that share only 51–67 % of their dots
-  with H19-5 still score 0.219–0.248 (e.g. 62 % → 0.2478). So hidden truth is <strong>not</strong> confined to the H19-5 network.</li>
-<li>Rank correlation between score and "fraction of dots near H19-5" is 0.70, but all top rasters descend from H19-5, so this is
-  confounded; a claim such as "73–96 % of truth lies on the network" is <strong>not identified</strong> by the ledger.</li>
-<li>With the product stratum (catalogue distance × H19-5 distance) a ledger-calibrated model predicts held-out <em>sites</em> with MAE
-  0.026 (leave-site-out), 90th-percentile error 0.065. None of the 66 independent fields (19 bands, lidar, radiometrics, GeoDAWN,
-  derived gradients, distances) improves on the stratum-only baseline in nested CV. The leakage canary passes: the largest
-  single-field AUC against the catalogue is 0.658 (&lt; 0.90).</li>
+<li>Historical sibling files and feature caches were mirrored and hash-checked locally; that establishes byte consistency with those mirrors, not organizer provenance.</li>
+<li>Archived comparisons indicate that several rasters differ through pruning and that independent-looking methods exist. Their reported leaderboard scores are not receipt-confirmed.</li>
+<li>The old LST1 holdout used <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, not the prescribed shared <code>gems57-pooled-hide-v2</code>. Its HOLDOUT-DTI values are historical diagnostics only and are not a current-protocol validation.</li>
+<li>The old ledger-model output is explicitly <code>NOT_A_SCORE</code>. Its calibration was method-dependent, so its former projection range has been removed from current-facing summaries and must not be treated as a leaderboard estimate.</li>
 </ul>
-<h2>4. Is a higher score possible?</h2>
-<p>Yes — the public board already shows it (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard, 2026-10-26</a>): #1 is 0.4437,</p>
-<h1>5 (the initial-round prize line) is 0.3561, and #50 is 0.2826, so <strong>0.2778 would sit just outside the top 50</strong>.</h1>
-<p>Even with <em>zero</em> false positives, DTI = c/(0.2c + 0.8) for coverage c = TPw/|G|; 0.2778 needs c ≥ 0.235, 0.3561 needs c ≥ 0.307 and
-0.4437 needs c ≥ 0.39. The leaders therefore recover at least ~40 % of the hidden truth with few false positives.
-We found nothing in the nine sibling repos, and no signal in the 66 fields examined here, that carries that much <em>ledger-identified</em> information. Our
-opinion (not a result): with the mirrored data alone the family is near its ceiling; a step change needs new information such as
-metre-scale scarps (3DEP 1 m DEM), InSAR, or newer fault mapping — all untested because they could not be fetched in this sandbox.</p></main></body></html>
+<h2>Can a distinct method improve the result?</h2>
+<p><strong>Unknown / not estimable from the available evidence.</strong> The B2 bytes document a pruning operation, not a score-causal mechanism; no distinct method has been validated under the current shared evaluator. The current registry witness triggers the binding literal duplicate stop for every nonempty in-footprint candidate, so this repository did not run another experiment or create another TIFF. The preregistered hypotheses remain research ideas, not performance claims.</p>
+<p>A new score estimate requires a validated, spatially blocked HOLDOUT-DTI result under the correct evaluator, with withheld-positive count and 95% CI. An organizer-confirmed score requires an authenticated submission receipt. Neither exists for a new candidate here.</p>
+<h2>Links retained for verification</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official metric and submission format</a> — link retained in the repository; not fetched during the current review.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Competition leaderboard</a> — requires a fresh timestamped observation before using any values.</li>
+<li><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Scoring clarification forum thread</a> — retained as a source pointer, not re-fetched in this review.</li>
+</ul></main></body></html>

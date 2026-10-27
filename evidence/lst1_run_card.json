@@ -1,7 +1,8 @@
 {
  "run_card_version": "1",
  "lane": "WBGGEMSDOE3 / lst1",
- "generated_utc": "2026-10-26",
+ "generated_utc": "2026-10-27T17:45:18.303542+00:00",
+ "record_kind": "HISTORICAL_LANE_RECLASSIFICATION",
  "slot_selected": false,
  "hypothesis": "W1': hidden-truth density is identified by the live ledger only at the (catalogue-distance x H19-5-distance) stratum level; an allocation that keeps <=62% of dots on the H19-5 network and ranks the rest by a catalogue-trained naive-Bayes modulation can be unique AND hold-out-competitive.",
  "mechanism": "(1) 112 hash-verified live-scored rasters -> exact linear equations in TPw/M/|G| per stratum (NNLS, bootstrap lower-confidence-bound lambda); (2) Dinkelbach batch-greedy placement of 3-px-spaced dots, B=2 pruning, on/off-network quota; (3) uniqueness repair via avoid-zone of dense prior rasters.",
@@ -9,6 +10,7 @@
  "holdout": {
   "label": "HOLDOUT-DTI",
   "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "withheld_positive_pixels": 22232,
   "candidate": {
    "dti": 0.06667963650357954,
    "ci95": [
@@ -220,7 +222,8 @@
    }
   ],
   "literal_rule_pass": false,
-  "literal_rule_note": "unsatisfiable against rasters whose random-placement overlap is already >=0.70"
+  "literal_scope_complete": false,
+  "literal_rule_note": "No lattice/null exemption is permitted. Unclassified registry entries also fail closed."
  },
  "raster_sha256": {
   "wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif": "676ca865e86a4ff220548253d3f574e374fc3d470239fbc89aa8fb261d409e34",
@@ -288,82 +291,54 @@
    "passed": true
   }
  },
+ "legacy_diagnostics": {
+  "D1_historical_local_format_validator_pass": true,
+  "D2_historical_exact_mask_subset_pass": true,
+  "D3_historical_rank_subset_pass": true,
+  "D4_historical_nonlattice_overlap_subset_pass": true,
+  "D5_lattice_excess_legacy_diagnostic_only": true,
+  "D6_historical_feature_canary_pass": true,
+  "D7_historical_holdout_promotion_rule_pass": false
+ },
  "gates": {
-  "G1_validator_all_files_pass": true,
-  "G2_not_exact_duplicate_of_any_registry_dot_mask": true,
-  "G3_rank_corr_le_0.90_all_registry": true,
-  "G4_overlap_le_0.70_all_non_lattice_registry_rasters": true,
-  "G5_overlap_excess_le_0.05_over_random_null_for_lattice_like_rasters": true,
-  "G6_leakage_canary_all_fields_auc_le_0.90": true
+  "G1_literal_overlap_le_0.70_for_every_registry_raster": false,
+  "G2_registry_scope_complete_and_authenticated": false,
+  "G3_current_shared_evaluator_result_available": false,
+  "G4_current_candidate_file_validation_available": false,
+  "G5_separate_selector_approval": false
+ },
+ "gate_status": {
+  "G1_literal_overlap_le_0.70_for_every_registry_raster": "FAIL",
+  "G2_registry_scope_complete_and_authenticated": "FAIL / INCOMPLETE",
+  "G3_current_shared_evaluator_result_available": "NOT RUN",
+  "G4_current_candidate_file_validation_available": "NOT RUN",
+  "G5_separate_selector_approval": "NOT APPROVED"
  },
  "submission_name": "wbggems3-lst1-hybrid-20261026-0a0229da",
- "submission_note": "LST1 hybrid: 62% H19-5 ridge dots (B=2) + 38% off-network; ledger strata + catalogue NB. Unique vs 293 registry masks.",
- "note_length": 118,
+ "submission_note": "LST1 historical research artifact; fails the literal registry-overlap rule; not approved for upload.",
+ "note_length": 100,
  "label_of_numbers": {
   "ORGANIZER_CONFIRMED": "none for this file",
-  "PROJECTION": "see lst_projection_band (reported but judged UNRELIABLE for this construction, see calibrators)"
+  "LEADERBOARD_ESTIMATE": "NOT_ESTIMABLE"
  },
- "lst_projection_band": {
-  "p10": 0.19021043906900423,
-  "p50": 0.3169418707090267,
-  "p90": 0.38535491097318514
+ "archived_diagnostics": {
+  "source": "evidence/build_result.json",
+  "projection_status": "QUARANTINED_NOT_A_SCORE",
+  "used_for_current_approval": false
  },
- "lst_calibrators": [
-  {
-   "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
-   "live_owner_reported": 0.2778,
-   "lst_band": {
-    "p10": 0.2885658655742698,
-    "p50": 0.30047559937311696,
-    "p90": 0.3135450989939952
-   }
-  },
-  {
-   "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
-   "live_owner_reported": 0.26,
-   "lst_band": {
-    "p10": 0.27334381432399674,
-    "p50": 0.28097924770875216,
-    "p90": 0.29192607757452377
-   }
-  },
-  {
-   "submission": "gems70-p5-dual-submod300-oof38k-20261020",
-   "live_owner_reported": 0.2478,
-   "lst_band": {
-    "p10": 0.12439256793040279,
-    "p50": 0.1302434137798133,
-    "p90": 0.1346571544004228
-   }
-  },
-  {
-   "submission": "gate_ortho_w0.25-40k-20261006T213721Z-nan",
-   "live_owner_reported": 0.2376,
-   "lst_band": {
-    "p10": 0.10885121680879703,
-    "p50": 0.11595083545184212,
-    "p90": 0.1223699065494903
-   }
-  },
-  {
-   "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
-   "live_owner_reported": 0.2477,
-   "lst_band": {
-    "p10": 0.2589998928651698,
-    "p50": 0.2654194011028954,
-    "p90": 0.27508239779443394
-   }
-  }
- ],
  "ledger_cv": {
   "nested_leave_site_out_mae": 0.026117941755163764,
   "baseline_stratum_only_mae": 0.02577574645555389,
   "fields_identified_by_ledger": false
  },
- "ready_to_submit": true,
- "file_integrity_and_uniqueness_pass": true,
- "verdict": "NEGATIVE: file is valid and unique, but fails the hold-out promotion rule (paired CI lower bound must be > 0)",
- "performance_gate_passed": false,
+ "ready_to_submit": false,
+ "file_integrity_and_uniqueness_pass": false,
+ "legacy_holdout_promotion_rule_passed": false,
+ "current_evaluator_status": "NOT_RUN: legacy HOLDOUT-DTI is not the current shared evaluator.",
+ "promotion_eligible": false,
+ "selector_approval": false,
+ "current_protocol_status": "DO NOT SUBMIT: literal registry overlap is not cleared; registry scope is incomplete; current shared evaluation and file validation were not run; selector approval is false.",
+ "verdict": "NEGATIVE: retired LST1 research artifact; literal registry clearance fails; no upload approval.",
  "budget": {
   "experiments_run": "1 hypothesis; 5 hold-out variants + 2 diagnostics on the final construction; 2 builds (uniqueness repair). The pre-repair first run is kept in evidence/holdout_results_preLCB_firstrun.json. EXCEEDS the protocol budget of 3 experiments / 2 h - disclosed.",
   "slot_selected": false

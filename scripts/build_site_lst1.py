@@ -8,10 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs" / "lst1"; DOCS.mkdir(parents=True, exist_ok=True)
 EV = ROOT / "evidence"
 rc = json.load(open(EV / "lst1_run_card.json"))
-br = json.load(open(EV / "build_result.json"))
 fit = json.load(open(EV / "lst_fit.json"))
-can = json.load(open(EV / "field_canary.json"))
-lb = json.load(open(ROOT / "registry/leaderboard_snapshot_2026-10-26.json"))
 sa = json.load(open(EV / "site_assessment.json")) if (EV / "site_assessment.json").exists() else None
 NAME, NOTE = rc["submission_name"], rc["submission_note"]
 e = html.escape
@@ -46,32 +43,38 @@ def page(fn, title, body):
 def md(name):
     return markdown.markdown((ROOT / "content" / name).read_text(), extensions=["tables", "sane_lists"])
 
-g = rc["gates"]; ready = rc["ready_to_submit"]
-gate_rows = "".join(f'<tr><td>{e(k)}</td><td class="{"pass" if v else "fail"}">{"PASS" if v else "FAIL"}</td></tr>' for k, v in g.items())
+g = rc["gates"]
+gate_rows = "".join(f'<tr><td>{e(k)}</td><td class="{"pass" if v else "fail"}">{e(rc["gate_status"][k])}</td></tr>' for k, v in g.items())
+legacy_diagnostics = rc["legacy_diagnostics"]
+diagnostic_rows = "".join(f'<tr><td>{e(k)}</td><td class="{"pass" if v else "fail"}">{"PASS (HISTORICAL ONLY)" if v else "FAIL (HISTORICAL)"}</td></tr>' for k, v in legacy_diagnostics.items())
 vals = rc["validator_output"]
 val_rows = "".join(f'<tr><td class="mono">{e(k)}</td><td class="{"pass" if v["passed"] else "fail"}">{"PASS" if v["passed"] else "FAIL"}</td><td>{v["emitted_pixels"]:,} dots · in-footprint range [{v["in_footprint_min"]:.0f}, {v["in_footprint_max"]:.0f}] · NaN inside footprint: 0</td><td class="mono">{v["sha256"]}</td></tr>' for k, v in vals.items())
 hold = rc["holdout"]; cand = hold["candidate"]; ch = hold["champion_proxy"]; pdl = hold["paired_delta_vs_champion_proxy"] or {}
-proj = rc["lst_projection_band"]
-anchors = [c for c in rc["lst_calibrators"]]
-promoted = rc.get("performance_gate_passed", False)
-integ = ('<div class="banner ok"><h2>✅ FILE INTEGRITY: PASS · UNIQUENESS: PASS <u>under documented rules</u></h2>Every automated format gate passed (the file can be uploaded without the "[0, 1]" error). Uniqueness uses two documented deviations from the literal “&gt;70 % within 3 px of one registry raster” rule: (1) three whole-footprint <i>feature layers</i> in the registry (block id, road distance, BLM claim distance — not submissions) are excluded; (2) lattice-like rasters that random placement already overlaps ≥70 % are judged by excess over that null (≤0.05). Applying the literal rule to those references would make <i>every</i> non-empty file a duplicate (see the repo README, IR-registry-witness). This is a <b>research-only</b> file.</div>'
-         if ready else '<div class="banner bad"><h2>⛔ FILE INTEGRITY / UNIQUENESS: FAIL — DO NOT SUBMIT</h2>A gate failed (see table below).</div>')
-perf = ('<div class="banner ok"><h2>✅ PERFORMANCE GATE: PASS</h2>Paired hold-out CI excludes zero in favour of the candidate.</div>' if promoted else
-        f'<div class="banner bad"><h2>⚠ PERFORMANCE GATE: NEGATIVE — not recommended for a submission slot</h2>On the spatial hold-out this file scores <b>below</b> the champion proxy (paired Δ {fmt(pdl.get("delta"))}, 95% CI {fmt(pdl.get("ci95",[None,None])[0])} to {fmt(pdl.get("ci95",[None,None])[1])}, HOLDOUT-DTI). It is valid and unique, but our own test says it is unlikely to beat 0.2778. Upload only if you want an exploratory, confirmed-score data point.</div>')
+integ = ('<div class="banner bad"><h2>⛔ DO NOT SUBMIT — RETIRED HISTORICAL LST1 ARTIFACT</h2>'
+         'The recorded literal registry-overlap gate fails, and the old lattice-null exemption is not valid under the current protocol. '
+         'This page is an archive only: local byte/format checks, historical “unique” labels, or a performance result cannot clear it. '
+         'No submission approval or slot selection is available here.</div>')
+perf = (f'<div class="banner bad"><h2>⚠ HISTORICAL HOLDOUT-DTI — NOT CURRENT VALIDATION</h2>'
+        f'Evaluator {e(hold.get("evaluator", "unknown"))}; withheld positives {hold.get("withheld_positive_pixels", "not recorded")}; '
+        f'candidate {fmt(cand["dti"])} (95% CI {fmt(cand["ci95"][0])} to {fmt(cand["ci95"][1])}) vs '
+        f'champion proxy {fmt(ch["dti"])} (95% CI {fmt(ch["ci95"][0])} to {fmt(ch["ci95"][1])}); '
+        f'paired Δ {fmt(pdl.get("delta"))} (95% CI {fmt(pdl.get("ci95",[None,None])[0])} to {fmt(pdl.get("ci95",[None,None])[1])}). '
+        'Legacy HOLDOUT-DTI only: no leaderboard score is inferred.</div>')
 banner = integ + perf
 
 index = f"""
-<h1>WBGGEMSDOE3 — DOE GEMS submission file</h1>
+<h1>WBGGEMSDOE3 — historical research artifact</h1>
 {banner}
-<div class="card"><h2 style="margin-top:0">1 · Download</h2>
-<a class="btn" style="background:#0b6b3a;color:#fff" href="{ZERO}" download>⬇ Download TIF (primary, all-finite)</a>
-<a class="btn" style="background:#255a9a;color:#fff" href="{ZIP}" download>⬇ ZIP (same file)</a>
-<a class="btn" style="background:#555;color:#fff" href="{NAN}" download>⬇ TIF with NaN outside footprint (alternate)</a>
+<div class="card"><h2 style="margin-top:0">Research artifact download · NOT FOR SUBMISSION</h2>
+<p><b>Warning:</b> byte integrity or local format PASS does not override the failed literal registry gate, prove official compatibility, or authorize an upload.</p>
+<a class="btn" style="background:#8a1c1c;color:#fff" href="{ZERO}" download>⬇ Download research-only TIF — DO NOT SUBMIT</a>
+<a class="btn" style="background:#555;color:#fff" href="{ZIP}" download>⬇ Research ZIP — DO NOT SUBMIT</a>
+<a class="btn" style="background:#555;color:#fff" href="{NAN}" download>⬇ Research NaN-outside variant — DO NOT SUBMIT</a>
 <p><small>If a button does not download, use the repository path <code>submission/{e(NAME)}-zeros.tif</code> on GitHub.</small></p>
-<table><tr><th>File</th><th>Validator</th><th>Content</th><th>SHA-256 of the bytes</th></tr>{val_rows}</table></div>
-<div class="card"><h2 style="margin-top:0">2 · Submission name and note (copy exactly)</h2>
+<h3>Archived local format checks only (not organizer acceptance)</h3><table><tr><th>Historical file</th><th>Local format result</th><th>Content</th><th>Historical SHA-256</th></tr>{val_rows}</table></div>
+<div class="card"><h2 style="margin-top:0">Historical run identifier and note · not approved for upload</h2>
 <b>Name</b><div class="copy mono">{e(NAME)}</div><b>Note ({rc["note_length"]} characters, limit 140)</b><div class="copy">{e(NOTE)}</div>
-<small>Name is unique: it embeds the date and the first 8 hex digits of the dot-mask SHA-256 <code>{e(rc["dots_sha256"][:16])}…</code>.</small></div>
+<small>This is a historical artifact identifier derived from its dot-mask hash; a distinct name does not establish raster uniqueness or submission approval.</small></div>
 <div class="card"><h2 style="margin-top:0">3 · What you can and cannot expect</h2>
 <table>
 <tr><th>Quantity</th><th>Value</th><th>Label</th></tr>
@@ -79,13 +82,12 @@ index = f"""
 <tr><td>Hold-out pooled DTI (candidate)</td><td>{fmt(cand["dti"])} (95% CI {fmt(cand["ci95"][0])}–{fmt(cand["ci95"][1])})</td><td>HOLDOUT-DTI</td></tr>
 <tr><td>Hold-out pooled DTI (champion proxy: d2.8 + fold-local B=2)</td><td>{fmt(ch["dti"])} (95% CI {fmt(ch["ci95"][0])}–{fmt(ch["ci95"][1])})</td><td>HOLDOUT-DTI</td></tr>
 <tr><td>Paired difference, candidate − champion proxy</td><td>{fmt(pdl.get("delta"))} (95% CI {fmt(pdl.get("ci95",[None,None])[0])} to {fmt(pdl.get("ci95",[None,None])[1])})</td><td>HOLDOUT-DTI (hides <i>catalogue</i> faults, not new faults)</td></tr>
-<tr><td>Ledger-model projection</td><td><b>withheld here</b></td><td>The model mis-projects independent rasters (see <a href="evidence.html">Evidence</a>), so it is not shown as an estimate.</td></tr>
-<tr><td>Owner-reported anchors (similar, independent hybrids at 51–66 % H19-5 overlap)</td><td>0.2343 – 0.2478</td><td>OWNER-REPORTED (sibling repos)</td></tr>
-<tr><td>Champion for comparison</td><td>0.2778</td><td>OWNER-REPORTED; live #50 is {fmt(lb["rows"][-1]["score"],4)}</td></tr>
+<tr><td>Leaderboard score estimate</td><td><b>Not estimable</b></td><td>No organizer receipt or calibrated, current-protocol mapping from this legacy HOLDOUT-DTI to leaderboard performance.</td></tr>
 </table>
-<p><b>Plain reading:</b> this is a <i>valid, unique, exploratory</i> file. Our honest expectation is a live score roughly in the <b>0.15–0.24</b> range, central ≈0.19 (judgment, not a measurement: it uses three independent hybrids that scored 0.234–0.248 with ~37k dots as anchors, then discounts for this file having fewer network dots and a negative hold-out). It will not win the prize on its own; the live leaders are at 0.3561 (#5) and 0.4437 (#1).</p></div>
-<div class="card"><h2 style="margin-top:0">4 · Automated gates (no human inspection)</h2><table><tr><th>Gate</th><th>Result</th></tr>{gate_rows}</table>
-<p><small>Registry compared: {rc["registry_audit"]["n_registry_unique_dot_masks"]} unique dot masks from the nine sibling sites, 118 verified live-scored rasters and the organizer-mirror scored files. Max overlap with any non-lattice raster: {rc["registry_audit"]["max_overlap_non_lattice"]:.3f} (limit 0.70). Max smoothed rank-correlation: {rc["registry_audit"]["max_abs_spearman_smoothed"]:.3f} (limit 0.90). Verdict (rule fixed in advance): <b>{e(rc["verdict"])}</b>. No submission slot has been selected or spent.</small></p></div>
+<p><b>Plain reading:</b> this is a historical research artifact, not a unique or cleared submission under the current literal registry rule. The holdout result is negative and uses a legacy evaluator; no leaderboard score is estimated. Do not upload this file.</p></div>
+<div class="card"><h2 style="margin-top:0">4 · Current clearances — no approval</h2><p>The current status is fail-closed; a historical subcheck cannot reverse any failure or missing current evaluation.</p><table><tr><th>Current gate</th><th>Result</th></tr>{gate_rows}</table>
+<p><small>Historical audit scope was incomplete and not authenticated. It reported max overlap {rc["registry_audit"]["max_overlap_non_lattice"]:.3f} and max absolute smoothed rank correlation {rc["registry_audit"]["max_abs_spearman_smoothed"]:.3f} only within its old subset. Those diagnostics do not establish current uniqueness. Literal-rule pass: <b>{rc["registry_audit"]["literal_rule_pass"]}</b>; scope complete: <b>{rc["registry_audit"]["literal_scope_complete"]}</b>. Verdict: <b>{e(rc["verdict"])}</b>. No submission slot has been selected or spent.</small></p>
+<h3>Legacy diagnostics — not current clearance</h3><table><tr><th>Archived check</th><th>Status</th></tr>{diagnostic_rows}</table></div>
 <p>Next: <a href="how-to-submit.html">exact submission steps</a> · <a href="summary.html">per-site executive summary</a> · <a href="why.html">why 0.2778 and is more possible</a> · <a href="limitations.html">limitations</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3">repository</a></p>
 """
 page("index.html", "Download & submit", index)
@@ -95,18 +97,17 @@ how = f"""
 <h1>How to submit exactly</h1>
 {integ}{perf}
 <div class="card"><ol>
-<li>Download <a href="{ZERO}"><code>{e(NAME)}-zeros.tif</code></a> (or the <a href="{ZIP}">ZIP</a>; the rules accept a single GeoTIFF or a zip containing one GeoTIFF — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official format</a>).</li>
-<li>Confirm the SHA-256 on your machine equals <code>{e(vals[NAME + "-zeros.tif"]["sha256"])}</code> (<code>sha256sum {e(NAME)}-zeros.tif</code>).</li>
-<li>Sign in and open the competition's <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submissions page</a> (login required — this page could not be inspected from the build sandbox, so field labels below are not verified).</li>
-<li>Upload the file. If the form has a name / description field, paste the name and note below.</li></ol>
-<b>Name</b><div class="copy mono">{e(NAME)}</div><b>Note (≤140 characters)</b><div class="copy">{e(NOTE)}</div></div>
-<div class="card"><h2 style="margin-top:0">Why this file will not trigger “Predicted values must be in range [0, 1]”</h2>
-<p>That error comes from files whose in-footprint cells hold the float32 sentinel −3.4×10<sup>38</sup> or NaN (the training stack stores the sentinel in 3,061 footprint pixels per band). This writer clips and zero-fills those cells, and the validator re-opens the saved bytes and checks: single band, float32, EPSG:32611, shape 3730×3292, identical affine transform, all 5,167,373 footprint cells finite and within [0, 1], zero on catalogue pixels, and (for the NaN variant) NaN only outside the footprint. The unit tests include a sentinel file and a NaN file that must be <b>rejected</b>.</p></div>
-<div class="card"><h2 style="margin-top:0">Rules to keep in mind</h2><ul>
-<li>One submission is chosen per competitor for the final round — choosing is a separate decision; this repo did not select one.</li>
-<li>Known-fault pixels are masked when scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>); the file emits no dots on them anyway.</li>
-<li>The public board is one pooled Tversky over a public subset (<a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">forum 11550</a>).</li>
-<li>Official rules: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules, September 2026</a> (only the first part was read in this session).</li></ul></div>
+<li><b>Stop:</b> no file is approved. Do not upload the linked historical research artifact. Wait for a new run card that passes the literal registry rule, required shared holdout, file validation, and separate selector.</li>
+<li>For a future approved file, compare its downloaded SHA-256 with the run card before upload; do not reuse this lane's name or TIFF.</li>
+<li>Sign in to the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> only after the selector authorizes an upload; account quota and submission form fields are not accessible here.</li>
+<li>Upload only the exact approved file and preserve the organizer receipt with its SHA-256. No slot is selected by this repository.</li></ol>
+<b>Current submission name / note</b><div class="copy">None. The old LST1 identifier is a research label only.</div></div>
+<div class="card"><h2 style="margin-top:0">About “Predicted values must be in range [0, 1]”</h2>
+<p>The cause of the earlier portal rejection is unknown because the rejected bytes and receipt were not available. The historic LST1 local validator recorded one-band float32 data on the mirrored grid and checked in-footprint values for finiteness and range. That local result is not organizer acceptance; the official outside-footprint convention and mirrored writer differ, so no claim is made that this artifact will be accepted.</p></div>
+<div class="card"><h2 style="margin-top:0">Protocol and official links</h2><ul>
+<li>This repository selected no submission slot. Any real slot must be selected separately after a new candidate is cleared.</li>
+<li>Forum threads on masking (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">11516</a>) and leaderboard aggregation (<a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">11550</a>) are retained as source pointers; they were not re-fetched in this review.</li>
+<li>Before any future submission, verify the current <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> and the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition page</a>. Current account quota and form fields were not inspected.</li></ul></div>
 """
 page("how-to-submit.html", "How to submit", how)
 
@@ -114,20 +115,17 @@ page("how-to-submit.html", "How to submit", how)
 def site_rows():
     if not sa:
         return "<tr><td colspan=9>site assessment not generated</td></tr>"
-    ra = rc["registry_audit"]
-    out = [f'<tr style="background:#eaf6ee"><td><b>WBGGEMSDOE3</b><br><small>this repo</small></td><td colspan="2"><a href="{ZERO}">{e(NAME)}-zeros.tif</a><br><small>{br["dots"]:,} dots · <b>no confirmed score</b> · HOLDOUT-DTI {fmt(cand["dti"])} vs champion proxy {fmt(ch["dti"])} (paired Δ {fmt(pdl.get("delta"))}) · judgment range 0.15–0.24<br>format: <span class="pass">PASS</span> · uniqueness: <span class="pass">unique</span> (max overlap with any non-lattice registry raster {ra["max_overlap_non_lattice"]:.2f}; rank-corr {ra["max_abs_spearman_smoothed"]:.2f}) · performance gate: <span class="fail">NEGATIVE</span></small></td></tr>']
+    out = [f'<tr style="background:#fdf0f0"><td><b>WBGGEMSDOE3</b><br><small>this repo · historical LST1</small></td><td colspan="2"><a href="{ZERO}">{e(NAME)}-zeros.tif</a> — research only, DO NOT SUBMIT<br><small>{vals[NAME + "-zeros.tif"]["emitted_pixels"]:,} dots · no organizer-confirmed score · no leaderboard estimate · legacy HOLDOUT-DTI detailed in summary (evaluator {e(hold.get("evaluator", "unknown"))}, {hold.get("withheld_positive_pixels", "not recorded")} withheld positives) · local format check is not acceptance · strict uniqueness: <span class="fail">NOT CLEARED</span> · performance gate: <span class="fail">NEGATIVE</span></small></td></tr>']
     for s, d in sa["sites"].items():
         def cell(r, kind):
             if not r:
                 return "—"
-            ov = r.get("max_overlap_vs_other_registry_raster", {})
             v = r.get("validator", {})
             sc = r["owner_reported_score"]
-            band = r["lst_p10_p50_p90"]
             return (f'<a href="{e(r["url_raw"])}">{e(r["file"])}</a><br><small>{r["n_dots"]:,} dots · '
-                    + (f'<b>{sc:.4f}</b> OWNER-REPORTED' if sc is not None else f'projection {band[0]:.2f}/{band[1]:.2f}/{band[2]:.2f} (p10/p50/p90, unreliable)')
+                    + (f'<b>{sc:.4f}</b> OWNER-REPORTED (no receipt)' if sc is not None else 'Not estimable')
                     + f'<br>format: <span class="{"pass" if v.get("passed") else "fail"}">{"PASS" if v.get("passed") else "FAIL "+e(",".join(v.get("failed_checks", [])))}</span>'
-                    + f' · uniqueness: ' + (f'<span class="fail">NOT UNIQUE</span> — {ov.get("max_overlap", 0):.2f} of its dots lie within 3 px of <code>{e(str(ov.get("vs")))}</code> (limit 0.70); lattice-reference excess {ov.get("max_lattice_excess", 0):+.3f} (limit 0.05)' if not ov.get("unique") else f'<span class="pass">unique</span> (max overlap {ov.get("max_overlap", 0):.2f}; lattice excess {ov.get("max_lattice_excess", 0):+.3f})') + '</small>')
+                    + ' · current strict status: <span class="fail">NOT CLEARED</span> — the registered universal witness blocks every nonempty in-footprint prediction' + '</small>')
         out.append(f'<tr><td><a href="{e(d["remote"].removesuffix(".git"))}">{s}</a><br><small>@{d["head"][:7]}</small></td><td>{cell(d["best_scored"][0] if d["best_scored"] else None, "scored")}</td><td>{cell(d["best_unscored"][0] if d["best_unscored"] else None, "unscored")}</td></tr>')
     return "".join(out)
 
@@ -135,14 +133,14 @@ fam = fit["nested_family_cv"]
 summary = f"""
 <h1>Executive summary</h1>
 <div class="card"><h2 style="margin-top:0">Bottom line</h2><ul>
-<li><b>Deliverable:</b> <a href="index.html">{e(NAME)}</a> — {"passes every automated format/uniqueness gate" if ready else "FAILS a gate"}; <b>no confirmed score</b>; honest expectation 0.15–0.24 (judgment); verdict <b>{e(rc["verdict"])}</b>.</li>
-<li><b>Why 0.2778 (GEMSDOE32):</b> a locally optimal <i>pruning</i> of one ridge network under a metric that gives max-credit but sum-penalty — see <a href="why.html">analysis</a>. It is outside the live top 50 (#50 = {fmt(lb["rows"][-1]["score"],4)}).</li>
-<li><b>Is higher possible?</b> Yes in the competition (#1 = {fmt(lb["rows"][0]["score"],4)}), but not from the mirrored data alone: none of the 66 fields we screened improves on the stratum baseline in nested leave-site-out CV (MAE {fam["mae"]:.4f} vs {fam["baseline_mae"]:.4f}); the leakage canary passes (max single-field AUC {can["worst"]["auc_two_polarity"]:.3f}).</li>
-<li><b>What the hold-out says (NEGATIVE):</b> candidate {fmt(cand["dti"])} vs champion proxy {fmt(ch["dti"])} HOLDOUT-DTI; paired Δ {fmt(pdl.get("delta"))} (CI {fmt(pdl.get("ci95",[None,None])[0])} to {fmt(pdl.get("ci95",[None,None])[1])}). The hold-out hides catalogue faults, not new faults, so it is imperfect evidence — but it is the only validation available and it says do not expect an improvement.</li></ul></div>
-<div class="card"><h2 style="margin-top:0">Per-site table (download file · estimated score · uniqueness)</h2>
-<p><small>“Best scored” = highest owner-reported score among that repo's own files. “Best unscored” = highest ledger-model projection among files with <i>no</i> recorded score and dot masks not identical to any scored raster; projections are <b>not scores</b>; calibration on known files shows the model <i>over</i>-states pure H19-5-network rasters by about +0.02 to +0.03 (e.g. the 0.2778 champion projects to 0.300) and under-states independent hybrids by about 0.12. Format = our validator re-run on the downloaded file's bytes. Overlap = share of that file's dots within 3 px of the closest other non-lattice registry raster (limit 0.70); for lattice-like references (random placement already overlaps ≥70%) the excess over that random null is used (limit 0.05) — the same rule applied to our own file. Nearly every sibling file descends from the H19-5 network, so most are not unique against the registry; they are listed for download and comparison only.</small></p>
-<table><tr><th>Site</th><th>Best scored file (download)</th><th>Best unscored file (download)</th></tr>{site_rows()}</table></div>
-<div class="card"><h2 style="margin-top:0">Hypotheses (ranked, untried at the time of writing)</h2><p>See <a href="hypotheses.html">hypotheses</a>: W1 (executed, negative for field-level supervision, positive-weak on hold-out), W2 (quota arm), W3–W5 blocked by network access, with the free official source named for each.</p></div>
+<li><b>Artifact:</b> <a href="index.html">{e(NAME)}</a> — research only; <b>DO NOT SUBMIT</b>; no organizer-confirmed score and no leaderboard estimate; verdict <b>{e(rc["verdict"])}</b>.</li>
+<li><b>Why the reported GEMSDOE32 B2 result may differ:</b> the raster bytes show a pruning operation, but no receipt ties the reported value to those exact bytes and the file operation does not establish score causality. See <a href="why.html">the evidence-limited analysis</a>.</li>
+<li><b>Can a new method score higher?</b> Unknown. No current-protocol candidate was validated; no leaderboard estimate is published. Historic model projections are withheld as unreliable diagnostics.</li>
+<li><b>Historical HOLDOUT-DTI (NEGATIVE):</b> evaluator {e(hold.get("evaluator", "unknown"))}; {hold.get("withheld_positive_pixels", "not recorded")} withheld positives. Candidate {fmt(cand["dti"])} (95% CI {fmt(cand["ci95"][0])} to {fmt(cand["ci95"][1])}); champion proxy {fmt(ch["dti"])} (95% CI {fmt(ch["ci95"][0])} to {fmt(ch["ci95"][1])}); paired Δ {fmt(pdl.get("delta"))} (95% CI {fmt(pdl.get("ci95",[None,None])[0])} to {fmt(pdl.get("ci95",[None,None])[1])}). This legacy result is not the prescribed current shared-evaluator run and does not estimate leaderboard performance.</li></ul></div>
+<div class="card"><h2 style="margin-top:0">Historical site table · research only</h2>
+<p><small>“Best scored” means the highest owner-reported value in that peer repository; no submission-page receipt links these values to uploaded bytes. No leaderboard projection is published. Every listed historical artifact is research-only under the current literal registry protocol. Use the main dashboard for the current nine-site audit; it compares exact pinned bytes and marks all files “DO NOT SUBMIT.”</small></p>
+<table><tr><th>Site</th><th>Best owner-reported reference (research only)</th><th>Other research artifact (score not estimable)</th></tr>{site_rows()}</table></div>
+<div class="card"><h2 style="margin-top:0">Hypothesis record (historical)</h2><p>See <a href="hypotheses.html">the preregistered hypotheses</a>. W1 has historical legacy-evaluator results; the other listed hypotheses were not run. No experiment was conducted in this review because the mandatory registry stop blocks every nonempty candidate.</p></div>
 """
 page("summary.html", "Executive summary", summary)
 
@@ -154,31 +152,26 @@ page("limitations.html", "Limitations", md("limitations.md"))
 scr = fit["screening"][:10]
 scr_rows = "".join(f'<tr><td>{e(r["field"])}</td><td>{r["d_mae_vs_nuisance"]:+.4f}</td><td>{r["fam_cv_spearman"]:.3f}</td></tr>' for r in scr)
 hv = "".join(f'<tr><td>{e(k)}</td><td>{v["dti"]:.4f}</td><td>{v["ci95"][0]:.4f}–{v["ci95"][1]:.4f}</td><td>{("%+.4f [%+.4f, %+.4f]" % (v["paired"]["delta"], *v["paired"]["ci95"])) if v.get("paired") else "—"}</td></tr>' for k, v in hold["variants"].items())
-lbrows = "".join(f'<tr><td>#{r["rank"]}</td><td>{e(r["participant"])}</td><td>{r["score"]:.4f}</td></tr>' for r in lb["rows"])
-cal_rows = "".join(f'<tr><td class="mono">{e(c["submission"][:48])}</td><td>{c["live_owner_reported"]:.4f}</td><td>{c["lst_band"]["p10"]:.3f} / {c["lst_band"]["p50"]:.3f} / {c["lst_band"]["p90"]:.3f}</td><td>{c["lst_band"]["p50"]-c["live_owner_reported"]:+.3f}</td></tr>' for c in rc["lst_calibrators"])
 evid = f"""
 <h1>Evidence</h1>
-<div class="card"><h2 style="margin-top:0">Hold-out variants (HOLDOUT-DTI, fold-local, 8 cells, 256-block cluster bootstrap)</h2>
+<div class="card"><h2 style="margin-top:0">Historical holdout variants (HOLDOUT-DTI · evaluator {e(hold.get("evaluator", "unknown"))} · {hold.get("withheld_positive_pixels", "not recorded")} withheld positives)</h2>
+<p><b>Legacy result only.</b> This historical evaluator is not the currently prescribed shared evaluator and cannot clear a present-day candidate.</p>
 <table><tr><th>Variant</th><th>Pooled DTI</th><th>95% CI</th><th>Paired Δ vs champion proxy [95% CI]</th></tr>{hv}</table>
 <p><small>champion_proxy = recorded d2.8 raster with fold-local B=2 pruning; reproduces GEMSDOE32's recorded 0.0992 [0.0860, 0.1127] exactly. stratum_quota / lst_mod_quota / lst_mod_noquota are this repo's variants (stratum-only, +catalogue modulation, +modulation without the uniqueness quota).</small></p></div>
-<div class="card"><h2 style="margin-top:0">Ledger-model projection — shown only to document why it is NOT used as an estimate</h2>
-<p>PROJECTION (not a score) for this file: p10 {proj["p10"]:.3f} · p50 {proj["p50"]:.3f} · p90 {proj["p90"]:.3f} (200 bootstrap refits). Calibration against files whose live score is known (OWNER-REPORTED):</p>
-<table><tr><th>Known file</th><th>Live score</th><th>Model p10 / p50 / p90</th><th>Model error (p50 − live)</th></tr>{cal_rows}</table>
-<p><small>The model is roughly right (+0.02 to +0.03) for pure H19-5-network rasters and wrong by about −0.12 for independent hybrids, because strata cannot represent how well off-network dots were chosen. This file is a hybrid and was chosen by an optimizer working on the same strata, so its projection is biased and is therefore withheld from the front page.</small></p></div>
+<div class="card"><h2 style="margin-top:0">Leaderboard estimate</h2>
+<p><b>Not estimable.</b> The legacy ledger model's projected values are quarantined: its calibration is method-dependent and does not provide a validated mapping from a spatial holdout to the hidden leaderboard. The project publishes no prediction as a score.</p></div>
 <div class="card"><h2 style="margin-top:0">Ledger model (112 unique live-scored rasters, 83 sites)</h2>
 <p>Stratum-only baseline leave-site-out MAE {fam["baseline_mae"]:.4f}; with nested field selection {fam["mae"]:.4f}; 90th-percentile abs. error {fam["abs_err_q90"]:.3f}; top-20-score MAE {fam["mae_top20"]:.3f}. Fields identified by the ledger: <b>{fit["fields_identified_by_ledger"]}</b>.</p>
 <table><tr><th>Best 10 single fields (stratum + field)</th><th>Δ MAE vs stratum</th><th>Spearman</th></tr>{scr_rows}</table>
 <p><small>Negative Δ = better; all |Δ| ≤ 0.0003, i.e. noise.</small></p></div>
-<div class="card"><h2 style="margin-top:0">Live leaderboard snapshot (OBSERVED-PUBLIC-PAGE, {e(lb["observed_utc"])})</h2><table><tr><th>Rank</th><th>Participant</th><th>Score</th></tr>{lbrows}</table>
-<p><small>Source: <a href="{e(lb["source"])}">{e(lb["source"])}</a>. Only rows actually read are listed; ranks 7–22 span {lb["ranks_7_to_22_range"][0]}–{lb["ranks_7_to_22_range"][1]}.</small></p></div>
-<div class="card"><h2 style="margin-top:0">Official sources (checked)</h2><ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Metric and submission format</a> — kernel, TPw/FPw/FNw, DTI, worked example (TPw 3.00, FPw 1.89, FNw 2.00 → 0.60; reproduced in <code>tests/</code>).</li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About / data</a> — GeoDAWN airborne magnetics, radiometrics, 3DEP lidar.</li>
-<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules</a> · forum <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">11516</a>, <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">11550</a>.</li></ul></div>
-<div class="card"><h2 style="margin-top:0">Run card (JSON)</h2><p><a href="lst1_run_card.json">lst1_run_card.json</a> · <a href="build_result.json">build_result.json</a> · <a href="lst_fit.json">lst_fit.json</a> · <a href="holdout_results.json">holdout_results.json</a> · <a href="field_canary.json">field_canary.json</a></p></div>
+<div class="card"><h2 style="margin-top:0">Official source links for manual review</h2><p><small>These links are retained from repository research; official pages were not re-fetched during this review. No claim about current leaderboard or account state is inferred from them.</small></p><ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official metric and submission format</a>.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">Official competition data and overview</a>.</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference solution</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules</a> · scoring clarification <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">11516</a> and leaderboard aggregation <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">11550</a>.</li></ul></div>
+<div class="card"><h2 style="margin-top:0">Run card (JSON)</h2><p><a href="lst1_run_card.json">reclassified historical run card</a> · <a href="lst_fit.json">legacy fit diagnostics</a> · <a href="holdout_results.json">legacy holdout results</a> · <a href="field_canary.json">legacy feature canary</a></p><p><small>The raw LST1 build-result file remains in the repository's historical evidence folder but is intentionally not copied into this current-facing page because it includes quarantined NOT_A_SCORE projection diagnostics.</small></p></div>
 """
 page("evidence.html", "Evidence", evid)
-for f in ("lst1_run_card.json", "build_result.json", "lst_fit.json", "holdout_results.json", "field_canary.json"):
+for f in ("lst1_run_card.json", "lst_fit.json", "holdout_results.json", "field_canary.json"):
     shutil.copy2(EV / f, DOCS / f)
 (DOCS / ".nojekyll").write_text("")
 print("site built:", sorted(p.name for p in DOCS.iterdir()))
