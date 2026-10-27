@@ -7,9 +7,11 @@
    folds and a complete registry of rasters including calibration/null entries.
    Hashes prove integrity against a mirror, not official authenticity.
 3. Before placement, compare the candidate surface to **every** registry raster
-   using Spearman rank correlation on the common footprint. The literal stop
-   rule is correlation >0.90 or directed dot overlap >70% within 3 pixels.
-   No exemption for a dense lattice is authorized. A threshold failure is a
+   using Spearman rank correlation on the common footprint. The request states
+   signed correlation >0.90 or directed dot overlap >70% within 3 pixels; it
+   does not explicitly specify absolute correlation. This project additionally
+   applies the more conservative |correlation| >0.90 check. No exemption for a
+   dense lattice is authorized. A threshold failure is a
    duplicate stop, not a parameter-tuning opportunity.
 4. For hide-and-recover, withhold whole segments plus a buffer, remove them from
    every catalogue-derived feature and fitting input, and reconstruct all such

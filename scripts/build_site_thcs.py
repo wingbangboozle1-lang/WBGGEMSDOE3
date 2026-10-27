@@ -159,6 +159,7 @@ def render_hero(rc: dict, tif_name: str, zip_name: str, size_kb: float, loso_row
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     rc = json.loads((ROOT / "evidence" / "thcs_run_card.json").read_text())
     exps = json.loads((ROOT / "evidence" / "thcs_experiments.json").read_text())
     canary = json.loads((ROOT / "evidence" / "thcs_leakage_canary.json").read_text())

@@ -113,6 +113,7 @@ def evidence(a: dict) -> str:
 
 
 def main():
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     a = json.loads((ROOT / "evidence/focus_audit.json").read_text())
     card = json.loads((ROOT / "evidence/run_card.json").read_text())
     feed = json.loads((ROOT / "registry/leaderboard.json").read_text())

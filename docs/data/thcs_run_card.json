@@ -1,0 +1,285 @@
+{
+  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
+  "schema_version": "parallel-run-card-v1",
+  "generated_utc": "20261027T200639Z",
+  "branch": "arena/f226cee3-wbggemsdoe3",
+  "lane_id": "THCS-OOF",
+  "selected_experiment": "THCS-E3-ensemble-crest-celf",
+  "hypothesis": "Unmapped Great Basin faults split across exposed range-front regimes (3DEP LiDAR scarps + topographic local relief + potassic K/Th & float32 gamma-ray radiometrics) and concealed alluvial/playa regimes (depth_to_base_surf > 0, where scarps vanish and blind permeable conduits manifest in DOE GDR #1391 2m temperature probes F2mDAB, paleo-sinter/travertine/tufa, well silica/cation geothermometry, shallow electrical conductivity, and true magnetic/gravity tilt edges).",
+  "physical_mechanism": "4-quadrant spatially blocked (1.5 km collar) zero-catalogue Out-of-Fold Histogram Gradient Boosting fusing 48 physical channels (resolving IR-20 by pairing true float32 GeoDAWN radiometric Total Count with analytic magnetic/gravity tilt derivatives and GDR #1391 hydrothermal plumes), followed by exact 300 m triangular-kernel submodular facility-location (CELF) dot placement outside the 200 m zero-credit catalogue halo.",
+  "named_non_fault_mimics": [
+    "US-50 / I-80 / railway highway cut-and-fill embankments in 3DEP LiDAR (damped within 250 m of TIGER roads)",
+    "USGS GeoDAWN E-W 200/400 m airborne flight-line leveling striping (suppressed via directional ripple notch)",
+    "Circular Oligocene-Miocene caldera ring margins & flat-basin saline playa brines (filtered by linear structure-tensor anisotropy & gravity-step interaction)"
+  ],
+  "leakage_canary_gate": {
+    "passed": true,
+    "n_features_tested": 48,
+    "max_directional_auc": 0.59602,
+    "threshold": 0.9,
+    "receipt": "evidence/thcs_leakage_canary.json"
+  },
+  "holdout_evaluation": {
+    "score_label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "pooled_dti": 0.09573,
+    "ci95_cluster_bootstrap": [
+      0.08044,
+      0.11041
+    ],
+    "per_quadrant_dti": {
+      "NW": 0.0937,
+      "NE": 0.08482,
+      "SW": 0.07363,
+      "SE": 0.13601
+    },
+    "baseline_gemsdoe32_pooled_dti": 0.0992,
+    "baseline_gemsdoe32_ci95": [
+      0.08595,
+      0.11267
+    ],
+    "delta_vs_gemsdoe32": -0.00347,
+    "relative_lift_pct": -3.5
+  },
+  "uniqueness_vs_registry": {
+    "n_unique_rasters_compared": 138,
+    "n_sparse_rasters": 134,
+    "n_space_filling_controls": 4,
+    "pre_placement_surface_max_abs_spearman": 0.54395,
+    "pre_placement_surface_passed": true,
+    "post_placement_max_abs_spearman": 0.54395,
+    "post_placement_max_sparse_3px_overlap": 0.92061,
+    "post_placement_sparse_passed": false,
+    "exact_duplicate": false,
+    "space_filling_max_excess_over_null": 0.0597,
+    "literal_all_rasters_reading": "FAIL \u2014 space-filling controls make the literal rule vacuous for every non-empty candidate",
+    "content_aware_reading": "FAIL",
+    "top5_sparse_overlaps": [
+      {
+        "path": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "cls": "sparse",
+        "n_ref_dots": 167597,
+        "dilation3_coverage": 0.54815,
+        "overlap": 0.92061,
+        "random_null_overlap": 0.54737,
+        "excess": 0.37324,
+        "abs_spearman_surface": 0.44682,
+        "abs_spearman_final_dots": 0.32555,
+        "exact_dot_duplicate": false
+      },
+      {
+        "path": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "cls": "sparse",
+        "n_ref_dots": 516738,
+        "dilation3_coverage": 0.53433,
+        "overlap": 0.9013,
+        "random_null_overlap": 0.53433,
+        "excess": 0.36698,
+        "abs_spearman_surface": 0.45731,
+        "abs_spearman_final_dots": 0.31462,
+        "exact_dot_duplicate": false
+      },
+      {
+        "path": "data/ledger/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+        "cls": "sparse",
+        "n_ref_dots": 335879,
+        "dilation3_coverage": 0.41313,
+        "overlap": 0.8222,
+        "random_null_overlap": 0.4155,
+        "excess": 0.4067,
+        "abs_spearman_surface": 0.46642,
+        "abs_spearman_final_dots": 0.34341,
+        "exact_dot_duplicate": false
+      },
+      {
+        "path": "data/ledger/12GEMSDOE__12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+        "cls": "sparse",
+        "n_ref_dots": 103347,
+        "dilation3_coverage": 0.32244,
+        "overlap": 0.79722,
+        "random_null_overlap": 0.32017,
+        "excess": 0.47704,
+        "abs_spearman_surface": 0.51666,
+        "abs_spearman_final_dots": 0.42185,
+        "exact_dot_duplicate": false
+      },
+      {
+        "path": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+        "cls": "sparse",
+        "n_ref_dots": 201260,
+        "dilation3_coverage": 0.55368,
+        "overlap": 0.78685,
+        "random_null_overlap": 0.55278,
+        "excess": 0.23407,
+        "abs_spearman_surface": 0.33957,
+        "abs_spearman_final_dots": 0.18905,
+        "exact_dot_duplicate": false
+      }
+    ],
+    "receipt": "evidence/thcs_uniqueness_audit.json"
+  },
+  "artifact": {
+    "submission_tif": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "submission_zip": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip",
+    "docs_download_tif": "docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "docs_latest_alias": "docs/thcs/downloads/wbggems3-thcs-oof-latest.tif",
+    "raster_sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
+    "emitted_dots": 46000,
+    "submission_name": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros",
+    "submission_note_140c": "THCS-OOF: 48ch geophys+LiDAR+float32 rad+GDR1391 2m/sinter/geotherm 4-fold OOF HGB + 300m CELF (46000d)",
+    "submission_note_len": 103
+  },
+  "validator_output": {
+    "file": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
+    "size_bytes": 144713,
+    "nodata": null,
+    "emitted_positive_pixels": 46000,
+    "total_mass": 46000.0,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "nan_count": 0,
+    "inf_count": 0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "shape_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_exact_100m": true,
+      "all_pixels_finite_no_nan": true,
+      "all_pixels_no_inf": true,
+      "all_pixels_no_neg_sentinel": true,
+      "full_grid_range_0_to_1": true,
+      "in_footprint_range_0_to_1": true,
+      "outside_footprint_exact_zeros": true,
+      "zero_on_catalogue_faults": true,
+      "emits_positive_dots": true
+    },
+    "passed": true
+  },
+  "writer_receipt": {
+    "file": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
+    "bytes": 144713,
+    "submission_name": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros",
+    "note": "THCS-OOF: 48ch geophys+LiDAR+float32 rad+GDR1391 2m/sinter/geotherm 4-fold OOF HGB + 300m CELF (46000d)",
+    "note_chars": 103,
+    "validator": {
+      "file": "/home/user/WBGGEMSDOE3/submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+      "bytes": 144713,
+      "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0037461845204234123,
+      "emitted_positive_pixels": 46000,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 46000,
+      "footprint_fraction": 0.008902008815698035
+    },
+    "template_report": {
+      "path": "/home/user/WBGGEMSDOE3/submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+      "bytes": 144713,
+      "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0037461845204234123,
+      "n_nonzero": 46000,
+      "mass": 46000.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "zip_file": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip",
+    "zip_sha256": "9b8067982a6930f5ec66c981a52ab39b4fced9e5c41ae473ce1226e0e14dcf49",
+    "approved_for_weekly_slot": false,
+    "promoted": false,
+    "submission_slots_used": 0,
+    "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+    "metadata": {}
+  },
+  "experiments_used": 3,
+  "experiment_budget_max": 3,
+  "verdict": "negative",
+  "status_banner": "DO NOT SUBMIT (NEGATIVE / GATE FAILURE)"
+}

@@ -68,6 +68,7 @@ def page(title, current, body):
 
 
 def main():
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "assets").mkdir(exist_ok=True)
     (OUT / "assets" / "hce.css").write_text(CSS)

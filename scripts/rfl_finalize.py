@@ -96,6 +96,7 @@ def f(x, n=4):
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     t0 = time.time()
     g = G.load_grid(ROOT / "data/raw")
     E = lambda n: json.loads((ROOT / "evidence" / n).read_text())  # noqa: E731

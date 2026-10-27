@@ -59,8 +59,8 @@ def test_shared_prose_counterexample_multiple_truth_pixels():
     assert metric.kernel(0) == 1
 
 
-def test_shared_uniqueness_is_one_sided_but_user_rule_is_two_sided():
-    """Expose, do not fork, the upstream mismatch; local audits fail closed."""
+def test_shared_uniqueness_is_signed_but_project_convention_is_conservative():
+    """Record the stricter local convention, not a claimed violation of user wording."""
     from gems_project.audit import violates_literal_protocol
     modules()  # puts the verified template on sys.path
     uniqueness = importlib.import_module('gems57.uniqueness')
@@ -71,5 +71,5 @@ def test_shared_uniqueness_is_one_sided_but_user_rule_is_two_sided():
         'their_dots_within_3px_of_mine': 0.0, 'jaccard_dot_sets': 0.0,
     }]
     reported = uniqueness.two_phase_summary(rows, footprint_cells=100, expected_rasters=1)
-    assert not reported['literal_reading']['duplicate']  # upstream tests rho > +0.90 only
-    assert violates_literal_protocol(0.0, -1.0)         # user requested |rho| > 0.90
+    assert not reported['literal_reading']['duplicate']  # upstream tests signed rho > +0.90
+    assert violates_literal_protocol(0.0, -1.0)  # stricter project convention; not explicit user wording

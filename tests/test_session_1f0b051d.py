@@ -71,15 +71,12 @@ def test_uniqueness_claims_within_protocol_limits():
     assert CARD["canary"]["all_pass"] is True
 
 
-def test_site_names_the_exact_file_and_note():
-    body = (ROOT / "docs/session-1f0b051d/index.html").read_text()
-    howto = (ROOT / "docs/session-1f0b051d/how-to-submit.html").read_text()
-    assert f'href="downloads/{NAME}"' in body
-    assert CARD["raster_sha256"] in body
-    assert CARD["submission_note"] in howto
-    for site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
-                 "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):
-        assert site in body, site
-    # verdict honesty: the word negative must travel with the download
-    assert "negative" in body.lower()
-    assert "ORGANIZER-CONFIRMED" in body
+def test_historical_lane_pages_do_not_recommend_submission():
+    for name in ("index.html", "how-to-submit.html"):
+        body = (ROOT / "docs/session-1f0b051d" / name).read_text()
+        assert "Global release gate: DO NOT SUBMIT" in body
+        assert "research only" in body.lower()
+        assert "../data/session_1f0b051d_run_card.json" in body
+        assert "submit it only as" not in body.lower()
+    # The historical file and its actual hash remain available for reproducibility.
+    assert (ROOT / "submission" / NAME).is_file()

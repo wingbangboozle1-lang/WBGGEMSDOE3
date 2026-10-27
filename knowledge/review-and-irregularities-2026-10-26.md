@@ -1,5 +1,7 @@
 # Review and irregularities — 2026-10-26
 
+> **2026-10-27 correction:** IR-07 below says the user explicitly required a two-sided rank test. The actual wording says correlation exceeds 0.90 and does not specify an absolute value. Checking |rho| is a stricter project convention, not proof the shared signed-rho test violates the wording. The independent 100% overlap blocker is unaffected. See `knowledge/session-review-9b794637.md`.
+
 ## Executive conclusion
 
 **No competition GeoTIFF is cleared; do not upload a historical or parallel file.**

@@ -1,33 +1,60 @@
+"""The public dashboard must never turn historical lane claims into approval."""
 import hashlib
 import json
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-GATE = json.loads((DOCS / "data" / "release_gate.json").read_text())
-LEGACY_GATE = json.loads((ROOT / "evidence" / "release_gate.json").read_text())
-DECISION = GATE["decision"]
+PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html", "evidence.html", "submission.html")
 
 
-def test_every_published_page_states_its_evidence_class():
-    for page in ("index.html", "executive-summary.html", "how-to-submit.html",
-                 "research.html", "evidence.html"):
+def test_every_current_page_is_explicitly_negative():
+    gate = json.loads((DOCS / "data/release_gate.json").read_text())
+    assert gate["decision"] == "DO-NOT-SUBMIT"
+    assert gate["okay_to_submit"] is False
+    assert gate["authority"]["selector_approval"] is False
+    assert gate["blocking_reasons"]
+    for page in PAGES:
         body = (DOCS / page).read_text()
-        assert "LEDGER-INVERSION ESTIMATE" in body, page
+        assert '<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">' in body
+        assert "DO NOT SUBMIT" in body
+        assert "OK TO DOWNLOAD AND SUBMIT" not in body
+        assert "assets/status.js" in body
 
 
-def test_every_published_page_contains_positive_decision_and_checked_json_exists():
-    docs = ROOT / 'docs'
-    for page in ('index.html', 'executive-summary.html', 'research.html', 'evidence.html'):
-        body = (docs / page).read_text()
-        assert 'OK TO DOWNLOAD AND SUBMIT' in body
-        assert 'assets/status.js' in body
-    assert (docs / 'data/run_card.json').exists()
-    assert (docs / 'data/focus_audit.json').exists()
-    assert (docs / 'data/session2_run_card.json').exists()
-    assert (docs / 'data/session2_projection.json').exists()
+def test_witness_audit_and_research_file_are_hash_bound():
+    gate = json.loads((DOCS / "data/release_gate.json").read_text())
+    sources = gate["source_cards"]
+    for key in ("authority", "candidate", "witness_audit"):
+        assert hashlib.sha256((ROOT / sources[key]).read_bytes()).hexdigest() == sources[key + "_sha256"]
+    audit = json.loads((ROOT / sources["witness_audit"]).read_text())
+    assert audit["witness"]["universal_blocker"] is True
+    assert audit["witness"]["witness_positive_inside"] == audit["witness"]["footprint_cells"]
+    assert audit["candidate"]["literal_duplicate"] is True
+    assert audit["candidate"]["directed_overlap_within_3px_all_positive"] == 1.0
+    assert audit["local_format_diagnostic"]["format_ok"] is True
+    assert not audit["local_format_diagnostic"]["approved_for_submission"]
+    for key in ("file", "published_file"):
+        assert hashlib.sha256((ROOT / audit["candidate"][key]).read_bytes()).hexdigest() == audit["candidate"]["sha256"]
+
+
+def test_nine_site_table_distinguishes_claims_from_receipts():
+    body = (DOCS / "executive-summary.html").read_text()
+    for n in (24, 25, 27, 28, 30, 31, 32, 33, 36):
+        assert f"GEMSDOE{n}" in body
+    assert "unverified owner/user report" in body
+    assert "Not estimable" in body
+    assert "not a current full-registry audit" in body
+    assert "0.2778" in body and "not evidence of score causality" in body
+
+
+def test_downloads_and_lane_pages_cannot_advertise_clearance():
+    for page in (DOCS / "downloads/index.html", DOCS / "rfl/index.html", DOCS / "thcs/index.html", DOCS / "session-1f0b051d/index.html"):
+        text = page.read_text()
+        assert "DO NOT SUBMIT" in text
+        assert "OK TO DOWNLOAD AND SUBMIT" not in text
+    assert "research" in (DOCS / "downloads/index.html").read_text().lower()
+    assert "DO NOT SUBMIT" in (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
 
 
 def test_pages_publishers_use_the_same_docs_url_layout():
@@ -38,67 +65,14 @@ def test_pages_publishers_use_the_same_docs_url_layout():
     assert "path: .cache/pages-release" in workflow
 
 
-# --- reconciled with the fail-closed review that main carried (PR #25) -------------------------
-# Those guards were verdict-specific; they are kept here but written so that they hold for
-# whatever verdict the committed gate states, and so that the withdrawn approval stays withdrawn.
-
-
-def test_every_page_carries_the_gate_decision_and_never_contradicts_it():
-    for name in ("index.html", "executive-summary.html", "how-to-submit.html",
-                 "research.html", "evidence.html"):
-        body = (DOCS / name).read_text()
-        assert f'<meta name="gemsdoe-decision" content="{DECISION}">' in body, name
-        if DECISION == "DO-NOT-SUBMIT":
-            assert "OK TO DOWNLOAD AND SUBMIT" not in body, name
-            assert "DO NOT SUBMIT" in body, name
-        else:
-            assert "OK TO DOWNLOAD AND SUBMIT" in body, name
-
-
-def test_a_positive_decision_still_publishes_everything_it_does_not_claim():
-    if GATE["okay_to_submit"]:
-        assert GATE["blocking_reasons"], "a positive gate must still list its open items"
-        assert GATE["authority"]["selector_approval"] is False
-        assert "slot" in " ".join(GATE["blocking_reasons"]).lower()
-        body = " ".join((DOCS / name).read_text() for name in
-                        ("index.html", "executive-summary.html", "evidence.html")).lower()
-        assert "not organizer scores" in body or "not a score" in body
-
-
-def test_the_withdrawn_approval_record_is_untouched_and_still_negative():
-    """evidence/run_card.json + evidence/release_gate.json are the historical fail-closed review."""
-    assert LEGACY_GATE["decision"] == "DO-NOT-SUBMIT"
-    assert LEGACY_GATE["okay_to_submit"] is False
-    assert len(LEGACY_GATE["blocking_reasons"]) >= 4
-    assert json.loads((ROOT / "evidence" / "run_card.json").read_text())["verdict"] == "negative"
-
-
-def test_downloads_archive_stays_research_only_while_the_lane_file_is_separate():
-    index = (DOCS / "downloads" / "index.html").read_text()
-    notice = (DOCS / "downloads" / "LEGACY-DO-NOT-SUBMIT.txt").read_text()
-    assert "DO NOT SUBMIT" in index and "DO NOT SUBMIT" in notice
-    assert "Cleared file" not in index
-    name = json.loads((ROOT / "evidence" / "candidate_run_card.json").read_text())["submission_name"]
-    assert name not in index, "the cleared file is not an archive entry"
-
-
-def test_parallel_lane_pages_keep_their_own_banners():
-    cspes = DOCS / "cspes"
-    assert "Not cleared for upload" in (cspes / "index.html").read_text()
-    assert json.loads((cspes / "data" / "cspes_run_card.json").read_text())["verdict"] == "negative"
-    for page in (DOCS / "lst1").glob("*.html"):
-        text = page.read_text()
-        assert "NEGATIVE" in text or "DO NOT SUBMIT" in text, page.name
-
-
-def test_feed_render_does_not_claim_a_stale_snapshot_is_fresh():
+def test_feed_does_not_claim_old_data_is_live():
     from build_site import human_age
-    assert human_age({"last_success_utc": "2020-01-01T00:00:00+00:00"}) == \
-        "Last checked · 2020-01-01T00:00:00 UTC"
+    assert human_age({"last_success_utc": "2020-01-01T00:00:00+00:00"}) == "Last checked · 2020-01-01T00:00:00 UTC"
     assert human_age({"last_success_utc": None}) == "No successful observation"
     assert human_age({"last_success_utc": "invalid"}) == "Invalid observation timestamp"
+    assert 'data-freshness' in (DOCS / "index.html").read_text()
 
 
-def test_site_checker_passes_on_the_committed_pages():
-    from check_site import main as check
-    assert check() == 0
+def test_site_checker_passes_on_committed_pages():
+    from check_site import main
+    assert main() == 0

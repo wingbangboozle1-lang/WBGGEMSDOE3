@@ -154,6 +154,7 @@ def focus_rows():
 
 
 def main():
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     LANE.mkdir(parents=True, exist_ok=True)
     mapname = build_map()
     dm = card["density_matched_proxy"]["by_target"]

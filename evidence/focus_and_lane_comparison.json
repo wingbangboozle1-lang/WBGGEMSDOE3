@@ -1,6 +1,6 @@
 {
   "generated_utc": "20261027T200639Z",
-  "score_labeling_rule": "Protocol Rule 3: organizer_confirmed_score is from submission-page receipts; holdout_dti_v3 is HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, n=22,232); loso_model_estimate_not_confirmed is a Leave-One-Site-Out Ridge calibration across 120 non-SGMC live-scored leaderboard rasters \u2014 NEVER report as an organizer score.",
+  "score_labeling_rule": "Values formerly placed under organizer_confirmed_score were owner/user reports without a verified receipt; retained as owner_reported_unverified. Historical holdouts and model estimates were not replayed in this review.",
   "empirical_calibration_quality": {
     "n_scored_rasters_used": 120,
     "loso_spearman_rho": 0.8821,
@@ -49,7 +49,7 @@
       "emitted_dots": 37654,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 0.0,
-      "organizer_confirmed_score": 0.2778,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": 0.0992,
       "loso_model_estimate_not_confirmed": 0.2608,
       "loso_90pct_interval": [
@@ -61,7 +61,8 @@
       "thcs_overlap_3px_vs_row": 0.43,
       "thcs_spearman_vs_row": 0.2985,
       "unique_vs_gemsdoe32": false,
-      "notes": "H33-2-B2: H19-5 d=2.8 + d_cat>2.0px collar"
+      "notes": "H33-2-B2: H19-5 d=2.8 + d_cat>2.0px collar",
+      "owner_reported_unverified": 0.2778
     },
     {
       "site": "GEMSDOE36",
@@ -71,7 +72,7 @@
       "emitted_dots": 38854,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 0.0,
-      "organizer_confirmed_score": 0.275,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.2655,
       "loso_90pct_interval": [
@@ -83,7 +84,8 @@
       "thcs_overlap_3px_vs_row": 0.4317,
       "thcs_spearman_vs_row": 0.2957,
       "unique_vs_gemsdoe32": false,
-      "notes": "B2 + 1,200 Anderson geothermal PINN dots"
+      "notes": "B2 + 1,200 Anderson geothermal PINN dots",
+      "owner_reported_unverified": 0.275
     },
     {
       "site": "GEMSDOE28",
@@ -93,7 +95,7 @@
       "emitted_dots": 37660,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 6.25,
-      "organizer_confirmed_score": 0.271,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.2578,
       "loso_90pct_interval": [
@@ -105,7 +107,8 @@
       "thcs_overlap_3px_vs_row": 0.4479,
       "thcs_spearman_vs_row": 0.3141,
       "unique_vs_gemsdoe32": false,
-      "notes": "H36-1 rung-30 blind collar on H19-5 d=2.8"
+      "notes": "H36-1 rung-30 blind collar on H19-5 d=2.8",
+      "owner_reported_unverified": 0.271
     },
     {
       "site": "GEMSDOE31",
@@ -115,7 +118,7 @@
       "emitted_dots": 40199,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 6.33,
-      "organizer_confirmed_score": 0.2708,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.2685,
       "loso_90pct_interval": [
@@ -127,7 +130,8 @@
       "thcs_overlap_3px_vs_row": 0.453,
       "thcs_spearman_vs_row": 0.3157,
       "unique_vs_gemsdoe32": false,
-      "notes": "H27-4 solo d=2.8 pruned H19-5"
+      "notes": "H27-4 solo d=2.8 pruned H19-5",
+      "owner_reported_unverified": 0.2708
     },
     {
       "site": "GEMSDOE33",
@@ -137,7 +141,7 @@
       "emitted_dots": 41865,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 9.3,
-      "organizer_confirmed_score": 0.2632,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.2658,
       "loso_90pct_interval": [
@@ -149,7 +153,8 @@
       "thcs_overlap_3px_vs_row": 0.4663,
       "thcs_spearman_vs_row": 0.3194,
       "unique_vs_gemsdoe32": false,
-      "notes": "H33d analog tip/stepover r=30 on H19-5"
+      "notes": "H33d analog tip/stepover r=30 on H19-5",
+      "owner_reported_unverified": 0.2632
     },
     {
       "site": "GEMSDOE25",
@@ -159,7 +164,7 @@
       "emitted_dots": 44090,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 14.6,
-      "organizer_confirmed_score": 0.26,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": 0.09674,
       "loso_model_estimate_not_confirmed": 0.2563,
       "loso_90pct_interval": [
@@ -171,7 +176,8 @@
       "thcs_overlap_3px_vs_row": 0.478,
       "thcs_spearman_vs_row": 0.3276,
       "unique_vs_gemsdoe32": false,
-      "notes": "Dotted H19-5 spacing d=2.8 px"
+      "notes": "Dotted H19-5 spacing d=2.8 px",
+      "owner_reported_unverified": 0.26
     },
     {
       "site": "GEMSDOE30",
@@ -181,7 +187,7 @@
       "emitted_dots": 44090,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 14.6,
-      "organizer_confirmed_score": 0.26,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": 0.09674,
       "loso_model_estimate_not_confirmed": 0.2546,
       "loso_90pct_interval": [
@@ -193,7 +199,8 @@
       "thcs_overlap_3px_vs_row": 0.478,
       "thcs_spearman_vs_row": 0.3276,
       "unique_vs_gemsdoe32": false,
-      "notes": "Poisson 300 m off-catalogue d=2.8 clone"
+      "notes": "Poisson 300 m off-catalogue d=2.8 clone",
+      "owner_reported_unverified": 0.26
     },
     {
       "site": "GEMSDOE24",
@@ -203,7 +210,7 @@
       "emitted_dots": 60069,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 14.6,
-      "organizer_confirmed_score": 0.2477,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": 0.09315,
       "loso_model_estimate_not_confirmed": 0.219,
       "loso_90pct_interval": [
@@ -215,7 +222,8 @@
       "thcs_overlap_3px_vs_row": 0.4945,
       "thcs_spearman_vs_row": 0.3302,
       "unique_vs_gemsdoe32": false,
-      "notes": "Dotted H19-5 spacing d=1.5 px"
+      "notes": "Dotted H19-5 spacing d=1.5 px",
+      "owner_reported_unverified": 0.2477
     },
     {
       "site": "GEMSDOE27",
@@ -225,7 +233,7 @@
       "emitted_dots": 61328,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 14.47,
-      "organizer_confirmed_score": 0.2449,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.1992,
       "loso_90pct_interval": [
@@ -237,7 +245,8 @@
       "thcs_overlap_3px_vs_row": 0.5,
       "thcs_spearman_vs_row": 0.3277,
       "unique_vs_gemsdoe32": false,
-      "notes": "Topo gap-closure T-v2 on d=1.5 (Oct 26 h31: 0.2250)"
+      "notes": "Topo gap-closure T-v2 on d=1.5 (Oct 26 h31: 0.2250)",
+      "owner_reported_unverified": 0.2449
     },
     {
       "site": "GEMSDOE70",
@@ -247,7 +256,7 @@
       "emitted_dots": 37654,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 0.0,
-      "organizer_confirmed_score": 0.2478,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.2295,
       "loso_90pct_interval": [
@@ -259,7 +268,8 @@
       "thcs_overlap_3px_vs_row": 0.4489,
       "thcs_spearman_vs_row": 0.3635,
       "unique_vs_gemsdoe32": true,
-      "notes": "4-fold OOF dual-pop HGB + 300 m submodular cover"
+      "notes": "4-fold OOF dual-pop HGB + 300 m submodular cover",
+      "owner_reported_unverified": 0.2478
     },
     {
       "site": "GEMSDOE76",
@@ -269,7 +279,7 @@
       "emitted_dots": 39200,
       "in_footprint_0_1_valid": true,
       "halo_le_2px_pct": 0.0,
-      "organizer_confirmed_score": 0.2343,
+      "organizer_confirmed_score": null,
       "holdout_dti_v3": null,
       "loso_model_estimate_not_confirmed": 0.1819,
       "loso_90pct_interval": [
@@ -281,7 +291,8 @@
       "thcs_overlap_3px_vs_row": 0.4935,
       "thcs_spearman_vs_row": 0.3919,
       "unique_vs_gemsdoe32": true,
-      "notes": "Zero-catalogue PTCF tilt-worm + submodular 39.2k"
+      "notes": "Zero-catalogue PTCF tilt-worm + submodular 39.2k",
+      "owner_reported_unverified": 0.2343
     },
     {
       "site": "KANLERGEMSDOE3",
@@ -303,7 +314,8 @@
       "thcs_overlap_3px_vs_row": 0.6301,
       "thcs_spearman_vs_row": 0.495,
       "unique_vs_gemsdoe32": true,
-      "notes": "8-fold OOF CADG submodular 37,654d (unscored)"
+      "notes": "8-fold OOF CADG submodular 37,654d (unscored)",
+      "owner_reported_unverified": null
     },
     {
       "site": "KANLERGEMSDOE2",
@@ -325,7 +337,8 @@
       "thcs_overlap_3px_vs_row": 0.3852,
       "thcs_spearman_vs_row": 0.3195,
       "unique_vs_gemsdoe32": true,
-      "notes": "HTCADS Exp-2 37,654d (unscored)"
+      "notes": "HTCADS Exp-2 37,654d (unscored)",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE2",
@@ -347,7 +360,8 @@
       "thcs_overlap_3px_vs_row": 0.195,
       "thcs_spearman_vs_row": -0.0095,
       "unique_vs_gemsdoe32": true,
-      "notes": "H3-pack 34,000d (unscored)"
+      "notes": "H3-pack 34,000d (unscored)",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE3 (THCS-OOF)",
@@ -369,7 +383,8 @@
       "thcs_overlap_3px_vs_row": 1.0,
       "thcs_spearman_vs_row": 1.0,
       "unique_vs_gemsdoe32": true,
-      "notes": "48-ch Geophys+LiDAR+Rad+GDR1391 4-fold OOF HGB + 300m CELF"
+      "notes": "48-ch Geophys+LiDAR+Rad+GDR1391 4-fold OOF HGB + 300m CELF",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE3 (LST1)",
@@ -391,7 +406,8 @@
       "thcs_overlap_3px_vs_row": 0.2024,
       "thcs_spearman_vs_row": 0.2217,
       "unique_vs_gemsdoe32": true,
-      "notes": "Prior depth-adaptive HGB lane (negative)"
+      "notes": "Prior depth-adaptive HGB lane (negative)",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE3 (skarpline)",
@@ -413,7 +429,8 @@
       "thcs_overlap_3px_vs_row": 0.3381,
       "thcs_spearman_vs_row": 0.1566,
       "unique_vs_gemsdoe32": true,
-      "notes": "Prior heuristic scarp+worm union (97.6k dots, inflated by IR-21)"
+      "notes": "Prior heuristic scarp+worm union (97.6k dots, inflated by IR-21)",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE3 (CSPES)",
@@ -435,7 +452,8 @@
       "thcs_overlap_3px_vs_row": 0.0967,
       "thcs_spearman_vs_row": 0.0798,
       "unique_vs_gemsdoe32": true,
-      "notes": "Prior phase-congruency lane (negative)"
+      "notes": "Prior phase-congruency lane (negative)",
+      "owner_reported_unverified": null
     },
     {
       "site": "WBGGEMSDOE3 (HCE-1)",
@@ -457,7 +475,9 @@
       "thcs_overlap_3px_vs_row": 0.6543,
       "thcs_spearman_vs_row": 0.1352,
       "unique_vs_gemsdoe32": true,
-      "notes": "Prior unsupervised congruence lane (negative)"
+      "notes": "Prior unsupervised congruence lane (negative)",
+      "owner_reported_unverified": null
     }
-  ]
+  ],
+  "_archive_notice": "SUPERSEDED research comparison. Original owner/user claims were mislabeled as organizer-confirmed without receipts; no current upload approval or leaderboard forecast is established."
 }

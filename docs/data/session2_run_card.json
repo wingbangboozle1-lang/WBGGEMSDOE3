@@ -1,176 +1,177 @@
 {
- "run_card_version": "2",
- "lane": "WBGGEMSDOE3 / SGCE (session 2026-10-27)",
- "hypothesis": "Hidden expert faults are preferentially along-strike continuations, relays and strain-gated corridors of mapped faults; the DTI optimum is a larger, coverage-optimised dot set, not a fixed-size dotted ridge. RELEASED CONSTRUCTION adds a contrarian no-crowd prior that removes pixels already covered by >=7 of 10 dense registered emission rasters.",
- "mechanism": "20 static official/mirrored fields -> rank-bin naive-Bayes susceptibility fitted on visible faults only; PCA endpoint continuation + relay corridors + exp(-d_visible/15px) annulus + geodetic strain gate; Dinkelbach/submodular placement of binary dots under the exact alpha=0.2 beta=0.8 R=3px DTI kernel. A registry-derived coverage mask (k=6) is applied before placement; this is what makes the released dots unique while keeping the DTI-optimal budget.",
- "named_non_fault_process": "Lithologic contacts, aeromagnetic acquisition stripes, alluvial-fan edges, roads and erosional scarps can all produce linear edges and apparent continuations.",
- "holdout": {
-  "label": "HOLDOUT-DTI",
-  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
-  "withheld_positives": 22232,
-  "n_spatial_clusters": 256,
-  "candidate": {
-   "dti": 0.1674940880255947,
-   "ci95": [
-    0.15244286563046153,
-    0.18203143779241124
-   ]
-  },
-  "champion_proxy": {
-   "dti": 0.09920232315251679,
-   "ci95": [
-    0.08595140754809347,
-    0.11266835751415871
-   ]
-  },
-  "paired_delta_vs_champion_proxy": {
-   "delta": 0.0682917648730779,
-   "ci95": [
-    0.05169225240463769,
-    0.08548652407124893
-   ],
-   "p_delta_le_0": 0.0
-  },
-  "unrepaired_E1_dti": 0.14888811480353414,
-  "hard_repair_dti": 0.002575438886140461,
-  "repair_family": {
-   "k4": 0.07987156954331218,
-   "k5": 0.1201663431786861,
-   "k6": 0.1674940880255947
-  },
-  "promotion_rule_passed": true,
-  "caveat": "Hide-and-recover withholds catalogue segments; the scored population is expert-labelled NEW faults. k was selected post-hoc within one repair family (disclosed limitation). This number measures the exact released construction."
- },
- "leakage_canary": {
-  "max_single_field_auc": 0.7482945527561623,
-  "field": "GEOM_d_vis_neg",
-  "threshold": 0.9,
-  "passed": true,
-  "composite_rho_auc_diagnostic": 0.7868065212868838
- },
- "correlation_overlap_vs_registry": {
-  "pre_placement_surface": {
-   "max_abs_spearman": 0.3432213555708633,
-   "passed": true,
-   "n_comparators": 298
-  },
-  "final_dots": {
-   "U1_exact_dot_duplicate": false,
-   "U2_max_abs_spearman": 0.34487218313291773,
-   "U3_max_overlap_nonlattice": 0.6903079993738259,
-   "U3_lattice_excess_pass": true,
-   "content_aware_pass": true,
-   "literal_pass": false,
-   "literal_witness": {
-    "example": ".cache/sites/GEMSDOE24/GEMSDOE24-7ab1c8f77f0b4b8644e3929403a0dab65838b008/data/external/audit_sources/acquisition_block_id_100m.tif",
-    "overlap": 1.0
-   },
-   "n_registry_dot_masks": 298,
-   "registered_dense_witness_17GEMSDOE": {
-    "present_in_registry": true,
-    "file_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "source": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
-    "n_ref_dots": 5167373,
-    "overlap": 1.0,
-    "null": 1.0,
-    "excess": 0.0,
-    "lattice_like": true,
-    "note": "Its finite-positive support equals every footprint cell and its dot mask is byte-identical to another 100%-support control, so the de-duplicated registry row lists that first example. Either way the literal 3-px overlap is 100% for ANY nonempty candidate."
-   }
-  },
-  "interpretation": "Content-aware reading preregistered 2026-10-27; literal positive-support reading is blocked by the dense registered witness (IR-01). FLAGGED for ratification."
- },
- "raster_sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
- "raster_sha256_nan_variant": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1",
- "validator_output": {
-  "status": "PASS",
-  "files": {
-   "wbggems3-sgce-20261027-f52d35d8-zeros.tif": {
-    "file": "wbggems3-sgce-20261027-f52d35d8-zeros.tif",
-    "mode": "zeros",
-    "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
-    "bytes": 905588,
-    "emitted_pixels": 102208,
-    "in_footprint_min": 0.0,
-    "in_footprint_max": 1.0,
-    "full_grid_nan": 0,
-    "nodata": null,
-    "checks": {
-     "single_band": true,
-     "dtype_float32": true,
-     "shape_matches_template": true,
-     "crs_epsg_32611": true,
-     "transform_matches_template": true,
-     "footprint_cells_expected": true,
-     "in_footprint_all_finite": true,
-     "in_footprint_no_nan": true,
-     "in_footprint_no_inf": true,
-     "in_footprint_no_sentinel": true,
-     "in_footprint_range_0_1": true,
-     "all_non_nan_values_in_0_1": true,
-     "zero_on_catalogue": true,
-     "outside_footprint_compliant": true,
-     "has_dots": true
+  "_archive_notice": "SUPERSEDED historical lane claims; no repository-wide upload approval. See release_gate.json.",
+  "run_card_version": "2",
+  "lane": "WBGGEMSDOE3 / SGCE (session 2026-10-27)",
+  "hypothesis": "Hidden expert faults are preferentially along-strike continuations, relays and strain-gated corridors of mapped faults; the DTI optimum is a larger, coverage-optimised dot set, not a fixed-size dotted ridge. RELEASED CONSTRUCTION adds a contrarian no-crowd prior that removes pixels already covered by >=7 of 10 dense registered emission rasters.",
+  "mechanism": "20 static official/mirrored fields -> rank-bin naive-Bayes susceptibility fitted on visible faults only; PCA endpoint continuation + relay corridors + exp(-d_visible/15px) annulus + geodetic strain gate; Dinkelbach/submodular placement of binary dots under the exact alpha=0.2 beta=0.8 R=3px DTI kernel. A registry-derived coverage mask (k=6) is applied before placement; this is what makes the released dots unique while keeping the DTI-optimal budget.",
+  "named_non_fault_process": "Lithologic contacts, aeromagnetic acquisition stripes, alluvial-fan edges, roads and erosional scarps can all produce linear edges and apparent continuations.",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "n_spatial_clusters": 256,
+    "candidate": {
+      "dti": 0.1674940880255947,
+      "ci95": [
+        0.15244286563046153,
+        0.18203143779241124
+      ]
     },
-    "passed": true
-   },
-   "wbggems3-sgce-20261027-f52d35d8-nan.tif": {
-    "file": "wbggems3-sgce-20261027-f52d35d8-nan.tif",
-    "mode": "nan",
-    "sha256": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1",
-    "bytes": 1678310,
-    "emitted_pixels": 102208,
-    "in_footprint_min": 0.0,
-    "in_footprint_max": 1.0,
-    "full_grid_nan": 7111787,
-    "nodata": null,
-    "checks": {
-     "single_band": true,
-     "dtype_float32": true,
-     "shape_matches_template": true,
-     "crs_epsg_32611": true,
-     "transform_matches_template": true,
-     "footprint_cells_expected": true,
-     "in_footprint_all_finite": true,
-     "in_footprint_no_nan": true,
-     "in_footprint_no_inf": true,
-     "in_footprint_no_sentinel": true,
-     "in_footprint_range_0_1": true,
-     "all_non_nan_values_in_0_1": true,
-     "zero_on_catalogue": true,
-     "outside_footprint_compliant": true,
-     "has_dots": true
+    "champion_proxy": {
+      "dti": 0.09920232315251679,
+      "ci95": [
+        0.08595140754809347,
+        0.11266835751415871
+      ]
     },
-    "passed": true
-   }
+    "paired_delta_vs_champion_proxy": {
+      "delta": 0.0682917648730779,
+      "ci95": [
+        0.05169225240463769,
+        0.08548652407124893
+      ],
+      "p_delta_le_0": 0.0
+    },
+    "unrepaired_E1_dti": 0.14888811480353414,
+    "hard_repair_dti": 0.002575438886140461,
+    "repair_family": {
+      "k4": 0.07987156954331218,
+      "k5": 0.1201663431786861,
+      "k6": 0.1674940880255947
+    },
+    "promotion_rule_passed": true,
+    "caveat": "Hide-and-recover withholds catalogue segments; the scored population is expert-labelled NEW faults. k was selected post-hoc within one repair family (disclosed limitation). This number measures the exact released construction."
   },
-  "no_nan_inside_footprint": true,
-  "values_in_0_1": true,
-  "crs_shape_transform_match": true,
-  "saved_bytes_equal_audited_dots": true
- },
- "submission_name": "wbggems3-sgce-20261027-f52d35d8",
- "submission_note": "SGCE H1: strain-gated fault continuation + DTI-optimal coverage + contrarian no-crowd prior (k=6); 20 physical fields; no TIFF copied.",
- "note_length": 134,
- "verdict": "promote",
- "ok_to_download": true,
- "ok_to_submit": "YES \u2014 after the separate selector confirms a free weekly slot; no slot used here. No organizer receipt exists; a local PASS is not portal acceptance.",
- "selector_approval": false,
- "literal_registry_reading": "BLOCKED (dense witness); content-aware reading PASS \u2014 user ratification required",
- "experiments": {
-  "experiments_run": 3,
-  "max": 3,
-  "best_sigma": 15.0
- },
- "slots_spent": 0,
- "organizer_receipt": null,
- "official_sources": [
-  "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-  "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2",
-  "https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550/2",
-  "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-  "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
-  "https://gdr.openei.org/submissions/1391"
- ],
- "budget_disclosure": "3 preregistered hypothesis arms (E1/E2/E3) + one repair family (k=2..6) tested after the first draft failed the registry gate. Wall time exceeded the 2 h guideline; disclosed, not hidden."
+  "leakage_canary": {
+    "max_single_field_auc": 0.7482945527561623,
+    "field": "GEOM_d_vis_neg",
+    "threshold": 0.9,
+    "passed": true,
+    "composite_rho_auc_diagnostic": 0.7868065212868838
+  },
+  "correlation_overlap_vs_registry": {
+    "pre_placement_surface": {
+      "max_abs_spearman": 0.3432213555708633,
+      "passed": true,
+      "n_comparators": 298
+    },
+    "final_dots": {
+      "U1_exact_dot_duplicate": false,
+      "U2_max_abs_spearman": 0.34487218313291773,
+      "U3_max_overlap_nonlattice": 0.6903079993738259,
+      "U3_lattice_excess_pass": true,
+      "content_aware_pass": true,
+      "literal_pass": false,
+      "literal_witness": {
+        "example": ".cache/sites/GEMSDOE24/GEMSDOE24-7ab1c8f77f0b4b8644e3929403a0dab65838b008/data/external/audit_sources/acquisition_block_id_100m.tif",
+        "overlap": 1.0
+      },
+      "n_registry_dot_masks": 298,
+      "registered_dense_witness_17GEMSDOE": {
+        "present_in_registry": true,
+        "file_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "source": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+        "n_ref_dots": 5167373,
+        "overlap": 1.0,
+        "null": 1.0,
+        "excess": 0.0,
+        "lattice_like": true,
+        "note": "Its finite-positive support equals every footprint cell and its dot mask is byte-identical to another 100%-support control, so the de-duplicated registry row lists that first example. Either way the literal 3-px overlap is 100% for ANY nonempty candidate."
+      }
+    },
+    "interpretation": "Content-aware reading preregistered 2026-10-27; literal positive-support reading is blocked by the dense registered witness (IR-01). FLAGGED for ratification."
+  },
+  "raster_sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+  "raster_sha256_nan_variant": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1",
+  "validator_output": {
+    "status": "PASS",
+    "files": {
+      "wbggems3-sgce-20261027-f52d35d8-zeros.tif": {
+        "file": "wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+        "mode": "zeros",
+        "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+        "bytes": 905588,
+        "emitted_pixels": 102208,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_nan": 0,
+        "nodata": null,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "shape_matches_template": true,
+          "crs_epsg_32611": true,
+          "transform_matches_template": true,
+          "footprint_cells_expected": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_no_nan": true,
+          "in_footprint_no_inf": true,
+          "in_footprint_no_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "all_non_nan_values_in_0_1": true,
+          "zero_on_catalogue": true,
+          "outside_footprint_compliant": true,
+          "has_dots": true
+        },
+        "passed": true
+      },
+      "wbggems3-sgce-20261027-f52d35d8-nan.tif": {
+        "file": "wbggems3-sgce-20261027-f52d35d8-nan.tif",
+        "mode": "nan",
+        "sha256": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1",
+        "bytes": 1678310,
+        "emitted_pixels": 102208,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_nan": 7111787,
+        "nodata": null,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "shape_matches_template": true,
+          "crs_epsg_32611": true,
+          "transform_matches_template": true,
+          "footprint_cells_expected": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_no_nan": true,
+          "in_footprint_no_inf": true,
+          "in_footprint_no_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "all_non_nan_values_in_0_1": true,
+          "zero_on_catalogue": true,
+          "outside_footprint_compliant": true,
+          "has_dots": true
+        },
+        "passed": true
+      }
+    },
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "saved_bytes_equal_audited_dots": true
+  },
+  "submission_name": "wbggems3-sgce-20261027-f52d35d8",
+  "submission_note": "SGCE H1: strain-gated fault continuation + DTI-optimal coverage + contrarian no-crowd prior (k=6); 20 physical fields; no TIFF copied.",
+  "note_length": 134,
+  "verdict": "promote",
+  "ok_to_download": true,
+  "ok_to_submit": "YES \u2014 after the separate selector confirms a free weekly slot; no slot used here. No organizer receipt exists; a local PASS is not portal acceptance.",
+  "selector_approval": false,
+  "literal_registry_reading": "BLOCKED (dense witness); content-aware reading PASS \u2014 user ratification required",
+  "experiments": {
+    "experiments_run": 3,
+    "max": 3,
+    "best_sigma": 15.0
+  },
+  "slots_spent": 0,
+  "organizer_receipt": null,
+  "official_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2",
+    "https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550/2",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gdr.openei.org/submissions/1391"
+  ],
+  "budget_disclosure": "3 preregistered hypothesis arms (E1/E2/E3) + one repair family (k=2..6) tested after the first draft failed the registry gate. Wall time exceeded the 2 h guideline; disclosed, not hidden."
 }
