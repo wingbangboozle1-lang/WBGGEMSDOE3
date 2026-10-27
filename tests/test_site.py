@@ -110,6 +110,7 @@ def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
     readme = (ROOT / "README.md").read_text()
     assert "CSPES lane" in readme and "negative" in readme.lower()
     assert "CURRENT DECISION: DO NOT SUBMIT" in readme
+    assert "conflict" in readme.lower()
 
 
 def test_downloads_index_separates_the_two_lanes():

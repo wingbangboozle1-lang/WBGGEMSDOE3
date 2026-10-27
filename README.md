@@ -1,10 +1,11 @@
-# WBGGEMSDOE3 — DOE GEMS Prize: a unique fault submission, and the evidence for it
+# WBGGEMSDOE3 — DOE GEMS Prize research and submission audit
 
 > **CURRENT DECISION: DO NOT SUBMIT.** The earlier skarpline approval is withdrawn: an external-catalogue proxy and fitted forecast do not satisfy the required fold-local holdout or literal registry gates.
 > Existing TIFFs remain **research-only downloads**, not newly generated submissions in this session.
 > [Executive summary](docs/executive-summary.html) · [three-pass review and research queue](knowledge/session-review-8c70511f.md) · [decision evidence](evidence/gemsdoe_run_card.json).
 > CSPES lane is negative; HCE-1's method-level win does not authorize its repaired artifact under the literal rule.
 > Read [PROJECT_PROMPT.md](PROJECT_PROMPT.md) and this README every session. No weekly slot has been spent by this review.
+> Status conflict independently identified by the parallel [current review](knowledge/review-current-2026-10-27.md); this change reconciles the generated top-level pages as well.
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
