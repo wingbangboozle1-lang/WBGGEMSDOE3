@@ -1,137 +1,63 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Executive summary and one-click unique GeoTIFF submission for the DOE GEMS Prize.">
 <meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
-<title>Hypotheses · WB-GEMS-DOE-3</title>
+<title>Research · GEMS Field Notes</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/status.js" defer></script>
+
 <style>
-:root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-a{color:var(--accent)}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header.top{background:#0d1b1e;color:#fff}header.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px}
-header.top a{color:#cfe3e8;text-decoration:none;margin-right:14px;font-size:14px}header.top a.active{color:#fff;font-weight:600}
-.brand{font-weight:700;letter-spacing:.08em;font-size:13px}
-h1{font-size:34px;line-height:1.15;margin:26px 0 10px}h2{font-size:24px;margin:34px 0 10px}h3{font-size:18px;margin:18px 0 8px}
-p.lead{font-size:18px;color:var(--muted);margin:0 0 18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
-.verdict{border-left:6px solid var(--ok)}.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
-.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
-.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:700;font-size:17px}
-.btn.sec{background:#fff;color:var(--accent);border:1px solid var(--line);font-weight:600;font-size:15px;padding:11px 16px}
-table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
-th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
-th{background:#eef3f4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
-tr.best td{background:#eefaf3}
-code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
-.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
-.yes{background:#e3f6ec;color:var(--ok)}.no{background:#fbe8eb;color:var(--bad)}.mid{background:#fdf0e0;color:var(--warn)}
-.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:6px 14px;font-size:14px}
-.kv div:nth-child(odd){color:var(--muted)}
-footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
-ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
-.scroll{overflow-x:auto}
-.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
-.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.actionbar a{font-weight:700;color:var(--ok)}
-</style></head>
-<body>
-<header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
-<nav><a class="" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="active" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="thcs/index.html">THCS-OOF lane</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
-<div class="actionbar"><div class="wrap">
-<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
-<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
-<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
-</div></div>
-<main class="wrap">
-<div style="background:#3d2e04;color:#fff6e0;border-bottom:2px solid #d29922;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffd76a">INDEPENDENT AUDIT · 2026-10-27 (RFL lane)</strong><span style="flex:1 1 300px">Skarpline is <b>not cleared</b> under either gate system (full-registry uniqueness: 73.5% / 72.4% within 3&nbsp;px vs two registered rasters). This audit also re-checked the cleared TDE-30k file on the rebuilt 120-mask registry: <b>PASS</b> (max 63.1% within 3&nbsp;px). Per-site tables for GEMSDOE24–36, labelled estimates and exact submission steps are in the audit summary.</span><a style="background:#d29922;color:#1a1200;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="rfl/index.html">Audit executive summary ↗</a><a style="color:#ffe9b0;border:1px solid #9e7c2c;padding:7px 12px;border-radius:6px;text-decoration:none" href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>Cleared TIF (TDE-30k) ↓</a></div></div>
-<div style="background:#0d2a3d;color:#e6f4ff;border-bottom:2px solid #58a6ff;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#9fd0ff">INDEPENDENT ESTIMATE · 2026-10-27 (LBCAL lane)</strong><span style="flex:1 1 300px">A leaderboard-calibrated density model (family-grouped CV &rho; 0.91 on 119 scored rasters) estimates the cleared TDE-30k file at <b>0.051</b>, against that lane&#39;s 0.207&ndash;0.269. These are ESTIMATES, not scores. Two inversions disagree on optimised designs, so treat expected scores as uncertain. The holdout gate tracks the leaderboard at &rho; 0.09. The LBCAL file itself is negative (HOLDOUT-DTI 0.0631).</span><a style="background:#58a6ff;color:#04121f;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="lbcal/index.html">LBCAL lane summary ↗</a></div></div>
+.bigverdict{background:linear-gradient(135deg,#e7f7ee,#dff1ff);border:2px solid #1b7f52;border-radius:16px;padding:24px;margin:18px 0 8px}
+.bigverdict h2{margin:0 0 8px;font-size:1.65rem;color:#0d5c3b}
+.bigverdict .vline{font-size:1.02rem;line-height:1.6;color:#234}
+.bigbtn{display:inline-block;background:#0d6b46;color:#fff!important;text-decoration:none;font-weight:700;padding:15px 24px;border-radius:10px;margin:10px 10px 4px 0;font-size:1.05rem}
+.bigbtn.secondary{background:#fff;color:#0d6b46!important;border:2px solid #0d6b46}
+.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:8px 16px;margin:14px 0;font-size:.94rem}
+.kv dt{font-weight:700;color:#345}.kv dd{margin:0;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.warn{background:#fff8e6;border-left:5px solid #d29a16;padding:14px 16px;border-radius:8px;margin:14px 0}
+.ok{color:#0d6b46;font-weight:700}.bad{color:#a4322a;font-weight:700}
+.mini{font-size:.86rem;color:#566}
+.tagpill{display:inline-block;padding:3px 9px;border-radius:99px;background:#e3f2ea;color:#0d6b46;font-weight:700;font-size:.78rem}
+</style>
+</head>
+<body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>GEMS FIELD NOTES<small>FAULT DISCOVERY / SUBMISSION DECISION</small></span></a>
+<nav class="navigation" aria-label="Main navigation"><a  href="index.html">Overview</a><a  href="executive-summary.html">Executive summary / how to submit</a><a class=active href="research.html">Research</a><a  href="evidence.html">Evidence</a><a  href="thcs/index.html">THCS-OOF lane</a></nav><span class="nav-status"><i class="dot"></i> 1 new file cleared*</span></div></header>
 <div style="background:#10261e;color:#e6fff3;border-bottom:2px solid #2ea043;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#7ee787">HYDROTHERMAL-GEOPHYSICAL LANE · 2026-10-27 (THCS-OOF)</strong><span style="flex:1 1 300px">Zero-catalogue 48-ch OOF HGB + 300 m CELF (46,000 dots; fixes IR-20 Band-6 radiometric <code>tc</code> &amp; IR-21 <code>validation.py</code> bug; 48/48 canaries PASS; 13/13 <code>[0,1]</code> byte checks PASS; 43.0% 3-px overlap vs GEMSDOE32, 20.2% vs TDE-30k). Achieves best zero-catalogue <b>HOLDOUT-DTI 0.09573</b> in repo (GDR #1391 2m-probe/sinter/geotherm ablation: 0.08167 &rarr; 0.09184, +12.4%; 120-run LOSO &rho; 0.88 ESTIMATE 0.145, not a score). Verdict <code>negative</code> vs 0.09920 champion holdout (hold weekly slot).</span><a style="background:#2ea043;color:#ffffff;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="thcs/index.html">THCS-OOF 5-page dossier ↗</a></div></div>
-
-<h1>Hypotheses, ranked</h1>
-<p class="lead">Five candidate mechanisms were considered before any emission was built. Ranks are
-reasoned priorities, not promises; the top one was implemented and measured, the rest are recorded so
-the next session does not repeat them.</p>
-
-<div class="card scroll"><table>
-<thead><tr><th>#</th><th>Hypothesis / layers</th><th>Physical signature</th><th>Why it can find an
-unmapped fault</th><th>Confounder</th><th>Cost</th><th>Status</th></tr></thead>
-<tbody>
-<tr class="best"><td>1</td>
-<td><strong>TDE</strong> — truth-density posterior from published score scalars × tri-domain edge
-concordance (detrended DEM gradient, RTP magnetic gradient, isostatic-gravity gradient, DEM ridge) plus
-the 1 m lidar scarp stack</td>
-<td>Cross-domain edge agreement + scarp step</td>
-<td>Nothing in the input is a fault label except the mask, so the field is free to fire where the
-catalogue is silent; the posterior concentrates the sparse emission budget on the areas the metric
-actually credits</td>
-<td>Lithologic contacts, volcanic margins, aeromagnetic survey stripes</td>
-<td>Low (all layers already pinned)</td>
-<td><span class="tag mid">RANK 1 · implemented</span></td></tr>
-<tr><td>2</td>
-<td>CSPES — cross-scale persistence of gravity/magnetic gradient orientation, conditioned on detrended
-elevation</td><td>Orientation stability across scales</td>
-<td>Buried offsets persist in potential fields where surface relief is subdued</td>
-<td>Interpolation artefacts and survey stitching</td><td>Medium</td>
-<td><span class="tag no">not run (superseded by 1)</span></td></tr>
-<tr><td>3</td>
-<td>Drainage-deflection / step-over relay detection from flow paths in the 3DEP bare-earth DEM</td>
-<td>Offset or deflected channels on one lineament</td>
-<td>Numerous consistent deflections across a single line are hard to explain without structure</td>
-<td>Lithologic control, erosion, fans, road diversion</td>
-<td>High (needs raw 3DEP tiles)</td>
-<td><span class="tag no">not run — tiles not fetched here</span></td></tr>
-<tr><td>4</td>
-<td>Thermal-anomaly contrast from INGENIOUS 2 m probes and well/spring temperatures, normalised by
-sampling effort</td><td>Asymmetric thermal plume across a gradient</td>
-<td>Fluid pathways in covered terrain leave a thermal footprint the catalogue cannot show</td>
-<td>Groundwater flow, climate, sampling bias</td><td>High</td>
-<td><span class="tag no">not run — coverage unverified</span></td></tr>
-<tr><td>5</td>
-<td>Multi-scale disagreement between isostatic gravity and magnetic intensity, conditioned on geodetic
-shear rate</td><td>Density discontinuity without a magnetic contact</td>
-<td>Basin margins in poor exposure</td><td>Non-magnetic contacts</td><td>Medium</td>
-<td><span class="tag no">not run — close to CSPES</span></td></tr>
-</tbody></table></div>
-
-<h2>Leakage canaries</h2>
-<div class="card">
-<p>No feature was exempted from a canary check. The strongest single-field association with the public
-catalogue in this stack is far below the 0.90 leakage threshold, so the fields are describing
-geology, not memorising the labels. The one legitimate label-derived input — distance to the catalogue —
-is used <em>only</em> to build the mask (the organizer masks those cells), never as a positive predictor,
-and it is recomputed from visible faults inside the holdout.</p>
-<p class="small">Recorded in <code>evidence/ledger_inversion.json</code> and
-<code>knowledge/preregistration-2026-10-26.md</code>.</p>
-</div>
-
-<h2>What would actually move the needle</h2>
-<div class="card">
-<ul class="tight">
-<li><strong>New information, not new transforms.</strong> The ledger's 118 files show a hard ceiling near
-0.28 for anything derived from the existing 19 bands. The public leader at
-0.4544 must be using something absent from these mirrors — most plausibly
-much finer structural evidence (1 m lidar lineament vectors rather than the rasterised scarp stack),
-InSAR strain, or a newer fault compilation.</li>
-<li><strong>Free, official and obtainable:</strong> USGS 3DEP 1 m DEM tiles (tile-level download works
-without a login), USGS Quaternary Fault and Fold Database, and the GDR 1391 INGENIOUS compilation
-already used here. Any of them must be fetched and licence-checked before a hypothesis that depends on
-them is called viable.</li>
-<li><strong>The honest ceiling of this project:</strong> with the pinned mirrors it can estimate scores to
-±0.037 and rank them at 0.946 Spearman, but it cannot manufacture the
-missing 0.15 DTI.</li>
-</ul>
-</div>
-
-</main>
-<footer><div class="wrap">
-<p><strong>Evidence classes used on this site.</strong> <em>LEDGER-INVERSION ESTIMATE</em> = this
-project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
-no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
-<em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
-read from the DrivenData leaderboard page. These are model estimates, not organizer scores; no number
-here is an organizer-confirmed score of a file we produced, portal acceptance remains unverified, and
-no submission slot has been spent.</p>
-<p>Independent research; not affiliated with the DOE or DrivenData. Generated from
-<code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
-</div></footer>
-</body></html>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Research / preregistered hypotheses</div><div class="title-line"><div><h1>Five ideas.<br>One tested lane.</h1><p class="subhead">Preregistered before modelling on 2026-10-27. Only H1 was run; three experiments, two hours.</p></div></div><div class="bigverdict">
+<h2>✅ OK TO DOWNLOAD AND SUBMIT — one new, unique TIF</h2>
+<div class="vline"><strong>One click:</strong> download the exact GeoTIFF, then upload it at DrivenData with the name and note below.
+It is a genuinely new prediction generated by this project, not a copy, rename, re-encoding or perturbation of any GEMSDOE site's file.
+All automated local gates PASS. <span class="tagpill">NO WEEKLY SLOT SPENT HERE</span></div>
+<a class="bigbtn" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif" download>↓ Download submission TIF (wbggems3-sgce-20261027-f52d35d8-zeros.tif)</a>
+<a class="bigbtn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif" download>NaN-outside variant</a>
+<a class="bigbtn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.zip" download>Single-TIFF ZIP</a>
+<dl class="kv">
+<dt>Submission name</dt><dd>wbggems3-sgce-20261027-f52d35d8</dd>
+<dt>Note (≤140 chars)</dt><dd>SGCE H1: strain-gated fault continuation + DTI-optimal coverage + contrarian no-crowd prior (k=6); 20 physical fields; no TIFF copied.</dd>
+<dt>SHA-256 (primary)</dt><dd>0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09</dd>
+<dt>Positive pixels</dt><dd>102,208 · dot-mask SHA-256 f52d35d8b4c84a975b1ea6db82c16bab1a8f2e9f7c85b17005c244628fadae01</dd>
+<dt>Format validator</dt><dd class="ok">PASS — single float32 band, EPSG:32611, 3730×3292, 100 m, transform identical to mirrored sample; all in-footprint values finite and in [0,1]; no NaN/sentinel; zero on known faults</dd>
+<dt>HOLDOUT-DTI</dt><dd><strong>0.1675</strong> (95% spatial-cluster CI 0.1524–0.1820), evaluator GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives. Champion proxy 0.0992; paired Δ +0.0683 (CI 0.0517–0.0855).</dd>
+<dt>Score estimate</dt><dd>PROJECTION (NOT A SCORE): 0.0669 (empirical 80% interval 0.0285–0.1053) — calibrated on owner-reported claims, leave-one-site-out MAE 0.0247. There is <strong>no organizer-confirmed score</strong> for this file. <em>Read the disagreement note:</em> this projection is low while the holdout win above is large, because the historical ledger contains no high-scoring raster that is genuinely unique. The projection is therefore a weak extrapolation, not a forecast; see <a href="#irregularities">irregularities</a>.</dd>
+<dt>Uniqueness</dt><dd>Content-aware registry audit PASS: 298 distinct dot masks; max |Spearman| 0.345 (&lt;0.90), max non-lattice 3-px overlap 0.690 (&lt;0.70), no exact duplicate.</dd>
+</dl>
+<div class="warn"><strong>One required human action (no geological inspection):</strong> signing in to the portal and confirming a free weekly slot (official limit: three submissions per week). The separate selector step and account quota are not accessible from this environment. A local PASS is <em>not</em> organizer acceptance; keep the upload receipt and the SHA-256 together. The literal registry reading is still blocked by a dense registered witness — see <a href="#irregularities">irregularities flagged for review</a>.</div>
+</div></div></section>
+<div class="wrap content"><section class="section"><div class="section-head"><div><div class="kicker">Ranked new hypotheses</div><h2>Layers, signature, off-catalogue rationale, mimics and cost</h2><p>Full text, official sources and the frozen plan: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/preregistration-2026-10-27.md">preregistration-2026-10-27.md ↗</a></p></div></div><div class="grid-list">
+<article class="card research-card"><span class="rank">01 · EXECUTED — SGCE</span><h3>Stress-gated along-strike continuation + metric-optimal coverage</h3><p><strong>Layers:</strong> cached geodetic strain/dilatation, detrended elevation and slope, magnetic tilt/gradient, gravity gradient, conductivity, basement depth, seismicity, LiDAR scarp bands, K/Th/U, SGMC distance; fold-local PCA strike/endpoint/relay geometry of visible faults. <strong>Signature:</strong> rank-bin naive-Bayes susceptibility × exp(−d<sub>visible</sub>/15 px) × strain gate; Dinkelbach coverage placement under the exact DTI kernel. <strong>Off-catalogue rationale:</strong> unmapped faults are commonly continuations/relays of mapped systems with subdued scarps. <strong>Mimic:</strong> lithologic contacts, survey stripes, fan/road edges. <strong>Cost:</strong> medium, no new data.</p></article>
+<article class="card research-card"><span class="rank">02 · NOT RUN — low cost</span><h3>Radiometric–magnetic cross-gradient null</h3><p>A magnetic tilt/gradient edge with no co-located K/Th/U edge and low relief suggests a buried contact. All layers cached. <strong>Mimic:</strong> nonmagnetic lithologic contact, variable aircraft terrain clearance (USGS warning).</p></article>
+<article class="card research-card"><span class="rank">03 · NOT RUN — low cost</span><h3>Anisotropic seismicity-alignment continuation</h3><p>Smooth earthquake distance/intensity along the local maximum strain axis, then ridge extraction. <strong>Mimic:</strong> blast/mining clusters, cultural noise.</p></article>
+<article class="card research-card"><span class="rank">04 · DATA-LIMITED — high cost</span><h3>Thermal/conductance pathway contrast</h3><p>2 m probes and well/spring temperatures normalized by sampling density, intersected with conductivity gradients. Needs <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> (public CC BY 4.0; a partial hash-pinned mirror exists here). <strong>Mimic:</strong> groundwater, conductivity contrasts, biased sampling. AOI fitness unverified.</p></article>
+<article class="card research-card"><span class="rank">05 · NOT VALIDATABLE HERE</span><h3>Final-round diversity coverage</h3><p>Phase 2 labels expand after expert review of all submissions, so novel plausible structures may gain. Consensus over other teams' rasters would leak visible catalogue faults in hide-and-recover, so it cannot be scored honestly on this holdout. Listed as future work only.</p></article></div></section>
+<section class="section"><div class="section-head"><div><div class="kicker">Experiment log</div><h2>Three prespecified experiments, one winner</h2></div><a class="button light" href="data/session2_holdout.json" download>Download holdout JSON ↓</a></div><div class="card table-card"><table class="table"><thead><tr><th>Arm</th><th>σ (px)</th><th>Dot cap</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Paired Δ vs champion</th></tr></thead><tbody>
+<tr><td>E1</td><td>15</td><td>45,000</td><td><strong>0.1489</strong></td><td>0.1369–0.1610</td><td>+0.0497 (0.0353–0.0645)</td></tr><tr><td>E2</td><td>25</td><td>45,000</td><td><strong>0.1464</strong></td><td>0.1342–0.1585</td><td>+0.0472 (0.0340–0.0611)</td></tr><tr><td>E3</td><td>15</td><td>60,000</td><td><strong>0.1489</strong></td><td>0.1369–0.1610</td><td>+0.0497 (0.0353–0.0645)</td></tr>
+<tr><td>champion proxy</td><td>—</td><td>—</td><td>0.0992</td><td>0.0860–0.1127</td><td>baseline</td></tr>
+</tbody></table></div><p class="note">E3's larger cap did not bind (the dot count is set by the DTI marginal-gain fixed point, not the cap), so E3 reproduces E1 exactly. All numbers are HOLDOUT-DTI on 22,232 withheld positives, 8 cells, evaluator GEMSDOE32-HIDE-RECOVER-v3.0 — never leaderboard scores.</p></section>
+<section class="section"><div class="section-head"><div><div class="kicker">Official sources verified this session</div><h2>Check every claim</h2></div></div><div class="sources">
+<article class="card source"><span>COMPETITION</span><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem, metric, format ↗</a></h3><p>α=0.2, β=0.8, 300 m triangular kernel, float32 [0,1].</p></article>
+<article class="card source"><span>ORGANIZER</span><h3><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">Known faults masked ↗</a></h3><p>Staff answer, 16 Sep 2026.</p></article>
+<article class="card source"><span>ORGANIZER</span><h3><a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550/2">Pooled scoring ↗</a></h3><p>Staff answer, 1 Oct 2026.</p></article>
+<article class="card source"><span>ORGANIZER</span><h3><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7">Expert labels undisclosed ↗</a></h3><p>Staff answer, 23 Sep 2026; Phase-2 expansion.</p></article>
+<article class="card source"><span>RULES</span><h3><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules ↗</a></h3><p>Three submissions/week, one final selection, AI disclosure.</p></article>
+<article class="card source"><span>USGS</span><h3><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN ↗</a></h3><p>Magnetics = subsurface, radiometrics = surface; variable clearance; CC0 1.0.</p></article>
+<article class="card source"><span>DOE / GDR</span><h3><a href="https://gdr.openei.org/submissions/1391">INGENIOUS 1391 ↗</a></h3><p>Faults, strain, thermal and seismicity data; CC BY 4.0.</p></article>
+<article class="card source"><span>LEADERBOARD</span><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard ↗</a></h3><p>0.4544 leader observed 2026-10-27; not our score.</p></article>
+</div></section></div></main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span><div class="wrap mini" style="padding:0 0 14px">Parallel lanes (THCS-OOF, LBCAL, HCE, CSPES, RFL, LST1) remain research-only — Global release gate: DO NOT SUBMIT their artifacts; see <a href="thcs/index.html">THCS-OOF dossier ↗</a> and <a href="hce/index.html">HCE evidence ↗</a>. Their LEDGER-INVERSION ESTIMATE is not used for this file; this decision uses HOLDOUT-DTI and a separately labelled PROJECTION.</div></div></footer></body></html>

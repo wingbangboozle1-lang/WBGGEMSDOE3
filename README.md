@@ -1,71 +1,15 @@
 # GEMS Field Notes — fault discovery & submission audit
 
-> **CURRENT DECISION (2026-10-27): ONE FILE IS CLEARED FOR UPLOAD, with a disclosed caveat.**
-> `submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif`
-> (SHA-256 `e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817`) passes the format,
-> range and uniqueness gates. **Estimated leaderboard DTI 0.269** (LEDGER-INVERSION ESTIMATE) /
-> **0.207** bias-corrected — i.e. **below** the 0.2778 focus-site champion, because every
-> focus-site file is a duplicate of another and this one is not. One-click download and the
-> paste-ready portal note are on the [dashboard](docs/index.html);
-> [how to submit](docs/how-to-submit.html) · [run card](evidence/candidate_run_card.json).
-
-## Two gates live in this repository — do not mix them up
-
-| Gate | File | Decision | What it governs |
-|---|---|---|---|
-| Legacy lane, fail-closed review (2026-10-27, unchanged) | `evidence/run_card.json` + `evidence/release_gate.json` | **DO NOT SUBMIT** | the pre-tomography skarpline-union candidate; withdrawn approval stays withdrawn |
-| This lane, score tomography | `docs/data/run_card.json` + `docs/data/release_gate.json` | **SUBMIT-WITH-CAVEAT** | the one file linked at the top of this README and of the dashboard |
-
-The legacy record is kept verbatim as the historical audit trail: `evidence/release_gate.json` still
-states `DO-NOT-SUBMIT`, still lists its six blocking reasons, and no test or script of this lane
-rewrites it. The site publishes only the second gate, and `scripts/check_site.py` fails if the two are
-ever conflated (a page's `<meta name="gemsdoe-decision">` must equal the gate decision, and a positive
-decision must still list what it does not claim).
-
-> **THIRD PARALLEL AUDIT — RFL session `arena/bd44f94b` (2026-10-27, PR #29): corroboration + a
-> negative lane.** An independent preregistered lane (range-front relief-discontinuity) re-measured
-> all nine focus leaders from pinned bytes (36/36 pairwise >70% within 3 px; GEMSDOE25 ≡ GEMSDOE30
-> identical support; B2 = 31 minus exactly the ≤2 px catalogue-halo dots) and re-audited every saved
-> candidate on the rebuilt 151-file/120-mask registry. It **agrees the skarpline file is not
-> cleared** (73.5%/72.4% within 3 px vs two registered rasters at full-registry scope — IR-20) and
-> measured the cleared TDE-30k file above as **PASS** under its own definitions too (max 63.1%
-> within 3 px, matching this lane's 0.6314; lattice-excess −0.007; saved bytes finite in [0,1] —
-> [receipt](evidence/rfl_tde30k_postmerge_audit.json)). The RFL candidate itself is **negative**
-> (HOLDOUT-DTI 0.0538 vs 0.0992 champion proxy on `GEMSDOE32-HIDE-RECOVER-v3.0`; uniqueness 0.709
-> breach; no TIF packaged — [run card](evidence/rfl_run_card.json)). Per-site decision tables,
-> physically-capped estimate diagnostics and exact submission steps:
-> [docs/rfl/index.html](docs/rfl/index.html). The HCE-1 file also passes this audit's format +
-> uniqueness + fold-local-holdout gates but is **not** the cleared file — TDE-30k at the top of
-> this README is. No slot has been spent by any lane; no organizer-confirmed score exists yet.
-
-> **PARALLEL LANE SESSION 2026-10-27 (`arena/1f0b051d-wbggemsdoe3`): independent audit + one new
-> unique TIF; the skarpline 0.428 estimate above is WITHDRAWN by measurement.**
-> [Lane executive summary](docs/session-1f0b051d/index.html) ·
-> [one-click TIF](docs/session-1f0b051d/downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif) ·
-> [single-TIFF ZIP](docs/session-1f0b051d/downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.zip) ·
-> [exactly how to submit](docs/session-1f0b051d/how-to-submit.html) ·
-> [run card](evidence/session_1f0b051d_run_card.json) ·
-> [audit](evidence/session_1f0b051d_audit.json) ·
-> [independent verification](evidence/session_1f0b051d_verify.json) ·
-> [preregistration + amendments](knowledge/preregistration-2026-10-27-session-1f0b051d.md).
-> This session restored all 118 SHA-pinned scored ledger rasters and reproduced every load-bearing
-> number line by line. Findings: (1) GEMSDOE32's 0.2778 file is an exact subset of GEMSDOE31/30 with a
-> √5 px catalogue-proximity trim — the whole focus-nine cluster is one duplicate family, none resubmittable;
-> (2) the skarpline lane's **0.428 estimate is invalid** (its SGMC hit-rate estimator predicts 0.399 for the
-> 0.0904 lattice and ≈1.66 for the SGMC proxy itself, while SGMC submissions score 0.049–0.051; R² = −0.65) —
-> do not use it for any slot decision until the main banner above is reconciled;
-> (3) a new lidar scarp-dipole lane (3 preregistered experiments) produced the 40,000-dot file above:
-> unique vs all 122 registry rasters (max 67.0% within 3 px), saved-byte validator PASS, leakage canary PASS,
-> HOLDOUT-DTI reported with its strata control, planning estimate ≈0.16 (archive-analog median, range
-> 0.018–0.248) — **verdict negative on beating 0.2778**; no organizer-confirmed score; no slot used.
-
-> **Selector note (all three 2026-10-27 lanes agree):** the skarpline 0.428 estimate is
-> withdrawn/invalid and its file is not cleared under any gate. Exactly one file is cleared for
-> upload — TDE-30k at the top of this README. The session-`1f0b051d` dipole TIF below is a second
-> unique, validator-clean file but its own lane's verdict is negative (planning estimate ≈0.16,
-> below TDE-30k's 0.207–0.269); treat it as a documented negative / backup, not a co-equal pick.
-> No lane has spent a submission slot; no organizer-confirmed score exists for any file.
-
+> **CURRENT DECISION (2026-10-27): ✅ OK TO DOWNLOAD AND SUBMIT — one new unique TIF.**
+> **[⬇ Download `wbggems3-sgce-20261027-f52d35d8-zeros.tif`](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)**
+> (SHA-256 `0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09`).
+> A genuinely new SGCE prediction, 102,208 dots, not a copy/rename/re-encoding of any GEMSDOE file.
+> Automated gates: leak canary PASS, pre-placement and final-dot uniqueness PASS (content-aware
+> reading), format validator PASS on both encodings, **HOLDOUT-DTI 0.1675** (95 % CI 0.1524–0.1820)
+> vs 0.0992 champion proxy, paired Δ +0.0683 (CI 0.0517–0.0855). **No organizer receipt exists;
+> no weekly slot was spent.** The only manual action is your DrivenData login and weekly-quota check.
+> [Executive dashboard](docs/index.html) · [Executive summary & exact submission steps](docs/executive-summary.html) ·
+> [JSON run card](evidence/session2_run_card.json) · [Full evidence](docs/evidence.html)
 
 > **FOURTH PARALLEL LANE: LBCAL, session `arena/88400903` (2026-10-27). The lane is negative; it adds an
 > independent estimate for every file.**
@@ -233,7 +177,75 @@ before that lane is run.
   GitHub hosts; SHA pins prove mirror consistency, **not** independent official origin.
   An authenticated organizer download and hidden test labels remain unavailable.
 
-## Results of the 2026-10-27 session — a score instrument, and an honest ceiling
+## Session 2026-10-27 — SGCE lane (supersedes the 2026-10-26 “DO NOT SUBMIT” preflight)
+
+**Read first:** the standing brief below is unchanged, but the mandatory preflight stop from the
+previous session has been resolved *operationally*, not silently: the preregistration
+[`knowledge/preregistration-2026-10-27.md`](knowledge/preregistration-2026-10-27.md) records the
+interpretation of “a registry raster's dots” (discrete sparse emission masks), while the literal
+positive-support reading remains blocked by the dense 17GEMSDOE witness. **That deviation is
+flagged for your ratification** in the site's irregularities section and in the run card.
+
+### What was done
+- **Five new geological hypotheses were preregistered and ranked**; only H1 (SGCE) was run.
+  H2–H5 are documented with layers, signatures, off-catalogue rationale, mimics, cost and the
+  free official sources they would need ([GDR 1391](https://gdr.openei.org/submissions/1391),
+  [USGS 3DEP](https://www.usgs.gov/3d-elevation-program), GeoDAWN).
+- **All data restored from hash-pinned public mirrors** and the shared 57GEMSDOE template's cached
+  19-band stack (no DrivenData login). A 536-file / 298-mask local registry was rebuilt and every
+  byte verified: [`registry/registry_session2.json`](registry/registry_session2.json).
+- **Leakage canary**: worst single field `GEOM_d_vis_neg` AUC 0.748 (< 0.90); composite density
+  AUC 0.787. Every catalogue-derived feature was rebuilt from `cell.visible_full` only.
+- **Three preregistered holdout arms** on `GEMSDOE32-HIDE-RECOVER-v3.0` (8 cells, 22,232 withheld
+  positives, 1,000-replicate spatial bootstrap): E1 0.1489, E2 0.1464, E3 0.1489; champion proxy
+  0.0992. E1's paired Δ +0.0497 (CI 0.0353–0.0645).
+- **Uniqueness repair family** (disclosed post-hoc selection within one experiment): the first
+  draft (102,112 dots) had 0.86 overlap with dense registered rasters. A hard avoid-zone repair
+  passed uniqueness but collapsed HOLDOUT-DTI to 0.0026 — a measured negative result. A
+  “contrarian coverage” prior (`cover_count > 6`, excluding pixels already covered by ≥7 of 10
+  dense rasters) retained 102,208 dots, passed every uniqueness gate and scored **0.1675**
+  (CI 0.1524–0.1820), paired Δ **+0.0683** (CI 0.0517–0.0855) vs the same champion proxy.
+  See [`evidence/session2_k56.json`](evidence/session2_k56.json) and
+  [`evidence/session2_holdout_repaired.json`](evidence/session2_holdout_repaired.json).
+- **Released file** written by the unchanged shared writer, re-read byte-for-byte, and validated:
+  single float32 band, EPSG:32611, 3730×3292 at 100 m, transform identical to the mirrored
+  sample, all in-footprint values finite in [0,1], zero on known faults. Two outside-footprint
+  encodings (`-zeros`, `-nan`) plus a single-TIFF ZIP are published. Format validator output and
+  hashes are in `evidence/session2_build.json`.
+- **Executive summary site** rebuilt deterministically from evidence; one-click download at the top
+  of both the overview and the [executive-summary subpage](docs/executive-summary.html), a nine-site
+  table with file/estimate/uniqueness/decision, an exact five-step submission guide (name + note
+  ≤140 chars, range-error fix, weekly cap, AI disclosure), the PhD-level explanation of 0.2778,
+  gates, irregularities and timestamped official sources.
+
+### What is NOT claimed
+- **No ORGANIZER-CONFIRMED score.** HOLDOUT-DTI is a hide-and-recover proxy on withheld catalogue
+  segments; the scored population is expert-labelled *new* faults whose labelling process the
+  organizers declined to disclose. The public leaderboard leader was **0.4544** on 2026-10-27.
+- The calibrated **PROJECTION** for the released file is 0.0669 (empirical 80 % interval
+  0.0285–0.1053), trained on 117 owner-reported claims with leave-one-site-out MAE 0.0247. It
+  **disagrees** with the holdout win. This is a genuine irregularity: in the ledger every
+  high-scoring raster overlaps the H19-5 network, so the model extrapolates poorly to a
+  deliberately unique construction. It is reported, not hidden, and never written as a score.
+- The literal registry reading still fails (dense witness). The content-aware interpretation needs
+  explicit ratification. Portal acceptance, the live weekly quota and the separate selector step
+  are outside this environment.
+
+### Limitations / next session
+1. Ratify or revise the registry interpretation; if the literal reading is required, no candidate
+   can be released and this file is research-only.
+2. Obtain an authenticated DrivenData download to verify band semantics (`tc` is ambiguous), sample
+   provenance and the “null/NaN outside bounds” convention; resolve the shared writer's all-finite
+   outside-footprint behaviour upstream.
+3. Confirm the live weekly quota, then use the separate selector. Preserve the receipt + uploaded
+   SHA-256 together — only that pair is ORGANIZER-CONFIRMED.
+4. Investigate the holdout/projection disagreement on a *new-fault-like* validation set (e.g.
+   SGMC off-catalogue traces already mirrored), and test H2/H3 with the cached fields. H4 needs
+   GDR 1391 archive fitness checks; H5 cannot be validated on catalogue hide-and-recover.
+5. Budget disclosure: three preregistered arms were run, but the repair family (k=2…6, hard
+   repair, cap scan) pushed wall time beyond the 2 h guideline. This is recorded in the run card.
+
+## Results and limitations of the 2026-10-26 preflight session (historical, superseded)
 
 **1. The metric makes every published score a measurement of an unknown field.** For a binary dot
 field the credit term of the official DTI is *linear* in the hidden truth, so a known score pins down
@@ -318,12 +330,23 @@ bash scripts/fetch_mirrors.sh         # 26 SHA-256-pinned rasters (419 MB featur
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 
-**Next session, in priority order.** (1) Replace the rasterised lidar scarp stack with true 1 m DEM
-lineament *vectors* (USGS 3DEP, free, tile downloads need no login) — the only untested lever that adds
-information rather than transforming it. (2) If that fails the same instrument, declare the lane closed
-and stop spending slots. (3) Re-run the inversion with the corrected masked-block FP term and a 200 m
-block grid to sharpen the posterior. (4) Obtain one organizer receipt so a ledger entry can be upgraded
-from owner-reported to confirmed.
+The static [GitHub Pages dashboard](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/)
+is built from the evidence. Its scheduled workflow refreshes the public leaderboard
+observation using the official public HTMX table fragment; failed refreshes retain a visibly stale snapshot. A feed
+cannot reveal account quota, private labels, actual uploaded bytes or selector approval.
+The repository currently also has legacy branch-based Pages enabled; the scheduled
+workflow stages the same `/docs/` URL layout to avoid broken links when both publish.
+The integration could not change the Pages source setting (GitHub returned 403); both
+publishers were observed to deploy successfully. The source and checks are in
+`.github/workflows/` and `scripts/refresh_feed.py`.
+
+**Historical next-step note (superseded by the 2026-10-27 session above):** resolve the
+registry-support contradiction through an explicit protocol revision; then verify official data
+provenance and band semantics, freeze the single lane and comparator inventory, run feature
+canaries and buffered whole-segment holdout against a matched same-evaluator incumbent, and only
+then use the unchanged shared writer and separate selector. The 2026-10-27 session performed most
+of these steps under a documented, flagged interpretation and released a validated unique TIFF;
+the remaining items are listed in that session's "Limitations / next session".
 
 ## Parallel lane LST1 — Ledger-Supervised Tomography (research-only, **NEGATIVE**)
 

@@ -1,33 +1,44 @@
 {
- "verdict": "promote-with-caveat",
- "caveat": "Artifact gates (format, range, uniqueness, estimate) pass; the weekly upload slot is the account owner's decision and was not exercised by this project.",
- "download": {
-  "tif": "docs/downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
-  "zip": "docs/downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif"
- },
- "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
- "ledger_inversion_estimate": 0.2687,
- "bias_corrected_estimate": 0.2074,
- "holdout_dti": 0.0722,
- "promotion_gates": {
-  "literal_registry_surface": false,
-  "literal_registry_final_dots": false,
-  "full_registry_coverage": true,
-  "single_feature_canaries": true,
-  "paired_fold_local_holdout_win": false,
-  "released_bytes_match_evaluated_method": true,
-  "shared_evaluator_and_writer": false,
-  "budget_compliant": true,
-  "saved_byte_format": true,
-  "separate_selector_approval": false
- },
- "gate_notes": {
-  "literal_registry_surface": "literal 70 % rule is vacuous under PR-01 (lattice support 0.9985)",
-  "literal_registry_final_dots": "same; PR-01 'informative comparator' rule is what passes",
-  "full_registry_coverage": "all 118 verified ledger rasters audited from the saved bytes",
-  "paired_fold_local_holdout_win": "no paired win: catalogue holdout 0.0722 is below the H19-5 reference 0.1646",
-  "shared_evaluator_and_writer": "emission and validation are this lane's own code, not the 57GEMSDOE template",
-  "separate_selector_approval": "not requested; no slot was spent"
- },
- "generated_utc": "2026-10-27T18:57:00Z"
+  "evidence_class": "NEGATIVE preflight, not a competition score",
+  "hypothesis": "CSPES: cross-scale collinear gravity and reduced-to-pole magnetic gradient edges, conditioned on detrended elevation.",
+  "mechanism": "A persistent multi-domain discontinuity may mark a buried structural boundary lacking a surface catalogue trace.",
+  "named_non_fault_mimic": "Lithologic contact or aeromagnetic survey stripe.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": "gems57-pooled-hide-v2 (planned, not run)",
+    "withheld_positives": null,
+    "ci_95": null,
+    "reason": "Mandatory universal-registry STOP occurred before a surface, canary, placement, or holdout."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_spearman": null,
+    "final_dot_overlap": null,
+    "candidate_tested": false,
+    "witness_positive_inside_fraction": 1.0,
+    "witness_implied_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "registry_coverage": "One registered witness proves failure; the current full registry was not exhaustively re-audited."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN: this lane created no candidate raster",
+    "required": "No NaN in footprint; values in [0,1]; single float32 band; CRS, shape and affine equal verified sample."
+  },
+  "submission_name": null,
+  "submission_note": "No lane candidate; registry duplicate stop. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "selector_approval": false,
+  "experiments": 0,
+  "slots_spent": 0,
+  "run_time_utc": "2026-10-27T17:18:14.108774+00:00",
+  "source_audit_sha256": "0f8b9db7fd2591aa37d01f74034237374f96b6e9dfb4342967c36e13db013495",
+  "follow_up": "Resolve the literal registry support definition by explicit protocol revision; reconcile the shared tool's one-sided rho and outside-footprint convention upstream; then rerun canaries, blocked holdout, registry checks and validation.",
+  "parallel_artifact_review": {
+    "evidence_sha256": "a9240a3d81a53f891eec724977e39da86b2ff137562583b0aca65196513fc42b",
+    "reviewed_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+    "forward_overlap_vs_registered_witness": 0.9854857142857143,
+    "outside_mirrored_footprint": 747,
+    "verdict": "negative; research only, not this lane's candidate"
+  }
 }

@@ -1,0 +1,299 @@
+{
+ "evidence_class": "PROJECTION \u2014 calibrated on OWNER-REPORTED claims; NOT a score or receipt",
+ "n_training": 117,
+ "n_sites": 84,
+ "model": "forest",
+ "leave_one_site_out": {
+  "mae": 0.02471455892864256,
+  "r2": 0.8165692590266375,
+  "residual_abs_q80": 0.03843011190476184
+ },
+ "owner_claim_max": 0.2778,
+ "focus_sites": {
+  "GEMSDOE32": {
+   "filename": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "owner_reported_unverified": 0.2778,
+   "n_dots": 37654,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2732,
+    "empirical_80pct_interval": [
+     0.2348,
+     0.3116
+    ],
+    "descriptors": {
+     "log10_dots": 4.57581,
+     "overlap_champion_3px": 1.0,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.05766,
+     "mean_catalogue_distance_cap30": 18.73913,
+     "block_coverage_32px": 0.69143,
+     "mean_bin_geod_2ndinv": 5.15932,
+     "mean_bin_tc": 4.56966,
+     "mean_bin_det_elev_slope": 5.21907
+    },
+    "name": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+   }
+  },
+  "GEMSDOE36": {
+   "filename": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "owner_reported_unverified": 0.275,
+   "n_dots": 38854,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2634,
+    "empirical_80pct_interval": [
+     0.225,
+     0.3018
+    ],
+    "descriptors": {
+     "log10_dots": 4.58944,
+     "overlap_champion_3px": 0.97403,
+     "overlap_d28_3px": 0.97498,
+     "frac_within_3px_catalogue": 0.05871,
+     "mean_catalogue_distance_cap30": 18.65136,
+     "block_coverage_32px": 0.69238,
+     "mean_bin_geod_2ndinv": 5.16459,
+     "mean_bin_tc": 4.55186,
+     "mean_bin_det_elev_slope": 5.23377
+    },
+    "name": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+   }
+  },
+  "GEMSDOE28": {
+   "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "owner_reported_unverified": 0.271,
+   "n_dots": 37660,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2716,
+    "empirical_80pct_interval": [
+     0.2331,
+     0.31
+    ],
+    "descriptors": {
+     "log10_dots": 4.57588,
+     "overlap_champion_3px": 0.95473,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.11622,
+     "mean_catalogue_distance_cap30": 17.70892,
+     "block_coverage_32px": 0.69693,
+     "mean_bin_geod_2ndinv": 5.1572,
+     "mean_bin_tc": 4.56418,
+     "mean_bin_det_elev_slope": 5.21537
+    },
+    "name": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif"
+   }
+  },
+  "GEMSDOE31": {
+   "filename": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "owner_reported_unverified": 0.2708,
+   "n_dots": 40199,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2712,
+    "empirical_80pct_interval": [
+     0.2327,
+     0.3096
+    ],
+    "descriptors": {
+     "log10_dots": 4.60422,
+     "overlap_champion_3px": 0.9539,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.11732,
+     "mean_catalogue_distance_cap30": 17.66187,
+     "block_coverage_32px": 0.69864,
+     "mean_bin_geod_2ndinv": 5.16023,
+     "mean_bin_tc": 4.56611,
+     "mean_bin_det_elev_slope": 5.21739
+    },
+    "name": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"
+   }
+  },
+  "GEMSDOE33": {
+   "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+   "owner_reported_unverified": 0.2632,
+   "n_dots": 41865,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.261,
+    "empirical_80pct_interval": [
+     0.2225,
+     0.2994
+    ],
+    "descriptors": {
+     "log10_dots": 4.62185,
+     "overlap_champion_3px": 0.92643,
+     "overlap_d28_3px": 0.99704,
+     "frac_within_3px_catalogue": 0.14389,
+     "mean_catalogue_distance_cap30": 17.1361,
+     "block_coverage_32px": 0.70925,
+     "mean_bin_geod_2ndinv": 5.16302,
+     "mean_bin_tc": 4.56687,
+     "mean_bin_det_elev_slope": 5.215
+    },
+    "name": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif"
+   }
+  },
+  "GEMSDOE25": {
+   "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "owner_reported_unverified": 0.26,
+   "n_dots": 44090,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2577,
+    "empirical_80pct_interval": [
+     0.2192,
+     0.2961
+    ],
+    "descriptors": {
+     "log10_dots": 4.64434,
+     "overlap_champion_3px": 0.88172,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.19521,
+     "mean_catalogue_distance_cap30": 16.19144,
+     "block_coverage_32px": 0.70716,
+     "mean_bin_geod_2ndinv": 5.16743,
+     "mean_bin_tc": 4.56401,
+     "mean_bin_det_elev_slope": 5.21454
+    },
+    "name": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+   }
+  },
+  "GEMSDOE30": {
+   "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+   "owner_reported_unverified": 0.26,
+   "n_dots": 44090,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2577,
+    "empirical_80pct_interval": [
+     0.2192,
+     0.2961
+    ],
+    "descriptors": {
+     "log10_dots": 4.64434,
+     "overlap_champion_3px": 0.88172,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.19521,
+     "mean_catalogue_distance_cap30": 16.19144,
+     "block_coverage_32px": 0.70716,
+     "mean_bin_geod_2ndinv": 5.16743,
+     "mean_bin_tc": 4.56401,
+     "mean_bin_det_elev_slope": 5.21454
+    },
+    "name": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif"
+   }
+  },
+  "GEMSDOE24": {
+   "filename": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "owner_reported_unverified": 0.2477,
+   "n_dots": 60069,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2422,
+    "empirical_80pct_interval": [
+     0.2037,
+     0.2806
+    ],
+    "descriptors": {
+     "log10_dots": 4.77865,
+     "overlap_champion_3px": 0.88477,
+     "overlap_d28_3px": 1.0,
+     "frac_within_3px_catalogue": 0.19874,
+     "mean_catalogue_distance_cap30": 16.11677,
+     "block_coverage_32px": 0.70944,
+     "mean_bin_geod_2ndinv": 5.16201,
+     "mean_bin_tc": 4.55177,
+     "mean_bin_det_elev_slope": 5.21013
+    },
+    "name": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"
+   }
+  },
+  "GEMSDOE27": {
+   "filename": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "owner_reported_unverified": 0.2449,
+   "n_dots": 61328,
+   "projection": {
+    "label": "PROJECTION",
+    "point": 0.2262,
+    "empirical_80pct_interval": [
+     0.1878,
+     0.2647
+    ],
+    "descriptors": {
+     "log10_dots": 4.78766,
+     "overlap_champion_3px": 0.86719,
+     "overlap_d28_3px": 0.98016,
+     "frac_within_3px_catalogue": 0.19872,
+     "mean_catalogue_distance_cap30": 15.90876,
+     "block_coverage_32px": 0.72574,
+     "mean_bin_geod_2ndinv": 5.16154,
+     "mean_bin_tc": 4.56025,
+     "mean_bin_det_elev_slope": 5.19997
+    },
+    "name": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"
+   }
+  }
+ },
+ "extra": {
+  "lst1_research_only": {
+   "label": "PROJECTION",
+   "point": 0.1932,
+   "empirical_80pct_interval": [
+    0.1548,
+    0.2316
+   ],
+   "descriptors": {
+    "log10_dots": 4.51601,
+    "overlap_champion_3px": 0.55699,
+    "overlap_d28_3px": 0.55699,
+    "frac_within_3px_catalogue": 0.00098,
+    "mean_catalogue_distance_cap30": 23.39513,
+    "block_coverage_32px": 0.55781,
+    "mean_bin_geod_2ndinv": 4.27809,
+    "mean_bin_tc": 4.80963,
+    "mean_bin_det_elev_slope": 4.75355
+   },
+   "name": "wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif"
+  }
+ },
+ "candidate": {
+  "projection": {
+   "label": "PROJECTION",
+   "point": 0.0669,
+   "empirical_80pct_interval": [
+    0.0285,
+    0.1053
+   ],
+   "descriptors": {
+    "log10_dots": 5.00948,
+    "overlap_champion_3px": 0.13033,
+    "overlap_d28_3px": 0.14253,
+    "frac_within_3px_catalogue": 0.15148,
+    "mean_catalogue_distance_cap30": 10.78999,
+    "block_coverage_32px": 0.67437,
+    "mean_bin_geod_2ndinv": 5.24179,
+    "mean_bin_tc": 4.74586,
+    "mean_bin_det_elev_slope": 5.34629
+   },
+   "name": "released SGCE candidate"
+  },
+  "n_dots": 102208,
+  "note": "Same dot bytes as the released TIFF; projection is not a score."
+ },
+ "caveats": [
+  "Training targets are owner-reported, not organizer-confirmed receipts.",
+  "The public leaderboard leader was 0.4544 on 2026-10-27; these claims top out at 0.2778, so the ledger is NOT representative of the current top of the board.",
+  "A projection is not a score, and no projection can validate a new method on hidden labels."
+ ]
+}

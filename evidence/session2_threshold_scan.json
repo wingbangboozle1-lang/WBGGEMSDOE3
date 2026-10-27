@@ -1,0 +1,50 @@
+{
+ "4": {
+  "n": 99488,
+  "max_nonlat": 0.6229997587648761,
+  "worst": {
+   "path": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "obs": 0.6229997587648761,
+   "nul": 0.5544387262785462
+  },
+  "max_lat_excess": 0.00026133805082018124,
+  "worst_lat": {
+   "path": "data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "obs": 0.9989948536506915,
+   "nul": 0.9987335155998713
+  },
+  "passed": true
+ },
+ "3": {
+  "n": 94441,
+  "max_nonlat": 0.5352336379326775,
+  "worst": {
+   "path": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "obs": 0.5352336379326775,
+   "nul": 0.5512965766986796
+  },
+  "max_lat_excess": 0.00046589934456431337,
+  "worst_lat": {
+   "path": "data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "obs": 0.9991105557967408,
+   "nul": 0.9986446564521765
+  },
+  "passed": true
+ },
+ "2": {
+  "n": 86701,
+  "max_nonlat": 0.4548044428553304,
+  "worst": {
+   "path": "data/ledger/15GEMSDOE__gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+   "obs": 0.4548044428553304,
+   "nul": 0.457872458218475
+  },
+  "max_lat_excess": 0.0006574318635310661,
+  "worst_lat": {
+   "path": "data/raw/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "obs": 0.9993310342441264,
+   "nul": 0.9986736023805953
+  },
+  "passed": true
+ }
+}

@@ -95,12 +95,14 @@ def test_local_html_links_resolve():
 
 
 def test_dossier_is_reproducible():
-    """The published dossier must be a pure function of evidence/*.json.
+    """The published pages must be a pure function of the recorded evidence.
 
-    The earlier generator (scripts/build_site.py) is retained for the LST1 lane but no longer
-    owns these pages; scripts/build_dossier.py does, and regenerating must be a no-op.
+    Since 2026-10-27 the active generator is scripts/session2_site.py (reached through
+    scripts/build_site.py); regenerating must be a byte-for-byte no-op.
     """
-    from build_dossier import pages
-    published = pages()
-    for name, text in published.items():
-        assert (ROOT / 'docs' / name).read_text() == text, name
+    from build_site import main
+    names = ['index.html', 'executive-summary.html', 'research.html', 'evidence.html']
+    before = {n: (ROOT / 'docs' / n).read_bytes() for n in names}
+    main()
+    assert all((ROOT / 'docs' / n).read_bytes() == before[n] for n in names)
+

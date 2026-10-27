@@ -1,0 +1,126 @@
+{
+ "5": {
+  "audit": {
+   "n": 102002,
+   "max_nonlat": 0.6740750181368993,
+   "worst": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "max_lat_excess": 0.0002450932334659983,
+   "passed": true
+  },
+  "holdout": {
+   "dti": 0.1201663431786861,
+   "ci95": [
+    0.1072040622334026,
+    0.13168111997667414
+   ],
+   "n_withheld": 22232,
+   "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "cells": [
+    {
+     "cell": "draw20_fold0",
+     "n": 23807
+    },
+    {
+     "cell": "draw20_fold1",
+     "n": 26973
+    },
+    {
+     "cell": "draw20_fold2",
+     "n": 26885
+    },
+    {
+     "cell": "draw20_fold3",
+     "n": 21848
+    },
+    {
+     "cell": "draw21_fold0",
+     "n": 24202
+    },
+    {
+     "cell": "draw21_fold1",
+     "n": 26438
+    },
+    {
+     "cell": "draw21_fold2",
+     "n": 26685
+    },
+    {
+     "cell": "draw21_fold3",
+     "n": 21887
+    }
+   ]
+  },
+  "champion": 0.09920232315251679,
+  "paired": {
+   "delta": 0.020964020026169317,
+   "ci95": [
+    0.0029743320072516087,
+    0.039029564298971454
+   ],
+   "p_delta_le_0": 0.0105
+  },
+  "promotion": true
+ },
+ "6": {
+  "audit": {
+   "n": 102208,
+   "max_nonlat": 0.6903079993738259,
+   "worst": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "max_lat_excess": 0,
+   "passed": true
+  },
+  "holdout": {
+   "dti": 0.1674940880255947,
+   "ci95": [
+    0.15244286563046153,
+    0.18203143779241124
+   ],
+   "n_withheld": 22232,
+   "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "cells": [
+    {
+     "cell": "draw20_fold0",
+     "n": 23156
+    },
+    {
+     "cell": "draw20_fold1",
+     "n": 26350
+    },
+    {
+     "cell": "draw20_fold2",
+     "n": 27576
+    },
+    {
+     "cell": "draw20_fold3",
+     "n": 22658
+    },
+    {
+     "cell": "draw21_fold0",
+     "n": 23375
+    },
+    {
+     "cell": "draw21_fold1",
+     "n": 25969
+    },
+    {
+     "cell": "draw21_fold2",
+     "n": 27062
+    },
+    {
+     "cell": "draw21_fold3",
+     "n": 22906
+    }
+   ]
+  },
+  "champion": 0.09920232315251679,
+  "paired": {
+   "delta": 0.0682917648730779,
+   "ci95": [
+    0.05169225240463769,
+    0.08548652407124893
+   ],
+   "p_delta_le_0": 0.0
+  },
+  "promotion": true
+ }
+}

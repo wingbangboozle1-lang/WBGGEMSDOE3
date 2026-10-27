@@ -1,9 +1,6 @@
 # LST1 archive — research only, DO NOT SUBMIT
 
-This historical lane does **not** provide a unique or cleared competition file.
-The authoritative current decision is the [negative run card](evidence/run_card.json),
-not the superseded LST1 readiness assertions. No candidate was generated and no slot
-was used during the current audit.
+> This file documents one parallel lane. The repository-wide README (project prompt, current decision, protocol) is [README.md](README.md). The 2026-10-26 DO-NOT-SUBMIT preflight was consistent with this lane's NEGATIVE verdict; the **2026-10-27 SGCE session later released a different, validated unique TIF** under a documented registry interpretation. This LST1 file remains research-only.
 
 ## What was independently checked
 

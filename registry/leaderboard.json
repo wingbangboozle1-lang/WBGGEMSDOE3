@@ -2,9 +2,8 @@
   "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt or candidate score",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "best_public_dti": "0.4544",
-  "last_success_utc": "2026-10-27T17:37:47+00:00",
-  "last_attempt_utc": "2026-10-27T17:37:47+00:00",
+  "last_success_utc": "2026-10-27T17:25:00+00:00",
+  "last_attempt_utc": "2026-10-27T17:25:00+00:00",
   "last_attempt_error": null,
-  "scope": "Public top-ranked team only; hidden private scores and any candidate receipt are unavailable.",
-  "observation_method": "Official public leaderboard fragment read through research page viewer; timestamp approximate to the minute"
+  "scope": "Public top-ranked team only (xiaofanhu, 32 submissions) observed 2026-10-27 via the official public leaderboard page; hidden private scores and any candidate receipt are unavailable."
 }
