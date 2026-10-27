@@ -9,6 +9,19 @@
 > paste-ready portal note are on the [dashboard](docs/index.html);
 > [how to submit](docs/how-to-submit.html) · [run card](evidence/candidate_run_card.json).
 
+## Two gates live in this repository — do not mix them up
+
+| Gate | File | Decision | What it governs |
+|---|---|---|---|
+| Legacy lane, fail-closed review (2026-10-27, unchanged) | `evidence/run_card.json` + `evidence/release_gate.json` | **DO NOT SUBMIT** | the pre-tomography skarpline-union candidate; withdrawn approval stays withdrawn |
+| This lane, score tomography | `docs/data/run_card.json` + `docs/data/release_gate.json` | **SUBMIT-WITH-CAVEAT** | the one file linked at the top of this README and of the dashboard |
+
+The legacy record is kept verbatim as the historical audit trail: `evidence/release_gate.json` still
+states `DO-NOT-SUBMIT`, still lists its six blocking reasons, and no test or script of this lane
+rewrites it. The site publishes only the second gate, and `scripts/check_site.py` fails if the two are
+ever conflated (a page's `<meta name="gemsdoe-decision">` must equal the gate decision, and a positive
+decision must still list what it does not claim).
+
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).

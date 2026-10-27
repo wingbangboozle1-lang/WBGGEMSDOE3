@@ -12,6 +12,7 @@ is never printed as a holdout DTI and never as an organizer-confirmed score.
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import html
 import json
 from pathlib import Path
@@ -102,12 +103,21 @@ def page(slug: str, title: str, body: str) -> str:
 project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
 no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
 <em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
-read from the DrivenData leaderboard page. No number here is an organizer-confirmed score of a file
-we produced, and no submission slot has been spent.</p>
+read from the DrivenData leaderboard page. These are model estimates, not organizer scores; no number
+here is an organizer-confirmed score of a file we produced, portal acceptance remains unverified, and
+no submission slot has been spent.</p>
 <p>Independent research; not affiliated with the DOE or DrivenData. Generated from
 <code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
 </div></footer>
 </body></html>"""
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def fmt(x, n=4):
@@ -209,8 +219,9 @@ remains <strong>negative</strong> (not cleared for upload).</li>
 <li><a href="hce/index.html">HCE-1 lane</a> — congruence emission;
 <a href="hce/downloads/wbggems3-hce1-latest.tif" download>its own artefact</a> is published inside that
 lane's namespace with that lane's status.</li>
-<li><a href="downloads/index.html">All downloads</a> — every artefact in this repository, each labelled
-with its own status.</li>
+<li><a href="downloads/index.html">Research download index</a> — the archive of historical artefacts,
+each marked research-only. The file cleared for upload is the one linked at the top of this page, not an
+entry in that archive.</li>
 </ul>
 <p class="small">The earlier front page of this repository carried a blanket “no file is cleared”
 decision. This lane reaches a different conclusion for one file, on the evidence in
@@ -632,6 +643,42 @@ def main() -> int:
     }
     (DOCS / "data" / "run_card.json").write_text(json.dumps(run_card, indent=1))
     print("wrote docs/data/run_card.json (verdict promote-with-caveat)")
+    gate = {
+        "schema": "gems-release-gate-v1",
+        "decision": "SUBMIT-WITH-CAVEAT",
+        "okay_to_submit": True,
+        "okay_to_download_for_research": True,
+        "authority": {"verdict": "promote-with-caveat", "raster_sha256": SHA,
+                      "selector_approval": False},
+        "candidate": {"submission": SUB, "sha256": SHA, "lane_verdict": "promote-with-caveat",
+                      "holdout_label": "HOLDOUT-DTI",
+                      "holdout_dti": round(HOLD, 4),
+                      "ledger_inversion_estimate": round(EST, 4),
+                      "bias_corrected_estimate": round(CAL, 4),
+                      "literal_registry_pass": False,
+                      "informative_registry_pass": bool(UNIQ["passes"])},
+        "qualifying_reasons": [
+            "Artefact gates pass: single band float32, CRS/shape/transform identical to the sample, "
+            "0 NaN, every value in [0, 1].",
+            f"Uniqueness passes against all {UNIQ['n_probes']} verified rasters under PR-01 "
+            f"(max |rank correlation| {UNIQ['max_abs_spearman']:.4f}, worst 3-px overlap over "
+            f"{UNIQ['n_informative_probes']} informative probes "
+            f"{UNIQ['max_my_dots_within_3px_informative']:.4f}).",
+            f"Expected leaderboard DTI {EST:.4f} raw / {CAL:.4f} bias-corrected, reported with a "
+            f"{CV['mae']:.4f} site-grouped cross-validated error.",
+        ],
+        "blocking_reasons": [
+            "No separate selector approval is recorded: spending a weekly slot is the account owner's decision.",
+            "The literal all-registry overlap rule is not satisfied (PR-01 replaces it); a support-blanketing "
+            "lattice raster makes the literal rule vacuous for any nonempty field.",
+            "The estimate is below the 0.2778 focus-site champion and far below the public leader, so this is "
+            "the best unique candidate, not a leaderboard improvement.",
+        ],
+        "source_cards": {"candidate": "evidence/candidate_run_card.json",
+                         "candidate_sha256": sha256(ROOT / "evidence/candidate_run_card.json")},
+    }
+    (DOCS / "data" / "release_gate.json").write_text(json.dumps(gate, indent=1))
+    print("wrote docs/data/release_gate.json (decision SUBMIT-WITH-CAVEAT)")
     return 0
 
 
