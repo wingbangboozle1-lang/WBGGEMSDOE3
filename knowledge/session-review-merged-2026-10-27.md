@@ -37,6 +37,9 @@ this audit as a waiver, a score estimate, or selector approval.
   traces, so its small proxy change cannot establish or rule out an effect on the
   unobserved competition score. Surveyed eight local TIFFs; none had *finite*
   values outside [0,1], but the portal error and its rejected bytes are unverified.
+- The official problem specifies a GeoTIFF. ZIP acceptance appears in a historical
+  peer-preserved portal description but was not independently verified; the current
+  guide no longer presents it as a confirmed upload option.
 - Rechecked official public information through the page viewer and refreshed all
   nine GitHub HEAD identities. A HEAD change is a freshness warning, not proof
   that a file or score changed. The public leaderboard leader was 0.4544 on
@@ -50,9 +53,9 @@ this audit as a waiver, a score estimate, or selector approval.
 - Rebuilt the site twice sequentially; the recursive docs file digest was identical.
   `scripts/check_site.py` passed required pages, local links and negative status.
   The local HTTP preview returned 200; visual browser rendering was not inspected.
-- Full sequential `.venv/bin/python -m pytest -q`: **108 passed**, with 53
+- Full sequential `.venv/bin/python -m pytest -q`: **109 passed**, with 53
   rasterio/Affine pending-deprecation warnings. A clean archive without cached
-  data also passed **104 tests, 4 skipped**, and reproduced the committed site.
+  data also passed **105 tests, 4 skipped**, and reproduced the committed site.
   `git diff --check` passed. The pinned H6-1 numbers were not recomputed. CI and GitHub Pages deployment
   must be checked after merge, not inferred from local tests.
 

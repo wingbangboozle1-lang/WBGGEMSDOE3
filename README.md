@@ -223,7 +223,7 @@ run card is [evidence/run_card.json](evidence/run_card.json).
 
 ## Peer-preserved historical owner brief
 
-The following collapsible record is copied from the [pinned GEMSDOE36 historical owner brief](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7576942352382c557f074bae3f2c6eb72750fa44/knowledge/owner_brief_2026-10-25.md) (SHA-256 `b7baacd65813672ca127efb470f0e2f1043fd26a4954466e747765c59ed846c3`). It is a peer's preserved text with normalized links, not an independently verified transcript of this conversation. Historical scores, file recommendations and claims about data placement are context, **not current facts or submission approval**. The current instructions and negative decision above take precedence.
+The following collapsible record is copied from the [pinned GEMSDOE36 historical owner brief](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7576942352382c557f074bae3f2c6eb72750fa44/knowledge/owner_brief_2026-10-25.md) (SHA-256 `b7baacd65813672ca127efb470f0e2f1043fd26a4954466e747765c59ed846c3`). It is a peer's preserved text with normalized links, not an independently verified transcript of this conversation. Historical scores, file recommendations, portal text (including ZIP acceptance), and claims about data placement are context, **not independently verified current facts or submission approval**. The current instructions and negative decision above take precedence.
 
 <details><summary>Show peer-preserved historical brief</summary>
 
