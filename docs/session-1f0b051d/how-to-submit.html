@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit — session 2026-10-27 candidate</title><style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0f1420;color:#e8ecf3;line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 18px 64px}
+h1{font-size:1.7rem;margin:.2em 0} h2{margin-top:2em;border-bottom:1px solid #2a3550;padding-bottom:.3em}
+a{color:#7db4ff} code{background:#1a2236;padding:.1em .35em;border-radius:4px;font-size:.86em;word-break:break-all}
+table{border-collapse:collapse;width:100%;font-size:.88rem;margin:1em 0}
+th,td{border:1px solid #2a3550;padding:.45em .55em;text-align:left;vertical-align:top}
+th{background:#16203a} tr:nth-child(even) td{background:#121a2e}
+.banner{border-radius:12px;padding:18px 20px;margin:18px 0}
+.ok{background:#12351f;border:1px solid #2f9e5f}.warn{background:#3a2c10;border:1px solid #d9a441}
+.no{background:#3a1420;border:1px solid #d94a5f}
+.btn{display:inline-block;background:#2f9e5f;color:#fff!important;padding:.7em 1.2em;border-radius:8px;text-decoration:none;font-weight:700;margin:.3em .4em .3em 0}
+.btn.alt{background:#2456a6}
+.tag{display:inline-block;padding:.05em .5em;border-radius:20px;font-size:.78em;font-weight:700}
+.yes{background:#2f9e5f;color:#fff}.noo{background:#d94a5f;color:#fff}.mid{background:#d9a441;color:#111}
+small{color:#a9b4c8}.mono{font-family:ui-monospace,monospace;font-size:.85em}
+img{max-width:100%;border:1px solid #2a3550;border-radius:8px}
+</style></head><body><div class="wrap">
+<p><small><a href="index.html">← Executive summary</a></small></p>
+<h1>Exactly how to submit this file</h1>
+<div class="banner warn"><p><b>Read first:</b> verdict is <b>negative</b> on beating 0.2778 (see executive summary §2/§5).
+This page exists so the separate selector step can act without ambiguity <i>if</i> it chooses this unique-lane entry.
+No slot has been used.</p></div>
+<ol>
+<li><b>Download</b> <a href="downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif">wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif</a> (829 KB) or <a href="downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.zip">wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.zip</a>.</li>
+<li><b>Verify</b> SHA-256 equals <code>e85356210200a1342445ad6524bffd3f5d41b65ff8ab7fd30d35ceeabb8fcf54</code> (e.g. <code>sha256sum wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif</code>). Do not submit any other bytes under this name.</li>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition</a>, sign in, open <b>New submission</b>. Confirm your remaining weekly quota (rules allow up to 3/week; one final selection covers both prize rounds — <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a>).</li>
+<li><b>File to submit:</b> select the downloaded <code>.tif</code> (or the <code>.zip</code> — it contains exactly that one TIF).</li>
+<li><b>Note (paste exactly, 123 chars):</b><br><code>WBG3 dipole-hybrid: lidar scarp-dipole x segment coherence, piedmont-gated; 40% corridor + 60% novel; d2.83 dotted, B2 trim</code></li>
+<li>Click submit and <b>save the receipt/screenshot with the resulting score</b> — that is the only way any number
+for this file becomes ORGANIZER-CONFIRMED; add it to <code>evidence/</code> with the date.</li>
+</ol>
+<h2>Why the earlier “[0, 1]” portal error will not recur with this file</h2>
+<p>The portal validates the submitted array's value range. This file was written with the pinned shared writer in
+<code>outside="zero"</code> mode and re-audited from its saved bytes: single float32 band, shape/CRS/transform
+identical to the pinned sample, <b>all 12,279,160 cells finite</b>, min 0.0 / max 1.0, values only {0.0, 1.0},
+0.0 outside the scored footprint, no nodata sentinel. NaN-outside, −9999-style sentinels and rescaled-byte rasters
+are the usual causes of that portal message; none is present here.</p>
+<h2>What to expect</h2>
+<p>Planning estimate ≈ <b>0.16</b> initial-round public-split DTI (archive-analog median,
+range 0.018–0.248) — below the duplicate family's owner-reported
+0.2778. The strategic value is uniqueness plus final-round expert review of its 24,108
+novel off-network dots. If the goal is only the highest initial-round public number, the evidence says that
+requires the (non-unique) H19-5 family — which this project must not resubmit as new.</p>
+</div></body></html>

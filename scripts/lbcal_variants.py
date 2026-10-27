@@ -69,7 +69,7 @@ def main() -> int:
     eligible = {k: v for k, v in out.items() if v["pi_max"] is not None and v["pi_max"] <= 0.2}
     best = min(eligible, key=lambda k: eligible[k]["family_cv"]["rmse"])
     res = dict(evidence_class="ESTIMATE model-selection record (OWNER-REPORTED scores as targets)",
-               keep_cells=[int(i) for i in np.flatnonzero(keep)],
+               keep_cells_note=f"{int(keep.sum())} non-empty joint cells (n_px>0) used; list omitted",
                unbounded_reference=cv["cv"][cv["selected"]["key"]]["family_cv"],
                selection_rule="lowest leave-one-family-out RMSE among pi_max <= 0.2",
                selected=best, variants=out, names=names)

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT">
+<title>LBCAL · evidence · WBGGEMSDOE3</title><style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
+--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+header b{font-size:17px}
+header a{color:var(--mut);text-decoration:none;font-size:14px}
+header a:hover,header a.on{color:var(--fg)}
+main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
+h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:17px;margin:22px 0 8px}
+p,li{color:#d7dee6}
+code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
+.small{font-size:13.5px;color:var(--mut)}
+.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
+.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
+.tag.no{background:var(--bad);color:#fff}
+.tag.warn{background:var(--warn);color:#1a1200}
+.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
+.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi .v{font-size:23px;font-weight:700}
+.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+tr.me td{background:#0f2418;font-weight:600}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
+a{color:var(--accent)}
+ul{padding-left:22px}
+</style></head>
+<body><header><b>WBGGEMSDOE3 · LBCAL lane</b><a href="../index.html">← Main dashboard (repository decision)</a><a href="index.html" class="">LBCAL lane</a><a href="executive-summary.html" class="">Nine sites</a><a href="how-to-submit.html" class="">How to submit</a><a href="research.html" class="">Science</a><a href="evidence.html" class="on">Evidence</a><a href="sources.html" class="">Data &amp; sources</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><h1>Evidence (LBCAL lane)</h1><div class="hero no"><span class="tag no">LBCAL FILE: NOT OK TO SUBMIT</span>
+<p>Every page in this site is rendered from these files. The cards record negative results as deliverables.</p></div>
+<ul><li><a href="data/lbcal_lane_decision.json">LBCAL lane decision card</a></li><li><a href="data/registry_delta_main.json">Uniqueness vs rasters merged later</a></li><li><a href="data/lbcal_run_card.json">LBCAL run card</a></li><li><a href="data/lbcal_cv_summary.json">LBCAL CV summary</a></li><li><a href="data/lbcal_variants.json">Bounded variants</a></li><li><a href="data/lbcal_gate_concordance.json">Holdout-vs-leaderboard concordance</a></li><li><a href="data/focus_sites_2026-10-27.json">Nine focus sites</a></li><li><a href="data/candidates_2026-10-27.json">Candidates re-estimated</a></li><li><a href="data/leaderboard_snapshot_2026-10-27T1905Z.json">Leaderboard snapshot</a></li></ul>
+<h2>Reproduce (about 25 minutes on 2 CPUs)</h2>
+<pre><code>bash scripts/restore_shared_data.sh        # shared template + 19-band features (SHA-pinned)
+python scripts/restore_x24_external.py      # LiDAR scarp / SGMC / TIGER layers (SHA-pinned)
+python scripts/fetch_ledger_rasters.py      # 118 scored ledger rasters (SHA-pinned)
+python scripts/fetch_addendum_rasters.py    # 14 addendum rasters (commit + SHA pinned)
+python scripts/lbcal_build_dataset.py && python scripts/lbcal_fit.py && python scripts/lbcal_variants.py
+python scripts/lbcal_design.py && python scripts/lbcal_gate_concordance.py && python scripts/lbcal_postcheck.py
+python scripts/lbcal_reconcile.py && python scripts/lbcal_map_png.py && python scripts/build_site_lbcal.py</code></pre>
+<h2>Irregularities found this session</h2><ul>
+<li>At session start the README said SUBMIT (skarpline, ESTIMATE 0.428), while <code>evidence/run_card.json</code> said NEGATIVE and PR #24 said DO NOT SUBMIT. Parallel PRs #24–#30 merged meanwhile; they withdraw skarpline and clear TDE-30k with a caveat. LBCAL's estimate for TDE-30k is 0.051.</li>
+<li>The owner's holdout gate does not track the leaderboard (ρ 0.09, n=119).</li>
+<li>Band 6 <code>tc</code> was described in earlier code as a "magnetic tilt / total curvature". Its values (3–89) and the official page's figure point to radiometric total counts.</li>
+<li>Two archived "unique" TIFFs have the wrong grid shape (1024×1024 and 1200×1600) and could never have been valid submissions.</li>
+<li><code>wbg3-h3pack</code> sits in the WBGGEMSDOE2 repository, and <code>wbg2-offcatalogue-density</code> sits in WBGGEMSDOE1: the site attribution does not match.</li>
+<li>Submission volume across accounts is inconsistent with the per-entity weekly cap (see the executive summary).</li></ul></main>
+<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
+Every number is labelled OWNER-REPORTED (scores the repository owner copied from the leaderboard), HOLDOUT-DTI,
+REGISTRY-MEASUREMENT or ESTIMATE (a model output, not an organizer score). No ORGANIZER-CONFIRMED receipt exists for
+any file here. A predicted fault is not a geothermal vent. Generated by <code>scripts/build_executive.py</code> from
+<code>docs/lbcal/data/*.json</code> (lane scope; the repository decision is on the <a href="../index.html">main dashboard</a>).</footer>
+</body></html>

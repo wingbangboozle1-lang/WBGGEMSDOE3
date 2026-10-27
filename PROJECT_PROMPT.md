@@ -163,22 +163,24 @@ for the next session.
 ## Session reading order (maintained by every lane)
 
 1. `PROJECT_PROMPT.md` (this verbatim brief) — the requirements.
-2. `README.md` — the single repository-wide decision (top block, rendered from
-   `evidence/decision.json` by `scripts/update_readme_decision.py`) and each lane's status.
-3. `AGENTS.md`; `knowledge/preregistration-2026-10-27-lbcal.md` (LBCAL lane + five ranked
-   hypotheses); `knowledge/lbcal-findings-2026-10-27.md` (science, gate audit, irregularities);
-   `knowledge/preregistration-2026-10-27-hce.md`; `knowledge/review-and-irregularities-2026-10-26.md`.
-4. `evidence/decision.json` — the repository decision card; lane cards
-   `evidence/lbcal_run_card.json`, `evidence/hce_run_card.json`, `evidence/cspes_run_card.json`,
-   `evidence/lst1_run_card.json`, `evidence/gemsdoe_run_card.json` (skarpline, withdrawn).
-   `evidence/run_card.json` is the hash-bound legacy preflight card (kept byte-stable for tests).
-5. `docs/index.html` (decision + gate table), `docs/executive-summary.html` (nine sites, download
-   table, leaderboard, compliance note), `docs/how-to-submit.html`, `docs/research.html`, `docs/sources.html`.
+2. `README.md` — current repository-wide decision and each lane's status.
+3. `AGENTS.md`, `knowledge/preregistration-2026-10-27-hce.md` (HCE-1 lane +
+   four ranked hypotheses), `knowledge/preregistration-2026-10-26.md` and
+   `knowledge/review-and-irregularities-2026-10-26.md` (IR-01…IR-08).
+4. `evidence/hce_run_card.json` — the HCE-1 run card; also read
+   `evidence/gemsdoe_run_card.json` and `evidence/cspes_run_card.json` for the
+   other parallel lanes. Never merge their verdicts without checking the bytes.
+5. `docs/hce/index.html` — HCE-1 executive summary and one-click download;
+   `docs/index.html` — repository-wide executive summary.
+6. LBCAL lane (`arena/88400903`): `knowledge/preregistration-2026-10-27-lbcal.md` (five ranked
+   hypotheses), `knowledge/lbcal-findings-2026-10-27.md` (science, gate audit, irregularities),
+   `evidence/lbcal_lane_decision.json`, `evidence/lbcal_run_card.json`, `docs/lbcal/index.html`.
 
 ## Feed (newest first)
 
-- **2026-10-27 ~20:30 UTC, arena/88400903 (LBCAL).** Decision reconciled to **DO NOT SUBMIT**.
-  LBCAL density fitted to 119 owner-reported scores (family-CV Spearman 0.91, RMSE 0.036 vs 0.086
-  constant). The design (71,416 dots) has a cross-fit ESTIMATE of 0.50 but fails the holdout gate (0.0631 < 0.1292)
-  and like-for-like uniqueness. Holdout gate vs leaderboard: Spearman 0.09 (n=119). The skarpline SUBMIT banner
-  was withdrawn (LBCAL ESTIMATE 0.074). Public LB at 19:05 UTC: #1 0.4544, #5 0.3566. 0 slots used.
+- **2026-10-27 ~21:15 UTC, arena/88400903 (LBCAL lane, negative).** A hidden-fault density fitted to
+  119 owner-reported scores (family-grouped CV Spearman 0.91, RMSE 0.036 vs 0.086 constant). The design
+  (71,416 dots) has a cross-fit ESTIMATE of 0.50 but fails the holdout gate (0.0631 < 0.1292) and like-for-like
+  uniqueness. Holdout gate vs leaderboard: Spearman 0.09 (n=119). Independent LBCAL ESTIMATEs: skarpline 0.073,
+  TDE-30k 0.051 (that lane's estimate is 0.207-0.269), dipole hybrid 0.062. Public LB at 19:05 UTC: #1 0.4544, #5 0.3566.
+  The repository decision (main dashboard) is unchanged by this lane. 0 slots used.

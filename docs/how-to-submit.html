@@ -1,73 +1,122 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>How to submit · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
---ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-header b{font-size:17px}
-header a{color:var(--mut);text-decoration:none;font-size:14px}
-header a:hover,header a.on{color:var(--fg)}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
-h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-h3{font-size:17px;margin:22px 0 8px}
-p,li{color:#d7dee6}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
-.small{font-size:13.5px;color:var(--mut)}
-.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
-.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
-.tag.no{background:var(--bad);color:#fff}
-.tag.warn{background:var(--warn);color:#1a1200}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
-.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .v{font-size:23px;font-weight:700}
-.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-tr.me td{background:#0f2418;font-weight:600}
-.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
-footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
-a{color:var(--accent)}
-ul{padding-left:22px}
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
+<title>How to submit · WB-GEMS-DOE-3</title>
+<style>
+:root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{background:#0d1b1e;color:#fff}header.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.top a{color:#cfe3e8;text-decoration:none;margin-right:14px;font-size:14px}header.top a.active{color:#fff;font-weight:600}
+.brand{font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:34px;line-height:1.15;margin:26px 0 10px}h2{font-size:24px;margin:34px 0 10px}h3{font-size:18px;margin:18px 0 8px}
+p.lead{font-size:18px;color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.verdict{border-left:6px solid var(--ok)}.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
+.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:700;font-size:17px}
+.btn.sec{background:#fff;color:var(--accent);border:1px solid var(--line);font-weight:600;font-size:15px;padding:11px 16px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{background:#eef3f4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+tr.best td{background:#eefaf3}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.yes{background:#e3f6ec;color:var(--ok)}.no{background:#fbe8eb;color:var(--bad)}.mid{background:#fdf0e0;color:var(--warn)}
+.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:6px 14px;font-size:14px}
+.kv div:nth-child(odd){color:var(--muted)}
+footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
+ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
+.scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="how-to-submit.html" class="on">How to submit</a><a href="research.html" class="">Science</a><a href="evidence.html" class="">Evidence</a><a href="sources.html" class="">Data &amp; sources</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><div class="hero no"><span class="tag no">NOT OK TO SUBMIT</span><h1>Exactly how to submit</h1>
-<p>Today <b>no file is cleared</b>. Follow the steps below only for a file whose run card says <code>verdict: promote</code>
-<b>and</b> that the separate selector has approved within the weekly cap of 3 per entity
-(<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules §3.2</a>).</p></div>
-<h2>Steps</h2>
-<ol><li>Download the cleared <code>.tif</code> from the Start page. Do not open it and re-save it in GIS software, because that can add NaN or nodata values.</li>
-<li>Check it locally: <code>python scripts/verify_submission.py &lt;file.tif&gt;</code>. The template validator checks a single float32 band, 3730×3292, EPSG:32611, the sample transform, finite values in [0,1] everywhere, zero outside the footprint and zero on the catalogue.</li>
-<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Submissions</a>, choose the <code>.tif</code> (or its one-file <code>.zip</code>) and upload it unchanged.</li>
-<li>Use the run card's <code>submission_name</code> as the unique name and its <code>note</code> (≤140 characters) as the note.</li>
-<li>Record the receipt (timestamp and public score) as <b>ORGANIZER-CONFIRMED</b> in <code>registry/leaderboard.json</code>.</li></ol>
-<h2>The current research artefact (not cleared)</h2>
-<table><tr><th>Field</th><th>Value</th></tr>
-<tr><td>File</td><td><code>wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif</code></td></tr>
-<tr><td>Unique name</td><td><code>wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT</code></td></tr>
-<tr><td>Note (91 chars)</td><td><code>LBCAL leaderboard-calibrated hidden-fault density; Dinkelbach dots; est 0.501 holdout 0.063</code></td></tr>
-<tr><td>SHA-256</td><td><code>c645e47ef8733680b3ee9b646507b10ac07aa8c076526da65ad889371351d43d</code></td></tr>
-<tr><td>Verdict</td><td class="no">NEGATIVE: failed uniqueness(like-for-like), HOLDOUT-DTI &gt; 0.1292</td></tr></table>
-<h2>Fixing "Predicted values must be in range [0, 1]"</h2>
-<p>The portal rejects any pixel outside [0,1]. Three things commonly put pixels there: NaN pixels inside the scored
-footprint, a nodata sentinel such as −3.4e38 or −9999 that is read back as a value, and float rounding above 1.0 in
-probability maps. This repository's writer (template <code>submission_writer.write_submission</code>) refuses to repair
-anything silently. It writes finite float32 values only (1.0 at dots, 0.0 everywhere else, including outside the
-footprint), sets no nodata tag, and validates the saved bytes. Files produced this way cannot trigger the error.
-To fix a third-party file, replace non-finite values with 0, clip to [0,1], and remove the nodata tag before uploading.</p></main>
-<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
-Every number is labelled OWNER-REPORTED (scores the repository owner copied from the leaderboard), HOLDOUT-DTI,
-REGISTRY-MEASUREMENT or ESTIMATE (a model output, not an organizer score). No ORGANIZER-CONFIRMED receipt exists for
-any file here. A predicted fault is not a geothermal vent. Generated by <code>scripts/build_executive.py</code> from
-<code>docs/data/*.json</code>.</footer>
+<body>
+<header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
+<nav><a class="" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="active" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
+<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
+</div></div>
+<main class="wrap">
+<div style="background:#3d2e04;color:#fff6e0;border-bottom:2px solid #d29922;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffd76a">INDEPENDENT AUDIT · 2026-10-27 (RFL lane)</strong><span style="flex:1 1 300px">Skarpline is <b>not cleared</b> under either gate system (full-registry uniqueness: 73.5% / 72.4% within 3&nbsp;px vs two registered rasters). This audit also re-checked the cleared TDE-30k file on the rebuilt 120-mask registry: <b>PASS</b> (max 63.1% within 3&nbsp;px). Per-site tables for GEMSDOE24–36, labelled estimates and exact submission steps are in the audit summary.</span><a style="background:#d29922;color:#1a1200;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="rfl/index.html">Audit executive summary ↗</a><a style="color:#ffe9b0;border:1px solid #9e7c2c;padding:7px 12px;border-radius:6px;text-decoration:none" href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>Cleared TIF (TDE-30k) ↓</a></div></div>
+<div style="background:#0d2a3d;color:#e6f4ff;border-bottom:2px solid #58a6ff;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#9fd0ff">INDEPENDENT ESTIMATE · 2026-10-27 (LBCAL lane)</strong><span style="flex:1 1 300px">A leaderboard-calibrated density model (family-grouped CV &rho; 0.91 on 119 scored rasters) estimates the cleared TDE-30k file at <b>0.051</b>, against that lane&#39;s 0.207&ndash;0.269. These are ESTIMATES, not scores. Two inversions disagree on optimised designs, so treat expected scores as uncertain. The holdout gate tracks the leaderboard at &rho; 0.09. The LBCAL file itself is negative (HOLDOUT-DTI 0.0631).</span><a style="background:#58a6ff;color:#04121f;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="lbcal/index.html">LBCAL lane summary ↗</a></div></div>
+
+<h1>How to submit — exactly</h1>
+<p class="lead">One file, one note, no manual geology. Everything below is checked by code; the only
+human step is pressing upload on the DrivenData form.</p>
+
+<div class="card verdict warn">
+<h2 style="margin-top:0">Step 1 · Download the file</h2>
+<div class="dl"><a class="btn" href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a></div>
+<p class="small" style="margin-top:10px">SHA-256 <code>e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817</code> · 261,125 bytes.
+Verify with <code>sha256sum wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</code>; the value must match exactly.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">Step 2 · Fill in the form</h2>
+<ol class="tight">
+<li>Submission page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">competition leaderboard / “New submission”</a>.</li>
+<li><strong>File to submit</strong> — choose the downloaded <code>.tif</code>. Do not zip it; a single-band
+GeoTIFF is accepted directly.</li>
+<li><strong>Note</strong> (≤140 characters, 120 used):
+<code>TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots &gt;=200 m off catalogue</code></li>
+<li>Submit. The portal should accept the file: values are finite and inside [0, 1] for <em>every</em>
+cell (that was the cause of the “Predicted values must be in range [0, 1]” rejection seen earlier).</li>
+</ol>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0">Why this file passes the format gate</h2>
+<div class="kv">
+<div>Bands / dtype</div><div>1 band, float32</div>
+<div>CRS</div><div>EPSG:32611</div>
+<div>Shape</div><div>3730 × 3292 (identical to the sample)</div>
+<div>Geotransform</div><div>identical to <code>sample_submission.tif</code> — checked, not assumed</div>
+<div>Values</div><div>min 0.0, max 1.0, NaN cells 0, all finite True</div>
+<div>Read-back</div><div>bytes written are byte-identical on re-read: True</div>
+</div>
+<p class="small">The validator runs on the saved file, so a PASS describes the bytes you download, not an
+in-memory array. NaN outside the footprint is a common historical convention, but the portal rejected a
+NaN-bearing file with “must be in range [0, 1]”, so this file uses zeros outside the footprint
+(inside the footprint it is 0/1 anyway).</p>
+</div>
+
+<div class="card verdict">
+<h2 style="margin-top:0">Step 3 · Know what the score means before you spend the slot</h2>
+<p>Expected leaderboard DTI <strong>0.269 raw / 0.207 bias-corrected</strong>
+(range 0.21–0.27, cross-validated ±0.037). That is below the 0.2778
+focus-site champion, so if the only objective is raw leaderboard position, this file does not beat the
+incumbent family — but the incumbent files are duplicates of each other, and re-uploading one would be a
+duplicate submission. Uploading this file spends a slot on a unique artifact with a documented estimate;
+the upload cap is set by the portal account, which this project cannot read.</p>
+</div>
+
+<h2>Reproduce the file from scratch</h2>
+<div class="card"><pre class="mono" style="white-space:pre-wrap;font-size:12.5px">bash scripts/restore_shared_data.sh          # pinned shared template
+bash scripts/fetch_mirrors.sh                # 26 SHA-256-pinned data mirrors
+.venv/bin/python scripts/fetch_ledger_rasters.py --jobs 6   # 118 scored probes, sha-verified
+.venv/bin/python scripts/build_probe_set.py  # 400 m score operators + official feature blocks
+.venv/bin/python scripts/invert_ledger.py --folds 3 --iters 100 --n-outer 3
+.venv/bin/python scripts/emit_candidate.py --name wbggems3-tde --quota 30000 \
+    --alpha-rho 12 --beta-S 0.3 --min-sep 1.5</pre>
+<p class="small">Requires Python 3.11+, ~2 GB RAM, network access to github.com and PyPI. Every mirror is
+hash-checked; a mismatch aborts the run.</p></div>
+
+</main>
+<footer><div class="wrap">
+<p><strong>Evidence classes used on this site.</strong> <em>LEDGER-INVERSION ESTIMATE</em> = this
+project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
+no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
+<em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
+read from the DrivenData leaderboard page. These are model estimates, not organizer scores; no number
+here is an organizer-confirmed score of a file we produced, portal acceptance remains unverified, and
+no submission slot has been spent.</p>
+<p>Independent research; not affiliated with the DOE or DrivenData. Generated from
+<code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
+</div></footer>
 </body></html>

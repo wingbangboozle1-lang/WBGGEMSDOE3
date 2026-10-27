@@ -1,15 +1,15 @@
 {
  "evidence_class": "ESTIMATE (bounded LBCAL model, in-sample for training rasters; never a score)",
  "model": "pi_max=0.2|lam=0.0001",
- "generated_utc": "2026-10-27T20:04:22+00:00",
+ "generated_utc": "2026-10-27T20:13:26+00:00",
  "this_repo": [
   {
    "file": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
    "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
    "dots": 97608,
    "lbcal_estimate": 0.0735,
-   "lane": "README SUBMIT banner (ESTIMATE 0.428 from an 11-file fit)",
-   "status": "WITHDRAWN"
+   "lane": "skarpline lane (its 0.428 ESTIMATE came from an 11-file fit)",
+   "status": "WITHDRAWN (all lanes agree)"
   },
   {
    "file": "submission/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif",
@@ -32,8 +32,8 @@
    "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
    "dots": 169968,
    "lbcal_estimate": 0.0882,
-   "lane": "HCE-1 lane: holdout win, ledger projection 0.082",
-   "status": "negative for slot"
+   "lane": "HCE-1 lane (ledger projection 0.082)",
+   "status": "research file; not the file cleared on main"
   },
   {
    "file": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
@@ -58,6 +58,22 @@
    "lbcal_estimate": 0.5012,
    "lane": "LBCAL (this session)",
    "status": "negative (failed holdout + like-for-like uniqueness)"
+  },
+  {
+   "file": "submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+   "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
+   "dots": 30000,
+   "lbcal_estimate": 0.0507,
+   "lane": "score-tomography lane (main decision: SUBMIT-WITH-CAVEAT)",
+   "status": "see that lane's card (not this lane's decision)"
+  },
+  {
+   "file": "submission/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+   "sha256": "e85356210200a1342445ad6524bffd3f5d41b65ff8ab7fd30d35ceeabb8fcf54",
+   "dots": 40000,
+   "lbcal_estimate": 0.0623,
+   "lane": "session-1f0b051d lidar dipole lane (negative)",
+   "status": "see that lane's card (not this lane's decision)"
   }
  ],
  "unscored_peer_rasters": [

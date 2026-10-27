@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
-"""Reconcile ONE repository-wide decision from the measured evidence (2026-10-27).
+"""LBCAL lane summary: nine-site table, candidate re-estimates, lane decision (2026-10-27).
 
-Run locally after the LBCAL lane (needs the ignored caches); writes only small
-committed JSONs, which scripts/build_executive.py renders in CI:
+Lane-scoped: it never rewrites the repository-wide decision owned by the main
+site (docs/data/decision.json + docs/data/release_gate.json); it adds the LBCAL
+lane's own evidence and an independent ESTIMATE for every candidate, including
+the files other lanes merged to main the same day.  Needs the ignored caches.
+Writes:
 
   evidence/focus_sites_2026-10-27.json   nine-site table (best file, owner score, LBCAL
                                          estimate, pairwise 3 px overlap, uniqueness)
   evidence/candidates_2026-10-27.json    every candidate this repo ever produced, re-estimated
-  evidence/decision.json                 the single repository-wide decision card
+  evidence/lbcal_lane_decision.json      the LBCAL lane's decision card (lane scope only)
+  evidence/lbcal/registry_delta_main.json  uniqueness of the LBCAL TIF vs rasters merged to main later
   evidence/leaderboard_snapshot_2026-10-27T1905Z.json
-  docs/data/*.json                       copies for the site
-  docs/downloads/<LBCAL tif/zip>         research-only artefact (DO-NOT-SUBMIT in the name)
+  docs/lbcal/data/*.json                 copies for the lane pages (scripts/build_site_lbcal.py)
+  docs/lbcal/downloads/<LBCAL tif/zip>   research-only artefact (DO-NOT-SUBMIT in the name)
 """
 from __future__ import annotations
 
@@ -26,7 +30,7 @@ from scipy.ndimage import binary_dilation
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from lbcal import data as D, model as Mdl  # noqa: E402
+from lbcal import coverage as COV, data as D, features as F, model as Mdl  # noqa: E402
 
 FOCUS = ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32",
          "GEMSDOE33", "GEMSDOE36"]
@@ -34,6 +38,11 @@ OWNER = "buffedlizard55-lab"
 DISK = (lambda r: (np.add.outer(np.arange(-r, r + 1) ** 2, np.arange(-r, r + 1) ** 2) <= r * r))(3)
 EV = ROOT / "evidence"
 DOCS = ROOT / "docs"
+LANE = DOCS / "lbcal"
+MAIN_NEW = [  # candidate rasters other lanes merged to main on 2026-10-27 (after this lane's registry scan)
+    ("score-tomography lane (main decision: SUBMIT-WITH-CAVEAT)", "submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif"),
+    ("session-1f0b051d lidar dipole lane (negative)", "submission/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif"),
+]
 
 
 def jload(p):
@@ -107,8 +116,8 @@ def main() -> int:
     hce = jload(EV / "hce_run_card.json") if (EV / "hce_run_card.json").exists() else {}
     cands = []
     labels = {
-        "wbggemsdoe3-skarpline-union": ("README SUBMIT banner (ESTIMATE 0.428 from an 11-file fit)", "WITHDRAWN"),
-        "wbggems3-hce1-congruence": ("HCE-1 lane: holdout win, ledger projection 0.082", "negative for slot"),
+        "wbggemsdoe3-skarpline-union": ("skarpline lane (its 0.428 ESTIMATE came from an 11-file fit)", "WITHDRAWN (all lanes agree)"),
+        "wbggems3-hce1-congruence": ("HCE-1 lane (ledger projection 0.082)", "research file; not the file cleared on main"),
         "wbggems3-cspes-edgestab": ("CSPES lane", "negative"),
         "wbggems3-lst1-hybrid": ("LST1 lane", "negative"),
         "wb-gems-doe-3-stepover-damagezone": ("legacy", "legacy, DO NOT SUBMIT"),
@@ -123,6 +132,16 @@ def main() -> int:
     cands.append(dict(file=lb["file"]["path"], sha256=lb["file"]["sha256"], dots=lb["file"]["dots"],
                       lbcal_estimate=lb["estimate"]["cross_fit_mean"], lane="LBCAL (this session)",
                       status="negative (failed holdout + like-for-like uniqueness)"))
+    feats = np.load(D.CACHE / "features.npz")
+    for lane_name, rel in MAIN_NEW:
+        pth = ROOT / rel
+        if not pth.is_file():
+            continue
+        p, _ = D.read_prediction(pth)
+        st = COV.stats(p, foot, feats["cell"], F.n_cells(), feats["d_cat_px"])
+        y = float(Mdl.predict(beta, M, st["C"][None], st["P"][None], np.array([st["N"]]), ds["n_px"], pi_max=pi_max)[0][0])
+        cands.append(dict(file=rel, sha256=D.sha256_file(pth), dots=st["n_pos"], lbcal_estimate=round(y, 4),
+                          lane=lane_name, status="see that lane's card (not this lane's decision)"))
     others = []
     for i, m in enumerate(meta):
         if m["score"] is None and m["source"] != "this-repo":
@@ -148,60 +167,69 @@ def main() -> int:
                 implication="Top-5 public currently needs >= 0.3566; the best owner-reported file (0.2778) is below rank #48.")
     (EV / "leaderboard_snapshot_2026-10-27T1905Z.json").write_text(json.dumps(snap, indent=1) + "\n")
 
-    # ---------------- single repository-wide decision card ----------------
+    # ---------------- uniqueness of the LBCAL TIF vs rasters merged to main later ----------------
+    lb_tif = ROOT / lb["file"]["path"]
+    with rasterio.open(lb_tif) as src:
+        mine = (src.read(1) > 0) & foot
+    allowed = foot & ~grid.cat
+    delta = []
+    for lane_name, rel in MAIN_NEW:
+        pth = ROOT / rel
+        if not pth.is_file():
+            continue
+        with rasterio.open(pth) as src:
+            a_ = src.read(1)
+        t = np.isfinite(a_) & (a_ > 0) & foot
+        halo = binary_dilation(t, structure=DISK)
+        fo = float(halo[mine].mean())
+        rev = float(binary_dilation(mine, structure=DISK)[t].mean()) if t.any() else 0.0
+        delta.append(dict(file=rel, lane=lane_name, their_dots=int(t.sum()), my_dots_within_3px_of_theirs=round(fo, 4),
+                          their_dots_within_3px_of_mine=round(rev, 4), halo_share_of_allowed=round(float(halo[allowed].mean()), 4),
+                          jaccard=round(float((mine & t).sum() / max(1, (mine | t).sum())), 4), duplicate_by_overlap=bool(fo > 0.70)))
+    (EV / "lbcal" / "registry_delta_main.json").write_text(json.dumps(dict(
+        evidence_class="REGISTRY-MEASUREMENT on the saved LBCAL bytes vs rasters merged to main after the lane's scan",
+        rule="forward overlap > 0.70 = duplicate", rows=delta), indent=1) + "\n")
+
+    # ---------------- LBCAL lane decision card (lane scope) ----------------
     conc = jload(EV / "lbcal_gate_concordance.json")
     post = jload(EV / "lbcal" / "postcheck.json")["summary"]
     tif = Path(lb["file"]["path"])
-    (DOCS / "downloads").mkdir(exist_ok=True)
+    (LANE / "downloads").mkdir(parents=True, exist_ok=True)
     for suf in (".tif", ".zip"):
-        shutil.copy2(ROOT / tif.with_suffix(suf), DOCS / "downloads" / tif.with_suffix(suf).name)
+        shutil.copy2(ROOT / tif.with_suffix(suf), LANE / "downloads" / tif.with_suffix(suf).name)
+    tde = next((c for c in cands if "tde30k" in c["file"]), None)
     card = dict(
-        schema="repository decision card v2 (supersedes every earlier banner)", generated_utc=now,
-        session_branch="arena/88400903-wbggemsdoe3",
-        evidence_class="Aggregates REGISTRY-MEASUREMENT, HOLDOUT-DTI and ESTIMATE labels from the linked cards; no ORGANIZER-CONFIRMED score exists for any file here",
-        verdict="negative", decision="DO NOT SUBMIT", ok_to_submit=False,
-        decision_reason=("No file in this repository passes every pre-registered gate. The newest lane (LBCAL) "
-                         "fails the owner's holdout rule (HOLDOUT-DTI 0.0631 < 0.1292) and the like-for-like "
-                         "uniqueness rule (4 informative dense-raster firings). The earlier SUBMIT banner for "
-                         "skarpline-union is withdrawn: the leaderboard-calibrated estimate is "
-                         f"{next(c['lbcal_estimate'] for c in cands if 'skarpline' in c['file'])}."),
+        schema="LBCAL lane decision card v1 (lane scope; the repository decision lives in docs/data/decision.json)",
+        generated_utc=now, session_branch="arena/88400903-wbggemsdoe3",
+        evidence_class="Aggregates REGISTRY-MEASUREMENT, HOLDOUT-DTI and ESTIMATE labels from the linked cards; no ORGANIZER-CONFIRMED score",
+        verdict="negative", lane_decision="DO NOT SUBMIT the LBCAL file", ok_to_submit=False,
+        decision_reason=("The LBCAL design fails two pre-registered gates: HOLDOUT-DTI 0.0631 < 0.1292 (owner rule) and "
+                         "like-for-like uniqueness (4 informative dense-raster firings)."),
         hypothesis=lb["hypothesis"], mechanism=lb["mechanism"], named_non_fault_mimic=lb["non_fault_mimic"],
         holdout_dti=lb["holdout"], estimate=lb["estimate"], registry=dict(
             pre_placement_worst_rho=lb["registry"]["pre_placement_surface"]["worst_rho"],
-            final_like_for_like=lb["registry"]["final_dots_like_for_like"], post_hoc=post),
+            final_like_for_like=lb["registry"]["final_dots_like_for_like"], post_hoc=post, delta_vs_main=delta),
         leakage_canary=lb["leakage_canary"], raster_sha256=lb["file"]["sha256"], sha256=lb["file"]["sha256"],
         validator_output=lb["validator"], submission_name=lb["submission_name"], submission_note=lb["note"],
-        download=dict(tif=str(tif), zip=str(tif.with_suffix(".zip")), cleared=False,
-                      label="RESEARCH ONLY — DO NOT SUBMIT"),
+        download=dict(tif=str(tif), zip=str(tif.with_suffix(".zip")), cleared=False, label="RESEARCH ONLY — DO NOT SUBMIT"),
         gate_concordance=dict(n=conc["n"], spearman_holdout_vs_public=round(conc["spearman_holdout_vs_score"], 3),
                               spearman_lbcal_cv_vs_public=round(conc["spearman_lbcal_cv_vs_score"], 3),
                               source="evidence/lbcal_gate_concordance.json"),
+        independent_estimate_of_main_cleared_file=(dict(file=tde["file"], lbcal_estimate=tde["lbcal_estimate"],
+                                                        note="ESTIMATE from the bounded LBCAL model (in-sample density; file not in training)")
+                                                   if tde else None),
         candidates="evidence/candidates_2026-10-27.json", focus_sites="evidence/focus_sites_2026-10-27.json",
-        lane_cards=["evidence/lbcal_run_card.json", "evidence/hce_run_card.json", "evidence/cspes_run_card.json",
-                    "evidence/lst1_run_card.json", "evidence/gemsdoe_run_card.json"],
         experiments=3, slots_spent=0, selector_approval=None,
     )
-    (EV / "decision.json").write_text(json.dumps(card, indent=1) + "\n")
-    (DOCS / "data").mkdir(exist_ok=True)
-    shutil.copy2(EV / "decision.json", DOCS / "data" / "run_card.json")
+    (EV / "lbcal_lane_decision.json").write_text(json.dumps(card, indent=1) + "\n")
+    (LANE / "data").mkdir(parents=True, exist_ok=True)
+    shutil.copy2(EV / "lbcal_lane_decision.json", LANE / "data" / "lbcal_lane_decision.json")
     for src in ("lbcal_run_card.json", "focus_sites_2026-10-27.json", "candidates_2026-10-27.json",
                 "leaderboard_snapshot_2026-10-27T1905Z.json", "lbcal_gate_concordance.json", "lbcal_variants.json"):
-        shutil.copy2(EV / src, DOCS / "data" / src)
+        shutil.copy2(EV / src, LANE / "data" / src)
+    shutil.copy2(EV / "lbcal" / "registry_delta_main.json", LANE / "data" / "registry_delta_main.json")
     cvs = {k: v for k, v in cv.items() if k not in ("estimates", "observations")}
-    (DOCS / "data" / "lbcal_cv_summary.json").write_text(json.dumps(cvs, indent=1) + "\n")
-
-    # ---------------- skarpline card: append verdict history (never rewrite the record) ----------------
-    gp = EV / "gemsdoe_run_card.json"
-    g = jload(gp)
-    if g.get("verdict") == "promote" or "verdict_history" not in g:
-        g.setdefault("verdict_history", []).append(dict(
-            utc=now, session="arena/88400903-wbggemsdoe3", from_verdict=g.get("verdict"), to_verdict="negative",
-            reason=("Withdrawn. LBCAL (leave-one-family-out validated, Spearman 0.91 on 119 scored rasters) estimates "
-                    f"{next(c['lbcal_estimate'] for c in cands if 'skarpline' in c['file'])} for this file; the "
-                    "0.428 ESTIMATE was fitted to 11 near-duplicate files and LiDAR-scarp submissions scored 0.04-0.15.")))
-        g["verdict"] = "negative"
-        g["superseded_by"] = "evidence/decision.json"
-        gp.write_text(json.dumps(g, indent=1) + "\n")
+    (LANE / "data" / "lbcal_cv_summary.json").write_text(json.dumps(cvs, indent=1) + "\n")
     print(json.dumps(dict(focus=[(b["site"], b["owner_reported"], b["lbcal_family_cv_estimate"],
                                   b["max_forward_overlap_vs_other_focus"]) for b in best],
                           candidates=[(Path(c["file"]).name[:40], c["lbcal_estimate"], c["status"]) for c in cands]),

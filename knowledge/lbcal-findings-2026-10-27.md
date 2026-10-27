@@ -123,7 +123,7 @@ Caveat: registry masks were built with the full catalogue (static, not fold-loca
 
 ## 5. Irregularities logged this session
 
-* **IR-10.** README said SUBMIT (skarpline-union, ESTIMATE 0.428), while `evidence/run_card.json` said NEGATIVE and PR #24 said DO NOT SUBMIT. This is reconciled to one decision (`evidence/decision.json`). LBCAL estimates skarpline-union at 0.074.
+* **IR-10.** At session start, README said SUBMIT (skarpline-union, ESTIMATE 0.428), while `evidence/run_card.json` said NEGATIVE and PR #24 said DO NOT SUBMIT. While this lane ran, parallel PRs #24–#30 merged to main. They withdraw skarpline and clear the score-tomography lane's TDE-30k file with a caveat. LBCAL independently estimates skarpline-union at 0.074, which agrees with the withdrawal. This lane does not override the main decision; it adds §7.
 * **IR-11.** The holdout gate does not track the leaderboard (ρ = 0.089, n = 119).
 * **IR-12.** Band 6 `tc` was documented as magnetic tilt or total curvature. Its range (3–89) and the official page's figure indicate radiometric total counts.
 * **IR-13.** Two archived "unique" files have grids of 1024×1024 and 1200×1600, so they were never valid submissions. One scored ledger raster (14GEMSDOE horse-ensemble) fails the template CRS/transform check. One (GEMSDOE9 placeholder) has 196,132 positives outside the footprint.
@@ -138,3 +138,29 @@ Caveat: registry masks were built with the full catalogue (static, not fold-loca
 * **Next 1. Uniqueness-repaired LBCAL.** Forbid the halos of h23-a, h23-b, h30 and ovtr, and measure how much cross-fit ESTIMATE survives.
 * **Next 2. Owner ruling on the gate.** Without a ruling on the slot gate (IR-11), no leaderboard-calibrated design can ever be promoted.
 * **Next 3. Hypotheses 2–5.** Test H-PIEDMONT, H-SEISMO-GAP, H-STEPOVER-SYNTH and H-RADIOMETRIC-SEEP *as additional LBCAL features*. The family-CV makes adding a layer a cheap and honest test.
+
+## 7. Cross-model check of the file cleared on main (added after merging main, ~21:10 UTC)
+
+`evidence/candidates_2026-10-27.json` and `evidence/lbcal/registry_delta_main.json` give these ESTIMATEs (not scores):
+
+| File | Lane | LBCAL ESTIMATE | That lane's own estimate |
+|---|---|---|---|
+| TDE-30k tomography emission | score tomography (cleared with caveat on main) | **0.051** | 0.269 ledger inversion, 0.207 bias-corrected |
+| dipole hybrid 40k | session-1f0b051d (negative) | 0.062 | ≈0.16 planning estimate |
+| LBCAL 71k | this lane (negative) | 0.501 cross-fit | — |
+
+**Out-of-sample accuracy.** The two inversions are comparably accurate on held-out archived rasters:
+
+* LBCAL: family-grouped CV ρ 0.91, RMSE 0.036. It is feature-based, using 7 binned geological layers.
+* Tomography: site-grouped CV ρ 0.946, RMSE 0.050 (`docs/data/ledger_inversion.json`). It is location-based, using 400 m blocks.
+
+**Disagreement on designs.** On *designs optimised under one model*, the other model disagrees about four-fold. An optimiser seeks out its own model's idiosyncratic high-density regions, so its in-model estimate inherits the model-form error. Cross-fitting within one model does not remove that error.
+
+**Implications for the selector:**
+
+1. Treat the expected public score of any optimised file (TDE-30k, LBCAL) as uncertain across about 0.05–0.3.
+2. A location-based inversion fits the public chunks by construction. The private set and the expanded final labels may reward it less than a feature-based one, but neither can be verified from public scores.
+3. **Untested next step:** score each lane's design under the other lane's model (LBCAL design under tomography; TDE-30k under LBCAL is done: 0.051). Prefer only designs that both models rate highly.
+
+The LBCAL file is unique against both later rasters: 17.4% and 23.9% of its dots lie within 3 px.
+

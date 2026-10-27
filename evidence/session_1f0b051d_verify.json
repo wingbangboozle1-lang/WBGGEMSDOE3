@@ -1,0 +1,36 @@
+{
+ "file": "wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+ "checks": {
+  "sha256_matches_card": true,
+  "docs_copy_byte_identical": true,
+  "zip_single_tif_inner_identical": true,
+  "bands_1": true,
+  "dtype_float32": true,
+  "shape_ok": true,
+  "transform_ok": true,
+  "crs_ok": true,
+  "crs_epsg": 32611,
+  "nodata": null,
+  "whole_array_finite": true,
+  "whole_array_min_max": [
+   0.0,
+   1.0
+  ],
+  "values_binary_0_1": true,
+  "dots": 40000,
+  "dots_match_card": true,
+  "dots_on_catalogue": 0,
+  "dots_outside_footprint": 0,
+  "min_distance_to_catalogue_px": 2.23606797749979,
+  "min_pairwise_spacing_px": 3.0,
+  "within3_edt": {
+   "champion_GEMSDOE32": 0.364825,
+   "skarpline_union": 0.136725,
+   "h19_5_continuous": 0.4115,
+   "pindrop_v4_nodes": 0.67,
+   "ovtr_ml_cover": 0.67,
+   "lattice_s5_space_filling": 0.9981
+  },
+  "all_format_checks_pass": true
+ }
+}

@@ -93,3 +93,27 @@ def test_lbcal_run_card_is_complete_and_hash_bound():
     tif = ROOT / card["file"]["path"]
     assert hashlib.sha256(tif.read_bytes()).hexdigest() == card["file"]["sha256"]
     assert card["validator"]["passed"] is True and len(card["note"]) <= 140
+
+
+def test_lbcal_lane_pages_are_scoped_and_hash_bound():
+    lane = json.loads((ROOT / "evidence" / "lbcal_lane_decision.json").read_text())
+    assert lane["verdict"] == "negative" and lane["ok_to_submit"] is False and lane["download"]["cleared"] is False
+    docs = ROOT / "docs" / "lbcal"
+    for page in ("index.html", "executive-summary.html", "how-to-submit.html", "research.html", "evidence.html", "sources.html"):
+        body = (docs / page).read_text()
+        assert '<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT">' in body, page
+        assert 'name="gemsdoe-decision"' not in body, page  # never competes with the repository decision meta
+        assert "../index.html" in body, page
+    name = Path(lane["download"]["tif"]).name
+    assert "DO-NOT-SUBMIT" in name
+    served = docs / "downloads" / name
+    assert hashlib.sha256(served.read_bytes()).hexdigest() == lane["sha256"]
+    readme = (ROOT / "README.md").read_text()
+    assert "FOURTH PARALLEL LANE: LBCAL" in readme and "docs/lbcal/index.html" in readme
+
+
+def test_lbcal_delta_scan_covers_the_rasters_merged_later():
+    delta = json.loads((ROOT / "evidence" / "lbcal" / "registry_delta_main.json").read_text())
+    files = {Path(r["file"]).name for r in delta["rows"]}
+    assert any("tde30k" in f for f in files) and any("dipolehybrid" in f for f in files)
+    assert all(0.0 <= r["my_dots_within_3px_of_theirs"] <= 1.0 for r in delta["rows"])

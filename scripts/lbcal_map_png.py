@@ -2,7 +2,7 @@
 """Quick-look PNG of the LBCAL research candidate (pure numpy + zlib).
 
 Red = LBCAL dots, green = public catalogue, grey = hillshade of det_elev inside the
-scored footprint. Output: docs/assets/lbcal-map.png
+scored footprint. Output: docs/lbcal/assets/lbcal-map.png
 """
 from __future__ import annotations
 
@@ -57,7 +57,7 @@ def main() -> int:
         img[..., k] = np.where(foot, np.clip(base * f, 0, 255), 12).astype(np.uint8)
     img[pool(grid.cat)] = (120, 200, 120)
     img[pool(dots)] = (255, 70, 60)
-    out = ROOT / "docs" / "assets" / "lbcal-map.png"
+    out = ROOT / "docs" / "lbcal" / "assets" / "lbcal-map.png"
     write_png(out, img)
     print(f"wrote {out.relative_to(ROOT)} {out.stat().st_size} bytes ({H2}x{W2})")
     return 0

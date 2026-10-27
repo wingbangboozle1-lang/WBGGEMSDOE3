@@ -1,6 +1,6 @@
 {
  "evidence_class": "REGISTRY-MEASUREMENT on hash-pinned bytes; scores OWNER-REPORTED; estimates ESTIMATE",
- "generated_utc": "2026-10-27T20:04:22+00:00",
+ "generated_utc": "2026-10-27T20:13:26+00:00",
  "overlap_rule": "forward overlap = share of row-file dots within 3 px of column-file dots; >0.70 = duplicate",
  "sites": [
   {

@@ -1,12 +1,12 @@
 {
- "schema": "repository decision card v2 (supersedes every earlier banner)",
- "generated_utc": "2026-10-27T20:04:22+00:00",
+ "schema": "LBCAL lane decision card v1 (lane scope; the repository decision lives in docs/data/decision.json)",
+ "generated_utc": "2026-10-27T20:13:26+00:00",
  "session_branch": "arena/88400903-wbggemsdoe3",
- "evidence_class": "Aggregates REGISTRY-MEASUREMENT, HOLDOUT-DTI and ESTIMATE labels from the linked cards; no ORGANIZER-CONFIRMED score exists for any file here",
+ "evidence_class": "Aggregates REGISTRY-MEASUREMENT, HOLDOUT-DTI and ESTIMATE labels from the linked cards; no ORGANIZER-CONFIRMED score",
  "verdict": "negative",
- "decision": "DO NOT SUBMIT",
+ "lane_decision": "DO NOT SUBMIT the LBCAL file",
  "ok_to_submit": false,
- "decision_reason": "No file in this repository passes every pre-registered gate. The newest lane (LBCAL) fails the owner's holdout rule (HOLDOUT-DTI 0.0631 < 0.1292) and the like-for-like uniqueness rule (4 informative dense-raster firings). The earlier SUBMIT banner for skarpline-union is withdrawn: the leaderboard-calibrated estimate is 0.0735.",
+ "decision_reason": "The LBCAL design fails two pre-registered gates: HOLDOUT-DTI 0.0631 < 0.1292 (owner rule) and like-for-like uniqueness (4 informative dense-raster firings).",
  "hypothesis": "The public leaderboard scores of ~119 archived rasters are soft, spatially integrated measurements of where the hidden expert-labelled faults are; a log-linear density over 7 binned geological layers, fitted through the exact DTI algebra, predicts held-out families and can be optimised directly.",
  "mechanism": "Hidden-fault density pi over joint bins of catalogue distance, det-elev curvature, slope crest, det-elev slope, 3DEP-LiDAR scarp rank, TMI horizontal gradient and SGMC distance; Dinkelbach batch-greedy max-coverage dots under pi; never on the catalogue.",
  "named_non_fault_mimic": "Landslide head-scarps, terrace risers and road/canal cuts share the slope/curvature/LiDAR-step signature; the density cannot separate them.",
@@ -298,7 +298,29 @@
    "ratio_adjusted_estimate": 0.562,
    "worst_case_ratio_adjusted_estimate": 0.332,
    "interpretation": "28 scored rasters share the candidate's dot locations beyond chance (excess > 0.25). The model under-predicts 17 of them by >10% (owner/CV up to 1.46; mostly the d2.8 dotted-ridge lineage) and over-predicts 4 by >10% (down to 0.66: h23-a-dti-optimal-emissi, h23-b-dti-optimal-emissi, h30-arrangement-matched-, ovtr-ml-cover-tau3p0-202). So the candidate's ESTIMATE has a plausible range rather than a point: ratio-adjusted 0.332-0.733. These are heuristics, not scores."
-  }
+  },
+  "delta_vs_main": [
+   {
+    "file": "submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+    "lane": "score-tomography lane (main decision: SUBMIT-WITH-CAVEAT)",
+    "their_dots": 30000,
+    "my_dots_within_3px_of_theirs": 0.1737,
+    "their_dots_within_3px_of_mine": 0.1958,
+    "halo_share_of_allowed": 0.1522,
+    "jaccard": 0.0024,
+    "duplicate_by_overlap": false
+   },
+   {
+    "file": "submission/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+    "lane": "session-1f0b051d lidar dipole lane (negative)",
+    "their_dots": 40000,
+    "my_dots_within_3px_of_theirs": 0.2395,
+    "their_dots_within_3px_of_mine": 0.2293,
+    "halo_share_of_allowed": 0.1957,
+    "jaccard": 0.0025,
+    "duplicate_by_overlap": false
+   }
+  ]
  },
  "leakage_canary": {
   "rule": "each feature alone vs withheld positives; max(AUC, 1-AUC) > 0.90 => leakage",
@@ -354,15 +376,13 @@
   "spearman_lbcal_cv_vs_public": 0.914,
   "source": "evidence/lbcal_gate_concordance.json"
  },
+ "independent_estimate_of_main_cleared_file": {
+  "file": "submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+  "lbcal_estimate": 0.0507,
+  "note": "ESTIMATE from the bounded LBCAL model (in-sample density; file not in training)"
+ },
  "candidates": "evidence/candidates_2026-10-27.json",
  "focus_sites": "evidence/focus_sites_2026-10-27.json",
- "lane_cards": [
-  "evidence/lbcal_run_card.json",
-  "evidence/hce_run_card.json",
-  "evidence/cspes_run_card.json",
-  "evidence/lst1_run_card.json",
-  "evidence/gemsdoe_run_card.json"
- ],
  "experiments": 3,
  "slots_spent": 0,
  "selector_approval": null
