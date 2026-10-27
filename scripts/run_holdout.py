@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Spatially-blocked, FOLD-LOCAL hold-out for the W1' candidate (label: HOLDOUT-DTI).
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+Spatially-blocked, FOLD-LOCAL hold-out for the W1' candidate (label: HOLDOUT-DTI).
 
 Every cell builds its candidate from ITS visible catalogue only (distance strata, modulation fit, B=2 pruning),
 then is scored by the vendored GEMSDOE32 hide-and-recover evaluator (whole-segment hiding, 1.5 km collar,
@@ -7,6 +9,9 @@ then is scored by the vendored GEMSDOE32 hide-and-recover evaluator (whole-segme
 the hidden catalogue segments.
 """
 from __future__ import annotations
+
+# Preserved below for provenance, but no longer executable or importable.
+raise SystemExit("BLOCKED: historical H19-5 and D2.8 features are not rebuilt per fold. See evidence/run_card.json.")
 import json, sys, time
 from pathlib import Path
 import numpy as np

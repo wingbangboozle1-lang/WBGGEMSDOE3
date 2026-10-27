@@ -1,23 +1,4 @@
-"""WB-GEMS-DOE-3 submission GeoTIFF builder and strict range/format validator.
-
-Implements the DrivenData GEMS Prize submission format (verified from the official
-problem description, page 967):
-
-* single-band GeoTIFF, float32
-* CRS: EPSG:32611 (UTM zone 11N), 100 m resolution
-* bounds/geotransform matching the competition template grid
-* all in-footprint cells finite and inside [0, 1]
-* zero NaN / sentinel inside the footprint (fixes `Predicted values must be in
-  range [0, 1]`)
-
-Two paired variants are emitted for every candidate:
-  - `-zeros.tif`: 0.0 outside the scored footprint (whole array in [0,1], portal-safe)
-  - `-nan.tif`:   NaN outside the scored footprint (historical convention; in-footprint
-                  cells remain finite and in [0, 1])
-
-The strict audit below is run on the *saved bytes*, so a PASS means the file you
-download is the file that passes validation. No human inspection required.
-"""
+"""ARCHIVED writer and validator, disabled. The portal-error cause is unproven; use the read-only audit_preflight.py diagnostic."""
 
 from __future__ import annotations
 
@@ -78,6 +59,7 @@ def validate_geotiff(tif_path: Path, template_tif: Path,
 
     All checks are evaluated on the bytes stored in `tif_path`.
     """
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     tmpl = _open_template(template_tif)
     expected_crs = tmpl["crs"]
     expected_shape = tmpl["shape"]
@@ -158,6 +140,7 @@ def write_submission(mask: np.ndarray, footprint: np.ndarray,
     Values are clipped to [0, 1]. Outside the footprint: 0.0 (zeros mode) or NaN
     (nan mode). Footprint cells are forced finite.
     """
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     assert mode in {"zeros", "nan"}
     with rasterio.open(template_tif) as tpl:
         profile = tpl.profile.copy()

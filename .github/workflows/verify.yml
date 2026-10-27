@@ -19,6 +19,6 @@ jobs:
       - name: Restore pinned shared code, without competition data
         run: PYTHONPATH=src python -c 'from gems_project.template import ensure_template; print(ensure_template())'
       - run: python -m pytest -q
-      - run: python scripts/build_site.py && python scripts/check_site.py
+      - run: python scripts/build_executive.py && python scripts/check_site.py
       - name: Require committed site to match its evidence
         run: git diff --exit-code -- docs
