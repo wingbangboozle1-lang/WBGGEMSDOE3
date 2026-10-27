@@ -1,12 +1,9 @@
-# WBGGEMSDOE3 — DOE GEMS Prize: a unique fault submission, and the evidence for it
+# WBGGEMSDOE3 — DOE GEMS Prize research and submission audit
 
-> **CURRENT DECISION: SUBMIT.** One file is cleared by every automated gate in this repository:
-> [`submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`](submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif)
-> (425 KB, SHA-256 `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). It is a genuinely new
-> 97,608-cell lineament network, **not** a re-trim of any archived file: the best overlap with any sparse
-> archived comparator is 29.3% of its dots within 3 px, and its Jaccard with the 0.2778 champion is 0.0044.
-> Estimated leaderboard DTI **0.428** (95% CI 0.385–0.481) — an **ESTIMATE**, not an organizer score.
+> **CURRENT DECISION: DO NOT SUBMIT.** The governing `evidence/run_card.json` is negative: a registered raster is positive on every cell of the allowed footprint, so every nonempty candidate has 100% directed overlap within 3 px and must stop under the literal protocol. No current candidate was generated or cleared. Existing TIFs and positive site banners are historical artifacts, not approval.
 >
+> **Important status conflict:** this README and the generated pages previously advertised a TIFF as ready and cited an estimated leaderboard DTI of 0.428. Those claims conflict with the current negative run card and are not an organizer score or current submission authorization. No defensible leaderboard estimate is presently available. See [the current repository review](knowledge/review-current-2026-10-27.md) for the discrepancies, evidence limits and safe next steps. Do not rely on any existing download link until the conflicting status artifacts are reconciled.
+
 > The parallel **CSPES lane** (geophysical-edge-stability, merged from PR #21) produced its own new,
 > format-valid GeoTIFF whose holdout is **negative** (HOLDOUT-DTI 0.0257 vs 0.0992 for the matched
 > incumbent): it is downloadable for research but **not** cleared for a slot —
