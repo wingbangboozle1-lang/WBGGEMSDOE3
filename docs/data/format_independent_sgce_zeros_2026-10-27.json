@@ -1,0 +1,31 @@
+{
+ "schema": "format-independent-v1",
+ "file": "wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+ "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+ "bytes": 905588,
+ "sample_footprint_cells": 5167373,
+ "finite_cells": 12279160,
+ "nan_cells": 0,
+ "positive_cells": 102208,
+ "value_min_finite": 0.0,
+ "value_max_finite": 1.0,
+ "checks": {
+  "single_band": true,
+  "dtype_float32": true,
+  "crs_epsg_32611": true,
+  "shape_matches_sample": true,
+  "transform_matches_sample": true,
+  "no_inf": true,
+  "finite_values_in_0_1": true,
+  "finite_mask_equals_sample_footprint": false,
+  "outside_footprint_is_nan (official text)": false,
+  "inside_footprint_all_finite": true
+ },
+ "passed": false,
+ "reference": {
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "sample_repo": "buffedlizard55-lab/GEMSDOE24",
+  "sample_ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b"
+ },
+ "label": "LOCAL FORMAT CHECK against official text; not organizer acceptance"
+}

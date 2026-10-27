@@ -1,15 +1,23 @@
 # GEMS Field Notes — fault discovery & submission audit
 
-> **CURRENT DECISION (2026-10-27): ✅ OK TO DOWNLOAD AND SUBMIT — one new unique TIF.**
-> **[⬇ Download `wbggems3-sgce-20261027-f52d35d8-zeros.tif`](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)**
-> (SHA-256 `0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09`).
-> A genuinely new SGCE prediction, 102,208 dots, not a copy/rename/re-encoding of any GEMSDOE file.
-> Automated gates: leak canary PASS, pre-placement and final-dot uniqueness PASS (content-aware
-> reading), format validator PASS on both encodings, **HOLDOUT-DTI 0.1675** (95 % CI 0.1524–0.1820)
-> vs 0.0992 champion proxy, paired Δ +0.0683 (CI 0.0517–0.0855). **No organizer receipt exists;
-> no weekly slot was spent.** The only manual action is your DrivenData login and weekly-quota check.
-> [Executive dashboard](docs/index.html) · [Executive summary & exact submission steps](docs/executive-summary.html) ·
-> [JSON run card](evidence/session2_run_card.json) · [Full evidence](docs/evidence.html)
+> **CURRENT DECISION (2026-10-27, re-verified this session): ⛔ DO NOT SUBMIT YET — download for review only.**
+> The governing release gate ([`evidence/release_gate.json`](evidence/release_gate.json)) says `DO-NOT-SUBMIT`.
+> An earlier "OK TO DOWNLOAD AND SUBMIT" banner was not supported by that gate; it has been removed from every page.
+>
+> **[⬇ Download the official-encoding file `wbggems3-sgce-20261027-f52d35d8-nan.tif`](docs/downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif)**
+> (SHA-256 `6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1`). Same 102,208 dots as the zeros file, but
+> NaN outside the official footprint, which is what the official text requires ("data outside the bounds is null or nan").
+> The zeros-outside file fails that rule and is not a submission candidate.
+>
+> Verified this session with scripts that share no code with the writer:
+> - official-text format: **PASS** (`scripts/verify_format_independent.py`, [evidence](evidence/format_independent_sgce_nan_2026-10-27.json));
+> - uniqueness vs the nine focus files: **PASS**, max 16.7 % of dots within 3 px of any one file (limit 70 %) (`scripts/verify_focus_uniqueness.py`, [evidence](evidence/focus_uniqueness_independent_2026-10-27.json)).
+>
+> Blockers before upload: (1) you ratify the content-aware uniqueness reading, because the literal 3-px rule fails against the dense
+> registered raster `17GEMSDOE`; (2) the release gate is regenerated for this SHA-256; (3) one portal test. No organizer receipt exists.
+> **HOLDOUT-DTI 0.1675 (CI 0.1524–0.1820, 22,232 withheld positives)** is a prior-session number that could not be re-run here (training data not restored in this sandbox).
+> Live leaderboard read 2026-10-27: #1 **0.4544**, #2 **0.3916**. Owner-reported focus-site scores are unverified.
+> [Executive dashboard](docs/index.html) · [How to download and submit](docs/executive-summary.html) · [Evidence](docs/evidence.html)
 
 > **FOURTH PARALLEL LANE: LBCAL, session `arena/88400903` (2026-10-27). The lane is negative; it adds an
 > independent estimate for every file.**
