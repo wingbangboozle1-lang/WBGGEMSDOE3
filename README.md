@@ -19,7 +19,8 @@ universal witness and the saved H6-1 holdout receipt. The merged recheck surveys
 current local TIFFs and records 20 passing raster/evidence checks, **not** a candidate
 approval: [verification](knowledge/verification-2026-10-27.md) ·
 [JSON](evidence/verification_2026-10-27.json) ·
-[historical HOLDOUT-DTI](evidence/h6_1_proximity_pruning_holdout.json).
+[historical HOLDOUT-DTI](evidence/h6_1_proximity_pruning_holdout.json) ·
+[three-pass review](knowledge/session-review-merged-2026-10-27.md).
 H6-1's buffered holdout excludes the live near-catalogue regime, so it cannot establish
 why B2's unreceipted 0.2778 changed. No experiment was rerun in this lane.
 

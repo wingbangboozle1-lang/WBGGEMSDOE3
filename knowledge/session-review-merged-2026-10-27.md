@@ -51,8 +51,9 @@ this audit as a waiver, a score estimate, or selector approval.
   `scripts/check_site.py` passed required pages, local links and negative status.
   The local HTTP preview returned 200; visual browser rendering was not inspected.
 - Full sequential `.venv/bin/python -m pytest -q`: **108 passed**, with 53
-  rasterio/Affine pending-deprecation warnings. `git diff --check` passed.
-  The pinned H6-1 numbers were not recomputed. CI and GitHub Pages deployment
+  rasterio/Affine pending-deprecation warnings. A clean archive without cached
+  data also passed **104 tests, 4 skipped**, and reproduced the committed site.
+  `git diff --check` passed. The pinned H6-1 numbers were not recomputed. CI and GitHub Pages deployment
   must be checked after merge, not inferred from local tests.
 
 ## Limitations and next actions
