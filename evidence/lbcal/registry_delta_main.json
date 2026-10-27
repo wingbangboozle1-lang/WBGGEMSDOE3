@@ -1,0 +1,26 @@
+{
+ "evidence_class": "REGISTRY-MEASUREMENT on the saved LBCAL bytes vs rasters merged to main after the lane's scan",
+ "rule": "forward overlap > 0.70 = duplicate",
+ "rows": [
+  {
+   "file": "submission/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+   "lane": "score-tomography lane (main decision: SUBMIT-WITH-CAVEAT)",
+   "their_dots": 30000,
+   "my_dots_within_3px_of_theirs": 0.1737,
+   "their_dots_within_3px_of_mine": 0.1958,
+   "halo_share_of_allowed": 0.1522,
+   "jaccard": 0.0024,
+   "duplicate_by_overlap": false
+  },
+  {
+   "file": "submission/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+   "lane": "session-1f0b051d lidar dipole lane (negative)",
+   "their_dots": 40000,
+   "my_dots_within_3px_of_theirs": 0.2395,
+   "their_dots_within_3px_of_mine": 0.2293,
+   "halo_share_of_allowed": 0.1957,
+   "jaccard": 0.0025,
+   "duplicate_by_overlap": false
+  }
+ ]
+}

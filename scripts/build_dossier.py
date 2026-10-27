@@ -18,6 +18,7 @@ import json
 from pathlib import Path
 
 from rfl_banner import RFL_BANNER
+from lbcal_banner import LBCAL_BANNER
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -99,6 +100,7 @@ def page(slug: str, title: str, body: str) -> str:
 </div></div>
 <main class="wrap">
 {RFL_BANNER}
+{LBCAL_BANNER}
 {body}
 </main>
 <footer><div class="wrap">
