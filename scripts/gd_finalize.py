@@ -15,6 +15,8 @@ No proxy value is ever reported as a competition score.
 """
 from __future__ import annotations
 
+raise SystemExit("BLOCKED: superseded proxy approval path; use shared evaluator/writer only after literal registry preflight passes.")
+
 import hashlib
 import json
 import sys

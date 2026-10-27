@@ -64,7 +64,7 @@ def page(title, current, body):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} · HCE-1 · WBGGEMSDOE3</title><link rel="stylesheet" href="assets/hce.css"></head>
 <body><header class="top"><div class="wrap"><div class="brand">⌁ WBGGEMSDOE3 · HCE-1 LANE <span class="small">/ DOE GEMS PRIZE</span></div><nav>{links}</nav></div></header>
-<main><div class="wrap">{body}</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>"""
+<main><div class="wrap"><div class="danger"><strong>Global release gate: DO NOT SUBMIT.</strong> This lane's card reports a content-aware diagnostic but a literal-registry failure. It has no repository-level selector approval and cannot override the governing negative run card. Downloads are for reproducibility only; see the <a href="../executive-summary.html">repository-wide decision</a>.</div>{body}</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>"""
 
 
 def main():
@@ -117,9 +117,9 @@ def main():
 audited it against a 145-file frozen registry, validated the saved bytes and scored it on a spatially blocked
 whole-segment holdout. No weekly submission slot was spent.</p></div></div>
 
-<div class="big"><div style="flex:1 1 420px"><div class="yes">✔ OK TO DOWNLOAD — UNIQUE TIF READY</div>
-<div class="small">Format-valid · unique under the audited content-aware rule · holdout-winning method · no organizer receipt yet.</div></div>
-<div><a class="btn" href="{tif}" download>DOWNLOAD THE TIF ↓</a> <a class="btn sec" href="{zipf}" download>ZIP ↓</a> <a class="btn sec" href="how-to-submit.html">HOW TO SUBMIT ↗</a></div></div>
+<div class="big" style="background:#4a171a;border-color:#c95058"><div style="flex:1 1 420px"><div class="yes" style="color:#ffd2d4">✖ DO NOT SUBMIT — RESEARCH ARTIFACT ONLY</div>
+<div class="small" style="color:#ffe7e8">The local format and content-aware diagnostics do not pass the binding literal registry rule or global release gate.</div></div>
+<div><a class="btn" href="{tif}" download>DOWNLOAD RESEARCH TIF ↓</a> <a class="btn sec" href="{zipf}" download>RESEARCH ZIP ↓</a> <a class="btn sec" href="../executive-summary.html">RELEASE GATE ↗</a></div></div>
 
 <div class="grid">
 <div class="card"><h3>The exact file</h3><div class="kv"><span><b>{e(raster['filename'])}</b></span><span>{raster['bytes']:,} bytes</span><span>{raster['dots']:,} dots</span></div>
@@ -153,12 +153,9 @@ observation about other teams, NOT a score for any file here. <a href="https://w
 <td><strong>{proj['p50']:.3f}</strong><br><span class="small">p10–p90 {proj['p10']:.3f}–{proj['p90']:.3f}; LOO MAE {sm['loo_mae']:.4f}; out-of-family, likely pessimistic</span></td>
 <td><span class="tag good">YES</span><br><span class="small">exact duplicate: no; max sparse 3 px overlap {uniq['U3_max_overlap_sparse']:.3f} &lt; 0.70; max |ρ| {uniq['U2_max_abs_spearman']:.3f} &lt; 0.90; space-filling excess +{uniq['U3_space_filling_max_excess']:.3f}</span></td>
 <td><strong>HOLDOUT-DTI {hold['candidate']:.4f}</strong><br><span class="small">95% CI {hold['candidate_ci95'][0]:.4f}–{hold['candidate_ci95'][1]:.4f}, {hold['n_withheld_positives']:,} withheld positives, {e(hold['evaluator_version'])}; paired Δ +{hold['paired_delta_vs_champion_proxy']['delta']:.4f} vs 0.0992 champion proxy</span></td>
-<td><span class="tag good">YES — DOWNLOAD</span><br><span class="small">separate weekly-slot selector still required; no organizer receipt</span></td></tr></tbody></table></div>
+<td><span class="tag bad">NO — DO NOT SUBMIT</span><br><span class="small">literal registry failure and no global selector approval</span></td></tr></tbody></table></div>
 <p class="small">Projection provenance: {e(proj['caveat'])}</p>
-<div class="ok"><strong>Which file should I use?</strong> For a unique, never-submitted, format-valid entry, download
-the HCE-1 TIF above. The highest historical claim is GEMSDOE32's B2 file (0.2778, owner-reported) but it is a
-near-duplicate of other focus-site rasters and is research-only. <strong>No file here has an organizer-confirmed
-score.</strong> A real score requires an actual portal upload and its receipt.</div>
+<div class="danger"><strong>Which file should I use?</strong> None is cleared for a competition upload. The HCE-1 TIF is downloadable only to reproduce its local validation and diagnostics. The highest historical claim is GEMSDOE32's B2 file (0.2778, owner-reported), but it is a near-duplicate of other focus-site rasters and is research-only. <strong>No file here has an organizer-confirmed score.</strong></div>
 
 <h2>One-line verdict for every focus site</h2><ul>{site_paras}</ul>
 
@@ -183,24 +180,17 @@ PhD-level analysis</a> and <a href="hypotheses.html">all four hypotheses</a>.</p
 
     # ------------------------------------------------------------- how to submit
     body = f"""
-<div class="hero"><div class="wrap"><div class="small">EXECUTIVE SUMMARY / SUBMISSION GUIDE</div><h1>Exactly how to submit.</h1>
-<p>Five steps, the exact file, the exact name and the exact note. The portal upload is the only step you must do yourself.</p></div></div>
-<div class="big"><div style="flex:1 1 420px"><div class="yes">STEP 1 — DOWNLOAD THE EXACT BYTES</div><div class="small">One single-band float32 GeoTIFF, 3,730 × 3,292, EPSG:32611, 100 m, all values in [0,1], no NaN inside the footprint.</div></div>
-<div><a class="btn" href="{tif}" download>DOWNLOAD TIF ↓</a> <a class="btn sec" href="{zipf}" download>OR ZIP ↓</a></div></div>
+<div class="hero"><div class="wrap"><div class="small">EXECUTIVE SUMMARY / RELEASE STATUS</div><h1>Submission is blocked.</h1>
+<p>Do not upload this lane's file. The literal registry gate fails and there is no repository-level selector approval. The bytes remain available solely to reproduce automated local checks.</p></div></div>
+<div class="big" style="background:#4a171a;border-color:#c95058"><div style="flex:1 1 420px"><div class="yes" style="color:#ffd2d4">RESEARCH DOWNLOAD — NOT FOR THE PORTAL</div><div class="small" style="color:#ffe7e8">One single-band float32 GeoTIFF, 3,730 × 3,292, EPSG:32611, 100 m, all values in [0,1], no NaN inside the mirrored footprint.</div></div>
+<div><a class="btn" href="{tif}" download>DOWNLOAD RESEARCH TIF ↓</a> <a class="btn sec" href="{zipf}" download>RESEARCH ZIP ↓</a></div></div>
 <div class="grid"><div class="card"><h3>File</h3><div class="small"><code>{e(raster['filename'])}</code><br>SHA-256 <code>{e(raster['sha256'])}</code><br>{raster['bytes']:,} bytes · {raster['dots']:,} positive pixels</div></div>
 <div class="card"><h3>Name</h3><div class="small"><code>{e(rc['submission_name'])}</code></div></div>
 <div class="card"><h3>Note ({rc['submission_note_chars']}/140 chars)</h3><div class="small">{e(note)}</div></div></div>
-<h2>Step 2 — sign in and check the weekly cap</h2>
-<p>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition page</a> and the
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>. The
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> set a weekly submission limit (up to
-three per week in the rules text) — check the live portal for your team's remaining quota. We cannot see your
-account. <strong>This project used zero slots.</strong></p>
-<h2>Step 3 — upload</h2>
-<p>Choose “Submit” → “New submission” → select the single <code>.tif</code> (or the single-TIFF <code>.zip</code>).
-The form accepts a single-band GeoTIFF or a ZIP containing exactly one GeoTIFF with the sample's CRS, shape and
-geotransform. Paste the note above into the optional comment. Keep the organizer receipt and the uploaded file's
-SHA-256 together — that receipt is the only ORGANIZER-CONFIRMED score.</p>
+<h2>What must change before an upload is possible</h2>
+<p>Resolve the literal uniqueness rule with the protocol owner; run a compliant whole-segment buffered HOLDOUT-DTI comparison; rerun the registry checks on the saved bytes; and record a separate selector approval for the exact SHA-256. The official rules and portal quota are relevant only after those gates pass. <strong>This project used zero slots.</strong></p>
+<h2>No upload step is authorized</h2>
+<p>Do not choose “Submit” or “New submission” for this file. If a future file passes every gate, preserve its organizer receipt and SHA-256 together; that receipt is the only ORGANIZER-CONFIRMED score.</p>
 <h2>Step 4 — avoid the “Predicted values must be in range [0, 1]” error</h2>
 <p>The saved bytes were re-opened and checked: one band, float32, all 12,279,160 cells finite, all values in
 [0,1], zero NaNs/infinities/sentinels, zero positive cells outside the mirrored footprint, zero positive cells on
