@@ -1,0 +1,45 @@
+{
+  "session": "2026-10-27",
+  "branch": "arena/288762fe-wbggemsdoe3",
+  "evidence_class": "NEGATIVE — re-verification and explanation only; no candidate generated",
+  "lane": "none assigned this session (CSPES preregistered, not run)",
+  "experiments_run": 0,
+  "experiment_budget": {"max_experiments": 3, "max_hours": 2},
+  "slots_used": 0,
+  "slot_selection": "not performed; separate selector step required",
+  "hypothesis_tested": null,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI (upstream, not run this session)",
+    "experiment": "H6-1 proximity pruning",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "unpruned_dti_ci95": [0.11846, 0.15306],
+    "paired_delta_vs_random_prune_ci95": [-0.0000008, 0.000235],
+    "verdict": "negative"
+  },
+  "uniqueness_checks": {
+    "witness_coverage_of_footprint": 1.0,
+    "gems32_within_3px_of_gems31": 1.0,
+    "gems32_within_3px_of_gems36": 1.0,
+    "gate_limit": 0.70,
+    "gate_outcome": "fail"
+  },
+  "local_validation": {
+    "script": "scripts/verify_2026_10_27.py",
+    "output": "evidence/verification_2026-10-27.json",
+    "all_passed": true,
+    "checks": 20,
+    "candidate_created": false
+  },
+  "leaderboard_observation": {
+    "file": "evidence/leaderboard_observation_2026-10-27.json",
+    "label": "public split, not organizer receipt"
+  },
+  "candidate_file": null,
+  "submission_name": null,
+  "submission_comment": null,
+  "okay_to_download": false,
+  "okay_to_submit": false,
+  "decision": "DO NOT SUBMIT",
+  "open_items": ["IR-09","IR-11","IR-13","IR-14","IR-15","IR-16","IR-17","IR-18","IR-19"]
+}

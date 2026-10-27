@@ -1,6 +1,6 @@
 {
   "audit_version": "wbggems-preflight-v1",
-  "checked_utc": "2026-10-26T22:12:59.141647+00:00",
+  "checked_utc": "2026-10-27T17:20:40.102229+00:00",
   "evidence_class": "RASTER-ARTIFACT-MEASUREMENT; no new HOLDOUT-DTI or organizer-confirmed candidate score",
   "template": {
     "source": "https://github.com/buffedlizard55-lab/57GEMSDOE/tree/822a0ce5546c7b6749cdd82eb145b6b3e616603d",
