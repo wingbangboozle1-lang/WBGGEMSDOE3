@@ -17,10 +17,17 @@ from build_site_legacy import (  # noqa: E402,F401
     decision, esc, guide, historical_h6_section, layout, overview, research, evidence,
 )
 from hce_banner import HCE_BANNER  # noqa: E402,F401
-from session2_site import human_age, main  # noqa: E402,F401
+from session2_site import human_age, main as _session2_main  # noqa: E402,F401
 
 
-def build() -> None:
+def main() -> int:
+    from build_site_thcs import main as _thcs_main
+    r1 = _session2_main() or 0
+    r2 = _thcs_main() or 0
+    return r1 or r2
+
+
+def build() -> int:
     """Compatibility alias used by the reproducibility tests."""
     return main()
 

@@ -19,6 +19,7 @@ from pathlib import Path
 
 from rfl_banner import RFL_BANNER
 from lbcal_banner import LBCAL_BANNER
+from thcs_banner import THCS_BANNER
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -76,8 +77,9 @@ ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
 
 NAV = [("index.html", "Executive summary"), ("executive-summary.html", "Nine-site analysis"),
        ("how-to-submit.html", "How to submit"), ("research.html", "Hypotheses"),
-       ("evidence.html", "Evidence"), ("cspes/index.html", "CSPES lane"),
-       ("lst1/index.html", "LST1 lane"), ("downloads/index.html", "All downloads")]
+       ("evidence.html", "Evidence"), ("thcs/index.html", "THCS-OOF lane"),
+       ("cspes/index.html", "CSPES lane"), ("lst1/index.html", "LST1 lane"),
+       ("downloads/index.html", "All downloads")]
 
 
 def page(slug: str, title: str, body: str) -> str:
@@ -101,6 +103,7 @@ def page(slug: str, title: str, body: str) -> str:
 <main class="wrap">
 {RFL_BANNER}
 {LBCAL_BANNER}
+{THCS_BANNER}
 {body}
 </main>
 <footer><div class="wrap">

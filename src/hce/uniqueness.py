@@ -36,26 +36,36 @@ def dot_sha(m: np.ndarray) -> str:
     return hashlib.sha256(np.packbits(m.ravel()).tobytes()).hexdigest()
 
 
-def inventory(root: Path, foot: np.ndarray) -> list[dict]:
+def inventory(root: Path, foot: np.ndarray, exclude_paths: set[str] | None = None) -> list[dict]:
     """Every comparable GeoTIFF in the frozen registry, classified from its bytes."""
     specs = [("data/focus", "*.tif"), ("data/ledger", "*.tif"),
+             ("data/peer_extra", "*.tif"), ("data/raw/comparators", "*.tif"),
              ("data/raw/scored", "*.tif"), ("docs/downloads", "*.tif"),
-             ("submission", "*.tif"), ("site/assets/downloads", "*.tif"),
-             ("archive", "**/*.tif")]
+             ("docs/hce/downloads", "*.tif"), ("submission", "*.tif"),
+             ("site/assets/downloads", "*.tif"), ("archive", "**/*.tif")]
     paths: list[Path] = []
     for d, pat in specs:
         paths += sorted((root / d).glob(pat))
     witness = root / ".cache" / "witness17.tif"
     if witness.exists():
         paths.append(witness)
+    excl = exclude_paths or set()
     rows = []
+    seen_sha: dict[str, dict] = {}
     for p in paths:
-        r = dict(path=str(p.relative_to(root)), sha256=_sha(p), bytes=p.stat().st_size)
+        rel = str(p.relative_to(root))
+        if rel in excl or p.name.startswith(("existing_faults", "sample_submission", "example_submission", "labels", "training_features")):
+            continue
+        sha = _sha(p)
+        if sha in seen_sha:
+            seen_sha[sha].setdefault("aliases", []).append(rel)
+            continue
+        r = dict(path=rel, sha256=sha, bytes=p.stat().st_size, aliases=[])
         try:
             with rasterio.open(p) as ds:
                 if ds.shape != foot.shape:
                     r.update(status="grid_mismatch", shape=list(ds.shape))
-                    rows.append(r); continue
+                    rows.append(r); seen_sha[sha] = r; continue
                 a = ds.read(1)
             m = np.isfinite(a) & (a > 0) & foot
             n = int(m.sum())
@@ -70,6 +80,7 @@ def inventory(root: Path, foot: np.ndarray) -> list[dict]:
         except Exception as exc:
             r.update(status="read_error", error=str(exc)[:200])
         rows.append(r)
+        seen_sha[sha] = r
     return rows
 
 
@@ -92,10 +103,12 @@ def surface_gate(surface: np.ndarray, foot: np.ndarray, rows: list[dict], root: 
         if r["status"] != "ok":
             continue
         with rasterio.open(root / r["path"]) as ds:
-            a = ds.read(1)
-        v = a.ravel()[sidx].astype(np.float32)
-        v[~np.isfinite(v)] = 0.0
-        per.append(dict(path=r["path"], abs_spearman=round(abs(_spearman(s, v)), 5)))
+            a = ds.read(1).astype(np.float32)
+        a = np.where(np.isfinite(a) & foot, a, 0.0)
+        v_raw = a.ravel()[sidx]
+        v_sm = ndi.gaussian_filter(a, 1.5).ravel()[sidx]
+        rho = max(abs(_spearman(s, v_raw)), abs(_spearman(s, v_sm)))
+        per.append(dict(path=r["path"], abs_spearman=round(rho, 5)))
     per.sort(key=lambda x: -x["abs_spearman"])
     mx = max([p["abs_spearman"] for p in per], default=0.0)
     return dict(n_compared=len(per), max_abs_spearman=mx, passed=mx <= 0.90,
@@ -126,17 +139,18 @@ def audit(cand_dots: np.ndarray, surface: np.ndarray, foot: np.ndarray,
         near = ndi.binary_dilation(m, structure=DISC)
         obs = float((cand_dots & near).sum() / max(n, 1))
         nul = float((null & near).sum() / max(n, 1))
-        # two-sided rank correlation of the candidate SURFACE and DOTS vs the reference values
-        v = a.ravel()[sidx].astype(np.float32)
-        v[~np.isfinite(v)] = 0.0
-        rho_surf = _spearman(surf_s, v)
-        rho_dots = _spearman(dot_s, v)
+        # two-sided rank correlation of the candidate SURFACE and DOTS vs both raw & smoothed reference values
+        af = np.where(np.isfinite(a) & foot, a.astype(np.float32), 0.0)
+        v_raw = af.ravel()[sidx]
+        v_sm = ndi.gaussian_filter(af, 1.5).ravel()[sidx]
+        rho_surf = max(abs(_spearman(surf_s, v_raw)), abs(_spearman(surf_s, v_sm)))
+        rho_dots = max(abs(_spearman(dot_s, v_raw)), abs(_spearman(dot_s, v_sm)))
         out_rows.append(dict(path=r["path"], cls=r["cls"], n_ref_dots=r["n_dots"],
                              dilation3_coverage=round(r["dilation3_coverage"], 5),
                              overlap=round(obs, 5), random_null_overlap=round(nul, 5),
                              excess=round(obs - nul, 5),
-                             abs_spearman_surface=round(abs(rho_surf), 5),
-                             abs_spearman_final_dots=round(abs(rho_dots), 5),
+                             abs_spearman_surface=round(rho_surf, 5),
+                             abs_spearman_final_dots=round(rho_dots, 5),
                              exact_dot_duplicate=r["dots_sha256"] == cd_sha))
     out_rows.sort(key=lambda x: -x["overlap"])
     sparse = [r for r in out_rows if r["cls"] == "sparse"]

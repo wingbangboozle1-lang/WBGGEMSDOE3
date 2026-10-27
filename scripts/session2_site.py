@@ -49,8 +49,9 @@ STYLE = """
 
 
 def layout(title: str, current: str, body: str) -> str:
+    from thcs_banner import THCS_BANNER
     nav = [("Overview", "index.html"), ("Executive summary / how to submit", "executive-summary.html"),
-           ("Research", "research.html"), ("Evidence", "evidence.html")]
+           ("Research", "research.html"), ("Evidence", "evidence.html"), ("THCS-OOF lane", "thcs/index.html")]
     links = "".join(f'<a {"class=active" if current == url else ""} href="{url}">{esc(name)}</a>'
                     for name, url in nav)
     return f'''<!doctype html>
@@ -61,7 +62,8 @@ def layout(title: str, current: str, body: str) -> str:
 {STYLE}</head>
 <body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>GEMS FIELD NOTES<small>FAULT DISCOVERY / SUBMISSION DECISION</small></span></a>
 <nav class="navigation" aria-label="Main navigation">{links}</nav><span class="nav-status"><i class="dot"></i> 1 new file cleared*</span></div></header>
-<main>{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span><div class="wrap mini" style="padding:0 0 14px">Parallel lanes (HCE, CSPES, RFL, LST1) remain research-only — Global release gate: DO NOT SUBMIT their artifacts; see <a href="hce/index.html">HCE evidence ↗</a>. Their LEDGER-INVERSION ESTIMATE is not used for this file; this decision uses HOLDOUT-DTI and a separately labelled PROJECTION.</div></div></footer></body></html>'''
+{THCS_BANNER}
+<main>{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span><div class="wrap mini" style="padding:0 0 14px">Parallel lanes (THCS-OOF, LBCAL, HCE, CSPES, RFL, LST1) remain research-only — Global release gate: DO NOT SUBMIT their artifacts; see <a href="thcs/index.html">THCS-OOF dossier ↗</a> and <a href="hce/index.html">HCE evidence ↗</a>. Their LEDGER-INVERSION ESTIMATE is not used for this file; this decision uses HOLDOUT-DTI and a separately labelled PROJECTION.</div></div></footer></body></html>'''
 
 
 def load():

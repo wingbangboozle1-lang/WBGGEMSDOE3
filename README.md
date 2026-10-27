@@ -31,6 +31,34 @@
 >    optimised file's expected score as uncertain (≈0.05–0.3), including LBCAL's own. The selector should weigh this before
 >    spending a slot on TDE-30k. This lane does not change the decision above. No slot was used.
 
+> **FIFTH PARALLEL LANE: THCS-OOF, session `arena/f226cee3-wbggemsdoe3` (2026-10-27). Best zero-catalogue
+> `HOLDOUT-DTI` (`0.09573`) in the repository; `+12.4%` DOE GDR #1391 hydrothermal ablation lift; verdict `negative`
+> vs `0.09920` champion holdout (hold weekly slot).**
+> [THCS-OOF 5-page dossier](docs/thcs/index.html) ·
+> [Executive Summary](docs/thcs/executive-summary.html) ·
+> [How to Submit & `[0,1]` Guide](docs/thcs/how-to-submit.html) ·
+> [Geological Science](docs/thcs/research.html) ·
+> [Evidence & Sources](docs/thcs/evidence.html) ·
+> [validated research TIF](docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif) ·
+> [single-TIFF ZIP](docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip) ·
+> [run card](evidence/thcs_run_card.json) ·
+> [preregistration + 5 ranked hypotheses](knowledge/preregistration-2026-10-27-thcs.md).
+>
+> Key discoveries & measurements:
+> 1. **Decoded `IR-20` (Band 6 `tc` Mislabeled Tag):** Proved across `5,164,300` footprint cells that `training_features.tif`
+>    Band 6 (`tc`) correlates at `Spearman ρ = 0.999953` with USGS GeoDAWN airborne gamma-ray **Total Radiometric Count**
+>    (not magnetic tilt/curvature), restoring genuine magnetic tilt $\arctan(\text{VDR}/\text{THDR})$ alongside float32 radiometrics.
+> 2. **Fixed `IR-21` Upstream in `src/gemsdoe/validation.py`:** Added missing `|G|/|SGMC|` scaling and $TP_w \le |G|$ bound
+>    so space-filling lattices can no longer inflate estimated DTI above `1.0` (120-run Leave-One-Site-Out RF calibration:
+>    `Spearman = +0.8821, MAE = 0.0240`; `skarpline-union` `0.0697` ESTIMATE).
+> 3. **48-ch Thermo-Hydro-Chemical + Geophysical OOF HGB + 300 m Submodular CELF (`46,000` dots, SHA-256 `025cbc8f...`):**
+>    `48/48` leakage canaries PASS (`max AUC = 0.5960 <= 0.90`); `13/13` saved-byte `[0,1]` checks PASS (`0` NaN/Inf);
+>    unique against all Focus-9 (`43.0%` vs `GEMSDOE32`), all `<80k`-dot archive submissions (`<= 66.5%`), and all merged
+>    repo lanes (`20.2%` vs `TDE-30k`, `28.0%` vs `dipolehybrid`, `31.2%` vs `LBCAL`). Adding DOE GDR #1391 2m temperature
+>    probes (`F2mDAB`), paleo-sinter/travertine/tufa, and spring/well geothermometry lifted `HOLDOUT-DTI` from `0.08167` (`E1`)
+>    to `0.09184` (`E2`, `+12.4%`) and **`0.09573` (`E3`)** (`LOSO-MODEL-ESTIMATE = 0.1455 [0.086, 0.205]`, not a score).
+>    Because `0.09573 < 0.09920` (`GEMSDOE32` holdout), the lane remains `negative` (do not spend a weekly slot yet).
+
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).

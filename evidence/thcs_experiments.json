@@ -1,0 +1,244 @@
+{
+  "lane": "THCS-OOF",
+  "generated_utc": "20261027T200639Z",
+  "total_elapsed_sec": 1355.18,
+  "baseline_champion_holdout": {
+    "candidate_id": "GEMSDOE32-H33-2-B2",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "pooled_dti": 0.09920232315251679,
+    "ci95_cluster_bootstrap": [
+      0.08595140754809347,
+      0.11266835751415871
+    ],
+    "n_withheld_positives": 22232,
+    "organizer_confirmed_live_score": 0.2778
+  },
+  "experiments": [
+    {
+      "exp_id": "THCS-E1-geophys-rad-lidar",
+      "n_features": 38,
+      "chosen_budget": 38000,
+      "elapsed_sec": 265.14,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.08167417925175778,
+      "ci95_cluster_bootstrap": [
+        0.06845381363921679,
+        0.09534543747438609
+      ],
+      "fold_mean_dti": 0.08448451377437723,
+      "per_quadrant_dti": {
+        "NW": 0.09004560616345042,
+        "NE": 0.09357877288717059,
+        "SW": 0.05032608899531914,
+        "SE": 0.10398758705156874
+      },
+      "budget_sweep": {
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.08167417925175778,
+          "ci95_cluster_bootstrap": [
+            0.06845381363921679,
+            0.09534543747438609
+          ],
+          "fold_mean_dti": 0.08448451377437723,
+          "per_quadrant_dti": {
+            "NW": 0.09004560616345042,
+            "NE": 0.09357877288717059,
+            "SW": 0.05032608899531914,
+            "SE": 0.10398758705156874
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        }
+      },
+      "celf_full_map": {
+        "selected": 38000,
+        "budget_k": 38000,
+        "candidate_pool": 360000,
+        "celf_recomputes": 746925,
+        "initial_max_gain": 5.621486186981201,
+        "final_marginal_gain": 0.3597142696380615,
+        "covered_posterior_mass": 35530.77734375
+      }
+    },
+    {
+      "exp_id": "THCS-E2-plus-gdr1391-hydrothermal",
+      "n_features": 48,
+      "chosen_budget": 38000,
+      "elapsed_sec": 288.54,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.09183883815289216,
+      "ci95_cluster_bootstrap": [
+        0.07705117078134685,
+        0.10676083550091564
+      ],
+      "fold_mean_dti": 0.09107300009246606,
+      "per_quadrant_dti": {
+        "NW": 0.08672821357683741,
+        "NE": 0.07071826537603196,
+        "SW": 0.07524935627412374,
+        "SE": 0.13159616514287115
+      },
+      "budget_sweep": {
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.09183883815289216,
+          "ci95_cluster_bootstrap": [
+            0.07705117078134685,
+            0.10676083550091564
+          ],
+          "fold_mean_dti": 0.09107300009246606,
+          "per_quadrant_dti": {
+            "NW": 0.08672821357683741,
+            "NE": 0.07071826537603196,
+            "SW": 0.07524935627412374,
+            "SE": 0.13159616514287115
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        }
+      },
+      "celf_full_map": {
+        "selected": 38000,
+        "budget_k": 38000,
+        "candidate_pool": 360000,
+        "celf_recomputes": 743905,
+        "initial_max_gain": 5.220323085784912,
+        "final_marginal_gain": 0.3612786829471588,
+        "covered_posterior_mass": 35408.7109375
+      }
+    },
+    {
+      "exp_id": "THCS-E3-ensemble-crest-celf",
+      "n_features": 48,
+      "chosen_budget": 46000,
+      "elapsed_sec": 564.69,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.09573228268990094,
+      "ci95_cluster_bootstrap": [
+        0.08043534867236983,
+        0.11040673808587279
+      ],
+      "fold_mean_dti": 0.09703836670178219,
+      "per_quadrant_dti": {
+        "NW": 0.09369993249887021,
+        "NE": 0.08481785557725016,
+        "SW": 0.073630259125789,
+        "SE": 0.1360054196052194
+      },
+      "budget_sweep": {
+        "34000": {
+          "budget_full_map": 34000,
+          "pooled_dti": 0.09105967539087416,
+          "ci95_cluster_bootstrap": [
+            0.07501495479855175,
+            0.10598094216843566
+          ],
+          "fold_mean_dti": 0.09223498674143443,
+          "per_quadrant_dti": {
+            "NW": 0.09241685984127329,
+            "NE": 0.07647558473073462,
+            "SW": 0.06713233070677876,
+            "SE": 0.13291517168695102
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "draw20_mean_dti": 0.09717065023217097,
+          "draw21_mean_dti": 0.08729932325069789
+        },
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.09270073411425582,
+          "ci95_cluster_bootstrap": [
+            0.07683126649044202,
+            0.10796802239153104
+          ],
+          "fold_mean_dti": 0.09389689975768595,
+          "per_quadrant_dti": {
+            "NW": 0.09303079342252332,
+            "NE": 0.07909000468288152,
+            "SW": 0.06937209724494407,
+            "SE": 0.13409470368039486
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "draw20_mean_dti": 0.0981175929680895,
+          "draw21_mean_dti": 0.0896762065472824
+        },
+        "42000": {
+          "budget_full_map": 42000,
+          "pooled_dti": 0.09515394012307513,
+          "ci95_cluster_bootstrap": [
+            0.07958398654626667,
+            0.11010737615058576
+          ],
+          "fold_mean_dti": 0.09639109488622931,
+          "per_quadrant_dti": {
+            "NW": 0.09586962610777065,
+            "NE": 0.08138973932397164,
+            "SW": 0.07283938528726697,
+            "SE": 0.13546562882590799
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "draw20_mean_dti": 0.10093302875309201,
+          "draw21_mean_dti": 0.0918491610193666
+        },
+        "46000": {
+          "budget_full_map": 46000,
+          "pooled_dti": 0.09573228268990094,
+          "ci95_cluster_bootstrap": [
+            0.08043534867236983,
+            0.11040673808587279
+          ],
+          "fold_mean_dti": 0.09703836670178219,
+          "per_quadrant_dti": {
+            "NW": 0.09369993249887021,
+            "NE": 0.08481785557725016,
+            "SW": 0.073630259125789,
+            "SE": 0.1360054196052194
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+          "draw20_mean_dti": 0.10163450553981788,
+          "draw21_mean_dti": 0.09244222786374648
+        }
+      },
+      "celf_full_map": {
+        "selected": 46000,
+        "budget_k": 46000,
+        "candidate_pool": 360000,
+        "celf_recomputes": 828379,
+        "initial_max_gain": 4.194265842437744,
+        "final_marginal_gain": 0.19805176556110382,
+        "covered_posterior_mass": 28057.544921875
+      }
+    }
+  ],
+  "selected_experiment": "THCS-E3-ensemble-crest-celf",
+  "sgmc_diagnostic_proxy": {
+    "candidate_id": "THCS-E3-ensemble-crest-celf",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "n_withheld_positives": 62703,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_pooled_dti": 0.07014425969547976,
+    "sgmc_raw_ci95": [
+      0.054236162542834546,
+      0.08880901718366775
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.043799346976221926,
+    "sgmc_calibrated_ci95": [
+      0.03526811994723225,
+      0.05254626137665837
+    ]
+  }
+}
