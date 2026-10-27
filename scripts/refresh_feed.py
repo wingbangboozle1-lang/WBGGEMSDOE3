@@ -81,7 +81,8 @@ def refresh(path: Path = PATH) -> dict:
         score = parse_first_place(html.decode("utf-8", errors="replace"))
         old.update(source=URL, best_public_dti=score, last_success_utc=now, last_attempt_error=None,
                    evidence_class="PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt or candidate score",
-                   scope="Public top-ranked team only; hidden private scores and any candidate receipt are unavailable.")
+                   scope="Public top-ranked team only; hidden private scores and any candidate receipt are unavailable.",
+                   observation_method="Official public leaderboard HTMX fragment parsed automatically.")
     except Exception as exc:
         # Avoid publishing a traceback or secrets. Preserve but mark the prior value stale.
         old["last_attempt_error"] = type(exc).__name__ + ": " + str(exc)[:160]

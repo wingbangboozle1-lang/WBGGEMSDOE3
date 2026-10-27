@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Per-site executive table: best owner-reported file and best UNSCORED file (LST projection band), with automatic
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+Per-site executive table: best owner-reported file and best UNSCORED file (LST projection band), with automatic
 format validation, dot-identity and near-duplicate (3-px overlap) audit, and download links."""
 from __future__ import annotations
+
+# Preserved for provenance only: this checker used unapproved exemptions.
+raise SystemExit("BLOCKED: legacy assessment can falsely label references unique; see evidence/focus_audit.json.")
 import json, subprocess, sys, time
 from pathlib import Path
 import numpy as np

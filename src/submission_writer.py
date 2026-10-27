@@ -1,10 +1,4 @@
-"""Write and validate a GeoTIFF submission for the GEMS competition.
-
-Produces a single-band GeoTIFF with values in [0, 1], no NaN, and writes a
-sidecar validation report. Optionally conforms to a reference grid (CRS, shape,
-transform) taken from sample_submission.tif so the file is ready to upload to
-the DrivenData submission page.
-"""
+"""Retired local writers. They are not submission-ready; see evidence/run_card.json."""
 
 from __future__ import annotations
 
@@ -23,6 +17,7 @@ SUBMISSION_DIR = Path(__file__).resolve().parents[1] / "submission"
 
 def write_submission(array, out_path, crs=None, transform=None,
                      nodata=None, dtype=np.float32):
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     array = np.asarray(array, dtype=np.float64)
     if array.ndim != 2:
         raise ValueError("array must be 2D (single band)")
@@ -58,6 +53,7 @@ def conform_to_reference(array, reference_path, out_path):
     NOT geometrically conformant (must be re-derived against the real grid
     before submission).
     """
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     array = np.asarray(array, dtype=np.float64)
     with rasterio.open(reference_path) as ref:
         ref_profile = ref.profile.copy()
@@ -84,5 +80,4 @@ def conform_to_reference(array, reference_path, out_path):
 
 
 if __name__ == "__main__":
-    print("submission_writer: import write_submission / conform_to_reference")
-    print("Use generate_submission.py to produce a full submission.")
+    raise SystemExit("BLOCKED: retired local writers are disabled; see evidence/run_card.json")

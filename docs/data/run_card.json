@@ -31,8 +31,8 @@
   "selector_approval": false,
   "experiments": 0,
   "slots_spent": 0,
-  "run_time_utc": "2026-10-26T22:12:59.141647+00:00",
-  "source_audit_sha256": "17a807a6ec5b53559354bd6d312f45f5b1fb3e0fc6bae29f53dce8cc2194a542",
+  "run_time_utc": "2026-10-27T17:18:14.108774+00:00",
+  "source_audit_sha256": "0f8b9db7fd2591aa37d01f74034237374f96b6e9dfb4342967c36e13db013495",
   "follow_up": "Resolve the literal registry support definition by explicit protocol revision; reconcile the shared tool's one-sided rho and outside-footprint convention upstream; then rerun canaries, blocked holdout, registry checks and validation.",
   "parallel_artifact_review": {
     "evidence_sha256": "a9240a3d81a53f891eec724977e39da86b2ff137562583b0aca65196513fc42b",

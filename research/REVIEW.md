@@ -1,3 +1,5 @@
+> **Historical 2026-10-26 review; superseded where inconsistent with the 2026-10-27 audit.** The official source descriptions were subsequently accessible via a research page fetch; full official competition data remain login-walled. See [current review](../knowledge/review-and-irregularities-2026-10-26.md) and [run card](../evidence/run_card.json).
+
 # Executive research review — 2026-10-26
 
 ## Decision: negative; no new submission authorized

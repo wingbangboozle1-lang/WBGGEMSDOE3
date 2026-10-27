@@ -27,18 +27,18 @@ class Links(HTMLParser):
 
 def main():
     errors = []
-    for page in sorted(DOCS.glob('*.html')):
+    for page in sorted(DOCS.rglob('*.html')):
         p = Links()
         p.feed(page.read_text())
         if 'No competition file is cleared' not in ' '.join(p.text):
-            errors.append(f'{page.name}: missing negative banner')
+            errors.append(f'{page.relative_to(DOCS)}: missing negative banner')
         for link in p.targets:
             parsed = urlparse(link)
             if parsed.scheme or parsed.netloc or not parsed.path:
                 continue
             target = (page.parent / unquote(parsed.path)).resolve()
             if not target.is_relative_to(DOCS.resolve()) or not target.exists():
-                errors.append(f'{page.name}: missing/unsafe local link {link}')
+                errors.append(f'{page.relative_to(DOCS)}: missing/unsafe local link {link}')
     card = json.loads((DOCS / 'data/run_card.json').read_text())
     if card.get('verdict') != 'negative' or card.get('raster_sha256') is not None or card.get('selector_approval'):
         errors.append('run card does not match a negative, no-raster decision')

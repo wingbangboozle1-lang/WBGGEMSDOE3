@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""LST1_README.md generated from evidence/lst1_run_card.json (numbers are never hand-typed)."""
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+LST1_README.md generated from evidence/lst1_run_card.json (numbers are never hand-typed)."""
+
+# Preserved below for provenance, but no longer executable or importable.
+raise SystemExit("BLOCKED: legacy README generator publishes superseded approval claims. See evidence/run_card.json.")
 import json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
