@@ -47,3 +47,11 @@ def test_source_head_statuses_are_rendered_per_repository():
     assert 'Current best files and scores are unverified' in body
     assert 'A changed HEAD is a drift warning' in body
     assert 'S22-CTXHGB' in body and 'KPL-36' in body
+
+
+def test_future_upload_guide_uses_official_geotiff_without_assuming_zip():
+    from build_site import guide
+    body = guide()
+    assert 'exact approved GeoTIFF' in body
+    assert 'ZIP acceptance has not been independently verified' in body
+    assert 'TIFF or single-TIFF ZIP' not in body
