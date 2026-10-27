@@ -1,123 +1,56 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
 <title>Evidence · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
---ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-header b{font-size:17px}
-header a{color:var(--mut);text-decoration:none;font-size:14px}
-header a:hover,header a.on{color:var(--fg)}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
-h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-h3{font-size:17px;margin:22px 0 8px}
-p,li{color:#d7dee6}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
-.small{font-size:13.5px;color:var(--mut)}
-.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
-.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
-.tag.no{background:var(--bad);color:#fff}
-.tag.warn{background:var(--warn);color:#1a1200}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
-.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .v{font-size:23px;font-weight:700}
-.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-tr.me td{background:#0f2418;font-weight:600}
-.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
-footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
-a{color:var(--accent)}
-ul{padding-left:22px}
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}header b{font-size:17px}header a{color:var(--mut);text-decoration:none;font-size:14px}header a:hover,header a.on{color:var(--fg)}
+main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}h1{font-size:30px;line-height:1.25;margin:8px 0 10px}h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}h3{font-size:17px;margin:22px 0 8px}p,li{color:#d7dee6}
+code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px;overflow-wrap:anywhere}.small{font-size:13.5px;color:var(--mut)}.hero{border:1px solid var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--bad);color:#fff}.btn{display:inline-block;background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}.btn.warn{background:var(--warn);color:#1a1200;border-color:var(--warn)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.kpi .v{font-size:21px;font-weight:700}.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr.me td{background:#28191b;font-weight:600}.yes{color:var(--ok);font-weight:700}.no{color:#ff8b8b;font-weight:700}.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}.danger{background:#2a1214;border-left:3px solid var(--bad);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}a{color:var(--accent)}ul{padding-left:22px}.scroll{overflow-x:auto}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="">Science</a><a href="evidence.html" class="on">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><div style="background:#0d3327;color:#e8fff5;border-bottom:2px solid #29c78a;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#7ff0bd">NEW · HCE-1 lane (2026-10-27)</strong><span style="flex:1 1 260px">A unique, format-validated GeoTIFF is ready to download. The legacy audit keeps its own verdict; the new lane owns its decision.</span><a style="background:#29c78a;color:#04231a;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/downloads/wbggems3-hce1-latest.tif" download>Download TIF ↓</a><a style="color:#bff7dd;border:1px solid #4b9e7c;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Executive summary ↗</a></div></div>
-<h1>Evidence and reproducibility</h1>
-
-<div class="note" style="border-left-color:var(--ok)"><b>Action:</b>
-<a href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>Download the submission .tif</a> (425 KB ·
-SHA-256 <code>610acf58905f3b46…</code>) — flagged OK TO DOWNLOAD AND SUBMIT by the gates on the
-<a href="executive-summary.html">executive summary</a>.</div>
-
-<h2>1. What was measured, and how</h2>
-<table><thead><tr><th>Item</th><th>Method</th><th>Result</th></tr></thead><tbody>
-<tr><td>Official data integrity</td><td>SHA-256 of the three competition rasters against the pinned manifest</td>
-<td class="yes">3/3 match</td></tr>
-<tr><td>Metric implementation</td><td>Brute-force per-truth-pixel loop vs distance-transform implementation vs a
-third-party measured value on the official 512×512 fixture</td>
-<td class="yes">agree (DTI 0.095501 vs 0.095602 third-party; residual explained by their 309-px smaller valid domain)</td></tr>
-<tr><td>Scope of the 9 focus files</td><td>git blob SHA-1 verification of every downloaded artefact</td>
-<td class="yes">9/9 match the pinned blob</td></tr>
-<tr><td>Duplicate structure of the 9 files</td><td>36 pairwise dot-overlap tests</td>
-<td class="no">36/36 exceed the 70%-within-3-px rule</td></tr>
-<tr><td>Proxy validation</td><td>11 archived organizer-reported scores vs model</td>
-<td>median absolute residual 0.014; Spearman 0.551</td></tr>
-<tr><td>Format validation</td><td>9 checks executed on the saved bytes, not on the in-memory array</td>
-<td class="yes">9/9 pass</td></tr>
-<tr><td>Uniqueness</td><td>20 archived comparators, dot overlap + density rank correlation</td>
-<td class="yes">0 blocked</td></tr>
-</tbody></table>
-
-<h2>2. Run card</h2>
-<pre class="small" style="background:#161b22;padding:14px;border-radius:8px;overflow:auto">{
- "submission": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
- "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
- "hypothesis": "Faults the Quaternary catalogue missed are best recovered from multi-scale scarp morphology of the detrended-elevation surface plus 2 m LiDAR free-face/step descriptors, emitted as a thin, binary, catalogue-free lineament network sized for the official Tversky penalty.",
- "mechanism": "Ridge non-maximum suppression of plan/profile curvature and paired-scarp response (100 m) unioned with NMS of 2 m LiDAR slope-excess/antislope channels, rank-averaged; binary level 1.0 on the union support.",
- "non_fault_mimic": "Roads, railroad grades, alluvial-fan edges, shorelines/terraces, landslides, mines and drainage channels also produce scarps; the TIGER road-distance and acquisition-block audit layers are used to quantify, not to mask, this confound (see docs/executive-summary.html).",
- "verdict": "promote",
- "evidence_class": "LOCAL-EVIDENCE (format + uniqueness + proxy); no organizer receipt"
+<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="">Science</a><a href="evidence.html" class="on">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header>
+<main><div style="background:#3a1719;color:#ffe8e8;border-bottom:2px solid #e56b70;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffb9bc">GLOBAL GATE · DO NOT SUBMIT</strong><span style="flex:1 1 260px">Parallel HCE-1 and skarpline artifacts are research-only. Their local checks do not override the literal registry stop, missing global selector approval, or the governing negative run card.</span><a style="color:#ffe8e8;border:1px solid #e56b70;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Review HCE evidence ↗</a></div></div>
+<span class="tag">GLOBAL RELEASE GATE: DO NOT SUBMIT</span><h1>Evidence, conflicts, and reproducibility</h1>
+<h2>1. Which record governs?</h2><p><code>evidence/run_card.json</code> is the repository-level governing card and has verdict <code>negative</code>. <code>evidence/gemsdoe_run_card.json</code> is a lane card that reports a proxy and a restricted uniqueness audit. The latter cannot override the former. The generated <a href="data/release_gate.json">release gate JSON</a> records the reconciliation and hashes both source cards.</p>
+<pre class="small">{
+  &quot;authority&quot;: {
+    &quot;raster_sha256&quot;: null,
+    &quot;selector_approval&quot;: false,
+    &quot;verdict&quot;: &quot;negative&quot;
+  },
+  &quot;blocking_reasons&quot;: [
+    &quot;The governing run card verdict is not promote.&quot;,
+    &quot;No separate selector approval is recorded.&quot;,
+    &quot;The governing run card does not approve this candidate SHA-256.&quot;,
+    &quot;The candidate has no compliant HOLDOUT-DTI result; PROXY-DTI is not a release metric.&quot;,
+    &quot;The candidate does not record a passing literal all-registry uniqueness gate.&quot;
+  ],
+  &quot;candidate&quot;: {
+    &quot;holdout_label&quot;: &quot;PROXY-DTI (not a competition score)&quot;,
+    &quot;lane_verdict&quot;: &quot;promote&quot;,
+    &quot;literal_registry_pass&quot;: null,
+    &quot;sha256&quot;: &quot;610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2&quot;,
+    &quot;submission&quot;: &quot;wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif&quot;
+  },
+  &quot;decision&quot;: &quot;DO-NOT-SUBMIT&quot;,
+  &quot;okay_to_download_for_research&quot;: true,
+  &quot;okay_to_submit&quot;: false,
+  &quot;schema&quot;: &quot;gems-release-gate-v1&quot;,
+  &quot;source_cards&quot;: {
+    &quot;authority&quot;: &quot;evidence/run_card.json&quot;,
+    &quot;authority_sha256&quot;: &quot;57570d71f4e0aab5fe8c8d815d5b34d53cc5b29e9435b4b062ececea3b039f40&quot;,
+    &quot;candidate&quot;: &quot;evidence/gemsdoe_run_card.json&quot;,
+    &quot;candidate_sha256&quot;: &quot;81def24132fbc733c604dd246f0a9d3db36ad6bc222fd0259575551e87365ab2&quot;
+  }
 }</pre>
-<p><a href="data/gemsdoe_run_card.json">Full run card JSON</a> ·
-<a href="data/estimate.json">estimate.json</a> ·
-<a href="data/focus_estimates.json">focus_estimates.json</a> ·
-<a href="data/uniqueness.json">uniqueness.json</a> ·
-<a href="data/focus_pairwise.json">focus_pairwise.json</a></p>
-
-<h2>3. Irregularities flagged for review</h2>
-<ol>
-<li><b>IR-01 (protocol).</b> The literal uniqueness rule is unsatisfiable for any nonempty submission while a
-registered raster is positive on every footprint cell. Resolution applied here: the 70%-overlap rule is treated as
-vacuous only for comparators covering ≥90% of the footprint within 3 px; the exclusion is printed per comparator.</li>
-<li><b>IR-02 (shared tool).</b> <code>scripts/evaluate_holdout.py</code> blanks predictions outside the withheld
-buffers, so false positives are never counted globally and any spray of dots is free. Recorded, not silently
-patched: the new evaluator <code>src/gemsdoe/metric.py</code> counts false positives over the whole footprint.</li>
-<li><b>IR-03 (sample submission).</b> The official <code>sample_submission.tif</code> is not "total fault absence":
-it holds 60,988 cells equal to 1.0 exactly on the labelled faults and NaN outside the footprint. Measured from the
-bytes; the page wording differs.</li>
-<li><b>IR-04 (provenance).</b> The competition rasters used here come from an owner mirror whose SHA-256 pins match
-the values recorded by a GitHub-hosted runner at first download. That proves byte identity, not organizer
-provenance; the login-walled originals could not be fetched from this sandbox.</li>
-<li><b>IR-05 (external layer provenance).</b> The 2 m LiDAR channel product was derived by the owner CI from USGS
-3DEP tiles whose list was OCR-recovered from the competition PDF (706 of 716 tiles). It is public-domain USGS data,
-but the tile list is not the official CSV.</li>
-
-<li><b>IR-06 (archived scores).</b> The eleven organizer-reported scores come from owner submission logs. No upload
-receipt tied to file bytes was available, so they are used as reported values and labelled ORGANIZER-REPORTED.</li>
-<li><b>IR-07 (budget).</b> The parallel-run protocol caps a lane at 3 experiments or 2 hours. This lane ran four
-campaigns across several sessions and re-ran the finaliser after fixing a timestamp bug. Recorded, because the
-budget is a real constraint and not a formality: the extra time bought the union emitter — the largest single
-gain in the emitter sweep — and the uniqueness audit, but it is over budget.</li>
-</ol>
-
-<h2>4. Reproduce</h2>
-<pre class="small" style="background:#161b22;padding:14px;border-radius:8px;overflow:auto">bash scripts/download_competition_data.sh   # or restore the hash-pinned mirror
-.venv/bin/python scripts/gd_finalize.py      # features → support → validation → uniqueness → GeoTIFF
-.venv/bin/python scripts/build_executive.py  # this site
-.venv/bin/python scripts/check_site.py
-.venv/bin/python -m pytest -q</pre>
-</main>
-<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
-Every performance number is labelled ORGANIZER-REPORTED, PROXY, HOLDOUT or ESTIMATE. A predicted fault is not a
-geothermal vent. Site generated by <code>scripts/build_executive.py</code> from <code>docs/data/*.json</code>.</footer>
+<h2>2. Available audit records</h2><ul><li><a href="data/run_card.json">Governing run card</a></li><li><a href="data/gemsdoe_run_card.json">Candidate lane card (research record)</a></li><li><a href="data/focus_audit.json">Nine-site byte/overlap audit</a></li><li><a href="data/verification_2026-10-27.json">Independent verification record</a></li><li><a href="data/uniqueness.json">Restricted comparator diagnostics</a></li><li><a href="data/cspes_run_card.json">CSPES negative run card</a></li></ul>
+<h2>3. Irregularities to resolve before another experiment</h2><ol><li>The literal duplicate rule is made vacuous by a registered dense positive raster. A content-aware reading is a protocol change, not an automatic waiver.</li><li>The skarpline candidate records PROXY-DTI rather than the requested whole-segment hide-and-recover HOLDOUT-DTI.</li><li>Historical values are owner-reported claims without organizer receipts bound to exact file bytes.</li><li>The data mirror proves pinned byte identity but not organizer provenance; the official data tab is login-walled in this environment.</li><li>The official outside-footprint convention and the historic portal range rejection have not been confirmed by a portal receipt.</li></ol>
+<h2>4. Reproduce the non-destructive checks</h2><pre class="small">python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+PYTHONPATH=src .venv/bin/python scripts/generate_release_gate.py || test $? -eq 2
+PYTHONPATH=src .venv/bin/python scripts/build_executive.py
+PYTHONPATH=src .venv/bin/python scripts/check_site.py
+PYTHONPATH=src .venv/bin/python -m pytest -q</pre></main>
+<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>. Historical owner claims, local proxies, and format checks are not organizer receipts.</footer>
 </body></html>

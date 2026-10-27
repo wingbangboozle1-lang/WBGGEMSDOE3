@@ -1,41 +1,24 @@
-# WBGGEMSDOE3 — DOE GEMS Prize: a unique fault submission, and the evidence for it
+# WBGGEMSDOE3 — DOE GEMS Prize: fault-mapping research and release evidence
 
-> **CURRENT DECISION: SUBMIT.** One file is cleared by every automated gate in this repository:
+> **CURRENT DECISION: DO NOT SUBMIT.** The repository-wide release gate is fail-closed.
+> No file currently has (1) a compliant whole-segment HOLDOUT-DTI, (2) literal all-registry
+> uniqueness clearance, and (3) separate selector approval for its exact saved SHA-256.
+> See [the machine-readable release gate](evidence/release_gate.json), the
+> [governing run card](evidence/run_card.json), and the [executive summary](docs/executive-summary.html).
+>
 > [`submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`](submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif)
-> (425 KB, SHA-256 `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). It is a genuinely new
-> 97,608-cell lineament network, **not** a re-trim of any archived file: the best overlap with any sparse
-> archived comparator is 29.3% of its dots within 3 px, and its Jaccard with the 0.2778 champion is 0.0044.
-> Estimated leaderboard DTI **0.428** (95% CI 0.385–0.481) — an **ESTIMATE**, not an organizer score.
+> is retained as a **format-valid research artifact only** (SHA-256
+> `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). Its candidate card records
+> a proxy metric and a restricted comparator audit; neither is submission clearance. Do not upload it.
 >
-> The parallel **CSPES lane** (geophysical-edge-stability, merged from PR #21) produced its own new,
-> format-valid GeoTIFF whose holdout is **negative** (HOLDOUT-DTI 0.0257 vs 0.0992 for the matched
-> incumbent): it is downloadable for research but **not** cleared for a slot —
-> [lane site](docs/cspes/index.html) · [lane run card](evidence/cspes_run_card.json).
->
-> **One-click download and the executive summary: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/>**
-> [site source](docs/index.html) · [executive summary](docs/executive-summary.html) ·
-> [science](docs/research.html) · [evidence](docs/evidence.html) · [run card](evidence/gemsdoe_run_card.json)
+> The parallel **CSPES** and **HCE-1** artifacts are also research-only. CSPES has a negative
+> HOLDOUT-DTI; HCE-1 reports a literal-registry failure alongside a content-aware diagnostic. Neither
+> overrides the governing release card. [CSPES card](evidence/cspes_run_card.json) ·
+> [HCE card](evidence/hce_run_card.json) · [site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/).
 >
 > The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this
-> README at every session start.
-
-> **PARALLEL LANE HCE-1 (branch `arena/50217887-wbggemsdoe3`, 2026-10-27): a second
-> independently audited unique TIF.**
-> [HCE-1 executive summary](docs/hce/index.html) ·
-> [one-click TIF](docs/hce/downloads/wbggems3-hce1-latest.tif) ·
-> [single-TIFF ZIP](docs/hce/downloads/wbggems3-hce1-latest.zip) ·
-> [exactly how to submit](docs/hce/how-to-submit.html) ·
-> [run card](evidence/hce_run_card.json) · [limitations](docs/hce/limitations.html).
-> It passes the 13-point saved-byte validator, the single-feature leakage canary, a
-> 145-file registry audit under the preregistered **content-aware** reading of the
-> uniqueness rule (IR-09), and a paired fold-local HOLDOUT-DTI win
-> (0.1292, 95% CI 0.1160–0.1426, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld
-> positives) over the replayed 0.0992 champion proxy.
-> **No organizer-confirmed score.** Its owner-reported-ledger projection (0.082) does
-> not support beating 0.2778; the literal finite-positive registry reading remains
-> vacuous and is reported as IR-09. No weekly slot was used. This lane is an
-> independent research deliverable, not a replacement for the repository-wide
-> selector decision above.
+> README at every session start. The latest three-pass reconciliation is in
+> [knowledge/release-gate-review-2026-10-27.md](knowledge/release-gate-review-2026-10-27.md).
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
@@ -250,7 +233,7 @@ reproduces the nine archived scores.
 
 ## Results and limitations of this session
 
-- **The cleared artifact.** `submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`:
+- **Format-valid but blocked research artifact.** `submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`:
   97,608 positive cells (1.89% of the scored footprint), 58,941 disconnected crests (median 1 px), zero dots
   on the catalogue, zero mass outside the footprint, 0/1 only, SHA-256 `610acf58…`. Validator 9/9 PASS on the
   re-read bytes. Uniqueness 20/20 comparators clear.

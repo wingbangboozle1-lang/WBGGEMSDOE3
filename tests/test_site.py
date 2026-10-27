@@ -1,20 +1,19 @@
-"""Site contract tests.
+"""Contract tests for the fail-closed public release dashboard."""
+from __future__ import annotations
 
-The site must (a) show one unambiguous decision, (b) only offer a download that the
-run card cleared and whose bytes match the recorded hash, and (c) never present a
-model estimate as an organizer score.
-"""
 import hashlib
 import json
-import re
 from pathlib import Path
 
 from build_site import human_age
+from gems_project.release_gate import evaluate_release_gate
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 PAGES = ("index.html", "executive-summary.html", "research.html", "evidence.html")
-CARD = json.loads((ROOT / "evidence" / "gemsdoe_run_card.json").read_text())
+AUTHORITY = json.loads((ROOT / "evidence" / "run_card.json").read_text())
+CANDIDATE = json.loads((ROOT / "evidence" / "gemsdoe_run_card.json").read_text())
+GATE = json.loads((ROOT / "evidence" / "release_gate.json").read_text())
 
 
 def sha256(path: Path) -> str:
@@ -35,59 +34,59 @@ def test_feed_render_is_deterministic_and_does_not_claim_a_stale_snapshot_is_fre
     assert human_age({"last_success_utc": "invalid"}) == "Invalid observation timestamp"
 
 
-def test_every_page_carries_the_same_decision_as_the_run_card():
-    verdict = CARD["verdict"]
-    assert verdict in {"promote", "negative"}
-    expected = "SUBMIT" if verdict == "promote" else "DO-NOT-SUBMIT"
+def test_release_gate_is_reproducible_and_fail_closed():
+    fresh = evaluate_release_gate(AUTHORITY, CANDIDATE)
+    for key in ("schema", "decision", "okay_to_submit", "candidate", "authority", "blocking_reasons"):
+        assert GATE[key] == fresh[key]
+    assert GATE["decision"] == "DO-NOT-SUBMIT"
+    assert GATE["okay_to_submit"] is False
+    assert len(GATE["blocking_reasons"]) >= 4
+    assert "PROXY-DTI" in " ".join(GATE["blocking_reasons"])
+
+
+def test_every_page_carries_the_global_negative_decision():
     for name in PAGES:
         body = (DOCS / name).read_text()
-        assert f'<meta name="gemsdoe-decision" content="{expected}">' in body, name
+        assert '<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">' in body, name
+        assert "DO NOT SUBMIT" in body, name
+        assert "OK TO DOWNLOAD AND SUBMIT" not in body, name
 
 
-def test_cleared_download_is_published_and_byte_identical():
-    assert CARD["verdict"] == "promote"
-    name = Path(CARD["download"]["tif"]).name
+def test_research_download_is_published_but_not_advertised_as_cleared():
+    name = Path(CANDIDATE["download"]["tif"]).name
     served = DOCS / "downloads" / name
     assert served.exists()
-    assert sha256(served) == CARD["sha256"] == sha256(ROOT / CARD["download"]["tif"])
-    for page in ("index.html", "executive-summary.html"):
-        assert f'href="downloads/{name}"' in (DOCS / page).read_text(), page
+    assert sha256(served) == CANDIDATE["sha256"] == sha256(ROOT / CANDIDATE["download"]["tif"])
+    index = (DOCS / "index.html").read_text()
+    assert f'href="downloads/{name}"' in index
+    assert "NOT for upload" in index
+    summary = (DOCS / "executive-summary.html").read_text()
+    assert name in summary and "DO NOT SUBMIT" in summary
 
 
-def test_executive_summary_covers_all_nine_focus_sites_and_our_file():
+def test_executive_summary_covers_all_nine_focus_sites_and_uses_not_estimable():
     body = (DOCS / "executive-summary.html").read_text()
     for site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                  "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):
         assert site in body, site
     assert "WBGGEMSDOE3" in body
-    # each historical veto must be visible, not just implied
-    assert body.count("NO — already scored") == 9
+    assert body.count("DO NOT SUBMIT — already scored / not unique") == 9
+    assert body.count("NOT ESTIMABLE") >= 10
 
 
-def test_estimates_are_never_presented_as_scores():
-    body = " ".join((DOCS / name).read_text() for name in PAGES)
-    # no sentence may attach the word score directly to our estimate
-    assert not re.search(r"(our|this) (file|submission)[^.]{0,40}score[sd]? (of |is )?0\\.4", body, re.I)
-    assert "not an organizer" in body.lower() or "not an organizer score" in body.lower()
-    assert "ESTIMATE" in body
+def test_local_format_pass_is_not_presented_as_portal_or_organizer_acceptance():
+    body = " ".join((DOCS / name).read_text() for name in PAGES).lower()
+    assert "portal acceptance remains unverified" in body
+    assert "not organizer scores" in body
+    assert "proxy-dti" in body
 
 
-def test_legacy_rasters_are_labelled_and_never_offered_as_cleared():
-    dl = DOCS / "downloads"
-    notice = dl / "LEGACY-DO-NOT-SUBMIT.txt"
-    assert notice.exists() and "DO NOT SUBMIT" in notice.read_text()
-    index = (dl / "index.html").read_text()
-    cleared = Path(CARD["download"]["tif"]).name
-    # the cleared file is the first download link; every other raster is named under the veto heading
-    assert index.index(cleared) < index.index("Research only")
-    legacy = sorted(p.name for p in dl.glob("wb-gems-doe-3-*.tif"))
-    assert legacy, "expected legacy rasters to still be present"
-    for name in legacy:
-        assert "wb-gems-doe-3-" in index and name not in index.split("Research only")[0]
-    linked = [line for line in index.splitlines() if "<a href" in line]
-    for line in linked:
-        for name in legacy:
-            assert name not in line, f"legacy raster linked as a download: {line}"
+def test_downloads_index_is_research_only():
+    index = (DOCS / "downloads" / "index.html").read_text()
+    notice = (DOCS / "downloads" / "LEGACY-DO-NOT-SUBMIT.txt").read_text()
+    assert "DO NOT SUBMIT" in index and "DO NOT SUBMIT" in notice
+    assert "Cleared file" not in index
+    assert Path(CANDIDATE["download"]["tif"]).name in index
 
 
 def test_pages_workflow_publishes_the_docs_layout():
@@ -99,23 +98,16 @@ def test_pages_workflow_publishes_the_docs_layout():
     assert "build_executive.py" in workflow
 
 
-def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
-    """Two lanes, two decisions: this repo clears the skarpline file only."""
-    lane = DOCS / "cspes"
-    assert (lane / "index.html").exists()
-    text = (lane / "index.html").read_text()
-    assert "Not cleared for upload" in text or "NOT OK TO SUBMIT" in text
-    card = json.loads((lane / "data" / "cspes_run_card.json").read_text())
-    assert card["verdict"] == "negative"
+def test_parallel_lane_pages_do_not_override_global_release_gate():
+    cspes = DOCS / "cspes"
+    assert (cspes / "index.html").exists()
+    assert "Not cleared for upload" in (cspes / "index.html").read_text()
+    assert json.loads((cspes / "data" / "cspes_run_card.json").read_text())["verdict"] == "negative"
+
+    hce = DOCS / "hce"
+    for page in hce.glob("*.html"):
+        assert "Global release gate: DO NOT SUBMIT" in page.read_text(), page.name
+
     readme = (ROOT / "README.md").read_text()
-    assert "CSPES lane" in readme and "negative" in readme.lower()
-    assert "CURRENT DECISION: SUBMIT" in readme
-
-
-def test_downloads_index_separates_the_two_lanes():
-    index = (DOCS / "downloads" / "index.html").read_text()
-    cleared = Path(CARD["download"]["tif"]).name
-    assert index.index(cleared) < index.index("Research only")
-    assert "wbggems3-cspes-" in index
-    # the CSPES file is named under a veto heading, never as the cleared download
-    assert index.index("wbggems3-cspes-") > index.index("Research only")
+    assert "CURRENT DECISION: DO NOT SUBMIT" in readme
+    assert "CSPES" in readme and "HCE-1" in readme
