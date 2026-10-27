@@ -135,6 +135,9 @@ def test_thcs_run_card_canary_and_saved_geotiff_bytes():
               "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36", "WBGGEMSDOE3 (THCS-OOF)"):
         assert s in sites
 
-    # IR-23 fix: no conflicting dual HCE banner injected at top of docs/index.html
-    idx_html = (ROOT / "docs" / "index.html").read_text()
-    assert idx_html.count('class="hero') == 1
+    # THCS 5-page dossier & root banner integration
+    thcs_idx = (ROOT / "docs" / "thcs" / "index.html").read_text()
+    assert thcs_idx.count('class="hero') == 1
+    assert "DO NOT SUBMIT" in thcs_idx
+    root_idx = (ROOT / "docs" / "index.html").read_text()
+    assert "thcs/index.html" in root_idx

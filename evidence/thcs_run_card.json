@@ -121,8 +121,8 @@
   "artifact": {
     "submission_tif": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
     "submission_zip": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip",
-    "docs_download_tif": "docs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
-    "docs_latest_alias": "docs/downloads/wbggems3-thcs-oof-latest.tif",
+    "docs_download_tif": "docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+    "docs_latest_alias": "docs/thcs/downloads/wbggems3-thcs-oof-latest.tif",
     "raster_sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c",
     "emitted_dots": 46000,
     "submission_name": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros",

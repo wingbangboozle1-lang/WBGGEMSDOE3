@@ -221,8 +221,8 @@ def main() -> int:
     dsha8 = hashlib.sha256(prelim_bytes).hexdigest()[:8]
     sub_stem = f"wbggems3-thcs-oof-celf-{int(winner['final_dots'].sum())}d-{ts}-{dsha8}-zeros"
     sub_tif = ROOT / "submission" / f"{sub_stem}.tif"
-    docs_tif = ROOT / "docs" / "downloads" / f"{sub_stem}.tif"
-    latest_docs_tif = ROOT / "docs" / "downloads" / "wbggems3-thcs-oof-latest.tif"
+    docs_tif = ROOT / "docs" / "thcs" / "downloads" / f"{sub_stem}.tif"
+    latest_docs_tif = ROOT / "docs" / "thcs" / "downloads" / "wbggems3-thcs-oof-latest.tif"
 
     sub_note = (
         f"THCS-OOF: 48ch geophys+LiDAR+float32 rad+GDR1391 2m/sinter/geotherm 4-fold OOF HGB + 300m CELF ({int(winner['final_dots'].sum())}d)"
@@ -378,7 +378,7 @@ def main() -> int:
         "status_banner": "OK TO DOWNLOAD & SUBMIT (ALL AUTOMATED GATES PASSED)" if verdict == "promote" else "DO NOT SUBMIT (NEGATIVE / GATE FAILURE)",
     }
     (ev_dir / "thcs_run_card.json").write_text(json.dumps(run_card, indent=2))
-    docs_data = ROOT / "docs" / "data"
+    docs_data = ROOT / "docs" / "thcs" / "data"
     docs_data.mkdir(parents=True, exist_ok=True)
     (docs_data / "thcs_run_card.json").write_text(json.dumps(run_card, indent=2))
 

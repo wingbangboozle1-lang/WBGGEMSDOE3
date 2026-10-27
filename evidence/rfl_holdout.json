@@ -1,0 +1,298 @@
+{
+ "experiment": "E2/E3",
+ "lane": "RFL range-front relief-discontinuity",
+ "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "n_withheld_positives": 22232,
+ "budget_K_primary": 37654,
+ "results": {
+  "rfl_full": {
+   "candidate_id": "rfl_full",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.05380097642691198,
+   "ci95_cluster_bootstrap": [
+    0.043670211105169596,
+    0.06415200174610412
+   ],
+   "fold_mean_dti": 0.05524297229871755,
+   "per_quadrant_dti": {
+    "NW": 0.07821433849756813,
+    "NE": 0.048224542159112635,
+    "SW": 0.03172786313698128,
+    "SE": 0.06280514540120814
+   }
+  },
+  "abl_g500_only": {
+   "candidate_id": "abl_g500_only",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.05479785428211887,
+   "ci95_cluster_bootstrap": [
+    0.04435666062569959,
+    0.0658923639302148
+   ],
+   "fold_mean_dti": 0.056580039807015245,
+   "per_quadrant_dti": {
+    "NW": 0.08094566576807356,
+    "NE": 0.04647630467590886,
+    "SW": 0.03171222023437936,
+    "SE": 0.0671859685496992
+   }
+  },
+  "abl_g1100_only": {
+   "candidate_id": "abl_g1100_only",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.046449313894436274,
+   "ci95_cluster_bootstrap": [
+    0.037032039866240075,
+    0.05580170089349403
+   ],
+   "fold_mean_dti": 0.04784143806750029,
+   "per_quadrant_dti": {
+    "NW": 0.07436069458889163,
+    "NE": 0.042087365067808705,
+    "SW": 0.027872515320297095,
+    "SE": 0.047045177293003726
+   }
+  },
+  "abl_piedmont_gate": {
+   "candidate_id": "abl_piedmont_gate",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.06332878644916354,
+   "ci95_cluster_bootstrap": [
+    0.05286817839343082,
+    0.07390992793861632
+   ],
+   "fold_mean_dti": 0.06498695340773342,
+   "per_quadrant_dti": {
+    "NW": 0.0809214792647277,
+    "NE": 0.0629634491608847,
+    "SW": 0.04383558191115472,
+    "SE": 0.07222730329416656
+   }
+  },
+  "abl_slope_reference": {
+   "candidate_id": "abl_slope_reference",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.022962009742123136,
+   "ci95_cluster_bootstrap": [
+    0.01741552288458926,
+    0.02898405245909161
+   ],
+   "fold_mean_dti": 0.02453495151389841,
+   "per_quadrant_dti": {
+    "NW": 0.042634156469909146,
+    "NE": 0.015062255496252022,
+    "SW": 0.010636453835589782,
+    "SE": 0.029806940253842673
+   }
+  },
+  "random_null_k37654": {
+   "candidate_id": "random_null_k37654",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.031295548854050545,
+   "ci95_cluster_bootstrap": [
+    0.02778010727134524,
+    0.034613424774587516
+   ],
+   "fold_mean_dti": 0.031249901003364583,
+   "per_quadrant_dti": {
+    "NW": 0.03046283728740256,
+    "NE": 0.02703179367782058,
+    "SW": 0.029568539480640813,
+    "SE": 0.037936433567594394
+   }
+  },
+  "champion_proxy_d28_b2": {
+   "candidate_id": "champion_proxy_d28_b2",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.09920232315251679,
+   "ci95_cluster_bootstrap": [
+    0.08595140754809347,
+    0.11266835751415871
+   ],
+   "fold_mean_dti": 0.10119484288758751,
+   "per_quadrant_dti": {
+    "NW": 0.10125730530362789,
+    "NE": 0.11279290286951725,
+    "SW": 0.06649890431789826,
+    "SE": 0.12423025905930665
+   }
+  },
+  "skarpline_union_saved": {
+   "candidate_id": "skarpline_union_saved",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.03045827693285121,
+   "ci95_cluster_bootstrap": [
+    0.024993474168302655,
+    0.03627319856850193
+   ],
+   "fold_mean_dti": 0.030358305952090936,
+   "per_quadrant_dti": {
+    "NW": 0.03459504322633886,
+    "NE": 0.014836329635785215,
+    "SW": 0.03644836574251374,
+    "SE": 0.03555348520372592
+   }
+  },
+  "hce1_saved": {
+   "candidate_id": "hce1_saved",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.09313404636833504,
+   "ci95_cluster_bootstrap": [
+    0.08238880293762195,
+    0.10367267974616817
+   ],
+   "fold_mean_dti": 0.09258692209058504,
+   "per_quadrant_dti": {
+    "NW": 0.09282265946202693,
+    "NE": 0.0707222166207438,
+    "SW": 0.0938837985668349,
+    "SE": 0.11291901371273456
+   }
+  },
+  "cspes_saved": {
+   "candidate_id": "cspes_saved",
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "b_visible_px": 0.0,
+   "n_withheld_positives": 22232,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "pooled_dti": 0.025652262156669173,
+   "ci95_cluster_bootstrap": [
+    0.0193657500667971,
+    0.03191613733516707
+   ],
+   "fold_mean_dti": 0.023923334896971304,
+   "per_quadrant_dti": {
+    "NW": 0.022429589644365866,
+    "NE": 0.013664453206573807,
+    "SW": 0.03357181544020127,
+    "SE": 0.026027481296744266
+   }
+  }
+ },
+ "paired_rfl_minus_champion": {
+  "delta": -0.04540134672560482,
+  "ci95": [
+   -0.05538646642430255,
+   -0.03564992891142698
+  ],
+  "p_delta_le_0": 1.0
+ },
+ "paired_rfl_minus_null": {
+  "delta": 0.02250542757286144,
+  "ci95": [
+   0.012124460383716167,
+   0.03309201854740975
+  ],
+  "p_delta_le_0": 0.0
+ },
+ "sgmc_proxy": {
+  "rfl_full_k37654": {
+   "candidate_id": "rfl_full_k37654",
+   "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "n_withheld_positives": 62703,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "sgmc_raw_pooled_dti": 0.1228773418008194,
+   "sgmc_raw_ci95": [
+    0.10707212478890792,
+    0.1364179272960182
+   ],
+   "sgmc_prevalence_calibrated_dti": 0.08213965804931288,
+   "sgmc_calibrated_ci95": [
+    0.07195719092518292,
+    0.09080383150545189
+   ]
+  },
+  "skarpline_union_saved": {
+   "candidate_id": "skarpline_union_saved",
+   "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "n_withheld_positives": 62703,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "sgmc_raw_pooled_dti": 0.21269802790366346,
+   "sgmc_raw_ci95": [
+    0.19300027738450293,
+    0.2291584500601903
+   ],
+   "sgmc_prevalence_calibrated_dti": 0.10295637879686102,
+   "sgmc_calibrated_ci95": [
+    0.09077318526514841,
+    0.11438399674896953
+   ]
+  },
+  "hce1_saved": {
+   "candidate_id": "hce1_saved",
+   "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "n_withheld_positives": 62703,
+   "n_spatial_clusters": 140,
+   "n_bootstrap_reps": 1000,
+   "sgmc_raw_pooled_dti": 0.26378568277516656,
+   "sgmc_raw_ci95": [
+    0.24226602813293927,
+    0.2831289894506462
+   ],
+   "sgmc_prevalence_calibrated_dti": 0.10435887463065782,
+   "sgmc_calibrated_ci95": [
+    0.09059440403516944,
+    0.11741283159159137
+   ]
+  }
+ },
+ "e3_budget_sweep": {
+  "run": false,
+  "reason": "E2 paired CI vs champion does not reach >0"
+ },
+ "final_dots_name": "rfl_full_k37654",
+ "final_n_dots": 37654,
+ "elapsed_s": 122.6
+}

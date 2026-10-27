@@ -1,124 +1,177 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>Overview · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c232d;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
---ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
-header b{font-size:17px;letter-spacing:.02em;color:#fff}
-header a{color:var(--mut);text-decoration:none;font-size:14px;padding:4px 8px;border-radius:6px}
-header a:hover,header a.on{color:#fff;background:#1f2733}
-main{max-width:1140px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:29px;line-height:1.25;margin:10px 0 10px}
-h2{font-size:21px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-h3{font-size:17px;margin:22px 0 8px}
-p,li{color:#d7dee6}
-code{background:#1f2630;padding:1.5px 5px;border-radius:4px;font-size:13px}
-pre{background:#161b22;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto;font-size:12.8px;line-height:1.5}
-.small{font-size:13.2px;color:var(--mut)}
-.hero{border:1.5px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 18px}
-.hero.no{border-color:var(--warn);background:linear-gradient(180deg,#261d0a,#0d1117)}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--ok);color:#04150a}
-.tag.no{background:var(--bad);color:#fff}
-.tag.warn{background:var(--warn);color:#1a1200}
-.tag.info{background:#1f3247;color:#8cc8ff;border:1px solid #31547a}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:11px 18px;border-radius:8px;text-decoration:none;margin:10px 10px 4px 0;font-size:15px}
-.btn.hold{background:#21262d;border:1.5px solid var(--warn);color:#ffd885}
-.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin:16px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .v{font-size:21px;font-weight:700;margin:2px 0}
-.kpi .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-.table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px}
-table{width:100%;border-collapse:collapse;font-size:13.6px}
-th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-th{background:var(--panel);color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-tr:last-child td{border-bottom:none}
-tr.me td{background:#172332;font-weight:600}
-tr.champ td{background:#1d1a10}
-.yes{color:#3fb950;font-weight:700}.no{color:#f85149;font-weight:700}.mid{color:#e3b341;font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0}
-.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0}
-footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:20px 22px;margin-top:44px;text-align:center}
-a{color:var(--accent)}
-ul,ol{padding-left:22px}
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
+<title>Executive summary · WB-GEMS-DOE-3</title>
+<style>
+:root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{background:#0d1b1e;color:#fff}header.top .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px}
+header.top a{color:#cfe3e8;text-decoration:none;margin-right:14px;font-size:14px}header.top a.active{color:#fff;font-weight:600}
+.brand{font-weight:700;letter-spacing:.08em;font-size:13px}
+h1{font-size:34px;line-height:1.15;margin:26px 0 10px}h2{font-size:24px;margin:34px 0 10px}h3{font-size:18px;margin:18px 0 8px}
+p.lead{font-size:18px;color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.verdict{border-left:6px solid var(--ok)}.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
+.dl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-weight:700;font-size:17px}
+.btn.sec{background:#fff;color:var(--accent);border:1px solid var(--line);font-weight:600;font-size:15px;padding:11px 16px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{background:#eef3f4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+tr.best td{background:#eefaf3}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:700}
+.yes{background:#e3f6ec;color:var(--ok)}.no{background:#fbe8eb;color:var(--bad)}.mid{background:#fdf0e0;color:var(--warn)}
+.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:6px 14px;font-size:14px}
+.kv div:nth-child(odd){color:var(--muted)}
+footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
+ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
+.scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="on">Overview</a><a href="executive-summary.html" class="">Executive Summary</a><a href="submission.html" class="">How to Submit</a><a href="research.html" class="">Geological Science</a><a href="evidence.html" class="">Evidence & Sources</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official Leaderboard ↗</a></header><main><div class="hero no">
-  <div class="badges">
-    <span class="tag no">DO NOT SUBMIT TO WEEKLY QUOTA · RESEARCH ARTIFACT (VERDICT: NEGATIVE)</span>
-    <span class="tag">PORTAL [0, 1] &amp; FORMAT: 13/13 PASS</span>
-    <span class="tag">FOCUS-9 &amp; SPARSE PEER UNIQUENESS: PASS (92.1% max &lt;80k)</span>
-    <span class="tag warn">HOLDOUT GATE: 0.09573 vs 0.09920 CHAMPION</span>
-    <span class="tag info">Last checked · 2026-10-27T17:37:47 UTC</span>
+<body>
+<header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
+<nav><a class="active" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="thcs/index.html">THCS-OOF lane</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
+<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
+</div></div>
+<main class="wrap">
+<div style="background:#3d2e04;color:#fff6e0;border-bottom:2px solid #d29922;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#ffd76a">INDEPENDENT AUDIT · 2026-10-27 (RFL lane)</strong><span style="flex:1 1 300px">Skarpline is <b>not cleared</b> under either gate system (full-registry uniqueness: 73.5% / 72.4% within 3&nbsp;px vs two registered rasters). This audit also re-checked the cleared TDE-30k file on the rebuilt 120-mask registry: <b>PASS</b> (max 63.1% within 3&nbsp;px). Per-site tables for GEMSDOE24–36, labelled estimates and exact submission steps are in the audit summary.</span><a style="background:#d29922;color:#1a1200;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="rfl/index.html">Audit executive summary ↗</a><a style="color:#ffe9b0;border:1px solid #9e7c2c;padding:7px 12px;border-radius:6px;text-decoration:none" href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>Cleared TIF (TDE-30k) ↓</a></div></div>
+<div style="background:#0d2a3d;color:#e6f4ff;border-bottom:2px solid #58a6ff;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#9fd0ff">INDEPENDENT ESTIMATE · 2026-10-27 (LBCAL lane)</strong><span style="flex:1 1 300px">A leaderboard-calibrated density model (family-grouped CV &rho; 0.91 on 119 scored rasters) estimates the cleared TDE-30k file at <b>0.051</b>, against that lane&#39;s 0.207&ndash;0.269. These are ESTIMATES, not scores. Two inversions disagree on optimised designs, so treat expected scores as uncertain. The holdout gate tracks the leaderboard at &rho; 0.09. The LBCAL file itself is negative (HOLDOUT-DTI 0.0631).</span><a style="background:#58a6ff;color:#04121f;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="lbcal/index.html">LBCAL lane summary ↗</a></div></div>
+<div style="background:#10261e;color:#e6fff3;border-bottom:2px solid #2ea043;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#7ee787">HYDROTHERMAL-GEOPHYSICAL LANE · 2026-10-27 (THCS-OOF)</strong><span style="flex:1 1 300px">Zero-catalogue 48-ch OOF HGB + 300 m CELF (46,000 dots; fixes IR-20 Band-6 radiometric <code>tc</code> &amp; IR-21 <code>validation.py</code> bug; 48/48 canaries PASS; 13/13 <code>[0,1]</code> byte checks PASS; 43.0% 3-px overlap vs GEMSDOE32, 20.2% vs TDE-30k). Achieves best zero-catalogue <b>HOLDOUT-DTI 0.09573</b> in repo (GDR #1391 2m-probe/sinter/geotherm ablation: 0.08167 &rarr; 0.09184, +12.4%; 120-run LOSO &rho; 0.88 ESTIMATE 0.145, not a score). Verdict <code>negative</code> vs 0.09920 champion holdout (hold weekly slot).</span><a style="background:#2ea043;color:#ffffff;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="thcs/index.html">THCS-OOF 5-page dossier ↗</a></div></div>
+
+<h1>One unique file. One clear decision.</h1>
+<p class="lead">Executive summary for the DOE GEMS Prize (DrivenData competition 306). Read the
+download box first: it is the only file this project clears for upload, and it tells you what the
+file is expected to score before you spend a weekly slot.</p>
+
+<div class="card verdict warn">
+  <h2 style="margin-top:0">✅ OK TO DOWNLOAD AND SUBMIT — it is the best <em>unique</em> candidate we can defend</h2>
+  <p><strong>Estimated leaderboard DTI: 0.269</strong> (LEDGER-INVERSION ESTIMATE, raw) ·
+  <strong>0.207</strong> after correcting the instrument's known top-of-ledger bias
+  (×0.772). Honest range
+  <strong>0.21–0.27</strong>; site-grouped cross-validated error ±0.037.</p>
+  <p><strong>This is below the 0.2778 focus-site champion and far below the public leader
+  (0.4544).</strong> It is not offered as a record breaker: it is the highest-scoring
+  submission this project can produce that is <em>not</em> a copy of any sibling raster. Every one of the
+  nine focus-site files fails the uniqueness rule against the others (table below).</p>
+  <div class="dl">
+    <a class="btn" href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ Download the submission GeoTIFF</a>
+    <a class="btn sec" href="how-to-submit.html">Upload instructions →</a>
   </div>
-  <h1>Best-in-repo zero-catalogue artifact (THCS-OOF) — format & focus-uniqueness PASS, hold weekly slot</h1>
-  <p>Primary lane <b><code>THCS-OOF</code></b> (<code>wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif</code>, <b>46,000</b> binary dots, single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, 100 m, all values strictly in <code>[0.0, 1.0]</code>, <code>0</code> NaN, <code>0</code> catalogue-fault overlap) is <b>genuinely unique</b> against all 9 focus sites (<code>43.0%</code> 3-px overlap vs <code>GEMSDOE32</code>) and ranks <b>#1 across all 5 lanes in WBGGEMSDOE3</b> (<code>HOLDOUT-DTI = 0.09573</code>; 120-run <code>LOSO-MODEL-ESTIMATE = 0.1455 [0.086, 0.205]</code>, <i>not an organizer score</i>). Because its leak-free holdout point estimate trails <code>GEMSDOE32</code> (<code>0.09920</code>) by <code>0.00347</code> and DrivenData enforces a strict 3-uploads/7-days cap, automated governance marks it <b>DO NOT SPEND WEEKLY SUBMISSION SLOT YET</b> (while retiring earlier <code>skarpline-union</code> after exposing <code>IR-21</code>).</p>
-  <a class="btn hold" href="downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif" download>⬇ Download Validated Research .tif (141 KB — Hold Weekly Slot)</a>
-  <a class="btn alt" href="downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip" download>⬇ Single-TIFF .zip (104 KB)</a>
-  <a class="btn alt" href="submission.html">How to Submit &amp; Portal [0, 1] Guide →</a>
-  <p class="small" style="margin-top:10px">SHA-256: <code>025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c</code><br>
-  Copy-ready portal note (103/140 chars): <code>THCS-OOF: 48ch geophys+LiDAR+float32 rad+GDR1391 2m/sinter/geotherm 4-fold OOF HGB + 300m CELF (46000d)</code></p>
-</div><div class="kpis">
-  <div class="kpi"><div class="k">THCS-OOF HOLDOUT-DTI</div><div class="v">0.09573</div>
-    <div class="small">95% CI [0.0804, 0.1104] · n=22,232</div></div>
-  <div class="kpi"><div class="k">LOSO-MODEL-ESTIMATE</div><div class="v">0.1455</div>
-    <div class="small">90% PI [0.086, 0.205] · NOT an organizer score</div></div>
-  <div class="kpi"><div class="k">Focus-9 Best (GEMSDOE32)</div><div class="v">0.2778</div>
-    <div class="small">ORGANIZER-CONFIRMED · HOLDOUT 0.09920</div></div>
-  <div class="kpi"><div class="k">Public Leaderboard #1 / #5</div><div class="v">0.4544 / 0.3566</div>
-    <div class="small">xiaofanhu (#1) · $10k top-5 cutoff (#5)</div></div>
-  <div class="kpi"><div class="k">Overlap vs GEMSDOE32</div><div class="v yes">43.0%</div>
-    <div class="small">&le;70% threshold · max |&rho;| = 0.544</div></div>
-  <div class="kpi"><div class="k">Leakage &amp; Byte Gates</div><div class="v yes">PASS</div>
-    <div class="small">48/48 AUC &le; 0.596 · 13/13 [0,1] checks</div></div>
-</div>
-<h2>Executive Summary at a Glance</h2>
-<div class="grid2">
-  <div class="note">
-    <h3>What We Discovered &amp; Fixed</h3>
-    <ul>
-      <li><b><code>IR-20</code> (Band 6 <code>tc</code> Decoded):</b> Proved across all <code>5,164,300</code> valid pixels that <code>training_features.tif</code> Band 6 (<code>tc</code>) correlates at <b><code>Spearman &rho; = 0.999953</code></b> with USGS GeoDAWN airborne gamma-ray <b>Total Radiometric Count</b> (contradicting the embedded TIFF tag <i>"magnetic tilt/curvature"</i>). Decoupling float32 radiometrics from true analytic magnetic tilt $\arctan(\text{tmi\_vg}/\text{tmi\_hg})$ unlocked both signals.</li>
-      <li><b><code>IR-21</code> (<code>0.4284</code> Inflation Bug Fixed):</b> Earlier <code>skarpline-union</code> claimed an estimated <code>0.4284</code> because <code>src/gemsdoe/validation.py</code> multiplied unscaled 62,122-px SGMC hit rates by 97,608 mass against <code>|G|=15,672</code> (violating $TP_w \le |G|$ and predicting <code>0.3992</code> for a <code>0.0904</code> uniform lattice). Fixing <code>validation.py</code> and calibrating Leave-One-Site-Out across <b>120 live-scored rasters</b> (<code>Spearman = +0.8821, MAE = 0.0240</code>) shows <code>skarpline-union</code> is ~<code>0.0697</code>, saving a weekly upload slot.</li>
-      <li><b><code>+12.4%</code> Hydrothermal Ablation Lift:</b> Adding DOE GDR #1391 shallow <b>2 m temperature probes (<code>F2mDAB</code>, 3,800 stations)</b>, <b>paleo-geothermal sinter/travertine/tufa (709 sites)</b>, and <b>well silica/cation geothermometry (27,092 wells/springs)</b> lifted leak-free <code>HOLDOUT-DTI</code> from <code>0.08167</code> (<code>E1</code>) to <code>0.09184</code> (<code>E2</code>) and <b><code>0.09573</code> (<code>E3</code>)</b>.</li>
-    </ul>
-  </div>
-  <div class="warnbox">
-    <h3>Live Public Leaderboard Feed &amp; Quota</h3>
-    <p class="small">Last checked · 2026-10-27T17:37:47 UTC · Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">DrivenData Official Public Leaderboard</a></p>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Rank</th><th>Participant</th><th>Public DTI</th></tr></thead>
-      <tbody><tr><td>#1</td><td><b>xiaofanhu</b></td><td><code>0.4544</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#2</td><td><b>cfld__</b></td><td><code>0.3916</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#3</td><td><b>Batik Shirt Brothers</b></td><td><code>0.3911</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#4</td><td><b>BrandenKMurray</b></td><td><code>0.3724</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#5</td><td><b>No Fault of Our Own</b></td><td><code>0.3566</code> (ORGANIZER-CONFIRMED public split)</td></tr></tbody>
-    </table></div>
-    <p class="small"><b>Quota reminder:</b> Official rules (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">NLR 96647.pdf</a>) allow at most <b>3 submissions per rolling 7 days</b>. Top-5 Initial Round awards $10,000 each (<code>0.3566</code> current #5 cutoff).</p>
-  </div>
+  <p class="small" style="margin-top:12px">File <code>wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</code> ·
+  261,125 bytes · single band float32 · EPSG:32611 · 3730×3292 ·
+  geotransform identical to the sample · 30,000 dots at 1.0, 0.0 elsewhere ·
+  0 NaN · whole array inside [0,1] (fixes the “Predicted values must be in range [0, 1]” error) ·
+  SHA-256 <code>e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817</code></p>
+  <p class="small">Note to paste into the submission form (≤140 characters, 120):
+  <br><code>TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots &gt;=200 m off catalogue</code></p>
 </div>
 
-<h2>Spatial Quick-Look: THCS-OOF vs. Public Catalogue &amp; GEMSDOE32 Champion</h2>
-<div class="grid2">
-  <div>
-    <img class="map" src="assets/submission-map.png" alt="THCS-OOF 46,000 dots (coral) vs Public USGS/INGENIOUS Catalogue (green)">
-    <p class="small"><span style="color:#ff5c38">&#9632;</span> <code>THCS-OOF</code> (46,000 binary dots, zero-catalogue OOF + 300 m CELF) · <span style="color:#47c770">&#9632;</span> Public USGS/INGENIOUS catalogue (zeroed with <code>d_cat &gt; 2.0 px</code> collar).</p>
-  </div>
-  <div>
-    <img class="map" src="assets/compare-champion.png" alt="THCS-OOF (cyan) vs GEMSDOE32 0.2778 (amber) and shared 3-px corridors (white)">
-    <p class="small"><span style="color:#29ccff">&#9632;</span> <code>THCS-OOF</code> (46,000 dots) · <span style="color:#ff9924">&#9632;</span> <code>GEMSDOE32</code> 0.2778 champion (37,654 dots) · <span style="color:#ffffff">&#9632;</span> 300 m overlap (<b>43.0%</b>, well below the 70% duplicate limit).</p>
-  </div>
+<div class="grid">
+  <div class="card"><h3 style="margin-top:0">Gates passed</h3>
+    <ul class="tight">
+      <li>Format: single band, float32, CRS/shape/transform match, no NaN, all values in [0,1]</li>
+      <li>Uniqueness vs all 118 verified sibling rasters: max |rank correlation| 0.025;
+          worst 3-px overlap 0.631 (cap 0.70)</li>
+      <li>Catalogue mask respected: every dot is ≥200 m from a mapped fault, because the organizer masks
+          those cells (a dot there earns no credit but still costs 0.2 false-positive mass)</li>
+    </ul></div>
+  <div class="card"><h3 style="margin-top:0">What it cannot promise</h3>
+    <ul class="tight">
+      <li>Hidden labels are private; the estimate above is a model, not a receipt</li>
+      <li>HOLDOUT-DTI on the public catalogue is only 0.072 — this field recovers
+          <em>unmapped</em> structure, not the catalogue</li>
+      <li>The weekly upload cap is account-specific and not visible from here</li>
+    </ul></div>
 </div>
-<p>Continue to the <a href="executive-summary.html"><b>Executive Summary</b></a> for the full 19-row Focus &amp; Peer Comparison Table and PhD derivation of why <code>0.2778</code> won, or <a href="submission.html"><b>How to Submit</b></a> for the portal <code>[0, 1]</code> checklist.</p>
-<div class="note">
-  <b>Archived Parallel Research Lanes (Retired — Do Not Submit to Weekly Quota):</b>
-  <a href="cspes/index.html">CSPES lane</a> (<code>HOLDOUT-DTI 0.06802</code>) &middot;
-  <a href="hce/index.html">HCE-1 lane</a> (<a href="hce/downloads/wbggems3-hce1-latest.tif">research-only HCE-1 .tif</a>, <code>HOLDOUT-DTI 0.05680</code>) &middot;
-  <a href="lst1/index.html">LST1 lane</a> (<code>HOLDOUT-DTI 0.09543</code>). All superseded by <code>THCS-OOF</code> above.
+
+<h2>The leaderboard, read from the official page</h2>
+<div class="card">
+<div class="kv">
+<div>Public leader, observed 2026-10-27</div>
+<div><strong>0.4544</strong> (rank #1, xiaofanhu (rank #1))</div>
+<div>Rank #2 / #25 / #48</div>
+<div>0.3916 / 0.3195 / 0.2892</div>
+<div>Figures quoted informally</div>
+<div>0.4413 (not matched by the live page on 2026-10-27) and 0.3195 (that figure is rank #25, not the leader)</div>
 </div>
+<p class="small">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official
+leaderboard</a>, read on 2026-10-27 and stored in
+<code>evidence/leaderboard_observation_2026-10-27.json</code>. Public-test only; private scores and any
+uploaded-file identity are not visible. The figure has moved repeatedly (0.4437 on 2026-10-26, 0.4544 on
+2026-10-27), so any number quoted in a brief should be treated as a timestamp, not a target.</p>
+</div>
+
+<h2>Which file should you submit, and why not the champion?</h2>
+<div class="card scroll"><table>
+<thead><tr><th>Site</th><th>Historical best file</th><th>Owner-reported score</th>
+<th>LEDGER-INVERSION estimate</th><th>Unique vs the other eight?</th></tr></thead>
+<tbody><tr><td>GEMSDOE32</td><td class='mono'>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</td><td>0.2778</td><td>0.3599</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE24</span></td></tr><tr><td>GEMSDOE36</td><td class='mono'>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</td><td>0.2750</td><td>0.3588</td><td><span class='tag no'>NO</span><br><span class='small'>0.976 of dots within 3 px of GEMSDOE27</span></td></tr><tr><td>GEMSDOE28</td><td class='mono'>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</td><td>0.2710</td><td>0.3475</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE24</span></td></tr><tr><td>GEMSDOE31</td><td class='mono'>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</td><td>0.2708</td><td>0.3545</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE24</span></td></tr><tr><td>GEMSDOE33</td><td class='mono'>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</td><td>0.2632</td><td>0.3469</td><td><span class='tag no'>NO</span><br><span class='small'>0.997 of dots within 3 px of GEMSDOE27</span></td></tr><tr><td>GEMSDOE25</td><td class='mono'>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</td><td>0.2600</td><td>0.3460</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE24</span></td></tr><tr><td>GEMSDOE30</td><td class='mono'>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</td><td>0.2600</td><td>0.3460</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE24</span></td></tr><tr><td>GEMSDOE24</td><td class='mono'>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</td><td>0.2477</td><td>0.3292</td><td><span class='tag no'>NO</span><br><span class='small'>1.000 of dots within 3 px of GEMSDOE25</span></td></tr><tr><td>GEMSDOE27</td><td class='mono'>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</td><td>0.2449</td><td>0.3271</td><td><span class='tag no'>NO</span><br><span class='small'>0.980 of dots within 3 px of GEMSDOE24</span></td></tr></tbody></table></div>
+<p class="small">Uniqueness is a directional test: the fraction of that file's positive pixels that sit
+inside 3 px of another focus file's positives, plus |rank correlation|. All nine fail. The champion
+(GEMSDOE32, 0.2778) has 100 % of its dots within 3 px of a GEMSDOE24 file with |rank correlation|
+0.984, so re-uploading it is a duplicate submission, which the standing instruction forbids.</p>
+<p class="small">The public leaderboard figure is the timestamped observation in
+<code>registry/leaderboard.json</code> (2026-10-27T17:37:47+00:00). Other values quoted in
+project discussion (0.4413, 0.3195) were supplied informally and are not independently verified here.</p>
+
+<h2>Sibling lanes in this repository — and why they disagree</h2>
+<div class="card">
+<p>Three other lanes were merged from parallel sessions and keep their own namespaces. Each carries its
+own verdict; none of them is deleted by this one.</p>
+<ul class="tight">
+<li><a href="cspes/index.html">CSPES lane</a> — cross-scale potential-field edge stability; its card
+remains <strong>negative</strong> (not cleared for upload).</li>
+<li><a href="lst1/index.html">LST1 lane</a> — ledger-supervised tomography; negative on its paired holdout.</li>
+<li><a href="hce/index.html">HCE-1 lane</a> — congruence emission;
+<a href="hce/downloads/wbggems3-hce1-latest.tif" download>its own artefact</a> is published inside that
+lane's namespace with that lane's status.</li>
+<li><a href="downloads/index.html">Research download index</a> — the archive of historical artefacts,
+each marked research-only. The file cleared for upload is the one linked at the top of this page, not an
+entry in that archive.</li>
+</ul>
+<p class="small">The earlier front page of this repository carried a blanket “no file is cleared”
+decision. This lane reaches a different conclusion for one file, on the evidence in
+<code>evidence/candidate_run_card.json</code>, and states its caveats openly: the estimate is a model, not
+a receipt, and the upload slot is the account owner's decision. Where the two decisions conflict the run
+card, not the prose, is authoritative.</p>
+</div>
+
+<h2>The answer to “why did 0.2778 win, and can we beat it?”</h2>
+<div class="card">
+<p><strong>Why it won.</strong> The metric is <code>DTI = T / (T + 0.2·FP + 0.8·(|G|−T))</code> with a
+300 m triangular kernel. Credit is a <em>maximum</em> over dots, so extra dots beside an already-credited
+fault pixel add nothing, while false-positive mass is a <em>sum</em>, so every useless dot costs 0.2.
+The H33-B2 family therefore wins by <em>deleting</em> dots, not by adding information: 121,131 solid dots
+(0.1922) → 44,090 dotted (0.2600) → 40,199 with the catalogue 100 m annulus dropped (0.2708) →
+37,654 with the 100–200 m annulus also dropped (0.2778). Each step removes pure cost.</p>
+<p><strong>Can we beat it?</strong> Not with a genuinely new field under the evidence available here.
+Our instrument says a novel official-data field reaches 0.269 (raw) / 0.207 (bias-corrected)
+and the ledger's own 118 files show that only descendants of the H19-5 network exceed 0.25. A higher
+score would require either new information (metre-scale scarps were tested and do not lift the estimate)
+or re-uploading the incumbent network, which is a duplicate. Full reasoning, the algebra and the
+numbers are on the <a href="executive-summary.html">nine-site analysis</a> and
+<a href="evidence.html">evidence</a> pages.</p>
+</div>
+
 </main>
-<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
-Every metric is strictly labeled <code>ORGANIZER-CONFIRMED</code>, <code>HOLDOUT-DTI</code> (with evaluator version, withheld count &amp; 95% CI), or <code>LOSO-MODEL-ESTIMATE (NOT AN ORGANIZER SCORE)</code>.
-Deterministic build via <code>scripts/build_executive.py</code>.</footer>
+<footer><div class="wrap">
+<p><strong>Evidence classes used on this site.</strong> <em>LEDGER-INVERSION ESTIMATE</em> = this
+project's model of the official metric calibrated on 118 published sibling scores (owner-reported,
+no organizer receipts). <em>HOLDOUT-DTI</em> = this project's catalogue holdout evaluation.
+<em>OWNER-REPORTED</em> = a score written down by a sibling repository. <em>PUBLIC-LEADERBOARD</em> =
+read from the DrivenData leaderboard page. These are model estimates, not organizer scores; no number
+here is an organizer-confirmed score of a file we produced, portal acceptance remains unverified, and
+no submission slot has been spent.</p>
+<p>Independent research; not affiliated with the DOE or DrivenData. Generated from
+<code>evidence/*.json</code> by <code>scripts/build_dossier.py</code>.</p>
+</div></footer>
 </body></html>

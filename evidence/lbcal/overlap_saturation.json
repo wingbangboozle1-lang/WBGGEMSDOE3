@@ -1,0 +1,86 @@
+[
+ {
+  "submission": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+  "their_dots": 155021,
+  "forward_overlap": 0.8229,
+  "halo_covers_allowed": 0.7346,
+  "excess_over_random": 0.0882
+ },
+ {
+  "submission": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+  "their_dots": 155021,
+  "forward_overlap": 0.7723,
+  "halo_covers_allowed": 0.7345,
+  "excess_over_random": 0.0378
+ },
+ {
+  "submission": "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+  "their_dots": 123779,
+  "forward_overlap": 0.6087,
+  "halo_covers_allowed": 0.2007,
+  "excess_over_random": 0.408
+ },
+ {
+  "submission": "20261001_r13-lattice-s5_v2_nan-outside",
+  "their_dots": 206895,
+  "forward_overlap": 0.999,
+  "halo_covers_allowed": 0.9987,
+  "excess_over_random": 0.0003
+ },
+ {
+  "submission": "h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+  "their_dots": 123939,
+  "forward_overlap": 0.6045,
+  "halo_covers_allowed": 0.2058,
+  "excess_over_random": 0.3987
+ },
+ {
+  "submission": "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+  "their_dots": 123829,
+  "forward_overlap": 0.6007,
+  "halo_covers_allowed": 0.2,
+  "excess_over_random": 0.4007
+ },
+ {
+  "submission": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+  "their_dots": 335879,
+  "forward_overlap": 0.8128,
+  "halo_covers_allowed": 0.4094,
+  "excess_over_random": 0.4034
+ },
+ {
+  "submission": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+  "their_dots": 516738,
+  "forward_overlap": 0.9105,
+  "halo_covers_allowed": 0.5312,
+  "excess_over_random": 0.3793
+ },
+ {
+  "submission": "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+  "their_dots": 91533,
+  "forward_overlap": 0.8475,
+  "halo_covers_allowed": 0.4083,
+  "excess_over_random": 0.4392
+ },
+ {
+  "submission": "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+  "their_dots": 54864,
+  "forward_overlap": 0.6458,
+  "halo_covers_allowed": 0.2517,
+  "excess_over_random": 0.3941
+ },
+ {
+  "submission": "ovtr-ml-cover-tau3p0-20261012-nan",
+  "their_dots": 167597,
+  "forward_overlap": 0.8082,
+  "halo_covers_allowed": 0.5437,
+  "excess_over_random": 0.2644
+ },
+ {
+  "submission": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+  "their_dots": 201260,
+  "forward_overlap": 0.6521,
+  "halo_covers_allowed": 0.5603,
+  "excess_over_random": 0.0918
+ }
+]

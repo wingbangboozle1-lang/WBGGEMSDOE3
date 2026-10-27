@@ -1,0 +1,52 @@
+{
+ "file": "wbggems3-hce1-latest.tif",
+ "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+ "bytes": 183134,
+ "meta": {
+  "count": 1,
+  "dtype": "float32",
+  "shape": [
+   3730,
+   3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null
+ },
+ "emitted_positive_pixels": 169968,
+ "whole_array_min": 0.0,
+ "whole_array_max": 1.0,
+ "checks": {
+  "single_band": true,
+  "dtype_float32": true,
+  "shape_matches_sample": true,
+  "crs_matches_sample_epsg32611": true,
+  "transform_matches_sample": true,
+  "no_nan_anywhere": true,
+  "no_inf_anywhere": true,
+  "no_sentinel_below_-1e30": true,
+  "whole_array_in_0_1": true,
+  "in_footprint_all_finite": true,
+  "zero_on_catalogue": true,
+  "zero_mass_outside_footprint": true,
+  "has_dots": true,
+  "zip_contains_exactly_one_tiff": true
+ },
+ "passed": true,
+ "zip": {
+  "zip": "wbggems3-hce1-latest.zip",
+  "entries": [
+   "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif"
+  ],
+  "single_tiff": true,
+  "zip_sha256": "26deb8f6dd30207589429e9bc1b5d792defa538377e02d504287a4b5380eb306"
+ },
+ "label": "local format validation of saved bytes; NOT organizer acceptance"
+}
