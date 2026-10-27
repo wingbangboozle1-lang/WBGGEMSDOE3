@@ -106,7 +106,16 @@ def main():
              "research.html": ("Research", research()), "evidence.html": ("Evidence", evidence(a))}
     for filename, (title, body) in pages.items():
         (DOCS / filename).write_text(layout(title, filename, body), encoding="utf-8")
-    print(f"Built {len(pages)} pages from the negative evidence card.")
+    # Old deep links must not keep advertising revoked LST1 uniqueness passes.
+    # Preserve the research binaries/evidence, but replace obsolete release advice.
+    legacy = DOCS / "lst1"
+    if legacy.exists():
+        warning = '<h1>No competition file is cleared.</h1><h2>DO NOT SUBMIT · LST1 quarantined</h2><p>The historical dense-raster exception was not authorized. The literal registry rule and holdout promotion gate fail. Prior ready/unique claims are revoked. Research artifacts are not approved submissions.</p><p><a href="../executive-summary.html">Current submission guide</a> · <a href="lst1_run_card.json">Corrected historical run card</a></p>'
+        page = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LST1 quarantined — DO NOT SUBMIT</title><body><main>' + warning + '</main></body></html>'
+        for target in legacy.glob("*.html"):
+            target.write_text(page, encoding="utf-8")
+        shutil.copyfile(ROOT / "evidence/lst1_run_card.json", legacy / "lst1_run_card.json")
+    print(f"Built {len(pages)} pages from the negative evidence card; quarantined legacy deep links.")
 
 
 def build():

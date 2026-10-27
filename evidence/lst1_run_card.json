@@ -360,13 +360,19 @@
   "baseline_stratum_only_mae": 0.02577574645555389,
   "fields_identified_by_ledger": false
  },
- "ready_to_submit": true,
- "file_integrity_and_uniqueness_pass": true,
- "verdict": "NEGATIVE: file is valid and unique, but fails the hold-out promotion rule (paired CI lower bound must be > 0)",
+ "ready_to_submit": false,
+ "file_integrity_and_uniqueness_pass": false,
+ "verdict": "negative: literal registry overlap fails; holdout promotion fails; historical artifact is research only. DO NOT SUBMIT.",
  "performance_gate_passed": false,
  "budget": {
   "experiments_run": "1 hypothesis; 5 hold-out variants + 2 diagnostics on the final construction; 2 builds (uniqueness repair). The pre-repair first run is kept in evidence/holdout_results_preLCB_firstrun.json. EXCEEDS the protocol budget of 3 experiments / 2 h - disclosed.",
   "slot_selected": false
  },
- "uniqueness_price_note": "same hold-out, no avoid-zone (diagnostic only, violates the overlap cap): LCB -0.0155, median -0.0070 vs champion proxy; with avoid-zone: LCB -0.0325, median -0.0215"
+ "uniqueness_price_note": "same hold-out, no avoid-zone (diagnostic only, violates the overlap cap): LCB -0.0155, median -0.0070 vs champion proxy; with avoid-zone: LCB -0.0325, median -0.0215",
+ "historical_correction": {
+  "reason": "Literal any-registry overlap rule has no dense-raster exception. Prior ready=true and uniqueness-pass claims are revoked; historical measurements retained, not replayed.",
+  "corrected_utc": "2026-10-27",
+  "previous_ready_to_submit": true,
+  "previous_file_integrity_and_uniqueness_pass": true
+ }
 }
