@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-GATE = json.loads((DOCS / "data" / "release_gate.json").read_text())
+GATE = json.loads((ROOT / "evidence" / "release_gate.json").read_text())  # single source
 LEGACY_GATE = json.loads((ROOT / "evidence" / "release_gate.json").read_text())
 DECISION = GATE["decision"]
 
@@ -22,7 +22,8 @@ def test_every_published_page_contains_positive_decision_and_checked_json_exists
     docs = ROOT / 'docs'
     for page in ('index.html', 'executive-summary.html', 'research.html', 'evidence.html'):
         body = (docs / page).read_text()
-        assert 'OK TO DOWNLOAD AND SUBMIT' in body
+        assert 'OK TO DOWNLOAD AND SUBMIT' not in body  # no unconditional submit claim
+        assert 'DO NOT SUBMIT YET' in body
         assert 'assets/status.js' in body
     assert (docs / 'data/run_card.json').exists()
     assert (docs / 'data/focus_audit.json').exists()

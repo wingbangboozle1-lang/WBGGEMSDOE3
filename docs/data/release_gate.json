@@ -1,36 +1,32 @@
 {
- "schema": "gems-release-gate-v1",
- "decision": "SUBMIT-WITH-CAVEAT",
- "okay_to_submit": true,
- "okay_to_download_for_research": true,
- "authority": {
-  "verdict": "promote-with-caveat",
-  "raster_sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
-  "selector_approval": false
- },
- "candidate": {
-  "submission": "wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
-  "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
-  "lane_verdict": "promote-with-caveat",
-  "holdout_label": "HOLDOUT-DTI",
-  "holdout_dti": 0.0722,
-  "ledger_inversion_estimate": 0.2687,
-  "bias_corrected_estimate": 0.2074,
-  "literal_registry_pass": false,
-  "informative_registry_pass": true
- },
- "qualifying_reasons": [
-  "Artefact gates pass: single band float32, CRS/shape/transform identical to the sample, 0 NaN, every value in [0, 1].",
-  "Uniqueness passes against all 118 verified rasters under PR-01 (max |rank correlation| 0.0252, worst 3-px overlap over 115 informative probes 0.6314).",
-  "Expected leaderboard DTI 0.2687 raw / 0.2074 bias-corrected, reported with a 0.0373 site-grouped cross-validated error."
- ],
- "blocking_reasons": [
-  "No separate selector approval is recorded: spending a weekly slot is the account owner's decision.",
-  "The literal all-registry overlap rule is not satisfied (PR-01 replaces it); a support-blanketing lattice raster makes the literal rule vacuous for any nonempty field.",
-  "The estimate is below the 0.2778 focus-site champion and far below the public leader, so this is the best unique candidate, not a leaderboard improvement."
- ],
- "source_cards": {
-  "candidate": "evidence/candidate_run_card.json",
-  "candidate_sha256": "0ea7a26c48ef3cb7939d479a91b7dcba4869547d928412f7069cdb3d1f58f4c7"
- }
+  "authority": {
+    "raster_sha256": null,
+    "selector_approval": false,
+    "verdict": "negative"
+  },
+  "blocking_reasons": [
+    "The governing run card verdict is not promote.",
+    "No separate selector approval is recorded.",
+    "The governing run card does not approve this candidate SHA-256.",
+    "The candidate lane itself is not marked promote.",
+    "The candidate has no compliant HOLDOUT-DTI result; PROXY-DTI is not a release metric.",
+    "The candidate does not record a passing literal all-registry uniqueness gate."
+  ],
+  "candidate": {
+    "holdout_label": "PROXY-DTI (not a competition score)",
+    "lane_verdict": "negative",
+    "literal_registry_pass": null,
+    "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
+    "submission": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif"
+  },
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_download_for_research": true,
+  "okay_to_submit": false,
+  "schema": "gems-release-gate-v1",
+  "source_cards": {
+    "authority": "evidence/run_card.json",
+    "authority_sha256": "57570d71f4e0aab5fe8c8d815d5b34d53cc5b29e9435b4b062ececea3b039f40",
+    "candidate": "evidence/gemsdoe_run_card.json",
+    "candidate_sha256": "979018e5afd0faca5f5324fd5c60e34fd049307a7f64af26e5eee435905d129e"
+  }
 }

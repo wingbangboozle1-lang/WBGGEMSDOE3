@@ -76,12 +76,20 @@ class Links(HTMLParser):
 
 def main():
     errors = []
-    banner = 'OK TO DOWNLOAD AND SUBMIT'
+    # Verdict wording follows the single release gate (evidence/release_gate.json): download for review only.
+    # The old unconditional "OK TO DOWNLOAD AND SUBMIT" claim must not appear on any top-level page.
+    GATE_DECISION = json.loads((ROOT / 'evidence/release_gate.json').read_text())['decision']
+    banner = 'DO NOT SUBMIT YET'
+    forbidden = 'OK TO DOWNLOAD AND SUBMIT'
     for page in sorted(DOCS.glob('*.html')):
         p = Links()
         p.feed(page.read_text())
         if banner not in ' '.join(p.text):
-            errors.append(f'{page.name}: missing positive decision banner')
+            errors.append(f'{page.name}: missing decision banner')
+        if f'content="{GATE_DECISION}"' not in page.read_text():
+            errors.append(f'{page.name}: gate meta does not match evidence/release_gate.json')
+        if forbidden in ' '.join(p.text):
+            errors.append(f'{page.name}: contains unconditional submit claim')
         for link in p.targets:
             parsed = urlparse(link)
             if parsed.scheme or parsed.netloc or not parsed.path:
@@ -103,6 +111,14 @@ def main():
     for suffix in ('-zeros.tif', '-nan.tif', '-zeros.zip'):
         if not (dl / (card['submission_name'] + suffix)).is_file():
             errors.append(f'missing published download {suffix}')
+    fmt = json.loads((ROOT / 'evidence/format_independent_sgce_nan_2026-10-27.json').read_text())
+    if not fmt.get('passed'):
+        errors.append('independent official-text format check does not pass for the download')
+    if not fmt['sha256'] == build['files'][card['submission_name'] + '-nan.tif']['sha256']:
+        errors.append('independent format evidence does not match the published NaN TIFF bytes')
+    fu = json.loads((ROOT / 'evidence/focus_uniqueness_independent_2026-10-27.json').read_text())
+    if fu.get('max_candidate_overlap_with_focus') is None or fu['max_candidate_overlap_with_focus'] >= 0.70 or fu['errors']:
+        errors.append('independent focus-site uniqueness check does not pass')
     required = {'index.html', 'executive-summary.html', 'research.html', 'evidence.html'}
     present = {page.name for page in DOCS.glob('*.html')}
     if not required <= present:
@@ -110,7 +126,7 @@ def main():
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print('Site check: pages, local links, hashes, validator, uniqueness and positive status PASS.')
+    print('Site check: pages, local links, hashes, official-text format, focus uniqueness, gate and decision banner PASS.')
     return 0
 
 
