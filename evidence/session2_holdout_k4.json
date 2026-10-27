@@ -1,0 +1,71 @@
+{
+ "evidence_class": "HOLDOUT-DTI on the soft-repaired unique construction (k=4)",
+ "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "n_withheld": 22232,
+ "n_clusters": 140,
+ "candidate": {
+  "pooled_dti": 0.07987156954331218,
+  "ci95": [
+   0.0688953797669185,
+   0.09032993973026499
+  ],
+  "per_quadrant": {
+   "NW": 0.06459367671741029,
+   "NE": 0.060996573206492585,
+   "SW": 0.1055228741875161,
+   "SE": 0.08420440068443596
+  },
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 23495
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 27068
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 25437
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 21479
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 23855
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 26571
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 25164
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 21361
+   }
+  ]
+ },
+ "champion_proxy": {
+  "pooled_dti": 0.09920232315251679,
+  "ci95": [
+   0.08595140754809347,
+   0.11266835751415871
+  ]
+ },
+ "paired_delta_vs_champion_proxy": {
+  "delta": -0.019330753609204623,
+  "ci95": [
+   -0.03875904224854825,
+   8.233738221640777e-05
+  ],
+  "p_delta_le_0": 0.9745
+ },
+ "promotion_rule_passed": false,
+ "avoid_zone_px": 2661903,
+ "n_release_dots": 99488
+}

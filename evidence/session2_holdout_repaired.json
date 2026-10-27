@@ -1,0 +1,116 @@
+{
+ "evidence_class": "HOLDOUT-DTI on the RELEASED construction (after deterministic uniqueness repair)",
+ "experiment": "E1_repaired (same preregistered hypothesis H1; not a new experiment)",
+ "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "n_withheld": 22232,
+ "n_spatial_clusters": 140,
+ "repaired": {
+  "pooled_dti": 0.002575438886140461,
+  "ci95": [
+   0.001462403856446752,
+   0.0038185707653883576
+  ],
+  "per_quadrant": {
+   "NW": 0.004033785677711349,
+   "NE": 0.0012921200181252345,
+   "SW": 0.002975057229071159,
+   "SE": 0.0021691746364420872
+  },
+  "cells": [
+   {
+    "cell": "draw20_fold0",
+    "n": 9530
+   },
+   {
+    "cell": "draw20_fold1",
+    "n": 11269
+   },
+   {
+    "cell": "draw20_fold2",
+    "n": 7792
+   },
+   {
+    "cell": "draw20_fold3",
+    "n": 6415
+   },
+   {
+    "cell": "draw21_fold0",
+    "n": 9550
+   },
+   {
+    "cell": "draw21_fold1",
+    "n": 11498
+   },
+   {
+    "cell": "draw21_fold2",
+    "n": 7902
+   },
+   {
+    "cell": "draw21_fold3",
+    "n": 6626
+   }
+  ],
+  "avoid_zone_px": 5086234,
+  "n_rasters_in_avoid_zone": 10
+ },
+ "unrepaired_E1": 0.14888811480353414,
+ "champion_proxy": {
+  "pooled_dti": 0.09920232315251679,
+  "ci95": [
+   0.08595140754809347,
+   0.11266835751415871
+  ]
+ },
+ "paired_delta_vs_champion_proxy": {
+  "delta": -0.09662688426637633,
+  "ci95": [
+   -0.11055865004395321,
+   -0.08308774506180822
+  ],
+  "p_delta_le_0": 1.0
+ },
+ "promotion_rule_passed": false,
+ "released_dots_match_saved_tiff": true,
+ "used_in_avoid_zone": [
+  {
+   "example": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "overlap": 0.8597
+  },
+  {
+   "example": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "overlap": 0.8392
+  },
+  {
+   "example": "data/ledger/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "overlap": 0.7696
+  },
+  {
+   "example": ".cache/sites/GEMSDOE30/GEMSDOE30-9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-edge-hybrid-80k-02845bd4-20261003T234340Z-allfinite.tif",
+   "overlap": 0.7263
+  },
+  {
+   "example": "data/ledger/12GEMSDOE__12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+   "overlap": 0.7254
+  },
+  {
+   "example": "data/ledger/GEMSDOE37__gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "overlap": 0.6978
+  },
+  {
+   "example": "data/ledger/GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+   "overlap": 0.6897
+  },
+  {
+   "example": "data/ledger/GEMSDOE3__pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+   "overlap": 0.6845
+  },
+  {
+   "example": "data/ledger/GEMSDOE53__gems53-h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros.tif",
+   "overlap": 0.6661
+  },
+  {
+   "example": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "overlap": 0.6609
+  }
+ ]
+}

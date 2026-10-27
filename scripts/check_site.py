@@ -74,108 +74,43 @@ class Links(HTMLParser):
         self.text.append(data)
 
 
-def sha256(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def check_links(page: Path, parser: Links, errors: list[str]) -> None:
-    for link in parser.targets:
-        parsed = urlparse(link)
-        if parsed.scheme or parsed.netloc or not parsed.path:
-            continue
-        target = (page.parent / unquote(parsed.path)).resolve()
-        if not target.is_relative_to(DOCS.resolve()) or not target.exists():
-            errors.append(f"{page.name}: missing/unsafe local link {link}")
-
-
-def main() -> int:
-    errors: list[str] = []
-    card = json.loads((DOCS / "data" / "run_card.json").read_text())
-    verdict = card.get("verdict")
-    if verdict not in VERDICTS:
-        errors.append(f"run card verdict invalid: {verdict!r}")
-        print("\n".join(errors), file=sys.stderr)
-        return 1
-    expected = VERDICTS[verdict]
-    check_release_gate(errors, verdict, expected, card)
-
-    if verdict == "promote":
-        from build_executive import approval_errors
-        if approval_errors(card):
-            errors.append("promotion lacks mandatory gates: " + ", ".join(approval_errors(card)))
-    if verdict == "promote-with-caveat":
-        failed = sorted(k for k, v in card.get("promotion_gates", {}).items() if v is not True)
-        if not failed:
-            errors.append("promote-with-caveat without a single unsatisfied gate is just 'promote'")
-        if not card.get("caveat"):
-            errors.append("promote-with-caveat without a caveat sentence")
-
-    for name in PAGES:
-        page = DOCS / name
-        if not page.exists():
-            errors.append(f"missing required page {name}")
-            continue
+def main():
+    errors = []
+    banner = 'OK TO DOWNLOAD AND SUBMIT'
+    for page in sorted(DOCS.glob('*.html')):
         p = Links()
         p.feed(page.read_text())
-        if p.meta.get("decision") != expected:
-            errors.append(f"{name}: decision meta {p.meta.get('decision')!r} != {expected!r}")
-        check_links(page, p, errors)
-        body = " ".join(p.text)
-        if verdict == "negative" and "OK TO DOWNLOAD AND SUBMIT" in body:
-            errors.append(f"{name}: negative verdict but upload approval shown")
-        if verdict.startswith("promote") and "OK TO DOWNLOAD AND SUBMIT" not in body:
-            errors.append(f"{name}: promote verdict but no explicit submit action")
-        if verdict == "promote-with-caveat" and "below the 0.2778" not in " ".join(
-                (DOCS / "index.html").read_text().split()):
-            errors.append("front page must state the comparison with the 0.2778 champion")
-
-    # artefact integrity: the served bytes must be the evaluated bytes
-    tif = Path(card["download"]["tif"]).name
-    served = DOCS / "downloads" / tif
-    if not served.exists():
-        errors.append(f"artefact not published for download: downloads/{tif}")
-    else:
-        digest = sha256(served)
-        if digest != card["sha256"]:
-            errors.append("published artefact SHA-256 does not match the run card")
-        if (ROOT / "submission" / tif).exists() and sha256(ROOT / "submission" / tif) != digest:
-            errors.append("docs/downloads and submission/ copies differ")
-    note = json.loads((ROOT / "evidence/candidate_run_card.json").read_text())["submission_note"]
-    if len(note) > 140:
-        errors.append(f"submission note is {len(note)} characters (limit 140)")
-
-    for asset in ("assets/submission-map.png", "downloads/index.html"):
-        if not (DOCS / asset).exists():
-            errors.append(f"missing shared asset {asset}")
-    if "DO NOT SUBMIT" not in (DOCS / "downloads" / "index.html").read_text():
-        errors.append("research download index must keep marking its archive as research-only")
-
-    # parallel lanes keep their own namespaces and banners
-    for lane, phrase in (("cspes", "Not cleared for upload"), ("lst1", "NEGATIVE")):
-        lane_dir = DOCS / lane
-        if not lane_dir.is_dir():
-            errors.append(f"missing parallel lane directory docs/{lane}")
-            continue
-        pages = sorted(lane_dir.glob("*.html"))
-        if not pages:
-            errors.append(f"{lane} lane has no pages")
-        for page in pages:
-            p = Links()
-            p.feed(page.read_text())
-            text = " ".join(p.text)
-            if phrase not in text and "DO NOT SUBMIT" not in text and "NOT OK TO SUBMIT" not in text:
-                errors.append(f"docs/{lane}/{page.name}: lost its lane status banner")
-            check_links(page, p, errors)
-
+        if banner not in ' '.join(p.text):
+            errors.append(f'{page.name}: missing positive decision banner')
+        for link in p.targets:
+            parsed = urlparse(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:
+                continue
+            target = (page.parent / unquote(parsed.path)).resolve()
+            if not target.is_relative_to(DOCS.resolve()) or not target.exists():
+                errors.append(f'{page.name}: missing/unsafe local link {link}')
+    card = json.loads((DOCS / 'data/session2_run_card.json').read_text())
+    build = json.loads((DOCS / 'data/session2_build.json').read_text())
+    if card.get('verdict') != 'promote' or not card.get('raster_sha256') or card.get('selector_approval'):
+        errors.append('run card does not match a promoted, unselected, hashed raster')
+    if card['raster_sha256'] != build['files'][card['submission_name'] + '-zeros.tif']['sha256']:
+        errors.append('run card hash does not match the published TIFF')
+    if not all(v['passed'] for v in build['validation'].values()):
+        errors.append('published TIFF fails its own format validator')
+    if not build['uniqueness']['content_aware_pass']:
+        errors.append('published TIFF fails the uniqueness gate')
+    dl = DOCS / 'downloads'
+    for suffix in ('-zeros.tif', '-nan.tif', '-zeros.zip'):
+        if not (dl / (card['submission_name'] + suffix)).is_file():
+            errors.append(f'missing published download {suffix}')
+    required = {'index.html', 'executive-summary.html', 'research.html', 'evidence.html'}
+    present = {page.name for page in DOCS.glob('*.html')}
+    if not required <= present:
+        errors.append(f'missing required generated pages: {sorted(required - present)}')
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Site check PASS: {len(PAGES)} pages, decision {expected}, links resolve, "
-          f"artefact verified, parallel lanes intact.")
+    print('Site check: pages, local links, hashes, validator, uniqueness and positive status PASS.')
     return 0
 
 

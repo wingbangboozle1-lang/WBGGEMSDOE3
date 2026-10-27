@@ -1,14 +1,92 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Archived LST1 research · DO NOT SUBMIT</title><link rel="stylesheet" href="../assets/styles.css"></head>
-<body><header class="topbar"><div class="wrap navrow"><a class="brand" href="../index.html">GEMS FIELD NOTES</a>
-<nav class="navigation"><a href="../index.html">Current dashboard</a><a href="../executive-summary.html">Submission guide</a><a href="../evidence.html">Evidence</a></nav></div></header>
-<main class="wrap content"><div class="eyebrow">Superseded archive / LST1</div><h1>Research only.<br>Do not submit.</h1>
-<div class="decision"><div class="decision-inner"><div><div class="decision-label">Negative verdict</div><h2>No competition file is cleared.</h2>
-<p>Both historical LST1 TIFFs have 100% directed overlap with a registered witness; they violate the literal &gt;70% stop. The earlier uniqueness exemptions were unauthorized. A local format diagnostic does not establish portal acceptance.</p></div></div></div>
-<section class="section"><div class="grid2"><article class="card panel"><h2>What the bytes show</h2>
-<p>The two saved files have one float32 band, match the pinned mirrored grid, have no NaNs inside its footprint and have in-footprint range [0, 1]. They differ outside the footprint: one uses zeros, one NaNs. The correct portal interpretation is unresolved.</p>
-<ul><li><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif">wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif</a> · SHA-256 <code>676ca865e86a4ff220548253d3f574e374fc3d470239fbc89aa8fb261d409e34</code> · 100% witness overlap · research only</li><li><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/submission/wbggems3-lst1-hybrid-20261026-0a0229da-nan.tif">wbggems3-lst1-hybrid-20261026-0a0229da-nan.tif</a> · SHA-256 <code>c0a24f8284eee4a3c17b1c6c2ff49a422cbcf97a73289275e533982b0dfe4acc</code> · 100% witness overlap · research only</li></ul><p><a href="../data/archive_audit.json">Read the complete archive audit →</a></p></article>
-<article class="card panel"><h2>What the historical experiment does not prove</h2><p>The old holdout used fixed H19-5-derived and D2.8 rasters and catalogue-wide binning/canaries. Fold-local compliance and hidden-label performance have not been established. Earlier positive readiness and uniqueness claims are superseded, and the historical projection is not a score.</p>
-<p>No candidate was created and no slot was used in the current audit. For future work, resolve the registry rule and outside-footprint format upstream, then rerun a leakage-safe holdout.</p></article></div></section>
-<p><a href="../index.html">← Return to the current evidence dashboard</a></p></main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why 0.2778 · WBGGEMSDOE3</title><style>
+:root{--g:#0b6b3a;--r:#a31d1d;--a:#8a5a00;--bg:#f6f7f9;--ink:#15202b}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:#12263a;color:#fff;padding:14px 20px}header a{color:#cfe3ff;margin-right:16px;text-decoration:none;font-weight:600}
+main{max-width:1020px;margin:0 auto;padding:18px 20px 60px}h1{font-size:1.7rem}h2{margin-top:2rem;border-bottom:1px solid #d7dde4;padding-bottom:4px}
+.banner{border-radius:10px;padding:18px 20px;margin:14px 0;color:#fff}.ok{background:var(--g)}.bad{background:var(--r)}.warn{background:var(--a)}
+.banner h2{border:0;margin:0 0 6px;color:#fff}.btn{display:inline-block;background:#fff;color:#0b3a22;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;margin:6px 8px 0 0}
+.card{background:#fff;border:1px solid #d7dde4;border-radius:10px;padding:14px 18px;margin:12px 0}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.92rem}th,td{border:1px solid #d7dde4;padding:6px 8px;text-align:left;vertical-align:top}th{background:#eef1f5}
+code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;word-break:break-all}.pass{color:var(--g);font-weight:700}.fail{color:var(--r);font-weight:700}
+.copy{background:#eef6ff;border:1px solid #b9d4f5;border-radius:8px;padding:8px 10px;margin:4px 0}small{color:#4a5866}
+</style></head><body><div role="note" style="padding:10px 16px;background:#fff0eb;border-bottom:3px solid #a34b3d;font:14px/1.5 system-ui;color:#702c25"><strong>LST1 lane — research only. No competition file is cleared.</strong> DO NOT SUBMIT. Do not submit this lane's raster. Its 100% witness overlap makes it a literal duplicate; portal acceptance was never verified. <strong>NEGATIVE</strong> verdict. The current repository-wide decision is a different, validated unique TIF: <a href="../executive-summary.html">open the 2026-10-27 executive summary →</a></div><header><a href="index.html">Download &amp; submit</a><a href="summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why.html">Why 0.2778?</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="limitations.html">Limitations</a><a href="../index.html">◀ Repo dashboard</a></header><main><h1>Why <code>h33-h33-2-b2</code> scored 0.2778 — and whether higher is possible</h1>
+<p><strong>Evidence classes used on this page.</strong> <code>OWNER-REPORTED</code> = a score written down by a sibling repo (no DrivenData receipt is
+available to us). <code>OBSERVED-PUBLIC-PAGE</code> = read from drivendata.org today. <code>COMPUTED-HERE</code> = recomputed in this repo from bytes
+we hash-checked. <code>HOLDOUT-DTI</code> = our spatially-blocked evaluator. Nothing here is an <code>ORGANIZER-CONFIRMED</code> score of a file we produced.</p>
+<h2>1. The metric, algebraically</h2>
+<p>Official definitions (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">metric page</a>): kernel
+k(d) = max(1 − d/300 m, 0); TPw = Σ_g max_x p(x)k(d(x,g)); FPw = Σ_x p(x)[1 − max_g k(d(x,g))]; FNw = Σ_g [1 − max_x p(x)k].
+With a binary emission of N dots and |G| truth pixels, let M = Σ_x p(x) max_g k. Then FPw = N − M, FNw = |G| − TPw and</p>
+<p><strong>DTI = TPw / [ 0.2 (TPw + N − M) + 0.8 |G| ]</strong>.</p>
+<p>Two asymmetries drive everything: credit is a <strong>max</strong> (a second dot beside an already-credited truth pixel adds nothing)
+but false-positive mass is a <strong>sum</strong> (every extra dot costs 0.2 unless it sits near truth). Because the 3-px kernel pays
+partial credit out to 300 m, a <em>sparse dotted lattice</em> keeps almost all credit of a solid line while paying a fraction of the N term.</p>
+<p><strong>Break-even rule (COMPUTED-HERE).</strong> Adding one isolated dot changes DTI by ≥ 0 iff its marginal credit exceeds about
+0.2·DTI. At DTI = 0.2778 that is 0.056 kernel-credit units; with Σk = 9.38 over the 25-offset (radius-3-pixel) kernel support this means the hidden-truth
+density around the dot must exceed ≈ 0.006 per 100 m pixel — several times the footprint-wide average (≈ 0.001–0.002 for a
+hidden-truth mass of 4–10 thousand pixels, the bootstrap range found here). A dot below that density <em>lowers</em> the score.</p>
+<h2>2. The nested family that produced 0.2778 (all OWNER-REPORTED)</h2>
+<table>
+<thead>
+<tr>
+<th>step</th>
+<th>dots</th>
+<th>score</th>
+<th>what changed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H19-5 solid network</td>
+<td>121,131</td>
+<td>0.1922</td>
+<td>many adjacent, redundant dots</td>
+</tr>
+<tr>
+<td>thinned to ≥2.8 px spacing (d2.8)</td>
+<td>44,090</td>
+<td>0.2600</td>
+<td>N cut by 64 %, credit nearly kept</td>
+</tr>
+<tr>
+<td>remove dots within 100 m of catalogue (B=1)</td>
+<td>40,199</td>
+<td>0.2708</td>
+<td>those pixels are masked in scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">forum 11516</a>); a dot there earns ~no credit but costs 0.2</td>
+</tr>
+<tr>
+<td>also remove the 100–200 m annulus (B=2)</td>
+<td>37,654</td>
+<td><strong>0.2778</strong></td>
+<td>same logic; annulus dots fall below the break-even density</td>
+</tr>
+<tr>
+<td>+ 1,200 "Anderson" mechanics dots</td>
+<td>38,854</td>
+<td>0.2750</td>
+<td>the added dots are below break-even on average</td>
+</tr>
+</tbody>
+</table>
+<p>Each row is a <em>deletion or an addition that crosses the break-even density</em>, which is why the improvements are small and
+monotone — the champion is a locally optimal pruning of one network, not a new source of information.</p>
+<h2>3. What the ledger does and does not show (COMPUTED-HERE)</h2>
+<ul>
+<li>112 distinct live-scored rasters were hash-verified and re-measured. Independent rasters that share only 51–67 % of their dots
+  with H19-5 still score 0.219–0.248 (e.g. 62 % → 0.2478). So hidden truth is <strong>not</strong> confined to the H19-5 network.</li>
+<li>Rank correlation between score and "fraction of dots near H19-5" is 0.70, but all top rasters descend from H19-5, so this is
+  confounded; a claim such as "73–96 % of truth lies on the network" is <strong>not identified</strong> by the ledger.</li>
+<li>With the product stratum (catalogue distance × H19-5 distance) a ledger-calibrated model predicts held-out <em>sites</em> with MAE
+  0.026 (leave-site-out), 90th-percentile error 0.065. None of the 66 independent fields (19 bands, lidar, radiometrics, GeoDAWN,
+  derived gradients, distances) improves on the stratum-only baseline in nested CV. The leakage canary passes: the largest
+  single-field AUC against the catalogue is 0.658 (&lt; 0.90).</li>
+</ul>
+<h2>4. Is a higher score possible?</h2>
+<p>Yes — the public board already shows it (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard, 2026-10-26</a>): #1 is 0.4437,</p>
+<h1>5 (the initial-round prize line) is 0.3561, and #50 is 0.2826, so <strong>0.2778 would sit just outside the top 50</strong>.</h1>
+<p>Even with <em>zero</em> false positives, DTI = c/(0.2c + 0.8) for coverage c = TPw/|G|; 0.2778 needs c ≥ 0.235, 0.3561 needs c ≥ 0.307 and
+0.4437 needs c ≥ 0.39. The leaders therefore recover at least ~40 % of the hidden truth with few false positives.
+We found nothing in the nine sibling repos, and no signal in the 66 fields examined here, that carries that much <em>ledger-identified</em> information. Our
+opinion (not a result): with the mirrored data alone the family is near its ceiling; a step change needs new information such as
+metre-scale scarps (3DEP 1 m DEM), InSAR, or newer fault mapping — all untested because they could not be fetched in this sandbox.</p></main></body></html>
