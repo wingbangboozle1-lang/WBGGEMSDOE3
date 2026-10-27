@@ -1,0 +1,68 @@
+{
+ "skarpline_union": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.0381031787367962,
+  "tp_hat": 1026.8585765413022,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 97118.70175262795,
+  "mass": 97608.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "cspes_edgestab": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.018909863429670992,
+  "tp_hat": 281.26935977842356,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 37488.26089948978,
+  "mass": 37654.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "lst1_hybrid": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.3409358305439525,
+  "tp_hat": 4906.712250296725,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 30451.215614251654,
+  "mass": 32810.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "hce1_congruence": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.05882888844483037,
+  "tp_hat": 2445.7568945532275,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 168823.10050068834,
+  "mass": 169968.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "E1_dipole": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.05920110086839889,
+  "tp_hat": 913.9668532501505,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 39676.20319032437,
+  "mass": 40000.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ },
+ "E2_dipole_suppressed": {
+  "label": "LEDGER-PROJECTION (not a score)",
+  "projection": 0.03665893380193931,
+  "tp_hat": 564.3031018364047,
+  "g_hat": 9150.385227009701,
+  "fp_hat": 39800.810951398125,
+  "mass": 40000.0,
+  "model_loo_mae": 0.025131149510487845,
+  "model_family_cv_mae": 0.02577574645555389,
+  "model_family_cv_mae_top20": 0.04080458540191888
+ }
+}

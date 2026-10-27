@@ -38,6 +38,35 @@ decision must still list what it does not claim).
 > uniqueness + fold-local-holdout gates but is **not** the cleared file — TDE-30k at the top of
 > this README is. No slot has been spent by any lane; no organizer-confirmed score exists yet.
 
+> **PARALLEL LANE SESSION 2026-10-27 (`arena/1f0b051d-wbggemsdoe3`): independent audit + one new
+> unique TIF; the skarpline 0.428 estimate above is WITHDRAWN by measurement.**
+> [Lane executive summary](docs/session-1f0b051d/index.html) ·
+> [one-click TIF](docs/session-1f0b051d/downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif) ·
+> [single-TIFF ZIP](docs/session-1f0b051d/downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.zip) ·
+> [exactly how to submit](docs/session-1f0b051d/how-to-submit.html) ·
+> [run card](evidence/session_1f0b051d_run_card.json) ·
+> [audit](evidence/session_1f0b051d_audit.json) ·
+> [independent verification](evidence/session_1f0b051d_verify.json) ·
+> [preregistration + amendments](knowledge/preregistration-2026-10-27-session-1f0b051d.md).
+> This session restored all 118 SHA-pinned scored ledger rasters and reproduced every load-bearing
+> number line by line. Findings: (1) GEMSDOE32's 0.2778 file is an exact subset of GEMSDOE31/30 with a
+> √5 px catalogue-proximity trim — the whole focus-nine cluster is one duplicate family, none resubmittable;
+> (2) the skarpline lane's **0.428 estimate is invalid** (its SGMC hit-rate estimator predicts 0.399 for the
+> 0.0904 lattice and ≈1.66 for the SGMC proxy itself, while SGMC submissions score 0.049–0.051; R² = −0.65) —
+> do not use it for any slot decision until the main banner above is reconciled;
+> (3) a new lidar scarp-dipole lane (3 preregistered experiments) produced the 40,000-dot file above:
+> unique vs all 122 registry rasters (max 67.0% within 3 px), saved-byte validator PASS, leakage canary PASS,
+> HOLDOUT-DTI reported with its strata control, planning estimate ≈0.16 (archive-analog median, range
+> 0.018–0.248) — **verdict negative on beating 0.2778**; no organizer-confirmed score; no slot used.
+
+> **Selector note (all three 2026-10-27 lanes agree):** the skarpline 0.428 estimate is
+> withdrawn/invalid and its file is not cleared under any gate. Exactly one file is cleared for
+> upload — TDE-30k at the top of this README. The session-`1f0b051d` dipole TIF below is a second
+> unique, validator-clean file but its own lane's verdict is negative (planning estimate ≈0.16,
+> below TDE-30k's 0.207–0.269); treat it as a documented negative / backup, not a co-equal pick.
+> No lane has spent a submission slot; no organizer-confirmed score exists for any file.
+
+
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
