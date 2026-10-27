@@ -1,0 +1,141 @@
+{
+ "label": "LEAKAGE CANARY (single-field AUC vs withheld catalogue segments, pooled v3.0 cells)",
+ "threshold": 0.9,
+ "n_withheld_positives": 20321,
+ "worst_non_catalogue_field": {
+  "field": "d_sgmc",
+  "auc_raw": 0.3406122813837902,
+  "auc_two_polarity": 0.6593877186162098,
+  "catalogue_derived": false,
+  "note": "nuisance/trim only, never a detector feature"
+ },
+ "all_pass": true,
+ "fields": [
+  {
+   "field": "lidar_ex_max",
+   "auc_raw": 0.5609601521959309,
+   "auc_two_polarity": 0.5609601521959309,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_ex_mean",
+   "auc_raw": 0.5469288011019391,
+   "auc_two_polarity": 0.5469288011019391,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_step_max",
+   "auc_raw": 0.5606202418936934,
+   "auc_two_polarity": 0.5606202418936934,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_lapneg_max",
+   "auc_raw": 0.5661558826818263,
+   "auc_two_polarity": 0.5661558826818263,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_lappos_max",
+   "auc_raw": 0.5686529592315349,
+   "auc_two_polarity": 0.5686529592315349,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_downface_max",
+   "auc_raw": 0.5493583354522492,
+   "auc_two_polarity": 0.5493583354522492,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_upface_max",
+   "auc_raw": 0.5591207326861923,
+   "auc_two_polarity": 0.5591207326861923,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_cross_max",
+   "auc_raw": 0.5386069373498208,
+   "auc_two_polarity": 0.5386069373498208,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_relief",
+   "auc_raw": 0.5561424730901215,
+   "auc_two_polarity": 0.5561424730901215,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_coh100",
+   "auc_raw": 0.4679378473131714,
+   "auc_two_polarity": 0.5320621526868285,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "lidar_strike",
+   "auc_raw": 0.5146467909728426,
+   "auc_two_polarity": 0.5146467909728426,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "along_dz",
+   "auc_raw": 0.5764589121238511,
+   "auc_two_polarity": 0.5764589121238511,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "de_log2",
+   "auc_raw": 0.42200551584567686,
+   "auc_two_polarity": 0.5779944841543232,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "de_slope2",
+   "auc_raw": 0.5737647943014615,
+   "auc_two_polarity": 0.5737647943014615,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "road_dist_m",
+   "auc_raw": 0.4839987986565622,
+   "auc_two_polarity": 0.5160012013434379,
+   "catalogue_derived": false,
+   "note": ""
+  },
+  {
+   "field": "d_cat",
+   "auc_raw": 0.0,
+   "auc_two_polarity": 1.0,
+   "catalogue_derived": true,
+   "note": "nuisance/trim only, never a detector feature"
+  },
+  {
+   "field": "d_h19",
+   "auc_raw": 0.3595656836523793,
+   "auc_two_polarity": 0.6404343163476207,
+   "catalogue_derived": false,
+   "note": "nuisance/trim only, never a detector feature"
+  },
+  {
+   "field": "d_sgmc",
+   "auc_raw": 0.3406122813837902,
+   "auc_two_polarity": 0.6593877186162098,
+   "catalogue_derived": false,
+   "note": "nuisance/trim only, never a detector feature"
+  }
+ ]
+}
