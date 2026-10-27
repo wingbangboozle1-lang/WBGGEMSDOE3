@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CSPES lane: generated, validated, unique-vs-sparse-registry GeoTIFF with a negative holdout verdict.">
+<title>Executive summary · CSPES lane · GEMS Field Notes</title>
+<link rel="stylesheet" href="../assets/styles.css">
+<style>
+.banner-warn { background:#3a2a12; border:1px solid #b9832f; }
+.banner-no { background:#3a1620; border:1px solid #b93a4d; }
+.banner-ok { background:#14301f; border:1px solid #2f9e5f; }
+.dl-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+code { word-break:break-all; }
+.small { font-size:.85rem; color:var(--muted,#9aa4b2); }
+.tag { display:inline-block; padding:2px 8px; border-radius:999px; font-size:.78rem; font-weight:600; }
+.tag-neg { background:#5a2230; color:#ffd7de; } .tag-ok { background:#1d4430; color:#c9f3dc; }
+.tag-warn { background:#4d3a17; color:#ffe2b0; } .tag-mut { background:#2a313c; color:#c6cdd8; }
+</style></head>
+<body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>CSPES LANE<small>2026-10-27 · RESEARCH ARTIFACT</small></span></a>
+<nav class="navigation" aria-label="Lane navigation"><a class=active href="index.html">Lane summary</a><a  href="how-to-submit.html">How to submit</a><a  href="../index.html">Main site</a><a  href="data/cspes_run_card.json">Run card JSON</a></nav><span class="nav-status"><i class="dot"></i> Not cleared for upload</span></div></header>
+<main>
+<section class="hero"><div class="wrap">
+<div class="eyebrow">Executive summary / CSPES lane / 2026-10-27 UTC</div>
+<div class="title-line"><div><h1>A unique, validated TIF —<br>with a negative verdict.</h1>
+<p class="subhead">The lane generated a genuinely new 37,654-dot GeoTIFF from gravity/magnetic edge physics. It is format-valid and distinct from every rebuilt historical submission, but its holdout DTI loses to the incumbent, so it must not take a weekly slot.</p></div></div>
+<div class="decision"><div class="decision-inner"><div>
+<div class="decision-label"><i class="dot"></i> Automated verdict · NEGATIVE (research artifact, no slot spent)</div>
+<h2>Download for inspection — do not upload for score.</h2>
+<p>HOLDOUT-DTI <strong>0.0257</strong> vs incumbent <strong>0.0992</strong>; paired Δ -0.0736, 95% CI -0.0883 to -0.0587. Canaries pass (no leakage); the ranking is simply not predictive of hidden catalogue faults.</p>
+</div><div class="actions"><a class="button" href="../downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif" download>Download GeoTIFF ↓</a>
+<a class="button secondary" href="../downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.zip" download>Download ZIP ↓</a></div></div></div>
+</div></section>
+<div class="wrap content">
+<section class="section"><div class="section-head"><div><div class="kicker">01 / The downloadable artifact</div><h2>Exactly which file, and is it OK to submit?</h2></div>
+<a class="button light" href="data/cspes_run_card.json" download>Run card JSON ↓</a></div>
+<div class="card panel"><div class="dl-grid">
+<div><h3>File (portal-safe, all finite)</h3><p class="small"><a href="../downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif" download><code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif</code></a></p>
+<p class="small">ZIP (single TIFF inside): <a href="../downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.zip" download><code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.zip</code></a></p></div>
+<div><h3>SHA-256</h3><p class="small"><code>05ec516cfc0904ed76e75596285352b91416eb7a8b64a398bebec33e4793cb51</code></p>
+<p class="small">emitted pixels: 37,654 · float32 · EPSG:32611 · 3,730×3,292 · 100 m</p></div>
+<div><h3>Submission name / note (≤140 chars)</h3><p class="small"><code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros</code></p>
+<p class="small"><code>CSPES grav/RTP edge-stability lane; label-independent; holdout 0.0257&lt;0.0992; negative, research only, no slot</code> (110 chars)</p></div>
+<div><h3>Automatic gates</h3>
+<p><span class="tag tag-ok">validator PASS</span> <span class="tag tag-ok">no NaN · all values [0,1]</span></p>
+<p><span class="tag tag-ok">U1 exact-duplicate PASS</span> <span class="tag tag-ok">U2 |ρ|≤0.90 PASS</span> <span class="tag tag-ok">U3 sparse-registry PASS</span></p>
+<p><span class="tag tag-neg">holdout NEGATIVE</span> <span class="tag tag-warn">literal dense-witness rule FAIL</span></p></div>
+</div>
+<div class="callout banner-no" style="margin-top:14px"><strong>IS IT OK TO DOWNLOAD AND SUBMIT?</strong> Download: yes — the bytes pass every format gate and are unique against the 117 rebuilt sparse historical masks (max 3-px overlap 62.3% ≤ 70%; max |Spearman| 0.108 ≤ 0.90). Submit for leaderboard score: <strong>NO</strong> — its HOLDOUT-DTI (0.0257) is decisively below the matched incumbent (0.0992), and the project's strictest literal registry rule remains unsatisfiable for any nonempty raster because of the space-filling 17GEMSDOE witness (IR-01). A separate selector owns any real slot; this lane spent zero.</div>
+</div></section>
+
+<section class="section"><div class="section-head"><div><div class="kicker">02 / Executive table — nine focus sites and this lane</div>
+<h2>What to download, the estimated score, and uniqueness</h2><p>Historical figures are owner reports without organizer receipts; only the CSPES row carries a local HOLDOUT-DTI with a 95% CI. A HOLDOUT-DTI is not a leaderboard projection.</p></div></div>
+<p class="scroll-hint">Swipe across the table to see all columns →</p>
+<div class="card table-card" tabindex="0" role="region" aria-label="Executive summary table"><table class="table"><thead><tr>
+<th>Site</th><th>File to download</th><th>Estimated score</th><th>Unique vs other focus sites?</th><th>Overlap with this CSPES TIF</th><th>Decision</th></tr></thead>
+<tbody><tr style="background:#16202e"><td class="site"><strong>WB-GEMS-DOE-3 (this lane)</strong></td>
+<td><a class="file-link" href="../downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif" download>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif ↓</a><small>generated 2026-10-27 · 37,654 dots</small></td>
+<td><strong>0.0257</strong><br><small>HOLDOUT-DTI 0.0194–0.0319</small></td>
+<td><span class="tag tag-ok">YES vs 117 sparse masks</span><br><small>max 3px overlap 62.3% · max |ρ| 0.108</small></td>
+<td><span class="tag tag-warn">dense witness: literal FAIL</span></td>
+<td><span class="tag tag-neg">NEGATIVE · DO NOT PROMOTE</span></td></tr><tr><td class="site">GEMSDOE32</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2778</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE36</small></td>
+<td><span class="tag tag-mut">12.9% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE36</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2750</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>97.6% within 3px of GEMSDOE27</small></td>
+<td><span class="tag tag-mut">13.7% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE28</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2710</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE25</small></td>
+<td><span class="tag tag-mut">13.6% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE31</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2708</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE25</small></td>
+<td><span class="tag tag-mut">14.0% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE33</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2632</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>99.7% within 3px of GEMSDOE27</small></td>
+<td><span class="tag tag-mut">14.9% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE25</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2600</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE30</small></td>
+<td><span class="tag tag-mut">15.4% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE30</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2600</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE25</small></td>
+<td><span class="tag tag-mut">15.4% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE24</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2477</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>100.0% within 3px of GEMSDOE25</small></td>
+<td><span class="tag tag-mut">16.2% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr><tr><td class="site">GEMSDOE27</td>
+<td><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif ↗</a><small>historical · research only</small></td>
+<td><strong>0.2449</strong><br><small>owner claim, no receipt</small></td>
+<td><span class="tag tag-neg">NO</span><br><small>98.0% within 3px of GEMSDOE24</small></td>
+<td><span class="tag tag-mut">16.6% shared with CSPES</span></td>
+<td><span class="tag tag-neg">DO NOT SUBMIT</span></td></tr></tbody></table></div>
+<p class="note">Uniqueness: fraction of dots within 3 px (300 m kernel radius) of a reference, plus absolute Spearman. All nine historical leaders are near- or exact duplicates of one another (0.976–1.000 overlap); GEMSDOE25 and GEMSDOE30 share an identical dot mask. None is a legal new submission under the no-copy rule.</p>
+</section>
+
+<section class="section"><div class="section-head"><div><div class="kicker">03 / Science and falsification</div><h2>Scale-persistent, orientation-collinear gravity and RTP magnetic gradient edges, topo-conditioned, mark buried structural boundaries missing from the surface catalogue.</h2></div></div>
+<div class="grid2"><article class="card panel"><h3>Mechanism</h3><p>Multi-scale (sigma=2,5 px) gradient persistence P_g*P_m times polarity-invariant grav/mag collinearity (0.5+0.5A) times topographic conditioning (1-0.5T); label-independent ranks; greedy 2-px NMS, K=37,654.</p>
+<h3>Named non-fault mimic</h3><p>Lithologic contact / volcanic margin / aeromagnetic acquisition stripe.</p>
+<p class="small">Full frozen specification: <code>knowledge/preregistration-2026-10-27.md</code>; code <code>src/gemsw/cspes.py</code>.</p></article>
+<article class="card panel"><h3>E1 leakage canary (AUC &gt; 0.90 = alarm)</h3>
+<table class="table"><thead><tr><th>field</th><th>ROC-AUC</th><th>status</th></tr></thead><tbody><tr><td>raw_iso_grav_anom</td><td>0.4717</td><td>pass</td></tr><tr><td>raw_rtp</td><td>0.5165</td><td>pass</td></tr><tr><td>raw_det_elev</td><td>0.4915</td><td>pass</td></tr><tr><td>P_grav_persist</td><td>0.5285</td><td>pass</td></tr><tr><td>P_mag_persist</td><td>0.5234</td><td>pass</td></tr><tr><td>align_collinear</td><td>0.5136</td><td>pass</td></tr><tr><td>topo_rank</td><td>0.5717</td><td>pass</td></tr><tr><td>cspes_full_surface</td><td>0.5229</td><td>pass</td></tr></tbody></table>
+<p class="small">All fields near 0.5: no leakage — and, as the holdout shows, little signal either.</p></article></div>
+<div class="grid2"><article class="card panel"><h3>E2 hide-and-recover holdout (22,232 withheld positives)</h3>
+<table class="table"><thead><tr><th>candidate</th><th>HOLDOUT-DTI (95% CI)</th></tr></thead><tbody>
+<tr><td><strong>CSPES full</strong></td><td><strong>0.0257</strong> (0.0194–0.0319)</td></tr>
+<tr><td>no topo-conditioning ablation</td><td>0.0312</td></tr>
+<tr><td>magnetic-only ablation</td><td>0.0239</td></tr>
+<tr><td>gravity-only ablation</td><td>0.0139</td></tr>
+<tr><td>same-count random null</td><td>0.0313</td></tr>
+<tr><td>incumbent D2.8 + fold-local B2</td><td><strong>0.0992</strong></td></tr>
+</tbody></table><p class="small">Evaluator GEMSDOE32-HIDE-RECOVER-v3.0; pooled DTI α=0.2, β=0.8, 300 m triangular kernel, 16×16 block bootstrap.</p></article>
+<article class="card panel"><h3>E3 prespecified budget sweep</h3>
+<table class="table"><thead><tr><th>budget</th><th>CSPES DTI</th><th>random null</th><th>paired Δ (CI)</th></tr></thead><tbody><tr><td>30,000</td><td>0.0213 (0.0155–0.0270)</td><td>0.0272</td><td>-0.0059 (-0.0126,+0.0016)</td></tr><tr><td>45,000</td><td>0.0275 (0.0211–0.0337)</td><td>0.0323</td><td>-0.0049 (-0.0118,+0.0026)</td></tr><tr><td>60,000</td><td>0.0313 (0.0242–0.0381)</td><td>0.0413</td><td>-0.0100 (-0.0168,-0.0031)</td></tr></tbody></table>
+<p class="small">CSPES never beats random placement; at 60k it is significantly worse. The negative verdict is budget-robust.</p></article></div>
+</section>
+
+<section class="section"><div class="section-head"><div><div class="kicker">04 / Uniqueness scope and the standing blocker</div><h2>Two verdicts, both shown</h2></div></div>
+<div class="grid2"><article class="card panel banner-ok"><h3>Sparse historical submissions: UNIQUE</h3>
+<p>Against 117 sparse submissions + 1 dense witness:</p>
+<ul><li>no exact dot-mask duplicate (U1 pass)</li><li>max |Spearman| 0.1080 (surface) / 0.1916 (dots), both ≤ 0.90</li>
+<li>max non-lattice 3-px overlap 62.28% ≤ 70%</li><li>lattice-like references: excess over random null ≤ 0.05 for all</li></ul></article>
+<article class="card panel banner-no"><h3>Literal any-raster rule: BLOCKED (IR-01, unchanged)</h3>
+<p>The registered 17GEMSDOE probability raster is positive on all 5,167,373 footprint cells, so <em>any</em> nonempty candidate has 100% 3-px overlap with it. CSPES surface Spearman vs that raster is only 0.108, but the literal overlap gate cannot pass. This needs an explicit protocol revision by the selector; it was not silently exempted.</p></article></div>
+<p class="note">Coverage: 149 hash-pinned rasters / 118 unique masks rebuilt locally (nine focus leaders, 118 ledger rasters, 19 template rasters, lattice, witness). The committed 522-file/296-mask index includes additional unrebuilt site trees; a sparse pass here is not claimed as a full-296-mask clearance.</p>
+</section>
+</div></main>
+<footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · CSPES lane · independent research, not affiliated with DOE or DrivenData.</span><span>HOLDOUT-DTI is a local proxy, never a leaderboard score.</span></div></footer>
+</body></html>

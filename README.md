@@ -1,11 +1,17 @@
 # GEMS Field Notes — fault discovery & submission audit
 
-> **CURRENT DECISION: DO NOT SUBMIT.** No competition GeoTIFF is cleared.
-> The literal registry uniqueness rule is blocked by a registered raster that is
-> positive across the entire mirrored footprint. This lane ran no experiment and used
-> no slot. A separately generated parallel TIFF fails the registry and footprint checks;
-> it is retained for research only. [Executive dashboard](docs/index.html) ·
-> [Submission guide](docs/executive-summary.html) · [Run card](evidence/run_card.json)
+> **CURRENT DECISION: DO NOT SUBMIT FOR SCORE.** No competition GeoTIFF is cleared
+> for a weekly slot. The 2026-10-27 **CSPES lane** generated a genuinely new,
+> format-valid GeoTIFF (37,654 dots, all values finite in [0,1], unique against all
+> 117 rebuilt sparse historical masks), but its HOLDOUT-DTI is **0.0257 vs 0.0992** for
+> the matched incumbent — verdict **negative**, zero slots spent. The literal registry
+> rule remains blocked by the space-filling 17GEMSDOE witness (IR-01).
+> [CSPES lane site + one-click download](docs/cspes/index.html) ·
+> [How to submit](docs/cspes/how-to-submit.html) · [CSPES run card](evidence/cspes_run_card.json) ·
+> [Executive dashboard](docs/index.html) · [Submission guide](docs/executive-summary.html)
+>
+> The full verbatim standing brief is preserved in
+> [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this README at every session start.
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
@@ -154,6 +160,57 @@ before that lane is run.
   first. See the [scientific review](knowledge/scientific-review-2026-10-26.md) and
   [irregularities and next steps](knowledge/review-and-irregularities-2026-10-26.md).
 
+## 2026-10-27 session — CSPES lane executed (three experiments, negative)
+
+This session ran the lane proposed but never executed on 2026-10-26, using only
+the hash-pinned 19-band mirror, the shared hide-and-recover evaluator and the
+pinned shared writer (no private forks). Full frozen specification:
+[`knowledge/preregistration-2026-10-27.md`](knowledge/preregistration-2026-10-27.md);
+code: [`src/gemsw/cspes.py`](src/gemsw/cspes.py).
+
+- **Hypothesis (CSPES):** faults missing from the surface catalogue appear as
+  gradient edges of isostatic gravity (`iso_grav_anom`, band 13) and RTP
+  magnetics (`rtp`, band 2) that persist across scales (σ = 2, 5 px), have
+  collinear gradient orientations, and are not fully explained by detrended
+  elevation (`det_elev`, band 12). Named mimic: lithologic contacts, volcanic
+  margins and aeromagnetic acquisition stripes.
+- **E1 leakage canary — pass, no alarm.** Single-feature ROC-AUCs on the 8
+  hide-and-recover cells range 0.472–0.572 (combined surface 0.523); nothing
+  approaches the 0.90 leakage threshold. Evidence: `evidence/cspes_canary.json`.
+- **E2 holdout — negative.** HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0,
+  22,232 withheld positives, pooled α=0.2/β=0.8, 300 m triangular kernel,
+  16×16 block bootstrap CI): **CSPES 0.0257 [0.0194, 0.0319]** vs the matched
+  D2.8+B2 champion proxy **0.0992 [0.0860, 0.1127]**; paired Δ = −0.0736,
+  95% CI [−0.0883, −0.0587], P(Δ≤0) = 1.0. The same-count random null scores
+  0.0313. Evidence: `evidence/cspes_holdout.json`.
+- **E3 budget sweep — negative and budget-robust.** At 30k/45k/60k dots CSPES
+  is at or below the matched random null (significantly worse at 60k).
+  Evidence: `evidence/cspes_budget.json`.
+- **Artifact and gates.** `docs/downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif`
+  (SHA-256 `05ec516c…cb51`, 37,654 dots) was written by the pinned shared
+  template's fail-closed writer and independently re-validated: single float32
+  band, EPSG:32611, exact sample shape/transform, **zero NaN, all values in
+  [0,1]**, no positives outside the footprint or on the catalogue. Uniqueness
+  over the rebuilt registry (149 hash-pinned rasters / 118 unique masks):
+  U1 no exact duplicate, U2 max |Spearman| 0.108 (surface) / 0.192 (dots),
+  U3 max non-lattice 3-px overlap 62.28% ≤ 70%, lattice excess-over-null
+  ≤ 0.05 — **unique against every sparse historical submission**. The literal
+  any-raster rule still fails (100% overlap with the dense 17GEMSDOE witness,
+  IR-01); that conflict needs an explicit protocol revision, not a silent
+  exemption. Run card: `evidence/cspes_run_card.json`.
+- **Decision.** The TIF is safe to download for inspection and pipeline
+  rehearsal, and it is scientifically distinct from every rebuilt prior
+  submission, but it must **not** be promoted to a weekly slot: its own
+  holdout says it would score around the random-null level, far below the
+  incumbent family. The selector step is deliberately not performed here.
+- **Why the historical B2 family scored higher (file-level evidence, not a
+  receipt):** B2 is an exact 37,654-dot subset of the 40,199-dot H27-4/D2.8
+  dotted-ridge support with 2,545 catalogue-proximal dots pruned
+  (`evidence/focus_audit.json`, `h33_mechanism`). Under the 300 m tolerant,
+  low-FP-weight metric, sparse dots placed along a strong ridge network
+  recover hidden trace pixels efficiently; generic geophysical edges do not
+  align with the hidden catalogue geometry, which is exactly what E2/E3 show.
+
 ## Reproduce the autonomous audit
 
 Requires Python 3.11+, internet to GitHub/PyPI, `gh` or unauthenticated GitHub API
@@ -162,12 +219,24 @@ needed and calls the pinned shared template without forking its evaluator/writer
 
 ```bash
 bash scripts/restore_shared_data.sh   # restore template + public mirror + 19 cached bands
+.venv/bin/python scripts/restore_comparators.py   # nine pinned focus leaders
+.venv/bin/python scripts/fetch_ledger_rasters.py  # 118 hash-pinned ledger rasters
 .venv/bin/python scripts/audit_focus.py      # proof, nine-site comparison, negative run card
 .venv/bin/python scripts/audit_concurrent.py # recheck parallel artifacts and rebind card
+# 2026-10-27 CSPES lane (canary, holdout, budget sweep, registry rebuild, package + run card):
+.venv/bin/python scripts/run_cspes.py
+.venv/bin/python scripts/run_cspes_budget.py
+.venv/bin/python scripts/build_cspes_registry.py
+.venv/bin/python scripts/build_cspes_submission.py
 .venv/bin/python -m pytest -q               # synthetic and evidence checks
-python scripts/build_site.py && python scripts/check_site.py
+.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/build_site_cspes.py
+.venv/bin/python scripts/check_site.py
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
+
+The CSPES data symlinks under `data/raw/` point into the ignored shared-template
+cache; rerun the restore commands after clearing `.cache/`. Lane outputs
+(`data/work_cspes_dots.npy`, `.cache/registry/`, `data/ledger/`) stay out of Git.
 
 The static [GitHub Pages dashboard](https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/)
 is built from the evidence. Its scheduled workflow refreshes the public leaderboard
@@ -179,12 +248,18 @@ The integration could not change the Pages source setting (GitHub returned 403);
 publishers were observed to deploy successfully. The source and checks are in
 `.github/workflows/` and `scripts/refresh_feed.py`.
 
-**Next session:** resolve the registry-support contradiction through an explicit
-protocol revision; then verify official data provenance and band semantics, freeze the
-single lane and comparator inventory, run feature canaries and buffered whole-segment
-holdout against a matched same-evaluator incumbent, and only then use the unchanged
-shared writer and separate selector. The current instruction makes producing an
-eligible unique TIFF impossible, so the project must not imply otherwise.
+**Next session:** the CSPES lane is a complete negative (2026-10-27): geophysical
+edge ranks alone carry no detectable signal for the hidden catalogue geometry.
+Highest-value next work is (1) an explicit protocol revision for the space-filling
+witness so the literal uniqueness rule becomes satisfiable for sparse dot
+submissions; (2) candidate 2 from the 2026-10-27 preregistration (strain-aligned
+magnetic discontinuity) or a ridge-network continuation lane built around the
+D2.8/B2 *placement family* rather than independent geophysical edges, always with
+the same canary → hide-and-recover → paired-CI sequence; (3) reconcile the
+outside-footprint NaN-vs-zeros convention with the organizers (IR-04). Verify
+official data provenance and band semantics before any new physical
+interpretation. No slot may be spent without a positive paired holdout and the
+separate selector's quota check.
 
 ## Parallel lane LST1 — Ledger-Supervised Tomography (research-only, **NEGATIVE**)
 
