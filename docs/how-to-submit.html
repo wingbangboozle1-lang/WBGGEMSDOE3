@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
+<title>How to submit · WBGGEMSDOE3</title><style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
+--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+header b{font-size:17px}
+header a{color:var(--mut);text-decoration:none;font-size:14px}
+header a:hover,header a.on{color:var(--fg)}
+main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
+h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:17px;margin:22px 0 8px}
+p,li{color:#d7dee6}
+code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
+.small{font-size:13.5px;color:var(--mut)}
+.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
+.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
+.tag.no{background:var(--bad);color:#fff}
+.tag.warn{background:var(--warn);color:#1a1200}
+.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
+.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi .v{font-size:23px;font-weight:700}
+.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+tr.me td{background:#0f2418;font-weight:600}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
+a{color:var(--accent)}
+ul{padding-left:22px}
+</style></head>
+<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="how-to-submit.html" class="on">How to submit</a><a href="research.html" class="">Science</a><a href="evidence.html" class="">Evidence</a><a href="sources.html" class="">Data &amp; sources</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><div class="hero no"><span class="tag no">NOT OK TO SUBMIT</span><h1>Exactly how to submit</h1>
+<p>Today <b>no file is cleared</b>. Follow the steps below only for a file whose run card says <code>verdict: promote</code>
+<b>and</b> that the separate selector has approved within the weekly cap of 3 per entity
+(<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules §3.2</a>).</p></div>
+<h2>Steps</h2>
+<ol><li>Download the cleared <code>.tif</code> from the Start page. Do not open it and re-save it in GIS software, because that can add NaN or nodata values.</li>
+<li>Check it locally: <code>python scripts/verify_submission.py &lt;file.tif&gt;</code>. The template validator checks a single float32 band, 3730×3292, EPSG:32611, the sample transform, finite values in [0,1] everywhere, zero outside the footprint and zero on the catalogue.</li>
+<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Submissions</a>, choose the <code>.tif</code> (or its one-file <code>.zip</code>) and upload it unchanged.</li>
+<li>Use the run card's <code>submission_name</code> as the unique name and its <code>note</code> (≤140 characters) as the note.</li>
+<li>Record the receipt (timestamp and public score) as <b>ORGANIZER-CONFIRMED</b> in <code>registry/leaderboard.json</code>.</li></ol>
+<h2>The current research artefact (not cleared)</h2>
+<table><tr><th>Field</th><th>Value</th></tr>
+<tr><td>File</td><td><code>wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif</code></td></tr>
+<tr><td>Unique name</td><td><code>wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT</code></td></tr>
+<tr><td>Note (91 chars)</td><td><code>LBCAL leaderboard-calibrated hidden-fault density; Dinkelbach dots; est 0.501 holdout 0.063</code></td></tr>
+<tr><td>SHA-256</td><td><code>c645e47ef8733680b3ee9b646507b10ac07aa8c076526da65ad889371351d43d</code></td></tr>
+<tr><td>Verdict</td><td class="no">NEGATIVE: failed uniqueness(like-for-like), HOLDOUT-DTI &gt; 0.1292</td></tr></table>
+<h2>Fixing "Predicted values must be in range [0, 1]"</h2>
+<p>The portal rejects any pixel outside [0,1]. Three things commonly put pixels there: NaN pixels inside the scored
+footprint, a nodata sentinel such as −3.4e38 or −9999 that is read back as a value, and float rounding above 1.0 in
+probability maps. This repository's writer (template <code>submission_writer.write_submission</code>) refuses to repair
+anything silently. It writes finite float32 values only (1.0 at dots, 0.0 everywhere else, including outside the
+footprint), sets no nodata tag, and validates the saved bytes. Files produced this way cannot trigger the error.
+To fix a third-party file, replace non-finite values with 0, clip to [0,1], and remove the nodata tag before uploading.</p></main>
+<footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
+Every number is labelled OWNER-REPORTED (scores the repository owner copied from the leaderboard), HOLDOUT-DTI,
+REGISTRY-MEASUREMENT or ESTIMATE (a model output, not an organizer score). No ORGANIZER-CONFIRMED receipt exists for
+any file here. A predicted fault is not a geothermal vent. Generated by <code>scripts/build_executive.py</code> from
+<code>docs/data/*.json</code>.</footer>
+</body></html>

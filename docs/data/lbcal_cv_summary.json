@@ -1,0 +1,165 @@
+{
+ "lane": "LBCAL",
+ "version": "lbcal-v1.0",
+ "generated_utc": "2026-10-27T19:23:56Z",
+ "evidence_class": "ESTIMATE (model output fitted to OWNER-REPORTED public scores); not a score",
+ "n_unique_scored_arrays": 119,
+ "n_families": 96,
+ "n_sites": 86,
+ "identical_array_pairs": 5,
+ "identical_arrays_with_different_scores": [],
+ "selected": {
+  "key": "full|lam=0.0001",
+  "lam": 0.0001,
+  "features": [
+   "d_cat",
+   "topo",
+   "crest",
+   "lidar",
+   "mag",
+   "sgmc",
+   "slope"
+  ]
+ },
+ "cv": {
+  "baseline_constant": {
+   "rmse": 0.08605825781682647,
+   "mae": 0.07177252733505099,
+   "spearman": -0.9703847728044259,
+   "pearson": -0.6942889519079224,
+   "spearman_top15": -0.7241918126522868
+  },
+  "baseline_logcount": {
+   "rmse": 0.08646248087407123,
+   "mae": 0.07167218397790806,
+   "spearman": -0.39998575690372834,
+   "pearson": -0.524758394740305,
+   "spearman_top15": -0.9428571428571427
+  },
+  "d_cat_only|lam=0.0001": {
+   "family_cv": {
+    "rmse": 0.10160268236815809,
+    "mae": 0.07448257976397363,
+    "spearman": 0.15862553968670529,
+    "pearson": 0.021913443838272366,
+    "spearman_top15": -0.6678571428571428
+   }
+  },
+  "d_cat_only|lam=0.001": {
+   "family_cv": {
+    "rmse": 0.09169936145545395,
+    "mae": 0.06805631256924408,
+    "spearman": 0.1720567944163958,
+    "pearson": 0.0755473333722871,
+    "spearman_top15": -0.782142857142857
+   }
+  },
+  "d_cat_only|lam=0.01": {
+   "family_cv": {
+    "rmse": 0.09040007965936453,
+    "mae": 0.06662219545459601,
+    "spearman": 0.20333466863315117,
+    "pearson": 0.11665751706452636,
+    "spearman_top15": -0.807142857142857
+   }
+  },
+  "d_cat+topo+crest+slope|lam=0.0001": {
+   "family_cv": {
+    "rmse": 0.04647326975927707,
+    "mae": 0.03467575558736835,
+    "spearman": 0.8662162282801933,
+    "pearson": 0.8263260161532925,
+    "spearman_top15": 0.3321428571428571
+   }
+  },
+  "d_cat+topo+crest+slope|lam=0.001": {
+   "family_cv": {
+    "rmse": 0.04761172851689259,
+    "mae": 0.0375086459067249,
+    "spearman": 0.8528490675550452,
+    "pearson": 0.8320868526282446,
+    "spearman_top15": -0.15714285714285714
+   }
+  },
+  "d_cat+topo+crest+slope|lam=0.01": {
+   "family_cv": {
+    "rmse": 0.06886361988373121,
+    "mae": 0.051855960732396754,
+    "spearman": 0.701743891067997,
+    "pearson": 0.5519311495803544,
+    "spearman_top15": -0.9428571428571427
+   }
+  },
+  "full|lam=0.0001": {
+   "family_cv": {
+    "rmse": 0.03229876202427547,
+    "mae": 0.024977364519854554,
+    "spearman": 0.9144256020302673,
+    "pearson": 0.9202530973156781,
+    "spearman_top15": 0.6857142857142856
+   },
+   "site_cv": {
+    "rmse": 0.032091868158712386,
+    "mae": 0.024846305713754947,
+    "spearman": 0.9137383718704502,
+    "pearson": 0.9194980307410446,
+    "spearman_top15": 0.5964285714285712
+   }
+  },
+  "full|lam=0.001": {
+   "family_cv": {
+    "rmse": 0.03583985333796529,
+    "mae": 0.027709590971441513,
+    "spearman": 0.903583032928489,
+    "pearson": 0.9059440949093691,
+    "spearman_top15": 0.18928571428571428
+   }
+  },
+  "full|lam=0.01": {
+   "family_cv": {
+    "rmse": 0.06033386779241893,
+    "mae": 0.04609344797087238,
+    "spearman": 0.7732728001374621,
+    "pearson": 0.6908750911645775,
+    "spearman_top15": -0.5142857142857142
+   }
+  }
+ },
+ "coefficients": {
+  "intercept": -8.6186,
+  "d_cat=0 (on catalogue)": -2.0744,
+  "d_cat=1-1.4 px": -2.7857,
+  "d_cat=2-2.8 px": -2.2111,
+  "d_cat=3-4.9 px": -0.7464,
+  "d_cat=5-7.9 px": 0.4435,
+  "d_cat=8-12.9 px": 0.5386,
+  "d_cat=13-20.9 px": 1.7364,
+  "d_cat=21-33.9 px": 0.1364,
+  "d_cat=34-54.9 px": -1.3404,
+  "d_cat=>=55 px": 3.0835,
+  "topo=top 1%": -1.1891,
+  "topo=1-3%": -2.0288,
+  "topo=3-10%": -2.8491,
+  "topo=10-30%": -1.9091,
+  "topo=rest": 2.7669,
+  "crest=not crest": -0.7934,
+  "crest=slope crest": -5.4352,
+  "lidar=no LiDAR": -1.5097,
+  "lidar=top 3%": -1.8632,
+  "lidar=3-10%": -2.4229,
+  "lidar=10-30%": -2.5694,
+  "lidar=rest": 2.7923,
+  "mag=top 5%": -2.0691,
+  "mag=5-20%": -3.7358,
+  "mag=20-50%": -3.3721,
+  "mag=rest": -1.804,
+  "sgmc=0-1.9 px": -1.663,
+  "sgmc=2-4.9 px": -1.5533,
+  "sgmc=>=5 px": -1.8078,
+  "slope=0-30% (flat)": -3.3486,
+  "slope=30-70%": -2.747,
+  "slope=70-95%": 6.2645,
+  "slope=95-100% (steep)": -0.0736
+ },
+ "implied_hidden_pixels_G": 23088.3
+}

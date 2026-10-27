@@ -1,0 +1,113 @@
+{
+ "evidence_class": "ESTIMATE (bounded LBCAL model, in-sample for training rasters; never a score)",
+ "model": "pi_max=0.2|lam=0.0001",
+ "generated_utc": "2026-10-27T20:04:22+00:00",
+ "this_repo": [
+  {
+   "file": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+   "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
+   "dots": 97608,
+   "lbcal_estimate": 0.0735,
+   "lane": "README SUBMIT banner (ESTIMATE 0.428 from an 11-file fit)",
+   "status": "WITHDRAWN"
+  },
+  {
+   "file": "submission/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif",
+   "sha256": "05ec516cfc0904ed76e75596285352b91416eb7a8b64a398bebec33e4793cb51",
+   "dots": 37654,
+   "lbcal_estimate": 0.013,
+   "lane": "CSPES lane",
+   "status": "negative"
+  },
+  {
+   "file": "submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif",
+   "sha256": "676ca865e86a4ff220548253d3f574e374fc3d470239fbc89aa8fb261d409e34",
+   "dots": 32810,
+   "lbcal_estimate": 0.0989,
+   "lane": "LST1 lane",
+   "status": "negative"
+  },
+  {
+   "file": "docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+   "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+   "dots": 169968,
+   "lbcal_estimate": 0.0882,
+   "lane": "HCE-1 lane: holdout win, ledger projection 0.082",
+   "status": "negative for slot"
+  },
+  {
+   "file": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+   "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+   "dots": 34253,
+   "lbcal_estimate": 0.0797,
+   "lane": "legacy",
+   "status": "legacy, DO NOT SUBMIT"
+  },
+  {
+   "file": "docs/downloads/wb-gems-doe-3-latest-submission-zeros.tif",
+   "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
+   "dots": 34253,
+   "lbcal_estimate": 0.0797,
+   "lane": "legacy alias of stepover-damagezone",
+   "status": "legacy, DO NOT SUBMIT"
+  },
+  {
+   "file": "evidence/lbcal/wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif",
+   "sha256": "c645e47ef8733680b3ee9b646507b10ac07aa8c076526da65ad889371351d43d",
+   "dots": 71416,
+   "lbcal_estimate": 0.5012,
+   "lane": "LBCAL (this session)",
+   "status": "negative (failed holdout + like-for-like uniqueness)"
+  }
+ ],
+ "unscored_peer_rasters": [
+  {
+   "site": "KANLERGEMSDOE3",
+   "submission": "kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-f0565e6d10f9-zeros",
+   "sha256": "bc019ae673a9d5ca1fe40e968759a2af8ae757a110599b66fc949c4f59961fba",
+   "lbcal_estimate": 0.1204
+  },
+  {
+   "site": "KANLERGEMSDOE2",
+   "submission": "kanlergems2-htcads-exp-2-37654dots-20261026T235227Z-11a2f251-zeros",
+   "sha256": "f482d3bad4b390470be06363b60867c8e42942101271caf4fa82ae3c3975abeb",
+   "lbcal_estimate": 0.0941
+  },
+  {
+   "site": "WBGGEMSDOE3 (file found in WBGGEMSDOE2 repo)",
+   "submission": "wbg3-h3pack-34k-20261027T174337Z-zeros",
+   "sha256": "5b32ad6190957ac43b3d9069f99dc0742c776cd0b2f89af63666dd43672d4ac2",
+   "lbcal_estimate": 0.0591
+  },
+  {
+   "site": "WBGGEMSDOE2 (file found in WBGGEMSDOE1 repo)",
+   "submission": "wbg2-offcatalogue-density-36k-20261027",
+   "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+   "lbcal_estimate": 0.0505
+  },
+  {
+   "site": "GEMSDOE88",
+   "submission": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT",
+   "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+   "lbcal_estimate": 0.1257
+  },
+  {
+   "site": "GEMSDOE91",
+   "submission": "gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405",
+   "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+   "lbcal_estimate": 0.0376
+  },
+  {
+   "site": "WBGGEMSDOE1",
+   "submission": "wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros",
+   "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+   "lbcal_estimate": 0.0535
+  },
+  {
+   "site": "WBGGEMSDOE1",
+   "submission": "gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros",
+   "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+   "lbcal_estimate": 0.0647
+  }
+ ]
+}

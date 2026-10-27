@@ -1,4 +1,3 @@
-LEGACY / RESEARCH ONLY - DO NOT SUBMIT.
-wb-gems-doe-3-*.tif are earlier lanes. The 35,000-dot step-over file was measured to lie 98.55%
-within 3 px of a registered raster and is not unique under this project's gate. The one cleared
-file is wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif - see ../index.html.
+DO NOT SUBMIT any file in this folder. No file in WBGGEMSDOE3 is cleared (see evidence/decision.json).
+Legacy rasters: wb-gems-doe-3-latest-submission-zeros.tif, wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif, wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif
+Research rasters: wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif, wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif, wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif

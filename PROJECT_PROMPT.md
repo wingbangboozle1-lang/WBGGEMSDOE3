@@ -71,7 +71,10 @@ submissions. [The full historical site/score ledger is retained in
 `registry/historical_owner_claims.csv`; the 2026-10-27 focus set and their
 owner-reported best scores are GEMSDOE32 0.2778, GEMSDOE36 0.2750, GEMSDOE28
 0.2710, GEMSDOE31 0.2708, GEMSDOE33 0.2632, GEMSDOE25 0.2600, GEMSDOE30
-0.2600, GEMSDOE24 0.2477, GEMSDOE27 0.2449.]
+0.2600, GEMSDOE24 0.2477, GEMSDOE27 0.2449. Later owner-reported rows (10-25/10-26) are in the
+same CSV and in `registry/ledger_addendum_2026-10-27.json`: GEMSDOE24 gvc1 0.0859, GEMSDOE25 h66 0.0742,
+GEMSDOE27 h29 0.2190 and h31 0.2250, GEMSDOE28 s18 0.0217 and s21 0.0206, GEMSDOE30 MSDB1 0.1462,
+GEMSDOE33 s33 0.0963, GEMSDOE36 kpl36 0.1647, GEMSDOE64 h64 0.0383, GEMSDOE79 tilt-ring 0.0005.]
 
 We need to study, analyze, and understand the highest score from the GEMDOE
 site where the submission TIF is downloaded from, GEMSDOE32
@@ -160,12 +163,22 @@ for the next session.
 ## Session reading order (maintained by every lane)
 
 1. `PROJECT_PROMPT.md` (this verbatim brief) — the requirements.
-2. `README.md` — current repository-wide decision and each lane's status.
-3. `AGENTS.md`, `knowledge/preregistration-2026-10-27-hce.md` (HCE-1 lane +
-   four ranked hypotheses), `knowledge/preregistration-2026-10-26.md` and
-   `knowledge/review-and-irregularities-2026-10-26.md` (IR-01…IR-08).
-4. `evidence/hce_run_card.json` — the HCE-1 run card; also read
-   `evidence/gemsdoe_run_card.json` and `evidence/cspes_run_card.json` for the
-   other parallel lanes. Never merge their verdicts without checking the bytes.
-5. `docs/hce/index.html` — HCE-1 executive summary and one-click download;
-   `docs/index.html` — repository-wide executive summary.
+2. `README.md` — the single repository-wide decision (top block, rendered from
+   `evidence/decision.json` by `scripts/update_readme_decision.py`) and each lane's status.
+3. `AGENTS.md`; `knowledge/preregistration-2026-10-27-lbcal.md` (LBCAL lane + five ranked
+   hypotheses); `knowledge/lbcal-findings-2026-10-27.md` (science, gate audit, irregularities);
+   `knowledge/preregistration-2026-10-27-hce.md`; `knowledge/review-and-irregularities-2026-10-26.md`.
+4. `evidence/decision.json` — the repository decision card; lane cards
+   `evidence/lbcal_run_card.json`, `evidence/hce_run_card.json`, `evidence/cspes_run_card.json`,
+   `evidence/lst1_run_card.json`, `evidence/gemsdoe_run_card.json` (skarpline, withdrawn).
+   `evidence/run_card.json` is the hash-bound legacy preflight card (kept byte-stable for tests).
+5. `docs/index.html` (decision + gate table), `docs/executive-summary.html` (nine sites, download
+   table, leaderboard, compliance note), `docs/how-to-submit.html`, `docs/research.html`, `docs/sources.html`.
+
+## Feed (newest first)
+
+- **2026-10-27 ~20:30 UTC, arena/88400903 (LBCAL).** Decision reconciled to **DO NOT SUBMIT**.
+  LBCAL density fitted to 119 owner-reported scores (family-CV Spearman 0.91, RMSE 0.036 vs 0.086
+  constant). The design (71,416 dots) has a cross-fit ESTIMATE of 0.50 but fails the holdout gate (0.0631 < 0.1292)
+  and like-for-like uniqueness. Holdout gate vs leaderboard: Spearman 0.09 (n=119). The skarpline SUBMIT banner
+  was withdrawn (LBCAL ESTIMATE 0.074). Public LB at 19:05 UTC: #1 0.4544, #5 0.3566. 0 slots used.
