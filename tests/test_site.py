@@ -109,7 +109,8 @@ def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
     assert card["verdict"] == "negative"
     readme = (ROOT / "README.md").read_text()
     assert "CSPES lane" in readme and "negative" in readme.lower()
-    assert "CURRENT DECISION: SUBMIT" in readme
+    assert "CURRENT DECISION (CORRECTED" in readme
+    assert "fails the project uniqueness gate (IR-20)" in readme
 
 
 def test_downloads_index_separates_the_two_lanes():

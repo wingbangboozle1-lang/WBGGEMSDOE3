@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary (corrected) · WBGGEMSDOE3</title><style>:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px}main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:29px;line-height:1.25}h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}h3{font-size:17px}
+code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}.small{font-size:13.5px;color:var(--mut)}
+.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
+.tag.no{background:var(--bad);color:#fff}.tag.warn{background:var(--warn);color:#1a1200}
+.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0}
+.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg)}table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-size:12px;text-transform:uppercase}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;margin:14px 0}.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;margin:14px 0}
+img.map{width:100%;border:1px solid var(--line);border-radius:10px}a{color:var(--accent)}</style></head><body><header><b>WBGGEMSDOE3</b> · RFL audit & corrected selector decision (2026-10-27) · <a href="../index.html">Start</a> · <a href="how-to-submit.html">How to submit</a></header><main>
+<div class="hero"><span class="tag">Only fully-gated file — for the human selector</span>
+<h1>Executive summary: what to download, what it might score, and what is actually unique</h1>
+<p style="font-size:17px">After a full re-audit this session, <b>one</b> file in this repository passes every automated gate
+(format on saved bytes, leakage canary, fold-local holdout win, uniqueness vs the full rebuilt 120-mask registry):
+<code>wbggems3-hce1-latest.tif</code> (169,968 dots, SHA-256 <code>0b1b6c0641e8e48b…</code>).</p>
+<a class="btn" href="../hce/downloads/wbggems3-hce1-latest.tif" download>⬇ Download the gated GeoTIFF</a>
+<a class="btn alt" href="../hce/downloads/wbggems3-hce1-latest.zip" download>⬇ Single-TIFF .zip</a>
+<a class="btn alt" href="how-to-submit.html">Exactly how to submit →</a>
+<div class="warnbox"><b>Honest expectation.</b> No file here has an organizer-confirmed score above the owner-reported 0.2778,
+and this file's leaderboard value is <b>not established</b>: published local estimates for it range from 0.082
+(HCE lane's winner-similarity ridge model) through 0.104 (SGMC prevalence-calibrated) to a gemsdoe-model point value
+of 0.4393 that <b>exceeds its own physical cap (0.3156) and must be discarded</b>.
+What <i>is</i> established locally: HOLDOUT-DTI 0.1292 [0.1160–0.1426]
+(GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives) vs champion proxy 0.0992.
+Uploading spends a weekly-capped slot: that choice stays with the human selector (protocol rule 6).</div></div>
+
+<h2>Decision table — this repository's candidate files</h2>
+<table><tr><th>File</th><th>Estimated leaderboard DTI</th><th>SGMC proxy profile</th><th>Gates</th><th>Decision</th></tr><tr><td>HCE-1 (this repo, parallel lane)<br><span class="small"><code>docs/hce/downloads/wbggems3-hce1-latest.tif</code> · 169,968 dots</span></td><td>0.4393 ESTIMATE<br><span class="small">physical cap 0.3156 · implied capture 1.43</span></td><td>h=0.1318 · proxy 0.2612</td><td><span class="yes">PASS all gates</span></td><td><b>RECOMMENDED TO SELECTOR</b></td></tr><tr><td>skarpline union (this repo)<br><span class="small"><code>submission/wbggemsdoe3-skarpline-union-…zeros.tif</code> · 97,608 dots</span></td><td>0.4284 ESTIMATE<br><span class="small">physical cap 0.4453 · implied capture 0.96</span></td><td>h=0.1539 · proxy 0.2131</td><td><span class="no">FAIL uniqueness (0.735 / 0.724)</span></td><td><span class="no">DO NOT SUBMIT (protocol)</span></td></tr><tr><td>RFL — this session's new lane<br><span class="small"><code>no TIF written (duplicate stop)</code> · 37,654 dots</span></td><td>0.3308 ESTIMATE<br><span class="small">physical cap 0.6754 · implied capture 0.45</span></td><td>h=0.1888 · proxy 0.1227</td><td><span class="no">FAIL uniqueness (0.709) + holdout</span></td><td><span class="no">NEGATIVE — research only</span></td></tr><tr><td>CSPES (this repo)<br><span class="small"><code>submission/wbggems3-cspes-…zeros.tif</code> · 37,654 dots</span></td><td>0.0516 ESTIMATE<br><span class="small">physical cap 0.6754 · implied capture 0.07</span></td><td>h=0.0278 · proxy 0.0183</td><td><span class="mid">format PASS; holdout negative</span></td><td><span class="no">DO NOT SUBMIT</span></td></tr></table>
+<p class="small">ESTIMATE = gemsdoe SGMC-calibrated model re-fit this session (|G|=15673 px, 10/11 calibration
+files, leave-one-out RMS ±0.0956 — treat any point estimate as ±0.10 at best). “Physical cap” = maximum attainable
+value of that model at the file's mass (TP cannot exceed |G|); “implied capture” &gt;1 means the model is extrapolating
+outside physics (true for HCE's point value; skarpline implies 0.96 capture of all hidden faults).</p>
+
+<h2>Decision table — the nine focus sites (GEMSDOE24/25/27/28/30/31/32/33/36)</h2>
+<table><tr><th>Site</th><th>Best historical file (pinned bytes)</th><th>Owner-reported score</th><th>Calibrated estimate</th><th>Local holdout</th><th>Unique vs the other eight?</th><th>Decision</th></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif" target="_blank" rel="noopener">GEMSDOE24</a></td><td><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code><br><span class="small">60,069 dots · SHA 68d0e2e4fcc5…</span></td><td>0.2477 (USER-REPORTED)</td><td>0.2412 (ESTIMATE)</td><td>0.0932 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif" target="_blank" rel="noopener">GEMSDOE25</a></td><td><code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code><br><span class="small">44,090 dots · SHA 91eae1ca42ec…</span></td><td>0.2600 (USER-REPORTED)</td><td>0.2478 (ESTIMATE)</td><td>0.0967 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif" target="_blank" rel="noopener">GEMSDOE27</a></td><td><code>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code><br><span class="small">61,328 dots · SHA 33003374335d…</span></td><td>0.2449 (USER-REPORTED)</td><td>0.2427 (ESTIMATE)</td><td>0.0927 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif" target="_blank" rel="noopener">GEMSDOE28</a></td><td><code>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code><br><span class="small">37,660 dots · SHA 5556aa1438fd…</span></td><td>0.2710 (USER-REPORTED)</td><td>0.2553 (ESTIMATE)</td><td>0.0294 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif" target="_blank" rel="noopener">GEMSDOE30</a></td><td><code>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</code><br><span class="small">44,090 dots · SHA 8cf893ead566…</span></td><td>0.2600 (USER-REPORTED)</td><td>0.2478 (ESTIMATE)</td><td>0.0967 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif" target="_blank" rel="noopener">GEMSDOE31</a></td><td><code>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code><br><span class="small">40,199 dots · SHA 07b6db440535…</span></td><td>0.2708 (USER-REPORTED)</td><td>0.2564 (ESTIMATE)</td><td>0.0305 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" target="_blank" rel="noopener">GEMSDOE32</a></td><td><code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code><br><span class="small">37,654 dots · SHA c55bafc47005…</span></td><td>0.2778 (USER-REPORTED)</td><td>0.2606 (ESTIMATE)</td><td>0.0045 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" target="_blank" rel="noopener">GEMSDOE33</a></td><td><code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code><br><span class="small">41,865 dots · SHA 87f857d505e2…</span></td><td>0.2632 (USER-REPORTED)</td><td>0.2549 (ESTIMATE)</td><td>0.0520 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr><tr><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif" target="_blank" rel="noopener">GEMSDOE36</a></td><td><code>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code><br><span class="small">38,854 dots · SHA e15891020b9c…</span></td><td>0.2750 (USER-REPORTED)</td><td>0.2623 (ESTIMATE)</td><td>0.0046 HOLDOUT-DTI static*</td><td class="no">NO — duplicate family</td><td class="no">DO NOT SUBMIT as new</td></tr></table>
+<p class="small">*Static HOLDOUT-DTI of saved bytes (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives). Files pruned
+against the <i>full</i> catalogue (28/31/32/36) are penalised by construction — deleted dots near hidden segments cannot
+earn credit — so this column must not be read as their live quality. <b>Measured anatomy:</b> all 36 pairwise comparisons
+exceed 70% dots within 3 px in both directions (minimum 86.7%); GEMSDOE25 and GEMSDOE30 leaders have <b>identical</b> dot
+support; GEMSDOE32 ⊂ GEMSDOE31 ⊂ GEMSDOE25/30 and GEMSDOE32 ⊂ GEMSDOE36. They are one dotted network, repeatedly re-trimmed —
+none is a unique new submission. Evidence: <code>evidence/rfl_focus9_audit.json</code>.</p>
+
+<h2>Why did GEMSDOE32 B2 report 0.2778 — and can we beat it?</h2>
+<p><b>What B2 is (measured from bytes):</b> the shared dotted H19-5 network trimmed to 37,654 dots by deleting every dot
+within 2 px of a catalogue fault — exactly 2,545 dots removed vs GEMSDOE31, none added. <b>Why that could help:</b> the
+official DTI (α=0.2 FP, β=0.8 FN, 300 m triangular kernel) masks known-fault pixels, so dots hugging known faults spend
+mass for little marginal kernel credit; pruning them raises credit-per-mass <i>if</i> hidden faults are not concentrated
+in the 0–2 px catalogue halo. <b>What cannot be claimed:</b> the +0.0070 gap over GEMSDOE31 has no organizer receipt, and
+the shared proximity-pruning holdout (H6-1) measures the pruning effect at +0.00005 (vs random pruning +0.00011, CI includes
+zero) — two orders of magnitude smaller, on a proxy that by design has no withheld truth in the halo. The 0.2449–0.2778
+family spread is mostly explained by mass and hit-rate (calibration residuals ≤0.025 in-sample for the 10 used files).
+<b>Can a file beat 0.2778?</b> The public leaderboard top observed 2026-10-27 was 0.4544, so headroom exists. No artifact in
+this repository proves it can: the only fully-gated candidate (HCE-1) has estimator-dependent expectations spanning
+0.08–0.32. The honest next step is the selector's: one capped slot converts an estimate into the project's first receipt.</p>
+
+<h2>This session's new lane (RFL) — a measured negative</h2>
+<p>Hypothesis: persistent focal-relief gradients mark alluvium-buried range-front faults with no catalogue scarp
+(preregistration + four ranked alternatives: <code>knowledge/preregistration-2026-10-27-rfl.md</code>).
+Canary <span class="yes">PASS</span> (max AUC 0.5943). HOLDOUT-DTI 0.0538
+[0.0437–0.0642] vs champion proxy 0.0992
+(paired Δ -0.0454), vs random null Δ 0.0225
+(CI excludes 0 — the signal is real) — and the placed dots then <b>failed uniqueness</b> (70.9% within 3 px of GEMSDOE22 h23-b;
+limit 70%). Verdict <span class="no">negative</span>; no TIF was packaged. Run card: <a href="run-card.json">run-card.json</a>.
+The piedmont-gated ablation scored higher on holdout (0.0633) — recorded as a future preregistration, not selected post hoc.</p>
+<img class="map" src="map.png" alt="RFL surface with catalogue, RFL dots and HCE dots">
+<p class="small">Quick look (4× down-sampled; grey = RFL relief-gradient surface). Green = public catalogue;
+red = this session's RFL dots (research only); blue = recommended HCE-1 dots.</p>
+
+<h2>Which local evaluator should you trust? (measured, n=118)</h2>
+<p>Spearman rank correlation vs owner-reported scores across all 118 byte-verified ledger submissions:
+static HOLDOUT-DTI <b>0.172</b> · SGMC hit-rate h <b>0.341</b> ·
+SGMC proxy DTI <b>0.453</b> · calibrated estimate <b>0.419</b> ·
+mass alone 0.213. Neither evaluator is strong; SGMC-family metrics rank historical files moderately,
+while static catalogue holdout is structurally biased against catalogue-pruned files. Fold-local holdout remains the
+valid comparator for <i>methods</i>; no local number is a leaderboard score.</p>
+
+<h2>Corrections and irregularities recorded this session</h2>
+<ul>
+<li><b>IR-20:</b> skarpline's “uniqueness PASS” used 20 comparators; vs the full rebuilt registry it fails (0.735/0.724). Its SUBMIT status is superseded (banner on every root page).</li>
+<li><b>IR-21:</b> the gemsdoe estimate model extrapolates beyond physics for dense files (lattice in-sample residual +0.31 was trimmed from its fit; HCE point estimate exceeds its cap). Point estimates now ship with cap + implied-capture diagnostics.</li>
+<li><b>IR-22:</b> <code>src/gemsdoe/validation.py</code> claims catalogue-holdout Spearman −0.15 (11 files); the 118-file measurement here is +0.172 under a fully specified static protocol. Unreconciled — flagged, not silently edited.</li>
+<li><b>IR-23:</b> legacy <code>…-nan.tif</code> stepover download contains no NaN bytes (nodata=NaN metadata only). Filename ≠ encoding; it remains research-only.</li>
+<li><b>IR-01/11 unchanged:</b> the literal any-raster uniqueness rule is vacuous (space-filling witness; the 0.2778 champion itself overlaps it 100%). All uniqueness verdicts here give the operative sparse-registry result <i>and</i> the literal result.</li>
+<li>Every historical score on this page is <b>USER/OWNER-REPORTED</b> — no DrivenData receipt exists in this repository for 0.2778 or any other file. The “Predicted values must be in range [0,1]” portal error is still not reproduced by any local file (11/11 downloads audited finite in [0,1] this session); the recommended file is all-finite zeros-outside by construction.</li>
+</ul>
+<p class="small">Evidence: <code>evidence/rfl_focus9_audit.json</code> · <code>evidence/rfl_canary.json</code> ·
+<code>evidence/rfl_holdout.json</code> · <code>evidence/rfl_uniqueness.json</code> ·
+<code>evidence/rfl_selector_analysis.json</code> · <code>evidence/rfl_recommended_validation.json</code> · <code>evidence/rfl_run_card.json</code>.
+Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem & metric</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> ·
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF</a> · <a href="https://pubs.usgs.gov/publication/ds1052">USGS SGMC DS-1052</a> ·
+<a href="https://gdr.openei.org/submissions/1391">GDR INGENIOUS data</a> · <a href="https://epsg.io/32611">EPSG:32611</a>.</p></main></body></html>

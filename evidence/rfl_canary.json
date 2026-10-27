@@ -1,0 +1,48 @@
+{
+ "experiment": "E1",
+ "status": "pass",
+ "canary": {
+  "raw_det_elev": {
+   "auc": 0.4914795094064861,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "relief_r2_500m": {
+   "auc": 0.5571744690929741,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "relief_r5_1100m": {
+   "auc": 0.5598428222831954,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "grad_relief_g2": {
+   "auc": 0.5943102397445124,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "grad_relief_g5": {
+   "auc": 0.573805387504498,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "rank_r5": {
+   "auc": 0.5598428222831954,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  },
+  "rfl_full": {
+   "auc": 0.5854338263820169,
+   "n_pos": 22232,
+   "n_neg": 32000,
+   "leakage_alarm_gt_0.90": false
+  }
+ }
+}

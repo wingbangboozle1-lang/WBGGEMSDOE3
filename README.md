@@ -1,6 +1,35 @@
 # WBGGEMSDOE3 — DOE GEMS Prize: a unique fault submission, and the evidence for it
 
-> **CURRENT DECISION: SUBMIT.** One file is cleared by every automated gate in this repository:
+> **CURRENT DECISION (CORRECTED 2026-10-27, session `arena/bd44f94b`): the only file cleared by
+> every protocol gate on independently re-audited bytes is the HCE-1 GeoTIFF** —
+> [`docs/hce/downloads/wbggems3-hce1-latest.tif`](docs/hce/downloads/wbggems3-hce1-latest.tif)
+> (169,968 dots, SHA-256 `0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2`):
+> saved-byte format PASS ([independent receipt](evidence/rfl_recommended_validation.json)),
+> full rebuilt-registry (151 files / 120 unique masks) uniqueness PASS (max 52.4% within 3 px,
+> max |Spearman| 0.325), leakage canary PASS, fold-local HOLDOUT-DTI 0.1292 [0.1160–0.1426]
+> (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld) vs champion proxy 0.0992.
+> **Current executive summary, decision tables for all nine focus sites, estimates with
+> physical-cap diagnostics, and exact submission steps: [docs/rfl/index.html](docs/rfl/index.html).**
+> No organizer-confirmed score exists for any file; beating the owner-reported 0.2778 is NOT
+> established (published local estimates for HCE-1 span 0.082–0.32 by model). Uploading spends a
+> weekly-capped slot and remains the human selector's separate step; no slot was used here.
+>
+> **SUPERSEDED decision (kept for provenance):** the skarpline file below was previously listed as
+> cleared. This session re-audited it against the full rebuilt registry (its original audit used
+> 20 comparators): **73.5% and 72.4% of its dots lie within 3 px of two registered rasters
+> (limit 70%) — it fails the project uniqueness gate (IR-20)** and has no fold-local holdout
+> (static HOLDOUT-DTI measured here: 0.0305). It is **not cleared** under the protocol.
+> This session's own new lane (**RFL**, range-front relief-discontinuity) is likewise a measured
+> **negative**: HOLDOUT-DTI 0.0538 vs 0.0992 champion proxy and a 70.9% uniqueness breach — logged
+> as a duplicate, no TIF packaged ([run card](evidence/rfl_run_card.json) ·
+> [preregistration](knowledge/preregistration-2026-10-27-rfl.md) ·
+> [session review](knowledge/session-review-rfl-2026-10-27.md)).
+> All nine focus-site leaders (GEMSDOE24/25/27/28/30/31/32/33/36) were independently re-measured:
+> all 36 pairwise comparisons breach the 70% duplicate rule (GEMSDOE25 ≡ GEMSDOE30 identical
+> support) — none is submittable as a unique new file
+> ([audit](evidence/rfl_focus9_audit.json), closing IR-17).
+
+> **SUPERSEDED — former decision text.** One file is cleared by every automated gate in this repository:
 > [`submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`](submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif)
 > (425 KB, SHA-256 `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). It is a genuinely new
 > 97,608-cell lineament network, **not** a re-trim of any archived file: the best overlap with any sparse

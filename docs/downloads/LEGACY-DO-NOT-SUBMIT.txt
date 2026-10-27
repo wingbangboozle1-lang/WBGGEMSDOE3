@@ -1,4 +1,6 @@
 LEGACY / RESEARCH ONLY - DO NOT SUBMIT.
 wb-gems-doe-3-*.tif are earlier lanes. The 35,000-dot step-over file was measured to lie 98.55%
-within 3 px of a registered raster and is not unique under this project's gate. The one cleared
-file is wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif - see ../index.html.
+within 3 px of a registered raster and is not unique under this project's gate.
+CORRECTED 2026-10-27 (arena/bd44f94b): wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif is NO LONGER cleared - it fails the
+full-registry uniqueness gate (73.5%/72.4% within 3 px vs two registered rasters; limit 70%).
+The only file passing every gate is the HCE-1 GeoTIFF - see ../rfl/index.html.
