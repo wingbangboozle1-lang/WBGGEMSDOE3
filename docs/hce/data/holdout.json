@@ -1,0 +1,325 @@
+{
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "score_label": "HOLDOUT-DTI",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_m": 300,
+  "feature_fields": 56,
+  "feature_names": [
+    "band_mag_anom",
+    "band_rtp",
+    "band_tmi_hg",
+    "band_geod_2ndinv",
+    "band_iso_grav_anom_slope",
+    "band_tc",
+    "band_geod_shearrate",
+    "band_geod_dilaterate",
+    "band_tmi_vg",
+    "band_deq_n100a15",
+    "band_iso_grav_anom_vg",
+    "band_det_elev",
+    "band_iso_grav_anom",
+    "band_tmi",
+    "band_depth_to_base_surf",
+    "band_ieq_n100a15",
+    "band_cond_surf",
+    "band_iso_grav_anom_hg",
+    "band_det_elev_slope",
+    "lidar_ex_max",
+    "lidar_step_max",
+    "lidar_lapneg_max",
+    "lidar_downface_max",
+    "lidar_upface_max",
+    "lidar_relief",
+    "lidar_coh100",
+    "rad_K",
+    "rad_Th",
+    "rad_U",
+    "rad_TC",
+    "ext_ThK",
+    "ext_UK",
+    "ext_UTh",
+    "ext_TMI_up150",
+    "logratio_K_Th",
+    "logratio_U_Th",
+    "gradmag_det_elev_s1.5",
+    "gradmag_det_elev_s3",
+    "gradmag_det_elev_s6",
+    "gradmag_rtp_s2",
+    "gradmag_rtp_s5",
+    "gradmag_iso_grav_anom_s2",
+    "gradmag_iso_grav_anom_s5",
+    "gradmag_geod_2ndinv_s4",
+    "gradmag_tc_s2",
+    "gradmag_mag_anom_s2",
+    "log_det_elev_s1.5",
+    "log_det_elev_s3",
+    "relief7_det_elev",
+    "phase_congruence",
+    "congruent_channel_count",
+    "joint_edge_strength",
+    "dist_sgmc_fault",
+    "dist_tiger_road_m",
+    "dist_wellspring",
+    "dist_vent"
+  ],
+  "canary": "evidence/hce_canary.json",
+  "experiments": {
+    "E2_hce_g1_k40k": {
+      "gamma": 1.0,
+      "kcap": 40000,
+      "pooled_dti": 0.02356821382747366,
+      "ci95": [
+        0.020554538345658974,
+        0.02676960348251065
+      ],
+      "n_withheld": 22232,
+      "per_quadrant": {
+        "NW": 0.02349339962700754,
+        "NE": 0.015260552627243028,
+        "SW": 0.029616515056639703,
+        "SE": 0.022703778640923752
+      },
+      "mean_dots": 18746.125,
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.02377954088607666,
+          "coverage": 0.05166538201648133,
+          "tp": 98.73254503349582,
+          "fp": 13017.24459382402,
+          "fn": 1812.2674549665041,
+          "n_truth": 1911,
+          "emitted": 13131
+        },
+        "draw20_fold1": {
+          "dti": 0.014530530696556297,
+          "coverage": 0.031884457744009984,
+          "tp": 74.96036015616747,
+          "fp": 16315.128555650908,
+          "fn": 2276.0396398438324,
+          "n_truth": 2351,
+          "emitted": 16393
+        },
+        "draw20_fold2": {
+          "dti": 0.027861042003721356,
+          "coverage": 0.06103538949374115,
+          "tp": 224.91541028443612,
+          "fp": 25398.867511832133,
+          "fn": 3460.084589715564,
+          "n_truth": 3685,
+          "emitted": 25616
+        },
+        "draw20_fold3": {
+          "dti": 0.020947721506429835,
+          "coverage": 0.04324714820209193,
+          "tp": 139.4720529517465,
+          "fp": 20251.034723390487,
+          "fn": 3085.5279470482537,
+          "n_truth": 3225,
+          "emitted": 20388
+        },
+        "draw21_fold0": {
+          "dti": 0.023207258367938424,
+          "coverage": 0.04708181745766363,
+          "tp": 99.38971665312792,
+          "fp": 12870.108396169628,
+          "fn": 2011.6102833468722,
+          "n_truth": 2111,
+          "emitted": 12993
+        },
+        "draw21_fold1": {
+          "dti": 0.01599057455792976,
+          "coverage": 0.03533313661587912,
+          "tp": 80.0295544349662,
+          "fp": 15883.947584422549,
+          "fn": 2184.970445565034,
+          "n_truth": 2265,
+          "emitted": 15972
+        },
+        "draw21_fold2": {
+          "dti": 0.031371988109558054,
+          "coverage": 0.06981612346859802,
+          "tp": 250.22098651145527,
+          "fp": 25293.461747911864,
+          "fn": 3333.779013488545,
+          "n_truth": 3584,
+          "emitted": 25544
+        },
+        "draw21_fold3": {
+          "dti": 0.024459835775417667,
+          "coverage": 0.05103299783806828,
+          "tp": 158.20229329801165,
+          "fp": 19780.995473721792,
+          "fn": 2941.7977067019883,
+          "n_truth": 3100,
+          "emitted": 19932
+        }
+      },
+      "paired_vs_E1_champion_proxy": {
+        "delta": -0.07563410932504314,
+        "ci95": [
+          -0.09047365478924671,
+          -0.06108916275449287
+        ],
+        "p_delta_le_0": 1.0
+      }
+    },
+    "E3_hce_g15_k60k": {
+      "gamma": 1.5,
+      "kcap": 60000,
+      "pooled_dti": 0.023121893166589576,
+      "ci95": [
+        0.020101242078787895,
+        0.026398474655302838
+      ],
+      "n_withheld": 22232,
+      "per_quadrant": {
+        "NW": 0.02251864796163171,
+        "NE": 0.0154091337811198,
+        "SW": 0.029176973745012564,
+        "SE": 0.022071031598985782
+      },
+      "mean_dots": 20111.5,
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.023657991546057033,
+          "coverage": 0.05393371943266723,
+          "tp": 103.06733783582709,
+          "fp": 14035.706917361844,
+          "fn": 1807.9326621641728,
+          "n_truth": 1911,
+          "emitted": 14158
+        },
+        "draw20_fold1": {
+          "dti": 0.014440926902529226,
+          "coverage": 0.032492964204736,
+          "tp": 76.39095884533434,
+          "fp": 16969.074287029907,
+          "fn": 2274.6090411546656,
+          "n_truth": 2351,
+          "emitted": 17051
+        },
+        "draw20_fold2": {
+          "dti": 0.027696885234438775,
+          "coverage": 0.06318420586735084,
+          "tp": 232.83379862118784,
+          "fp": 27059.654087720326,
+          "fn": 3452.1662013788123,
+          "n_truth": 3685,
+          "emitted": 27289
+        },
+        "draw20_fold3": {
+          "dti": 0.02021650336449751,
+          "coverage": 0.043363387147569786,
+          "tp": 139.84692355091255,
+          "fp": 21547.470435320276,
+          "fn": 3085.1530764490876,
+          "n_truth": 3225,
+          "emitted": 21689
+        },
+        "draw21_fold0": {
+          "dti": 0.02137930437720639,
+          "coverage": 0.04570468981646068,
+          "tp": 96.48260020254848,
+          "fp": 14024.002777865619,
+          "fn": 2014.5173997974516,
+          "n_truth": 2111,
+          "emitted": 14145
+        },
+        "draw21_fold1": {
+          "dti": 0.016377340659710374,
+          "coverage": 0.03806079471074592,
+          "tp": 86.2077000198395,
+          "fp": 17172.992044025796,
+          "fn": 2178.7922999801604,
+          "n_truth": 2265,
+          "emitted": 17281
+        },
+        "draw21_fold2": {
+          "dti": 0.030657062255586353,
+          "coverage": 0.0716343690486282,
+          "tp": 256.7375786702835,
+          "fp": 27279.764184524676,
+          "fn": 3327.2624213297167,
+          "n_truth": 3584,
+          "emitted": 27541
+        },
+        "draw21_fold3": {
+          "dti": 0.023925559833474053,
+          "coverage": 0.0526957256813752,
+          "tp": 163.35674961226312,
+          "fp": 21575.186036691113,
+          "fn": 2936.6432503877368,
+          "n_truth": 3100,
+          "emitted": 21738
+        }
+      },
+      "paired_vs_E1_champion_proxy": {
+        "delta": -0.07608042998592722,
+        "ci95": [
+          -0.09076441164660123,
+          -0.06160995080047898
+        ],
+        "p_delta_le_0": 1.0
+      }
+    },
+    "E1_champion_proxy": {
+      "pooled_dti": 0.09920232315251679,
+      "ci95": [
+        0.08595140754809347,
+        0.11266835751415871
+      ],
+      "n_withheld": 22232,
+      "per_quadrant": {
+        "NW": 0.10125730530362789,
+        "NE": 0.11279290286951725,
+        "SW": 0.06649890431789826,
+        "SE": 0.12423025905930665
+      },
+      "mean_dots": 38889.0,
+      "note": "NOT fold-legal: the H19-5 / D2.8 network was built from the full catalogue, so hidden segments leak into the incumbent."
+    }
+  },
+  "fit_info": [
+    {
+      "cell": "draw20_fold0",
+      "p_sum": 43930.95703125,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw20_fold1",
+      "p_sum": 52139.953125,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw20_fold2",
+      "p_sum": 84747.828125,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw20_fold3",
+      "p_sum": 68018.859375,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw21_fold0",
+      "p_sum": 43230.9609375,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw21_fold1",
+      "p_sum": 52427.953125,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw21_fold2",
+      "p_sum": 85099.8125,
+      "p_max": 0.9999959468841553
+    },
+    {
+      "cell": "draw21_fold3",
+      "p_sum": 68786.859375,
+      "p_max": 0.9999959468841553
+    }
+  ]
+}

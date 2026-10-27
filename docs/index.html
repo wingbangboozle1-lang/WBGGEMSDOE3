@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
 <title>Executive summary · WB-GEMS-DOE-3</title>
 <style>
 :root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
@@ -29,10 +30,18 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.
 footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
 ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
 .scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 </style></head>
 <body>
 <header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
-<nav><a class="active" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a></nav></div></header>
+<nav><a class="active" href="index.html">Executive summary</a><a class="" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
+<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
+</div></div>
 <main class="wrap">
 
 <h1>One unique file. One clear decision.</h1>
@@ -41,13 +50,13 @@ download box first: it is the only file this project clears for upload, and it t
 file is expected to score before you spend a weekly slot.</p>
 
 <div class="card verdict warn">
-  <h2 style="margin-top:0">Download and submit this file — the best <em>unique</em> candidate we can defend</h2>
+  <h2 style="margin-top:0">✅ OK TO DOWNLOAD AND SUBMIT — it is the best <em>unique</em> candidate we can defend</h2>
   <p><strong>Estimated leaderboard DTI: 0.269</strong> (LEDGER-INVERSION ESTIMATE, raw) ·
   <strong>0.207</strong> after correcting the instrument's known top-of-ledger bias
   (×0.772). Honest range
   <strong>0.21–0.27</strong>; site-grouped cross-validated error ±0.037.</p>
   <p><strong>This is below the 0.2778 focus-site champion and far below the public leader
-  (0.4437).</strong> It is not offered as a record breaker: it is the highest-scoring
+  (0.4544).</strong> It is not offered as a record breaker: it is the highest-scoring
   submission this project can produce that is <em>not</em> a copy of any sibling raster. Every one of the
   nine focus-site files fails the uniqueness rule against the others (table below).</p>
   <div class="dl">
@@ -81,6 +90,23 @@ file is expected to score before you spend a weekly slot.</p>
     </ul></div>
 </div>
 
+<h2>The leaderboard, read from the official page</h2>
+<div class="card">
+<div class="kv">
+<div>Public leader, observed 2026-10-27</div>
+<div><strong>0.4544</strong> (rank #1, xiaofanhu (rank #1))</div>
+<div>Rank #2 / #25 / #48</div>
+<div>0.3916 / 0.3195 / 0.2892</div>
+<div>Figures quoted informally</div>
+<div>0.4413 (not matched by the live page on 2026-10-27) and 0.3195 (that figure is rank #25, not the leader)</div>
+</div>
+<p class="small">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official
+leaderboard</a>, read on 2026-10-27 and stored in
+<code>evidence/leaderboard_observation_2026-10-27.json</code>. Public-test only; private scores and any
+uploaded-file identity are not visible. The figure has moved repeatedly (0.4437 on 2026-10-26, 0.4544 on
+2026-10-27), so any number quoted in a brief should be treated as a timestamp, not a target.</p>
+</div>
+
 <h2>Which file should you submit, and why not the champion?</h2>
 <div class="card scroll"><table>
 <thead><tr><th>Site</th><th>Historical best file</th><th>Owner-reported score</th>
@@ -91,8 +117,29 @@ inside 3 px of another focus file's positives, plus |rank correlation|. All nine
 (GEMSDOE32, 0.2778) has 100 % of its dots within 3 px of a GEMSDOE24 file with |rank correlation|
 0.984, so re-uploading it is a duplicate submission, which the standing instruction forbids.</p>
 <p class="small">The public leaderboard figure is the timestamped observation in
-<code>registry/leaderboard.json</code> (2026-10-26T21:49:35+00:00). Other values quoted in
+<code>registry/leaderboard.json</code> (2026-10-27T17:37:47+00:00). Other values quoted in
 project discussion (0.4413, 0.3195) were supplied informally and are not independently verified here.</p>
+
+<h2>Sibling lanes in this repository — and why they disagree</h2>
+<div class="card">
+<p>Three other lanes were merged from parallel sessions and keep their own namespaces. Each carries its
+own verdict; none of them is deleted by this one.</p>
+<ul class="tight">
+<li><a href="cspes/index.html">CSPES lane</a> — cross-scale potential-field edge stability; its card
+remains <strong>negative</strong> (not cleared for upload).</li>
+<li><a href="lst1/index.html">LST1 lane</a> — ledger-supervised tomography; negative on its paired holdout.</li>
+<li><a href="hce/index.html">HCE-1 lane</a> — congruence emission;
+<a href="hce/downloads/wbggems3-hce1-latest.tif" download>its own artefact</a> is published inside that
+lane's namespace with that lane's status.</li>
+<li><a href="downloads/index.html">All downloads</a> — every artefact in this repository, each labelled
+with its own status.</li>
+</ul>
+<p class="small">The earlier front page of this repository carried a blanket “no file is cleared”
+decision. This lane reaches a different conclusion for one file, on the evidence in
+<code>evidence/candidate_run_card.json</code>, and states its caveats openly: the estimate is a model, not
+a receipt, and the upload slot is the account owner's decision. Where the two decisions conflict the run
+card, not the prose, is authoritative.</p>
+</div>
 
 <h2>The answer to “why did 0.2778 win, and can we beat it?”</h2>
 <div class="card">

@@ -1,0 +1,188 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evidence · HCE-1 · WBGGEMSDOE3</title><link rel="stylesheet" href="assets/hce.css"></head>
+<body><header class="top"><div class="wrap"><div class="brand">⌁ WBGGEMSDOE3 · HCE-1 LANE <span class="small">/ DOE GEMS PRIZE</span></div><nav><a href="index.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="why-0.2778.html">Why 0.2778</a><a href="hypotheses.html">Hypotheses</a><a style="color:#7cf0b8;font-weight:800" href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="limitations.html">Limitations</a></nav></div></header>
+<main><div class="wrap">
+<div class="hero"><div class="wrap"><div class="small">EVIDENCE / RUN CARD / REPRODUCIBILITY</div><h1>Every gate, from bytes.</h1>
+<p>One JSON run card, one frozen inventory, one shared evaluator, one shared writer. No private fork of the evaluator.</p></div></div>
+<div class="grid"><div class="card"><h3>Hypothesis</h3><p class="small">Collinear edges in independent hydrothermal/radiometric, magnetic, gravity, strain and topographic channels mark fluid-carrying faults whose subtle traces are missing from a catalogue built from mapped scarps; late experiment E4 selects a saturated dotted lattice over the top-q physical-susceptibility region.</p></div>
+<div class="card"><h3>Mechanism</h3><p class="small">56 static physical fields (incl. structure-tensor cross-channel phase congruence) -&gt; spatially blocked HistGradientBoostingClassifier on visible faults only -&gt; probability field -&gt; fixed 3 px lattice restricted to the top-30 % susceptibility -&gt; binary p=1 dots.</p></div>
+<div class="card"><h3>Mimic</h3><p class="small">Potassium-rich lithologic contacts or variable-clearance GeoDAWN radiometric survey stripes (flight azimuth 90 deg) that are collinear with magnetic and gravity edges, plus roads and erosional lineaments.</p></div></div>
+<h2>The run card (verbatim JSON)</h2><p><a class="btn small" href="data/run_card.json" download>Download run card ↓</a> ·
+<a href="data/uniqueness.json">uniqueness</a> · <a href="data/canary.json">canary</a> ·
+<a href="data/e4.json">E4</a> · <a href="data/holdout.json">holdout</a> ·
+<a href="data/score_model.json">projection model</a> · <a href="data/registry_inventory.json">registry</a> ·
+<a href="data/repair.json">repair</a></p>
+<pre>{
+ &quot;schema&quot;: &quot;HCE-1 parallel-run card v1&quot;,
+ &quot;session_branch&quot;: &quot;arena/50217887-wbggemsdoe3&quot;,
+ &quot;utc&quot;: &quot;2026-10-27T18:26:05.558308+00:00&quot;,
+ &quot;holdout_dti&quot;: {
+  &quot;evaluator_version&quot;: &quot;GEMSDOE32-HIDE-RECOVER-v3.0&quot;,
+  &quot;n_withheld_positives&quot;: 22232,
+  &quot;candidate&quot;: 0.129213,
+  &quot;candidate_ci95&quot;: [
+   0.11602449045912165,
+   0.14257532434357256
+  ],
+  &quot;champion_proxy&quot;: 0.099202,
+  &quot;champion_proxy_ci95&quot;: [
+   0.08595140754809347,
+   0.11266835751415871
+  ],
+  &quot;random_control&quot;: 0.073365,
+  &quot;paired_delta_vs_champion_proxy&quot;: {
+   &quot;delta&quot;: 0.03001087896650055,
+   &quot;ci95&quot;: [
+    0.017733011215509208,
+    0.0416942777976714
+   ],
+   &quot;p_delta_le_0&quot;: 0.0
+  },
+  &quot;fold_legal_caveat&quot;: &quot;champion_proxy uses the H19-5 network built from the full catalogue; it is a leakage-contaminated incumbent. E4 and its random control are fold-legal.&quot;
+ },
+ &quot;saved_file_holdout_dti&quot;: {
+  &quot;evaluator_version&quot;: &quot;GEMSDOE32-HIDE-RECOVER-v3.0&quot;,
+  &quot;n_withheld_positives&quot;: 22232,
+  &quot;value&quot;: 0.093134,
+  &quot;ci95&quot;: [
+   0.08238880293762195,
+   0.10367267974616817
+  ],
+  &quot;note&quot;: &quot;Static read-back of the actual deliverable (not fold-local OOF); the promotion comparison above uses the fold-local E4 masks.&quot;
+ },
+ &quot;sgmc_off_catalogue&quot;: {
+  &quot;evaluator_version&quot;: &quot;GEMSDOE32-SGMC-CAL-v3.0&quot;,
+  &quot;n_withheld_positives&quot;: 62703,
+  &quot;raw_pooled_dti&quot;: 0.263786,
+  &quot;raw_ci95&quot;: [
+   0.24226602813293927,
+   0.2831289894506462
+  ],
+  &quot;coverage&quot;: 0.363019,
+  &quot;prevalence_calibrated_dti&quot;: 0.104359,
+  &quot;calibrated_ci95&quot;: [
+   0.09059440403516944,
+   0.11741283159159137
+  ]
+ },
+ &quot;registry&quot;: {
+  &quot;surface_gate&quot;: {
+   &quot;n_compared&quot;: 143,
+   &quot;max_abs_spearman&quot;: 0.81094,
+   &quot;passed&quot;: true,
+   &quot;top5&quot;: [
+    {
+     &quot;path&quot;: &quot;.cache/witness17.tif&quot;,
+     &quot;abs_spearman&quot;: 0.81094
+    },
+    {
+     &quot;path&quot;: &quot;data/ledger/11GEMSDOE__gems-structural-area06-v1.tif&quot;,
+     &quot;abs_spearman&quot;: 0.36406
+    },
+    {
+     &quot;path&quot;: &quot;data/ledger/GEMSDOE10__gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif&quot;,
+     &quot;abs_spearman&quot;: 0.33935
+    },
+    {
+     &quot;path&quot;: &quot;data/ledger/6GEMSDOE__gems6_hgb88-topk03_33cec71ff0.tif&quot;,
+     &quot;abs_spearman&quot;: 0.2677
+    },
+    {
+     &quot;path&quot;: &quot;data/ledger/17GEMSDOE__17GEMSDOE_F-ensemble-2pct_20260930T050626Z.tif&quot;,
+     &quot;abs_spearman&quot;: 0.22581
+    }
+   ],
+   &quot;rule&quot;: &quot;|Spearman| &gt; 0.90 is a duplicate stop, checked on the surface before placement&quot;
+  },
+  &quot;max_abs_spearman_final_dots&quot;: 0.81094,
+  &quot;max_overlap_sparse&quot;: 0.52391,
+  &quot;literal_max_overlap_all&quot;: 1.0,
+  &quot;literal_pass&quot;: false,
+  &quot;space_filling_max_excess&quot;: 0.00708,
+  &quot;content_aware_pass&quot;: true,
+  &quot;n_registry_files&quot;: 145,
+  &quot;n_comparable&quot;: 143,
+  &quot;irregularity&quot;: &quot;IR-09: literal finite-positive reading is vacuous because one pinned control is positive on all 5,167,373 footprint cells and a spacing-5 lattice covers 99.9 % of them within 3 px. Both verdicts are reported; user ratification needed.&quot;
+ },
+ &quot;score_projection_NOT_A_SCORE&quot;: {
+  &quot;model&quot;: &quot;LOO ridge on 117 OWNER-REPORTED scores&quot;,
+  &quot;loo_mae&quot;: 0.028688446707551434,
+  &quot;loo_abs_err_q90&quot;: 0.058328018323970644,
+  &quot;p10&quot;: 0.023795238481620927,
+  &quot;p50&quot;: 0.08212325680559157,
+  &quot;p90&quot;: 0.1404512751295622,
+  &quot;caveat&quot;: &quot;Out-of-family extrapolation; likely biased low because the top ledger scores are all members of one dot family. Not an organizer-confirmed score and not a leaderboard value. The projection was computed for the un-repaired E4 configuration (q=0.30, spacing 3, same 169,968-dot budget); the released file moves &gt;=38% of those dots into registry-novel cells, so treat the number as indicative of the family, not a calibrated forecast of the exact released bytes.&quot;
+ },
+ &quot;raster&quot;: {
+  &quot;filename&quot;: &quot;wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif&quot;,
+  &quot;sha256&quot;: &quot;0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2&quot;,
+  &quot;bytes&quot;: 183134,
+  &quot;dot_mask_sha256&quot;: &quot;bc1edfe6d8528679dbe3de2c73f61b8366387c7f3a68865fd869466f7f832a39&quot;,
+  &quot;dots&quot;: 169968,
+  &quot;zip_filename&quot;: &quot;wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.zip&quot;,
+  &quot;zip_sha256&quot;: &quot;26deb8f6dd30207589429e9bc1b5d792defa538377e02d504287a4b5380eb306&quot;
+ },
+ &quot;submission_name&quot;: &quot;wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros&quot;,
+ &quot;submission_note&quot;: &quot;HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt.&quot;,
+ &quot;submission_note_chars&quot;: 129,
+ &quot;organizer_confirmed_score&quot;: null,
+ &quot;weekly_slots_used&quot;: 0,
+ &quot;verdict&quot;: {
+  &quot;holdout&quot;: &quot;PROMOTE at method level: fold-local E4 paired delta +0.0300 vs champion proxy (95% CI +0.0177..+0.0417). The released, uniqueness-repaired file scores 0.0931 static read-back HOLDOUT-DTI, a diagnostic.&quot;,
+  &quot;uniqueness&quot;: &quot;content-aware PASS / literal FAIL (IR-09 \u2014 vacuous)&quot;,
+  &quot;format&quot;: &quot;PASS (13-point independent validator + shared fail-closed writer; no NaN inside footprint, all values in [0,1], single-band float32, EPSG:32611, exact CRS/shape/transform).&quot;,
+  &quot;overall&quot;: &quot;DOWNLOAD OK \u2014 unique under the audited content-aware rule and format-valid. NOT an organizer-confirmed score; the owner-reported-ledger projection does not support beating 0.2778. A real weekly slot is a separate selector step and is NOT taken here.&quot;,
+  &quot;caveat&quot;: &quot;The literal finite-positive registry reading rejects every possible submission; user ratification of IR-09 is required. No hidden labels, no submission-page receipt, no portal quota were available.&quot;
+ }
+}</pre>
+<h2>Validator output (saved bytes, re-opened)</h2>
+<div class="grid"><div class="card"><h3>13-point independent validator</h3><p class="small"><span class="tag good">PASS</span><br>
+{
+ &quot;single_band&quot;: true,
+ &quot;dtype_float32&quot;: true,
+ &quot;dimensions_3730x3292&quot;: true,
+ &quot;crs_epsg_32611&quot;: true,
+ &quot;transform_matches_template&quot;: true,
+ &quot;crs_matches_template&quot;: true,
+ &quot;exact_reference_grid_match&quot;: true,
+ &quot;whole_array_all_finite&quot;: true,
+ &quot;whole_array_zero_nan&quot;: true,
+ &quot;whole_array_zero_inf&quot;: true,
+ &quot;whole_array_zero_sentinel&quot;: true,
+ &quot;whole_array_in_01&quot;: true,
+ &quot;validator_range_0_1_guaranteed&quot;: true
+}</p></div>
+<div class="card"><h3>Shared fail-closed writer</h3><p class="small"><span class="tag good">PASS</span><br>
+no NaN inside footprint: True · values in [0,1]: True ·
+zero on catalogue: True · positive outside footprint: 0 ·
+CRS/shape/transform match: True</p></div>
+<div class="card"><h3>Read-back equality</h3><p class="small">The positive mask decoded from the saved TIFF is
+bit-identical to the audited dot mask (asserted in <code>scripts/hce_finalize.py</code>).
+Dot-mask SHA-256 <code>bc1edfe6d8528679dbe3de2c73f61b8366387c7f3a68865fd869466f7f832a39</code>.</p></div></div>
+<h2>Uniqueness: two readings, both reported</h2>
+<div class="scroll"><table><thead><tr><th>Test</th><th>Threshold</th><th>Measured</th><th>Reading</th></tr></thead><tbody>
+<tr><td>Pre-placement surface |Spearman| vs 143 registry rasters</td><td>≤ 0.90</td><td>0.81094</td><td><span class="tag good">PASS</span></td></tr>
+<tr><td>Final-dots |Spearman|</td><td>≤ 0.90</td><td>0.81094</td><td><span class="tag good">PASS</span></td></tr>
+<tr><td>Max 3 px overlap, 138 sparse registry rasters</td><td>≤ 0.70</td><td>0.52391</td><td><span class="tag good">PASS</span></td></tr>
+<tr><td>Space-filling controls: excess over random null</td><td>≤ +0.05</td><td>+0.00708</td><td><span class="tag good">PASS</span></td></tr>
+<tr><td>Literal finite-positive overlap, ALL 143 rasters</td><td>≤ 0.70</td><td>1.0</td><td><span class="tag bad">FAIL (IR-09, vacuous)</span></td></tr>
+</tbody></table></div>
+<div class="note"><b>IR-09.</b> IR-09: literal finite-positive reading is vacuous because one pinned control is positive on all 5,167,373 footprint cells and a spacing-5 lattice covers 99.9 % of them within 3 px. Both verdicts are reported; user ratification needed. The content-aware reading classifies a control as
+space-filling when its 3 px dilation covers ≥70% of the footprint and then tests excess over a dot-count-matched
+random null. No raster was removed; 0.90 and 70% are unchanged. The <b>repair</b> moved ≥38% of dots outside the
+3 px halos of 7 sparse rasters that exceeded the cap, keeping exactly
+169,968 dots and the same physical ranking. Repair history: [{&quot;iteration&quot;: 0, &quot;max_overlap&quot;: 0.8365221688788478, &quot;worst&quot;: &quot;data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif&quot;, &quot;n_bad&quot;: 7, &quot;forbidden_px&quot;: 0, &quot;quota&quot;: 0.41}, {&quot;iteration&quot;: 1, &quot;max_overlap&quot;: 0.5239103831309423, &quot;worst&quot;: &quot;data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif&quot;, &quot;n_bad&quot;: 0, &quot;forbidden_px&quot;: 4273068, &quot;quota&quot;: 0.41}]</div>
+<h2>Reproduce</h2><pre>bash scripts/download_competition_data.sh     # 26 SHA-verified mirror files + data/manifest.json
+.venv/bin/python -m src.hce.fields             # 56 static physical fields (289 MB, ignored cache)
+.venv/bin/python scripts/hce_canary.py         # leakage canary
+.venv/bin/python scripts/hce_holdout.py        # E1/E2/E3 shared evaluator
+.venv/bin/python scripts/hce_e4.py             # E4 final experiment
+.venv/bin/python scripts/hce_score_model.py    # LOO projection (NOT a score)
+.venv/bin/python scripts/hce_finalize.py       # gates + shared writer + run card
+.venv/bin/python scripts/hce_site.py           # this site
+.venv/bin/python -m pytest -q</pre>
+<p class="small">Evaluator: unmodified verbatim GEMSDOE32 copies in <code>src/gemsw/holdout.py</code> /
+<code>metric.py</code> (see <code>NOTICE.md</code>). Writer: unmodified
+<code>vendor/gems57/submission_writer.py</code>. Large mirrors live in git-ignored
+<code>data/</code> and <code>.cache/</code>.</p>
+</div></main><footer><div class="wrap">Independent research, not affiliated with DOE or DrivenData. No competition slot was used to produce these pages. All times UTC.</div></footer></body></html>

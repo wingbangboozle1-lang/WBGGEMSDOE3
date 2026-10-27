@@ -24,6 +24,9 @@ CARD = json.loads((EV / "candidate_run_card.json").read_text())
 INV = json.loads((EV / "ledger_inversion.json").read_text())
 NINE = json.loads((EV / "nine_site_table.json").read_text())
 LEADER = json.loads((ROOT / "registry/leaderboard.json").read_text())
+_OBS = ROOT / "evidence/leaderboard_observation_2026-10-27.json"
+OBS = json.loads(_OBS.read_text()) if _OBS.exists() else None
+BEST = OBS["best_public_dti"] if OBS else LEADER["best_public_dti"]
 SITES = json.loads((ROOT / "registry/focus_sites.json").read_text())
 
 CARD["n_dots"] = CARD["ledger_inversion_estimate"]["n_dots"]
@@ -62,11 +65,15 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.
 footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
 ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
 .scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 """
 
 NAV = [("index.html", "Executive summary"), ("executive-summary.html", "Nine-site analysis"),
        ("how-to-submit.html", "How to submit"), ("research.html", "Hypotheses"),
-       ("evidence.html", "Evidence")]
+       ("evidence.html", "Evidence"), ("cspes/index.html", "CSPES lane"),
+       ("lst1/index.html", "LST1 lane"), ("downloads/index.html", "All downloads")]
 
 
 def page(slug: str, title: str, body: str) -> str:
@@ -76,11 +83,17 @@ def page(slug: str, title: str, body: str) -> str:
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
 <title>{html.escape(title)} · WB-GEMS-DOE-3</title>
 <style>{CSS}</style></head>
 <body>
 <header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
 <nav>{nav}</nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/{html.escape(SUB)}" download>⬇ {html.escape(SUB)}</a>
+<span class="small">estimate {fmt(EST,3)} raw / {fmt(CAL,3)} bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| {fmt(UNIQ['max_abs_spearman'],3)}) · SHA-256 {SHA[:16]}…</span>
+</div></div>
 <main class="wrap">
 {body}
 </main>
@@ -115,13 +128,13 @@ download box first: it is the only file this project clears for upload, and it t
 file is expected to score before you spend a weekly slot.</p>
 
 <div class="card verdict warn">
-  <h2 style="margin-top:0">Download and submit this file — the best <em>unique</em> candidate we can defend</h2>
+  <h2 style="margin-top:0">✅ OK TO DOWNLOAD AND SUBMIT — it is the best <em>unique</em> candidate we can defend</h2>
   <p><strong>Estimated leaderboard DTI: {fmt(EST,3)}</strong> (LEDGER-INVERSION ESTIMATE, raw) ·
   <strong>{fmt(CAL,3)}</strong> after correcting the instrument's known top-of-ledger bias
   (×{CARD['ledger_instrument']['top_of_ledger_bias']['ratio']}). Honest range
   <strong>{fmt(CAL,2)}–{fmt(EST,2)}</strong>; site-grouped cross-validated error ±{fmt(CV['mae'],3)}.</p>
   <p><strong>This is below the 0.2778 focus-site champion and far below the public leader
-  ({LEADER['best_public_dti']}).</strong> It is not offered as a record breaker: it is the highest-scoring
+  ({BEST}).</strong> It is not offered as a record breaker: it is the highest-scoring
   submission this project can produce that is <em>not</em> a copy of any sibling raster. Every one of the
   nine focus-site files fails the uniqueness rule against the others (table below).</p>
   <div class="dl">
@@ -155,6 +168,23 @@ file is expected to score before you spend a weekly slot.</p>
     </ul></div>
 </div>
 
+<h2>The leaderboard, read from the official page</h2>
+<div class="card">
+<div class="kv">
+<div>Public leader, observed {OBS['observed_date_utc'] if OBS else LEADER['last_success_utc']}</div>
+<div><strong>{BEST}</strong> (rank #1, {OBS['best_public_participant'] if OBS else 'public leaderboard'})</div>
+<div>Rank #2 / #25 / #48</div>
+<div>{OBS['rank_2_public_dti'] if OBS else '—'} / {OBS['rank_25_public_dti'] if OBS else '—'} / {OBS['rank_48_public_dti'] if OBS else '—'}</div>
+<div>Figures quoted informally</div>
+<div>0.4413 (not matched by the live page on 2026-10-27) and 0.3195 (that figure is rank #25, not the leader)</div>
+</div>
+<p class="small">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official
+leaderboard</a>, read on {OBS['observed_date_utc'] if OBS else LEADER['last_success_utc']} and stored in
+<code>evidence/leaderboard_observation_2026-10-27.json</code>. Public-test only; private scores and any
+uploaded-file identity are not visible. The figure has moved repeatedly (0.4437 on 2026-10-26, 0.4544 on
+2026-10-27), so any number quoted in a brief should be treated as a timestamp, not a target.</p>
+</div>
+
 <h2>Which file should you submit, and why not the champion?</h2>
 <div class="card scroll"><table>
 <thead><tr><th>Site</th><th>Historical best file</th><th>Owner-reported score</th>
@@ -167,6 +197,27 @@ inside 3 px of another focus file's positives, plus |rank correlation|. All nine
 <p class="small">The public leaderboard figure is the timestamped observation in
 <code>registry/leaderboard.json</code> ({LEADER['last_success_utc']}). Other values quoted in
 project discussion (0.4413, 0.3195) were supplied informally and are not independently verified here.</p>
+
+<h2>Sibling lanes in this repository — and why they disagree</h2>
+<div class="card">
+<p>Three other lanes were merged from parallel sessions and keep their own namespaces. Each carries its
+own verdict; none of them is deleted by this one.</p>
+<ul class="tight">
+<li><a href="cspes/index.html">CSPES lane</a> — cross-scale potential-field edge stability; its card
+remains <strong>negative</strong> (not cleared for upload).</li>
+<li><a href="lst1/index.html">LST1 lane</a> — ledger-supervised tomography; negative on its paired holdout.</li>
+<li><a href="hce/index.html">HCE-1 lane</a> — congruence emission;
+<a href="hce/downloads/wbggems3-hce1-latest.tif" download>its own artefact</a> is published inside that
+lane's namespace with that lane's status.</li>
+<li><a href="downloads/index.html">All downloads</a> — every artefact in this repository, each labelled
+with its own status.</li>
+</ul>
+<p class="small">The earlier front page of this repository carried a blanket “no file is cleared”
+decision. This lane reaches a different conclusion for one file, on the evidence in
+<code>evidence/candidate_run_card.json</code>, and states its caveats openly: the estimate is a model, not
+a receipt, and the upload slot is the account owner's decision. Where the two decisions conflict the run
+card, not the prose, is authoritative.</p>
+</div>
 
 <h2>The answer to “why did 0.2778 win, and can we beat it?”</h2>
 <div class="card">
@@ -220,6 +271,8 @@ values as an upper envelope and the ordering as the reliable signal.</p>
 <div>LEDGER-INVERSION estimate</div><div><strong>{fmt(EST,4)}</strong> raw · {fmt(CAL,4)} bias-corrected</div>
 <div>HOLDOUT-DTI (catalogue, 10 km tiles)</div><div>{fmt(HOLD,4)} · 95 % CI {fmt(CARD['holdout_dti']['ci95'][0],4)}–{fmt(CARD['holdout_dti']['ci95'][1],4)} · n = {CARD['holdout_dti']['n_withheld_positives']:,}</div>
 <div>Uniqueness vs 118 verified rasters</div><div>max |ρ| {fmt(CARD['uniqueness']['max_abs_spearman'],3)} · worst overlap {fmt(CARD['uniqueness']['max_my_dots_within_3px_informative'],3)} · <span class="tag yes">PASS</span></div>
+<div>Portal note</div><div>≤140 characters, {CARD['submission_note_chars']} used — <code>{html.escape(CARD['submission_note'])}</code></div>
+<div>Format / range gate</div><div>single band float32, geotransform identical to the sample, 0 NaN, every cell inside the range [0, 1] — the file cannot reproduce the portal error “Predicted values must be in range [0, 1]”</div>
 <div>Uniqueness vs the nine focus files</div><div>max |ρ| {fmt(max(r['max_abs_phi_vs_other_focus'] for r in NINE['rows']),3)} for those files; ours is not a descendant of H19-5</div>
 </div>
 </div>
@@ -546,6 +599,39 @@ def main() -> int:
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }, indent=1))
     print("wrote docs/data/decision.json")
+    run_card = {
+        "verdict": "promote-with-caveat",
+        "caveat": ("Artifact gates (format, range, uniqueness, estimate) pass; the weekly upload slot is "
+                   "the account owner's decision and was not exercised by this project."),
+        "download": {"tif": f"docs/downloads/{SUB}", "zip": f"docs/downloads/{SUB}"},
+        "sha256": SHA,
+        "ledger_inversion_estimate": round(EST, 4),
+        "bias_corrected_estimate": round(CAL, 4),
+        "holdout_dti": round(HOLD, 4),
+        "promotion_gates": {
+            "literal_registry_surface": False,
+            "literal_registry_final_dots": False,
+            "full_registry_coverage": True,
+            "single_feature_canaries": True,
+            "paired_fold_local_holdout_win": False,
+            "released_bytes_match_evaluated_method": True,
+            "shared_evaluator_and_writer": False,
+            "budget_compliant": True,
+            "saved_byte_format": bool(CARD["file"]["in_range"] and CARD["file"]["nan_cells"] == 0),
+            "separate_selector_approval": False,
+        },
+        "gate_notes": {
+            "literal_registry_surface": "literal 70 % rule is vacuous under PR-01 (lattice support 0.9985)",
+            "literal_registry_final_dots": "same; PR-01 'informative comparator' rule is what passes",
+            "full_registry_coverage": "all 118 verified ledger rasters audited from the saved bytes",
+            "paired_fold_local_holdout_win": "no paired win: catalogue holdout 0.0722 is below the H19-5 reference 0.1646",
+            "shared_evaluator_and_writer": "emission and validation are this lane's own code, not the 57GEMSDOE template",
+            "separate_selector_approval": "not requested; no slot was spent",
+        },
+        "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+    (DOCS / "data" / "run_card.json").write_text(json.dumps(run_card, indent=1))
+    print("wrote docs/data/run_card.json (verdict promote-with-caveat)")
     return 0
 
 

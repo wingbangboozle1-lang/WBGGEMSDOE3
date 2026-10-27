@@ -171,7 +171,12 @@ dots on a 1.5 px Poisson disk with every cell within 200 m of the catalogue excl
   **0 NaN**, whole array in [0,1] — it cannot reproduce the "Predicted values must be in range [0, 1]"
   rejection. Note for the portal (120 chars) is in the run card.
 
-**6. Answer to "can we beat 0.2778?"** Not with a genuinely new field from these mirrors. The sweep
+**6. The leaderboard figure, dated.** The official page read on 2026-10-27 shows **0.4544** at rank #1
+(rank #2 0.3916, **#25 0.3195**, #48 0.2892) — see
+[`evidence/leaderboard_observation_2026-10-27.json`](evidence/leaderboard_observation_2026-10-27.json).
+The 0.4413 quoted in the brief is not matched by the live page, and 0.3195 is rank #25, not the leader.
+
+**7. Answer to "can we beat 0.2778?"** Not with a genuinely new field from these mirrors. The sweep
 (quota 8k→60k, posterior weight 0→20, spacing 1.5/2.0 px) tops out at 0.2687 raw / 0.207 calibrated, and
 the ledger's own 118 files show that only H19-5 descendants exceed 0.25. Beating 0.2778 requires new
 information (metre-scale lineament *vectors*, InSAR strain, or a newer fault compilation), not another

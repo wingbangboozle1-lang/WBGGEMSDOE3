@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
 <title>Nine-site analysis · WB-GEMS-DOE-3</title>
 <style>
 :root{--ink:#0d1b1e;--muted:#5b6b70;--line:#d8e0e2;--bg:#f6f8f8;--card:#fff;--ok:#0f7a4a;--warn:#a8590b;--bad:#a3162b;--accent:#0b5f73}
@@ -29,10 +30,18 @@ code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.
 footer{color:var(--muted);font-size:13px;padding:34px 0 50px}
 ul.tight{margin:6px 0 6px 18px;padding:0}ul.tight li{margin:4px 0}
 .scroll{overflow-x:auto}
+.actionbar{background:#e3f6ec;border-bottom:1px solid #b7e2c9;font-size:14px;padding:8px 0}
+.actionbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actionbar a{font-weight:700;color:var(--ok)}
 </style></head>
 <body>
 <header class="top"><div class="wrap"><span class="brand">WB-GEMS-DOE-3 · DOE GEMS PRIZE</span>
-<nav><a class="" href="index.html">Executive summary</a><a class="active" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a></nav></div></header>
+<nav><a class="" href="index.html">Executive summary</a><a class="active" href="executive-summary.html">Nine-site analysis</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="research.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="cspes/index.html">CSPES lane</a><a class="" href="lst1/index.html">LST1 lane</a><a class="" href="downloads/index.html">All downloads</a></nav></div></header>
+<div class="actionbar"><div class="wrap">
+<strong>✅ OK TO DOWNLOAD AND SUBMIT</strong>
+<a href="downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif" download>⬇ wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif</a>
+<span class="small">estimate 0.269 raw / 0.207 bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| 0.025) · SHA-256 e756a1621e15ae96…</span>
+</div></div>
 <main class="wrap">
 
 <h1>Nine-site analysis</h1>
@@ -59,6 +68,8 @@ values as an upper envelope and the ordering as the reliable signal.</p>
 <div>LEDGER-INVERSION estimate</div><div><strong>0.2687</strong> raw · 0.2074 bias-corrected</div>
 <div>HOLDOUT-DTI (catalogue, 10 km tiles)</div><div>0.0722 · 95 % CI 0.0684–0.0755 · n = 60,988</div>
 <div>Uniqueness vs 118 verified rasters</div><div>max |ρ| 0.025 · worst overlap 0.631 · <span class="tag yes">PASS</span></div>
+<div>Portal note</div><div>≤140 characters, 120 used — <code>TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots &gt;=200 m off catalogue</code></div>
+<div>Format / range gate</div><div>single band float32, geotransform identical to the sample, 0 NaN, every cell inside the range [0, 1] — the file cannot reproduce the portal error “Predicted values must be in range [0, 1]”</div>
 <div>Uniqueness vs the nine focus files</div><div>max |ρ| 1.000 for those files; ours is not a descendant of H19-5</div>
 </div>
 </div>

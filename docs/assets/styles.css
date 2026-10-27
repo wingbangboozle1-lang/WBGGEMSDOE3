@@ -5,3 +5,11 @@
 .scroll-hint{display:none;color:var(--green);font-size:12px;font-weight:700;margin:0 0 9px}
 .table-card:focus-visible{outline:3px solid #176b50;outline-offset:3px}
 @media(max-width:900px){.scroll-hint{display:block}}
+
+/* 2026-10-27 HCE-1 lane banner: deterministic, rendered by scripts/build_site.py */
+.hce-banner{background:#0d3327;color:#e8fff5;border-bottom:2px solid #29c78a;padding:10px 0;font-size:14px}
+.hce-banner .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.hce-banner strong{color:#7ff0bd;letter-spacing:.02em}
+.hce-banner span{flex:1 1 260px}
+.hce-banner .button{padding:7px 12px;font-size:13px;background:#29c78a;color:#04231a;border-radius:6px;text-decoration:none;font-weight:700}
+.hce-banner .button.secondary{background:transparent;color:#bff7dd;border:1px solid #4b9e7c}

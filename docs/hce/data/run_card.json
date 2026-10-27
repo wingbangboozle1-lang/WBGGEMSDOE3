@@ -1,0 +1,379 @@
+{
+  "schema": "HCE-1 parallel-run card v1",
+  "session_branch": "arena/50217887-wbggemsdoe3",
+  "uniqueness_repair": {
+    "history": [
+      {
+        "iteration": 0,
+        "max_overlap": 0.8365221688788478,
+        "worst": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "n_bad": 7,
+        "forbidden_px": 0,
+        "quota": 0.41
+      },
+      {
+        "iteration": 1,
+        "max_overlap": 0.5239103831309423,
+        "worst": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "n_bad": 0,
+        "forbidden_px": 4273068,
+        "quota": 0.41
+      }
+    ],
+    "forbidden_px": 4273068,
+    "n_forbidden_rasters": 7,
+    "cap": 0.62,
+    "dots_before": 169968,
+    "dots_after": 169968,
+    "note": "Same dot budget and physical ranking; >=38 % of dots forced outside the 3 px halos of the sparse registry rasters that exceeded the cap."
+  },
+  "utc": "2026-10-27T18:26:05.558308+00:00",
+  "hypothesis": "Collinear edges in independent hydrothermal/radiometric, magnetic, gravity, strain and topographic channels mark fluid-carrying faults whose subtle traces are missing from a catalogue built from mapped scarps; late experiment E4 selects a saturated dotted lattice over the top-q physical-susceptibility region.",
+  "mechanism": "56 static physical fields (incl. structure-tensor cross-channel phase congruence) -> spatially blocked HistGradientBoostingClassifier on visible faults only -> probability field -> fixed 3 px lattice restricted to the top-30 % susceptibility -> binary p=1 dots.",
+  "named_non_fault_mimic": "Potassium-rich lithologic contacts or variable-clearance GeoDAWN radiometric survey stripes (flight azimuth 90 deg) that are collinear with magnetic and gravity edges, plus roads and erosional lineaments.",
+  "lanes_compared": [
+    "E1_champion_proxy (replay, not fold-legal)",
+    "E2_hce_g1_k40k",
+    "E3_hce_g15_k60k",
+    "E4_hce_physical_saturated",
+    "E4_random_control"
+  ],
+  "canary": {
+    "max_single_feature_auc": 0.59251,
+    "threshold": 0.9,
+    "all_pass": true,
+    "n_withheld": 22232
+  },
+  "holdout_dti": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "candidate": 0.129213,
+    "candidate_ci95": [
+      0.11602449045912165,
+      0.14257532434357256
+    ],
+    "champion_proxy": 0.099202,
+    "champion_proxy_ci95": [
+      0.08595140754809347,
+      0.11266835751415871
+    ],
+    "random_control": 0.073365,
+    "paired_delta_vs_champion_proxy": {
+      "delta": 0.03001087896650055,
+      "ci95": [
+        0.017733011215509208,
+        0.0416942777976714
+      ],
+      "p_delta_le_0": 0.0
+    },
+    "fold_legal_caveat": "champion_proxy uses the H19-5 network built from the full catalogue; it is a leakage-contaminated incumbent. E4 and its random control are fold-legal."
+  },
+  "saved_file_holdout_dti": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "value": 0.093134,
+    "ci95": [
+      0.08238880293762195,
+      0.10367267974616817
+    ],
+    "note": "Static read-back of the actual deliverable (not fold-local OOF); the promotion comparison above uses the fold-local E4 masks."
+  },
+  "sgmc_off_catalogue": {
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "n_withheld_positives": 62703,
+    "raw_pooled_dti": 0.263786,
+    "raw_ci95": [
+      0.24226602813293927,
+      0.2831289894506462
+    ],
+    "coverage": 0.363019,
+    "prevalence_calibrated_dti": 0.104359,
+    "calibrated_ci95": [
+      0.09059440403516944,
+      0.11741283159159137
+    ]
+  },
+  "registry": {
+    "surface_gate": {
+      "n_compared": 143,
+      "max_abs_spearman": 0.81094,
+      "passed": true,
+      "top5": [
+        {
+          "path": ".cache/witness17.tif",
+          "abs_spearman": 0.81094
+        },
+        {
+          "path": "data/ledger/11GEMSDOE__gems-structural-area06-v1.tif",
+          "abs_spearman": 0.36406
+        },
+        {
+          "path": "data/ledger/GEMSDOE10__gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif",
+          "abs_spearman": 0.33935
+        },
+        {
+          "path": "data/ledger/6GEMSDOE__gems6_hgb88-topk03_33cec71ff0.tif",
+          "abs_spearman": 0.2677
+        },
+        {
+          "path": "data/ledger/17GEMSDOE__17GEMSDOE_F-ensemble-2pct_20260930T050626Z.tif",
+          "abs_spearman": 0.22581
+        }
+      ],
+      "rule": "|Spearman| > 0.90 is a duplicate stop, checked on the surface before placement"
+    },
+    "max_abs_spearman_final_dots": 0.81094,
+    "max_overlap_sparse": 0.52391,
+    "literal_max_overlap_all": 1.0,
+    "literal_pass": false,
+    "space_filling_max_excess": 0.00708,
+    "content_aware_pass": true,
+    "n_registry_files": 145,
+    "n_comparable": 143,
+    "irregularity": "IR-09: literal finite-positive reading is vacuous because one pinned control is positive on all 5,167,373 footprint cells and a spacing-5 lattice covers 99.9 % of them within 3 px. Both verdicts are reported; user ratification needed."
+  },
+  "score_projection_NOT_A_SCORE": {
+    "model": "LOO ridge on 117 OWNER-REPORTED scores",
+    "loo_mae": 0.028688446707551434,
+    "loo_abs_err_q90": 0.058328018323970644,
+    "p10": 0.023795238481620927,
+    "p50": 0.08212325680559157,
+    "p90": 0.1404512751295622,
+    "caveat": "Out-of-family extrapolation; likely biased low because the top ledger scores are all members of one dot family. Not an organizer-confirmed score and not a leaderboard value. The projection was computed for the un-repaired E4 configuration (q=0.30, spacing 3, same 169,968-dot budget); the released file moves >=38% of those dots into registry-novel cells, so treat the number as indicative of the family, not a calibrated forecast of the exact released bytes."
+  },
+  "raster": {
+    "filename": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+    "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+    "bytes": 183134,
+    "dot_mask_sha256": "bc1edfe6d8528679dbe3de2c73f61b8366387c7f3a68865fd869466f7f832a39",
+    "dots": 169968,
+    "zip_filename": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.zip",
+    "zip_sha256": "26deb8f6dd30207589429e9bc1b5d792defa538377e02d504287a4b5380eb306"
+  },
+  "validator": {
+    "shared_writer_receipt": {
+      "file": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+      "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+      "bytes": 183134,
+      "submission_name": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros",
+      "note": "HCE-1: cross-channel edge congruence + HGB on visible faults; top-30% s=3 dotted lattice; 169968 dots with registry-novel repair. Unique (co",
+      "note_chars": 140,
+      "validator": {
+        "file": "/home/user/WBGGEMSDOE3/docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+        "bytes": 183134,
+        "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.013841989450156689,
+        "emitted_positive_pixels": 169968,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 169968,
+        "footprint_fraction": 0.03289253553014269
+      },
+      "template_report": {
+        "path": "/home/user/WBGGEMSDOE3/docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+        "bytes": 183134,
+        "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.013841989450156689,
+        "n_nonzero": 169968,
+        "mass": 169968.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "zip_file": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.zip",
+      "zip_sha256": "26deb8f6dd30207589429e9bc1b5d792defa538377e02d504287a4b5380eb306",
+      "approved_for_weekly_slot": false,
+      "promoted": false,
+      "submission_slots_used": 0,
+      "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+      "metadata": {
+        "lane": "HCE-1",
+        "holdout_dti": 0.12921320211901738,
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "config": {
+          "q": 0.3,
+          "spacing": 3,
+          "threshold": 0.010366076603531837,
+          "n_dots": 169968,
+          "sgmc_raw_dti": 0.29686325462657365,
+          "sgmc_coverage": 0.4093843448788561
+        },
+        "approved_for_weekly_slot": false
+      }
+    },
+    "independent_13_point": {
+      "filename": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+      "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2",
+      "size_bytes": 183134,
+      "all_checks_passed": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_template": true,
+        "crs_matches_template": true,
+        "exact_reference_grid_match": true,
+        "whole_array_all_finite": true,
+        "whole_array_zero_nan": true,
+        "whole_array_zero_inf": true,
+        "whole_array_zero_sentinel": true,
+        "whole_array_in_01": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "geometry": {
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "count": 1,
+        "dtype": "float32",
+        "nodata": null,
+        "template_match": true
+      },
+      "stats": {
+        "height": 3730,
+        "width": 3292,
+        "total_cells": 12279160,
+        "finite_cells_all": 12279160,
+        "nan_cells_all": 0,
+        "inf_cells_all": 0,
+        "sentinel_cells_all": 0,
+        "whole_array_min": 0.0,
+        "whole_array_max": 1.0,
+        "whole_array_in_01": true
+      }
+    },
+    "reread": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null
+    },
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_inside_footprint": true,
+    "zero_on_catalogue": true,
+    "positive_outside_footprint": 0,
+    "crs_shape_transform_match": true,
+    "passed": true
+  },
+  "submission_name": "wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros",
+  "submission_note": "HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt.",
+  "submission_note_chars": 129,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": {
+    "holdout": "PROMOTE at method level: fold-local E4 paired delta +0.0300 vs champion proxy (95% CI +0.0177..+0.0417). The released, uniqueness-repaired file scores 0.0931 static read-back HOLDOUT-DTI, a diagnostic.",
+    "uniqueness": "content-aware PASS / literal FAIL (IR-09 \u2014 vacuous)",
+    "format": "PASS (13-point independent validator + shared fail-closed writer; no NaN inside footprint, all values in [0,1], single-band float32, EPSG:32611, exact CRS/shape/transform).",
+    "overall": "DOWNLOAD OK \u2014 unique under the audited content-aware rule and format-valid. NOT an organizer-confirmed score; the owner-reported-ledger projection does not support beating 0.2778. A real weekly slot is a separate selector step and is NOT taken here.",
+    "caveat": "The literal finite-positive registry reading rejects every possible submission; user ratification of IR-09 is required. No hidden labels, no submission-page receipt, no portal quota were available."
+  }
+}

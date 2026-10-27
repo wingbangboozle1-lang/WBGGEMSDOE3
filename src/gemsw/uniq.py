@@ -1,13 +1,4 @@
-"""Uniqueness audit against the registry of every GeoTIFF in the nine focus sites + verified ledger rasters.
-
-Gates (all automatic):
-  U1 exact:   dot-mask sha256 not equal to any registry dot mask (and raster sha not equal to any file).
-  U2 surface: |Spearman(surface, registry raster)| <= 0.90 for every registry raster (pre-placement field).
-  U3 dots:    share of candidate dots within 3 px (Euclidean) of a registry raster's dots <= 0.70 for every
-              registry raster.  Space-filling lattice rasters (random-null coverage >= 0.70, i.e. they cover
-              most of the footprint within 3 px) cannot be satisfied by ANY sparse raster; they are judged by
-              EXCESS over the random null (<= +0.05) and reported separately - never silently exempted.
-"""
+"""Historical uniqueness code; its audit is disabled because its exemptions were unauthorized."""
 from __future__ import annotations
 import hashlib, json
 from pathlib import Path
@@ -30,6 +21,7 @@ def dots_sha(dots: np.ndarray) -> str:
 def audit(cand_dots: np.ndarray, cand_surface: np.ndarray | None, root: Path, foot: np.ndarray,
           max_rho=0.90, max_overlap=0.70, lattice_null=0.70, lattice_slack=0.05, rng_seed=11,
           surface_sample=600_000) -> dict:
+    raise RuntimeError("BLOCKED: historical audit uses unauthorized registry exemptions; see evidence/run_card.json")
     reg = json.loads((root / "registry/registry_index.json").read_text())
     cache = root / ".cache/registry"
     by_dots: dict[str, list[dict]] = {}

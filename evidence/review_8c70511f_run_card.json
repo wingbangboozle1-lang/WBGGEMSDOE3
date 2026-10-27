@@ -1,0 +1,37 @@
+{
+  "lane": "8c70511f approval-safety review; no geological lane assigned",
+  "hypothesis": "Signed cross-edge potential-field profile asymmetry (prospective only)",
+  "mechanism": "Persistent residual cross-profile asymmetry could indicate buried dipping boundaries; not implemented",
+  "named_non_fault_process": "Dipping lithologic contact or remanent magnetization",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "reason": "Mandatory literal registry feasibility stop before surface/canary/placement; no experiment run"
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_tested": false,
+    "surface_correlation": null,
+    "final_dot_overlap": null,
+    "saved_witness_implied_overlap_for_any_nonempty_in_footprint_support": 1.0,
+    "source": "evidence/focus_audit.json",
+    "measurement_repeated_this_session": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT_RUN; no raster generated",
+    "existing_research_artifact": "evidence/review_8c70511f_validator.json"
+  },
+  "submission_name": null,
+  "submission_note": "Negative preflight: literal registry witness blocks nonempty candidates. Existing TIFFs research only; no slot used.",
+  "verdict": "negative",
+  "experiments": 0,
+  "slots_used": 0,
+  "tests": {
+    "passed": 122,
+    "skipped": 4
+  },
+  "official_reference_head_observed_via_github_api": "aebe92f7c8a990f0e3443451b7a825d9afd6336b"
+}
