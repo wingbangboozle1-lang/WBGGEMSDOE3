@@ -1,19 +1,19 @@
 {
   "schema": "verification-2026-10-27-v1",
-  "checked_utc": "2026-10-27T17:25:28+00:00",
+  "checked_utc": "2026-10-27T17:35:42+00:00",
   "evidence_class": "RASTER-MEASUREMENT (reproducible); official web observations recorded separately",
   "checks": [
     {
       "check": "sample SHA-256 matches pin",
       "pass": true,
       "value": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "source": "restored shared template data/official"
+      "source": "hash-pinned mirrored shared-template bytes (organizer provenance not authenticated)"
     },
     {
-      "check": "official catalogue SHA-256 matches pin",
+      "check": "mirrored catalogue SHA-256 matches pin",
       "pass": true,
       "value": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "source": "restored shared template data/official"
+      "source": "hash-pinned mirrored shared-template bytes (organizer provenance not authenticated)"
     },
     {
       "check": "sample footprint = 5,167,373 finite cells",
@@ -108,20 +108,20 @@
       "source": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"
     },
     {
-      "check": "all 2,545 removed GEMSDOE31 dots lie 1.41-2.00 px from the official catalogue",
+      "check": "all 2,545 removed GEMSDOE31 dots lie 1.41-2.00 px from the mirrored catalogue",
       "pass": true,
       "value": {
         "removed": 2545,
         "min_px": 1.4142135623730951,
         "max_px": 2.0
       },
-      "source": "official catalogue existing_faults.tif (template) vs GEMSDOE31 H27-4 base"
+      "source": "mirrored catalogue existing_faults.tif (template) vs GEMSDOE31 H27-4 base"
     },
     {
       "check": "kept GEMSDOE32 dots are all >2 px from the catalogue",
       "pass": true,
       "value": 2.23606797749979,
-      "source": "official catalogue existing_faults.tif (template)"
+      "source": "mirrored catalogue existing_faults.tif (template)"
     },
     {
       "check": "GEMSDOE32 retained dots carry identical values to GEMSDOE31",
@@ -159,10 +159,10 @@
       "check": "no repo TIFF has finite values outside [0,1]",
       "pass": true,
       "value": {
-        "files": 9,
+        "files": 8,
         "out_of_range_total": 0
       },
-      "source": "local survey of docs/, submission/, archive/ TIFFs"
+      "source": "local survey of docs/, submission/, archive/, data/ TIFFs (not a portal test)"
     }
   ],
   "all_passed": true,
@@ -236,34 +236,6 @@
       "positive_dots": 35000
     },
     {
-      "file": "docs/lst1/downloads/wbggems3-lst1-hybrid-20261026-0a0229da-nan.tif",
-      "sha256": "c0a24f8284eee4a3c17b1c6c2ff49a422cbcf97a73289275e533982b0dfe4acc",
-      "dtype": "float32",
-      "nodata": "nan",
-      "shape": [
-        3730,
-        3292
-      ],
-      "grid_matches_sample": true,
-      "nan_cells": 7111787,
-      "out_of_range_finite_cells": 0,
-      "positive_dots": 32810
-    },
-    {
-      "file": "docs/lst1/downloads/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif",
-      "sha256": "676ca865e86a4ff220548253d3f574e374fc3d470239fbc89aa8fb261d409e34",
-      "dtype": "float32",
-      "nodata": null,
-      "shape": [
-        3730,
-        3292
-      ],
-      "grid_matches_sample": true,
-      "nan_cells": 0,
-      "out_of_range_finite_cells": 0,
-      "positive_dots": 32810
-    },
-    {
       "file": "submission/wbggems3-lst1-hybrid-20261026-0a0229da-nan.tif",
       "sha256": "c0a24f8284eee4a3c17b1c6c2ff49a422cbcf97a73289275e533982b0dfe4acc",
       "dtype": "float32",
@@ -318,6 +290,20 @@
       "nan_cells": 0,
       "out_of_range_finite_cells": 0,
       "positive_dots": 1156344
+    },
+    {
+      "file": "data/template_grid.tif",
+      "sha256": "6a1dde6f8db53b6a2c6f3a8edbc38a85c728ddb41c02754c164c0f70a5bbe21d",
+      "dtype": "float32",
+      "nodata": null,
+      "shape": [
+        3730,
+        3292
+      ],
+      "grid_matches_sample": true,
+      "nan_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "positive_dots": 0
     }
   ],
   "candidate_created": false,

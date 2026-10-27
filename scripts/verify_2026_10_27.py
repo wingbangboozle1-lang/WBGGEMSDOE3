@@ -61,8 +61,8 @@ def main() -> int:
     def check(name, ok, value, source):
         checks.append({"check": name, "pass": bool(ok), "value": value, "source": source})
 
-    check("sample SHA-256 matches pin", sha(sample) == SAMPLE_SHA, sha(sample), "restored shared template data/official")
-    check("official catalogue SHA-256 matches pin", sha(labels) == LABEL_SHA, sha(labels), "restored shared template data/official")
+    check("sample SHA-256 matches pin", sha(sample) == SAMPLE_SHA, sha(sample), "hash-pinned mirrored shared-template bytes (organizer provenance not authenticated)")
+    check("mirrored catalogue SHA-256 matches pin", sha(labels) == LABEL_SHA, sha(labels), "hash-pinned mirrored shared-template bytes (organizer provenance not authenticated)")
     with rasterio.open(sample) as ds:
         foot = np.isfinite(ds.read(1))
         ref_grid = (ds.shape, ds.crs.to_string(), tuple(ds.transform)[:6])
@@ -110,12 +110,12 @@ def main() -> int:
     check("GEMSDOE32 dots are an exact subset of GEMSDOE31 dots", not (d32 & ~d31).any(), int((d31 & ~d32).sum()), source_url(G31))
     removed = d31 & ~d32
     dist_cat = distance_transform_edt(~cat_pos)
-    check("all 2,545 removed GEMSDOE31 dots lie 1.41-2.00 px from the official catalogue",
+    check("all 2,545 removed GEMSDOE31 dots lie 1.41-2.00 px from the mirrored catalogue",
           int(removed.sum()) == 2545 and float(dist_cat[removed].min()) > 1.4 and float(dist_cat[removed].max()) <= 2.0,
           {"removed": int(removed.sum()), "min_px": float(dist_cat[removed].min()), "max_px": float(dist_cat[removed].max())},
-          "official catalogue existing_faults.tif (template) vs GEMSDOE31 H27-4 base")
+          "mirrored catalogue existing_faults.tif (template) vs GEMSDOE31 H27-4 base")
     check("kept GEMSDOE32 dots are all >2 px from the catalogue", float(dist_cat[d32].min()) > 2.0,
-          float(dist_cat[d32].min()), "official catalogue existing_faults.tif (template)")
+          float(dist_cat[d32].min()), "mirrored catalogue existing_faults.tif (template)")
     check("GEMSDOE32 retained dots carry identical values to GEMSDOE31", bool(np.array_equal(g31[d32], g32[d32])),
           {"retained": int(d32.sum()), "value_set": sorted({float(x) for x in np.unique(g32[d32])})}, source_url(G32))
     o32_31, o32_36 = within3(d32, d31), within3(d32, d36)
@@ -148,7 +148,8 @@ def main() -> int:
 
     # Survey every TIFF the repo ships, to test the user's "range [0, 1]" report.
     survey = []
-    for tif in sorted(ROOT.glob("docs/**/*.tif")) + sorted(ROOT.glob("submission/*.tif")) + sorted(ROOT.glob("archive/**/*.tif")):
+    for tif in (sorted(ROOT.glob("docs/**/*.tif")) + sorted(ROOT.glob("submission/*.tif"))
+                + sorted(ROOT.glob("archive/**/*.tif")) + sorted(ROOT.glob("data/**/*.tif"))):
         with rasterio.open(tif) as ds:
             a = ds.read(1).astype("float64")
             fin = np.isfinite(a)
@@ -162,7 +163,7 @@ def main() -> int:
             })
     check("no repo TIFF has finite values outside [0,1]", all(r["out_of_range_finite_cells"] == 0 for r in survey),
           {"files": len(survey), "out_of_range_total": sum(r["out_of_range_finite_cells"] for r in survey)},
-          "local survey of docs/, submission/, archive/ TIFFs")
+          "local survey of docs/, submission/, archive/, data/ TIFFs (not a portal test)")
 
     failed = [c["check"] for c in checks if not c["pass"]]
     out = {

@@ -1,4 +1,7 @@
 {
+ "_archive_notice": "SUPERSEDED RESEARCH RECORD: not an approved submission, score estimate, or proof of fold-local validation. Legacy exemptions violated the literal registry rule. See evidence/run_card.json and evidence/archive_audit.json.",
+ "authoritative_current_card": "evidence/run_card.json",
+ "historical_original_readiness_claims": {"ready_to_submit": true, "file_integrity_and_uniqueness_pass": true, "verdict": "NEGATIVE: file is valid and unique, but fails the hold-out promotion rule (paired CI lower bound must be > 0)"},
  "run_card_version": "1",
  "lane": "WBGGEMSDOE3 / lst1",
  "generated_utc": "2026-10-26",
@@ -133,7 +136,7 @@
   },
   "caveat": "hold-out hides CATALOGUE segments; it is not the scored population of new faults; modulation is fitted on catalogue faults (partly circular)."
  },
- "registry_audit": {
+ "historical_exempted_registry_audit": {
   "n_registry_unique_dot_masks": 293,
   "max_abs_spearman_smoothed": 0.6581892363244423,
   "max_overlap_non_lattice": 0.6199939042974703,
@@ -228,7 +231,7 @@
   "wbggems3-lst1-hybrid-20261026-0a0229da-zeros.zip": "7068a3818de9df451a1a626b7884c3fb132e26cb52218b31ece237127cb363f1"
  },
  "dots_sha256": "0a0229da19f51d4569754b751fb6640e18a2f751db2e00adef0e9e697daf1252",
- "validator_output": {
+ "historical_validator_output": {
   "wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif": {
    "file": "wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif",
    "mode": "zeros",
@@ -288,7 +291,7 @@
    "passed": true
   }
  },
- "gates": {
+ "historical_exempted_gates": {
   "G1_validator_all_files_pass": true,
   "G2_not_exact_duplicate_of_any_registry_dot_mask": true,
   "G3_rank_corr_le_0.90_all_registry": true,
@@ -362,17 +365,11 @@
  },
  "ready_to_submit": false,
  "file_integrity_and_uniqueness_pass": false,
- "verdict": "negative: literal registry overlap fails; holdout promotion fails; historical artifact is research only. DO NOT SUBMIT.",
+ "verdict": "negative",
  "performance_gate_passed": false,
  "budget": {
   "experiments_run": "1 hypothesis; 5 hold-out variants + 2 diagnostics on the final construction; 2 builds (uniqueness repair). The pre-repair first run is kept in evidence/holdout_results_preLCB_firstrun.json. EXCEEDS the protocol budget of 3 experiments / 2 h - disclosed.",
   "slot_selected": false
  },
- "uniqueness_price_note": "same hold-out, no avoid-zone (diagnostic only, violates the overlap cap): LCB -0.0155, median -0.0070 vs champion proxy; with avoid-zone: LCB -0.0325, median -0.0215",
- "historical_correction": {
-  "reason": "Literal any-registry overlap rule has no dense-raster exception. Prior ready=true and uniqueness-pass claims are revoked; historical measurements retained, not replayed.",
-  "corrected_utc": "2026-10-27",
-  "previous_ready_to_submit": true,
-  "previous_file_integrity_and_uniqueness_pass": true
- }
+ "uniqueness_price_note": "same hold-out, no avoid-zone (diagnostic only, violates the overlap cap): LCB -0.0155, median -0.0070 vs champion proxy; with avoid-zone: LCB -0.0325, median -0.0215"
 }

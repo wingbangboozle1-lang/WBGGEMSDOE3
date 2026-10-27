@@ -1,5 +1,7 @@
 # Three-pass session review — 2026-10-27
 
+> Earlier parallel session, preserved as historical context. Its 81-test count and decisions are not the final merged-session result; see `evidence/run_card.json` and `knowledge/session-review-merged-2026-10-27.md`.
+
 ## Pass 1 — implement and reproduce
 
 Read README, AGENTS, preregistration, irregularities, research review, authoritative

@@ -44,3 +44,25 @@ def test_incomplete_parallel_uniqueness_checker_is_disabled():
     from uniqueness_audit import audit_uniqueness
     with pytest.raises(RuntimeError, match='incomplete historical registry'):
         audit_uniqueness(ROOT / 'not-a-candidate.tif', [])
+
+
+def test_all_legacy_publication_and_generation_entrypoints_are_disabled():
+    import subprocess
+    import sys
+    before = (ROOT / 'evidence/run_card.json').read_bytes()
+    for script in ('assess_sites.py', 'build_design.py', 'build_readme.py',
+                   'build_submission.py', 'finalize.py', 'run_holdout.py', 'verify_submission.py'):
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts' / script)],
+                                cwd=ROOT, capture_output=True, text=True)
+        assert result.returncode != 0, script
+        assert 'BLOCKED' in result.stderr, script
+    assert (ROOT / 'evidence/run_card.json').read_bytes() == before
+
+
+def test_legacy_exempted_uniqueness_audit_is_disabled(tmp_path):
+    import numpy as np
+    import pytest
+    from gemsw.uniq import audit
+    a=np.zeros((4,4),bool)
+    with pytest.raises(RuntimeError, match='unauthorized registry exemptions'):
+        audit(a, None, tmp_path, a)

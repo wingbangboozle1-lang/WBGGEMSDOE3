@@ -1,12 +1,4 @@
-"""Strict GeoTIFF writer + INDEPENDENT validator for DrivenData GEMS submissions.
-
-Contract (verbatim from https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ ):
-  same CRS (EPSG:32611), same 100 m resolution, same bounds as the training data, data outside the bounds
-  is null/nan, single layer float32, values in [0, 1].
-Root cause of the portal error "Predicted values must be in range [0, 1]" (see docs/): float32 sentinel
-(-3.4e38) cells inside the footprint, or NaN cells inside the footprint, produced by pipelines that read
-training_features.tif without cleaning.  `validate` rejects every one of those conditions.
-"""
+"""ARCHIVED LST1 writer and validator, disabled. Historical portal-error and upload-readiness claims are unproven."""
 from __future__ import annotations
 import hashlib, zipfile
 from pathlib import Path
@@ -27,6 +19,7 @@ def sha256_file(p: Path) -> str:
 
 def write_submission(p: np.ndarray, foot: np.ndarray, labels: np.ndarray, template: Path, out: Path, mode: str) -> Path:
     """p: full-grid values (any dtype). In-footprint cells are clipped to [0,1] and NaN->0; catalogue cells -> 0."""
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     assert mode in ("zeros", "nan")
     with rasterio.open(template) as t:
         prof = t.profile.copy()
@@ -54,6 +47,7 @@ def write_zip(tif: Path, zip_path: Path) -> Path:
 
 def validate(path: Path, template: Path, foot: np.ndarray, labels: np.ndarray, mode: str | None = None) -> dict:
     """Re-open the saved bytes and check every submission-format rule.  Returns dict(checks=..., passed=bool)."""
+    raise RuntimeError("BLOCKED: retired local writer/validator; see evidence/run_card.json")
     with rasterio.open(template) as t:
         tshape, tcrs, ttr = t.shape, t.crs, t.transform
     with rasterio.open(path) as ds:

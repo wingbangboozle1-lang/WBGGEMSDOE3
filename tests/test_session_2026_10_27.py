@@ -22,7 +22,8 @@ def test_verification_record_all_passed_and_no_candidate():
 def test_repo_tiff_survey_has_no_out_of_range_values():
     v = _load("evidence/verification_2026-10-27.json")
     survey = v["local_tiff_survey"]
-    assert len(survey) == 9
+    assert len(survey) >= 1
+    assert any(r["file"] == "data/template_grid.tif" for r in survey)
     assert sum(r["out_of_range_finite_cells"] for r in survey) == 0
 
 

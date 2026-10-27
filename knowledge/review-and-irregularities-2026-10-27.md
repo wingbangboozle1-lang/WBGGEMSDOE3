@@ -1,5 +1,7 @@
 # Review and irregularities — 2026-10-27
 
+> **Merge recheck:** corrections below distinguish a prior independent session from the current negative run card. The H6-1 proxy cannot identify the near-catalogue live regime, and the mirrored data are not organizer-authenticated.
+
 Continues `knowledge/review-and-irregularities-2026-10-26.md` (IR-01 to IR-08 stay in force).
 Each item states what was observed, the evidence, the impact, and the proposed action.
 Nothing here has been silently fixed. Decisions needing a user call are listed in the final report.
@@ -35,20 +37,19 @@ Nothing here has been silently fixed. Decisions needing a user call are listed i
 ### IR-12 — Archived stand-in page was publicly downloadable
 - **Observed.** The former `site/` page served `gems-hnew01-stepper-dblind-unique.tif` (1200 × 1600, wrong grid,
   labelled unique). Its grid does not match the sample, so it is not a valid submission for this competition.
-- **Action taken (staged, not yet committed).** Moved to `archive/site-legacy-2026-10-26/` with `ARCHIVE.md`.
+- **Action taken.** Moved to `archive/site-legacy-2026-10-26/` with `ARCHIVE.md`.
   The Pages site no longer links to it. Confirm the public Pages URL no longer serves it after deploy.
 
-### IR-13 — The owner's +0.0070 gap is not explained by the pruning rule
+### IR-13 — The owner's +0.0070 gap remains unexplained
 - **Observed.** GEMSDOE32 (0.2778) is GEMSDOE31 (0.2708) minus 2,545 dots. Pruning on the holdout proxy (H6-1)
   moves DTI by +0.00005 (paired CI excludes zero but the magnitude is tiny). Against random equal-count pruning, the
   paired gain is +0.00011 and its CI includes zero.
 - **Evidence.** `evidence/h6_1_proximity_pruning_holdout.json`; `evidence/verification_2026-10-27.json`.
-- **Impact.** The owner's gap cannot be attributed to the 2 px rule on this evidence. Other differences
-  (e.g., hidden-label fit) remain possible but are unmeasured.
+- **Impact.** H6-1's buffered holdout has no withheld truth within 3 px of visible catalogue context, so it cannot determine the effect of pruning on live near-catalogue labels or attribute the unverified owner's gap. Other hidden-label effects remain unmeasured.
 - **Action.** Keep as an open question. No new experiment run (budget rule: H6-1 is not re-run).
 
 ### IR-14 — The "Predicted values must be in range [0, 1]" error is not reproduced
-- **Observed.** Every TIFF in the repository (9 files: `docs/`, `submission/`, `archive/`) has zero finite values
+- **Observed.** The eight TIFFs surveyed during the merged recheck (`docs/`, `submission/`, `archive/`, `data/`) have zero finite values
   outside [0,1]. The reported error text is not reproduced by any local file.
 - **Evidence.** `evidence/verification_2026-10-27.json` → `local_tiff_survey`.
 - **Impact.** Its cause is unexplained. Candidates: NaN outside the footprint without nodata; a sentinel value;
@@ -63,11 +64,10 @@ Nothing here has been silently fixed. Decisions needing a user call are listed i
   portal did accept GEMSDOE32, but that claim has no receipt.
 - **Action.** Covered by the portal test in IR-14. No change to the shared writer without an explicit decision.
 
-### IR-16 — The public feed is stale
+### IR-16 — The public feed was stale at the earlier observation
 - **Observed.** The Pages feed showed 0.4437 (last checked 2026-10-26). The live page shows 0.4544.
-- **Impact.** The feed is machine-refreshed. The sandbox cannot reach DrivenData from bash, so the feed cannot be
-  refreshed here.
-- **Action.** The live observation is shown alongside the feed with its date. Refresh happens in the scheduled workflow.
+- **Impact.** A stale feed must not look live. Direct bash access is restricted; public pages can be read through the research viewer.
+- **Action.** The 0.4544 observation was recorded with its timestamp; the scheduled workflow attempts refresh and marks failures or age as stale.
 
 ### IR-17 — The nine-site table is a re-run of the repository audit, not nine independent measurements
 - **Observed.** `scripts/audit_focus.py` was re-run today and reproduced the table. Only GEMSDOE32, GEMSDOE31
