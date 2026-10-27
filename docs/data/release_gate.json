@@ -8,12 +8,13 @@
     "The governing run card verdict is not promote.",
     "No separate selector approval is recorded.",
     "The governing run card does not approve this candidate SHA-256.",
+    "The candidate lane itself is not marked promote.",
     "The candidate has no compliant HOLDOUT-DTI result; PROXY-DTI is not a release metric.",
     "The candidate does not record a passing literal all-registry uniqueness gate."
   ],
   "candidate": {
     "holdout_label": "PROXY-DTI (not a competition score)",
-    "lane_verdict": "promote",
+    "lane_verdict": "negative",
     "literal_registry_pass": null,
     "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2",
     "submission": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif"
@@ -26,6 +27,6 @@
     "authority": "evidence/run_card.json",
     "authority_sha256": "57570d71f4e0aab5fe8c8d815d5b34d53cc5b29e9435b4b062ececea3b039f40",
     "candidate": "evidence/gemsdoe_run_card.json",
-    "candidate_sha256": "81def24132fbc733c604dd246f0a9d3db36ad6bc222fd0259575551e87365ab2"
+    "candidate_sha256": "979018e5afd0faca5f5324fd5c60e34fd049307a7f64af26e5eee435905d129e"
   }
 }
