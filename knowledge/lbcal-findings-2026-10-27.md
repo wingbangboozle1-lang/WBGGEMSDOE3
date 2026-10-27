@@ -139,7 +139,7 @@ Caveat: registry masks were built with the full catalogue (static, not fold-loca
 * **Next 2. Owner ruling on the gate.** Without a ruling on the slot gate (IR-11), no leaderboard-calibrated design can ever be promoted.
 * **Next 3. Hypotheses 2–5.** Test H-PIEDMONT, H-SEISMO-GAP, H-STEPOVER-SYNTH and H-RADIOMETRIC-SEEP *as additional LBCAL features*. The family-CV makes adding a layer a cheap and honest test.
 
-## 7. Cross-model check of the file cleared on main (added after merging main, ~21:10 UTC)
+## 7. Cross-model check of the file cleared on main (added after merging main, ~20:05 UTC)
 
 `evidence/candidates_2026-10-27.json` and `evidence/lbcal/registry_delta_main.json` give these ESTIMATEs (not scores):
 

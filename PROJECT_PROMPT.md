@@ -178,7 +178,7 @@ for the next session.
 
 ## Feed (newest first)
 
-- **2026-10-27 ~21:15 UTC, arena/88400903 (LBCAL lane, negative).** A hidden-fault density fitted to
+- **2026-10-27 ~20:15 UTC, arena/88400903 (LBCAL lane, negative; PR #32).** A hidden-fault density fitted to
   119 owner-reported scores (family-grouped CV Spearman 0.91, RMSE 0.036 vs 0.086 constant). The design
   (71,416 dots) has a cross-fit ESTIMATE of 0.50 but fails the holdout gate (0.0631 < 0.1292) and like-for-like
   uniqueness. Holdout gate vs leaderboard: Spearman 0.09 (n=119). Independent LBCAL ESTIMATEs: skarpline 0.073,
