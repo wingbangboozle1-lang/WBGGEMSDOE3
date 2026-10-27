@@ -1,102 +1,124 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
-<title>Start · WBGGEMSDOE3</title><style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
+<title>Overview · WBGGEMSDOE3</title><style>
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c232d;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;
 --ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-header b{font-size:17px}
-header a{color:var(--mut);text-decoration:none;font-size:14px}
-header a:hover,header a.on{color:var(--fg)}
-main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:30px;line-height:1.25;margin:8px 0 10px}
-h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+body{margin:0;background:var(--bg);color:var(--fg);font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#010409;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:10}
+header b{font-size:17px;letter-spacing:.02em;color:#fff}
+header a{color:var(--mut);text-decoration:none;font-size:14px;padding:4px 8px;border-radius:6px}
+header a:hover,header a.on{color:#fff;background:#1f2733}
+main{max-width:1140px;margin:0 auto;padding:26px 20px 80px}
+h1{font-size:29px;line-height:1.25;margin:10px 0 10px}
+h2{font-size:21px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
 h3{font-size:17px;margin:22px 0 8px}
 p,li{color:#d7dee6}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}
-.small{font-size:13.5px;color:var(--mut)}
-.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 8px}
-.hero.no{border-color:var(--bad);background:linear-gradient(180deg,#2a1214,#0d1117)}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
+code{background:#1f2630;padding:1.5px 5px;border-radius:4px;font-size:13px}
+pre{background:#161b22;border:1px solid var(--line);padding:14px;border-radius:8px;overflow:auto;font-size:12.8px;line-height:1.5}
+.small{font-size:13.2px;color:var(--mut)}
+.hero{border:1.5px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0 18px}
+.hero.no{border-color:var(--warn);background:linear-gradient(180deg,#261d0a,#0d1117)}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--ok);color:#04150a}
 .tag.no{background:var(--bad);color:#fff}
 .tag.warn{background:var(--warn);color:#1a1200}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0;font-size:16px}
+.tag.info{background:#1f3247;color:#8cc8ff;border:1px solid #31547a}
+.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:11px 18px;border-radius:8px;text-decoration:none;margin:10px 10px 4px 0;font-size:15px}
+.btn.hold{background:#21262d;border:1.5px solid var(--warn);color:#ffd885}
 .btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin:16px 0}
 .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .v{font-size:23px;font-weight:700}
-.kpi .k{font-size:12.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
-th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--mut);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-tr.me td{background:#0f2418;font-weight:600}
-.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:10px 0}
-footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:18px 20px;margin-top:40px}
+.kpi .v{font-size:21px;font-weight:700;margin:2px 0}
+.kpi .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13.6px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel);color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+tr:last-child td{border-bottom:none}
+tr.me td{background:#172332;font-weight:600}
+tr.champ td{background:#1d1a10}
+.yes{color:#3fb950;font-weight:700}.no{color:#f85149;font-weight:700}.mid{color:#e3b341;font-weight:700}
+.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0}
+.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 15px;border-radius:0 8px 8px 0;margin:14px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin:14px 0}
+img.map{width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;padding:20px 22px;margin-top:44px;text-align:center}
 a{color:var(--accent)}
-ul{padding-left:22px}
+ul,ol{padding-left:22px}
 </style></head>
-<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="on">Start</a><a href="executive-summary.html" class="">Executive summary</a><a href="research.html" class="">Science</a><a href="evidence.html" class="">Evidence</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header><main><div style="background:#0d3327;color:#e8fff5;border-bottom:2px solid #29c78a;padding:10px 20px;font-size:14px"><div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><strong style="color:#7ff0bd">NEW · HCE-1 lane (2026-10-27)</strong><span style="flex:1 1 260px">A unique, format-validated GeoTIFF is ready to download. The legacy audit keeps its own verdict; the new lane owns its decision.</span><a style="background:#29c78a;color:#04231a;font-weight:700;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/downloads/wbggems3-hce1-latest.tif" download>Download TIF ↓</a><a style="color:#bff7dd;border:1px solid #4b9e7c;padding:7px 12px;border-radius:6px;text-decoration:none" href="hce/index.html">Executive summary ↗</a></div></div>
-<div class="hero">
-  <span class="tag">OK TO DOWNLOAD AND SUBMIT</span>
-  <h1>One file, one decision</h1>
-  <p style="font-size:17px">Download <code>wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif</code> and upload it unchanged at
-  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank" rel="noopener">DrivenData → New submission</a>.
-  It is a single-band float32 GeoTIFF, EPSG:32611, 100 m, 3730×3292, every value finite and inside [0,1],
-  zero mass outside the scored footprint.</p>
-  <a class="btn" href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>⬇ Download the submission GeoTIFF (425 KB)</a>
-  <a class="btn alt" href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.zip" download>⬇ .zip twin</a>
-  <p class="small">SHA-256 <code>610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2</code><br>
-  Suggested note (&le;140 chars): <code>GEMS-DOE-3 skarpline union 60k+40k, dti-optimised binary, cat-suppressed r=0</code></p>
+<body><header><b>WBGGEMSDOE3</b><a href="index.html" class="on">Overview</a><a href="executive-summary.html" class="">Executive Summary</a><a href="submission.html" class="">How to Submit</a><a href="research.html" class="">Geological Science</a><a href="evidence.html" class="">Evidence & Sources</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official Leaderboard ↗</a></header><main><div class="hero no">
+  <div class="badges">
+    <span class="tag no">DO NOT SUBMIT TO WEEKLY QUOTA · RESEARCH ARTIFACT (VERDICT: NEGATIVE)</span>
+    <span class="tag">PORTAL [0, 1] &amp; FORMAT: 13/13 PASS</span>
+    <span class="tag">FOCUS-9 &amp; SPARSE PEER UNIQUENESS: PASS (92.1% max &lt;80k)</span>
+    <span class="tag warn">HOLDOUT GATE: 0.09573 vs 0.09920 CHAMPION</span>
+    <span class="tag info">Last checked · 2026-10-27T17:37:47 UTC</span>
+  </div>
+  <h1>Best-in-repo zero-catalogue artifact (THCS-OOF) — format & focus-uniqueness PASS, hold weekly slot</h1>
+  <p>Primary lane <b><code>THCS-OOF</code></b> (<code>wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif</code>, <b>46,000</b> binary dots, single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, 100 m, all values strictly in <code>[0.0, 1.0]</code>, <code>0</code> NaN, <code>0</code> catalogue-fault overlap) is <b>genuinely unique</b> against all 9 focus sites (<code>43.0%</code> 3-px overlap vs <code>GEMSDOE32</code>) and ranks <b>#1 across all 5 lanes in WBGGEMSDOE3</b> (<code>HOLDOUT-DTI = 0.09573</code>; 120-run <code>LOSO-MODEL-ESTIMATE = 0.1455 [0.086, 0.205]</code>, <i>not an organizer score</i>). Because its leak-free holdout point estimate trails <code>GEMSDOE32</code> (<code>0.09920</code>) by <code>0.00347</code> and DrivenData enforces a strict 3-uploads/7-days cap, automated governance marks it <b>DO NOT SPEND WEEKLY SUBMISSION SLOT YET</b> (while retiring earlier <code>skarpline-union</code> after exposing <code>IR-21</code>).</p>
+  <a class="btn hold" href="downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif" download>⬇ Download Validated Research .tif (141 KB — Hold Weekly Slot)</a>
+  <a class="btn alt" href="downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.zip" download>⬇ Single-TIFF .zip (104 KB)</a>
+  <a class="btn alt" href="submission.html">How to Submit &amp; Portal [0, 1] Guide →</a>
+  <p class="small" style="margin-top:10px">SHA-256: <code>025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c</code><br>
+  Copy-ready portal note (103/140 chars): <code>THCS-OOF: 48ch geophys+LiDAR+float32 rad+GDR1391 2m/sinter/geotherm 4-fold OOF HGB + 300m CELF (46000d)</code></p>
+</div><div class="kpis">
+  <div class="kpi"><div class="k">THCS-OOF HOLDOUT-DTI</div><div class="v">0.09573</div>
+    <div class="small">95% CI [0.0804, 0.1104] · n=22,232</div></div>
+  <div class="kpi"><div class="k">LOSO-MODEL-ESTIMATE</div><div class="v">0.1455</div>
+    <div class="small">90% PI [0.086, 0.205] · NOT an organizer score</div></div>
+  <div class="kpi"><div class="k">Focus-9 Best (GEMSDOE32)</div><div class="v">0.2778</div>
+    <div class="small">ORGANIZER-CONFIRMED · HOLDOUT 0.09920</div></div>
+  <div class="kpi"><div class="k">Public Leaderboard #1 / #5</div><div class="v">0.4544 / 0.3566</div>
+    <div class="small">xiaofanhu (#1) · $10k top-5 cutoff (#5)</div></div>
+  <div class="kpi"><div class="k">Overlap vs GEMSDOE32</div><div class="v yes">43.0%</div>
+    <div class="small">&le;70% threshold · max |&rho;| = 0.544</div></div>
+  <div class="kpi"><div class="k">Leakage &amp; Byte Gates</div><div class="v yes">PASS</div>
+    <div class="small">48/48 AUC &le; 0.596 · 13/13 [0,1] checks</div></div>
 </div>
-<div class="kpis">
-  <div class="kpi"><div class="k">Estimated leaderboard DTI</div><div class="v">0.428</div>
-    <div class="small">95% CI 0.385–0.481</div></div>
-  <div class="kpi"><div class="k">Bias-corrected forecast</div><div class="v">0.440</div>
-    <div class="small">observed bias on 9 archived files -0.011</div></div>
-  <div class="kpi"><div class="k">Best historical (GEMSDOE32)</div><div class="v">0.2778</div>
-    <div class="small">organizer-reported</div></div>
-  <div class="kpi"><div class="k">Public leaderboard top</div><div class="v">0.4544</div>
-    <div class="small">observed 2026-10-27</div></div>
-  <div class="kpi"><div class="k">Uniqueness vs 20 archived files</div><div class="v yes">PASS</div>
-    <div class="small">max Jaccard 0.013</div></div>
-  <div class="kpi"><div class="k">Format validator</div><div class="v yes">PASS</div>
-    <div class="small">9/9 checks on the saved bytes</div></div>
+<h2>Executive Summary at a Glance</h2>
+<div class="grid2">
+  <div class="note">
+    <h3>What We Discovered &amp; Fixed</h3>
+    <ul>
+      <li><b><code>IR-20</code> (Band 6 <code>tc</code> Decoded):</b> Proved across all <code>5,164,300</code> valid pixels that <code>training_features.tif</code> Band 6 (<code>tc</code>) correlates at <b><code>Spearman &rho; = 0.999953</code></b> with USGS GeoDAWN airborne gamma-ray <b>Total Radiometric Count</b> (contradicting the embedded TIFF tag <i>"magnetic tilt/curvature"</i>). Decoupling float32 radiometrics from true analytic magnetic tilt $\arctan(\text{tmi\_vg}/\text{tmi\_hg})$ unlocked both signals.</li>
+      <li><b><code>IR-21</code> (<code>0.4284</code> Inflation Bug Fixed):</b> Earlier <code>skarpline-union</code> claimed an estimated <code>0.4284</code> because <code>src/gemsdoe/validation.py</code> multiplied unscaled 62,122-px SGMC hit rates by 97,608 mass against <code>|G|=15,672</code> (violating $TP_w \le |G|$ and predicting <code>0.3992</code> for a <code>0.0904</code> uniform lattice). Fixing <code>validation.py</code> and calibrating Leave-One-Site-Out across <b>120 live-scored rasters</b> (<code>Spearman = +0.8821, MAE = 0.0240</code>) shows <code>skarpline-union</code> is ~<code>0.0697</code>, saving a weekly upload slot.</li>
+      <li><b><code>+12.4%</code> Hydrothermal Ablation Lift:</b> Adding DOE GDR #1391 shallow <b>2 m temperature probes (<code>F2mDAB</code>, 3,800 stations)</b>, <b>paleo-geothermal sinter/travertine/tufa (709 sites)</b>, and <b>well silica/cation geothermometry (27,092 wells/springs)</b> lifted leak-free <code>HOLDOUT-DTI</code> from <code>0.08167</code> (<code>E1</code>) to <code>0.09184</code> (<code>E2</code>) and <b><code>0.09573</code> (<code>E3</code>)</b>.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h3>Live Public Leaderboard Feed &amp; Quota</h3>
+    <p class="small">Last checked · 2026-10-27T17:37:47 UTC · Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">DrivenData Official Public Leaderboard</a></p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Rank</th><th>Participant</th><th>Public DTI</th></tr></thead>
+      <tbody><tr><td>#1</td><td><b>xiaofanhu</b></td><td><code>0.4544</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#2</td><td><b>cfld__</b></td><td><code>0.3916</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#3</td><td><b>Batik Shirt Brothers</b></td><td><code>0.3911</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#4</td><td><b>BrandenKMurray</b></td><td><code>0.3724</code> (ORGANIZER-CONFIRMED public split)</td></tr><tr><td>#5</td><td><b>No Fault of Our Own</b></td><td><code>0.3566</code> (ORGANIZER-CONFIRMED public split)</td></tr></tbody>
+    </table></div>
+    <p class="small"><b>Quota reminder:</b> Official rules (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">NLR 96647.pdf</a>) allow at most <b>3 submissions per rolling 7 days</b>. Top-5 Initial Round awards $10,000 each (<code>0.3566</code> current #5 cutoff).</p>
+  </div>
 </div>
-<h2>The short version</h2>
-<p>The organiser's ground truth is <b>faults that are not in the public catalogue</b>. Reproducing the public
-catalogue therefore scores almost nothing. Every one of the nine focus sites' best files is a re-trim of the
-<b>same dotted network</b> (all 36 pairwise comparisons exceed the 70%-within-3-px duplicate rule), and they all
-sit between 0.2449 and 0.2778 reported. This repo's file is a different object: a union of two statistically
-independent lineament supports, with an <b>ESTIMATE</b> of 0.428 from a metric model that reproduces
-nine of those archived scores to within ±0.02. It is <b>not an organizer score</b>: no submission of this file has
-been uploaded or scored.</p>
 
-<img class="map" src="assets/submission-map.png" alt="Quick-look map: our submission (red), public catalogue (green), external catalogue proxy that the catalogue missed (blue)">
-<p class="small">Quick look (4× down-sampled). <span style="color:#ff463c">■</span> our submission ·
-<span style="color:#78c878">■</span> public USGS/INGENIOUS catalogue · <span style="color:#28aaff">■</span> USGS SGMC
-faults &gt;300 m from every catalogue fault (the validation proxy that stands in for the organiser's hidden
-new-fault set). Background: detrended-elevation hillshade.</p>
-
-<h2>What to do next</h2>
-<ol>
-  <li><a href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>Download the GeoTIFF</a> (or the <a href="downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.zip" download>.zip</a>).</li>
-  <li>DrivenData → <i>New submission</i> → choose the file → note: <code>GEMS-DOE-3 skarpline union 60k+40k, dti-optimised binary, cat-suppressed r=0</code> → submit.
-      Check the weekly cap on the submission page; this repository does not have your account quota.</li>
-  <li>Read the <a href="executive-summary.html">executive summary</a> for the full table, the calibration curve
-      and the honesty constraints; read <a href="research.html">the science</a> for why the metric rewards this shape.</li>
-</ol>
-<div class="warnbox"><b>What this is not.</b> 0.428 is an <b>ESTIMATE</b> from a calibrated model; it is
-not an organizer score and not a submission receipt. The organiser's hidden new-fault set is not available to this project; the estimate uses an
-external-catalogue proxy (USGS SGMC) plus the nine archived organizer-reported scores. It spans 0.323–0.513 as the hidden ground-truth size varies over
-the plausible range.</div>
+<h2>Spatial Quick-Look: THCS-OOF vs. Public Catalogue &amp; GEMSDOE32 Champion</h2>
+<div class="grid2">
+  <div>
+    <img class="map" src="assets/submission-map.png" alt="THCS-OOF 46,000 dots (coral) vs Public USGS/INGENIOUS Catalogue (green)">
+    <p class="small"><span style="color:#ff5c38">&#9632;</span> <code>THCS-OOF</code> (46,000 binary dots, zero-catalogue OOF + 300 m CELF) · <span style="color:#47c770">&#9632;</span> Public USGS/INGENIOUS catalogue (zeroed with <code>d_cat &gt; 2.0 px</code> collar).</p>
+  </div>
+  <div>
+    <img class="map" src="assets/compare-champion.png" alt="THCS-OOF (cyan) vs GEMSDOE32 0.2778 (amber) and shared 3-px corridors (white)">
+    <p class="small"><span style="color:#29ccff">&#9632;</span> <code>THCS-OOF</code> (46,000 dots) · <span style="color:#ff9924">&#9632;</span> <code>GEMSDOE32</code> 0.2778 champion (37,654 dots) · <span style="color:#ffffff">&#9632;</span> 300 m overlap (<b>43.0%</b>, well below the 70% duplicate limit).</p>
+  </div>
+</div>
+<p>Continue to the <a href="executive-summary.html"><b>Executive Summary</b></a> for the full 19-row Focus &amp; Peer Comparison Table and PhD derivation of why <code>0.2778</code> won, or <a href="submission.html"><b>How to Submit</b></a> for the portal <code>[0, 1]</code> checklist.</p>
+<div class="note">
+  <b>Archived Parallel Research Lanes (Retired — Do Not Submit to Weekly Quota):</b>
+  <a href="cspes/index.html">CSPES lane</a> (<code>HOLDOUT-DTI 0.06802</code>) &middot;
+  <a href="hce/index.html">HCE-1 lane</a> (<a href="hce/downloads/wbggems3-hce1-latest.tif">research-only HCE-1 .tif</a>, <code>HOLDOUT-DTI 0.05680</code>) &middot;
+  <a href="lst1/index.html">LST1 lane</a> (<code>HOLDOUT-DTI 0.09543</code>). All superseded by <code>THCS-OOF</code> above.
+</div>
 </main>
 <footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>.
-Every performance number is labelled ORGANIZER-REPORTED, PROXY, HOLDOUT or ESTIMATE. A predicted fault is not a
-geothermal vent. Site generated by <code>scripts/build_executive.py</code> from <code>docs/data/*.json</code>.</footer>
+Every metric is strictly labeled <code>ORGANIZER-CONFIRMED</code>, <code>HOLDOUT-DTI</code> (with evaluator version, withheld count &amp; 95% CI), or <code>LOSO-MODEL-ESTIMATE (NOT AN ORGANIZER SCORE)</code>.
+Deterministic build via <code>scripts/build_executive.py</code>.</footer>
 </body></html>

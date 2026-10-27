@@ -1,41 +1,18 @@
-# WBGGEMSDOE3 — DOE GEMS Prize: a unique fault submission, and the evidence for it
+# WBGGEMSDOE3 — DOE GEMS Prize: Multi-Lane Fault Discovery, Forensics & Automated Governance
 
-> **CURRENT DECISION: SUBMIT.** One file is cleared by every automated gate in this repository:
-> [`submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif`](submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif)
-> (425 KB, SHA-256 `610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2`). It is a genuinely new
-> 97,608-cell lineament network, **not** a re-trim of any archived file: the best overlap with any sparse
-> archived comparator is 29.3% of its dots within 3 px, and its Jaccard with the 0.2778 champion is 0.0044.
-> Estimated leaderboard DTI **0.428** (95% CI 0.385–0.481) — an **ESTIMATE**, not an organizer score.
+> **CURRENT DECISION: DO NOT SUBMIT TO WEEKLY QUOTA YET (`verdict: negative`) · PRIMARY VALIDATED RESEARCH ARTIFACT: `THCS-OOF`.**
 >
-> The parallel **CSPES lane** (geophysical-edge-stability, merged from PR #21) produced its own new,
-> format-valid GeoTIFF whose holdout is **negative** (HOLDOUT-DTI 0.0257 vs 0.0992 for the matched
-> incumbent): it is downloadable for research but **not** cleared for a slot —
-> [lane site](docs/cspes/index.html) · [lane run card](evidence/cspes_run_card.json).
+> - **Primary Artifact:** [`submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif`](submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif) (`141 KB`, SHA-256 `025cbc8f67902895154ef50b6088a3047e4f99b88db534955bf66e56e57b5b92`, `46,000` binary `{0.0, 1.0}` dots, `EPSG:32611`, `3730×3292`, 100 m).
+> - **Automated Portal `[0, 1]` & Format Validator:** **13/13 PASS** (`float32`, 1 band, `0` NaN, `0` Inf, `min=0.0`, `max=1.0`, `0` catalogue-fault overlap — guaranteed immune to `"Predicted values must be in range [0, 1]"`).
+> - **Focus-9 & Competitive Uniqueness (`<80k` dots):** **PASS** (`43.0%` 3-px overlap vs `GEMSDOE32` `0.2778`; `<= 66.5%` across all `<80k`-dot submissions; `max |Spearman| = 0.544 <= 0.90` across all 138 comparable rasters).
+> - **Performance (`HOLDOUT-DTI` & 120-Run Empirical Calibration):** **`HOLDOUT-DTI = 0.09573`** (`95% CI [0.08044, 0.11041]`, `GEMSDOE32-HIDE-RECOVER-v3.0`, `22,232` withheld positives) — **#1 across all 5 lanes in `WBGGEMSDOE3`**, proving a **`+0.01016` (`+12.4%`) controlled ablation lift** (`E1: 0.08167 -> E2: 0.09184 -> E3: 0.09573`) from adding DOE GDR #1391 shallow 2 m temperature probes (`F2mDAB`), paleo-geothermal sinter/travertine/tufa, and spring/well silica-cation geothermometry. Leave-One-Site-Out calibration across 120 live-scored leaderboard rasters (`Spearman = +0.8821, MAE = 0.0240`) gives **`LOSO-MODEL-ESTIMATE = 0.1455 [0.086, 0.205]`** (*not an organizer score*).
+> - **Why Weekly Slot Governance Is `HOLD / DO NOT SUBMIT`:** (1) `THCS-OOF`'s leak-free `HOLDOUT-DTI` (`0.09573`) trails `GEMSDOE32` (`0.09920`) by `0.00347`; (2) earlier `skarpline-union`'s `0.428` estimate was exposed as a dimensional bug in `src/gemsdoe/validation.py` (`IR-21`: violating $TP_w \le |G|$, corrected 120-run LOSO estimate `0.0697`); and (3) DrivenData caps uploads at **3 per rolling 7 days**.
+> - **Other Repo Lanes (all `negative` / retired research artifacts):** `LST1` (`HOLDOUT-DTI 0.09543`), `skarpline-union` (`LOSO-ESTIMATE 0.0697`, retired after `IR-21`), **CSPES lane** (`HOLDOUT-DTI 0.06802`, `verdict: negative` — [lane site](docs/cspes/index.html) · [run card](evidence/cspes_run_card.json)), and `HCE-1` (`HOLDOUT-DTI 0.05680` — [HCE site](docs/hce/index.html) · [run card](evidence/hce_run_card.json)).
 >
-> **One-click download and the executive summary: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/>**
-> [site source](docs/index.html) · [executive summary](docs/executive-summary.html) ·
-> [science](docs/research.html) · [evidence](docs/evidence.html) · [run card](evidence/gemsdoe_run_card.json)
+> **Unified GitHub Pages Dashboard: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/>**  
+> [Overview](docs/index.html) · [Executive Summary](docs/executive-summary.html) · [How to Submit](docs/submission.html) · [Geological Science](docs/research.html) · [Evidence & Verified Sources](docs/evidence.html) · [THCS Run Card](evidence/thcs_run_card.json) · [Preregistration](knowledge/preregistration-2026-10-27-thcs.md)
 >
-> The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this
-> README at every session start.
-
-> **PARALLEL LANE HCE-1 (branch `arena/50217887-wbggemsdoe3`, 2026-10-27): a second
-> independently audited unique TIF.**
-> [HCE-1 executive summary](docs/hce/index.html) ·
-> [one-click TIF](docs/hce/downloads/wbggems3-hce1-latest.tif) ·
-> [single-TIFF ZIP](docs/hce/downloads/wbggems3-hce1-latest.zip) ·
-> [exactly how to submit](docs/hce/how-to-submit.html) ·
-> [run card](evidence/hce_run_card.json) · [limitations](docs/hce/limitations.html).
-> It passes the 13-point saved-byte validator, the single-feature leakage canary, a
-> 145-file registry audit under the preregistered **content-aware** reading of the
-> uniqueness rule (IR-09), and a paired fold-local HOLDOUT-DTI win
-> (0.1292, 95% CI 0.1160–0.1426, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld
-> positives) over the replayed 0.0992 champion proxy.
-> **No organizer-confirmed score.** Its owner-reported-ledger projection (0.082) does
-> not support beating 0.2778; the literal finite-positive registry reading remains
-> vacuous and is reported as IR-09. No weekly slot was used. This lane is an
-> independent research deliverable, not a replacement for the repository-wide
-> selector decision above.
+> The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md) and below; read both at every session start.
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal

@@ -46,7 +46,18 @@ from . import config as C
 from . import io as gio
 from . import metric as M
 
-SGMC_TIF = C.ROOT / ".cache" / "upstream" / "x24" / "data" / "external" / "derived_sgmc_faults_100m_u8.tif"
+def _resolve_sgmc_tif():
+    for rel in (
+        "data/raw/external/derived_sgmc_faults_100m_u8.tif",
+        ".cache/upstream/x24/data/external/derived_sgmc_faults_100m_u8.tif",
+    ):
+        cand = C.ROOT / rel
+        if cand.exists():
+            return cand
+    return C.ROOT / "data/raw/external/derived_sgmc_faults_100m_u8.tif"
+
+
+SGMC_TIF = _resolve_sgmc_tif()
 SGMC_SOURCE = {
     "dataset": "USGS State Geologic Map Compilation (SGMC), Data Series 1052 (ver. 1.1)",
     "citation": ("Horton, J.D., San Juan, C.A., and Stoeser, D.B., 2017, The State Geologic Map "
@@ -134,10 +145,22 @@ def profile(pred: np.ndarray, gt: np.ndarray, valid: np.ndarray) -> dict:
             "capture": r["tp"] / max(r["n_truth"], 1)}
 
 
-def score_from_profile(h: float, mass_: float, n_truth: float) -> float:
-    """Leaderboard-scale estimate: exact metric identity with FP approximated by mass."""
-    tp = h * mass_
-    return tp / (C.ALPHA * (tp + mass_) + C.BETA * n_truth + C.EPS)
+SGMC_OFF_CATALOGUE_PX: float = 62122.0
+
+
+def score_from_profile(h: float, mass_: float, n_truth: float, n_proxy: float = SGMC_OFF_CATALOGUE_PX) -> float:
+    """Prevalence-calibrated diagnostic proxy (DIAGNOSTIC-ONLY; NOT ORGANIZER-CONFIRMED; NOT HOLDOUT-DTI).
+
+    Fixes IR-21: hit rate ``h = TP_proxy / mass`` measured on ``n_proxy`` off-catalogue SGMC pixels
+    must be scaled by ``n_truth / n_proxy`` (i.e. ``TP_target = capture * n_truth``) and bounded
+    by ``n_truth`` so the DTI identity ``0 <= TP_w <= |G|`` is never violated.
+    """
+    if n_truth <= 0.0 or mass_ <= 0.0 or h <= 0.0:
+        return 0.0
+    capture = min(max((h * mass_) / max(n_proxy, 1.0), 0.0), 1.0)
+    tp = capture * n_truth
+    fp = max(mass_ - tp, 0.0)
+    return float(tp / (C.ALPHA * (tp + fp) + C.BETA * n_truth + C.EPS))
 
 
 def _fit_m(obs: list[dict], lo: float = 1e3, hi: float = 3e5, n: int = 600) -> float:

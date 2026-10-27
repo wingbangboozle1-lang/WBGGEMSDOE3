@@ -14,7 +14,7 @@ from urllib.parse import urlparse, unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / 'docs'
-PAGES = ('index.html', 'executive-summary.html', 'research.html', 'evidence.html')
+PAGES = ('index.html', 'executive-summary.html', 'submission.html', 'research.html', 'evidence.html')
 
 
 class Links(HTMLParser):
@@ -75,11 +75,10 @@ def main() -> int:
 
     tif = Path(card['download']['tif']).name
     served = DOCS / 'downloads' / tif
-    if verdict == 'promote':
-        if not served.exists():
-            errors.append(f'artefact not published for download: downloads/{tif}')
-        elif sha256(served) != card['sha256']:
-            errors.append('published artefact SHA-256 does not match the run card')
+    if not served.exists():
+        errors.append(f'artefact not published for download: downloads/{tif}')
+    elif sha256(served) != card['sha256']:
+        errors.append('published artefact SHA-256 does not match the run card')
     if not (DOCS / 'assets' / 'submission-map.png').exists():
         errors.append('missing quick-look map asset')
 

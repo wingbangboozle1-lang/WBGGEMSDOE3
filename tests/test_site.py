@@ -13,8 +13,8 @@ from build_site import human_age
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = ("index.html", "executive-summary.html", "research.html", "evidence.html")
-CARD = json.loads((ROOT / "evidence" / "gemsdoe_run_card.json").read_text())
+PAGES = ("index.html", "executive-summary.html", "submission.html", "research.html", "evidence.html")
+CARD = json.loads((DOCS / "data" / "run_card.json").read_text())
 
 
 def sha256(path: Path) -> str:
@@ -44,13 +44,13 @@ def test_every_page_carries_the_same_decision_as_the_run_card():
         assert f'<meta name="gemsdoe-decision" content="{expected}">' in body, name
 
 
-def test_cleared_download_is_published_and_byte_identical():
-    assert CARD["verdict"] == "promote"
+def test_primary_download_is_published_and_byte_identical():
+    assert CARD["verdict"] in {"promote", "negative"}
     name = Path(CARD["download"]["tif"]).name
     served = DOCS / "downloads" / name
     assert served.exists()
     assert sha256(served) == CARD["sha256"] == sha256(ROOT / CARD["download"]["tif"])
-    for page in ("index.html", "executive-summary.html"):
+    for page in ("index.html", "executive-summary.html", "submission.html"):
         assert f'href="downloads/{name}"' in (DOCS / page).read_text(), page
 
 
@@ -100,7 +100,7 @@ def test_pages_workflow_publishes_the_docs_layout():
 
 
 def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
-    """Two lanes, two decisions: this repo clears the skarpline file only."""
+    """Parallel CSPES lane keeps its own negative verdict alongside the unified repo governance."""
     lane = DOCS / "cspes"
     assert (lane / "index.html").exists()
     text = (lane / "index.html").read_text()
@@ -109,7 +109,7 @@ def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
     assert card["verdict"] == "negative"
     readme = (ROOT / "README.md").read_text()
     assert "CSPES lane" in readme and "negative" in readme.lower()
-    assert "CURRENT DECISION: SUBMIT" in readme
+    assert "CURRENT DECISION: DO NOT SUBMIT" in readme
 
 
 def test_downloads_index_separates_the_two_lanes():
