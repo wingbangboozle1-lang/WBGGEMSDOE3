@@ -22,6 +22,22 @@ rewrites it. The site publishes only the second gate, and `scripts/check_site.py
 ever conflated (a page's `<meta name="gemsdoe-decision">` must equal the gate decision, and a positive
 decision must still list what it does not claim).
 
+> **THIRD PARALLEL AUDIT — RFL session `arena/bd44f94b` (2026-10-27, PR #29): corroboration + a
+> negative lane.** An independent preregistered lane (range-front relief-discontinuity) re-measured
+> all nine focus leaders from pinned bytes (36/36 pairwise >70% within 3 px; GEMSDOE25 ≡ GEMSDOE30
+> identical support; B2 = 31 minus exactly the ≤2 px catalogue-halo dots) and re-audited every saved
+> candidate on the rebuilt 151-file/120-mask registry. It **agrees the skarpline file is not
+> cleared** (73.5%/72.4% within 3 px vs two registered rasters at full-registry scope — IR-20) and
+> measured the cleared TDE-30k file above as **PASS** under its own definitions too (max 63.1%
+> within 3 px, matching this lane's 0.6314; lattice-excess −0.007; saved bytes finite in [0,1] —
+> [receipt](evidence/rfl_tde30k_postmerge_audit.json)). The RFL candidate itself is **negative**
+> (HOLDOUT-DTI 0.0538 vs 0.0992 champion proxy on `GEMSDOE32-HIDE-RECOVER-v3.0`; uniqueness 0.709
+> breach; no TIF packaged — [run card](evidence/rfl_run_card.json)). Per-site decision tables,
+> physically-capped estimate diagnostics and exact submission steps:
+> [docs/rfl/index.html](docs/rfl/index.html). The HCE-1 file also passes this audit's format +
+> uniqueness + fold-local-holdout gates but is **not** the cleared file — TDE-30k at the top of
+> this README is. No slot has been spent by any lane; no organizer-confirmed score exists yet.
+
 > **PARALLEL LANE SESSION 2026-10-27 (`arena/1f0b051d-wbggemsdoe3`): independent audit + one new
 > unique TIF; the skarpline 0.428 estimate above is WITHDRAWN by measurement.**
 > [Lane executive summary](docs/session-1f0b051d/index.html) ·
@@ -42,6 +58,14 @@ decision must still list what it does not claim).
 > unique vs all 122 registry rasters (max 67.0% within 3 px), saved-byte validator PASS, leakage canary PASS,
 > HOLDOUT-DTI reported with its strata control, planning estimate ≈0.16 (archive-analog median, range
 > 0.018–0.248) — **verdict negative on beating 0.2778**; no organizer-confirmed score; no slot used.
+
+> **Selector note (all three 2026-10-27 lanes agree):** the skarpline 0.428 estimate is
+> withdrawn/invalid and its file is not cleared under any gate. Exactly one file is cleared for
+> upload — TDE-30k at the top of this README. The session-`1f0b051d` dipole TIF below is a second
+> unique, validator-clean file but its own lane's verdict is negative (planning estimate ≈0.16,
+> below TDE-30k's 0.207–0.269); treat it as a documented negative / backup, not a co-equal pick.
+> No lane has spent a submission slot; no organizer-confirmed score exists for any file.
+
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the

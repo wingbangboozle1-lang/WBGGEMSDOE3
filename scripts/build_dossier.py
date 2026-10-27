@@ -17,6 +17,8 @@ import html
 import json
 from pathlib import Path
 
+from rfl_banner import RFL_BANNER
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 EV = ROOT / "evidence"
@@ -96,6 +98,7 @@ def page(slug: str, title: str, body: str) -> str:
 <span class="small">estimate {fmt(EST,3)} raw / {fmt(CAL,3)} bias-corrected · below the 0.2778 focus-site champion · unique (max |ρ| {fmt(UNIQ['max_abs_spearman'],3)}) · SHA-256 {SHA[:16]}…</span>
 </div></div>
 <main class="wrap">
+{RFL_BANNER}
 {body}
 </main>
 <footer><div class="wrap">

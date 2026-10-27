@@ -21,6 +21,7 @@ SUBMISSION = ROOT / "submission"
 sys.path.insert(0, str(ROOT / "src"))
 from gems_project.release_gate import evaluate_release_gate  # noqa: E402
 from hce_banner import HCE_BANNER  # noqa: E402
+from rfl_banner import RFL_BANNER  # noqa: E402
 
 CSS = """
 :root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
@@ -57,7 +58,7 @@ def page(title: str, body: str, current: str) -> str:
 <meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
 <title>{esc(title)} · WBGGEMSDOE3</title><style>{CSS}</style></head>
 <body><header><b>WBGGEMSDOE3</b>{nav}<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Official leaderboard ↗</a></header>
-<main>{HCE_BANNER}{body}</main>
+<main>{RFL_BANNER}{HCE_BANNER}{body}</main>
 <footer>Evidence-first research for the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize</a>. Historical owner claims, local proxies, and format checks are not organizer receipts.</footer>
 </body></html>"""
 
