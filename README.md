@@ -12,6 +12,17 @@ The actual target is **surface fault probability**, which can inform geothermal
 exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
 
+## Independent recheck and historical pruning evidence
+
+A parallel review independently checked the pinned GEMSDOE31/32/36 masks, the
+universal witness and the saved H6-1 holdout receipt. The merged recheck surveys the
+current local TIFFs and records 20 passing raster/evidence checks, **not** a candidate
+approval: [verification](knowledge/verification-2026-10-27.md) ·
+[JSON](evidence/verification_2026-10-27.json) ·
+[historical HOLDOUT-DTI](evidence/h6_1_proximity_pruning_holdout.json).
+H6-1's buffered holdout excludes the live near-catalogue regime, so it cannot establish
+why B2's unreceipted 0.2778 changed. No experiment was rerun in this lane.
+
 ## Project prompt and standing instructions — read at the start of every session
 
 The following is the operational project brief, preserving the user's mandatory

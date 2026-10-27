@@ -26,6 +26,24 @@ that **known-fault pixels** are excluded in both rounds; that does not imply all
 neighboring pixels are excluded. The B2 removal is near the catalogue, not necessarily
 on excluded pixels.
 
+## Historical H6-1 proximity-pruning holdout
+
+A previous shared-template H6-1 experiment reports **HOLDOUT-DTI** using
+`gems57-pooled-hide-v2`, 11,321 withheld positives and a spatial-cluster 95% CI.
+Unpruned: 0.13520 [0.11846, 0.15306]; ≤2 px proximity-pruned: 0.13526
+[0.11849, 0.15310]. Paired Δ versus unpruned: +0.000054
+[+0.000027, +0.000089]; versus equal-count random pruning: +0.000108
+[−0.0000008, +0.000235], including zero. Its own verdict was **negative**.
+[Saved source receipt](../evidence/h6_1_proximity_pruning_holdout.json) ·
+[pinned upstream](https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/docs/data/h6_1_proximity_pruning_holdout.json).
+This is historical and was not replayed in this session.
+
+Crucially, its saved scope caveat says buffered withholding leaves no withheld truth
+within 3 px of visible catalogue context. It cannot identify the near-catalogue
+new-fault regime that motivates B2. A small difference on this proxy does **not** prove
+or disprove the effect on the hidden competition score; the reported 0.2778 remains
+unverified.
+
 ## Can a new TIF beat it?
 
 Unknown. Another participant's higher public leaderboard result is evidence that a
