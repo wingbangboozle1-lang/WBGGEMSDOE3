@@ -1,0 +1,14 @@
+{
+ "evidence_class": "ESTIMATE robustness check",
+ "note": "bounded selected model refit with max_nfev=3000 warm-started from the 400-evaluation solution",
+ "converged": false,
+ "nfev": 3000,
+ "cost_400": 0.08187941804024691,
+ "design_in_model_400": 0.5727,
+ "design_in_model_3000": 0.5806,
+ "train_rmse_400": 0.0347,
+ "train_rmse_3000": 0.0343,
+ "train_spearman_both": 0.915,
+ "conclusion": "scipy least_squares never reports formal convergence for the bounded (sigmoid) link because saturated cells leave flat directions; raising the budget 7.5x (400 -> 3000 evaluations) lowers the cost by 2% and moves the design ESTIMATE by +0.008. Immaterial to the verdict.",
+ "cost_3000": 0.0802260454679321
+}

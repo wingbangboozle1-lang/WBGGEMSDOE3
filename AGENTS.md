@@ -22,3 +22,7 @@ Keep large datasets in ignored caches. The historical parallel generators and in
 uniqueness audit are disabled; never revive their approval claims without resolving the
 current blockers. Three experiments / two hours maximum; a separate selector owns real
 weekly slots.
+
+LBCAL lane (2026-10-27): read `knowledge/lbcal-findings-2026-10-27.md` and
+`evidence/lbcal_lane_decision.json`. Its lane decision is scoped to the LBCAL file. Its independent estimates for
+other lanes' files are inputs for the selector; they are not decisions.

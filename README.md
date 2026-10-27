@@ -67,6 +67,26 @@ decision must still list what it does not claim).
 > No lane has spent a submission slot; no organizer-confirmed score exists for any file.
 
 
+> **FOURTH PARALLEL LANE: LBCAL, session `arena/88400903` (2026-10-27). The lane is negative; it adds an
+> independent estimate for every file.**
+> [Lane page](docs/lbcal/index.html) · [research TIF, DO NOT SUBMIT](docs/lbcal/downloads/wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif) ·
+> [lane decision card](evidence/lbcal_lane_decision.json) · [run card](evidence/lbcal_run_card.json) ·
+> [pre-registration + 5 ranked hypotheses](knowledge/preregistration-2026-10-27-lbcal.md) · [findings](knowledge/lbcal-findings-2026-10-27.md).
+> LBCAL fits a hidden-fault density over 7 binned geological layers (catalogue distance, det-elev curvature, slope crest and
+> slope, 3DEP-LiDAR scarp rank, TMI gradient, SGMC distance) to 119 owner-reported scores. It uses the exact DTI
+> algebra and is validated by family-grouped cross-validation: Spearman **0.91**, RMSE 0.036 vs 0.086 for a constant.
+> Findings:
+> 1. **The owner's holdout gate does not track the leaderboard.** HOLDOUT-DTI vs owner-reported score is ρ = **0.09**
+>    (n=119); B2 (0.2778) has holdout 0.0045.
+> 2. **The lane's 71,416-dot design is NEGATIVE.** Its cross-fit ESTIMATE is 0.501, but HOLDOUT-DTI is
+>    0.0631 < 0.1292, and 81–91% of its dots sit within 3 px of four dense registry rasters (h23-a/b, h30, ovtr).
+>    Against the files merged later it is unique: wbggems3-tde30k-tomogr… 17.4%, wbg3-dipolehybrid-4000… 23.9%.
+> 3. **Independent ESTIMATEs (not scores):** skarpline 0.073 (agrees with its withdrawal);
+>    **TDE-30k 0.051**, against that lane's 0.207–0.269; dipole hybrid 0.062, against ≈0.16.
+>    Two leaderboard inversions with similar out-of-sample accuracy disagree about four-fold on *optimised* designs. Treat every
+>    optimised file's expected score as uncertain (≈0.05–0.3), including LBCAL's own. The selector should weigh this before
+>    spending a slot on TDE-30k. This lane does not change the decision above. No slot was used.
+
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
 [official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).

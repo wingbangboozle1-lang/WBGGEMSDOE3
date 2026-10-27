@@ -1,0 +1,1102 @@
+{
+ "evidence_class": "REGISTRY-MEASUREMENT (holdout on hash-pinned bytes) vs OWNER-REPORTED public scores",
+ "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "n": 119,
+ "n_binary": 115,
+ "spearman_holdout_vs_score": 0.08894019465762197,
+ "spearman_holdout_vs_score_binary_only": 0.07664379284130164,
+ "spearman_holdout_vs_score_top20": 0.022556390977443608,
+ "spearman_lbcal_cv_vs_score": 0.9143754462246284,
+ "spearman_lbcal_cv_vs_score_top20": 0.7533834586466165,
+ "best_holdout_file": {
+  "site": "GEMSDOE29",
+  "submission": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+  "owner_reported": 0.0041,
+  "lbcal_family_cv": 0.0241,
+  "holdout_dti": 0.32639,
+  "binary": true,
+  "n_pos": 37913
+ },
+ "best_score_file": {
+  "site": "GEMSDOE32",
+  "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "owner_reported": 0.2778,
+  "lbcal_family_cv": 0.2391,
+  "holdout_dti": 0.00452,
+  "binary": true,
+  "n_pos": 37654
+ },
+ "rows": [
+  {
+   "site": "6GEMSDOE",
+   "submission": "gems6_hgb88-topk03_33cec71ff0",
+   "owner_reported": 0.0286,
+   "lbcal_family_cv": 0.038,
+   "holdout_dti": 0.17096,
+   "binary": true,
+   "n_pos": 155021
+  },
+  {
+   "site": "GEMSDOE3",
+   "submission": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+   "owner_reported": 0.1193,
+   "lbcal_family_cv": 0.1489,
+   "holdout_dti": 0.07934,
+   "binary": true,
+   "n_pos": 155021
+  },
+  {
+   "site": "GEMSDOE3",
+   "submission": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+   "owner_reported": 0.083,
+   "lbcal_family_cv": 0.1228,
+   "holdout_dti": 0.06899,
+   "binary": true,
+   "n_pos": 155021
+  },
+  {
+   "site": "GEMSDOE3",
+   "submission": "pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+   "owner_reported": 0.1152,
+   "lbcal_family_cv": 0.0891,
+   "holdout_dti": 0.07349,
+   "binary": true,
+   "n_pos": 155021
+  },
+  {
+   "site": "GEMSDOE2",
+   "submission": "gemsdoe2-dual-family-union-20260925T160406Z-f68e590f",
+   "owner_reported": 0.156,
+   "lbcal_family_cv": 0.1296,
+   "holdout_dti": 0.0845,
+   "binary": true,
+   "n_pos": 183642
+  },
+  {
+   "site": "5GEMSDOE",
+   "submission": "gems-submission-20260926T175114Z-7f00890a",
+   "owner_reported": 0.1563,
+   "lbcal_family_cv": 0.132,
+   "holdout_dti": 0.08384,
+   "binary": true,
+   "n_pos": 172974
+  },
+  {
+   "site": "7GEMSDOE",
+   "submission": "lidarscarp-ridge-top2pct-36c3a3f341c8",
+   "owner_reported": 0.1461,
+   "lbcal_family_cv": 0.1686,
+   "holdout_dti": 0.0848,
+   "binary": true,
+   "n_pos": 76859
+  },
+  {
+   "site": "8GEMSDOE",
+   "submission": "Hedge-v2_submission",
+   "owner_reported": 0.1563,
+   "lbcal_family_cv": 0.1099,
+   "holdout_dti": 0.26658,
+   "binary": true,
+   "n_pos": 227507
+  },
+  {
+   "site": "GEMSDOE9",
+   "submission": "2314b599",
+   "owner_reported": 0.0107,
+   "lbcal_family_cv": 0.0216,
+   "holdout_dti": 0.01732,
+   "binary": true,
+   "n_pos": 147684
+  },
+  {
+   "site": "11GEMSDOE",
+   "submission": "gems-structural-area06-v1",
+   "owner_reported": 0.0202,
+   "lbcal_family_cv": 0.0354,
+   "holdout_dti": 0.18298,
+   "binary": true,
+   "n_pos": 343526
+  },
+  {
+   "site": "12GEMSDOE",
+   "submission": "r7-nms3-dem10-scarp_0c9199f14e62",
+   "owner_reported": 0.1294,
+   "lbcal_family_cv": 0.1451,
+   "holdout_dti": 0.14426,
+   "binary": true,
+   "n_pos": 103347
+  },
+  {
+   "site": "15GEMSDOE",
+   "submission": "gems-tso1-20260929T005627Z-conj_alteration_mag",
+   "owner_reported": 0.0782,
+   "lbcal_family_cv": 0.0976,
+   "holdout_dti": 0.07037,
+   "binary": true,
+   "n_pos": 99999
+  },
+  {
+   "site": "14GEMSDOE",
+   "submission": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f",
+   "owner_reported": 0.002,
+   "lbcal_family_cv": 0.0156,
+   "holdout_dti": 0.04844,
+   "binary": true,
+   "n_pos": 116225
+  },
+  {
+   "site": "17GEMSDOE",
+   "submission": "17GEMSDOE_F-ensemble-2pct_20260930T050626Z",
+   "owner_reported": 0.0187,
+   "lbcal_family_cv": 0.0261,
+   "holdout_dti": 0.12372,
+   "binary": true,
+   "n_pos": 103347
+  },
+  {
+   "site": "18GEMSDOE",
+   "submission": "H19-C_20260930T212401Z_c11e495e",
+   "owner_reported": 0.0297,
+   "lbcal_family_cv": 0.0372,
+   "holdout_dti": 0.11524,
+   "binary": true,
+   "n_pos": 513786
+  },
+  {
+   "site": "19GEMSDOE",
+   "submission": "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+   "owner_reported": 0.1894,
+   "lbcal_family_cv": 0.2039,
+   "holdout_dti": 0.06921,
+   "binary": true,
+   "n_pos": 123779
+  },
+  {
+   "site": "19GEMSDOE",
+   "submission": "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "owner_reported": 0.1922,
+   "lbcal_family_cv": 0.2032,
+   "holdout_dti": 0.06879,
+   "binary": true,
+   "n_pos": 121131
+  },
+  {
+   "site": "GEMSDOE10",
+   "submission": "h16-continuation-20260927T065521077735Z-3431b83c7c",
+   "owner_reported": 0.0461,
+   "lbcal_family_cv": 0.0527,
+   "holdout_dti": 0.10458,
+   "binary": true,
+   "n_pos": 310042
+  },
+  {
+   "site": "GEMSDOE10",
+   "submission": "h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+   "owner_reported": 0.0921,
+   "lbcal_family_cv": 0.0823,
+   "holdout_dti": 0.13006,
+   "binary": true,
+   "n_pos": 153957
+  },
+  {
+   "site": "GEMSDOE10",
+   "submission": "H25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+   "owner_reported": 0.128,
+   "lbcal_family_cv": 0.1001,
+   "holdout_dti": 0.15338,
+   "binary": true,
+   "n_pos": 174232
+  },
+  {
+   "site": "GEMSDOE10",
+   "submission": "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+   "owner_reported": 0.1839,
+   "lbcal_family_cv": 0.1301,
+   "holdout_dti": 0.2022,
+   "binary": true,
+   "n_pos": 69281
+  },
+  {
+   "site": "13GEMSDOE",
+   "submission": "20261001_r13-lattice-s5_v2_nan-outside",
+   "owner_reported": 0.0904,
+   "lbcal_family_cv": 0.1457,
+   "holdout_dti": 0.08602,
+   "binary": true,
+   "n_pos": 206895
+  },
+  {
+   "site": "16GEMSDOE",
+   "submission": "h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+   "owner_reported": 0.1855,
+   "lbcal_family_cv": 0.1987,
+   "holdout_dti": 0.06807,
+   "binary": true,
+   "n_pos": 123939
+  },
+  {
+   "site": "16GEMSDOE",
+   "submission": "h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+   "owner_reported": 0.0976,
+   "lbcal_family_cv": 0.1207,
+   "holdout_dti": 0.08114,
+   "binary": true,
+   "n_pos": 122120
+  },
+  {
+   "site": "16GEMSDOE",
+   "submission": "h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan",
+   "owner_reported": 0.036,
+   "lbcal_family_cv": 0.052,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 57783
+  },
+  {
+   "site": "20GEMSDOE",
+   "submission": "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+   "owner_reported": 0.189,
+   "lbcal_family_cv": 0.2024,
+   "holdout_dti": 0.06967,
+   "binary": true,
+   "n_pos": 123829
+  },
+  {
+   "site": "20GEMSDOE",
+   "submission": "h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+   "owner_reported": 0.1859,
+   "lbcal_family_cv": 0.1925,
+   "holdout_dti": 0.06901,
+   "binary": false,
+   "n_pos": 121258
+  },
+  {
+   "site": "GEMSDOE22",
+   "submission": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+   "owner_reported": 0.1002,
+   "lbcal_family_cv": 0.1441,
+   "holdout_dti": 0.04667,
+   "binary": true,
+   "n_pos": 335879
+  },
+  {
+   "site": "GEMSDOE22",
+   "submission": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+   "owner_reported": 0.0748,
+   "lbcal_family_cv": 0.1184,
+   "holdout_dti": 0.03659,
+   "binary": true,
+   "n_pos": 516738
+  },
+  {
+   "site": "GEMSDOE23",
+   "submission": "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+   "owner_reported": 0.1352,
+   "lbcal_family_cv": 0.1956,
+   "holdout_dti": 0.09464,
+   "binary": true,
+   "n_pos": 91533
+  },
+  {
+   "site": "GEMSDOE24",
+   "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "owner_reported": 0.2477,
+   "lbcal_family_cv": 0.2357,
+   "holdout_dti": 0.09315,
+   "binary": true,
+   "n_pos": 60069
+  },
+  {
+   "site": "GEMSDOE25",
+   "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "owner_reported": 0.26,
+   "lbcal_family_cv": 0.2327,
+   "holdout_dti": 0.09674,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE26",
+   "submission": "dilcond-oof-v1-20261003-47629f496133-nan",
+   "owner_reported": 0.1223,
+   "lbcal_family_cv": 0.1652,
+   "holdout_dti": 0.07202,
+   "binary": true,
+   "n_pos": 60068
+  },
+  {
+   "site": "GEMSDOE27",
+   "submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "owner_reported": 0.2449,
+   "lbcal_family_cv": 0.2342,
+   "holdout_dti": 0.09275,
+   "binary": true,
+   "n_pos": 61328
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+   "owner_reported": 0.2708,
+   "lbcal_family_cv": 0.237,
+   "holdout_dti": 0.03052,
+   "binary": true,
+   "n_pos": 40199
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+   "owner_reported": 0.2649,
+   "lbcal_family_cv": 0.2347,
+   "holdout_dti": 0.06151,
+   "binary": true,
+   "n_pos": 42294
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "owner_reported": 0.271,
+   "lbcal_family_cv": 0.2339,
+   "holdout_dti": 0.02936,
+   "binary": true,
+   "n_pos": 37660
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+   "owner_reported": 0.2707,
+   "lbcal_family_cv": 0.2338,
+   "holdout_dti": 0.02929,
+   "binary": true,
+   "n_pos": 37860
+  },
+  {
+   "site": "GEMSDOE32",
+   "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "owner_reported": 0.2778,
+   "lbcal_family_cv": 0.2391,
+   "holdout_dti": 0.00452,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE33",
+   "submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "owner_reported": 0.2632,
+   "lbcal_family_cv": 0.2353,
+   "holdout_dti": 0.05197,
+   "binary": true,
+   "n_pos": 41865
+  },
+  {
+   "site": "GEMSDOE36",
+   "submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "owner_reported": 0.275,
+   "lbcal_family_cv": 0.2388,
+   "holdout_dti": 0.00458,
+   "binary": true,
+   "n_pos": 38854
+  },
+  {
+   "site": "GEMSDOE34",
+   "submission": "h34-scatter-q50-arr-matched-20261004T223317Z",
+   "owner_reported": 0.0778,
+   "lbcal_family_cv": 0.0828,
+   "holdout_dti": 0.00395,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE35",
+   "submission": "h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+   "owner_reported": 0.0418,
+   "lbcal_family_cv": 0.0218,
+   "holdout_dti": 0.01562,
+   "binary": true,
+   "n_pos": 39530
+  },
+  {
+   "site": "GEMSDOE37",
+   "submission": "h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+   "owner_reported": 0.1193,
+   "lbcal_family_cv": 0.136,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 80000
+  },
+  {
+   "site": "GEMSDOE38",
+   "submission": "D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+   "owner_reported": 0.0763,
+   "lbcal_family_cv": 0.0729,
+   "holdout_dti": 0.08297,
+   "binary": true,
+   "n_pos": 36171
+  },
+  {
+   "site": "GEMSDOE42",
+   "submission": "xscale-worm-persistence-20261006T000541Z-nan",
+   "owner_reported": 0.0581,
+   "lbcal_family_cv": 0.0556,
+   "holdout_dti": 0.0466,
+   "binary": true,
+   "n_pos": 60069
+  },
+  {
+   "site": "GEMSDOE43",
+   "submission": "sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+   "owner_reported": 0.0424,
+   "lbcal_family_cv": 0.0741,
+   "holdout_dti": 0.0264,
+   "binary": true,
+   "n_pos": 40000
+  },
+  {
+   "site": "GEMSDOE45",
+   "submission": "h51-km-faultzone-20261006-zeros",
+   "owner_reported": 0.0106,
+   "lbcal_family_cv": 0.0358,
+   "holdout_dti": 0.0056,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE49",
+   "submission": "gate_ortho_w0.25-40k-20261006T213721Z-nan",
+   "owner_reported": 0.2376,
+   "lbcal_family_cv": 0.1648,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 40000
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+   "owner_reported": 0.0041,
+   "lbcal_family_cv": 0.0241,
+   "holdout_dti": 0.32639,
+   "binary": true,
+   "n_pos": 37913
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+   "owner_reported": 0.0512,
+   "lbcal_family_cv": 0.0777,
+   "holdout_dti": 0.04621,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "wormrank-d28-20261003-59dcaf6dd11d-zeros",
+   "owner_reported": 0.256,
+   "lbcal_family_cv": 0.2176,
+   "holdout_dti": 0.09649,
+   "binary": true,
+   "n_pos": 41338
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "wormsurv-filter-20261003-921f10960d6e-zeros",
+   "owner_reported": 0.0532,
+   "lbcal_family_cv": 0.0617,
+   "holdout_dti": 0.02244,
+   "binary": true,
+   "n_pos": 38907
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "xfit-c0-habitat-20261003-ca879db0089a-zeros",
+   "owner_reported": 0.0439,
+   "lbcal_family_cv": 0.0547,
+   "holdout_dti": 0.02051,
+   "binary": true,
+   "n_pos": 33766
+  },
+  {
+   "site": "GEMSDOE29",
+   "submission": "xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+   "owner_reported": 0.0356,
+   "lbcal_family_cv": 0.0544,
+   "holdout_dti": 0.02205,
+   "binary": true,
+   "n_pos": 33739
+  },
+  {
+   "site": "GEMSDOE46",
+   "submission": "r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+   "owner_reported": 0.1589,
+   "lbcal_family_cv": 0.1464,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE46",
+   "submission": "r12-scarp-rad-concordance-23e807e2de9f-zeros",
+   "owner_reported": 0.0843,
+   "lbcal_family_cv": 0.0651,
+   "holdout_dti": 2e-05,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE39",
+   "submission": "h40-e-disc-h40e-30k-zeros",
+   "owner_reported": 0.0339,
+   "lbcal_family_cv": 0.0655,
+   "holdout_dti": 0.04247,
+   "binary": true,
+   "n_pos": 30000
+  },
+  {
+   "site": "GEMSDOE40",
+   "submission": "h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+   "owner_reported": 0.0984,
+   "lbcal_family_cv": 0.1328,
+   "holdout_dti": 0.01863,
+   "binary": true,
+   "n_pos": 43038
+  },
+  {
+   "site": "GEMSDOE41",
+   "submission": "h42-submission-primary",
+   "owner_reported": 0.0245,
+   "lbcal_family_cv": 0.1016,
+   "holdout_dti": 0.00916,
+   "binary": true,
+   "n_pos": 40000
+  },
+  {
+   "site": "GEMSDOE44",
+   "submission": "h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+   "owner_reported": 0.0715,
+   "lbcal_family_cv": 0.0925,
+   "holdout_dti": 0.01268,
+   "binary": true,
+   "n_pos": 42000
+  },
+  {
+   "site": "GEMSDOE47",
+   "submission": "h60-lidarscarp-s2p0-20261007-nanoutside",
+   "owner_reported": 0.043,
+   "lbcal_family_cv": 0.0273,
+   "holdout_dti": 0.02823,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE48",
+   "submission": "h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+   "owner_reported": 0.2296,
+   "lbcal_family_cv": 0.2156,
+   "holdout_dti": 0.06007,
+   "binary": true,
+   "n_pos": 37723
+  },
+  {
+   "site": "GEMSDOE50",
+   "submission": "h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite",
+   "owner_reported": 0.0764,
+   "lbcal_family_cv": 0.0433,
+   "holdout_dti": 0.01778,
+   "binary": true,
+   "n_pos": 90000
+  },
+  {
+   "site": "GEMSDOE51",
+   "submission": "h53-twostage-20261008T040951Z-9a0b32c871",
+   "owner_reported": 0.1047,
+   "lbcal_family_cv": 0.0862,
+   "holdout_dti": 0.02646,
+   "binary": true,
+   "n_pos": 44069
+  },
+  {
+   "site": "GEMSDOE52",
+   "submission": "h97b-candidate",
+   "owner_reported": 0.0856,
+   "lbcal_family_cv": 0.0701,
+   "holdout_dti": 0.00487,
+   "binary": true,
+   "n_pos": 25400
+  },
+  {
+   "site": "GEMSDOE53",
+   "submission": "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+   "owner_reported": 0.0159,
+   "lbcal_family_cv": 0.0619,
+   "holdout_dti": 0.03467,
+   "binary": true,
+   "n_pos": 80000
+  },
+  {
+   "site": "GEMSDOE54",
+   "submission": "h54c-manifest-edge-20261009T025732Z-73454bc5",
+   "owner_reported": 0.0449,
+   "lbcal_family_cv": 0.0177,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 18880
+  },
+  {
+   "site": "55GEMSDOE",
+   "submission": "tensor_full-n16000-sep3-20261009T211747Z-nan",
+   "owner_reported": 0.029,
+   "lbcal_family_cv": 0.0255,
+   "holdout_dti": 0.02579,
+   "binary": true,
+   "n_pos": 16000
+  },
+  {
+   "site": "56GEMSDOE",
+   "submission": "h56-final-dotted-ridge-d2p8-20261009T190421Z",
+   "owner_reported": 0.0658,
+   "lbcal_family_cv": 0.0616,
+   "holdout_dti": 0.01295,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "57GEMSDOE",
+   "submission": "h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros",
+   "owner_reported": 0.0254,
+   "lbcal_family_cv": 0.0334,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 38000
+  },
+  {
+   "site": "58GEMSDOE",
+   "submission": "ml-binary-ridge-20261012T000000Z",
+   "owner_reported": 0.018,
+   "lbcal_family_cv": 0.0256,
+   "holdout_dti": 0.04177,
+   "binary": true,
+   "n_pos": 45355
+  },
+  {
+   "site": "59GEMSDOE",
+   "submission": "h59j-coherence-consensus-dotted-20261011T043000Z",
+   "owner_reported": 0.0499,
+   "lbcal_family_cv": 0.0547,
+   "holdout_dti": 0.01839,
+   "binary": true,
+   "n_pos": 30815
+  },
+  {
+   "site": "60GEMSDOE",
+   "submission": "h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+   "owner_reported": 0.0351,
+   "lbcal_family_cv": 0.0288,
+   "holdout_dti": 0.00426,
+   "binary": true,
+   "n_pos": 12000
+  },
+  {
+   "site": "61GEMSDOE",
+   "submission": "h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros",
+   "owner_reported": 0.0009,
+   "lbcal_family_cv": 0.0007,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 25285
+  },
+  {
+   "site": "61GEMSDOE",
+   "submission": "h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+   "owner_reported": 0.0751,
+   "lbcal_family_cv": 0.0417,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 40000
+  },
+  {
+   "site": "GEMSDOE63",
+   "submission": "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+   "owner_reported": 0.2303,
+   "lbcal_family_cv": 0.2234,
+   "holdout_dti": 0.00952,
+   "binary": true,
+   "n_pos": 54864
+  },
+  {
+   "site": "GEMSDOE65",
+   "submission": "sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros",
+   "owner_reported": 0.0431,
+   "lbcal_family_cv": 0.0349,
+   "holdout_dti": 0.03645,
+   "binary": true,
+   "n_pos": 39802
+  },
+  {
+   "site": "GEMSDOE66",
+   "submission": "gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+   "owner_reported": 0.1152,
+   "lbcal_family_cv": 0.1015,
+   "holdout_dti": 0.0083,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE67",
+   "submission": "h67a-orientip-lane-29447dots-20261012T021226Z-allfinite",
+   "owner_reported": 0.0356,
+   "lbcal_family_cv": 0.0265,
+   "holdout_dti": 0.00109,
+   "binary": true,
+   "n_pos": 29447
+  },
+  {
+   "site": "GEMSDOE67",
+   "submission": "ovtr-ml-cover-tau3p0-20261012-nan",
+   "owner_reported": 0.1426,
+   "lbcal_family_cv": 0.1849,
+   "holdout_dti": 0.13011,
+   "binary": true,
+   "n_pos": 167597
+  },
+  {
+   "site": "GEMSDOE68",
+   "submission": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+   "owner_reported": 0.0437,
+   "lbcal_family_cv": 0.1154,
+   "holdout_dti": 0.00027,
+   "binary": false,
+   "n_pos": 35000
+  },
+  {
+   "site": "GEMSDOE69",
+   "submission": "h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+   "owner_reported": 0.0053,
+   "lbcal_family_cv": 0.0174,
+   "holdout_dti": 0.00459,
+   "binary": true,
+   "n_pos": 38669
+  },
+  {
+   "site": "GEMSDOE70",
+   "submission": "gems70-p5-dual-submod300-oof38k-20261020",
+   "owner_reported": 0.2478,
+   "lbcal_family_cv": 0.1198,
+   "holdout_dti": 0.0024,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE71",
+   "submission": "gems71-hydro-conduit-38800-20261020T120000Z-zeros",
+   "owner_reported": 0.0558,
+   "lbcal_family_cv": 0.0537,
+   "holdout_dti": 0.00802,
+   "binary": true,
+   "n_pos": 38800
+  },
+  {
+   "site": "GEMSDOE72",
+   "submission": "gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros",
+   "owner_reported": 0.0492,
+   "lbcal_family_cv": 0.0631,
+   "holdout_dti": 0.00258,
+   "binary": true,
+   "n_pos": 27823
+  },
+  {
+   "site": "GEMSDOE73",
+   "submission": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+   "owner_reported": 0.1917,
+   "lbcal_family_cv": 0.1231,
+   "holdout_dti": 0.01921,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE74",
+   "submission": "gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros",
+   "owner_reported": 0.0669,
+   "lbcal_family_cv": 0.0475,
+   "holdout_dti": 0.00591,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE75",
+   "submission": "gems75-trlt-radon-loco-ridge-20261021-zeros",
+   "owner_reported": 0.1627,
+   "lbcal_family_cv": 0.1401,
+   "holdout_dti": 0.00031,
+   "binary": true,
+   "n_pos": 36800
+  },
+  {
+   "site": "GEMSDOE76",
+   "submission": "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+   "owner_reported": 0.1555,
+   "lbcal_family_cv": 0.1288,
+   "holdout_dti": 0.0007,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE76",
+   "submission": "gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+   "owner_reported": 0.2343,
+   "lbcal_family_cv": 0.1658,
+   "holdout_dti": 0.00167,
+   "binary": true,
+   "n_pos": 39200
+  },
+  {
+   "site": "GEMSDOE77",
+   "submission": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+   "owner_reported": 0.0964,
+   "lbcal_family_cv": 0.1229,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 201260
+  },
+  {
+   "site": "GEMSDOE78",
+   "submission": "gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros",
+   "owner_reported": 0.1564,
+   "lbcal_family_cv": 0.1481,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE80",
+   "submission": "gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+   "owner_reported": 0.0943,
+   "lbcal_family_cv": 0.0953,
+   "holdout_dti": 0.00092,
+   "binary": true,
+   "n_pos": 51667
+  },
+  {
+   "site": "GEMSDOE81",
+   "submission": "gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+   "owner_reported": 0.0041,
+   "lbcal_family_cv": 0.0259,
+   "holdout_dti": 0.09212,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE82",
+   "submission": "gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros",
+   "owner_reported": 0.1886,
+   "lbcal_family_cv": 0.1307,
+   "holdout_dti": 0.00386,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE83",
+   "submission": "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+   "owner_reported": 0.0573,
+   "lbcal_family_cv": 0.0904,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE84",
+   "submission": "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+   "owner_reported": 0.0132,
+   "lbcal_family_cv": 0.0424,
+   "holdout_dti": 0.02798,
+   "binary": false,
+   "n_pos": 58000
+  },
+  {
+   "site": "GEMSDOE85",
+   "submission": "gemsdoe85-hjcd-ventbridge-submod-zeros",
+   "owner_reported": 0.111,
+   "lbcal_family_cv": 0.0796,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 21334
+  },
+  {
+   "site": "GEMSDOE87",
+   "submission": "h87-h87-cmgep-20261022T060000Z-8f394f43",
+   "owner_reported": 0.05,
+   "lbcal_family_cv": 0.0425,
+   "holdout_dti": 0.00078,
+   "binary": true,
+   "n_pos": 35200
+  },
+  {
+   "site": "GEMSDOE89",
+   "submission": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+   "owner_reported": 0.0301,
+   "lbcal_family_cv": 0.0634,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE90",
+   "submission": "gems90-cnc-35000dots-20261024T084324Z",
+   "owner_reported": 0.0749,
+   "lbcal_family_cv": 0.0392,
+   "holdout_dti": 0.00013,
+   "binary": true,
+   "n_pos": 35000
+  },
+  {
+   "site": "GEMSDOE91",
+   "submission": "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros",
+   "owner_reported": 0.1367,
+   "lbcal_family_cv": 0.0946,
+   "holdout_dti": 0.0,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE91",
+   "submission": "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros",
+   "owner_reported": 0.1823,
+   "lbcal_family_cv": 0.1123,
+   "holdout_dti": 0.00451,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE92",
+   "submission": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
+   "owner_reported": 0.0255,
+   "lbcal_family_cv": 0.028,
+   "holdout_dti": 0.00494,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE40",
+   "submission": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1",
+   "owner_reported": 0.0355,
+   "lbcal_family_cv": 0.0359,
+   "holdout_dti": 0.01373,
+   "binary": false,
+   "n_pos": 40000
+  },
+  {
+   "site": "GEMSDOE40",
+   "submission": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+   "owner_reported": 0.0397,
+   "lbcal_family_cv": 0.0425,
+   "holdout_dti": 0.01469,
+   "binary": true,
+   "n_pos": 40000
+  },
+  {
+   "site": "62GEMSDOE",
+   "submission": "datum-lahontan-strain-gauge-defensible-440dots-zeros",
+   "owner_reported": 0.0,
+   "lbcal_family_cv": 0.0004,
+   "holdout_dti": 0.00025,
+   "binary": true,
+   "n_pos": 440
+  },
+  {
+   "site": "GEMSDOE24",
+   "submission": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+   "owner_reported": 0.0859,
+   "lbcal_family_cv": 0.0987,
+   "holdout_dti": 0.0222,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE25",
+   "submission": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+   "owner_reported": 0.0742,
+   "lbcal_family_cv": 0.0789,
+   "holdout_dti": 0.00663,
+   "binary": true,
+   "n_pos": 44832
+  },
+  {
+   "site": "GEMSDOE27",
+   "submission": "gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+   "owner_reported": 0.219,
+   "lbcal_family_cv": 0.1846,
+   "holdout_dti": 0.01397,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
+   "owner_reported": 0.0217,
+   "lbcal_family_cv": 0.0178,
+   "holdout_dti": 0.00183,
+   "binary": true,
+   "n_pos": 11082
+  },
+  {
+   "site": "GEMSDOE30",
+   "submission": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a",
+   "owner_reported": 0.1462,
+   "lbcal_family_cv": 0.128,
+   "holdout_dti": 0.10099,
+   "binary": true,
+   "n_pos": 44090
+  },
+  {
+   "site": "GEMSDOE27",
+   "submission": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite",
+   "owner_reported": 0.225,
+   "lbcal_family_cv": 0.1815,
+   "holdout_dti": 0.01434,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite",
+   "owner_reported": 0.0206,
+   "lbcal_family_cv": 0.0638,
+   "holdout_dti": 0.03264,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE33",
+   "submission": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+   "owner_reported": 0.0963,
+   "lbcal_family_cv": 0.0852,
+   "holdout_dti": 0.00205,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE36",
+   "submission": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+   "owner_reported": 0.1647,
+   "lbcal_family_cv": 0.1032,
+   "holdout_dti": 0.00309,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE64",
+   "submission": "h64-lidar-scarp-cv-20261011T220000Z",
+   "owner_reported": 0.0383,
+   "lbcal_family_cv": 0.0743,
+   "holdout_dti": 0.00865,
+   "binary": true,
+   "n_pos": 37654
+  },
+  {
+   "site": "GEMSDOE79",
+   "submission": "gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros",
+   "owner_reported": 0.0005,
+   "lbcal_family_cv": 0.0044,
+   "holdout_dti": 0.24474,
+   "binary": true,
+   "n_pos": 100000
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+{
+ "holdout": {
+  "candidate_id": "LBCAL-fold-local",
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "score_label": "HOLDOUT-DTI",
+  "b_visible_px": 0.0,
+  "n_withheld_positives": 22232,
+  "n_spatial_clusters": 140,
+  "n_bootstrap_reps": 1000,
+  "pooled_dti": 0.06305376247824314,
+  "ci95_cluster_bootstrap": [
+   0.05130531108001084,
+   0.0764736705864935
+  ],
+  "fold_mean_dti": 0.06400854756070498,
+  "per_quadrant_dti": {
+   "NW": 0.07337860824248896,
+   "NE": 0.05031618054059492,
+   "SW": 0.05288910698251374,
+   "SE": 0.07945029447722227
+  },
+  "folds": {
+   "draw20_fold0": {
+    "dti": 0.0678,
+    "coverage": 0.1907,
+    "tp": 364.4588,
+    "fp": 18857.5297,
+    "fn": 1546.5412,
+    "n_truth": 1911,
+    "emitted": 19124
+   },
+   "draw20_fold1": {
+    "dti": 0.0526,
+    "coverage": 0.1382,
+    "tp": 324.8815,
+    "fp": 21145.224,
+    "fn": 2026.1185,
+    "n_truth": 2351,
+    "emitted": 21390
+   },
+   "draw20_fold2": {
+    "dti": 0.0534,
+    "coverage": 0.1004,
+    "tp": 370.0281,
+    "fp": 19560.0225,
+    "fn": 3314.9719,
+    "n_truth": 3685,
+    "emitted": 19788
+   },
+   "draw20_fold3": {
+    "dti": 0.1091,
+    "coverage": 0.1844,
+    "tp": 594.6379,
+    "fp": 13760.2216,
+    "fn": 2630.3621,
+    "n_truth": 3225,
+    "emitted": 14125
+   },
+   "draw21_fold0": {
+    "dti": 0.0789,
+    "coverage": 0.2072,
+    "tp": 437.4515,
+    "fp": 18830.5451,
+    "fn": 1673.5485,
+    "n_truth": 2111,
+    "emitted": 19159
+   },
+   "draw21_fold1": {
+    "dti": 0.048,
+    "coverage": 0.1295,
+    "tp": 293.4093,
+    "fp": 21198.3179,
+    "fn": 1971.5907,
+    "n_truth": 2265,
+    "emitted": 21400
+   },
+   "draw21_fold2": {
+    "dti": 0.0524,
+    "coverage": 0.1002,
+    "tp": 359.1858,
+    "fp": 19569.1239,
+    "fn": 3224.8142,
+    "n_truth": 3584,
+    "emitted": 19788
+   },
+   "draw21_fold3": {
+    "dti": 0.0498,
+    "coverage": 0.0827,
+    "tp": 256.3252,
+    "fp": 13072.8516,
+    "fn": 2843.6748,
+    "n_truth": 3100,
+    "emitted": 13241
+   }
+  }
+ },
+ "canary": {
+  "rule": "each feature alone vs withheld positives; max(AUC, 1-AUC) > 0.90 => leakage",
+  "worst_separation": 0.8084,
+  "worst_feature": "d_visible_px@draw21_fold0",
+  "leakage": false,
+  "per_cell": [
+   {
+    "cell": "draw20_fold0",
+    "n_truth": 1911,
+    "dots": 19124,
+    "topo_rank": 0.581,
+    "crest": 0.5045,
+    "lidar_rank": 0.5581,
+    "mag_rank": 0.4691,
+    "d_sgmc_px": 0.2841,
+    "slope_rank": 0.6182,
+    "d_visible_px": 0.1918,
+    "lbcal_pi": 0.4993
+   },
+   {
+    "cell": "draw20_fold1",
+    "n_truth": 2351,
+    "dots": 21390,
+    "topo_rank": 0.5104,
+    "crest": 0.5022,
+    "lidar_rank": 0.5526,
+    "mag_rank": 0.4878,
+    "d_sgmc_px": 0.3083,
+    "slope_rank": 0.5479,
+    "d_visible_px": 0.2405,
+    "lbcal_pi": 0.532
+   },
+   {
+    "cell": "draw20_fold2",
+    "n_truth": 3685,
+    "dots": 19788,
+    "topo_rank": 0.5161,
+    "crest": 0.4921,
+    "lidar_rank": 0.5014,
+    "mag_rank": 0.5434,
+    "d_sgmc_px": 0.4079,
+    "slope_rank": 0.5065,
+    "d_visible_px": 0.2511,
+    "lbcal_pi": 0.4472
+   },
+   {
+    "cell": "draw20_fold3",
+    "n_truth": 3225,
+    "dots": 14125,
+    "topo_rank": 0.6015,
+    "crest": 0.5074,
+    "lidar_rank": 0.5253,
+    "mag_rank": 0.5068,
+    "d_sgmc_px": 0.2996,
+    "slope_rank": 0.6629,
+    "d_visible_px": 0.3106,
+    "lbcal_pi": 0.5324
+   },
+   {
+    "cell": "draw21_fold0",
+    "n_truth": 2111,
+    "dots": 19159,
+    "topo_rank": 0.6352,
+    "crest": 0.5052,
+    "lidar_rank": 0.6065,
+    "mag_rank": 0.5601,
+    "d_sgmc_px": 0.2342,
+    "slope_rank": 0.6639,
+    "d_visible_px": 0.1916,
+    "lbcal_pi": 0.5028
+   },
+   {
+    "cell": "draw21_fold1",
+    "n_truth": 2265,
+    "dots": 21400,
+    "topo_rank": 0.4969,
+    "crest": 0.4916,
+    "lidar_rank": 0.4973,
+    "mag_rank": 0.436,
+    "d_sgmc_px": 0.2383,
+    "slope_rank": 0.5486,
+    "d_visible_px": 0.2438,
+    "lbcal_pi": 0.547
+   },
+   {
+    "cell": "draw21_fold2",
+    "n_truth": 3584,
+    "dots": 19788,
+    "topo_rank": 0.54,
+    "crest": 0.4959,
+    "lidar_rank": 0.5656,
+    "mag_rank": 0.518,
+    "d_sgmc_px": 0.4074,
+    "slope_rank": 0.537,
+    "d_visible_px": 0.2822,
+    "lbcal_pi": 0.4546
+   },
+   {
+    "cell": "draw21_fold3",
+    "n_truth": 3100,
+    "dots": 13241,
+    "topo_rank": 0.4971,
+    "crest": 0.4956,
+    "lidar_rank": 0.5494,
+    "mag_rank": 0.4759,
+    "d_sgmc_px": 0.3551,
+    "slope_rank": 0.5231,
+    "d_visible_px": 0.2941,
+    "lbcal_pi": 0.4503
+   }
+  ]
+ }
+}
