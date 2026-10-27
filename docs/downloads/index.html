@@ -1,15 +1,12 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Research-only artifacts</title><style>body{font:16px/1.6 system-ui,max-width:55rem;margin:3rem auto;padding:1rem;color:#18342b}a{color:#176b50}code{word-break:break-all}.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.8rem;font-weight:600}.neg{background:#5a2230;color:#ffd7de}.ok{background:#1d4430;color:#c9f3dc}.warn{background:#4d3a17;color:#ffe2b0}</style></head><body>
-<h1>DO NOT SUBMIT FOR SCORE</h1>
-<p><strong>No competition file is cleared for a weekly slot.</strong> Every file in this directory is a research artifact. The automated evidence behind each one — not the filename — decides whether it could ever be promoted, and a separate selector owns any real upload.</p>
-<h2>2026-10-27 CSPES lane artifact (generated, not copied)</h2>
-<p><code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif</code> (+ single-TIFF <code>.zip</code> and writer receipt <code>.json</code>).</p>
-<ul>
-<li><span class="tag ok">format validator PASS</span> single float32 band, EPSG:32611, exact sample shape/transform, zero NaN, all values in [0,1], nothing outside the footprint or on the catalogue.</li>
-<li><span class="tag ok">unique vs 117 sparse historical masks</span> no exact duplicate; max |Spearman| 0.108; max 3-px overlap 62.3% (&le; 70% gate).</li>
-<li><span class="tag warn">literal dense-witness rule FAIL</span> the space-filling 17GEMSDOE witness overlaps every nonempty raster 100% (IR-01); not exempted.</li>
-<li><span class="tag neg">negative holdout</span> HOLDOUT-DTI 0.0257 vs 0.0992 incumbent (paired 95% CI &minus;0.0883 to &minus;0.0587); do not promote to a slot.</li>
-</ul>
-<p>Full evidence, the nine-site executive table and portal instructions: <a href="../cspes/index.html">CSPES lane summary</a> · <a href="../cspes/how-to-submit.html">how to submit (only after selector approval)</a> · <a href="../cspes/data/cspes_run_card.json">run card JSON</a>.</p>
-<h2>Older research artifacts</h2>
-<p>The parallel 35,000-dot step-over candidate and earlier files fail the literal registry rule and/or the mirrored-footprint check; see the <a href="../evidence.html">independent artifact audit</a> and <a href="../index.html">the current decision dashboard</a>.</p>
-</body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Downloads</title><style>body{font:16px/1.6 system-ui;max-width:52rem;margin:3rem auto;padding:1rem;color:#ddd;background:#0d1117}a{color:#58a6ff}code{background:#1f2630;padding:1px 5px;border-radius:4px}</style></head>
+<body><h1>Downloads</h1>
+<p><b>Cleared file &mdash; OK to download and submit:</b><br>
+<a href="wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif" download>wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif</a>
+&middot; <a href="wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.zip" download>.zip twin</a>
+<div class="small">SHA-256 <code>610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2</code></div></p>
+<p><b>Research only — a parallel lane, not cleared:</b> <code>wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif</code> (geophysical edge stability; its holdout is negative, HOLDOUT-DTI 0.0257 vs 0.0992). Details: <a href="../cspes/index.html">CSPES lane</a>.</p>
+<p><b>Research only &mdash; do not submit:</b> <code>wb-gems-doe-3-latest-submission-zeros.tif</code>, <code>wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif</code>, <code>wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif</code>. These are earlier lanes; the 35,000-dot step-over
+file lies 98.55% within 3 px of a registered raster and is not unique under this project's gate.</p>
+<p><a href="../executive-summary.html">Executive summary and submission steps</a> &middot;
+<a href="../index.html">Start</a></p></body></html>
