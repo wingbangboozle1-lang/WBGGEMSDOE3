@@ -209,3 +209,14 @@ It produced `submission/wbggems3-lst1-hybrid-20261026-0a0229da-zeros.tif` (32,81
 (paired Δ −0.0325, 95 % CI −0.041 to −0.024) — verdict **negative**, consistent with this README's **DO NOT SUBMIT** decision. It is **not** a cleared file: its uniqueness holds only under two
 documented deviations from the literal registry rule (whole-footprint feature layers excluded; excess-over-null for lattice-like references), and the project's stricter reading above declines such exemptions.
 It has no organizer-confirmed score and no slot was selected. Use it for learning (e.g. the ledger-model calibration, the uniqueness-price decomposition in the lane site's Evidence page), not for upload.
+
+## Session 2026-10-27 — verification and blocked request
+
+- Status: **DO NOT SUBMIT.** No GeoTIFF was generated or cleared the gate; experiments 0 of 3; slots 0.
+- Start here: [verification record](knowledge/verification-2026-10-27.md) (line-by-line, with official
+  links), [irregularities IR-09 to IR-19](knowledge/review-and-irregularities-2026-10-27.md),
+  [requirements status](knowledge/requirements-status-2026-10-27.md), and the
+  [session run card](evidence/session_run_card_2026-10-27.json).
+- Re-run the checks locally with `.venv/bin/python scripts/verify_2026_10_27.py`
+  (needs the restored shared-data cache from `scripts/restore_shared_data.sh`).
+- Live leaderboard observation (public split, not a receipt): [evidence/leaderboard_observation_2026-10-27.json](evidence/leaderboard_observation_2026-10-27.json).
