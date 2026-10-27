@@ -607,7 +607,7 @@ def main() -> int:
         "holdout_dti": HOLD, "uniqueness_pass": UNIQ["passes"],
         "focus_champion_owner_reported": 0.2778,
         "public_leaderboard": LEADER["best_public_dti"],
-        "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_utc": CARD["run_utc"],  # the run card's own timestamp keeps the build reproducible
     }, indent=1))
     print("wrote docs/data/decision.json")
     run_card = {
@@ -639,9 +639,9 @@ def main() -> int:
             "shared_evaluator_and_writer": "emission and validation are this lane's own code, not the 57GEMSDOE template",
             "separate_selector_approval": "not requested; no slot was spent",
         },
-        "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_utc": CARD["run_utc"],  # the run card's own timestamp keeps the build reproducible
     }
-    (DOCS / "data" / "run_card.json").write_text(json.dumps(run_card, indent=1))
+    (DOCS / "data" / "run_card.json").write_text(json.dumps(run_card, indent=1) + "\n")
     print("wrote docs/data/run_card.json (verdict promote-with-caveat)")
     gate = {
         "schema": "gems-release-gate-v1",
@@ -684,3 +684,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
