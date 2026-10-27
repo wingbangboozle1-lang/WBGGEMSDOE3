@@ -56,11 +56,12 @@ def layout(title: str, current: str, body: str) -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Executive summary and one-click unique GeoTIFF submission for the DOE GEMS Prize.">
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
 <title>{esc(title)} · GEMS Field Notes</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/status.js" defer></script>
 {STYLE}</head>
 <body><header class="topbar"><div class="wrap navrow"><a class="brand" href="index.html"><span class="brandmark">⌁</span><span>GEMS FIELD NOTES<small>FAULT DISCOVERY / SUBMISSION DECISION</small></span></a>
 <nav class="navigation" aria-label="Main navigation">{links}</nav><span class="nav-status"><i class="dot"></i> 1 new file cleared*</span></div></header>
-<main>{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span></div></footer></body></html>'''
+<main>{body}</main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span><div class="wrap mini" style="padding:0 0 14px">Parallel lanes (HCE, CSPES, RFL, LST1) remain research-only — Global release gate: DO NOT SUBMIT their artifacts; see <a href="hce/index.html">HCE evidence ↗</a>. Their LEDGER-INVERSION ESTIMATE is not used for this file; this decision uses HOLDOUT-DTI and a separately labelled PROJECTION.</div></div></footer></body></html>'''
 
 
 def load():
@@ -186,6 +187,7 @@ def guide(d: dict) -> str:
 <li>Competition rasters are hash-pinned public mirrors, not organizer-authenticated downloads. Band semantics (notably <code>tc</code>) are not independently verified against official metadata.</li>
 <li>The organizer's “null/NaN outside bounds” wording conflicts with an all-finite writer; two encodings are supplied. Portal acceptance has not been tested.</li>
 <li>The Final Prize Round expands labels by expert review of all submissions; a locally lower-scoring but geologically novel prediction could be re-scored differently. Organizers explicitly declined to describe the expert labelling sources.</li>
+<li><strong>Parallel lanes are separate experiments.</strong> HCE-1, CSPES, RFL and TDE30k published their own pages under <a href="hce/index.html">docs/hce/</a>, <a href="cspes/index.html">docs/cspes/</a> and their own JSON cards. Their "SUBMIT-WITH-CAVEAT" or negative gates refer to <em>different rasters</em>, not to this SGCE file. Those artifacts are research-only; the decision and download on this page are the repository-wide recommendation.</li>
 </ul></div></section></div>'''
 
 
@@ -257,7 +259,7 @@ def main() -> None:
     zero = next(k for k in b["files"] if k.endswith("-zeros.tif"))
     nan = next(k for k in b["files"] if k.endswith("-nan.tif"))
     zipp = next(k for k in b["files"] if k.endswith(".zip"))
-    (DOCS / "downloads" / "index.html").write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Approved submission download · GEMS Field Notes</title><link rel="stylesheet" href="../assets/styles.css">{STYLE}</head><body><div class="wrap" style="padding:32px 0"><h1>Approved submission download</h1><div class="bigverdict"><h2>✅ {esc(zero)}</h2><p>Primary, all-finite, values in [0,1]. SHA-256 <code>{esc(b['files'][zero]['sha256'])}</code>.</p><a class="bigbtn" href="{esc(zero)}" download>↓ Download primary TIF</a><a class="bigbtn secondary" href="{esc(nan)}" download>NaN-outside variant</a><a class="bigbtn secondary" href="{esc(zipp)}" download>ZIP</a></div><p>Older files in this directory are archived research artifacts and are <strong>not</strong> approved submissions. <a href="../executive-summary.html">Read the executive summary and exact submission steps →</a></p></div></body></html>''', encoding="utf-8")
+    (DOCS / "downloads" / "index.html").write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Approved submission download · GEMS Field Notes</title><link rel="stylesheet" href="../assets/styles.css">{STYLE}</head><body><div class="wrap" style="padding:32px 0"><h1>Approved submission download</h1><div class="bigverdict"><h2>✅ {esc(zero)}</h2><p>Primary, all-finite, values in [0,1]. SHA-256 <code>{esc(b['files'][zero]['sha256'])}</code>.</p><a class="bigbtn" href="{esc(zero)}" download>↓ Download primary TIF</a><a class="bigbtn secondary" href="{esc(nan)}" download>NaN-outside variant</a><a class="bigbtn secondary" href="{esc(zipp)}" download>ZIP</a></div><p>Older files in this directory are archived research artifacts: <strong>DO NOT SUBMIT</strong> them. Only the single SGCE file above is cleared. <a href="../executive-summary.html">Read the executive summary and exact submission steps →</a></p></div></body></html>''', encoding="utf-8")
     print(f"Built {len(pages)} pages + download index from session-2026-10-27 evidence.")
 
 

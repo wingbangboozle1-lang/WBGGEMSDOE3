@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Executive summary and one-click unique GeoTIFF submission for the DOE GEMS Prize.">
+<meta name="gemsdoe-decision" content="SUBMIT-WITH-CAVEAT">
 <title>Overview · GEMS Field Notes</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/status.js" defer></script>
 
 <style>
@@ -90,4 +91,4 @@ All automated local gates PASS. <span class="tagpill">NO WEEKLY SLOT SPENT HERE<
 <li><strong>Holdout vs projection disagreement (important).</strong> The released file wins the matched holdout by +0.0683 but the ledger-calibrated projection is only 0.0669. Every high-scoring raster in the 117-file ledger overlaps the same H19-5 network, so the projection has <em>no example of a high-scoring unique construction</em> and extrapolates poorly. A dot-cap scan (30k–80k dots) did not rescue the projection. Treat the holdout as the protocol's promotion gate and the projection as an unreliable lower-band guess; only an organizer receipt can settle it. <a href="data/session2_projection.json" download>Inspect the projection evidence ↓</a></li>
 <li><strong>Mirror provenance.</strong> Competition rasters were restored from hash-pinned public GitHub mirrors, not an authenticated DrivenData download; hashes prove consistency, not official origin.</li>
 <li><strong>Outside-footprint convention.</strong> The official text says null/NaN outside bounds while the mirrored sample is NaN outside an irregular finite footprint. Both encodings of the same prediction are supplied and validated. Portal acceptance is unverified.</li>
-</ul><a href="evidence.html">See the full evidence and run card →</a></div></section></div></main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span></div></footer></body></html>
+</ul><a href="evidence.html">See the full evidence and run card →</a></div></section></div></main><footer class="footer"><div class="wrap footerrow"><span>GEMS FIELD NOTES · Independent research, not affiliated with DOE or DrivenData.</span><span>Evidence first. No submission slot was spent.</span><div class="wrap mini" style="padding:0 0 14px">Parallel lanes (HCE, CSPES, RFL, LST1) remain research-only — Global release gate: DO NOT SUBMIT their artifacts; see <a href="hce/index.html">HCE evidence ↗</a>. Their LEDGER-INVERSION ESTIMATE is not used for this file; this decision uses HOLDOUT-DTI and a separately labelled PROJECTION.</div></div></footer></body></html>
