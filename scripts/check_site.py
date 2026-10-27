@@ -46,6 +46,38 @@ def main():
     present = {page.name for page in DOCS.glob('*.html')}
     if not required <= present:
         errors.append(f'missing required generated pages: {sorted(required - present)}')
+
+    # CSPES lane subtree: its own pages, local links, negative banner and run-card consistency.
+    lane = DOCS / 'cspes'
+    required_lane = {'index.html', 'how-to-submit.html'}
+    lane_pages = set(p.name for p in lane.glob('*.html')) if lane.is_dir() else set()
+    if not required_lane <= lane_pages:
+        errors.append(f'missing CSPES lane pages: {sorted(required_lane - lane_pages)}')
+    for page in sorted(lane.glob('*.html')) if lane.is_dir() else []:
+        p = Links()
+        p.feed(page.read_text())
+        text = ' '.join(p.text)
+        if 'Not cleared for upload' not in text and 'NOT OK TO SUBMIT' not in text:
+            errors.append(f'{page.relative_to(DOCS)}: missing negative lane banner')
+        for link in p.targets:
+            parsed = urlparse(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:
+                continue
+            target = (page.parent / unquote(parsed.path)).resolve()
+            if not target.is_relative_to(DOCS.resolve()) or not target.exists():
+                errors.append(f'{page.relative_to(DOCS)}: missing/unsafe local link {link}')
+    lane_card_path = lane / 'data/cspes_run_card.json'
+    if lane_card_path.is_file():
+        lc = json.loads(lane_card_path.read_text())
+        if lc.get('verdict') != 'negative' or lc.get('selector_approval') or lc.get('slots_spent') != 0:
+            errors.append('CSPES run card must be negative, unapproved and spend zero slots')
+        if not lc.get('validator_output', {}).get('independent_gemsw_validate', {}).get('passed'):
+            errors.append('CSPES run card lost its independent validator PASS')
+        tif = DOCS / lc['files']['tif'].removeprefix('docs/')
+        if not tif.is_file():
+            errors.append(f'CSPES downloadable TIF missing: {tif}')
+    else:
+        errors.append('missing CSPES run card in site data')
     if errors:
         print('\n'.join(errors), file=sys.stderr)
         return 1
