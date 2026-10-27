@@ -50,16 +50,19 @@ def main() -> int:
     verdict = card.get('verdict')
     if verdict not in {'promote', 'negative'}:
         errors.append(f'run card verdict invalid: {verdict!r}')
+    from build_executive import approval_errors
+    if verdict == 'promote' and approval_errors(card):
+        errors.append('promotion lacks mandatory explicit gates: ' + ', '.join(approval_errors(card)))
     expected = 'SUBMIT' if verdict == 'promote' else 'DO-NOT-SUBMIT'
 
-    for name in PAGES:
+    for name in (*PAGES, 'downloads/index.html'):
         page = DOCS / name
         if not page.exists():
             errors.append(f'missing page {name}')
             continue
         p = Links()
         p.feed(page.read_text())
-        if p.meta.get('decision') != expected:
+        if name in PAGES and p.meta.get('decision') != expected:
             errors.append(f'{name}: decision meta {p.meta.get("decision")!r} != {expected!r}')
         for link in p.targets:
             parsed = urlparse(link)
@@ -69,6 +72,8 @@ def main() -> int:
             if not target.is_relative_to(DOCS.resolve()) or not target.exists():
                 errors.append(f'{name}: missing/unsafe local link {link}')
         body = ' '.join(p.text)
+        if verdict == 'negative' and 'OK TO DOWNLOAD AND SUBMIT' in body:
+            errors.append(f'{name}: negative verdict but upload approval shown')
         if verdict == 'promote':
             if 'OK TO DOWNLOAD AND SUBMIT' not in body and 'Download .tif' not in body:
                 errors.append(f'{name}: promote verdict but no submit action shown')
