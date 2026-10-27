@@ -45,7 +45,7 @@ def test_every_page_carries_the_same_decision_as_the_run_card():
 
 
 def test_cleared_download_is_published_and_byte_identical():
-    assert CARD["verdict"] == "promote"
+    assert CARD["verdict"] == "negative"
     name = Path(CARD["download"]["tif"]).name
     served = DOCS / "downloads" / name
     assert served.exists()
@@ -120,3 +120,23 @@ def test_downloads_index_separates_the_two_lanes():
     assert "wbggems3-cspes-" in index
     # the CSPES file is named under a veto heading, never as the cleared download
     assert index.index("wbggems3-cspes-") > index.index("Research only")
+
+
+def test_promotion_requires_all_explicit_boolean_gates():
+    from build_executive import approval_errors
+    assert approval_errors({"verdict": "promote"})
+    gates = {key: True for key in approval_errors({})}
+    assert not approval_errors({"promotion_gates": gates})
+    for key in gates:
+        for bad in (False, None, "true", 1):
+            changed = dict(gates, **{key: bad})
+            assert key in approval_errors({"promotion_gates": changed})
+
+
+def test_negative_pages_never_invite_upload():
+    for name in PAGES:
+        text = (DOCS / name).read_text()
+        assert "DO NOT SUBMIT" in text
+        assert "OK TO DOWNLOAD AND SUBMIT" not in text
+        assert "Estimated leaderboard DTI" not in text
+    assert CARD["promotion_gates"]["literal_registry_final_dots"] is False

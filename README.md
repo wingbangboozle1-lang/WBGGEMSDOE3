@@ -1,38 +1,11 @@
 # WBGGEMSDOE3 — DOE GEMS Prize research and submission audit
 
-> **CURRENT DECISION: DO NOT SUBMIT.** The governing `evidence/run_card.json` is negative: a registered raster is positive on every cell of the allowed footprint, so every nonempty candidate has 100% directed overlap within 3 px and must stop under the literal protocol. No current candidate was generated or cleared. Existing TIFs and positive site banners are historical artifacts, not approval.
->
-> **Important status conflict:** this README and the generated pages previously advertised a TIFF as ready and cited an estimated leaderboard DTI of 0.428. Those claims conflict with the current negative run card and are not an organizer score or current submission authorization. No defensible leaderboard estimate is presently available. See [the current repository review](knowledge/review-current-2026-10-27.md) for the discrepancies, evidence limits and safe next steps. Do not rely on any existing download link until the conflicting status artifacts are reconciled.
-
-> The parallel **CSPES lane** (geophysical-edge-stability, merged from PR #21) produced its own new,
-> format-valid GeoTIFF whose holdout is **negative** (HOLDOUT-DTI 0.0257 vs 0.0992 for the matched
-> incumbent): it is downloadable for research but **not** cleared for a slot —
-> [lane site](docs/cspes/index.html) · [lane run card](evidence/cspes_run_card.json).
->
-> **One-click download and the executive summary: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/>**
-> [site source](docs/index.html) · [executive summary](docs/executive-summary.html) ·
-> [science](docs/research.html) · [evidence](docs/evidence.html) · [run card](evidence/gemsdoe_run_card.json)
->
-> The full verbatim standing brief is preserved in [PROJECT_PROMPT.md](PROJECT_PROMPT.md); read it plus this
-> README at every session start.
-
-> **PARALLEL LANE HCE-1 (branch `arena/50217887-wbggemsdoe3`, 2026-10-27): a second
-> independently audited unique TIF.**
-> [HCE-1 executive summary](docs/hce/index.html) ·
-> [one-click TIF](docs/hce/downloads/wbggems3-hce1-latest.tif) ·
-> [single-TIFF ZIP](docs/hce/downloads/wbggems3-hce1-latest.zip) ·
-> [exactly how to submit](docs/hce/how-to-submit.html) ·
-> [run card](evidence/hce_run_card.json) · [limitations](docs/hce/limitations.html).
-> It passes the 13-point saved-byte validator, the single-feature leakage canary, a
-> 145-file registry audit under the preregistered **content-aware** reading of the
-> uniqueness rule (IR-09), and a paired fold-local HOLDOUT-DTI win
-> (0.1292, 95% CI 0.1160–0.1426, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld
-> positives) over the replayed 0.0992 champion proxy.
-> **No organizer-confirmed score.** Its owner-reported-ledger projection (0.082) does
-> not support beating 0.2778; the literal finite-positive registry reading remains
-> vacuous and is reported as IR-09. No weekly slot was used. This lane is an
-> independent research deliverable, not a replacement for the repository-wide
-> selector decision above.
+> **CURRENT DECISION: DO NOT SUBMIT.** The earlier skarpline approval is withdrawn: an external-catalogue proxy and fitted forecast do not satisfy the required fold-local holdout or literal registry gates.
+> Existing TIFFs remain **research-only downloads**, not newly generated submissions in this session.
+> [Executive summary](docs/executive-summary.html) · [three-pass review and research queue](knowledge/session-review-8c70511f.md) · [decision evidence](evidence/gemsdoe_run_card.json).
+> CSPES lane is negative; HCE-1's method-level win does not authorize its repaired artifact under the literal rule.
+> Read [PROJECT_PROMPT.md](PROJECT_PROMPT.md) and this README every session. No weekly slot has been spent by this review.
+> Status conflict independently identified by the parallel [current review](knowledge/review-current-2026-10-27.md); this change reconciles the generated top-level pages as well.
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal
