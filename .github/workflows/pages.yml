@@ -22,6 +22,11 @@ jobs:
           python-version: '3.11'
       - name: Refresh public leaderboard or retain a marked stale snapshot
         run: python scripts/refresh_feed.py
+      - name: Refresh nine source HEADs or mark failed checks unknown
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/refresh_upstream.py
       - name: Render site from evidence and check links
         run: python scripts/build_executive.py && python scripts/check_site.py
       # The repository still has branch-based Pages enabled. Keep the same

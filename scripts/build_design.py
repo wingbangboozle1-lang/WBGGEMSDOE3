@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""EXP0 (shared): bins for every independent field + leakage canary + ledger design matrices.
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+EXP0 (shared): bins for every independent field + leakage canary + ledger design matrices.
 
 Outputs (git-ignored cache): data/work/bins.npz, data/work/design.npz ; committed: evidence/field_canary.json
 """
 from __future__ import annotations
+
+# Preserved below for provenance, but no longer executable or importable.
+raise SystemExit("BLOCKED: historical canaries are not computed on the required withheld folds. See evidence/run_card.json.")
 import json, sys, time, hashlib
 from pathlib import Path
 import numpy as np

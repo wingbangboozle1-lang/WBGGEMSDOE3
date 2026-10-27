@@ -13,17 +13,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+# The previous renderer is preserved verbatim as build_site_legacy so that the CSPES lane
+# and the historical dashboards keep their helpers (overview, guide, historical_h6_section).
+# None of its page writers are called any more: the four top-level pages are built by
+# build_executive.py from evidence JSON.
+from build_site_legacy import (  # noqa: E402,F401
+    decision, esc, guide, historical_h6_section, human_age, layout, overview,
+)
 
-def human_age(feed: dict) -> str:
-    if not feed.get("last_success_utc"):
-        return "No successful observation"
-    try:
-        datetime.fromisoformat(feed["last_success_utc"])
-    except (ValueError, TypeError):
-        return "Invalid observation timestamp"
-    prefix = "Latest refresh failed · last success " if feed.get("last_attempt_error") else "Last checked · "
-    return prefix + feed["last_success_utc"].replace("+00:00", " UTC")
+__all__ = ["build", "main", "human_age", "overview", "guide", "historical_h6_section"]
 
 
 def build() -> int:

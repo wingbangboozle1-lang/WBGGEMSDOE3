@@ -97,3 +97,25 @@ def test_pages_workflow_publishes_the_docs_layout():
     assert "cp -a docs .cache/pages-release/docs" in workflow
     assert "path: .cache/pages-release" in workflow
     assert "build_executive.py" in workflow
+
+
+def test_parallel_cspes_lane_keeps_its_own_negative_verdict():
+    """Two lanes, two decisions: this repo clears the skarpline file only."""
+    lane = DOCS / "cspes"
+    assert (lane / "index.html").exists()
+    text = (lane / "index.html").read_text()
+    assert "Not cleared for upload" in text or "NOT OK TO SUBMIT" in text
+    card = json.loads((lane / "data" / "cspes_run_card.json").read_text())
+    assert card["verdict"] == "negative"
+    readme = (ROOT / "README.md").read_text()
+    assert "CSPES lane" in readme and "negative" in readme.lower()
+    assert "CURRENT DECISION: SUBMIT" in readme
+
+
+def test_downloads_index_separates_the_two_lanes():
+    index = (DOCS / "downloads" / "index.html").read_text()
+    cleared = Path(CARD["download"]["tif"]).name
+    assert index.index(cleared) < index.index("Research only")
+    assert "wbggems3-cspes-" in index
+    # the CSPES file is named under a veto heading, never as the cleared download
+    assert index.index("wbggems3-cspes-") > index.index("Research only")

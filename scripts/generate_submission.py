@@ -1,4 +1,6 @@
-"""WB-GEMS-DOE-3 unique submission generator.
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+WB-GEMS-DOE-3 unique submission generator.
 
 Contrarian, geologically-grounded hypothesis (not previously implemented in this
 repo or the GEMSDOE sites):

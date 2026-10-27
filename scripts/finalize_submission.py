@@ -1,4 +1,6 @@
-"""Finalize the generated WB-GEMS-DOE-3 submission: format audit + lane-uniqueness audit + run card.
+"""ARCHIVED / DISABLED: the historical description below is not an approval or verified protocol result.
+
+Finalize the generated WB-GEMS-DOE-3 submission: format audit + lane-uniqueness audit + run card.
 
 Run this after scripts/generate_submission.py. It audits the *saved bytes* of the
 downloadable -zeros.tif (and its -nan twin), checks lane uniqueness against every

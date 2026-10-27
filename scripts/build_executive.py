@@ -299,7 +299,7 @@ not of the problem.</b></p>
 <tr><td>CRS EPSG:32611 matches</td><td class="yes">PASS</td></tr>
 <tr><td>Geotransform (243350, 4508550, 100 m) matches</td><td class="yes">PASS</td></tr>
 <tr><td>All values finite (no NaN anywhere)</td><td class="yes">PASS</td></tr>
-<tr><td>All values in [0, 1] — the exact error the portal returned before</td><td class="yes">PASS</td></tr>
+<tr><td>All values in [0, 1] — the state that produced no "Predicted values must be in range [0, 1]" rejection</td><td class="yes">PASS</td></tr>
 <tr><td>Zero mass outside the scored footprint</td><td class="yes">PASS</td></tr>
 <tr><td>Positive cells</td><td>{card['validator']['n_positive']:,} ({100*card['validator']['n_positive']/5167373:.2f}% of the footprint)</td></tr>
 <tr><td>Uniqueness vs 20 archived rasters</td><td class="yes">PASS — none blocked</td></tr>
@@ -630,14 +630,34 @@ gain in the emitter sweep — and the uniqueness audit, but it is over budget.</
     shutil.copy2(ROOT / "evidence" / "gemsdoe_run_card.json", DATA / "gemsdoe_run_card.json")
     # publish the run card where the site and the checker read it
     (DATA / "run_card.json").write_text(json.dumps(card, indent=1))
-    # Legacy rasters stay at their original paths (they are cited by the LST1 lane docs and by
-    # evidence pages). They are never advertised as submittable; the download index labels them.
-    legacy_note = DOCS / "downloads" / "LEGACY-DO-NOT-SUBMIT.txt"
-    legacy_note.write_text(
+    # Downloads index: one cleared file, one clearly-vetoed parallel lane, and the legacy rasters.
+    legacy_files = sorted(p.name for p in (DOCS / "downloads").glob("wb-gems-doe-3-*.tif"))
+    cspes = sorted((DOCS / "downloads").glob("wbggems3-cspes-*.tif"))
+    legacy_items = "".join(f"<code>{n}</code>, " for n in legacy_files).rstrip(", ")
+    cspes_block = ""
+    if cspes:
+        cspes_block = ("<p><b>Research only — a parallel lane, not cleared:</b> "
+                       f"<code>{cspes[0].name}</code> (geophysical edge stability; its holdout is negative, "
+                       "HOLDOUT-DTI 0.0257 vs 0.0992). Details: "
+                       "<a href=\"../cspes/index.html\">CSPES lane</a>.</p>")
+    (DOCS / "downloads" / "LEGACY-DO-NOT-SUBMIT.txt").write_text(
         "LEGACY / RESEARCH ONLY - DO NOT SUBMIT.\n"
         "wb-gems-doe-3-*.tif are earlier lanes. The 35,000-dot step-over file was measured to lie 98.55%\n"
         "within 3 px of a registered raster and is not unique under this project's gate. The one cleared\n"
-        "file is wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif - see ../index.html.\n")
+        "file is " + tif_name + " - see ../index.html.\n")
+    (DOCS / "downloads" / "index.html").write_text(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Downloads</title><style>body{{font:16px/1.6 system-ui;max-width:52rem;margin:3rem auto;padding:1rem;color:#ddd;background:#0d1117}}a{{color:#58a6ff}}code{{background:#1f2630;padding:1px 5px;border-radius:4px}}</style></head>
+<body><h1>Downloads</h1>
+<p><b>Cleared file &mdash; OK to download and submit:</b><br>
+<a href="{tif_name}" download>{tif_name}</a>
+&middot; <a href="{zip_name}" download>.zip twin</a>
+<div class="small">SHA-256 <code>{sha}</code></div></p>
+{cspes_block}
+<p><b>Research only &mdash; do not submit:</b> {legacy_items}. These are earlier lanes; the 35,000-dot step-over
+file lies 98.55% within 3 px of a registered raster and is not unique under this project's gate.</p>
+<p><a href="../executive-summary.html">Executive summary and submission steps</a> &middot;
+<a href="../index.html">Start</a></p></body></html>
+""")
     print("wrote docs/index.html, executive-summary.html, research.html, evidence.html, data/run_card.json")
     print(f"download: docs/downloads/{tif_name} ({size_kb:.0f} KB) sha256={sha[:16]}…")
     return 0

@@ -1,8 +1,10 @@
 # Working agreement
 
-At the start of every session read `README.md`, `knowledge/preregistration-2026-10-26.md`,
-`knowledge/review-and-irregularities-2026-10-26.md`, `research/REVIEW.md`, and the latest
-`evidence/run_card.json` before working. Preserve the user's parallel-run protocol and
+At the start of every session read `README.md`, `PROJECT_PROMPT.md` (verbatim standing
+brief), `knowledge/preregistration-2026-10-27.md` and its predecessor
+`knowledge/preregistration-2026-10-26.md`, `knowledge/review-and-irregularities-2026-10-26.md`,
+`research/REVIEW.md`, the latest `evidence/run_card.json`, and — for the executed CSPES
+lane — `evidence/cspes_run_card.json` before working. Preserve the user's parallel-run protocol and
 literal stop rules. Never present a proxy, owner report, or projection as an
 organizer-confirmed submission score. Never upload a competition file or select a weekly
 slot without separately specified authorization. Do not silently change the registry or
