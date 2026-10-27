@@ -15,14 +15,16 @@ def test_feed_render_is_deterministic_and_does_not_claim_a_stale_snapshot_is_fre
     assert human_age({'last_success_utc': 'invalid'}) == 'Invalid observation timestamp'
 
 
-def test_every_published_page_contains_negative_decision_and_checked_json_exists():
+def test_every_published_page_contains_positive_decision_and_checked_json_exists():
     docs = ROOT / 'docs'
     for page in ('index.html', 'executive-summary.html', 'research.html', 'evidence.html'):
         body = (docs / page).read_text()
-        assert 'No competition file is cleared.' in body
+        assert 'OK TO DOWNLOAD AND SUBMIT' in body
         assert 'assets/status.js' in body
     assert (docs / 'data/run_card.json').exists()
     assert (docs / 'data/focus_audit.json').exists()
+    assert (docs / 'data/session2_run_card.json').exists()
+    assert (docs / 'data/session2_projection.json').exists()
 
 
 def test_pages_publishers_use_the_same_docs_url_layout():

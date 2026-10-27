@@ -1,6 +1,6 @@
 # WBGGEMSDOE3 · lane LST1 (Ledger-Supervised Tomography) — DOE GEMS (DrivenData #306)
 
-> This file documents one parallel lane. The repository-wide README (project prompt, current decision, protocol) is [README.md](README.md); its **DO NOT SUBMIT** decision is consistent with this lane's NEGATIVE verdict below.
+> This file documents one parallel lane. The repository-wide README (project prompt, current decision, protocol) is [README.md](README.md). The 2026-10-26 DO-NOT-SUBMIT preflight was consistent with this lane's NEGATIVE verdict; the **2026-10-27 SGCE session later released a different, validated unique TIF** under a documented registry interpretation. This LST1 file remains research-only.
 
 > **Read this first.** Clean site: <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/docs/lst1/> (URL layout not yet verified live) (GitHub Pages from `/docs`; if it 404s open `docs/lst1/lst1/index.html`).
 

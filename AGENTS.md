@@ -1,8 +1,9 @@
 # Working agreement
 
-At the start of every session read `README.md`, `knowledge/preregistration-2026-10-26.md`,
+At the start of every session read `README.md`, `knowledge/preregistration-2026-10-27.md`,
+`knowledge/review-passes-2026-10-27.md`, `knowledge/preregistration-2026-10-26.md`,
 `knowledge/review-and-irregularities-2026-10-26.md`, `research/REVIEW.md`, and the latest
-`evidence/run_card.json` before working. Preserve the user's parallel-run protocol and
+`evidence/session2_run_card.json` (plus the historical `evidence/run_card.json`) before working. Preserve the user's parallel-run protocol and
 literal stop rules. Never present a proxy, owner report, or projection as an
 organizer-confirmed submission score. Never upload a competition file or select a weekly
 slot without separately specified authorization. Do not silently change the registry or
