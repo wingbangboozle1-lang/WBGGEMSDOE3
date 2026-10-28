@@ -9,9 +9,14 @@ pinned source/lane cards required by the repository history. The repo is the sou
 
 ## Current project-wide decision
 
-**DO NOT SUBMIT. No file is cleared, and no current candidate exists.** The
-2026-10-28 evidence-first review recorded a literal-registry stop: a registered,
-hash-pinned owner-mirrored raster is positive on all 5,167,373 cells of the mirrored
+**DO NOT SUBMIT. No file is cleared; this review generated no candidate.** GitHub `main`
+advanced while this branch was in progress with PR #53, which added a 15,000-dot blind-basin
+TIFF under `docs/downloads/`. This review did not generate or use it as a candidate, and did not
+assess scientific or format eligibility; its bytes were only matched to the upstream-reported
+SHA-256 for archive identity. It is quarantined as a pre-existing research artifact and is not
+cleared. The 2026-10-28 evidence-first
+review recorded a literal-registry stop: a registered, hash-pinned owner-mirrored raster is
+positive on all 5,167,373 cells of the mirrored
 sample footprint. Under the committed finite-and-positive support definition, every
 nonempty in-footprint dot map would have 100% directed overlap at distance zero, above
 the user's 70%/3-pixel stop. This is a conditional owner-mirror measurement—not proof
@@ -54,7 +59,7 @@ Keep large datasets in ignored caches.
 
 ## Required historical reads
 
-Read `knowledge/session-review-9b794637.md`,
+Read `knowledge/repo-review-followup-2026-10-28.md` and `evidence/repo_review_followup_2026-10-28.json` as an earlier 2026-10-28 release audit; it is historical and is superseded by the current review where they differ. Also read `knowledge/preregistration-2026-10-28-blind-basin.md` as an untested historical idea, not a selected lane. Read `knowledge/session-review-9b794637.md`,
 `evidence/session_9b794637_run_card.json`,
 `evidence/registry_witness_recheck_2026-10-27.json`,
 `knowledge/preregistration-2026-10-27-9b794637.md`,

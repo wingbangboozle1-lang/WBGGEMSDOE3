@@ -2,8 +2,12 @@
 
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
-> **No file is cleared. No current candidate TIFF exists.** This review ran no geological
-> experiment, generated no prediction, ran no holdout, and selected no slot.
+> **No file is cleared. This review generated no candidate TIFF.** While this branch was in
+> progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
+> `docs/downloads/`. It was not generated or used as a candidate in this review, and its
+> science/format eligibility was not assessed; its bytes were only matched to the upstream
+> reported SHA-256 for quarantine identity. It is not cleared and is treated as a legacy research
+> file. This review ran no geological experiment, ran no holdout, and selected no slot.
 > The saved owner-mirror witness is positive on all **5,167,373** cells of the mirrored
 > sample footprint. Under the committed finite-and-positive support rule, any nonempty
 > in-footprint dot map would have 100% directed overlap at distance zero, above the user's

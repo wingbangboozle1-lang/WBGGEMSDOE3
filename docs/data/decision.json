@@ -5,6 +5,6 @@
   "candidate": null,
   "source": "release_gate.json",
   "run_card": "session_7393d521_run_card.json",
-  "run_card_sha256": "e92fe310dc31d9185ca90a7fe7631e8a35357e386506840e2b9b313109203bbe",
+  "run_card_sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1",
   "reason": "Literal registry witness stop; no candidate or shared holdout run."
 }

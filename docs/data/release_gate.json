@@ -17,11 +17,11 @@
     "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
     "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
   ],
-  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate artifact exists.",
+  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
   "source_cards": {
     "run_card": {
       "path": "evidence/session_7393d521_run_card.json",
-      "sha256": "e92fe310dc31d9185ca90a7fe7631e8a35357e386506840e2b9b313109203bbe"
+      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
     },
     "witness_recheck": {
       "path": "evidence/registry_witness_recheck_2026-10-27.json",

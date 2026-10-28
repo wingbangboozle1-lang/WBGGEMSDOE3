@@ -81,6 +81,12 @@ def test_current_run_card_is_a_complete_negative_not_a_fake_score():
     assert card["submission"]["note_characters"] == len(card["submission"]["note"])
     assert card["experiments"]["geological_experiments_completed"] == 0
     assert card["selector"]["weekly_slots_used"] == 0
+    prior = card["preexisting_main_artifact"]
+    assert prior["status"] == "UNAPPROVED_ARCHIVE_ONLY"
+    assert prior["byte_identity_rechecked_against_upstream_record"] is True
+    assert prior["scientific_or_format_validation_in_this_review"] is False
+    prior_path = ROOT / prior["path"]
+    assert prior_path.is_file() and _sha(prior_path) == prior["upstream_recorded_sha256"]
 
 
 def test_preregistration_has_five_distinct_testable_hypotheses():
@@ -155,6 +161,8 @@ def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
     assert listed == present
     assert "No TIFF in this directory is cleared" in notice
     assert "DO NOT SUBMIT" in notice
+    prior = _json(CURRENT_CARD)["preexisting_main_artifact"]
+    assert Path(prior["path"]).name in notice
 
 
 def test_all_site_links_resolve_inside_docs():

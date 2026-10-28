@@ -86,10 +86,22 @@ Final run after the revisions:
 - `.venv/bin/python scripts/build_site.py`: **PASS**. Rebuilt the current negative site and the scoped AMDC/FCHD archive pages; no candidate or slot was created.
 - `.venv/bin/python scripts/check_site.py`: **PASS**. The negative gate is hash-bound, candidate-download links are absent, and local HTML links resolve.
 - `.venv/bin/python -m pytest -q`: **236 passed, 4 skipped** (72 upstream Rasterio deprecation warnings). The initial collection/build iterations exposed stale path and historical-test assumptions; they were corrected, and the complete suite now passes.
-- Rebuilt the entire site twice and compared the complete `docs/` tree: **byte-stable across 200 files**, including generated JSON and archive pages. The HCE recursive HTML determinism test also passes.
+- After reconciling the advanced `main` base, rebuilt the complete site twice and compared the full `docs/` tree: **byte-stable across 204 files**, including generated JSON, the quarantined upstream artifact, and archive pages. The HCE recursive HTML determinism test also passes.
 - The scheduled GitHub Pages workflow was reviewed: it refreshes the public fragment every six hours, retains/marks the last successful observation on failure, then rebuilds and checks the site. The updated parser/refresh behavior is covered by passing feed tests. The scheduled network workflow itself was not invoked in this sandbox, so the actual automated fragment refresh remains unverified here. The dated 2026-10-28 page observation has an unknown exact fetch time and is not represented as a live refresh.
 
 These are software/site checks only. They do not run a geological experiment, generate a candidate, establish a holdout score, validate portal acceptance, authenticate the registry mirror, or authorize a submission.
+
+## Base-branch reconciliation (after the initial review)
+
+While PR #56 was being prepared, GitHub `main` advanced through PR #53 and introduced a
+15,000-dot blind-basin TIFF plus a small accompanying record under `docs/downloads/`. It was
+not generated or used as a candidate in this review. Its bytes were matched to the upstream-reported
+SHA-256 only to identify the archived file; no science or format validator was run. The artifact
+is retained only as an upstream historical file; the rebuilt top-level downloads index has no
+direct TIFF link and the legacy inventory labels every file DO NOT SUBMIT. The current run card
+records the source path and upstream-reported SHA-256 separately from this review's null candidate
+fields. No new surface, score, holdout, or format-validation check was run on that artifact. The
+literal witness stop remains binding and the file is not cleared.
 
 ## Remaining work / limits
 
