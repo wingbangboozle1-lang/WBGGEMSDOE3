@@ -1,0 +1,81 @@
+[
+ {
+  "id": "focus:GEMSDOE32",
+  "holdout_dti": 0.003885,
+  "n_dots": 37654,
+  "owner_reported": "0.2778"
+ },
+ {
+  "id": "focus:GEMSDOE36",
+  "holdout_dti": 0.004001,
+  "n_dots": 38854,
+  "owner_reported": "0.2750"
+ },
+ {
+  "id": "focus:GEMSDOE28",
+  "holdout_dti": 0.028218,
+  "n_dots": 37660,
+  "owner_reported": "0.2710"
+ },
+ {
+  "id": "focus:GEMSDOE31",
+  "holdout_dti": 0.029707,
+  "n_dots": 40199,
+  "owner_reported": "0.2708"
+ },
+ {
+  "id": "focus:GEMSDOE33",
+  "holdout_dti": 0.052964,
+  "n_dots": 41865,
+  "owner_reported": "0.2632"
+ },
+ {
+  "id": "focus:GEMSDOE25",
+  "holdout_dti": 0.100926,
+  "n_dots": 44090,
+  "owner_reported": "0.2600"
+ },
+ {
+  "id": "focus:GEMSDOE30",
+  "holdout_dti": 0.100926,
+  "n_dots": 44090,
+  "owner_reported": "0.2600"
+ },
+ {
+  "id": "focus:GEMSDOE24",
+  "holdout_dti": 0.096653,
+  "n_dots": 60069,
+  "owner_reported": "0.2477"
+ },
+ {
+  "id": "focus:GEMSDOE27",
+  "holdout_dti": 0.096395,
+  "n_dots": 61328,
+  "owner_reported": "0.2449"
+ },
+ {
+  "id": "WBG-sgce",
+  "holdout_dti": 0.018977,
+  "n_dots": 102208
+ },
+ {
+  "id": "WBG-tde30k",
+  "holdout_dti": 0.002202,
+  "n_dots": 30000
+ },
+ {
+  "id": "WBG-skarpline",
+  "holdout_dti": 0.033592,
+  "n_dots": 97608
+ },
+ {
+  "id": "WBG-cspes",
+  "holdout_dti": 0.030224,
+  "n_dots": 37654
+ },
+ {
+  "id": "WBG-hce1",
+  "holdout_dti": 0.09855,
+  "n_dots": 169968
+ }
+]

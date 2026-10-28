@@ -1,0 +1,67 @@
+{
+ "rows": [
+  {
+   "field": "rtp",
+   "auc": 0.5197,
+   "folded": 0.5197
+  },
+  {
+   "field": "mag_anom",
+   "auc": 0.5071,
+   "folded": 0.5071
+  },
+  {
+   "field": "iso_grav_anom",
+   "auc": 0.4631,
+   "folded": 0.5369
+  },
+  {
+   "field": "iso_grav_anom_hg",
+   "auc": 0.4805,
+   "folded": 0.5195
+  },
+  {
+   "field": "iso_grav_anom_slope",
+   "auc": 0.5322,
+   "folded": 0.5322
+  },
+  {
+   "field": "det_elev_slope",
+   "auc": 0.5642,
+   "folded": 0.5642
+  },
+  {
+   "field": "depth_to_base_surf",
+   "auc": 0.5199,
+   "folded": 0.5199
+  },
+  {
+   "field": "cond_surf",
+   "auc": 0.4818,
+   "folded": 0.5182
+  },
+  {
+   "field": "geod_2ndinv",
+   "auc": 0.5621,
+   "folded": 0.5621
+  },
+  {
+   "field": "ieq_n100a15",
+   "auc": 0.5534,
+   "folded": 0.5534
+  },
+  {
+   "field": "DIPOLE_max4",
+   "auc": 0.5015,
+   "folded": 0.5015
+  }
+ ],
+ "worst": {
+  "field": "det_elev_slope",
+  "auc": 0.5642,
+  "folded": 0.5642
+ },
+ "passed": true,
+ "n_truth": 21032,
+ "n_bg": 200000
+}

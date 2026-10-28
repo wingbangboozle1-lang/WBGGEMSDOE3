@@ -266,8 +266,9 @@ def render() -> None:
 
 
 def main() -> int:
+    from amdc_site import main as _amdc_main
     render()
-    return 0
+    return _amdc_main() or 0
 
 
 def build() -> int:

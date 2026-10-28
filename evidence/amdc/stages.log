@@ -1,0 +1,71 @@
+[23:52:22] footprint=5167373 catalogue=60988
+[23:52:22] --- stage: folds ---
+[23:52:25] seed=20 folds=4 withheld_truth_px=11321
+[23:52:27] seed=21 folds=4 withheld_truth_px=11572
+[23:52:28] --- done: folds (5.0s) ---
+[23:52:28] --- stage: canary ---
+[23:52:30] canary worst: {'field': 'det_elev_slope', 'auc': 0.5642, 'folded': 0.5642} (gate <=0.90)
+[23:52:30] --- done: canary (3.0s) ---
+[23:52:30] --- stage: codes+dipole ---
+[23:52:31] codes rtp
+[23:52:31] codes mag_anom
+[23:52:31] codes iso_grav_anom
+[23:52:31] codes iso_grav_anom_hg
+[23:52:32] codes iso_grav_anom_slope
+[23:52:32] codes det_elev_slope
+[23:52:32] codes depth_to_base_surf
+[23:52:32] codes cond_surf
+[23:52:32] codes geod_2ndinv
+[23:52:32] codes ieq_n100a15
+[23:52:34] dip q50=0.9201 q66=0.9540 depth_med=316.36 depth_missing=0.0006
+[23:52:34] --- done: codes+dipole (3.6s) ---
+[23:52:34] --- stage: ranking ---
+[23:52:49] rank focus:GEMSDOE32 holdout=0.0039 owner=0.2778
+[23:53:04] rank focus:GEMSDOE36 holdout=0.0040 owner=0.2750
+[23:53:20] rank focus:GEMSDOE28 holdout=0.0282 owner=0.2710
+[23:53:34] rank focus:GEMSDOE31 holdout=0.0297 owner=0.2708
+[23:53:48] rank focus:GEMSDOE33 holdout=0.0530 owner=0.2632
+[23:54:03] rank focus:GEMSDOE25 holdout=0.1009 owner=0.2600
+[23:54:20] rank focus:GEMSDOE30 holdout=0.1009 owner=0.2600
+[23:54:36] rank focus:GEMSDOE24 holdout=0.0967 owner=0.2477
+[23:54:52] rank focus:GEMSDOE27 holdout=0.0964 owner=0.2449
+[23:55:07] rank WBG-sgce holdout=0.0190
+[23:55:22] rank WBG-tde30k holdout=0.0022
+[23:55:36] rank WBG-skarpline holdout=0.0336
+[23:55:50] rank WBG-cspes holdout=0.0302
+[23:56:05] rank WBG-hce1 holdout=0.0985
+[23:56:05] --- done: ranking (211.1s) ---
+[23:56:05] --- stage: E1 ---
+[23:56:10] E1 seed=20 dots=45000 surrogate=0.0821 gate_px=102534 max_p=0.0834
+[23:56:15] E1 seed=21 dots=45000 surrogate=0.0822 gate_px=102625 max_p=0.0853
+[23:56:29] E1 pooled HOLDOUT-DTI=0.0466
+[23:56:29] --- done: E1 (24.2s) ---
+[23:56:29] --- stage: E2 ---
+[23:56:34] E2 seed=20 dots=45000 surrogate=0.0759 gate_px=68678 max_p=0.0852
+[23:56:39] E2 seed=21 dots=45000 surrogate=0.0761 gate_px=68738 max_p=0.0871
+[23:56:54] E2 pooled HOLDOUT-DTI=0.0441
+[23:56:54] --- done: E2 (24.1s) ---
+[23:56:54] --- stage: E3 ---
+[23:56:59] E3(from E1) seed=20 dots=60000 surrogate=0.0921
+[23:57:04] E3(from E1) seed=21 dots=60000 surrogate=0.0918
+[23:57:19] E3 pooled HOLDOUT-DTI=0.0552
+[23:57:19] --- done: E3 (25.3s) ---
+[23:57:19] --- stage: paired-CI ---
+[23:57:19] E1: dti=0.0466 ci=[0.0313, 0.063] withheld=22893
+[23:57:19]   d(E1-E2)=+0.0025 ci=[0.0007, 0.0049]
+[23:57:19]   d(E1-E3)=-0.0086 ci=[-0.0113, -0.0063]
+[23:57:19]   d(E1-champion)=+0.0427 ci=[0.0275, 0.0592]
+[23:57:19]   d(E1-sgce)=+0.0277 ci=[0.012, 0.0447]
+[23:57:19] E2: dti=0.0441 ci=[0.0277, 0.0618] withheld=22893
+[23:57:19]   d(E2-E1)=-0.0025 ci=[-0.0049, -0.0007]
+[23:57:19]   d(E2-E3)=-0.0111 ci=[-0.0152, -0.008]
+[23:57:19]   d(E2-champion)=+0.0402 ci=[0.0239, 0.058]
+[23:57:19]   d(E2-sgce)=+0.0251 ci=[0.0088, 0.0426]
+[23:57:19] E3: dti=0.0552 ci=[0.0415, 0.0707] withheld=22893
+[23:57:19]   d(E3-E1)=+0.0086 ci=[0.0063, 0.0113]
+[23:57:19]   d(E3-E2)=+0.0111 ci=[0.008, 0.0152]
+[23:57:19]   d(E3-champion)=+0.0513 ci=[0.0374, 0.067]
+[23:57:19]   d(E3-sgce)=+0.0362 ci=[0.0222, 0.052]
+[23:57:19] --- done: paired-CI (0.1s) ---
+[23:57:19] TOTAL wall=4.9 min stages={'folds': 5.0, 'canary': 3.0, 'codes+dipole': 3.6, 'ranking': 211.1, 'E1': 24.2, 'E2': 24.1, 'E3': 25.3, 'paired-CI': 0.1}
+[23:58:07] footprint=5167373 catalogue=60988

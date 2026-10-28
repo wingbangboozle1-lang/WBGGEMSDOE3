@@ -1,0 +1,13 @@
+{
+ "stages": {
+  "folds": 5.0,
+  "canary": 3.0,
+  "codes+dipole": 3.6,
+  "ranking": 211.1,
+  "E1": 24.2,
+  "E2": 24.1,
+  "E3": 25.3,
+  "paired-CI": 0.1
+ },
+ "wall_min": 4.9
+}

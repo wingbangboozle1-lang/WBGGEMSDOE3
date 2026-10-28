@@ -80,6 +80,36 @@ here. The separate [focus audit](evidence/focus_audit.json) and
   authenticated official data and official USGS/GDR sites were inaccessible
   from this sandbox; pinning a public mirror only proves byte identity.
 
+## Parallel lane: AMDC audit (2026-10-28, negative)
+
+Session `arena/2759fec7-wbggemsdoe3` re-scored shipped bytes and re-audited the
+registry. It does not change the decision above: verdict `negative`, no TIF
+written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
+[run card v2](evidence/amdc_run_card.json) ·
+[bytes audit](evidence/amdc/sgce_bytes_audit.json) ·
+[preregistration + 5 ranked hypotheses](knowledge/preregistration-2026-10-27-2759fec7.md) ·
+[irregularity addendum](knowledge/irregularities-2026-10-28-amdc.md).
+
+1. **Shipped-bytes correction.** The session-2 headline (HOLDOUT-DTI 0.1675) was
+   measured on per-cell rebuild files with asymmetric dot budgets, not on the
+   downloadable bytes. The SGCE bytes re-score **0.0191** [0.0169, 0.0211] on the
+   identical evaluator/folds (22,232 withheld), cross-checked 0.0190 on a second
+   evaluator (22,893 withheld); B2 reference bytes score 0.0045 / 0.0039.
+2. **Owner↔holdout inversion.** Spearman −0.849 / Pearson −0.886 across the 9
+   focus sites; cross-method projections for the same files span 0.05–0.27, so
+   none is a score.
+3. **Negative mechanism + duplicate-stop.** E1 (0.0466) beats E2 (0.0441), so
+   dipole-gated corridors hurt; E3 (0.0552) wins on coverage. E3's max gated
+   registry overlap is 0.936 (25 literal dupes) — budget exhausted 3/3.
+4. **Registry re-audit (134 hash-verified rows).** TDE-30k (0.723), skarpline
+   (0.772), CSPES (0.703) and HCE1 (0.741) fail even the content-aware reading;
+   SGCE passes it (0.690) but remains blocked by the governing literal reading
+   (100% dense-witness overlap), consistent with the DO-NOT-SUBMIT above.
+5. **Format policy unsettled.** This lane's all-finite re-check passes the zeros
+   encoding and rejects the NaN variant; the parallel independent audit reads
+   the outside-footprint wording the other way. Neither file is cleared either
+   way.
+
 ## Reproduce the checks
 
 ```bash

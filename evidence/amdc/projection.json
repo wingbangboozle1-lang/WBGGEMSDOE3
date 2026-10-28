@@ -1,0 +1,23 @@
+{
+ "method": "OLS(owner_reported ~ matched_holdout) on 9 focus rasters",
+ "slope": -0.24287823388025256,
+ "intercept": 0.2772400529764933,
+ "r_squared": 0.7857098288113236,
+ "loocv_mae": 0.005060722438906993,
+ "interval": "\u00b10.0051 (LOOCV MAE; NOT a confidence interval)",
+ "arms": {
+  "E1": {
+   "holdout": 0.04662735570102461,
+   "projection": 0.2659152831733221
+  },
+  "E2": {
+   "holdout": 0.044083554724422755,
+   "projection": 0.266533117061862
+  },
+  "E3": {
+   "holdout": 0.05522515712089214,
+   "projection": 0.26382706434921155
+  }
+ },
+ "label": "PROJECTION (not a score; owner reports unverified)"
+}
