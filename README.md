@@ -55,6 +55,12 @@ physically distinct method might score higher; no such result has been demonstra
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
 
+**Latest review (2026-10-28):** no candidate TIFF was generated or cleared. The
+literal registry rule still has a universal positive-support blocker, and the
+assigned method paragraph is missing. Four explicitly unexecuted research
+hypotheses, three review passes, test results, and next-session blockers are in
+[the current session review](knowledge/session-review-2026-10-28-arena82fb40b8.md).
+
 ## What has and has not been validated
 
 - The independently rechecked SGCE research TIFF has 102,208 positive cells,
