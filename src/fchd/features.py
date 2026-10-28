@@ -102,6 +102,23 @@ FEATURE_NAMES: tuple[str, ...] = (
 assert len(FEATURE_NAMES) == 62
 
 
+def _memory_sweep() -> None:
+    """Return large transient buffers to the OS.
+
+    The 62-feature build holds ~20 full-grid float32 intermediates (~49.5 MB each)
+    plus per-call EDT scratch from `_fill_outside` (~300 MB).  Without an explicit
+    `del` + arena trim, glibc retains those freed pages as RSS and the build was
+    OOM-killed at the 3.8 GiB cgroup limit on 2026-10-28 (IR-29).  Values
+    and write order are unchanged; only memory release timing differs.
+    """
+    gc.collect()
+    try:
+        import ctypes
+        ctypes.CDLL(None).malloc_trim(0)
+    except Exception:  # pragma: no cover - allocator hint only
+        pass
+
+
 def _quantize_u8(vec: np.ndarray) -> np.ndarray:
     """Monotonic 251-level (0..250) rank-quantile encoding on finite footprint values."""
     v = np.asarray(vec, dtype=np.float32)
@@ -267,7 +284,10 @@ def build_or_load_static_features(force: bool = False) -> dict:
     q_lah_mimic = _put(11, "lahontan_contour_mimic", lahontan_mimic)
 
     del b_step_max, b_step_min, b_ksn, b_area, sig, sig_fill, branch_boundary, ksn_diff_3
-    gc.collect()
+    del step_pos, step_asym, ksn_raw, area_wt, ch_valid, ksn_interp
+    del chi_step_300, chi_step_800, chi_asym_300, chi_ksn_300, chi_area_step, chi_cross_dk, chi_ksn_jump
+    del zmean, zmean_rel_1km, lahontan_band, lahontan_mimic
+    _memory_sweep()
 
     # --- Group 2: 10 m Sub-Grid Facet & Piedmont Geomorphology ---
     planar_facet = (t10_acoh * t10_slope_p90 / (t10_slope_std + np.float32(20.0))).astype(np.float32)
@@ -325,7 +345,9 @@ def build_or_load_static_features(force: bool = False) -> dict:
     _put(33, "lidar_strike_smooth", lid_strk_sm)
 
     del blm_d, rd_d, lid_ex, lid_ln, lid_lp, lid_dn, lid_up, lid_cr, lid_coh, lid_strk, t10_slope_std, t10_acoh, t10_steep
-    gc.collect()
+    del t10_slope_p90, t10_relief, t10_curv, t10_lin, planar_facet, piedmont_infl, lin_contrast
+    del blm_mimic, road_mimic, lid_sharp, lid_asym, lid_strk_sm, lid_step, lid_val
+    _memory_sweep()
 
     # --- Group 5: Potential-Field 0->150 m Worms, True Basement Depth (b15) & Float32 Radiometrics (b6) ---
     with rasterio.open(RAW_DIR / "training_features.tif") as tf_ds:
@@ -379,6 +401,11 @@ def build_or_load_static_features(force: bool = False) -> dict:
     _put(49, "rad_uth_ratio", uth)
     _put(50, "geod_max_shear", geod_sh)
     _put(51, "geod_2nd_inv", geod_i2)
+    del rtp, mag_hg0, geod_i2, rad_tc, geod_sh, grav_vg, grav, grav_hg
+    del grav_tilt, grav_worm, rtp_hg, mag_hg0_comb, mag_hg150, m0_n, m150_n
+    del mag_persist, mag_shift, mag, base_d, base_hg, basin_ind, concealed_worm
+    del rad_tc_hg, thk, uth, tmi_up150
+    _memory_sweep()
 
     # --- Group 6: 100 m Context & GDR #1391 Blind Hydrothermal Plumes ---
     probe_sm, probe_grad, sinter_3km, sinter_aniso, well_sio2, vent_dist = _build_gdr1391_rasters(transform, crs, foot)
@@ -393,6 +420,9 @@ def build_or_load_static_features(force: bool = False) -> dict:
     _put(59, "gdr_sinter_aniso_ridge", sinter_aniso)
     q_wll = _put(60, "gdr_well_sio2_3km", well_sio2)
     _put(61, "gdr_volcanic_vent_dist", vent_dist)
+    del det_elev, eq_dens, cond_s, det_slp
+    del probe_sm, probe_grad, sinter_3km, sinter_aniso, well_sio2, vent_dist
+    _memory_sweep()
 
     X_u8.flush()
 

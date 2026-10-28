@@ -23,24 +23,34 @@
 > IR-01) is unsatisfiable by construction and is disclosed in the evidence pages. Neither
 > number above is a score; the only organizer-confirmed scores will be your own receipts.
 >
+> **ADJDIS lane (this session) — NOT cleared, do not submit:** `wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif`
+> (HOLDOUT-DTI `0.059897`, Gate 1 fail, Gate 3 fails under the literal reading, selector
+> approval **false**) is published for review/testing only; its 3/3 preregistered experiments
+> are documented below.
+>
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit](docs/how-to-submit.html) · [Submission file](docs/submission.html) ·
 > [Evidence](docs/evidence.html) · [Method](docs/method.html) ·
-> [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
+> [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
+> [ADJDIS TIFF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif)
 
 ## Start every session here
 
 Read this README (including the verbatim standing brief at the end), [`AGENTS.md`](AGENTS.md),
+the stored standing prompt [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review-2026-10-28.json),
 the [KHD run card](evidence/khd_run_card.json), the
 [KHD preregistration](knowledge/preregistration-2026-10-28-khd.md), the
 [KHD session review](knowledge/session-review-2026-10-28-khd.md), the
-[independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), and the
+[ADJDIS session run card](evidence/session_6984642c_run_card.json), the
+[ADJDIS session review](knowledge/session-review-6984642c.md), the
+[ADJDIS preregistration](knowledge/preregistration-2026-10-28-adjdis.md) and its
+[irregularities `IR-29`/`IR-30`](knowledge/irregularities-2026-10-28-adjdis.md),
+the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), and the
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome**
 central: weigh risk and evidence, act autonomously when safe, and treat a negative result as
 a deliverable. The reconstructed standing brief is included at the end of this README; the
 verbatim 2026-10-28 user brief is quoted there as well.
-
 
 ## Executive summary: nine requested sites
 
@@ -103,6 +113,47 @@ test counts as a separate run; do not combine them with this review.
   authenticated official data and official USGS/GDR sites were inaccessible
   from this sandbox; pinning a public mirror only proves byte identity.
 
+## Parallel lane: ADJDIS (2026-10-28, negative; 3/3 experiments)
+
+Session `arena/6984642c-wbggemsdoe3` froze
+[`knowledge/preregistration-2026-10-28-adjdis.md`](knowledge/preregistration-2026-10-28-adjdis.md)
+(five ranked hypotheses; H2 adjacency-band first) and executed E1–E3 in full
+with [`scripts/run_adjdis_lane.py`](scripts/run_adjdis_lane.py), reusing the
+FCHD OOF surfaces, shared allocator and shared byte validator (no forks).
+**Baseline reproduced exactly** (`0.099202`, CI `[0.085951, 0.112668]`, 22,232
+withheld); **Gate 0 passed** (73 canaries, max directional AUC `0.77593 ≤ 0.90`);
+surface gates max |Spearman| `0.5300`. Results: E1 `0.03492`; E2 grid winner
+`s=0.45 d0=3.5` → `0.05607` (Draw-21 `0.05603`); **E3 winner `K=42,000` → pooled
+HOLDOUT-DTI `0.059897` `[0.052989, 0.066831]`, paired Δ `−0.039306`
+(CI `[−0.049786, −0.029076]`) → Gate 1 FAIL**. Verdict `negative`, 0 slots.
+Uniqueness disclosed both ways: content-aware **passes** (max 3-px overlap
+`0.63497 ≤ 0.70` over 153 masks, pre-placement |Spearman| `0.52995 ≤ 0.90`, no
+exact duplicate) while the **literal** reading fails at `1.0` (dense witness
+IR-01) and the direct FCHD-file overlap is `0.9964` → Gate 3 fail.
+[Session review](knowledge/session-review-6984642c.md) ·
+[session run card](evidence/session_6984642c_run_card.json) ·
+[lane run card](evidence/adjdis_run_card.json) ·
+[leakage canary](evidence/adjdis_leakage_canary.json) ·
+[uniqueness audit](evidence/adjdis_uniqueness_audit.json) ·
+[experiments](evidence/adjdis_experiments.json) ·
+[`IR-29`/`IR-30`](knowledge/irregularities-2026-10-28-adjdis.md) ·
+[generated TIF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif).
+
+1. **`IR-30` explains the negative honestly:** the shared allocator's strict
+   final repair pass enforces the 0.635 multi-comparator cap over *each call's
+   own selected set*, so the per-phase Phase-A stream (≈100% inside the
+   corridors of the 7–8 whole-catalogue comparators) was pruned to **27 of
+   18,900** cells — reproduced bit-exact by the attribution replays in
+   [`evidence/adjdis_ir28_04_diagnostic.json`](evidence/adjdis_ir28_04_diagnostic.json)
+   and [`evidence/adjdis_ir28_05_fullphase_replay.json`](evidence/adjdis_ir28_05_fullphase_replay.json).
+   Gate 1's failure is therefore mechanical: hypothesis H2 was never engaged.
+   Next session must preregister the **joint-allocation** correction and must
+   not retry per-phase call semantics unchanged.
+2. **`IR-29` (fixed):** the 62-feature stack was OOM-killed at the 3.8 GiB
+   cgroup limit despite the "< 500 MB" docstring; explicit group `del`s plus a
+   `_memory_sweep()` (gc + malloc_trim) in `src/fchd/features.py` fixed it once
+   in shared code with unchanged numerics (cache rebuilt, gates re-passed).
+
 ## Parallel lane: FCHD-NCM (2026-10-28, negative)
 
 Session `arena/6ea84033-wbggemsdoe3` executed the 62-ch 10 m 3DEP Perron–Royden $\chi$ + planar facet + Lahontan/BLM deconfounder + 0→150 m upward-continued basin potential-field worms + DOE GDR #1391 + 4-fold out-of-component Nested Component-Masked (NCM) OOF HGB lane with a bit-packed 149-comparator knapsack CELF allocator (`38,000` dots, `wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif`, SHA-256 `35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2`). Verdict `negative` — consistent with the governing `DO-NOT-SUBMIT` decision above; zero portal slots spent.
@@ -157,16 +208,23 @@ python -m venv .venv
 .venv/bin/python scripts/recheck_registry_witness.py --fetch
 # Restore the exact pinned shared template for its smoke tests, without competition data.
 PYTHONPATH=src .venv/bin/python -c 'from gems_project.template import ensure_template; print(ensure_template())'
-.venv/bin/python scripts/build_site.py
+# docs/ is owned by the v2 release gate: rebuild with the v3 builders, not the retired entry point.
+.venv/bin/python scripts/build_site_v3.py
+.venv/bin/python scripts/build_evidence_page.py
+.venv/bin/python scripts/build_site.py   # deterministic no-op while the v2 gate owns docs/
 .venv/bin/python scripts/check_site.py
 .venv/bin/python -m pytest -q
 ```
 
-The site builder deliberately publishes only the negative decision. The
-release-gate function checks a documented prospective schema, but its caller
-must independently verify actual bytes and evidence. Historical generators and
-the flawed local holdout wrapper are blocked rather than used as private forks.
+The site builder publishes the v2 gate's decision plus each lane's own verdict;
+the ADJDIS candidate section is rendered by `scripts/build_site_v3.py` from
+`evidence/adjdis_run_card.json`. The release-gate function checks a documented
+prospective schema, but its caller must independently verify actual bytes and
+evidence. Historical generators and the flawed local holdout wrapper are blocked
+rather than used as private forks.
 Full reviews and next steps are in
+[`knowledge/session-review-6984642c.md`](knowledge/session-review-6984642c.md)
+(current) and
 [`knowledge/session-review-9b794637.md`](knowledge/session-review-9b794637.md).
 Historical lane records, including [LBCAL](docs/lbcal/index.html),
 [HCE](docs/hce/index.html) and [THCS](docs/thcs/index.html), remain research-only

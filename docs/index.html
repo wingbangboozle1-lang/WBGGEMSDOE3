@@ -109,10 +109,40 @@ why the honest band is 0.18 (no better than siblings) to 0.58 (posterior exactly
 <h2>Where the numbers come from</h2>
 <div class="kpi">
   <div><b>98</b><span>published sibling scores re-measured from bytes</span></div>
-  <div><b>0.982</b><span>in-sample ρ of the score model</span></div>
-  <div><b>0.823</b><span>site-grouped cross-validated ρ</span></div>
-  <div><b>0.037</b><span>cross-validated MAE (score units)</span></div>
+  <div><b>0.000</b><span>in-sample ρ of the score model</span></div>
+  <div><b>0.000</b><span>site-grouped cross-validated ρ</span></div>
+  <div><b>0.000</b><span>cross-validated MAE (score units)</span></div>
 </div>
+<h2>ADJDIS lane — generated alongside, <b>NOT cleared</b> (do not submit this file)</h2>
+<div class="card bad">
+<p>A second session ran its own frozen 3-experiment preregistration (adjacency-band two-phase
+allocation over reused FCHD out-of-fold surfaces). Its verdict is <b>negative</b>: Gate 1 fails
+decisively against the champion holdout proxy, and Gate 3 fails under the literal dense-witness
+reading. The file below exists only for review and testing; it is <b>not</b> one of the two
+candidates above.</p>
+<table>
+<tr><th>File</th><th>Holdout estimate (not a score)</th><th>Uniqueness (content-aware / literal)</th><th>Gates</th></tr>
+<tr>
+<td><code>wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif</code> <small>(23,127 dots · SHA-256 <code>817901562c870813…</code>)</small><br><a class="btn small alt" href="downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif" download>⬇ Download wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif (review only)</a></td>
+<td>HOLDOUT-DTI <b>0.05990</b> · 95% CI 0.05299–0.06683
+· paired Δ -0.03931 (CI -0.04979…-0.02908)
+<small>22,232 withheld · evaluator GEMSDOE32-HIDE-RECOVER-v3.0 · baseline 0.099202</small></td>
+<td>max 3-px overlap 63.5% of 153 masks (limit 70%) · max |Spearman| 0.530 (limit 0.90) · FCHD-direct 0.996<br>
+<small>literal all-registry reading: <b>100% fail</b> on the registered dense witness (IR-01) — reported, not waived</small></td>
+<td><span class="pill g">PASS</span> · <span class="pill r">FAIL</span> · <span class="pill g">PASS</span> · <span class="pill r">FAIL</span> · <span class="pill g">PASS</span><small>3/5 · selector approval False</small></td>
+</tr>
+</table>
+<p class="muted">Evidence: <a href="data/adjdis_run_card.json">run card</a> ·
+<a href="data/adjdis_leakage_canary.json">canary</a> ·
+<a href="data/adjdis_uniqueness_audit.json">uniqueness audit</a> ·
+<a href="data/adjdis_experiments.json">experiment ledger</a> ·
+<a href="data/adjdis_ir28_04_diagnostic.json">IR-30 diagnostic</a> ·
+<a href="data/adjdis_ir28_05_fullphase_replay.json">IR-30 replay</a> ·
+<a href="data/session_6984642c_run_card.json">session run card</a>.
+Why Gate 1 failed mechanically: see IR-30 — the shared allocator's per-phase cap pruned the
+adjacency phase to 27 of 18,900 cells, so that hypothesis was never engaged.</p>
+</div>
+
 <h2>Research archive (earlier lanes, each with its own verdict)</h2>
 <p class="muted">Negative results are deliverables. These pages are kept byte-for-byte as they were
 published and are bound to their own run cards; the current decision above supersedes only the

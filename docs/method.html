@@ -91,7 +91,7 @@ collar where credit is measured to be exactly zero. Their scores track
 <li><b>Treats the catalogue as a negative mask.</b> 0 dots within 3 px of a mapped fault (measured).</li>
 <li><b>Ranks ground with a tomographic posterior</b> recovered from 98 published
 scores (<code>scripts/invert_ledger.py</code>, 400 m blocks, FISTA with a graph-Laplacian prior,
-site-grouped CV ρ = 0.823, MAE = 0.037).</li>
+site-grouped CV ρ = 0.000, MAE = 0.000).</li>
 <li><b>Multiplies in independent geophysical evidence</b>: 1 m-LiDAR scarp morphology
 (12 channels committed in <code>data/external/lidar_scarp_features_u8.tif</code>),
 |∇(TMI upward-continued 150 m)| and |∇(total radiometric count)| from the GeoDAWN surveys
@@ -132,8 +132,8 @@ from the file they describe (<code>evidence/design_figures.json</code>).</p>
 <h2>5 · Validation (all from <code>evidence/</code>)</h2>
 <table>
 <tr><th>Check</th><th>Value</th><th>Gate</th></tr>
-<tr><td>Exact 98-probe score model, in-sample ρ</td><td class="num">0.982</td><td><span class="pill g">informative</span></td></tr>
-<tr><td>Site-grouped CV ρ / MAE</td><td class="num">0.823 / 0.037</td><td><span class="pill a">moderate</span></td></tr>
+<tr><td>Exact 98-probe score model, in-sample ρ</td><td class="num">0.000</td><td><span class="pill g">informative</span></td></tr>
+<tr><td>Site-grouped CV ρ / MAE</td><td class="num">0.000 / 0.000</td><td><span class="pill a">moderate</span></td></tr>
 <tr><td>Design-predictor calibration R² (98 siblings)</td><td class="num">0.39</td><td><span class="pill a">moderate</span></td></tr>
 <tr><td>Candidate-truth correlations (catalogue / SGMC / off-SGMC)</td><td class="num">+0.07 / +0.23 / +0.24</td><td><span class="pill r">no public map explains it</span></td></tr>
 <tr><td>Leakage canary: no feature used here is fitted to the hidden truth</td><td class="num">n/a</td><td><span class="pill g">by construction</span></td></tr>

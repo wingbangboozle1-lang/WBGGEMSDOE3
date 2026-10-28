@@ -181,8 +181,8 @@ tomographic posterior fitted to 98 published scores plus independent
 LiDAR-scarp / magnetic / radiometric saliency, then spends a bounded budget of 20,000 dots at 3 px
 minimum separation.</p>
 <p><b>Risk, stated plainly:</b> the posterior's absolute level is not identifiable; the site-grouped
-cross-validated score model has ρ = 0.823 and
-MAE = 0.037, and the calibration of the design predictor
+cross-validated score model has ρ = 0.000 and
+MAE = 0.000, and the calibration of the design predictor
 has R² = 0.39. If our dots are no better than the sibling rate we land near
 0.18. Spend one slot, read the receipt, then act on the receipt — not on this page.</p>
 
@@ -211,6 +211,25 @@ has R² = 0.39. If our dots are no better than the sibling rate we land near
 <p class="muted">Non-fault mimics every one of these must survive: alluvial-fan and lake-shore
 constructional scarps, road/rail cuts and stock tanks (LiDAR), lithological contacts rather than faults
 (magnetic/radiometric gradients), and evapotranspiration or playa evaporites (radiometric K).</p>
+
+<h2>The file this session's other lane generated — status at a glance</h2>
+<div class="card bad">
+<table>
+<tr><th>File to download</th><th>Estimated score</th><th>Unique vs all GEMSDOE registry sites?</th><th>Gate result</th><th>Decision</th></tr>
+<tr>
+<td><code>wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif</code> <small>generated 20261028T171558Z · 23,127 dots · SHA-256 <code>817901562c870813…</code></small><br><a class="btn small alt" href="downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif" download>⬇ Download wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif (review only)</a></td>
+<td><b>HOLDOUT-DTI 0.05990</b> <small>95% CI 0.05299–0.06683 · 22,232 withheld · GEMSDOE32-HIDE-RECOVER-v3.0 · paired Δ -0.03931 (CI -0.04979…-0.02908) · <b>local estimate only — not a leaderboard score</b></small></td>
+<td><b>Content-aware: yes</b> — max 63.5% within 3 px of any one of 153 registry masks (limit 70%), max |Spearman| 0.530 (limit 0.90), exact duplicate: no.<br>
+<b>Literal all-registry reading: no</b> (dense witness IR-01 = 100% for any non-empty raster).</td>
+<td><span class="pill g">PASS</span> gate0 · <span class="pill r">FAIL</span> gate1 · <span class="pill g">PASS</span> gate2 · <span class="pill r">FAIL</span> gate3 · <span class="pill g">PASS</span> gate4<small>3/5 passed</small></td>
+<td><b>NOT CLEARED FOR SUBMISSION</b> — method gates failed (G1), literal witness blocks (G3/IR-01), selector approval False</td>
+</tr>
+</table>
+<p class="muted">“Estimated score” is a spatially-blocked holdout measurement on mirrored data —
+never an organizer receipt. Evidence: <a href="data/adjdis_run_card.json">run card ↓</a> ·
+<a href="data/adjdis_uniqueness_audit.json">uniqueness audit ↓</a> ·
+<a href="data/session_6984642c_run_card.json">session run card ↓</a>.</p>
+</div>
 </main>
 <footer>All figures on this site are read from <code>evidence/*.json</code>.
 OWNER-REPORTED values are copied from the sibling project briefs and are not organizer receipts.

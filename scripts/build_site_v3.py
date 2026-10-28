@@ -52,6 +52,27 @@ dti_floor = st.get("DTI_estimate_equal_yield", 0)
 dti_ceil = st.get("DTI_estimate_anchor", 0)
 breakeven = (0.2778 * (0.2 * N + 0.8 * M) / N) if N else 0
 
+# ------------------------------------------- ADJDIS lane (adjacent session, NOT cleared)
+adj = j("adjdis_run_card.json")
+ADJ_FILE = adj.get("submission_file") or ""
+ADJ_NAME = adj.get("submission_name") or ""
+ADJ_NOTE = adj.get("submission_note") or ""
+ADJ_SHA = adj.get("raster_sha256") or ""
+ADJ_H = adj.get("holdout", {}) or {}
+ADJ_U = adj.get("uniqueness", {}) or {}
+ADJ_G = adj.get("gates", {}) or {}
+ADJ_NPASS = sum(1 for k in ("gate0_leakage_canary", "gate1_holdout_beats_gemsdoe32_sig",
+                            "gate2_dot_budget_discipline", "gate3_full_universe_uniqueness",
+                            "gate4_portal_geotiff_0_to_1") if ADJ_G.get(k))
+ADJ_PILL = {
+    "gate0_leakage_canary": ("PASS", "g"), "gate1_holdout_beats_gemsdoe32_sig": ("FAIL", "r"),
+    "gate2_dot_budget_discipline": ("PASS", "g"), "gate3_full_universe_uniqueness": ("FAIL", "r"),
+    "gate4_portal_geotiff_0_to_1": ("PASS", "g"),
+}
+ADJ_EXISTS = bool(ADJ_FILE) and (DOC / "downloads" / ADJ_FILE).is_file()
+ADJ_DL = (f'<a class="btn small alt" href="downloads/{ADJ_FILE}" download>'
+          f'⬇ Download {ADJ_FILE} (review only)</a>') if ADJ_EXISTS else ""
+
 CSS = """
 :root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
 --red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
@@ -182,6 +203,36 @@ why the honest band is {dti_floor:.2f} (no better than siblings) to {dti_ceil:.2
   <div><b>{inv.get('site_grouped_cv',{}).get('spearman',0):.3f}</b><span>site-grouped cross-validated ρ</span></div>
   <div><b>{inv.get('site_grouped_cv',{}).get('mae',0):.3f}</b><span>cross-validated MAE (score units)</span></div>
 </div>
+<h2>ADJDIS lane — generated alongside, <b>NOT cleared</b> (do not submit this file)</h2>
+<div class="card bad">
+<p>A second session ran its own frozen 3-experiment preregistration (adjacency-band two-phase
+allocation over reused FCHD out-of-fold surfaces). Its verdict is <b>negative</b>: Gate 1 fails
+decisively against the champion holdout proxy, and Gate 3 fails under the literal dense-witness
+reading. The file below exists only for review and testing; it is <b>not</b> one of the two
+candidates above.</p>
+<table>
+<tr><th>File</th><th>Holdout estimate (not a score)</th><th>Uniqueness (content-aware / literal)</th><th>Gates</th></tr>
+<tr>
+<td><code>{ADJ_FILE}</code> <small>({adj.get('emitted_dots',0):,} dots · SHA-256 <code>{ADJ_SHA[:16]}…</code>)</small><br>{ADJ_DL}</td>
+<td>HOLDOUT-DTI <b>{ADJ_H.get('pooled_dti',0):.5f}</b> · 95% CI {ADJ_H.get('ci95_cluster_bootstrap',[0,0])[0]:.5f}–{ADJ_H.get('ci95_cluster_bootstrap',[0,0])[1]:.5f}
+· paired Δ {ADJ_H.get('paired_delta_vs_gemsdoe32',0):+.5f} (CI {ADJ_H.get('paired_delta_ci95',[0,0])[0]:+.5f}…{ADJ_H.get('paired_delta_ci95',[0,0])[1]:+.5f})
+<small>22,232 withheld · evaluator {ADJ_H.get('evaluator_version','?')} · baseline 0.099202</small></td>
+<td>max 3-px overlap {100*(ADJ_U.get('U3_max_nonlattice_overlap_3px') or 0):.1f}% of {ADJ_U.get('unique_masks_compared',0)} masks (limit 70%) · max |Spearman| {(ADJ_U.get('pre_placement_max_abs_spearman') or 0):.3f} (limit 0.90) · FCHD-direct {(ADJ_U.get('fchd_direct_max_overlap_3px') or 0):.3f}<br>
+<small>literal all-registry reading: <b>100% fail</b> on the registered dense witness (IR-01) — reported, not waived</small></td>
+<td>{" · ".join(f'<span class="pill {ADJ_PILL[k][1]}">{ADJ_PILL[k][0]}</span>' for k in ADJ_PILL)}<small>{ADJ_NPASS}/5 · selector approval {adj.get("selector_approval")}</small></td>
+</tr>
+</table>
+<p class="muted">Evidence: <a href="data/adjdis_run_card.json">run card</a> ·
+<a href="data/adjdis_leakage_canary.json">canary</a> ·
+<a href="data/adjdis_uniqueness_audit.json">uniqueness audit</a> ·
+<a href="data/adjdis_experiments.json">experiment ledger</a> ·
+<a href="data/adjdis_ir28_04_diagnostic.json">IR-30 diagnostic</a> ·
+<a href="data/adjdis_ir28_05_fullphase_replay.json">IR-30 replay</a> ·
+<a href="data/session_6984642c_run_card.json">session run card</a>.
+Why Gate 1 failed mechanically: see IR-30 — the shared allocator's per-phase cap pruned the
+adjacency phase to 27 of 18,900 cells, so that hypothesis was never engaged.</p>
+</div>
+
 <h2>Research archive (earlier lanes, each with its own verdict)</h2>
 <p class="muted">Negative results are deliverables. These pages are kept byte-for-byte as they were
 published and are bound to their own run cards; the current decision above supersedes only the
@@ -321,6 +372,25 @@ has R² = {calm.get('r2',0):.2f}. If our dots are no better than the sibling rat
 <p class="muted">Non-fault mimics every one of these must survive: alluvial-fan and lake-shore
 constructional scarps, road/rail cuts and stock tanks (LiDAR), lithological contacts rather than faults
 (magnetic/radiometric gradients), and evapotranspiration or playa evaporites (radiometric K).</p>
+
+<h2>The file this session's other lane generated — status at a glance</h2>
+<div class="card bad">
+<table>
+<tr><th>File to download</th><th>Estimated score</th><th>Unique vs all GEMSDOE registry sites?</th><th>Gate result</th><th>Decision</th></tr>
+<tr>
+<td><code>{ADJ_FILE}</code> <small>generated {adj.get('generated_utc','?')} · {adj.get('emitted_dots',0):,} dots · SHA-256 <code>{ADJ_SHA[:16]}…</code></small><br>{ADJ_DL}</td>
+<td><b>HOLDOUT-DTI {ADJ_H.get('pooled_dti',0):.5f}</b> <small>95% CI {ADJ_H.get('ci95_cluster_bootstrap',[0,0])[0]:.5f}–{ADJ_H.get('ci95_cluster_bootstrap',[0,0])[1]:.5f} · {ADJ_H.get('n_withheld_positives',0):,} withheld · {ADJ_H.get('evaluator_version','?')} · paired Δ {ADJ_H.get('paired_delta_vs_gemsdoe32',0):+.5f} (CI {ADJ_H.get('paired_delta_ci95',[0,0])[0]:+.5f}…{ADJ_H.get('paired_delta_ci95',[0,0])[1]:+.5f}) · <b>local estimate only — not a leaderboard score</b></small></td>
+<td><b>Content-aware: yes</b> — max {100*(ADJ_U.get('U3_max_nonlattice_overlap_3px') or 0):.1f}% within 3 px of any one of {ADJ_U.get('unique_masks_compared',0)} registry masks (limit 70%), max |Spearman| {(ADJ_U.get('pre_placement_max_abs_spearman') or 0):.3f} (limit 0.90), exact duplicate: {'yes' if ADJ_U.get('U1_exact_duplicate') else 'no'}.<br>
+<b>Literal all-registry reading: no</b> (dense witness IR-01 = 100% for any non-empty raster).</td>
+<td>{" · ".join(f'<span class="pill {ADJ_PILL[k][1]}">{ADJ_PILL[k][0]}</span> {k.split("_")[0]}' for k in ADJ_PILL)}<small>{ADJ_NPASS}/5 passed</small></td>
+<td><b>NOT CLEARED FOR SUBMISSION</b> — method gates failed (G1), literal witness blocks (G3/IR-01), selector approval {adj.get("selector_approval")}</td>
+</tr>
+</table>
+<p class="muted">“Estimated score” is a spatially-blocked holdout measurement on mirrored data —
+never an organizer receipt. Evidence: <a href="data/adjdis_run_card.json">run card ↓</a> ·
+<a href="data/adjdis_uniqueness_audit.json">uniqueness audit ↓</a> ·
+<a href="data/session_6984642c_run_card.json">session run card ↓</a>.</p>
+</div>
 """
 page("Executive summary · nine focus sites", exec_summary, "executive-summary.html")
 
@@ -373,6 +443,15 @@ ORGANIZER-CONFIRMED for the zeros encoding, and unproven for NaN.</li>
 </table>
 <p class="muted">A low receipt is a deliverable, not a failure: it is the first measurement of the hidden
 truth field that we would own rather than borrow.</p>
+
+<div class="card bad">
+<h3 style="margin-top:0">⚠ Do not upload the ADJDIS file — it is not cleared</h3>
+<p>The other lane's candidate <code>{ADJ_FILE}</code> (HOLDOUT-DTI {ADJ_H.get('pooled_dti',0):.5f},
+gates {ADJ_NPASS}/5, selector approval {adj.get('selector_approval')}) failed its preregistered Gate 1
+and fails the literal witness reading. It is published on <a href="executive-summary.html">the
+executive summary</a> for review and testing only. The upload steps above apply to
+<b>{Path(TIF).name}</b> and the KHD alternative only.</p>
+</div>
 """
 page("How to submit", howto, "how-to-submit.html")
 
