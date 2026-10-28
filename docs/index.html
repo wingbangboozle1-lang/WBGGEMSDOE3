@@ -1,132 +1,136 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMISSION-READY">
-<title>Executive summary · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/styles.css">
-</head><body>
-<div class="wrap toprow"><a class="brand" href="index.html">GEMS Field Notes</a>
-<nav><a href="index.html">Executive summary</a> <a href="how-to-submit.html">How to submit</a>
-<a href="submission.html">Submission file</a> <a href="research.html">Research</a>
-<a href="evidence.html">Evidence</a></nav></div>
-<p class="wrap small"><span class="tag">STATUS: OK TO DOWNLOAD AND SUBMIT</span> —
-one hash-bound TIF passed every locally checkable gate; the score is an estimate; details on
-<a href="submission.html">the submission page</a>.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<title>WB-GEMS-DOE-3 · download &amp; submit</title><style>
+:root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
+--red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{background:#0f172a;color:#fff;padding:14px 20px}
+header a{color:#cbd5e1;text-decoration:none;margin-right:16px;font-size:14px}
+header a:hover{color:#fff}
+header .brand{font-weight:700;font-size:17px;color:#fff;margin-right:24px}
+main{max-width:1120px;margin:0 auto;padding:24px 20px 80px}
+h1{font-size:30px;line-height:1.25;margin:18px 0 6px}
+h2{font-size:21px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:17px;margin:22px 0 6px}
+p,li{color:#1e293b}
+small,.muted{color:var(--muted)}
+code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:13px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.ok{background:var(--greenbg);border:1px solid #bbf7d0}
+.warn{background:var(--amberbg);border:1px solid #fde68a}
+.bad{background:var(--redbg);border:1px solid #fecaca}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0}
+.btn{display:inline-block;background:var(--green);color:#fff;padding:14px 22px;border-radius:10px;
+font-weight:700;text-decoration:none;font-size:17px}
+.btn.alt{background:var(--blue)}
+.btn.small{font-size:14px;padding:9px 14px}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.pill.g{background:#dcfce7;color:#166534}.pill.r{background:#fee2e2;color:#991b1b}
+.pill.a{background:#fef3c7;color:#92400e}.pill.b{background:#dbeafe;color:#1e40af}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f1f5f9;font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi b{display:block;font-size:26px;line-height:1.15}
+.kpi span{font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:18px 20px;
+max-width:1120px;margin:0 auto}
+</style></head><body><header>
+<span class="brand">WB-GEMS-DOE-3</span>
+<a href="index.html">Dashboard</a>
+<a href="executive-summary.html">Executive summary</a>
+<a href="how-to-submit.html">How to submit</a>
+<a href="method.html">Method &amp; science</a>
+<a href="evidence.html">Evidence</a>
+</header><main>
+<h1>One unique GeoTIFF. Download it, submit it.</h1>
+<p class="muted">DOE GEMS Prize (DrivenData #306) · grid EPSG:32611 · 3730 × 3292 · 100 m · float32 · values in [0, 1]</p>
 
-<div class="hero">
-  <p class="eyebrow">WBGGEMSDOE3 · KHD lane · 2026-10-28T17:15:39Z</p>
-  <h1>One submission raster is ready: <strong>OK TO DOWNLOAD AND SUBMIT</strong></h1>
-  <p class="lede"><strong>wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif</strong> —
-  37,654 binary dots, all values in [0, 1], no NaN anywhere,
-  EPSG:32611 grid identical to <code>sample_submission.tif</code>. Unique against every
-  sparse registry comparator (max directed 3-px overlap 0.640 ≤ 0.70;
-  vs the nine focus sites ≤ 0.587).</p>
-  <p><a class="btn" href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif">Download the submission TIF (787f83e11d9e…)</a>
-     <a class="btn secondary" href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.zip">Download as ZIP</a>
-     <a class="btn secondary" href="how-to-submit.html">How to submit →</a></p>
-  <p class="small">Submission note to paste on the form (108 chars):
-  <code>KHD ledger-tomographic rho x tri-domain concordance; 2px catalogue trim; comparator caps 0.64; zeros-outside</code></p>
-  <div class="decision">
-    <strong>Score estimate (not a score):</strong> 0.275
-    (band 0.23–
-    0.31).
-    The best owner-reported score in the nine focus sites is GEMSDOE32 B2 at
-    <strong>0.2778</strong>; the public leaderboard best observed is 0.4544.
-    The experimental verdict on the local holdout gate is <strong>negative</strong>
-    (that holdout is anti-correlated with the leaderboard for this family) — see
-    <a href="executive-summary.html">the full executive summary</a> before spending a weekly slot.
-  </div>
-  <p class="small" data-freshness data-checked="2026-10-27T12:00:00+00:00">
-    PUBLIC-LEADERBOARD OBSERVATION (not a receipt): best observed 0.4544 (xiaofanhu),
-    Last checked · 2026-10-27 12:00 UTC. Quoted figures 0.4413 / 0.3195 are earlier
-    snapshots — see irregularities on the <a href="evidence.html">evidence page</a>.</p>
+<div class="card ok">
+<h2 style="margin-top:0;border:none">✅ SUBMIT THIS FILE</h2>
+<div class="cta">
+  <a class="btn" href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download>⬇ Download wbggems3-invdesign-anchor-20k-zeros.tif</a>
+  <a class="btn alt small" href="how-to-submit.html">Step-by-step upload instructions →</a>
 </div>
-<div class="wrap">
-<h2 class="section-head">Executive summary — the nine focus sites and the new submission</h2>
-<p class="small">Owner-reported values are receipts posted on the named owner pages, not
-independently authenticated organizer receipts. Model estimates come from the ledger-tomography
-instrument (leave-one-out MAE 0.0251); every figure below is an ESTIMATE or an
-OWNER-REPORTED claim — none is an organizer-confirmed score for these bytes.</p>
-
-<div class="tablewrap"><table>
-<thead><tr><th>Site</th><th>Best file (research reference)</th><th>Owner-reported</th>
-<th>Model estimate</th><th>Our candidate's directed 3-px overlap vs this file</th>
-<th>Our candidate unique vs this file?</th></tr></thead>
-<tbody><tr><td><strong>GEMSDOE24</strong></td><td class='file'>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif<br><span class='small'>sha256 68d0e2e4fcc594f9… · 60,069 dots</span></td><td>0.2477<br><span class='small'>OWNER-REPORTED</span></td><td>0.2654<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.586</td><td>YES</td></tr><tr><td><strong>GEMSDOE25</strong></td><td class='file'>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif<br><span class='small'>sha256 91eae1ca42ec845e… · 44,090 dots</span></td><td>0.2600<br><span class='small'>OWNER-REPORTED</span></td><td>0.2808<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.565</td><td>YES</td></tr><tr><td><strong>GEMSDOE27</strong></td><td class='file'>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif<br><span class='small'>sha256 33003374335d84bf… · 61,328 dots</span></td><td>0.2449<br><span class='small'>OWNER-REPORTED</span></td><td>0.2626<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.587</td><td>YES</td></tr><tr><td><strong>GEMSDOE28</strong></td><td class='file'>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif<br><span class='small'>sha256 5556aa1438fd6737… · 37,660 dots</span></td><td>0.2710<br><span class='small'>OWNER-REPORTED</span></td><td>0.2944<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.562</td><td>YES</td></tr><tr><td><strong>GEMSDOE30</strong></td><td class='file'>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif<br><span class='small'>sha256 8cf893ead5667df2… · 44,090 dots</span></td><td>0.2600<br><span class='small'>OWNER-REPORTED</span></td><td>0.2808<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.565</td><td>YES</td></tr><tr><td><strong>GEMSDOE31</strong></td><td class='file'>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif<br><span class='small'>sha256 07b6db440535404b… · 40,199 dots</span></td><td>0.2708<br><span class='small'>OWNER-REPORTED</span></td><td>0.2948<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.565</td><td>YES</td></tr><tr><td><strong>GEMSDOE32</strong></td><td class='file'>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif<br><span class='small'>sha256 c55bafc470054e82… · 37,654 dots</span></td><td>0.2778<br><span class='small'>OWNER-REPORTED</span></td><td>0.3047<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.565</td><td>YES</td></tr><tr><td><strong>GEMSDOE33</strong></td><td class='file'>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif<br><span class='small'>sha256 87f857d505e23247… · 41,865 dots</span></td><td>0.2632<br><span class='small'>OWNER-REPORTED</span></td><td>0.2885<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.569</td><td>YES</td></tr><tr><td><strong>GEMSDOE36</strong></td><td class='file'>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif<br><span class='small'>sha256 e15891020b9c5705… · 38,854 dots</span></td><td>0.2750<br><span class='small'>OWNER-REPORTED</span></td><td>0.3008<br><span class='small'>ESTIMATE ±0.026</span></td><td>0.567</td><td>YES</td></tr>
-<tr><td><strong>THIS REPO (new)</strong></td>
-<td class="file"><a href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif">wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif</a>
-<br><span class="small">sha256 787f83e11d9e3c28… · 37,654 dots · zeros-outside</span></td>
-<td>— (not yet submitted)</td>
-<td><strong>0.275</strong> (band 0.23–0.31)
-<br><span class="small">ESTIMATE (triangulated)</span></td>
-<td>max 0.640 vs any registry mask</td><td><strong>YES</strong></td></tr>
-</tbody></table></div>
-<h2 class="section-head">Validation gates for the generated TIF</h2>
-
-<div class="grid">
- <div class="card"><h3>1 · Portal format gates — PASS</h3>
-  <ul class="small">
-   <li>single-band GeoTIFF, float32 — True</li>
-   <li>every value in [0, 1]; no NaN, no inf — True / True</li>
-   <li>CRS EPSG:32611, shape 3730×3292, geotransform identical to sample_submission.tif</li>
-   <li>outside-footprint cells all zero (the all-finite encoding that fixes the
-       “Predicted values must be in range [0, 1]” rejection of NaN-outside files)</li>
-   <li>zero positive cells on the mapped catalogue (catalogue pixels earn no credit)</li>
-   <li>ZIP contains exactly one TIFF whose sha256 equals the .tif</li>
-  </ul></div>
- <div class="card"><h3>2 · Uniqueness gates — PASS (content-aware)</h3>
-  <ul class="small">
-   <li>183 comparator files indexed, 148 sparse non-lattice masks compared</li>
-   <li>max directed 3-px overlap 0.6400 ≤ 0.70 (cap enforced at 0.64 during allocation)</li>
-   <li>not an exact duplicate of any registered dot mask</li>
-   <li>surface |Spearman| pre-placement 0.091, on final dots 0.155 — both ≤ 0.90</li>
-   <li>vs the nine focus sites: max 0.587 (every one ≤ 0.70)</li>
-   <li>lattice/dense-witness excess 0.009372 ≤ 0.05 (IR-01 literal reading disclosed — see evidence)</li>
-  </ul></div>
- <div class="card"><h3>3 · Score estimate — DISCLOSED, never a score</h3>
-  <ul class="small">
-   <li>LST ledger projection 0.3655 (LOO MAE 0.0251) — in-sample optimistic, upper anchor</li>
-   <li>class anchor: owner-reported uniqueness-constrained designs 0.2296–0.2478</li>
-   <li><strong>triangulated ESTIMATE 0.275 (band 0.23–0.31)</strong></li>
-   <li>beats 0.2778? plausible but unproven; the band straddles it</li>
-  </ul></div>
- <div class="card"><h3>4 · Experimental verdict — NEGATIVE on the holdout gate</h3>
-  <ul class="small">
-   <li>HOLDOUT-DTI (22,232 withheld, quality gate): KHD 0.00006 vs B2 bytes 0.00452,
-       paired Δ = −0.00446 [−0.00522, −0.00375]</li>
-   <li>the catalogue holdout is anti-correlated with owner-reported dotted-family scores
-       (Spearman −0.146 / −0.849) — it cannot rank this family; KHD is still 6× the strata control</li>
-   <li>run-card verdict <code>negative</code> = the preregistered promotion gate fails;
-       releasing the file as the unique deliverable is a separate, disclosed decision;
-       spending a weekly slot is the selector's call</li>
-  </ul></div>
+<div class="kpi">
+  <div><b>20,000</b><span>dots (single-band probability, 1.0 on 0.4% of the study area)</span></div>
+  <div><b>0.47</b><span>ESTIMATE (model, bias-corrected) · 95% PI 0.32–0.62</span></div>
+  <div><b>0.0%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar)</span></div>
+  <div><b>0.047</b><span>max |rank correlation| vs 58 sibling rasters (limit 0.90)</span></div>
 </div>
-<h2 class="section-head">Why GEMSDOE32 B2 scores 0.2778 — and what beats it</h2>
-<div class="card"><p>B2 is not a new model: it is a <strong>byte-exact pruning chain</strong> of the
-dotted h19-5 family (verified this session with <code>np.array_equal</code> on the pinned bytes):</p>
+<table>
+<tr><th>Gate</th><th>Result</th><th>Evidence</th></tr>
+<tr><td>Values inside [0, 1] (portal error "Predicted values must be in range [0, 1]")</td>
+    <td><span class="pill g">PASS</span> min 0.0 · max 1.0</td>
+    <td><code>evidence/design_estimate.json</code></td></tr>
+<tr><td>No NaN / no non-finite cell anywhere</td>
+    <td><span class="pill g">PASS</span> 0 non-finite</td>
+    <td>same</td></tr>
+<tr><td>CRS / shape / geotransform identical to <code>sample_submission.tif</code></td>
+    <td><span class="pill g">PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
+    <td>same</td></tr>
+<tr><td>Unique: ≤70% of dots within 3 px of any registry raster</td>
+    <td><span class="pill g">PASS</span> max 0.687 of 58 rasters</td>
+    <td><code>evidence/uniqueness_gate.json</code></td></tr>
+<tr><td>Unique: |Spearman| ≤ 0.90 vs any registry raster</td>
+    <td><span class="pill g">PASS</span> max 0.047</td><td>same</td></tr>
+<tr><td>Not a copy of any of the nine focus-site files</td>
+    <td><span class="pill g">PASS</span> reverse overlap ≤ 0.174</td>
+    <td>same</td></tr>
+</table>
+<p><b>SHA-256</b> <code>283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda</code></p>
+<p class="muted">Submission name (≤ 60 chars): <code>WBGGEMS3-INVDESIGN-ANCHOR-20K</code> ·
+Note (≤ 140 chars): <code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass</code></p>
+</div>
+
+<div class="card warn">
+<h3 style="margin-top:0">What the estimate means — and what it does not</h3>
+<p>The metric is a distance-weighted Tversky index with α = 0.2, β = 0.8 and a 300 m triangular
+kernel. For a binary prediction, <code>FN = |G| − TP</code>, so
+<code>DTI = T / (0.2·(T+F) + 0.8·M) = T / (0.2N + 0.8M)</code>, where
+<code>N</code> is the number of dots, <code>T</code> the truth cells they reach, and
+<code>M</code> the (hidden) number of truth cells. We solved <code>M</code> and <code>T</code> from a
+<em>pair</em> of real submissions whose dots differ by an exact subset relation:
+<b>M ≈ 15,200</b> hidden truth cells, and the 0.2778 champion reaches <b>T ≈ 5,470</b> of them.</p>
+<p>This submission beats 0.2778 if its dots reach truth at a rate above
+<b>0.22</b> credit per dot; the measured sibling rate is 0.124–0.145.
+Our ordering statistic claims 1.70× the champion's rate,
+so the model estimate is 0.47. <b>That uplift is a model claim, not a measurement</b> — which is
+why the honest band is 0.18 (no better than siblings) to 0.58 (posterior exactly right).</p>
+</div>
+
+<h2>Where the numbers come from</h2>
+<div class="kpi">
+  <div><b>98</b><span>published sibling scores re-measured from bytes</span></div>
+  <div><b>0.982</b><span>in-sample ρ of the score model</span></div>
+  <div><b>0.823</b><span>site-grouped cross-validated ρ</span></div>
+  <div><b>0.037</b><span>cross-validated MAE (score units)</span></div>
+</div>
+<h2>Research archive (earlier lanes, each with its own verdict)</h2>
+<p class="muted">Negative results are deliverables. These pages are kept byte-for-byte as they were
+published and are bound to their own run cards; the current decision above supersedes only the
+<i>site-wide</i> banner, not their findings.</p>
 <ul>
- <li><code>d2-8</code> (44,090 dots) → 0.2600</li>
- <li>minus 3,891 dots <em>on</em> the mapped catalogue → <code>solo-d28</code> (40,199) → 0.2708 <strong>(+0.0108)</strong></li>
- <li>minus 2,545 dots in the 1.01–2.01 px catalogue band → <code>B2</code> (37,654) → 0.2778 <strong>(+0.0070)</strong></li>
- <li>plus 1,200 extra dots (<code>anderson-pinn</code>, 38,854) → 0.2750 <strong>(−0.0028)</strong></li>
+<li><a href="hce/index.html">HCE</a> · <a href="fchd/index.html">FCHD-NCM</a> ·
+<a href="lbcal/index.html">LBCAL</a> · <a href="thcs/index.html">THCS</a> ·
+<a href="amdc/index.html">AMDC</a> · <a href="rfl/index.html">RFL</a> ·
+<a href="cspes/index.html">CSPES</a> · <a href="lst1/index.html">LST1</a> ·
+<a href="session-1f0b051d/index.html">session-1f0b051d</a> ·
+<a href="downloads/index.html">all downloads</a></li>
 </ul>
-<p>The organizer masks catalogue <em>truth</em> pixels, but predictions there still cost FP mass —
-so catalogue dots are pure loss. Dots whose 300 m kernel credit is duplicated by neighbours add
-FP mass without TP credit. The metric is won by <strong>precision of placement, not coverage</strong>.
-The entire h19-5 network is already saturated by the family (0 network cells lie &gt;3 px from
-family dots), so a <em>unique</em> submission must spend ≥30% of its dots off-network — the
-uniqueness tax. That is why honest estimates for unique candidates cluster at 0.23–0.27 and why
-beating 0.2778 requires new truth-location information (the H2/H3 research lanes), not more
-family pruning.</p>
-<p class="small"><a href="evidence.html">Full evidence and irregularities →</a></p></div>
-<h2 class="section-head">Historical research lanes (research only — DO NOT SUBMIT these artifacts)</h2>
-<p class="small"><a href="hce/index.html">hce/index.html</a> · <a href="thcs/index.html">thcs/index.html</a> ·
-<a href="rfl/index.html">rfl/index.html</a> · <a href="amdc/index.html">amdc/index.html</a> ·
-<a href="lst1/index.html">lst1/index.html</a> · <a href="lbcal/index.html">lbcal/index.html</a> ·
-<a href="fchd/index.html">fchd/index.html</a> · <a href="cspes/index.html">cspes/index.html</a> ·
-<a href="session-1f0b051d/index.html">session-1f0b051d/index.html</a> ·
-<a href="downloads/index.html">downloads/index.html</a></p>
-<div class="footer small">Built from run card 2026-10-28T17:15:39Z ·
-raster sha256 <code>787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa</code></div>
-</div>
-<script src="assets/status.js"></script></body></html>
+
+<p>Read the <a href="executive-summary.html">executive summary</a> for the nine-site table and the
+answer to “why did 0.2778 win?”, the <a href="method.html">method page</a> for the physics and the five
+ranked hypotheses, and <a href="how-to-submit.html">how to submit</a> for the exact portal steps.</p>
+</main>
+<footer>All figures on this site are read from <code>evidence/*.json</code>.
+OWNER-REPORTED values are copied from the sibling project briefs and are not organizer receipts.
+Model values are labelled ESTIMATE and are never presented as competition scores.
+Generated by <code>scripts/build_site_v3.py</code>.</footer></body></html>

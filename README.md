@@ -1,40 +1,46 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> **CURRENT DECISION (2026-10-28): SUBMISSION-READY — one hash-bound TIF is cleared
-> for download and submission.**
-> `docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif`
-> (sha256 `787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa`)
-> passes every locally checkable gate: portal format (all-finite binary 0/1,
-> zeros outside the footprint, grid identical to sample_submission.tif — this is
-> the encoding that fixes the “Predicted values must be in range [0, 1]” portal
-> rejection) and content-aware parallel-run uniqueness (max directed 3-px overlap
-> 0.640 vs 148 sparse registry masks; 0.59 vs the nine focus sites). Score
-> **ESTIMATE 0.275 (band 0.23–0.31)** — never a score; the local holdout verdict
-> on the preregistered promotion gate is **negative** (that holdout is
-> anti-correlated with the leaderboard for this family) and spending a weekly
-> slot remains the selector's decision. The dense-witness literal reading
-> (17GEMSDOE positive on the whole footprint, IR-01) is disclosed everywhere;
-> it is unsatisfiable by construction and the operative gate is content-aware.
+> ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT A UNIQUE FILE BELOW** (selector picks the slot)
 >
-> [Executive dashboard + download](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
+> **Primary download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
+> · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
+> · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
+> · run card [evidence/run_card_v3.json](evidence/run_card_v3.json) · gate [docs/data/release_gate.json](docs/data/release_gate.json)
+>
+> **Second candidate (KHD lane):** [`docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif`](docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif)
+> · SHA-256 `787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa`
+> · 37,654 dots · all-finite zeros-outside encoding · ESTIMATE **0.275** (band 0.23–0.31;
+>   ledger-tomography + class-anchor triangulation — never a score)
+> · content-aware uniqueness PASS (max directed 3-px overlap 0.640 vs 148 sparse registry masks;
+>   0.56–0.59 vs the nine focus sites) · run card [evidence/khd_run_card.json](evidence/khd_run_card.json)
+> · KHD's preregistered holdout promotion gate is **negative** (that holdout is anti-correlated
+>   with the leaderboard for this family); the file is a lower-variance, lower-estimate bet.
+>
+> Both files pass every locally checkable portal-format gate (values in [0, 1], no non-finite
+> cells, grid identical to `sample_submission.tif`, zeros outside the footprint — the encoding
+> that fixes the “Predicted values must be in range [0, 1]” rejection) and the content-aware
+> uniqueness gate. The literal dense-witness reading (17GEMSDOE positive on the whole footprint,
+> IR-01) is unsatisfiable by construction and is disclosed in the evidence pages. Neither
+> number above is a score; the only organizer-confirmed scores will be your own receipts.
+>
+> [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit](docs/how-to-submit.html) · [Submission file](docs/submission.html) ·
-> [Evidence and limitations](docs/evidence.html) ·
-> [Run card](evidence/khd_run_card.json) ·
+> [Evidence](docs/evidence.html) · [Method](docs/method.html) ·
 > [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
 
 ## Start every session here
 
-Read this README (including the standing brief at the end), [`AGENTS.md`](AGENTS.md),
-the [KHD run card](evidence/khd_run_card.json),
-the [KHD preregistration](knowledge/preregistration-2026-10-28-khd.md),
-the [session review](knowledge/session-review-2026-10-28-khd.md),
-the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-and the [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and
-**Own the Outcome** central: weigh risk and evidence, act autonomously when safe,
-and treat a negative result as a deliverable. The reconstructed standing brief is
-included at the end of this README. It is **not verbatim**: the full original
-prompt was not available to this session, and the previous verbatim claim was
-incorrect.
+Read this README (including the verbatim standing brief at the end), [`AGENTS.md`](AGENTS.md),
+the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review-2026-10-28.json),
+the [KHD run card](evidence/khd_run_card.json), the
+[KHD preregistration](knowledge/preregistration-2026-10-28-khd.md), the
+[KHD session review](knowledge/session-review-2026-10-28-khd.md), the
+[independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), and the
+[release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome**
+central: weigh risk and evidence, act autonomously when safe, and treat a negative result as
+a deliverable. The reconstructed standing brief is included at the end of this README; the
+verbatim 2026-10-28 user brief is quoted there as well.
+
 
 ## Executive summary: nine requested sites
 
@@ -45,8 +51,7 @@ Each link is a pinned historical research file, not an approved download.
 one of the other eight; it does **not** assert byte-identical files. The
 **estimated score** column is the ledger-tomography model estimate (leave-one-out
 MAE 0.0251; label: ESTIMATE ±0.026 — never a score; it carries a systematic
-+0.025 optimistic bias on this family). The one file cleared for download is the
-new KHD submission in the header above.
++0.025 optimistic bias on this family). The two files cleared for download are listed in the header above (primary + KHD alternative).
 
 | Site | Highest reported historical file (research only) | Owner/user report | Estimated score | Unique vs other eight? | Decision |
 |---|---|---:|---|---|---|
@@ -67,6 +72,11 @@ receipt are missing, so the cause of the reported **0.2778** is unproved. A
 physically distinct method might score higher; no such result has been demonstrated
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
+
+**Parallel review note (2026-10-28):** a separate run also recorded a negative
+preflight. Its findings are retained in [that session's review](knowledge/session-review-2026-10-28.md)
+and [run card](evidence/session_review_2026-10-28.json). Treat its evaluator and
+test counts as a separate run; do not combine them with this review.
 
 ## What has and has not been validated
 

@@ -1,0 +1,107 @@
+{
+ "evidence_class": "MEASURED dot counts + OWNER-REPORTED scores + model-implied coverage",
+ "M": 15200.285714285708,
+ "rows": [
+  {
+   "site": "GEMSDOE32",
+   "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "ref": "8953b986b2ce6eb5ee8b7eda23fe3ad529720986",
+   "owner_reported": 0.2778,
+   "n_dots": 37654,
+   "implied_T": 5470.167737142856,
+   "yield_per_dot": 0.1452745455235262,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+  },
+  {
+   "site": "GEMSDOE36",
+   "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "ref": "b90418f852615aa0974cf9a53b92fa569ed133fc",
+   "owner_reported": 0.275,
+   "n_dots": 38854,
+   "implied_T": 5481.032857142856,
+   "yield_per_dot": 0.14106740251049715,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+  },
+  {
+   "site": "GEMSDOE28",
+   "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "ref": "9c1be21e8f1be707347f737e42abf62ea669c819",
+   "owner_reported": 0.271,
+   "n_dots": 37660,
+   "implied_T": 5336.593942857142,
+   "yield_per_dot": 0.1417045656626963,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif"
+  },
+  {
+   "site": "GEMSDOE31",
+   "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "ref": "78f9bf3ae82e5c78ca348aa37c0660c339e72f0e",
+   "owner_reported": 0.2708,
+   "n_dots": 40199,
+   "implied_T": 5470.167737142856,
+   "yield_per_dot": 0.13607720931224299,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"
+  },
+  {
+   "site": "GEMSDOE33",
+   "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "ref": "a24fb7c5031ee08b12440af4593057858fecef8e",
+   "owner_reported": 0.2632,
+   "n_dots": 41865,
+   "implied_T": 5404.345759999999,
+   "yield_per_dot": 0.12908983064612442,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif"
+  },
+  {
+   "site": "GEMSDOE25",
+   "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "ref": "bfb2dfdbdf1b87d67afc6facd422180f56ebc455",
+   "owner_reported": 0.26,
+   "n_dots": 44090,
+   "implied_T": 5454.339428571428,
+   "yield_per_dot": 0.12370921815766449,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+  },
+  {
+   "site": "GEMSDOE30",
+   "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "ref": "35ce8911e2c3287eed973eacd12c252e8cb3f34c",
+   "owner_reported": 0.26,
+   "n_dots": 44090,
+   "implied_T": 5454.339428571428,
+   "yield_per_dot": 0.12370921815766449,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif"
+  },
+  {
+   "site": "GEMSDOE24",
+   "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "ref": "5cfab74597cd1d0a271e4640b4cc34511e56ca59",
+   "owner_reported": 0.2477,
+   "n_dots": 60069,
+   "implied_T": 5987.906877142857,
+   "yield_per_dot": 0.09968381156907652,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"
+  },
+  {
+   "site": "GEMSDOE27",
+   "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "ref": "f1e32af867d9cf0081af20866c8241ec8678a432",
+   "owner_reported": 0.2449,
+   "n_dots": 61328,
+   "implied_T": 5981.885417142857,
+   "yield_per_dot": 0.0975392221683873,
+   "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"
+  }
+ ],
+ "spearman_nDots_vs_score": -0.9831932773109244,
+ "note": "implied_T = score*(0.2*n_dots + 0.8*M); a constant implied_T across files is the model's self-consistency check"
+}
