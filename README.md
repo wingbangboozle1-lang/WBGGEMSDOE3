@@ -2,6 +2,7 @@
 
 > ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT THE UNIQUE FILE BELOW**
 >
+
 > **Download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
 > · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
 > · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
@@ -69,16 +70,21 @@ python scripts/check_uniqueness.py                         # 3-px overlap + Spea
 python scripts/build_site_v3.py && python scripts/build_evidence_page.py
 ```
 
+> Earlier sessions (superseded for the *site-wide* decision, still valid for their own lanes):
+> [2026-10-28 review](knowledge/review-2026-10-28.md) ·
+> [old SGCE TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
+> [old dashboard](docs/session-review.html)
+
+
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
-the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
-[release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
-Outcome** central: weigh risk and evidence, act autonomously when safe, and treat
-a negative result as a deliverable. The reconstructed standing brief is included
-at the end of this README. It is **not verbatim**: the full original prompt was
-not available to this session, and the previous verbatim claim was incorrect.
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The reconstructed standing brief is included at the end of this README. It is **not verbatim**: the full original prompt was not available to this session, and the previous verbatim claim was incorrect.
+
+## Latest review — 2026-10-28 (negative; no experiment)
+
+**Negative preflight; DO NOT SUBMIT.** No new TIFF, geological experiment, HOLDOUT-DTI, upload, or slot selection was made. One registered public owner-mirror raster is positive over every cell in the mirrored sample footprint, so any non-empty prediction fails the literal 70% overlap stop under the repo's support definition. This is a blocking witness, not a complete registry audit or organizer-authenticated source.
+
+Verification for this branch: site builder and site checker passed; **229 tests passed, 72 warnings**. The saved leaderboard observation is dated 2026-10-27 (0.4544 top, 0.3195 rank 25), not a live 2026-10-28 check. Full detail and next steps are in [the repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json). A separate same-day session review is also available at [session review](knowledge/session-review-2026-10-28.md) and [its run card](evidence/session_review_2026-10-28.json); do not combine their measurements or test counts.
 
 ## Executive summary: nine requested sites
 
@@ -109,6 +115,11 @@ receipt are missing, so the cause of the reported **0.2778** is unproved. A
 physically distinct method might score higher; no such result has been demonstrated
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
+
+**Parallel review note (2026-10-28):** a separate run also recorded a negative
+preflight. Its findings are retained in [that session's review](knowledge/session-review-2026-10-28.md)
+and [run card](evidence/session_review_2026-10-28.json). Treat its evaluator and
+test counts as a separate run; do not combine them with this review.
 
 ## What has and has not been validated
 
