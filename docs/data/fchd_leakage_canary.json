@@ -1,0 +1,622 @@
+{
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "n_features_tested": 72,
+  "n_static": 62,
+  "n_structural": 10,
+  "max_directional_auc": 0.74318,
+  "threshold": 0.9,
+  "all_passed": true,
+  "top15_by_directional_auc": [
+    {
+      "feature": "ncm_tip_x_scarp",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.74318,
+      "directional_auc": 0.74318,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_cone_narrow",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.73517,
+      "directional_auc": 0.73517,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_x_basin_worm",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.73351,
+      "directional_auc": 0.73351,
+      "passed": true
+    },
+    {
+      "feature": "ncm_relay_corridor",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.7111,
+      "directional_auc": 0.7111,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_cone_splay",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.70857,
+      "directional_auc": 0.70857,
+      "passed": true
+    },
+    {
+      "feature": "ncm_graben_stepout_4p2km",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.33288,
+      "directional_auc": 0.66712,
+      "passed": true
+    },
+    {
+      "feature": "ncm_belt_strike_aniso",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.62933,
+      "directional_auc": 0.62933,
+      "passed": true
+    },
+    {
+      "feature": "zmean_relief_1km",
+      "kind": "static_zero_catalogue",
+      "auc": 0.38794,
+      "directional_auc": 0.61206,
+      "passed": true
+    },
+    {
+      "feature": "chi_cross_branch_dk",
+      "kind": "static_zero_catalogue",
+      "auc": 0.58558,
+      "directional_auc": 0.58558,
+      "passed": true
+    },
+    {
+      "feature": "chi_step_pos_800m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.58288,
+      "directional_auc": 0.58288,
+      "passed": true
+    },
+    {
+      "feature": "topo10_piedmont_inflection",
+      "kind": "static_zero_catalogue",
+      "auc": 0.57914,
+      "directional_auc": 0.57914,
+      "passed": true
+    },
+    {
+      "feature": "chi_ksn_300m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5781,
+      "directional_auc": 0.5781,
+      "passed": true
+    },
+    {
+      "feature": "topo10_slope_std",
+      "kind": "static_zero_catalogue",
+      "auc": 0.57432,
+      "directional_auc": 0.57432,
+      "passed": true
+    },
+    {
+      "feature": "chi_step_pos_300m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56963,
+      "directional_auc": 0.56963,
+      "passed": true
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56596,
+      "directional_auc": 0.56596,
+      "passed": true
+    }
+  ],
+  "features": [
+    {
+      "feature": "chi_channel_valid",
+      "kind": "static_zero_catalogue",
+      "auc": 0.50077,
+      "directional_auc": 0.50077,
+      "passed": true
+    },
+    {
+      "feature": "chi_step_pos_300m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56963,
+      "directional_auc": 0.56963,
+      "passed": true
+    },
+    {
+      "feature": "chi_step_pos_800m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.58288,
+      "directional_auc": 0.58288,
+      "passed": true
+    },
+    {
+      "feature": "chi_step_asym_300m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.564,
+      "directional_auc": 0.564,
+      "passed": true
+    },
+    {
+      "feature": "chi_ksn_300m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5781,
+      "directional_auc": 0.5781,
+      "passed": true
+    },
+    {
+      "feature": "chi_ksn_jump_800m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52416,
+      "directional_auc": 0.52416,
+      "passed": true
+    },
+    {
+      "feature": "chi_area_weighted_step",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56592,
+      "directional_auc": 0.56592,
+      "passed": true
+    },
+    {
+      "feature": "chi_cross_branch_dk",
+      "kind": "static_zero_catalogue",
+      "auc": 0.58558,
+      "directional_auc": 0.58558,
+      "passed": true
+    },
+    {
+      "feature": "zmean_m_abs",
+      "kind": "static_zero_catalogue",
+      "auc": 0.4773,
+      "directional_auc": 0.5227,
+      "passed": true
+    },
+    {
+      "feature": "zmean_relief_1km",
+      "kind": "static_zero_catalogue",
+      "auc": 0.38794,
+      "directional_auc": 0.61206,
+      "passed": true
+    },
+    {
+      "feature": "lahontan_sehoo_band",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52372,
+      "directional_auc": 0.52372,
+      "passed": true
+    },
+    {
+      "feature": "lahontan_contour_mimic",
+      "kind": "static_zero_catalogue",
+      "auc": 0.48553,
+      "directional_auc": 0.51447,
+      "passed": true
+    },
+    {
+      "feature": "topo10_slope_p90",
+      "kind": "static_zero_catalogue",
+      "auc": 0.55813,
+      "directional_auc": 0.55813,
+      "passed": true
+    },
+    {
+      "feature": "topo10_slope_std",
+      "kind": "static_zero_catalogue",
+      "auc": 0.57432,
+      "directional_auc": 0.57432,
+      "passed": true
+    },
+    {
+      "feature": "topo10_relief_local",
+      "kind": "static_zero_catalogue",
+      "auc": 0.55617,
+      "directional_auc": 0.55617,
+      "passed": true
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56596,
+      "directional_auc": 0.56596,
+      "passed": true
+    },
+    {
+      "feature": "topo10_aspect_coh",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52491,
+      "directional_auc": 0.52491,
+      "passed": true
+    },
+    {
+      "feature": "topo10_hs_lineament",
+      "kind": "static_zero_catalogue",
+      "auc": 0.55655,
+      "directional_auc": 0.55655,
+      "passed": true
+    },
+    {
+      "feature": "topo10_planar_facet_idx",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56062,
+      "directional_auc": 0.56062,
+      "passed": true
+    },
+    {
+      "feature": "topo10_piedmont_inflection",
+      "kind": "static_zero_catalogue",
+      "auc": 0.57914,
+      "directional_auc": 0.57914,
+      "passed": true
+    },
+    {
+      "feature": "topo10_lineament_contrast",
+      "kind": "static_zero_catalogue",
+      "auc": 0.51178,
+      "directional_auc": 0.51178,
+      "passed": true
+    },
+    {
+      "feature": "topo10_steep_frac",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54334,
+      "directional_auc": 0.54334,
+      "passed": true
+    },
+    {
+      "feature": "blm_claim_dist_log",
+      "kind": "static_zero_catalogue",
+      "auc": 0.49908,
+      "directional_auc": 0.50092,
+      "passed": true
+    },
+    {
+      "feature": "blm_mine_scarp_mimic",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52577,
+      "directional_auc": 0.52577,
+      "passed": true
+    },
+    {
+      "feature": "tiger_road_dist_log",
+      "kind": "static_zero_catalogue",
+      "auc": 0.47871,
+      "directional_auc": 0.52129,
+      "passed": true
+    },
+    {
+      "feature": "road_cut_mimic",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54237,
+      "directional_auc": 0.54237,
+      "passed": true
+    },
+    {
+      "feature": "lidar_valid",
+      "kind": "static_zero_catalogue",
+      "auc": 0.50329,
+      "directional_auc": 0.50329,
+      "passed": true
+    },
+    {
+      "feature": "lidar_ex_max",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54017,
+      "directional_auc": 0.54017,
+      "passed": true
+    },
+    {
+      "feature": "lidar_step_max",
+      "kind": "static_zero_catalogue",
+      "auc": 0.53883,
+      "directional_auc": 0.53883,
+      "passed": true
+    },
+    {
+      "feature": "lidar_cross_max",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54597,
+      "directional_auc": 0.54597,
+      "passed": true
+    },
+    {
+      "feature": "lidar_coh100",
+      "kind": "static_zero_catalogue",
+      "auc": 0.4784,
+      "directional_auc": 0.5216,
+      "passed": true
+    },
+    {
+      "feature": "lidar_scarp_sharpness",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52804,
+      "directional_auc": 0.52804,
+      "passed": true
+    },
+    {
+      "feature": "lidar_face_asym",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54224,
+      "directional_auc": 0.54224,
+      "passed": true
+    },
+    {
+      "feature": "lidar_strike_smooth",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5238,
+      "directional_auc": 0.5238,
+      "passed": true
+    },
+    {
+      "feature": "grav_iso_anom",
+      "kind": "static_zero_catalogue",
+      "auc": 0.47771,
+      "directional_auc": 0.52229,
+      "passed": true
+    },
+    {
+      "feature": "grav_hgrad_100m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.46146,
+      "directional_auc": 0.53854,
+      "passed": true
+    },
+    {
+      "feature": "grav_tilt_angle",
+      "kind": "static_zero_catalogue",
+      "auc": 0.51049,
+      "directional_auc": 0.51049,
+      "passed": true
+    },
+    {
+      "feature": "grav_worm_zero_cross",
+      "kind": "static_zero_catalogue",
+      "auc": 0.46003,
+      "directional_auc": 0.53997,
+      "passed": true
+    },
+    {
+      "feature": "mag_tmi",
+      "kind": "static_zero_catalogue",
+      "auc": 0.48852,
+      "directional_auc": 0.51148,
+      "passed": true
+    },
+    {
+      "feature": "mag_hgrad_0m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52655,
+      "directional_auc": 0.52655,
+      "passed": true
+    },
+    {
+      "feature": "mag_hgrad_up150m",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5236,
+      "directional_auc": 0.5236,
+      "passed": true
+    },
+    {
+      "feature": "mag_worm_persistence",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52673,
+      "directional_auc": 0.52673,
+      "passed": true
+    },
+    {
+      "feature": "mag_worm_updip_shift",
+      "kind": "static_zero_catalogue",
+      "auc": 0.4997,
+      "directional_auc": 0.5003,
+      "passed": true
+    },
+    {
+      "feature": "basement_depth",
+      "kind": "static_zero_catalogue",
+      "auc": 0.49569,
+      "directional_auc": 0.50431,
+      "passed": true
+    },
+    {
+      "feature": "basement_depth_grad",
+      "kind": "static_zero_catalogue",
+      "auc": 0.52515,
+      "directional_auc": 0.52515,
+      "passed": true
+    },
+    {
+      "feature": "concealed_basin_worm",
+      "kind": "static_zero_catalogue",
+      "auc": 0.48357,
+      "directional_auc": 0.51643,
+      "passed": true
+    },
+    {
+      "feature": "rad_tc_f32",
+      "kind": "static_zero_catalogue",
+      "auc": 0.44959,
+      "directional_auc": 0.55041,
+      "passed": true
+    },
+    {
+      "feature": "rad_tc_hgrad",
+      "kind": "static_zero_catalogue",
+      "auc": 0.51129,
+      "directional_auc": 0.51129,
+      "passed": true
+    },
+    {
+      "feature": "rad_thk_ratio",
+      "kind": "static_zero_catalogue",
+      "auc": 0.49164,
+      "directional_auc": 0.50836,
+      "passed": true
+    },
+    {
+      "feature": "rad_uth_ratio",
+      "kind": "static_zero_catalogue",
+      "auc": 0.54534,
+      "directional_auc": 0.54534,
+      "passed": true
+    },
+    {
+      "feature": "geod_max_shear",
+      "kind": "static_zero_catalogue",
+      "auc": 0.56313,
+      "directional_auc": 0.56313,
+      "passed": true
+    },
+    {
+      "feature": "geod_2nd_inv",
+      "kind": "static_zero_catalogue",
+      "auc": 0.55841,
+      "directional_auc": 0.55841,
+      "passed": true
+    },
+    {
+      "feature": "tf_det_elev",
+      "kind": "static_zero_catalogue",
+      "auc": 0.47655,
+      "directional_auc": 0.52345,
+      "passed": true
+    },
+    {
+      "feature": "tf_cond_surf",
+      "kind": "static_zero_catalogue",
+      "auc": 0.4895,
+      "directional_auc": 0.5105,
+      "passed": true
+    },
+    {
+      "feature": "tf_eq_density",
+      "kind": "static_zero_catalogue",
+      "auc": 0.557,
+      "directional_auc": 0.557,
+      "passed": true
+    },
+    {
+      "feature": "tf_det_elev_slope",
+      "kind": "static_zero_catalogue",
+      "auc": 0.55494,
+      "directional_auc": 0.55494,
+      "passed": true
+    },
+    {
+      "feature": "gdr_probe2m_dab_2p5km",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5146,
+      "directional_auc": 0.5146,
+      "passed": true
+    },
+    {
+      "feature": "gdr_probe2m_grad",
+      "kind": "static_zero_catalogue",
+      "auc": 0.51203,
+      "directional_auc": 0.51203,
+      "passed": true
+    },
+    {
+      "feature": "gdr_sinter_tufa_3km",
+      "kind": "static_zero_catalogue",
+      "auc": 0.48432,
+      "directional_auc": 0.51568,
+      "passed": true
+    },
+    {
+      "feature": "gdr_sinter_aniso_ridge",
+      "kind": "static_zero_catalogue",
+      "auc": 0.47903,
+      "directional_auc": 0.52097,
+      "passed": true
+    },
+    {
+      "feature": "gdr_well_sio2_3km",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5149,
+      "directional_auc": 0.5149,
+      "passed": true
+    },
+    {
+      "feature": "gdr_volcanic_vent_dist",
+      "kind": "static_zero_catalogue",
+      "auc": 0.5334,
+      "directional_auc": 0.5334,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_cone_narrow",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.73517,
+      "directional_auc": 0.73517,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_cone_splay",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.70857,
+      "directional_auc": 0.70857,
+      "passed": true
+    },
+    {
+      "feature": "ncm_relay_corridor",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.7111,
+      "directional_auc": 0.7111,
+      "passed": true
+    },
+    {
+      "feature": "ncm_piedmont_stepout_1p8km",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.5519,
+      "directional_auc": 0.5519,
+      "passed": true
+    },
+    {
+      "feature": "ncm_graben_stepout_4p2km",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.33288,
+      "directional_auc": 0.66712,
+      "passed": true
+    },
+    {
+      "feature": "ncm_belt_density_8km",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.46124,
+      "directional_auc": 0.53876,
+      "passed": true
+    },
+    {
+      "feature": "ncm_belt_strike_aniso",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.62933,
+      "directional_auc": 0.62933,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_x_scarp",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.74318,
+      "directional_auc": 0.74318,
+      "passed": true
+    },
+    {
+      "feature": "ncm_tip_x_basin_worm",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.73351,
+      "directional_auc": 0.73351,
+      "passed": true
+    },
+    {
+      "feature": "ncm_stepout_x_piedmont",
+      "kind": "fold_local_ncm_structural",
+      "auc": 0.54051,
+      "directional_auc": 0.54051,
+      "passed": true
+    }
+  ]
+}

@@ -178,8 +178,19 @@ for the next session.
 6. LBCAL lane (`arena/88400903`): `knowledge/preregistration-2026-10-27-lbcal.md` (five ranked
    hypotheses), `knowledge/lbcal-findings-2026-10-27.md` (science, gate audit, irregularities),
    `evidence/lbcal_lane_decision.json`, `evidence/lbcal_run_card.json`, `docs/lbcal/index.html`.
+7. FCHD-NCM lane (`arena/6ea84033-wbggemsdoe3`): `knowledge/preregistration-2026-10-27-fchd.md`,
+   `knowledge/irregularities-2026-10-28-fchd.md` (`IR-24`..`IR-28`), `evidence/fchd_run_card.json`,
+   `evidence/master_audit_2026-10-27.json`, `docs/fchd/index.html`.
 
 ## Feed (newest first)
+
+- **2026-10-28 ~01:45 UTC, arena/6ea84033-wbggemsdoe3 (`FCHD-NCM` lane, negative).** 62-ch 10 m 3DEP $\chi$ +
+  facet + Lahontan/BLM deconfounder + 0→150 m basin worms + GDR #1391 + 4-fold NCM OOF HGB + 149-comparator
+  knapsack CELF (`38,000` dots, SHA-256 `35b37288b8b1ac2a...`). Gate 0: `72/72 <= 0.7432`. Solves the `ovtr`
+  overlap problem (`max non-lattice 3-px overlap = 0.6350 <= 0.70` across 195 TIFs; `0.4191` across 17 Oct 27
+  peer TIFs), reaches #1 ~38k-dot spatially-blocked `HOLDOUT-DTI = 0.09702` (Draw-20 `0.10220`, ahead of
+  `THCS-OOF 0.09573`, saved `HCE-1 0.09313`, and `AMDC E3 0.0552`) and #1 valid `LBCAL-Physics ESTIMATE = 0.0927`.
+  Consistent with governing `DO-NOT-SUBMIT` (`release_gate.json`). 0 slots used.
 
 - **2026-10-27 ~20:15 UTC, arena/88400903 (LBCAL lane, negative; PR #32).** A hidden-fault density fitted to
   119 owner-reported scores (family-grouped CV Spearman 0.91, RMSE 0.036 vs 0.086 constant). The design
