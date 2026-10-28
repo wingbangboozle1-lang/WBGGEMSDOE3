@@ -48,7 +48,7 @@
   "verification": {
     "site_builder": "PASS",
     "site_checker": "PASS",
-    "tests": "228 passed, 72 warnings",
+    "tests": "229 passed, 72 warnings",
     "no_new_tif_or_upload": true,
     "commands": [
       "PYTHONPATH=src .venv/bin/python -c 'from gems_project.template import ensure_template; print(ensure_template())'",

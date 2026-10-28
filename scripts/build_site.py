@@ -33,7 +33,8 @@ INDEPENDENT_NAN = ROOT / "evidence/format_independent_sgce_nan_2026-10-27.json"
 INDEPENDENT_ZERO = ROOT / "evidence/format_independent_sgce_zeros_2026-10-27.json"
 FEED = ROOT / "registry/leaderboard.json"
 LEADERBOARD_OBSERVATION = ROOT / "evidence/leaderboard_observation_2026-10-27.json"
-SESSION_REVIEW = ROOT / "evidence/review_2026-10-28.json"
+REPO_REVIEW = ROOT / "evidence/review_2026-10-28.json"
+SESSION_REVIEW = ROOT / "evidence/session_review_2026-10-28.json"
 SHA_CANDIDATE = "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09"
 CANDIDATE_FILE = "wbggems3-sgce-20261027-f52d35d8-zeros.tif"
 PRIOR_COMMIT = "1dcca8bb473f732403213928b7c633cd2a22b403"
@@ -70,7 +71,7 @@ def human_age(feed: dict) -> str:
 def layout(title: str, current: str, body: str) -> str:
     nav = [("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
            ("Submission guide", "how-to-submit.html"), ("Research", "research.html"),
-           ("Evidence", "evidence.html"), ("FCHD-NCM lane", "fchd/index.html"),
+           ("Evidence", "evidence.html"), ("Latest review", "session-review.html"), ("FCHD-NCM lane", "fchd/index.html"),
            ("AMDC lane", "amdc/index.html")]
     links = "".join(f'<a href="{url}"' + (' aria-current="page"' if current == url else '') + f'>{name}</a>'
                     for name, url in nav)
@@ -171,8 +172,20 @@ def evidence_page(recheck: dict, independent_focus: dict) -> str:
 <article class="card"><h3>Format is a different gate</h3><p>For the old zeros-outside research file, our local range/grid diagnostic passes, but a parallel independent check interprets the outside-footprint rule as requiring NaN and therefore <strong>fails that file</strong>. Its NaN-outside variant passes that parallel local format check. The official wording could not be re-read in this session and neither encoding has a portal receipt. Format checks alone never clear upload.</p><p class="small"><a href="data/format_independent_sgce_zeros_2026-10-27.json">Zeros diagnostic ↓</a> · <a href="data/format_independent_sgce_nan_2026-10-27.json">NaN diagnostic ↓</a> · <a href="data/session_9b794637_run_card.json">Current JSON run card ↓</a></p></article></div></section>
 <section><div class="section-head"><h2>Independent focus-only comparison</h2></div><div class="card"><p>A parallel review independently compared the older NaN-outside SGCE bytes to the nine pinned focus-site files. The largest directed 3-pixel overlap was {focus_overlap_percent:.2f}%. We reran that comparison after adding grid and cached-sample hash checks and obtained the same numbers. It excludes other registry files: the separate witness overlaps 100%, so focus-only agreement does <strong>not</strong> clear the literal all-registry gate.</p><p><a href="data/focus_uniqueness_independent_2026-10-27.json">Nine-file comparison and pairwise matrix ↓</a></p></div></section>
 <section><div class="section-head"><h2>What remains unknown</h2></div><div class="card"><ul><li>The original rejected upload bytes and portal receipt are unavailable, so the [0,1] error’s cause cannot be established.</li><li>Historical site scores are user/owner reports, not organizer-confirmed receipts. Some previous pages wrongly labeled them confirmed or recommended files despite failing the literal rule.</li><li>The active data/feature cache was not restored, nor was any feature canary or holdout rerun. Pinned mirror identity does not authenticate the organizer source or physical-band semantics.</li><li>The request does not identify its “single method paragraph”; the witness stop independently blocks the generation of a compliant nonempty candidate. The shared template tests signed positive rank correlation; the project has also used a stricter absolute-rank convention, which the user’s wording does not explicitly require. Agree on that convention and reconcile outside-footprint handling before release.</li><li>DrivenData, USGS, GDR and the rules PDF are outside this sandbox’s permitted outbound hosts. The <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference repository</a> was accessible via GitHub; no current portal quota or receipt was obtained.</li></ul></div></section>
-<section><div class="section-head"><h2>Latest repository review</h2></div><div class="card"><p>The 2026-10-28 review rechecked the nine focus sites, the literal uniqueness stop, candidate/score claims, and the build/tests. It produced no new TIFF and no holdout score. The saved official-page snapshot is dated 2026-10-27: it records 0.4544 at the top and 0.3195 at rank 25; this is not a live check for 2026-10-28.</p><p><a href="data/review_2026-10-28.json">Review run card ↓</a> · <a href="data/leaderboard_observation_2026-10-27.json">Dated public leaderboard snapshot ↓</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official live page ↗</a></p></div></section>
+<section><div class="section-head"><h2>Latest repository review</h2></div><div class="card"><p>The 2026-10-28 review rechecked the nine focus sites, the literal uniqueness stop, candidate/score claims, and the build/tests. It produced no new TIFF and no holdout score. The saved official-page snapshot is dated 2026-10-27: it records 0.4544 at the top and 0.3195 at rank 25; this is not a live check for 2026-10-28.</p><p><a href="data/review_2026-10-28.json">Repository review run card ↓</a> · <a href="data/leaderboard_observation_2026-10-27.json">Dated public leaderboard snapshot ↓</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official live page ↗</a></p></div></section>
 <section><div class="section-head"><h2>Repeat the independent audit</h2></div><div class="card"><p><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code><br><code>.venv/bin/python scripts/recheck_registry_witness.py --fetch</code><br><code>.venv/bin/python -m pytest -q</code></p><p class="small">GitHub access is required for pinned inputs. Cached rasters are ignored by Git. This command never creates or uploads a submission.</p></div></section></div>'''
+
+
+def latest_review_page(card: dict) -> str:
+    verification = card["verification"]
+    holdout = card["holdout_dti"]
+    witness = card["registry_comparison"]["witness_measurement"]
+    return page_top("Latest review · 2026-10-28", "Negative preflight; no experiment.", "Latest reproducibility and release-safety review. No new candidate or competition slot was produced.") + f'''<div class="wrap"><section><div class="grid">
+<article class="card"><h2>Decision</h2><p><strong>DO NOT SUBMIT.</strong> No new TIFF, holdout score, live leaderboard check, or submission was generated. The result is a negative prerequisite finding.</p></article>
+<article class="card"><h2>Registry stop</h2><p>The saved mirrored witness is positive on {witness['witness_positive_inside']:,} of {witness['footprint_cells']:,} footprint cells. Under the shared finite-and-positive support interpretation, any nonempty in-footprint candidate would overlap it completely. This is a conditional raster measurement, not a score or authenticated organizer source.</p></article>
+<article class="card"><h2>Holdout</h2><p>{esc(holdout['status'])}. No HOLDOUT-DTI value or confidence interval is reported. The feature stack, labels, segment identifiers, and saved folds are absent from this checkout.</p></article>
+<article class="card"><h2>Checks</h2><p>Pytest: {esc(verification['pytest'])}. Static-site check: {esc(verification['site_check'])}. These validate repository behavior only; they do not validate a new prediction.</p></article>
+</div></section><section><div class="section-head"><h2>What happens next</h2><p>The four candidate hypotheses and their controls are already recorded in the research preregistration. Work remains blocked until the registry interpretation is resolved and a method lane and data inputs are available.</p></div><div class="card"><p>First, explicitly decide whether dense continuous probability rasters count as dot comparators under the literal duplicate rule. Do not exempt them silently. Then restore the shared inputs, identify the method lane, and run the preregistered buffered holdout and canaries before generating any candidate.</p><p><a href="data/session_review_2026-10-28.json">Download machine-readable review card →</a> · <a href="evidence.html">Review evidence and limits →</a> · <a href="research.html">Review candidate hypotheses →</a></p></div></section></div>'''
 
 
 LANES = {
@@ -204,13 +217,13 @@ def downloads_index() -> str:
 
 def render() -> None:
     authority, candidate, recheck, audit, feed = map(read, (AUTHORITY, SGCE_CARD, RECHECK, FOCUS, FEED))
-    leaderboard_observation, session_review = map(read, (LEADERBOARD_OBSERVATION, SESSION_REVIEW))
+    leaderboard_observation, repository_review = map(read, (LEADERBOARD_OBSERVATION, REPO_REVIEW))
     focus_only, nan_format, zero_format = map(read, (INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO))
     gate = evaluate_release_gate(authority, candidate)
-    if (session_review.get("verdict") != "negative"
-            or session_review.get("raster_sha256") is not None
-            or session_review.get("experiments_run") != 0
-            or session_review.get("weekly_slots_used") != 0
+    if (repository_review.get("verdict") != "negative"
+            or repository_review.get("raster_sha256") is not None
+            or repository_review.get("experiments_run") != 0
+            or repository_review.get("weekly_slots_used") != 0
             or leaderboard_observation.get("observed_date_utc") != "2026-10-27"
             or leaderboard_observation.get("best_public_dti") != "0.4544"
             or leaderboard_observation.get("rank_25_public_dti") != "0.3195"):
@@ -250,8 +263,8 @@ def render() -> None:
     (data / "release_gate.json").write_text(json.dumps(gate, indent=2, allow_nan=False) + "\n")
     (data / "decision.json").write_text(json.dumps({"decision": "DO-NOT-SUBMIT", "okay_to_submit": False,
                                                     "candidate": None, "source": "release_gate.json"}, indent=2) + "\n")
-    for path in (AUTHORITY, RECHECK, FOCUS, FEED, LEADERBOARD_OBSERVATION, SESSION_REVIEW,
-                 INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO):
+    for path in (AUTHORITY, RECHECK, FOCUS, FEED, LEADERBOARD_OBSERVATION, REPO_REVIEW,
+                 INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO, SESSION_REVIEW):
         shutil.copyfile(path, data / path.name)
     shutil.copyfile(AUTHORITY, data / "run_card.json")
     for _, (_, _, card) in LANES.items():
@@ -268,6 +281,7 @@ def render() -> None:
     pages = {"index.html": ("Overview", home(audit, feed, leaderboard_observation)), "executive-summary.html": ("Executive summary", executive(audit)),
              "how-to-submit.html": ("Submission guide", howto()), "research.html": ("Research", research()),
              "evidence.html": ("Evidence", evidence_page(recheck, focus_only)),
+             "session-review.html": ("Latest review", latest_review_page(read(SESSION_REVIEW))),
              "submission.html": ("Submission", page_top("Submission status", "No file is currently cleared.", "See the executive summary and future submission guide; no upload is authorized.") + '<div class="wrap"><p><a href="executive-summary.html">Open executive summary →</a></p></div>')}
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(layout(title, name, body), encoding="utf-8")

@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html", "evidence.html", "submission.html")
+PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html", "evidence.html", "session-review.html", "submission.html")
 
 
 def test_every_current_page_is_explicitly_negative():
@@ -63,6 +63,18 @@ def test_pages_publishers_use_the_same_docs_url_layout():
     assert "url=docs/index.html" in root_redirect
     assert "cp -a docs .cache/pages-release/docs" in workflow
     assert "path: .cache/pages-release" in workflow
+
+
+def test_latest_review_is_published_and_labeled_as_a_negative_preflight():
+    page = (DOCS / "session-review.html").read_text()
+    source = json.loads((ROOT / "evidence/session_review_2026-10-28.json").read_text())
+    published = json.loads((DOCS / "data/session_review_2026-10-28.json").read_text())
+    assert page.startswith("<!doctype html>")
+    assert "Latest review" in page and "DO NOT SUBMIT" in page
+    assert "No HOLDOUT-DTI value or confidence interval" in page
+    assert "224 passed, 4 skipped, 72 warnings" in page
+    assert published == source
+    assert 'href="session-review.html"' in (DOCS / "index.html").read_text()
 
 
 def test_feed_does_not_claim_old_data_is_live():
