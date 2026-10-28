@@ -1,0 +1,56 @@
+{
+  "schema": "review-run-card-v1",
+  "date_utc": "2026-10-28",
+  "evidence_class": "NEGATIVE PREFLIGHT; repository/tests review only; no scientific experiment and no competition score",
+  "hypothesis": "Prospective only: departures from a local K/Th/U/total-count compositional mixing manifold that persist across a magnetic boundary may help locate a concealed, unmapped fault-associated alteration zone. Not selected or tested.",
+  "mechanism": "Fit local radiometric compositional mixing manifold, then test cross-boundary residual persistence alongside magnetic anomaly/edge bands. This mechanism is not executed; lane assignment is absent.",
+  "named_non_fault_process": "Transported sediment, soil moisture, lithologic variation, and survey-line artifacts can mimic radiometric residuals and magnetic boundaries.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Not run: no candidate surface was built. Literal pre-placement feasibility stop is triggered by the registered mirror witness; the feature-stack cache, labels, and fold inputs are also absent."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "candidate_surface_tested": false,
+    "candidate_final_dots_tested": false,
+    "registered_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_cells": 5167373,
+    "footprint_cells": 5167373,
+    "implied_overlap_for_any_nonempty_candidate": 1.0,
+    "overlap_label": "RASTER-ARTIFACT MEASUREMENT, conditional on finite-positive support definition and mirrored witness; not a new candidate measurement",
+    "witness_registry_sha256": "727a7bc0fe818a18da49663a8c8d678ba50c7cb2d1974f4f47d1a767069ab8a3",
+    "scope": "One registered witness is a conclusive blocker under the current definition; this does not prove complete current registry coverage or organizer provenance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_tif_created": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT RUN: no candidate raster was generated",
+    "reason": "No unique final-dot candidate may be placed under the literal overlap guard; no submission is cleared."
+  },
+  "submission_name": null,
+  "submission_note": "Negative preflight: no candidate TIFF; literal registry overlap blocks nonempty support.",
+  "submission_note_length": 88,
+  "verdict": "negative",
+  "selector_approval": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "repository_tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "result": "223 passed, 4 skipped, 72 warnings",
+    "label": "TEST RESULTS, not HOLDOUT-DTI or a competition score"
+  },
+  "site_check": {
+    "command": "python scripts/build_site.py && python scripts/check_site.py && git diff --exit-code -- docs/",
+    "result": "PASS; generated docs unchanged",
+    "label": "SITE CONTRACT CHECK, not scientific validation"
+  },
+  "official_source_access": "Not independently rechecked this session; outbound host allowlist excludes DrivenData, USGS, DOE GDR, and NLR. Manual review URLs are in knowledge/review-2026-10-28.md."
+}

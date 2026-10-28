@@ -16,7 +16,7 @@
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest 2026-10-28 review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28_run_card.json), the [current negative run card](evidence/session_9b794637_run_card.json),
 the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
 [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
@@ -37,6 +37,7 @@ not identifiable. Full tests: **224 passed, 4 skipped, 72 warnings**;
 `python scripts/check_site.py`: **PASS**. The user-reported 0.3195 is not a
 live verified leaderboard value. See the [three-pass session review](knowledge/session-review-2026-10-28.md)
 and [machine-readable run card](evidence/session_review_2026-10-28.json).
+
 
 ## Executive summary: nine requested sites
 
@@ -67,6 +68,12 @@ receipt are missing, so the cause of the reported **0.2778** is unproved. A
 physically distinct method might score higher; no such result has been demonstrated
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
+
+**Parallel review note (2026-10-28):** a separate session also documented a
+negative preflight before this review. Its evidence is retained in
+[that session's review](knowledge/review-2026-10-28.md) and
+[run card](evidence/review-2026-10-28_run_card.json); its reported test count
+belongs to that session, not the current review above.
 
 ## What has and has not been validated
 
@@ -137,6 +144,13 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    encoding and rejects the NaN variant; the parallel independent audit reads
    the outside-footprint wording the other way. Neither file is cleared either
    way.
+
+## Latest repository review (2026-10-28)
+
+Three-pass review and verification found no safe submission to promote. The
+site builder and consistency checks pass; the complete test suite passes
+(223 passed, 4 skipped). No experiments or slots were used and no tracked
+implementation changes were needed. See the detailed [review record](knowledge/repo-review-2026-10-28.md).
 
 ## Reproduce the checks
 
