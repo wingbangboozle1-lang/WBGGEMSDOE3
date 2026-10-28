@@ -1,0 +1,45 @@
+{
+ "label": "HOLDOUT-DTI (quality gate; NOT a leaderboard estimate \u2014 catalogue holdout is anti-correlated with owner-reported dotted-family scores)",
+ "evaluator": "gemsw.holdout.evaluate_hide_and_recover (GEMSDOE32-HIDE-RECOVER family)",
+ "generated_utc": "2026-10-28T17:11:16Z",
+ "arms": {
+  "B2_reference": {
+   "n_dots": 37654,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 0.00451537871535044,
+   "ci95_cluster_bootstrap": [
+    0.0038164175817344387,
+    0.005261598301920283
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "KHD_37654": {
+   "n_dots": 37654,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 5.945187076493811e-05,
+   "ci95_cluster_bootstrap": [
+    1.7493333330812652e-05,
+    0.00011036343867468626
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "strata_control": {
+   "n_dots": 37637,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 7.141460536934997e-06,
+   "ci95_cluster_bootstrap": [
+    1.7335770320364247e-06,
+    1.4856680061803708e-05
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  }
+ },
+ "paired_delta_khd_minus_b2": {
+  "value": -0.004455926844585502,
+  "ci95": [
+   -0.005215641979598543,
+   -0.0037519862393038048
+  ],
+  "p_delta_le_0": 1.0
+ }
+}

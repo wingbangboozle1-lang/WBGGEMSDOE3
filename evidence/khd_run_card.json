@@ -1,0 +1,134 @@
+{
+ "lane": "KHD (Kernel-Keep / Halo-Displace), session arena/7702e9ff-wbggemsdoe3",
+ "generated_utc": "2026-10-28T17:15:39Z",
+ "hypothesis": "H1: the hidden unmapped-fault truth sits in the catalogue-distance x h19-5-network-distance strata identified by ledger tomography of 112 owner-scored probes; a binary dot field allocated by coverage-gain greedy on rho_hat (modulated within strata by label-free tri-domain edge concordance), trimmed >=2.01px off the catalogue (the byte-proven B2 mechanism), with per-comparator knapsack caps <=0.64, is a UNIQUE submission whose score is at or above the uniqueness-constrained class (0.2296-0.2478) and plausibly competitive with GEMSDOE32 B2 (0.2778).",
+ "mechanism": "Exact marginal DTI algebra: removing dots whose kernel credit is duplicated or whose predicted kernel credit is low strictly raises DTI (B2's measured one-change deltas: -3891 on-catalogue dots = +0.0108; -2545 dots in the 1-2px band = +0.0070; +1200 extra dots = -0.0028, all byte-exact subset identities). KHD completes that pruning under rho_hat and displaces the minimum-value mass into the >3px novelty pool (the only space where uniqueness permits it).",
+ "non_fault_mimic": "Basin-fill drainage lineaments and lithologic contacts in the SGMC can mimic ridge traces in the off-network novelty pool; rho_hat strata damp but cannot eliminate them. Control: equal-count strata-shuffled field (HOLDOUT-DTI 0.00001 vs KHD 0.00006).",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI (quality gate only; catalogue holdout is anti-correlated with owner-reported scores for the dotted family, Spearman -0.146 R2 / -0.849 AMDC; never a leaderboard proxy)",
+  "evaluator": "gemsw.holdout.evaluate_hide_and_recover (GEMSDOE32-HIDE-RECOVER family)",
+  "withheld_positives": 22232,
+  "khd": {
+   "n_dots": 37654,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 5.945187076493811e-05,
+   "ci95_cluster_bootstrap": [
+    1.7493333330812652e-05,
+    0.00011036343867468626
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "b2_reference": {
+   "n_dots": 37654,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 0.00451537871535044,
+   "ci95_cluster_bootstrap": [
+    0.0038164175817344387,
+    0.005261598301920283
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "strata_control": {
+   "n_dots": 37637,
+   "n_withheld_positives": 22232,
+   "pooled_dti": 7.141460536934997e-06,
+   "ci95_cluster_bootstrap": [
+    1.7335770320364247e-06,
+    1.4856680061803708e-05
+   ],
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "paired_delta_khd_minus_b2": {
+   "value": -0.004455926844585502,
+   "ci95": [
+    -0.005215641979598543,
+    -0.0037519862393038048
+   ],
+   "p_delta_le_0": 1.0
+  }
+ },
+ "leakage_canary": "Single-feature canaries: the FCHD lane tested 72/72 features on this holdout (max AUC 0.74318 <= 0.90). KHD adds no new labelled feature; its arms score <=0.005 HOLDOUT-DTI, far from canary saturation.",
+ "ledger_projection": {
+  "label": "LEDGER-PROJECTION (ESTIMATE; LST model, LOO MAE 0.0251, family-CV MAE 0.0258; NOT a score)",
+  "candidate": {
+   "label": "LEDGER-PROJECTION (ESTIMATE; owner-reported probes; NOT a score)",
+   "projection": 0.36545333388081563,
+   "tp_hat": 5671.338246511945,
+   "g_hat": 9150.385227009701,
+   "fp_hat": 35320.314294896925,
+   "mass": 37654.0,
+   "dots": 37654,
+   "model_loo_mae": 0.025131149510487845,
+   "model_family_cv_mae": 0.02577574645555389
+  },
+  "b2_reference": {
+   "label": "LEDGER-PROJECTION (ESTIMATE; owner-reported probes; NOT a score)",
+   "projection": 0.3025184902714386,
+   "tp_hat": 4662.861858140742,
+   "g_hat": 9150.385227009701,
+   "fp_hat": 35802.98332907909,
+   "mass": 37654.0,
+   "dots": 37654,
+   "model_loo_mae": 0.025131149510487845,
+   "model_family_cv_mae": 0.02577574645555389
+  },
+  "in_sample_caveat": "The candidate was allocated against the model's own rho_hat support, so its projection is in-sample optimistic; the family shows a systematic +0.025 model-vs-owner bias; the honest headline is the triangulated ESTIMATE below.",
+  "estimate_headline": {
+   "value": 0.275,
+   "band": [
+    0.23,
+    0.31
+   ],
+   "construction": "class anchor 0.23-0.25 (owner-reported uniqueness-constrained designs: h59-cover 0.2296, cvarlw 0.2303, gate_ortho 0.2376, gems70 0.2478) plus the model-space delta over class (0.3655-0.2230) discounted 25-60% for in-sample bias",
+   "label": "ESTIMATE (not a score; not organizer-confirmed)"
+  }
+ },
+ "uniqueness": {
+  "label": "content-aware parallel-run rule (directed 3px overlap <=0.70 vs every sparse registry mask; |Spearman|<=0.90)",
+  "registry_files": 183,
+  "sparse_masks_compared": 148,
+  "max_nonlattice_overlap_3px": 0.63999,
+  "exact_duplicate": false,
+  "preplacement_surface_max_abs_spearman": 0.09053,
+  "final_surface_max_abs_spearman": 0.15549,
+  "focus_site_directed_overlap_max": 0.5873,
+  "lattice_excess": 0.009372,
+  "dense_witness_literal_reading": "17GEMSDOE E-proba is positive on 100% of the footprint (IR-01): under the literal reading every non-empty submission, including the organizers' own sample, has overlap 1.0. That reading is unsatisfiable by construction and is reported, not hidden; the operative gate is content-aware."
+ },
+ "validator": {
+  "passed": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "no_nan_no_inf_anywhere": true,
+  "values_in_0_1": true,
+  "binary_0_1": true,
+  "crs_shape_transform_match": true,
+  "outside_footprint": "all zeros (all-finite encoding; fixes the portal 'Predicted values must be in range [0, 1]' error seen with NaN-outside bytes)",
+  "positive_cells": 37654,
+  "positive_on_catalogue": 0,
+  "zip_single_member_sha_matches": true
+ },
+ "raster_sha256": "787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa",
+ "submission_name": "wbggems3-khd-tomo-20261028-bd69b5b3-zeros",
+ "submission_note": "KHD ledger-tomographic rho x tri-domain concordance; 2px catalogue trim; comparator caps 0.64; zeros-outside",
+ "verdict": "negative",
+ "verdict_reason": "H1's promotion gate (beat the comparable holdout best with a positive paired CI) FAILS: paired delta vs B2 = -0.00446 [-0.00522, -0.00375] on the catalogue holdout. That holdout is anti-correlated with the leaderboard for this family, so this is a negative on the preregistered gate, not proof the file scores below B2. The file is released as the lane's unique submission deliverable because format+uniqueness gates pass and the user brief requires a ready-to-download TIF; promotion to a weekly slot remains the selector's decision.",
+ "experiments": [
+  {
+   "id": "E1",
+   "result": "negative (instrument): coverage-gain allocator starved (NNLS lambda>0 in 4/64 strata) and the shared post-guard cascade-deleted fields to zero on multi-violator cases; shared tool fixed once (registry_full.py post-guard now caps removals at 50% and discloses residuals)"
+  },
+  {
+   "id": "E1-A1",
+   "result": "positive (construction): with a disclosed 25% hedge mass outside identified strata, budgets 34k/37.6k/41k all fill, cap 0.64 satisfied, projections flat 0.364-0.366 (in-sample optimistic)"
+  },
+  {
+   "id": "E2",
+   "result": "negative (preregistered gate): HOLDOUT-DTI KHD 0.00006 vs B2 0.00452 (paired -0.00446 CI [-0.00522,-0.00375]); KHD is 6x the strata control 0.00001"
+  },
+  {
+   "id": "E3",
+   "result": "bundled in E1-A1: budget sensitivity flat (34000: 0.3652, 37654: 0.3655, 41000: 0.3641)"
+  }
+ ]
+}

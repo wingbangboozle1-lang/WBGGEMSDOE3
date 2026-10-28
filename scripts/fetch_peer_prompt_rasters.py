@@ -108,6 +108,7 @@ def main() -> int:
         prior = {r["local"]: r for r in json.loads(MANIFEST_OUT.read_text()).get("rasters", [])}
 
     rows = []
+    failed = []
     for site, sub, score, repo, ref, path in PEER_RASTERS:
         local = OUT_DIR / f"{site}__{Path(path).name}"
         rel = str(local.relative_to(ROOT))
@@ -120,8 +121,22 @@ def main() -> int:
                     stdout=fh,
                 )
             if r.returncode != 0:
+                # 2026-10-28 fix (shared tool, applied once here): a peer raster listed in the
+                # user brief but absent at its pinned commit is DISCLOSED in the manifest as
+                # unavailable_upstream instead of aborting the whole fetch. Never silently skip.
                 tmp.unlink(missing_ok=True)
-                raise RuntimeError(f"Download failed: {repo}:{path}@{commit}")
+                failed.append(f"{repo}:{path}@{commit}")
+                rows.append({
+                    "site": site, "submission": sub, "score": score,
+                    "score_class": "OWNER-REPORTED (unverified)" if score is not None else "UNSCORED (listed without score)",
+                    "repo": repo, "commit": commit, "path": path,
+                    "url": f"https://github.com/{repo}/blob/{commit}/{path}",
+                    "local": rel, "sha256": None, "bytes": None,
+                    "positive_pixels": None, "shape": None,
+                    "status": "unavailable_upstream",
+                })
+                print(f"[peer] UNAVAILABLE (disclosed): {repo}:{path}@{commit[:12]}")
+                continue
             tmp.replace(local)
         digest = sha256_file(local)
         if rel in prior and prior[rel]["sha256"] != digest:

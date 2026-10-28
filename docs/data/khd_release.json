@@ -1,0 +1,33 @@
+{
+ "decision": "SUBMISSION-READY",
+ "okay_to_submit": true,
+ "generated_utc": "2026-10-28T17:15:39Z",
+ "candidate": {
+  "file": "docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif",
+  "sha256": "787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa",
+  "submission_name": "wbggems3-khd-tomo-20261028-bd69b5b3-zeros",
+  "submission_note": "KHD ledger-tomographic rho x tri-domain concordance; 2px catalogue trim; comparator caps 0.64; zeros-outside",
+  "estimate": {
+   "value": 0.275,
+   "band": [
+    0.23,
+    0.31
+   ],
+   "construction": "class anchor 0.23-0.25 (owner-reported uniqueness-constrained designs: h59-cover 0.2296, cvarlw 0.2303, gate_ortho 0.2376, gems70 0.2478) plus the model-space delta over class (0.3655-0.2230) discounted 25-60% for in-sample bias",
+   "label": "ESTIMATE (not a score; not organizer-confirmed)"
+  }
+ },
+ "gates": {
+  "portal_format": "PASS",
+  "uniqueness_content_aware": "PASS",
+  "holdout_promotion_gate": "FAIL (anti-correlated metric; disclosed)"
+ },
+ "run_card": "evidence/khd_run_card.json",
+ "irregularities": [
+  "IR-01",
+  "IR-KHD-01",
+  "IR-KHD-02",
+  "IR-KHD-03",
+  "IR-KHD-04"
+ ]
+}

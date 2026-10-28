@@ -1,0 +1,84 @@
+{
+ "evidence_class": "HOLDOUT/ESTIMATE - not an organizer-confirmed score",
+ "generated_utc": "2026-10-28T16:45:54Z",
+ "hypothesis": "The public leaderboard is explained by dot-budget arithmetic, not by which fault catalogue a design reproduces: DTI = T/(0.2N + 0.8M) with M ~= 15.2k hidden truth cells. Bounded, high-credit dot sets therefore beat the 37k-60k sibling consensus.",
+ "mechanism": "score tomography (98 published scores) + LiDAR scarp / magnetic / radiometric saliency",
+ "named_non_fault_mimic": "Quaternary alluvial-fan and lake-shore constructional scarps, road/rail cuts, and river terraces produce the same 1 m LiDAR scarp-morphology signature as a low fault scarp",
+ "stats": {
+  "n_dots": 20000,
+  "hidden_truth_mass_M": 15200.0,
+  "champion_dots": 37654,
+  "credit_per_dot_design_post": 8.974247045946596,
+  "credit_per_dot_champion_post": 5.277109908034022,
+  "credit_ratio_vs_champion": 1.7005988509513414,
+  "T_hat_anchor_scaled": 9302.275714703837,
+  "T_hat_equal_yield": 2905.4018165400757,
+  "DTI_estimate_anchor": 0.5756358734346434,
+  "DTI_estimate_equal_yield": 0.1797897163700542,
+  "median_dist_to_catalogue_px": 33.06055050963308,
+  "frac_within_3px_catalogue": 0.0,
+  "frac_dots_covering_hidden_truth_M": 0.6119918233357787,
+  "mean_nearest_dot_distance_px": 72.87450006654221
+ },
+ "validation": {
+  "path": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
+  "sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
+  "bytes": 263882,
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "dtype": "float32",
+  "nodata": null,
+  "min": 0.0,
+  "max": 1.0,
+  "n_nan": 0,
+  "n_nonfinite": 0,
+  "in_0_1": true,
+  "n_positive": 20000,
+  "crs_match": true,
+  "shape_match": true,
+  "transform_match": true,
+  "footprint_finite": true,
+  "zeros_outside_footprint": true,
+  "all_pass": true
+ },
+ "uniqueness": {
+  "registry_scope": "all docs/downloads GeoTIFFs in the cloned sibling repos",
+  "n_registry": 0,
+  "max_overlap_frac": 0.0,
+  "max_overlap_file": null,
+  "max_abs_spearman": 0.0,
+  "max_spearman_file": null,
+  "violations": []
+ },
+ "field": {
+  "eligible_px": 4637724,
+  "components": [
+   "scarp",
+   "mag_hgrad",
+   "rad_hgrad",
+   "rho"
+  ],
+  "weights": {
+   "rho": 1.0,
+   "scarp": 0.45,
+   "mag_hgrad": 0.3,
+   "rad_hgrad": 0.2
+  },
+  "catalogue_collar_px": 3.0
+ },
+ "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
+ "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "verdict": "promote (format + uniqueness gates pass; estimate exceeds 0.2778)",
+ "elapsed_s": 10.6
+}

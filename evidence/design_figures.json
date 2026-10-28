@@ -1,0 +1,19 @@
+{
+  "schema": "gems-design-figures-v1",
+  "generated_utc": "2026-10-28T16:55:49Z",
+  "deliverable": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
+  "design_dots": 20000,
+  "champion_file": "data/work/champion_ref.tif",
+  "champion_dots": 37654,
+  "catalogue_file": "data/bridge/existing_faults.tif",
+  "extended_catalogue_file": "data/external/derived_sgmc_faults_100m_u8.tif",
+  "kernel_radius_px": 3,
+  "pool_step": 4,
+  "figures": [
+    "docs/assets/design-map.png",
+    "docs/assets/design-compare.png"
+  ],
+  "frac_design_within_3px_of_champion": 0.51135,
+  "frac_design_on_public_catalogue": 0.0,
+  "frac_design_on_extended_catalogue": 0.01735
+}
