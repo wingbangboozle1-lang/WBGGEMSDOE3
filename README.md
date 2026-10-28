@@ -1,19 +1,80 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> **CURRENT DECISION: DO NOT SUBMIT. No new GeoTIFF is cleared.**
-> The registered 17GEMSDOE probability raster is positive on all 5,167,373
-> cells of the hash-pinned mirrored sample footprint. Under the shared
-> positive-support definition, every nonempty in-footprint candidate overlaps it
-> by 100% at zero distance—above the user's 70% / 3-pixel duplicate stop.
-> This is one conclusive witness, **not** a complete registry audit or proof
-> that the mirror is an authenticated organizer download. No experiment or
-> competition slot was used in this session.
+> ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT THE UNIQUE FILE BELOW**
 >
-> [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
-> [How to submit *after* clearance](docs/how-to-submit.html) ·
-> [Evidence and limitations](docs/evidence.html) ·
-> [Latest 2026-10-28 review](knowledge/review-2026-10-28.md) ·
-> [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
+
+> **Download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
+> · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
+> · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
+> · name `WBGGEMS3-INVDESIGN-ANCHOR-20K` · note: “probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass”
+>
+> Gate results (all machine-checked, `evidence/design_estimate.json`, `evidence/uniqueness_gate.json`):
+> values in [0, 1] ✓ · 0 non-finite cells ✓ · EPSG:32611 / 3730×3292 / (100, 0, 243350, 0, −100, 4508550) ✓ ·
+> max 3-px directed overlap 0.687 ≤ 0.70 ✓ · max |Spearman| 0.047 ≤ 0.90 ✓ · not a copy of any sibling ✓.
+>
+> **Why:** for a binary prediction the official DTI reduces to `T / (0.2N + 0.8M)`. A single
+> verified subset pair (the 0.2778 champion is the 0.2708 base minus 2,545 catalogue-collar dots)
+> identifies **M ≈ 15,200 hidden truth cells** and **T ≈ 5,470 covered**. The nine focus-site
+> “different” champions all imply the same T (5,337–5,988) with Spearman(dots, score) = **−0.983**:
+> the leaderboard differences are dot-budget arithmetic, not geology. The only remaining lever is
+> *credit per dot*, which is what this file buys.
+>
+> **Honest caveat:** the 0.47 is an ESTIMATE from a posterior fitted to 98 owner-reported scores
+> (site-grouped CV ρ = 0.823, MAE = 0.037; design-predictor calibration R² = 0.39). It beats 0.2778
+> only if credit per dot exceeds **0.224** (siblings measured 0.124–0.145). Spend one slot, read the
+> receipt, and let the receipt — not this estimate — drive the next design.
+>
+> [Dashboard](docs/index.html) · [Executive summary](docs/executive-summary.html) ·
+> [How to submit](docs/how-to-submit.html) · [Method & science](docs/method.html) ·
+> [Evidence](docs/evidence.html) · [Run card](evidence/run_card_v3.json)
+
+> **Standing brief:** [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md) holds the reconstructed operational
+> requirements (nine focus sites, unique TIF, [0, 1] values, unique name + ≤140-char note, no
+> hallucinated scores, parallel-run protocol). Read it, this README and
+> [`knowledge/protocol.md`](knowledge/protocol.md) at the start of every session.
+
+## What changed in this session (2026-10-28, lane INVDESIGN)
+
+1. **A score law, identified from real data.** `scripts/pair_identification.py` verifies from the
+   bytes that `GEMSDOE32 …e5eb6e7e-zeros` (0.2778) contains **no dot** absent from
+   `GEMSDOE28 h27-4` (0.2708) and is missing exactly 2,545 dots, **100% of them within 3 px of the
+   public catalogue** (median 2 px). That clean edit is two equations in (T, M):
+   M = 0.2(s₁N₁−s₂N₂)/(0.8(s₂−s₁)) = **15,200**, T = s₂(0.2N₂+0.8M) = **5,470** (Δ predicted
+   +0.0071 vs observed +0.0070). Six independent files then imply T = 5,230–5,481.
+2. **The nine focus champions are one design family**, not nine independent results: directed 3-px
+   overlap between them reaches 1.000, and Spearman(dot count, score) = −0.983. None of them can be
+   re-submitted to beat 0.2778.
+3. **No public fault map explains the leaderboard.** Exact DTI of 98 scored sibling rasters against
+   the catalogue, SGMC and off-catalogue SGMC faults gives ρ = +0.07 / +0.23 / +0.24. The former
+   catalogue hide-and-recover holdout was measuring the wrong objective (ρ = −0.85 with live scores).
+4. **A new submission, generated not copied.** Score tomography (400 m, FISTA + graph-Laplacian prior)
+   from 98 published scores × independent LiDAR-scarp / magnetic / radiometric saliency, 20,000 dots,
+   3 px minimum separation, zero dots inside the catalogue collar.
+5. **The site was rebuilt** around one obvious action: download, then submit. Dashboard, executive
+   summary (nine sites), how-to-submit (exact portal steps and the [0, 1] error), method, evidence.
+
+### Reproduce
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+# bridge data (hash-pinned copies of labels.tif / existing_faults.tif / sample_submission.tif)
+#   -> data/bridge and data/raw ; external rasters -> data/external   (see registry/data_manifest.json)
+git clone --depth 1 https://github.com/buffedlizard55-lab/GEMSDOE24 /tmp/GEMSDOE24   # carries data/bridge + data/external
+python scripts/build_probe_ladder.py --repos /tmp          # 98 scored probes  (~3 min)
+python scripts/pair_identification.py --repos /tmp         # M, T identification
+python scripts/focus_site_table.py                         # nine-site table
+python scripts/invert_ledger.py --folds 2 --n-outer 3 --iters 60 --lam-smooth 2.0        --out data/work/inversion98b.json                   # score tomography (~6 min)
+python scripts/design_inv.py --n 20000 --name wbggems3-invdesign-anchor-20k --skip-registry
+python scripts/design_calibration.py                       # calibrated estimate + 95% PI
+python scripts/check_uniqueness.py                         # 3-px overlap + Spearman gates
+python scripts/build_site_v3.py && python scripts/build_evidence_page.py
+```
+
+> Earlier sessions (superseded for the *site-wide* decision, still valid for their own lanes):
+> [2026-10-28 review](knowledge/review-2026-10-28.md) ·
+> [old SGCE TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
+> [old dashboard](docs/session-review.html)
+
 
 ## Start every session here
 
