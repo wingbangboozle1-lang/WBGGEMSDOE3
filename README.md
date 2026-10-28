@@ -125,6 +125,13 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    the outside-footprint wording the other way. Neither file is cleared either
    way.
 
+## Latest repository review (2026-10-28)
+
+Three-pass review and verification found no safe submission to promote. The
+site builder and consistency checks pass; the complete test suite passes
+(223 passed, 4 skipped). No experiments or slots were used and no tracked
+implementation changes were needed. See the detailed [review record](knowledge/repo-review-2026-10-28.md).
+
 ## Reproduce the checks
 
 ```bash
