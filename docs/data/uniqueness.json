@@ -1,4 +1,6 @@
 {
+ "_archive_notice": "HISTORICAL EVIDENCE COPY; not a current release decision. Current repository decision is DO-NOT-SUBMIT; see release_gate.json.",
+ "current_repository_decision": "DO-NOT-SUBMIT",
  "policy": "exact-duplicate / Jaccard>0.5 / >70% within 3px / |rho|>0.9 vs submission-like comparators",
  "rows": [
   {

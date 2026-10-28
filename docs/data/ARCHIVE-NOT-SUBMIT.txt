@@ -1,0 +1,1 @@
+Current decision: DO-NOT-SUBMIT. release_gate.json and session_c1e656ce_run_card.json are the current site records. Other JSON files in docs/data are historical evidence copies unless explicitly identified otherwise; their claims do not authorize an upload. Source cards under evidence/ remain the provenance record.

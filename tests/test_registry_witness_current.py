@@ -76,7 +76,8 @@ def test_wrong_pins_refuse_to_write_evidence(tmp_path):
 
 def test_retired_publishers_and_generators_stop_before_writing():
     paths = ("session2_site.py", "build_dossier.py", "build_site_thcs.py", "session2_release.py",
-             "session2_final.py", "build_cspes_submission.py", "build_focus_and_lane_comparison.py")
+             "session2_final.py", "build_cspes_submission.py", "build_focus_and_lane_comparison.py",
+             "build_site_v3.py", "build_release_gate_v2.py", "build_evidence_page.py", "build_site_khd.py")
     before = (ROOT / "docs/index.html").read_bytes()
     for name in paths:
         proc = subprocess.run([sys.executable, str(ROOT / "scripts" / name)], cwd=ROOT,

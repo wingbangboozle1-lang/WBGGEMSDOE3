@@ -1,4 +1,6 @@
 {
+ "_archive_notice": "HISTORICAL EVIDENCE COPY; not a current release decision. Current repository decision is DO-NOT-SUBMIT; see release_gate.json.",
+ "current_repository_decision": "DO-NOT-SUBMIT",
  "note": "ESTIMATE = calibrated metric model applied to each site's top archived file. Organizer-reported values are owner logs, not upload receipts.",
  "gt_size_fitted_px": 15672.5,
  "rows": [

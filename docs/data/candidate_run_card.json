@@ -1,4 +1,6 @@
 {
+ "_archive_notice": "HISTORICAL EVIDENCE COPY; not a current release decision. Current repository decision is DO-NOT-SUBMIT; see release_gate.json.",
+ "current_repository_decision": "DO-NOT-SUBMIT",
  "evidence_class": "CANDIDATE RUN CARD; instruments are ledger-inversion estimate and catalogue holdout, never organizer-confirmed",
  "submission_name": "wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
  "submission_note": "TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots >=200 m off catalogue",

@@ -1,4 +1,6 @@
 {
+ "_archive_notice": "HISTORICAL EVIDENCE COPY; not a current release decision. Current repository decision is DO-NOT-SUBMIT; see release_gate.json.",
+ "current_repository_decision": "DO-NOT-SUBMIT",
  "evidence_class": "ESTIMATE (calibrated metric model; NOT an organizer score)",
  "primary_estimate": 0.4284,
  "bias_corrected_estimate": 0.4396,

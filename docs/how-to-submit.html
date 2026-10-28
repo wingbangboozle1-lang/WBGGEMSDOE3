@@ -1,113 +1,28 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
-<title>How to submit</title><style>
-:root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
---red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
-*{box-sizing:border-box}
-body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-color:var(--ink);background:var(--bg)}
-header{background:#0f172a;color:#fff;padding:14px 20px}
-header a{color:#cbd5e1;text-decoration:none;margin-right:16px;font-size:14px}
-header a:hover{color:#fff}
-header .brand{font-weight:700;font-size:17px;color:#fff;margin-right:24px}
-main{max-width:1120px;margin:0 auto;padding:24px 20px 80px}
-h1{font-size:30px;line-height:1.25;margin:18px 0 6px}
-h2{font-size:21px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-h3{font-size:17px;margin:22px 0 6px}
-p,li{color:#1e293b}
-small,.muted{color:var(--muted)}
-code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:13px}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
-.ok{background:var(--greenbg);border:1px solid #bbf7d0}
-.warn{background:var(--amberbg);border:1px solid #fde68a}
-.bad{background:var(--redbg);border:1px solid #fecaca}
-.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0}
-.btn{display:inline-block;background:var(--green);color:#fff;padding:14px 22px;border-radius:10px;
-font-weight:700;text-decoration:none;font-size:17px}
-.btn.alt{background:var(--blue)}
-.btn.small{font-size:14px;padding:9px 14px}
-.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700}
-.pill.g{background:#dcfce7;color:#166534}.pill.r{background:#fee2e2;color:#991b1b}
-.pill.a{background:#fef3c7;color:#92400e}.pill.b{background:#dbeafe;color:#1e40af}
-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:#fff}
-th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-th{background:#f1f5f9;font-weight:600}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
-.kpi div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
-.kpi b{display:block;font-size:26px;line-height:1.15}
-.kpi span{font-size:13px;color:var(--muted)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr}}
-footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:18px 20px;
-max-width:1120px;margin:0 auto}
-</style></head><body><header>
-<span class="brand">WB-GEMS-DOE-3</span>
-<a href="index.html">Dashboard</a>
-<a href="executive-summary.html">Executive summary</a>
-<a href="how-to-submit.html">How to submit</a>
-<a href="method.html">Method &amp; science</a>
-<a href="evidence.html">Evidence</a>
-</header><main>
-<h1>How to submit — exact steps</h1>
-<div class="card ok">
-<h3 style="margin-top:0">1 · Download</h3>
-<p><a class="btn" href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download>⬇ wbggems3-invdesign-anchor-20k-zeros.tif</a></p>
-<p>SHA-256 <code>283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda</code> — verify with <code>sha256sum wbggems3-invdesign-anchor-20k-zeros.tif</code>.</p>
-<h3>2 · Go to the submission page</h3>
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a>
-→ <b>New submission</b>.</p>
-<h3>3 · Upload the <code>-zeros.tif</code> exactly as downloaded</h3>
-<p>Do not re-export, re-project or “fix” it in a GIS. The bytes above already match the sample
-submission's CRS (EPSG:32611), shape (3730 × 3292) and geotransform
-(100, 0, 243350, 0, −100, 4508550).</p>
-<h3>4 · Name and note</h3>
-<table>
-<tr><th>Field</th><th>Value</th><th class="num">Length</th></tr>
-<tr><td>Name</td><td><code>WBGGEMS3-INVDESIGN-ANCHOR-20K</code></td><td class="num">29</td></tr>
-<tr><td>Note (optional)</td><td><code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass</code></td><td class="num">109/140</td></tr>
-</table>
-<h3>5 · What you should see</h3>
-<p>The portal should accept the file and return a score. It will <b>not</b> return
-“Predicted values must be in range [0, 1]”: every one of the 12,279,160 cells is finite and inside
-[0, 1] — min 0.0, max 1.0,
-non-finite 0.</p>
-</div>
-
-<h2>Why the earlier upload failed</h2>
-<p>The repository's previous file used NaN outside the study footprint. DrivenData's validator
-rejects some NaN-outside encodings with “Predicted values must be in range [0, 1]”.
-Two pieces of evidence settle the question in favour of zeros:</p>
-<ul>
-<li>The official format text says “data outside the bounds is null or nan”, but
-<b>every scored sibling file that produced a positive public score is a <code>-zeros</code> file</b>
-(for example the 0.2778 champion <code>…e5eb6e7e-zeros.tif</code>). Acceptance is therefore
-ORGANIZER-CONFIRMED for the zeros encoding, and unproven for NaN.</li>
-<li>A NaN never compares inside an interval test, so any implementation that checks
-<code>0 ≤ v ≤ 1</code> elementwise will reject it. Zeros cannot trigger that error.</li>
-</ul>
-
-<h2>How to read the result</h2>
-<table>
-<tr><th>Receipt</th><th>Interpretation</th><th>Next action</th></tr>
-<tr><td>≥ 0.28</td><td>beats the best sibling claim (0.2778) — the credit-rate mechanism works</td><td>keep this file as the round-1 submission; spend remaining slots on chain placement (hypothesis 2)</td></tr>
-<tr><td>0.15 – 0.28</td><td>credit rate is real but below the sibling rate</td><td>raise the dot budget toward 30k; re-fit the posterior with the new receipt as a 99th probe</td></tr>
-<tr><td>&lt; 0.15</td><td>the posterior localisation is wrong; the floor case</td><td>do not resubmit variants of this design; switch to hypothesis 2/5 and re-derive</td></tr>
-</table>
-<p class="muted">A low receipt is a deliverable, not a failure: it is the first measurement of the hidden
-truth field that we would own rather than borrow.</p>
-
-<div class="card bad">
-<h3 style="margin-top:0">⚠ Do not upload the ADJDIS file — it is not cleared</h3>
-<p>The other lane's candidate <code>wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif</code> (HOLDOUT-DTI 0.05990,
-gates 3/5, selector approval False) failed its preregistered Gate 1
-and fails the literal witness reading. It is published on <a href="executive-summary.html">the
-executive summary</a> for review and testing only. The upload steps above apply to
-<b>wbggems3-invdesign-anchor-20k-zeros.tif</b> and the KHD alternative only.</p>
-</div>
-</main>
-<footer>All figures on this site are read from <code>evidence/*.json</code>.
-OWNER-REPORTED values are copied from the sibling project briefs and are not organizer receipts.
-Model values are labelled ESTIMATE and are never presented as competition scores.
-Generated by <code>scripts/build_site_v3.py</code>.</footer></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Evidence-first DOE GEMS fault discovery audit; no submission currently cleared.">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Submission guide · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
+<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html" aria-current="page">Submission guide</a><a href="research.html">Research</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a><a href="fchd/index.html">FCHD-NCM lane</a><a href="amdc/index.html">AMDC lane</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Submission guide</div><h1>No file is cleared to upload.</h1><p class="lede">This page explains the future workflow only. No current filename, note, or candidate TIFF is approved.</p><div class="decision"><span class="tag">NEGATIVE · STOP</span><h2>DO NOT SUBMIT — no file is cleared.</h2>
+<p>The current review generated no candidate, raster, holdout score, or submission. The recorded mirrored witness is positive on every cell of the mirrored sample footprint under the finite-and-positive support definition; conditional on those bytes, any nonempty in-footprint candidate triggers the literal &gt;70% duplicate stop. The witness is one public owner mirror, not an authenticated or complete registry audit. No upload was made; a separate selector has not approved a slot.</p>
+<div class="generated"><span class="tag">PRIOR RESEARCH ARTIFACT · NOT CLEARED</span>
+<p><strong><code>wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif</code></strong> was generated by the earlier ADJDIS lane, not by this repository review.
+Its recorded <strong>HOLDOUT-DTI 0.05990</strong> is a historical local result
+(gems57-pooled-hide-v2; 22,232 withheld positives; 95% CI
+0.05299–0.06683); it is not an organizer score.
+That lane's sparse-mask comparison was 63.5% maximum, but its
+literal dense-witness overlap is 100%, so the controlling duplicate stop fails. 3/5
+lane gates passed. <strong>Do not submit.</strong> <a class="btn secondary" href="downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif" download>Download prior ADJDIS research TIFF (not submission-cleared)</a> </p></div>
+<p><a class="btn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif" download>Download prior SGCE TIFF for research only</a> <a class="btn secondary" href="evidence.html">See the blocker and checks</a></p>
+<p class="small">Every TIFF in the archive is research-only and <strong>not submission-ready</strong>. A local format pass is not organizer acceptance.</p></div></div></section><div class="wrap">
+<section class="card"><h2>Before downloading or submitting</h2><p><strong>Do not upload any TIFF in the research archive.</strong> A separate selector must first approve the exact bytes after the literal all-registry uniqueness check, leakage canaries, comparable buffered holdout, and exact-byte validation pass. No candidate meets those conditions here. No submission name or note is assigned for this review.</p><p>The current blocker and data limitation are recorded in the <a href="data/release_gate.json">machine-readable release gate</a>, <a href="session-review.html">latest review</a>, and <a href="research.html">research hypotheses</a>. The agent cannot access a private DrivenData account, inspect its quota, or submit on the user's behalf.</p></section>
+<section><div class="section-head"><div class="eyebrow">Submission guide</div><h2>What to do when a file actually clears</h2><p>These are future steps, not an instruction to upload any current artifact.</p></div><div class="card"><ol class="steps">
+<li>Wait for a separately selected candidate with a <strong>passing literal registry audit</strong>, a comparable buffered holdout and a positive paired confidence interval, complete canaries, and a saved-byte validator report. No such candidate is available now.</li>
+<li>Download the exact approved single-band GeoTIFF or single-TIFF ZIP, and verify its SHA-256 against the approved run card. It must match the official sample’s CRS, shape and transform and contain valid predictions in [0,1].</li>
+<li>Sign in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData’s submission page</a>; check the current quota and rules there. The selector, not this automation, decides whether to spend a slot.</li>
+<li>Select the approved file, enter that file’s unique name and note (no more than 140 characters), submit, and save the receipt with the exact file hash. Only an actual receipt establishes an ORGANIZER-CONFIRMED result.</li>
+</ol><p><strong>Earlier portal error “Predicted values must be in range [0, 1]”:</strong> inspect the exact rejected bytes for NaN, infinity, nodata sentinels, values outside [0,1], and grid/mask mismatches. The rejected bytes and full portal receipt are unavailable here, so the cause is not established and no future acceptance is guaranteed. A parallel audit interpreted the official outside-footprint wording as requiring NaN there; its independent check fails the old zeros-outside file. This session could not re-open the official page or test portal acceptance, so neither encoding is cleared.</p></div></section>
+<section class="card"><h2>Official instructions and the previous range error</h2><p>Read the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem/format description</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">competition data page</a>, and <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">competition rules PDF</a> before any authorized upload. The data page requires authentication; no credentials are present in this environment.</p><p>The prior portal error was “Predicted values must be in range [0, 1]”. Its rejected bytes and receipt are not available, so the cause is unknown. Check the actual file for all non-finite values, sentinels and values outside [0,1], then verify exact CRS, shape, transform, mask and outside-footprint encoding against the current official instructions. A local diagnostic cannot establish portal acceptance.</p></section>
+<section class="card"><h2>Historical research TIFFs</h2><p>Files may be downloaded from the <a href="downloads/index.html">archive</a> for inspection or reproducibility only. Their download links are not submission approval. Do not rename or re-encode one to make it appear new.</p></section>
+</div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData · <a href="data/release_gate.json">Machine-readable decision</a> · No competition slot spent by this audit.</div></footer></body></html>

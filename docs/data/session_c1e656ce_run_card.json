@@ -1,0 +1,92 @@
+{
+  "schema_version": "session-review-run-card-v1",
+  "review_date_utc": "2026-10-28",
+  "branch": "arena/c1e656ce-wbggemsdoe3",
+  "lane": "Repository release-safety review; the prompt's referenced single method paragraph is not identifiable in the available materials.",
+  "hypothesis": "Prospective only (rank 1; not selected or tested): coherent oblique displacement of magnetic/gravity horizontal-gradient profiles across continuation heights may indicate a buried dipping boundary absent from the mapped-fault catalogue.",
+  "mechanism": "At multiple upward-continuation heights, measure signed cross-profile gradient displacement, require stable dip direction and cross-scale coherence, and reject single-edge coincidences. No surface or candidate was generated because the literal registry preflight is blocked and no assigned lane was identified.",
+  "named_non_fault_process": "A dipping lithologic contact can create the same magnetic/gravity edge displacement; survey seams and acquisition/interpolation artifacts are additional mimics.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN",
+    "reason": "No new candidate was produced. The literal pre-placement uniqueness stop is active under the saved mirrored witness audit, and the competition feature stack, labels, whole-segment identifiers, saved buffered folds/cache, and sample raster are absent."
+  },
+  "registry_comparison": {
+    "new_candidate_tested": false,
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "interpretation": "Not measured for a new candidate; no surface or final dots exist.",
+    "witness_measurement": {
+      "evidence_class": "SAVED MIRRORED RASTER MEASUREMENT; not HOLDOUT-DTI and not a competition score",
+      "audit_path": "evidence/session_c1e656ce_witness_recheck.json",
+      "checked_utc": "2026-10-28T20:34:24.915848+00:00",
+      "registered_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "registry_index": "registry/registry_session2.json",
+      "footprint_cells": 5167373,
+      "witness_positive_inside": 5167373,
+      "support_definition": "finite, GDAL-valid value > 0",
+      "conditional_directed_overlap_for_any_nonempty_in-footprint_candidate": 1.0,
+      "decision_effect": "Exceeds the user's literal >70% duplicate stop if the pinned mirror bytes and support definition are accepted.",
+      "limitations": "One public owner-mirror raster; not authenticated as an organizer download and not proof of complete registry coverage."
+    },
+    "prior_sgce_research_file": {
+      "file": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+      "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+      "directed_overlap_with_witness": 1.0,
+      "evidence_class": "Historical saved-byte recheck; not a new candidate or score"
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster_generated": false,
+    "status": "NOT RUN for a new candidate",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate raster exists from this review; a prior research-file diagnostic is not transferable to a new file or portal acceptance."
+  },
+  "submission_name": null,
+  "submission_note": "Negative preflight: no candidate cleared; literal registry stop and missing holdout inputs block release.",
+  "submission_note_characters": 94,
+  "verdict": "negative",
+  "selector_approval": false,
+  "experiments_run": 0,
+  "experiment_budget_max": 3,
+  "elapsed_geological_experiment_hours": 0,
+  "elapsed_time_limit_hours": 2,
+  "weekly_slots_used": 0,
+  "reported_focus_result": {
+    "label": "OWNER-REPORTED",
+    "site": "GEMSDOE32",
+    "value": 0.2778,
+    "receipt_available": false,
+    "source": "evidence/pair_identification.json and evidence/nine_site_table.json",
+    "note": "Historical owner/user claim; not independently receipt-confirmed and not a candidate score from this review."
+  },
+  "leaderboard_context": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION from a saved official-page snapshot, not an organizer receipt",
+    "observed_date_utc": "2026-10-27",
+    "best_public_dti": 0.4544,
+    "rank_25_public_dti": 0.3195,
+    "live_refreshed_in_this_review": false,
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+  },
+  "verification": {
+    "site_builder": "PASS — .venv/bin/python scripts/build_site.py",
+    "site_checker": "PASS — .venv/bin/python scripts/check_site.py",
+    "pytest": "236 passed, 4 skipped, 72 warnings — .venv/bin/python -m pytest -q",
+    "repository_review_only": true,
+    "no_geological_experiment_or_new_tif": true,
+    "no_upload_or_slot_selection": true,
+    "warnings": "72 Rasterio PendingDeprecationWarnings from Affine multiplication in existing tests; no failures."
+  },
+  "review_passes": [
+    "Pass 1: reconcile authority/candidate cards, current generated pages, run cards, tests, and publication entry points.",
+    "Pass 2: audit literal uniqueness semantics, the GEMSDOE32 0.2778 evidence chain, unsupported content-aware waiver, data availability, and download hazards.",
+    "Pass 3: rebuild the negative site, test all active pages and retired positive generators, run repository tests, and review the resulting diff."
+  ]
+}

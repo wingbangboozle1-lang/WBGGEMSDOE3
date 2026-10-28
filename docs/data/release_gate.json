@@ -1,38 +1,38 @@
 {
- "schema": "gems-release-gate-v2",
- "generated_utc": null,
- "decision": "SUBMIT",
- "okay_to_submit": true,
- "decision_scope": "ONE file only: docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
- "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
- "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
- "estimate": {
-  "calibrated": 0.4699720899416122,
-  "pi95": [
-   0.3155834007759659,
-   0.6243607791072585
+  "schema": "gems-release-gate-v1",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_submit": false,
+  "okay_to_download_for_research": true,
+  "candidate": {
+    "submission": "wbggems3-sgce-20261027-f52d35d8",
+    "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+    "lane_verdict": "promote",
+    "holdout_label": null,
+    "literal_registry_pass": null
+  },
+  "authority": {
+    "verdict": "negative",
+    "selector_approval": false,
+    "raster_sha256": null
+  },
+  "blocking_reasons": [
+    "The registered dense witness overlaps every in-footprint candidate; SGCE's measured overlap is 100%.",
+    "The governing run card verdict is not promote.",
+    "No separate selector approval is recorded.",
+    "The governing run card does not approve this candidate SHA-256.",
+    "A comparable fold-local HOLDOUT-DTI, evaluator, positive count, CI and positive paired improvement are not all established.",
+    "A complete per-feature leakage canary is missing or exceeds the threshold.",
+    "The candidate does not record a complete passing literal all-registry uniqueness gate.",
+    "The surface phase lacks passing literal correlation and overlap measurements.",
+    "The final phase lacks passing literal correlation and overlap measurements.",
+    "Saved-byte format validation is missing, incomplete, or bound to different bytes."
   ],
-  "floor_equal_yield": 0.1797897163700542,
-  "ceiling_raw_posterior": 0.5756358734346434,
-  "breakeven_credit_per_dot": 0.2245,
-  "calibration_r2": 0.38547465753273524
- },
- "why": "The earlier DO-NOT-SUBMIT banner rested on a dense near-uniform raster whose 3-px collar covers most of the footprint, so every design 'overlaps' it. The user's rule is a directed duplicate test against ONE registry raster plus a rank-correlation test; this design satisfies both and its reverse overlap with every focus champion is <= 0.174, i.e. it is not a copy. The estimate is a model, not a receipt.",
- "source_cards": {
-  "run_card": "evidence/run_card_v3.json",
-  "run_card_sha256": "70ab79e87896a451a2018b0b2e9c33083349b29d5cb33c483fd82c44509e110d",
-  "design": "evidence/design_estimate.json",
-  "design_sha256": "23e1dbd64481caf732318178081fc6b7cb738b804ba37bf91231d1f740172201",
-  "uniqueness": "evidence/uniqueness_gate.json",
-  "uniqueness_sha256": "f794d7b3830f6d3a76d83aad051ee4ccfaca5a26b02efa5d5eb6c786e08c26ce",
-  "pair": "evidence/pair_identification.json",
-  "pair_sha256": "710ae531b51941ae0a8262521283b09d8719677901cf0315bf9761b995c797e6"
- },
- "blocking_reasons": [
-  "The brief's leaderboard figures (0.4413, 0.3195) are stale; the live public leaderboard read on 2026-10-28 shows #1 = 0.4544.",
-  "Every sibling score is owner-reported; no organizer receipt for any sibling file is available in this sandbox.",
-  "The nine 'distinct' focus champions are one pruned dot set (directed 3-px overlap up to 1.000), so their scores are not independent evidence.",
-  "The previous DO-NOT-SUBMIT banner was driven by a 100%-overlap 'witness' against a dense near-uniform raster; the directed rule is satisfied here (0.687 <= 0.70) and the reverse overlap is 0.070-0.174, i.e. this design is not a subset of any sibling.",
-  "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files."
- ]
+  "source_cards": {
+    "authority": "evidence/session_9b794637_run_card.json",
+    "authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e",
+    "candidate": "evidence/session2_run_card.json",
+    "candidate_sha256": "739debf46d4e40129c3dc186adbc073f17baec435d0480015ff200a92934f018",
+    "witness_audit": "evidence/session_c1e656ce_witness_recheck.json",
+    "witness_audit_sha256": "95e18e378452fecc07ab1c3696e72a013e092b8fdd5015ce4ea2198261021532"
+  }
 }

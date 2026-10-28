@@ -1,4 +1,6 @@
 {
+ "_archive_notice": "HISTORICAL EVIDENCE COPY; not a current release decision. Current repository decision is DO-NOT-SUBMIT; see release_gate.json.",
+ "current_repository_decision": "DO-NOT-SUBMIT",
  "GEMSDOE24|GEMSDOE25": {
   "jaccard": 0.401682,
   "within_3px_of_candidate": 1.0,
