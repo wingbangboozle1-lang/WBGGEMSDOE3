@@ -25,6 +25,19 @@ a negative result as a deliverable. The reconstructed standing brief is included
 at the end of this README. It is **not verbatim**: the full original prompt was
 not available to this session, and the previous verbatim claim was incorrect.
 
+## Latest review — 2026-10-28 (negative; no experiment)
+
+Re-read the standing brief and release protocol and reviewed the four-hypothesis
+preregistration. The literal all-footprint registry witness remains a blocker
+under the current shared `finite & value > 0` support definition. No new
+surface/TIF, HOLDOUT-DTI, leaderboard refresh, competition submission, or slot
+was produced. The local checkout lacks the competition feature stack, labels,
+segment identifiers and saved folds; the assigned method paragraph is still
+not identifiable. Full tests: **224 passed, 4 skipped, 72 warnings**;
+`python scripts/check_site.py`: **PASS**. The user-reported 0.3195 is not a
+live verified leaderboard value. See the [three-pass session review](knowledge/session-review-2026-10-28.md)
+and [machine-readable run card](evidence/session_review_2026-10-28.json).
+
 ## Executive summary: nine requested sites
 
 The figures below are user/owner-reported historical claims, not

@@ -32,6 +32,7 @@ INDEPENDENT_FOCUS = ROOT / "evidence/focus_uniqueness_independent_2026-10-27.jso
 INDEPENDENT_NAN = ROOT / "evidence/format_independent_sgce_nan_2026-10-27.json"
 INDEPENDENT_ZERO = ROOT / "evidence/format_independent_sgce_zeros_2026-10-27.json"
 FEED = ROOT / "registry/leaderboard.json"
+SESSION_REVIEW = ROOT / "evidence/session_review_2026-10-28.json"
 SHA_CANDIDATE = "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09"
 CANDIDATE_FILE = "wbggems3-sgce-20261027-f52d35d8-zeros.tif"
 PRIOR_COMMIT = "1dcca8bb473f732403213928b7c633cd2a22b403"
@@ -68,7 +69,7 @@ def human_age(feed: dict) -> str:
 def layout(title: str, current: str, body: str) -> str:
     nav = [("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
            ("Submission guide", "how-to-submit.html"), ("Research", "research.html"),
-           ("Evidence", "evidence.html"), ("FCHD-NCM lane", "fchd/index.html"),
+           ("Evidence", "evidence.html"), ("Latest review", "session-review.html"), ("FCHD-NCM lane", "fchd/index.html"),
            ("AMDC lane", "amdc/index.html")]
     links = "".join(f'<a href="{url}"' + (' aria-current="page"' if current == url else '') + f'>{name}</a>'
                     for name, url in nav)
@@ -170,6 +171,18 @@ def evidence_page(recheck: dict, independent_focus: dict) -> str:
 <section><div class="section-head"><h2>Repeat the independent audit</h2></div><div class="card"><p><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code><br><code>.venv/bin/python scripts/recheck_registry_witness.py --fetch</code><br><code>.venv/bin/python -m pytest -q</code></p><p class="small">GitHub access is required for pinned inputs. Cached rasters are ignored by Git. This command never creates or uploads a submission.</p></div></section></div>'''
 
 
+def latest_review_page(card: dict) -> str:
+    verification = card["verification"]
+    holdout = card["holdout_dti"]
+    witness = card["registry_comparison"]["witness_measurement"]
+    return page_top("Latest review · 2026-10-28", "Negative preflight; no experiment.", "Latest reproducibility and release-safety review. No new candidate or competition slot was produced.") + f'''<div class="wrap"><section><div class="grid">
+<article class="card"><h2>Decision</h2><p><strong>DO NOT SUBMIT.</strong> No new TIFF, holdout score, live leaderboard check, or submission was generated. The result is a negative prerequisite finding.</p></article>
+<article class="card"><h2>Registry stop</h2><p>The saved mirrored witness is positive on {witness['witness_positive_inside']:,} of {witness['footprint_cells']:,} footprint cells. Under the shared finite-and-positive support interpretation, any nonempty in-footprint candidate would overlap it completely. This is a conditional raster measurement, not a score or authenticated organizer source.</p></article>
+<article class="card"><h2>Holdout</h2><p>{esc(holdout['status'])}. No HOLDOUT-DTI value or confidence interval is reported. The feature stack, labels, segment identifiers, and saved folds are absent from this checkout.</p></article>
+<article class="card"><h2>Checks</h2><p>Pytest: {esc(verification['pytest'])}. Static-site check: {esc(verification['site_check'])}. These validate repository behavior only; they do not validate a new prediction.</p></article>
+</div></section><section><div class="section-head"><h2>What happens next</h2><p>The four candidate hypotheses and their controls are already recorded in the research preregistration. Work remains blocked until the registry interpretation is resolved and a method lane and data inputs are available.</p></div><div class="card"><p>First, explicitly decide whether dense continuous probability rasters count as dot comparators under the literal duplicate rule. Do not exempt them silently. Then restore the shared inputs, identify the method lane, and run the preregistered buffered holdout and canaries before generating any candidate.</p><p><a href="data/session_review_2026-10-28.json">Download machine-readable review card →</a> · <a href="evidence.html">Review evidence and limits →</a> · <a href="research.html">Review candidate hypotheses →</a></p></div></section></div>'''
+
+
 LANES = {
     "hce": (["index.html", "how-to-submit.html", "why-0.2778.html", "hypotheses.html", "evidence.html", "sources.html", "limitations.html"], "HCE-1", "hce_run_card.json"),
     "cspes": (["index.html", "how-to-submit.html"], "CSPES", "cspes_run_card.json"),
@@ -236,7 +249,7 @@ def render() -> None:
     (data / "release_gate.json").write_text(json.dumps(gate, indent=2, allow_nan=False) + "\n")
     (data / "decision.json").write_text(json.dumps({"decision": "DO-NOT-SUBMIT", "okay_to_submit": False,
                                                     "candidate": None, "source": "release_gate.json"}, indent=2) + "\n")
-    for path in (AUTHORITY, RECHECK, FOCUS, FEED, INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO):
+    for path in (AUTHORITY, RECHECK, FOCUS, FEED, INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO, SESSION_REVIEW):
         shutil.copyfile(path, data / path.name)
     shutil.copyfile(AUTHORITY, data / "run_card.json")
     for _, (_, _, card) in LANES.items():
@@ -253,6 +266,7 @@ def render() -> None:
     pages = {"index.html": ("Overview", home(audit, feed)), "executive-summary.html": ("Executive summary", executive(audit)),
              "how-to-submit.html": ("Submission guide", howto()), "research.html": ("Research", research()),
              "evidence.html": ("Evidence", evidence_page(recheck, focus_only)),
+             "session-review.html": ("Latest review", latest_review_page(read(SESSION_REVIEW))),
              "submission.html": ("Submission", page_top("Submission status", "No file is currently cleared.", "See the executive summary and future submission guide; no upload is authorized.") + '<div class="wrap"><p><a href="executive-summary.html">Open executive summary →</a></p></div>')}
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(layout(title, name, body), encoding="utf-8")
