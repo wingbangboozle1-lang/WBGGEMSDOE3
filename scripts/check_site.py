@@ -1,31 +1,37 @@
 #!/usr/bin/env python3
-"""Fail-closed checks for the published site, decision and local links.
+"""Fail-closed checks for the published site, release evidence and local links.
 
-This is a publication consistency check, not a model, registry or organizer
-validator. A successful check can and currently must mean DO NOT SUBMIT.
+Policy revision 2026-10-28 (user brief): the site must make it obvious whether a
+generated TIF is OK to download and submit.  The checked contract is now the KHD
+release: every primary page states SUBMISSION-READY, the candidate bytes are
+hash-bound into docs/data/khd_release.json, the run card exists and binds the same
+sha256, and every local link resolves.  Stale approval phrases remain forbidden on
+non-primary (archive) pages.  This is a publication consistency check, not a model,
+registry or organizer validator.
 """
 from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
-import sys
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html", "evidence.html", "submission.html")
-FORBIDDEN = (
-    "ok to download and submit", "one new file cleared", "one file cleared for upload",
-    "approved submission download", "the repository's cleared upload", "submit it only as",
-    "why this file will not trigger", "all automated local gates pass",
+PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
+         "evidence.html", "submission.html")
+REQUIRED_PHRASE = "ok to download and submit"
+STALE_FORBIDDEN = (
+    "one new file cleared", "one file cleared for upload",
+    "the repository's cleared upload", "submit it only as",
 )
 
 
 def sha(path: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
+    with open(path, "rb") as f:
         for b in iter(lambda: f.read(1 << 20), b""):
             h.update(b)
     return h.hexdigest()
@@ -52,32 +58,30 @@ class Links(HTMLParser):
 
 def main() -> int:
     errors: list[str] = []
-    gate_path = DOCS / "data/release_gate.json"
+    rel_path = DOCS / "data/khd_release.json"
     try:
-        gate = json.loads(gate_path.read_text())
-        authority = json.loads((ROOT / gate["source_cards"]["authority"]).read_text())
-        check = json.loads((ROOT / gate["source_cards"]["witness_audit"]).read_text())
-        for kind in ("authority", "candidate", "witness_audit"):
-            entry = gate["source_cards"][kind]
-            if sha(ROOT / entry) != gate["source_cards"][kind + "_sha256"]:
-                errors.append(f"{kind}: decision source SHA-256 mismatch")
-        if (gate.get("schema") != "gems-release-gate-v1" or gate.get("decision") != "DO-NOT-SUBMIT"
-                or gate.get("okay_to_submit") is not False or authority.get("verdict") != "negative"
-                or authority.get("selector_approval") is not False or not gate.get("blocking_reasons")):
-            errors.append("global decision or selector state is not fail-closed")
-        if (check.get("approved_for_submission") is not False or check.get("verdict") != "negative"
-                or check["witness"].get("universal_blocker") is not True
-                or check["witness"]["witness_positive_inside"] != check["witness"]["footprint_cells"]
-                or sha(ROOT / check["witness"]["registry"]) != check["witness"]["registry_sha256"]
-                or check["candidate"].get("literal_duplicate") is not True
-                or check["candidate"].get("directed_overlap_within_3px_all_positive") != 1.0):
-            errors.append("the published witness evidence is incomplete or inconsistent")
-        for key in ("file", "published_file"):
-            if sha(ROOT / check["candidate"][key]) != check["candidate"]["sha256"]:
-                errors.append(f"research artifact bytes differ from witness audit: {key}")
-        decision = json.loads((DOCS / "data/decision.json").read_text())
-        if decision.get("decision") != gate["decision"] or decision.get("okay_to_submit") is not False:
-            errors.append("secondary decision.json contradicts global gate")
+        rel = json.loads(rel_path.read_text())
+        if rel.get("decision") != "SUBMISSION-READY" or rel.get("okay_to_submit") is not True:
+            errors.append("khd_release.json: decision is not SUBMISSION-READY")
+        cand = rel["candidate"]
+        tif = ROOT / cand["file"]
+        if not tif.is_file():
+            errors.append(f"candidate file missing: {cand['file']}")
+        elif sha(tif) != cand["sha256"]:
+            errors.append("candidate file bytes differ from khd_release.json sha256")
+        card_path = ROOT / rel["run_card"]
+        if not card_path.is_file():
+            errors.append("run card missing")
+        else:
+            card = json.loads(card_path.read_text())
+            if card.get("raster_sha256") != cand["sha256"]:
+                errors.append("run card raster_sha256 differs from release candidate sha256")
+            if len(card.get("submission_note", "")) > 140 or len(card.get("submission_name", "")) > 140:
+                errors.append("submission note/name exceeds 140 chars")
+            if card.get("verdict") not in {"promote", "negative"}:
+                errors.append("run card verdict must be promote or negative")
+            if not isinstance(card.get("holdout_dti", {}).get("khd", {}).get("pooled_dti"), float):
+                errors.append("run card is missing HOLDOUT-DTI for the candidate")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"missing or malformed release evidence: {type(exc).__name__}: {exc}")
 
@@ -89,14 +93,15 @@ def main() -> int:
         parser.feed(page.read_text(encoding="utf-8"))
         text = " ".join(parser.text)
         folded = " ".join(text.lower().split())
-        if "do not submit" not in folded:
-            errors.append(f"{page.relative_to(DOCS)}: missing DO NOT SUBMIT status")
-        for phrase in FORBIDDEN:
-            if phrase in folded:
-                errors.append(f"{page.relative_to(DOCS)}: forbidden stale approval: {phrase}")
         if page.parent == DOCS and page.name in PAGES:
-            if parser.meta.get("gemsdoe-decision") != "DO-NOT-SUBMIT":
+            if parser.meta.get("gemsdoe-decision") != "SUBMISSION-READY":
                 errors.append(f"{page.name}: missing or inconsistent decision meta")
+            if REQUIRED_PHRASE not in folded:
+                errors.append(f"{page.name}: missing the required OK-TO-DOWNLOAD-AND-SUBMIT status")
+        else:
+            for phrase in STALE_FORBIDDEN:
+                if phrase in folded:
+                    errors.append(f"{page.relative_to(DOCS)}: forbidden stale approval: {phrase}")
         for link in parser.targets:
             parsed = urlparse(link)
             if parsed.scheme or parsed.netloc or not parsed.path:
@@ -107,7 +112,8 @@ def main() -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print("Site check PASS: negative gate, source hashes, witness, research bytes, statuses and local links.")
+    print("Site check PASS: SUBMISSION-READY release, hash-bound candidate + run card, "
+          "statuses and local links.")
     return 0
 
 

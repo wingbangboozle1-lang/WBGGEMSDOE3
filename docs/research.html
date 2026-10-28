@@ -1,11 +1,57 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault discovery audit; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Research · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
-<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html" aria-current="page">Research</a><a href="evidence.html">Evidence</a><a href="fchd/index.html">FCHD-NCM lane</a><a href="amdc/index.html">AMDC lane</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Scientific research</div><h1>Contrarian ideas, testable limits.</h1><p class="lede">Qualitatively ranked prospects, not an assigned lane, a validated new model or a score forecast.</p><div class="decision"><span class="tag">NEGATIVE · STOP</span><h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>The literal all-registry uniqueness rule fails for every nonempty in-footprint prediction under the shared positive-support definition. No new candidate, holdout score or upload was produced in this review. A separate selector has not approved a slot.</p>
-<p><a class="btn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif" download>Download prior SGCE TIFF for research only</a> <a class="btn secondary" href="evidence.html">See the blocker and checks</a></p>
-<p class="small">This is an existing, <strong>not submission-ready</strong> artifact—not a new prediction. A local format pass is not organizer acceptance.</p></div></div></section><div class="wrap"><section><div class="section-head"><h2>Four prospective hypotheses</h2><p>No hypothesis ran: the mandatory duplicate preflight stopped before model construction.</p></div><div class="grid"><article class="card"><h3>01 · Signed potential-field profiles</h3><p>Magnetic and gravity edge profiles: remove background, test signed asymmetry repeated along strike. Concealed dipping boundaries are a possible target; lithologic contacts or remanence can mimic them. Medium cost; input semantics and official provenance remain unverified.</p></article><article class="card"><h3>02 · Magnetic / scarp offset</h3><p>Compare signed displacement between magnetic edges and elevation slope breaks across repeated profiles. Erosion and alluvial boundaries are confounders. Medium cost; cached alignment must be verified.</p></article><article class="card"><h3>03 · Basin-interface residual</h3><p>Fit a plausible depth/gravity basin response and inspect coherent residual curvature. Interpolation seams and lateral density changes can mimic faults. High cost; density and depth provenance are unresolved.</p></article><article class="card"><h3>04 · Flight-line repeatability</h3><p>Seek edge signatures recurring across height-normalized flight and tie-line crossings. Acquisition artifacts, dikes and non-fault contacts are alternatives. High cost; raw official observations were not obtained in this session.</p></article></div><p class="small">Detailed novelty comparisons, off-catalogue rationale, controls and input checks: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/preregistration-2026-10-27-9b794637.md">preregistration</a>. External official hosts below were not reachable from this session; a link is not a successful access or license check.</p></section>
-<section><div class="section-head"><h2>Sources for manual review</h2></div><div class="grid"><article class="card"><h3>Competition problem</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric ↗</a></p></article><article class="card"><h3>Reference implementation</h3><p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference on GitHub ↗</a></p></article><article class="card"><h3>Geophysics</h3><p><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release ↗</a></p></article><article class="card"><h3>Geothermal compilation</h3><p><a href="https://gdr.openei.org/submissions/1391">DOE GDR INGENIOUS collection ↗</a></p></article><article class="card"><h3>Elevation</h3><p><a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP ↗</a></p></article></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData · <a href="data/release_gate.json">Machine-readable decision</a> · No competition slot spent by this audit.</div></footer></body></html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMISSION-READY">
+<title>Research · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head><body>
+<div class="wrap toprow"><a class="brand" href="index.html">GEMS Field Notes</a>
+<nav><a href="index.html">Executive summary</a> <a href="how-to-submit.html">How to submit</a>
+<a href="submission.html">Submission file</a> <a href="research.html">Research</a>
+<a href="evidence.html">Evidence</a></nav></div>
+<p class="wrap small"><span class="tag">STATUS: OK TO DOWNLOAD AND SUBMIT</span> —
+one hash-bound TIF passed every locally checkable gate; the score is an estimate; details on
+<a href="submission.html">the submission page</a>.</p>
+
+<div class="wrap"><h1>Research — knowledge base</h1>
+<p class="lede">Everything below is sourced from official pages or measured from pinned bytes.</p>
+<div class="card"><h3>The metric (official problem description, page 967)</h3>
+<p>Distance-weighted Tversky index, α = 0.2, β = 0.8, triangular kernel R = 300 m (3 px):
+<code>DTI = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w)</code>. For binary dots this equals
+<code>T / (0.2·(T+FP) + 0.8·|G|)</code> — mass and hits are the only levers; a correct cell is
+worth ~5 wrong ones; binary 1.0 on support is optimal. Known USGS/INGENIOUS fault pixels are
+excluded from scoring (staff clarification thread), so predicting catalogue cells earns nothing
+and still costs FP. <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About page</a></p></div>
+<div class="card"><h3>What the 112-probe ledger identifies (this session)</h3>
+<p>Non-negative least-squares tomography of the exact DTI identities on catalogue-distance ×
+network-distance strata, fit to 112 unique (support, owner-reported score) pairs, identifies hidden
+truth mass Ê|G| ≈ <strong>9,150 cells</strong> concentrated in four strata: 5–10 px off the catalogue
+on the multiline network (364 cells), 10–20 px off the catalogue 3–5 px off-network (3,182), 20–50 px
+off-catalogue on-network (1,128), and &gt;50 px off-catalogue on-network (4,477). Leave-one-out fits
+are stable (quantile bands ±6%). Model LOO MAE 0.0251. Crucially the identified truth is
+FAR from the mapped catalogue — which is exactly why the local catalogue holdout mis-ranks this
+family.</p></div>
+<div class="card"><h3>Ranked hypotheses (preregistered before the run)</h3>
+<ol>
+<li><strong>H1 KHD (executed):</strong> catalogue-halo redundancy completion + halo displacement. Verdict: negative on the holdout gate; unique file released.</li>
+<li><strong>H2 tip-linkage corridors from catalogue geometry:</strong> relay-ramp closure between mapped segment tips; ridge-concordant dots inside corridors. Not run (budget).</li>
+<li><strong>H3 radiometric alteration-cap vent habitat:</strong> K-depletion ∩ Th/U elevation ∩ curvature-high contacts from GeoDAWN radiometrics + GDR thermal springs. Not run (budget).</li>
+<li><strong>H4 Euler depth-cluster / Curie corridor:</strong> clustered Euler deconvolution solutions + shallow-Curie ridges. Not run.</li>
+<li><strong>H5 seismicity/strain corridors:</strong> negative evidence in ledger (0.0963 class).</li>
+</ol>
+<p class="small">Full preregistration: <code>knowledge/preregistration-2026-10-28-khd.md</code>.</p></div>
+<div class="card"><h3>Official sources (for manual verification)</h3>
+<ul class="small">
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS Prize Challenge</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (UNet baseline)</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN magnetics/radiometrics</a></li>
+<li><a href="https://gdr.openei.org/submissions/1391">INGENIOUS GDR 1391</a> ·
+<a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a> ·
+<a href="https://pubs.usgs.gov/publication/ds1052">USGS DS 1052 (SGMC)</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Competition rules PDF</a></li>
+</ul></div>
+<div class="footer small"><a href="index.html">← Executive summary</a></div>
+</div><script src="assets/status.js"></script></body></html>

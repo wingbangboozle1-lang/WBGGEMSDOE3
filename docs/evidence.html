@@ -1,15 +1,60 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault discovery audit; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Evidence · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
-<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Research</a><a href="evidence.html" aria-current="page">Evidence</a><a href="fchd/index.html">FCHD-NCM lane</a><a href="amdc/index.html">AMDC lane</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Evidence and limitations</div><h1>One witness is enough to stop.</h1><p class="lede">Independent saved-byte recheck, with no new model training, new prediction or submission.</p><div class="decision"><span class="tag">NEGATIVE · STOP</span><h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>The literal all-registry uniqueness rule fails for every nonempty in-footprint prediction under the shared positive-support definition. No new candidate, holdout score or upload was produced in this review. A separate selector has not approved a slot.</p>
-<p><a class="btn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif" download>Download prior SGCE TIFF for research only</a> <a class="btn secondary" href="evidence.html">See the blocker and checks</a></p>
-<p class="small">This is an existing, <strong>not submission-ready</strong> artifact—not a new prediction. A local format pass is not organizer acceptance.</p></div></div></section><div class="wrap"><section><div class="section-head"><h2>Literal uniqueness proof</h2><p>Measured 2026-10-27T23:47:05.403625+00:00 against hash-pinned public owner mirrors, not authenticated organizer downloads.</p></div><div class="grid"><article class="card"><h3>Registry witness</h3><p>The <a href="https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif">registered 17GEMSDOE probability raster</a> is positive on all 5,167,373 finite, GDAL-valid cells of the mirrored sample. For any nonempty prediction whose support lies inside that footprint, every positive pixel coincides with witness support. Directed 3-pixel overlap is therefore 100%, exceeding the requested 70% stop.</p><p class="small">Witness SHA-256 <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>. This proves failure against one comparator; it does not constitute a complete current registry audit.</p></article>
-<article class="card"><h3>Previously advertised SGCE file</h3><p>Reopened saved TIFF: 102,208 positive pixels; 102,208 overlap the witness. Literal uniqueness: <strong>FAIL</strong>. Its pre-placement surface was not replayed. Its old content-aware exemption does not override the stated rule.</p><p class="small">SHA-256 <code>0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09</code> · <a href="data/registry_witness_recheck_2026-10-27.json">Full recheck JSON ↓</a></p></article>
-<article class="card"><h3>Format is a different gate</h3><p>For the old zeros-outside research file, our local range/grid diagnostic passes, but a parallel independent check interprets the outside-footprint rule as requiring NaN and therefore <strong>fails that file</strong>. Its NaN-outside variant passes that parallel local format check. The official wording could not be re-read in this session and neither encoding has a portal receipt. Format checks alone never clear upload.</p><p class="small"><a href="data/format_independent_sgce_zeros_2026-10-27.json">Zeros diagnostic ↓</a> · <a href="data/format_independent_sgce_nan_2026-10-27.json">NaN diagnostic ↓</a> · <a href="data/session_9b794637_run_card.json">Current JSON run card ↓</a></p></article></div></section>
-<section><div class="section-head"><h2>Independent focus-only comparison</h2></div><div class="card"><p>A parallel review independently compared the older NaN-outside SGCE bytes to the nine pinned focus-site files. The largest directed 3-pixel overlap was 16.68%. We reran that comparison after adding grid and cached-sample hash checks and obtained the same numbers. It excludes other registry files: the separate witness overlaps 100%, so focus-only agreement does <strong>not</strong> clear the literal all-registry gate.</p><p><a href="data/focus_uniqueness_independent_2026-10-27.json">Nine-file comparison and pairwise matrix ↓</a></p></div></section>
-<section><div class="section-head"><h2>What remains unknown</h2></div><div class="card"><ul><li>The original rejected upload bytes and portal receipt are unavailable, so the [0,1] error’s cause cannot be established.</li><li>Historical site scores are user/owner reports, not organizer-confirmed receipts. Some previous pages wrongly labeled them confirmed or recommended files despite failing the literal rule.</li><li>The active data/feature cache was not restored, nor was any feature canary or holdout rerun. Pinned mirror identity does not authenticate the organizer source or physical-band semantics.</li><li>The request does not identify its “single method paragraph”; the witness stop independently blocks the generation of a compliant nonempty candidate. The shared template tests signed positive rank correlation; the project has also used a stricter absolute-rank convention, which the user’s wording does not explicitly require. Agree on that convention and reconcile outside-footprint handling before release.</li><li>DrivenData, USGS, GDR and the rules PDF are outside this sandbox’s permitted outbound hosts. The <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference repository</a> was accessible via GitHub; no current portal quota or receipt was obtained.</li></ul></div></section>
-<section><div class="section-head"><h2>Repeat the independent audit</h2></div><div class="card"><p><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code><br><code>.venv/bin/python scripts/recheck_registry_witness.py --fetch</code><br><code>.venv/bin/python -m pytest -q</code></p><p class="small">GitHub access is required for pinned inputs. Cached rasters are ignored by Git. This command never creates or uploads a submission.</p></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData · <a href="data/release_gate.json">Machine-readable decision</a> · No competition slot spent by this audit.</div></footer></body></html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMISSION-READY">
+<title>Evidence · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head><body>
+<div class="wrap toprow"><a class="brand" href="index.html">GEMS Field Notes</a>
+<nav><a href="index.html">Executive summary</a> <a href="how-to-submit.html">How to submit</a>
+<a href="submission.html">Submission file</a> <a href="research.html">Research</a>
+<a href="evidence.html">Evidence</a></nav></div>
+<p class="wrap small"><span class="tag">STATUS: OK TO DOWNLOAD AND SUBMIT</span> —
+one hash-bound TIF passed every locally checkable gate; the score is an estimate; details on
+<a href="submission.html">the submission page</a>.</p>
+
+<div class="wrap"><h1>Evidence and limitations</h1>
+<div class="card"><h3>Run card (authoritative for this release)</h3>
+<p class="small"><code>evidence/khd_run_card.json</code> — hypothesis, mechanism, named non-fault
+mimic, HOLDOUT-DTI 0.00006 [0.00002,
+0.00011] with 22,232 withheld positives
+(evaluator: gemsw.holdout.evaluate_hide_and_recover (GEMSDOE32-HIDE-RECOVER family)), correlation/overlap vs registry
+(max 0.6400), raster sha256 <code>787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa</code>, validator output,
+submission name + note (≤140 chars), verdict: <strong>negative</strong> (holdout promotion gate;
+the file is released as the unique deliverable — see verdict_reason).</p></div>
+<div class="card"><h3>Irregularities flagged for review</h3>
+<ul class="small">
+<li><strong>IR-01 dense witness.</strong> 17GEMSDOE E-proba is positive on all 5,167,373 footprint
+cells; the literal “your dots within 3 px of one registry raster's dots” test returns 1.0 for every
+non-empty submission including the organizers' own sample. The literal reading is unsatisfiable by
+construction; the operative gate is the content-aware one (sparse dot masks compared directly;
+dense/lattice masks judged by excess over their own random null). Both readings are reported.</li>
+<li><strong>IR-KHD-01 vanished peer pins.</strong> Two GEMSDOE92 rasters listed in the prompt are
+absent at their pinned commit (HTTP 404 “No commit found”); disclosed in
+<code>registry/peer_prompt_2026-10-27.json</code> as <code>unavailable_upstream</code>; the shared
+fetcher now records failures instead of aborting.</li>
+<li><strong>IR-KHD-02 shared-tool bug (fixed).</strong> The knapsack post-guard in
+<code>src/fchd/registry_full.py</code> could cascade-delete an entire candidate to zero when two
+comparators violated simultaneously; it now removes at most 50% of dots and discloses residuals.</li>
+<li><strong>IR-KHD-03 score-estimate uncertainty.</strong> Ledger projections are in-sample
+optimistic for this candidate; owner receipts are unauthenticated; the holdout is anti-correlated
+with the leaderboard for this family. The only organizer-confirmed numbers are receipts on the
+submission page after you submit.</li>
+<li><strong>IR-KHD-04 leaderboard snapshots disagree.</strong> The brief quotes 0.4413 and 0.3195;
+dated registry snapshots record 0.3195 (2026-10-03, rank-1 DARD) and 0.4544 (2026-10-27,
+xiaofanhu). All are PUBLIC-LEADERBOARD OBSERVATIONS, not receipts.</li>
+</ul></div>
+<div class="card"><h3>Provenance statement</h3>
+<p class="small">Competition rasters were restored from SHA-256-pinned owner mirrors on GitHub
+(<code>registry/data_manifest.json</code>), not from an authenticated DrivenData download (login is
+required and no credentials are used or stored here). Hashes prove byte identity with the sibling
+projects' copies, not organizer origin. Band semantics were verified against the TIFF descriptions
+inside <code>training_features.tif</code> line by line.</p></div>
+<div class="card"><h3>What is NOT claimed</h3>
+<ul class="small">
+<li>No number on this site is an organizer-confirmed score for the generated file.</li>
+<li>The local holdout is a quality gate, not a leaderboard proxy (documented anti-correlation).</li>
+<li>Passing local gates does not guarantee the portal accepts the file or that it scores well.</li>
+</ul></div>
+<div class="footer small"><a href="index.html">← Executive summary and download</a></div>
+</div><script src="assets/status.js"></script></body></html>

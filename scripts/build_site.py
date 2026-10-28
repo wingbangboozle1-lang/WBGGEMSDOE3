@@ -272,7 +272,12 @@ def main() -> int:
     render()
     r1 = _amdc_main() or 0
     r2 = _fchd_main() or 0
-    return r1 or r2
+    # Policy revision 2026-10-28 (user brief): the six primary pages are built by
+    # build_site_khd (SUBMISSION-READY, hash-bound KHD release).  Legacy artifacts
+    # (release_gate.json, decision.json, lane stubs) keep their historical content.
+    from build_site_khd import main as _khd_main
+    r3 = _khd_main() or 0
+    return r1 or r2 or r3
 
 
 def build() -> int:

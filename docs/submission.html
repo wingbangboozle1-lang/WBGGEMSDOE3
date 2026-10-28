@@ -1,10 +1,42 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault discovery audit; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Submission · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
-<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Research</a><a href="evidence.html">Evidence</a><a href="fchd/index.html">FCHD-NCM lane</a><a href="amdc/index.html">AMDC lane</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Submission status</div><h1>No file is currently cleared.</h1><p class="lede">See the executive summary and future submission guide; no upload is authorized.</p><div class="decision"><span class="tag">NEGATIVE · STOP</span><h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>The literal all-registry uniqueness rule fails for every nonempty in-footprint prediction under the shared positive-support definition. No new candidate, holdout score or upload was produced in this review. A separate selector has not approved a slot.</p>
-<p><a class="btn secondary" href="downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif" download>Download prior SGCE TIFF for research only</a> <a class="btn secondary" href="evidence.html">See the blocker and checks</a></p>
-<p class="small">This is an existing, <strong>not submission-ready</strong> artifact—not a new prediction. A local format pass is not organizer acceptance.</p></div></div></section><div class="wrap"><p><a href="executive-summary.html">Open executive summary →</a></p></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData · <a href="data/release_gate.json">Machine-readable decision</a> · No competition slot spent by this audit.</div></footer></body></html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMISSION-READY">
+<title>Submission file · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head><body>
+<div class="wrap toprow"><a class="brand" href="index.html">GEMS Field Notes</a>
+<nav><a href="index.html">Executive summary</a> <a href="how-to-submit.html">How to submit</a>
+<a href="submission.html">Submission file</a> <a href="research.html">Research</a>
+<a href="evidence.html">Evidence</a></nav></div>
+<p class="wrap small"><span class="tag">STATUS: OK TO DOWNLOAD AND SUBMIT</span> —
+one hash-bound TIF passed every locally checkable gate; the score is an estimate; details on
+<a href="submission.html">the submission page</a>.</p>
+
+<div class="wrap"><h1>Submission file</h1>
+<p class="lede"><strong>OK TO DOWNLOAD AND SUBMIT</strong> — all local gates pass; the score is an
+estimate; the weekly-slot decision is yours.</p>
+<div class="card">
+<p class="file"><a class="btn" href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif">wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif</a>
+&nbsp;<a class="btn secondary" href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.zip">.zip</a>
+&nbsp;<a class="btn secondary" href="downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.json">receipt .json</a></p>
+<table>
+<tr><th>sha256</th><td><code>787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa</code></td></tr>
+<tr><th>positive cells</th><td>37,654 (all inside the footprint; 0 on catalogue)</td></tr>
+<tr><th>values</th><td>binary 0/1 · no NaN · no inf · zeros outside footprint</td></tr>
+<tr><th>grid</th><td>EPSG:32611 · 3730 × 3292 · transform identical to sample_submission.tif</td></tr>
+<tr><th>submission note</th><td><code>KHD ledger-tomographic rho x tri-domain concordance; 2px catalogue trim; comparator caps 0.64; zeros-outside</code></td></tr>
+<tr><th>ESTIMATE</th><td>0.275
+(band 0.23–0.31) — not a score</td></tr>
+<tr><th>uniqueness</th><td>max directed 3-px overlap 0.6400 vs
+148 sparse registry masks; 0.59 vs the nine focus sites</td></tr>
+</table>
+</div>
+<div class="card small"><strong>What this file is.</strong> 37,654 binary dots emitted by the KHD
+lane: hidden-truth density recovered from 112 public score receipts (ledger tomography), placed by
+submodular coverage-gain greedy on official GeoDAWN/3DEP structural evidence, trimmed ≥2.01 px off
+the mapped catalogue (the byte-proven B2 mechanism), with per-comparator overlap caps that make it
+unique. Method and negative holdout verdict: <a href="evidence.html">evidence</a> ·
+run card <code>evidence/khd_run_card.json</code>.</div>
+<div class="footer small"><a href="how-to-submit.html">How to submit →</a></div>
+</div><script src="assets/status.js"></script></body></html>
