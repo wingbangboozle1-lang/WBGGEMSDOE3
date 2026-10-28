@@ -16,7 +16,7 @@
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest 2026-10-28 review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28_run_card.json), the [current negative run card](evidence/session_9b794637_run_card.json),
 the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
 [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
@@ -24,6 +24,12 @@ Outcome** central: weigh risk and evidence, act autonomously when safe, and trea
 a negative result as a deliverable. The reconstructed standing brief is included
 at the end of this README. It is **not verbatim**: the full original prompt was
 not available to this session, and the previous verbatim claim was incorrect.
+
+## Latest review — 2026-10-28 UTC
+
+**Negative preflight; DO NOT SUBMIT.** No new TIFF or method experiment was generated. The current literal overlap rule remains infeasible for every nonempty prediction because one registered mirrored raster is positive on the entire 5,167,373-cell footprint (RASTER-ARTIFACT MEASUREMENT; see [witness audit](evidence/registry_witness_recheck_2026-10-27.json)). The candidate ideas, constraints, missing data, three-pass repo review, official source links and limitations are in [the 2026-10-28 review](knowledge/review-2026-10-28.md); the machine-readable negative run card is [here](evidence/review_2026-10-28_run_card.json). This is not an all-registry completeness claim or organizer-confirmed result.
+
+Verification: `.venv/bin/python -m pytest -q` → **223 passed, 4 skipped, 72 warnings (TEST RESULTS)**. `python scripts/build_site.py`, `python scripts/check_site.py`, and a docs diff check passed. These validate software/site consistency, not scientific performance or portal acceptance. Official DrivenData/USGS/GDR/NLR pages were not re-fetched because those hosts are outside this sandbox's outbound allowlist.
 
 ## Executive summary: nine requested sites
 
