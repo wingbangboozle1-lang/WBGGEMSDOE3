@@ -1,38 +1,16 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT A UNIQUE FILE BELOW** (selector picks the slot)
+> **Current safety notice (2026-10-28): NOT CLEARED — DO NOT SUBMIT based on this repository's current site.** The public `docs/` pages currently show a green SUBMIT banner for an inverse-design TIFF, but `evidence/run_card_v3.json` says no compliant HOLDOUT-DTI was run, and `evidence/review_2026-10-28_run_card.json` records a negative preflight. A format/site check is not a scientific promotion gate or organizer acceptance. The conflicting decision state is documented in [the repository review](knowledge/repository-review-2026-10-28.md). This notice supersedes the older download claims below until the site and its checker are repaired.
+
+> ## Historical candidate files — **NOT CLEARED; DO NOT SUBMIT**
 >
-> **Primary download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
-> · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
-> · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
-> · run card [evidence/run_card_v3.json](evidence/run_card_v3.json) · gate [docs/data/release_gate.json](docs/data/release_gate.json)
+> Inverse-design and KHD files are retained solely for research/audit. No present artifact has the required compliant HOLDOUT-DTI and resolved literal uniqueness clearance. The inverse-design run card explicitly reports no compliant holdout; KHD's preregistered holdout gate is negative. The selector has not separately approved a real slot.
 >
-> **Second candidate (KHD lane):** [`docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif`](docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif)
-> · SHA-256 `787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa`
-> · 37,654 dots · all-finite zeros-outside encoding · ESTIMATE **0.275** (band 0.23–0.31;
->   ledger-tomography + class-anchor triangulation — never a score)
-> · content-aware uniqueness PASS (max directed 3-px overlap 0.640 vs 148 sparse registry masks;
->   0.56–0.59 vs the nine focus sites) · run card [evidence/khd_run_card.json](evidence/khd_run_card.json)
-> · KHD's preregistered holdout promotion gate is **negative** (that holdout is anti-correlated
->   with the leaderboard for this family); the file is a lower-variance, lower-estimate bet.
+> - Inverse-design raster: [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif) — ESTIMATE only, not a score.
+> - KHD raster: [`docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif`](docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif) — negative HOLDOUT-DTI gate.
+> - ADJDIS raster: `wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif` — review only.
 >
-> Both files pass every locally checkable portal-format gate (values in [0, 1], no non-finite
-> cells, grid identical to `sample_submission.tif`, zeros outside the footprint — the encoding
-> that fixes the “Predicted values must be in range [0, 1]” rejection) and the content-aware
-> uniqueness gate. The literal dense-witness reading (17GEMSDOE positive on the whole footprint,
-> IR-01) is unsatisfiable by construction and is disclosed in the evidence pages. Neither
-> number above is a score; the only organizer-confirmed scores will be your own receipts.
->
-> **ADJDIS lane (this session) — NOT cleared, do not submit:** `wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif`
-> (HOLDOUT-DTI `0.059897`, Gate 1 fail, Gate 3 fails under the literal reading, selector
-> approval **false**) is published for review/testing only; its 3/3 preregistered experiments
-> are documented below.
->
-> [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
-> [How to submit](docs/how-to-submit.html) · [Submission file](docs/submission.html) ·
-> [Evidence](docs/evidence.html) · [Method](docs/method.html) ·
-> [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
-> [ADJDIS TIFF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif)
+> Format validation and a site checker are necessary integrity checks, not proof of score, uniqueness under the unresolved literal registry rule, or organizer acceptance. See the [repository review](knowledge/repository-review-2026-10-28.md) and the [executive dashboard](docs/index.html).
 
 ## Start every session here
 
