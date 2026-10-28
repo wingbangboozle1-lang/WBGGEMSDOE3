@@ -96,3 +96,42 @@ repository's DO-NOT-SUBMIT decision:
 Records: [bytes audit](../evidence/amdc/sgce_bytes_audit.json) ·
 [run card v2](../evidence/amdc_run_card.json) ·
 [irregularities](../knowledge/irregularities-2026-10-28-amdc.md).
+
+## Addendum — byte-exact chain (2026-10-28, hash-pinned bytes)
+
+Measured with `np.array_equal` on the hash-pinned raster mirrors (`data_manifest.json`):
+
+| File | sha256 (first 16) | Dots | Chain relation (exact) | Owner-reported |
+|---|---|---:|---|---:|
+| dotted-h19-5-d1-5 | 68d0e2e4fcc594f9 | 60,069 | d1-5 network, 1.5-px spacing | 0.2477 |
+| dotted-h19-5-d2-8 | 91eae1ca42ec844e | 44,090 | 2.8-px spacing skeleton | 0.2600 |
+| d28-poisson (GEMSDOE30) | 8cf893ea… | 44,090 | **identical support** to d2-8 (re-serialized) | 0.2600 |
+| solo-d28 (GEMSDOE31) | 07b6db44… | 40,199 | = d2-8 − 3,891 dots with d_cat ≤ 1.01 px (exact) | 0.2708 |
+| **B2 (GEMSDOE32)** | c55bafc4… | 37,654 | = solo-d28 − 2,545 dots with 1.01 < d_cat ≤ 2.01 px (exact) | **0.2778** |
+| anderson-pinn (GEMSDOE36) | e1589102… | 38,854 | = B2 ∪ 1,200 added dots (exact) | 0.2750 |
+
+One-change marginal effects along the chain (same model, same submission window):
+
+- remove 3,891 on-catalogue dots: **+0.0108**
+- remove 2,545 dots in the 1–2 px catalogue band: **+0.0070**
+- add 1,200 miscellaneous dots back: **−0.0028**
+
+Halo geometry (why nothing else is available on-network): every one of the 121,131 h19-5
+network cells lies within 3 px of a d1-5/d2-8/tgc dot; the network is saturated by the
+family. A submission that satisfies the directed 3-px uniqueness rule against d1-5/d2-8
+must therefore place ≥30% of its dots off-network (the observed family band:
+gems70 0.2478, gate_ortho 0.2376, cvarlw 0.2303, h59-cover 0.2296, h3pack 0.0443).
+
+DTI marginal algebra (binary dots, triangular kernel): removing a dot whose kernel credit
+is duplicated, or whose predicted credit is low, strictly raises DTI; adding a dot needs
+kernel credit k > α·DTI ≈ 0.056 (about one correct cell within ~2.8 px of hidden truth) to
+break even. B2 is therefore a **redundancy-pruned** family member, not a denser one — and
+every marginal addition tested (pinn) hurt.
+
+Catalogue-mask mechanism: the organizer excludes known-fault pixels from scoring (staff
+clarification), but the catalogue is imperfectly masked relative to hidden truth, so
+on-catalogue dots earn no TP while still contributing FP. The B2 trim removes exactly that
+dead mass. What remains cannot be improved by pruning alone; scoring above 0.2778 with a
+*unique* submission requires placing new dots near hidden truth that the family does not
+already cover — i.e. new geological information (hypotheses H2/H3 in
+`knowledge/preregistration-2026-10-28-khd.md`).

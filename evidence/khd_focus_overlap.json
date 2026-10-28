@@ -1,0 +1,56 @@
+[
+ {
+  "site": "GEMSDOE24",
+  "n_ref": 60069,
+  "cand_within3_of_ref": 0.5863,
+  "ref_within3_of_cand": 0.4937
+ },
+ {
+  "site": "GEMSDOE25",
+  "n_ref": 44090,
+  "cand_within3_of_ref": 0.5647,
+  "ref_within3_of_cand": 0.4954
+ },
+ {
+  "site": "GEMSDOE27",
+  "n_ref": 61328,
+  "cand_within3_of_ref": 0.5873,
+  "ref_within3_of_cand": 0.4857
+ },
+ {
+  "site": "GEMSDOE28",
+  "n_ref": 37660,
+  "cand_within3_of_ref": 0.5618,
+  "ref_within3_of_cand": 0.5429
+ },
+ {
+  "site": "GEMSDOE30",
+  "n_ref": 44090,
+  "cand_within3_of_ref": 0.5647,
+  "ref_within3_of_cand": 0.4954
+ },
+ {
+  "site": "GEMSDOE31",
+  "n_ref": 40199,
+  "cand_within3_of_ref": 0.5647,
+  "ref_within3_of_cand": 0.5432
+ },
+ {
+  "site": "GEMSDOE32",
+  "n_ref": 37654,
+  "cand_within3_of_ref": 0.5647,
+  "ref_within3_of_cand": 0.5785
+ },
+ {
+  "site": "GEMSDOE33",
+  "n_ref": 41865,
+  "cand_within3_of_ref": 0.5685,
+  "ref_within3_of_cand": 0.5256
+ },
+ {
+  "site": "GEMSDOE36",
+  "n_ref": 38854,
+  "cand_within3_of_ref": 0.5668,
+  "ref_within3_of_cand": 0.5671
+ }
+]

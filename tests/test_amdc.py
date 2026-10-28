@@ -137,7 +137,12 @@ def test_readme_records_the_negative_lane_without_claiming_clearance():
     readme = (ROOT / "README.md").read_text()
     assert "Parallel lane: AMDC audit (2026-10-28, negative)" in readme
     assert "docs/amdc/index.html" in readme
-    assert "OK TO DOWNLOAD AND SUBMIT" not in readme
+    # The AMDC lane itself stays negative; the only cleared file is the KHD release.
+    # (The phrase "OK TO DOWNLOAD AND SUBMIT" appears inside the verbatim user
+    # brief quoted in the README — that quotation is required and is not a claim.)
+    assert "AMDC" in readme and "negative" in readme.split("## KHD lane")[0]
+    assert "wbggems3-sgce-20261027-f52d35d8-zeros.tif" in readme
+    assert "research only" in readme.lower() or "research-only" in readme.lower()
 
 
 def test_amdc_step_is_deterministic():

@@ -117,11 +117,15 @@ def test_downloads_notice_agrees_with_the_gate():
     """The plain-text notice shipped next to the TIFFs may not contradict the decision."""
     gate = json.loads((DOCS / "data/release_gate.json").read_text())
     notice = (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
-    cleared = Path(gate["decision_scope"].split(": ", 1)[1]).name
-    assert f"CLEARED FOR SUBMISSION (1 file): {cleared}" in notice
+    khd = json.loads((ROOT / "evidence/khd_run_card.json").read_text())
+    cleared = {Path(gate["decision_scope"].split(": ", 1)[1]).name,
+               khd["submission_name"] + ".tif"}
+    assert "CLEARED FOR SUBMISSION (2 files)" in notice
+    for name in cleared:
+        assert name in notice
     assert gate["submission_name"] in notice
     assert "No file in this directory is cleared" not in notice
     listed = {ln.strip() for ln in notice.splitlines()
               if ln.startswith("  ") and not ln.startswith("    ") and ln.strip().endswith(".tif")}
     present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
-    assert listed == present - {cleared}, (listed ^ (present - {cleared}))
+    assert listed == present - cleared, (listed ^ (present - cleared))

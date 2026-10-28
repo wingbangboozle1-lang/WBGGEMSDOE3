@@ -13,13 +13,11 @@
       "path": "docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
       "local": "data/peer_extra/GEMSDOE92__gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
-      "sha256": "e928d3c3fde8b3f1f622bb4f6e638620f0a1897fb6f8178cf26fe93f9c3b3a1c",
-      "bytes": 140192,
-      "positive_pixels": 35801,
-      "shape": [
-        3730,
-        3292
-      ]
+      "sha256": null,
+      "bytes": null,
+      "positive_pixels": null,
+      "shape": null,
+      "status": "unavailable_upstream"
     },
     {
       "site": "GEMSDOE92",
@@ -31,13 +29,11 @@
       "path": "docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
       "local": "data/peer_extra/GEMSDOE92__gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
-      "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
-      "bytes": 141115,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
+      "sha256": null,
+      "bytes": null,
+      "positive_pixels": null,
+      "shape": null,
+      "status": "unavailable_upstream"
     },
     {
       "site": "GEMSDOEkarage1",

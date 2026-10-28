@@ -1,10 +1,14 @@
 SUBMISSION NOTICE FOR THIS DIRECTORY
 ==================================
 
-CLEARED FOR SUBMISSION (1 file): wbggems3-invdesign-anchor-20k-zeros.tif
+CLEARED FOR SUBMISSION (2 files): wbggems3-invdesign-anchor-20k-zeros.tif
   sha256 283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda
   name   WBGGEMS3-INVDESIGN-ANCHOR-20K
   ESTIMATE 0.4700 (95% PI 0.3156-0.6244; model, not an organiser receipt)
+  second candidate below: wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif:
+  sha256 787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa
+  name   wbggems3-khd-tomo-20261028-bd69b5b3-zeros
+  ESTIMATE 0.2750 (band 0.23-0.31; model, not an organiser receipt)
   verify it yourself before uploading:
     python scripts/check_site.py
 

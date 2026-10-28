@@ -55,15 +55,24 @@ def main() -> int:
     # actually present, so adding or clearing a TIFF regenerates the list instead of leaving a
     # stale "do not submit anything" banner next to the deliverable.
     cleared = Path(card["raster"]["path"]).name
+    khd = json.loads((ROOT / "evidence" / "khd_run_card.json").read_text())
+    khd_name = khd["submission_name"] + ".tif"
     lines = [
         "SUBMISSION NOTICE FOR THIS DIRECTORY",
         "=" * 34,
         "",
-        f"CLEARED FOR SUBMISSION (1 file): {cleared}",
+        f"CLEARED FOR SUBMISSION (2 files): {cleared}",
         f"  sha256 {card['raster']['sha256']}",
         f"  name   {card['submission_name']}",
         f"  ESTIMATE {float(card['estimate']['calibrated']):.4f} "
         f"(95% PI {float(card['estimate']['pi95'][0]):.4f}-{float(card['estimate']['pi95'][1]):.4f}; "
+        "model, not an organiser receipt)",
+        f"  second candidate below: {khd_name}:",
+        f"  sha256 {khd['raster_sha256']}",
+        f"  name   {khd['submission_name']}",
+        f"  ESTIMATE {float(khd['ledger_projection']['estimate_headline']['value']):.4f} "
+        f"(band {float(khd['ledger_projection']['estimate_headline']['band'][0]):.2f}-"
+        f"{float(khd['ledger_projection']['estimate_headline']['band'][1]):.2f}; "
         "model, not an organiser receipt)",
         "  verify it yourself before uploading:",
         "    python scripts/check_site.py",
@@ -71,7 +80,7 @@ def main() -> int:
         "DO NOT SUBMIT (research artifacts, earlier lanes, superseded designs):",
     ]
     for tif in sorted((DOCS / "downloads").glob("*.tif")):
-        if tif.name == cleared:
+        if tif.name in {cleared, khd_name}:
             continue
         lines.append(f"  {tif.name}")
         lines.append(f"    sha256 {sha(tif)}  size {tif.stat().st_size:,} bytes  -- not cleared")

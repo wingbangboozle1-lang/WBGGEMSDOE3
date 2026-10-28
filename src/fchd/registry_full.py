@@ -493,7 +493,11 @@ def celf_knapsack_allocate(
                     ng[ok] += p_s[ty[ok], tx[ok]] * rem
             g_s[uy, ux] = ng
 
-    # Safety post-guard if `selected < budget_k`: ensure max_overlap <= max_overlap_cap on actual `selected`
+    # Safety post-guard if `selected < budget_k`: ensure max_overlap <= max_overlap_cap on actual `selected`.
+    # 2026-10-28 shared-tool fix (KHD lane, applied once here): the previous loop could cascade-delete
+    # the ENTIRE field to zero whenever two comparators violated simultaneously (removing a dot outside
+    # violator B lowers the cap floor and makes B's relative violation worse). It now removes at most
+    # half of the selected dots and then DISCLOSES any residual violation instead of destroying the work.
     if selected > 0 and selected < budget_k and n_comp > 0:
         all_y = np.concatenate(sel_y_list)
         all_x = np.concatenate(sel_x_list)
@@ -504,11 +508,14 @@ def celf_knapsack_allocate(
             b_idx = fidx_all >> 3
             b_msk = (1 << (7 - (fidx_all & 7))).astype(np.uint8)
             in_all = (d3_packed[:, b_idx] & b_msk[None, :]) != 0
-            # Drop lowest-gain dots inside offending comparators
+            # Drop lowest-gain dots inside offending comparators, never below 50% of selected.
             asc = np.argsort(all_g)
             alive = np.ones(all_y.size, dtype=bool)
             cur_n = selected
+            floor_n = max(1, selected // 2)
             for idx_d in asc:
+                if cur_n <= floor_n:
+                    break
                 viol = comp_hits > int(np.floor(max_overlap_cap * cur_n))
                 if not viol.any():
                     break
@@ -518,6 +525,11 @@ def celf_knapsack_allocate(
                     comp_hits -= in_all[:, idx_d]
                     cur_n -= 1
             selected = cur_n
+            residual_violation = float(comp_hits.max()) / max(selected, 1) > max_overlap_cap
+        else:
+            residual_violation = False
+    else:
+        residual_violation = False
 
     return dots, {
         "selected": selected,
@@ -526,4 +538,5 @@ def celf_knapsack_allocate(
         "max_empirical_overlap": round(float(comp_hits.max()) / max(selected, 1), 5) if n_comp > 0 and selected > 0 else 0.0,
         "comparators_capped": int(comp_masked.sum()),
         "blocked_by_knapsack": blocked_by_knapsack,
+        "residual_cap_violation": bool(residual_violation),
     }
