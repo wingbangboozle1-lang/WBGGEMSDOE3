@@ -12,32 +12,18 @@
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit *after* clearance](docs/how-to-submit.html) ·
 > [Evidence and limitations](docs/evidence.html) ·
+> [Latest 2026-10-28 review](knowledge/review-2026-10-28.md) ·
 > [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [latest 2026-10-28 review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28_run_card.json), the [current negative run card](evidence/session_9b794637_run_card.json),
-the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
-[release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
-Outcome** central: weigh risk and evidence, act autonomously when safe, and treat
-a negative result as a deliverable. The reconstructed standing brief is included
-at the end of this README. It is **not verbatim**: the full original prompt was
-not available to this session, and the previous verbatim claim was incorrect.
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The reconstructed standing brief is included at the end of this README. It is **not verbatim**: the full original prompt was not available to this session, and the previous verbatim claim was incorrect.
 
 ## Latest review — 2026-10-28 (negative; no experiment)
 
-Re-read the standing brief and release protocol and reviewed the four-hypothesis
-preregistration. The literal all-footprint registry witness remains a blocker
-under the current shared `finite & value > 0` support definition. No new
-surface/TIF, HOLDOUT-DTI, leaderboard refresh, competition submission, or slot
-was produced. The local checkout lacks the competition feature stack, labels,
-segment identifiers and saved folds; the assigned method paragraph is still
-not identifiable. Full tests: **224 passed, 4 skipped, 72 warnings**;
-`python scripts/check_site.py`: **PASS**. The user-reported 0.3195 is not a
-live verified leaderboard value. See the [three-pass session review](knowledge/session-review-2026-10-28.md)
-and [machine-readable run card](evidence/session_review_2026-10-28.json).
+**Negative preflight; DO NOT SUBMIT.** No new TIFF, geological experiment, HOLDOUT-DTI, upload, or slot selection was made. One registered public owner-mirror raster is positive over every cell in the mirrored sample footprint, so any non-empty prediction fails the literal 70% overlap stop under the repo's support definition. This is a blocking witness, not a complete registry audit or organizer-authenticated source.
 
+Verification for this branch: site builder and site checker passed; **229 tests passed, 72 warnings**. The saved leaderboard observation is dated 2026-10-27 (0.4544 top, 0.3195 rank 25), not a live 2026-10-28 check. Full detail and next steps are in [the repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json). A separate same-day session review is also available at [session review](knowledge/session-review-2026-10-28.md) and [its run card](evidence/session_review_2026-10-28.json); do not combine their measurements or test counts.
 
 ## Executive summary: nine requested sites
 
@@ -69,11 +55,10 @@ physically distinct method might score higher; no such result has been demonstra
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
 
-**Parallel review note (2026-10-28):** a separate session also documented a
-negative preflight before this review. Its evidence is retained in
-[that session's review](knowledge/review-2026-10-28.md) and
-[run card](evidence/review-2026-10-28_run_card.json); its reported test count
-belongs to that session, not the current review above.
+**Parallel review note (2026-10-28):** a separate run also recorded a negative
+preflight. Its findings are retained in [that session's review](knowledge/session-review-2026-10-28.md)
+and [run card](evidence/session_review_2026-10-28.json). Treat its evaluator and
+test counts as a separate run; do not combine them with this review.
 
 ## What has and has not been validated
 
@@ -144,13 +129,6 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    encoding and rejects the NaN variant; the parallel independent audit reads
    the outside-footprint wording the other way. Neither file is cleared either
    way.
-
-## Latest repository review (2026-10-28)
-
-Three-pass review and verification found no safe submission to promote. The
-site builder and consistency checks pass; the complete test suite passes
-(223 passed, 4 skipped). No experiments or slots were used and no tracked
-implementation changes were needed. See the detailed [review record](knowledge/repo-review-2026-10-28.md).
 
 ## Reproduce the checks
 
