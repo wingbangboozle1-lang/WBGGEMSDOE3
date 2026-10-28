@@ -85,7 +85,8 @@ def test_governing_gate_is_hash_bound_to_verified_sources():
     """
     gate = _load("docs/data/release_gate.json")
     assert gate["schema"] == "gems-release-gate-v2"
-    assert gate["decision"] == "SUBMIT" and gate["okay_to_submit"] is True
+    # 2026-10-28: the gate is HOLD (literal uniqueness fails vs 13GEMSDOE r13 lattice, 0.9944).
+    assert gate["decision"] == "HOLD" and gate["okay_to_submit"] is False
     assert gate["blocking_reasons"], "irregularities must be published with the decision"
     for key in ("run_card", "design", "uniqueness", "pair"):
         src = ROOT / gate["source_cards"][key]

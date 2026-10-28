@@ -148,7 +148,7 @@ def test_governing_fail_closed_gate_and_fchd_dossier_consistency():
     gate = _j("docs/data/release_gate.json")
     assert gate["schema"] == "gems-release-gate-v2"
     assert dec["decision"] == gate["decision"]
-    assert dec["okay_to_submit"] == gate["okay_to_submit"] == True  # noqa: E712
+    assert dec["okay_to_submit"] == gate["okay_to_submit"] == (gate["decision"] == "SUBMIT")
     assert gate["decision_scope"].endswith(dec["file"])
     published = ROOT / dec["file"]
     assert hashlib.sha256(published.read_bytes()).hexdigest() == dec["sha256"]

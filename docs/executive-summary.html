@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
+<meta name="gemsdoe-decision" content="HOLD">
 <title>Executive summary · nine focus sites</title><style>
 :root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
 --red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
@@ -51,7 +51,7 @@ max-width:1120px;margin:0 auto}
 <a href="evidence.html">Evidence</a>
 </header><main>
 <h1>Executive summary</h1>
-<p class="muted">Nine focus sites · why 0.2778 won · and the one unique file to submit instead.</p>
+<p class="muted">Nine focus sites · why 0.2778 won · and why no file is cleared to submit yet.</p>
 
 <div class="card ok">
 <h2 style="margin-top:0;border:none">Answer in one table</h2>
@@ -61,14 +61,12 @@ max-width:1120px;margin:0 auto}
 <td><a href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download><b>wbggems3-invdesign-anchor-20k-zeros.tif</b></a><br><small>sha256 <code>283209b977bc1c48…</code></small></td>
 <td class="num"><b>0.47</b><br><small>95% PI 0.32–0.62</small></td>
 <td class="num">20,000</td>
-<td><span class="pill g">YES</span> max 3-px overlap 0.687 (limit 0.70);
-max |ρ| 0.047 (limit 0.90); reverse overlap vs focus files
-≤ 0.174</td>
-<td><b style="color:#0a7d2c">SUBMIT</b></td>
+<td><span class="pill r">NO</span> literal rule: max directed 3-px overlap <b>0.9944</b> vs the 13GEMSDOE r13 lattice (457 sibling submissions; limit 0.70). Max |ρ| 0.051 (limit 0.90).</td>
+<td><b style="color:#b00020">HOLD — not cleared</b></td>
 </tr>
 </table>
 <p><b>Portal fields.</b> Name <code>WBGGEMS3-INVDESIGN-ANCHOR-20K</code> · note (≤ 140 characters)
-<code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass</code> (109/140). The upload must not return
+<code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; pending uniqueness decision</code> (109/140; not used until a SUBMIT decision exists). The upload must not return
 “Predicted values must be in range [0, 1]”: every cell is finite and inside the range.</p>
 <p class="muted">ESTIMATE = bias-corrected model output, not a competition score. The only real evidence is the
 submission-page receipt. Floor 0.18 · ceiling 0.58.
@@ -157,11 +155,10 @@ own teams (re-submitting them is a duplicate under the 70%/3-px rule).</p>
 <code>GEMSDOE32 …e5eb6e7e-zeros</code> contains 37,654 dots; <code>GEMSDOE28 h27-4</code>
 contains 40,199. Set difference: <b>0 dots added, 2,545 removed</b> — verified with
 <code>champion_is_subset_of_base = True</code>.</li>
-<li><b>All 2,545 removed dots were within 3 px of the public catalogue</b>
-(median distance 2.0 px,
-fraction within 3 px = 1.0). The scored
-truth is <em>off</em>-catalogue (experts map faults that the public USGS/INGENIOUS catalogue lacks), so
-those dots earned exactly zero credit while each still paid 0.2 into the denominator.</li>
+<li><b>All 2,545 removed dots lie within 3 px of the public catalogue</b>
+(fraction within 3 px = 1.0; 1,201 at √2 px and 1,344 at 2.0 px; none on catalogue pixels).
+The 3,891 dots removed earlier, from GEMSDOE25 to GEMSDOE28, sit at 1.0 px (adjacent), not on the catalogue.
+The premise that these dots earned zero credit (the scored truth is off-catalogue) is an assumption, not verified.</li>
 <li><b>That clean edit is a two-equation experiment.</b> With T unchanged, the pair gives
 <code>M = 0.2(s₁N₁ − s₂N₂)/(0.8(s₂ − s₁)) = 15,200.3</code> hidden truth cells and
 <code>T = s₂(0.2N₂ + 0.8M) = 5,470.2</code> cells reached. Δ predicted = +0.0071, observed = +0.0070.</li>
@@ -177,14 +174,14 @@ unmapped faults actually are.</li>
 <h2>Can we beat 0.2778? Yes — the mechanism and the risk</h2>
 <p>Our file raises the credit rate two ways: (i) it deletes the entire zero-yield collar around the
 catalogue (measured 0.000% of our dots are within 3 px of it) and (ii) it ranks ground by a
-tomographic posterior fitted to 98 published scores plus independent
+tomographic posterior fitted to 118 probes (tracked fit, evidence/ledger_inversion.json; the earlier 98-probe count is not reproducible from tracked files) plus independent
 LiDAR-scarp / magnetic / radiometric saliency, then spends a bounded budget of 20,000 dots at 3 px
 minimum separation.</p>
 <p><b>Risk, stated plainly:</b> the posterior's absolute level is not identifiable; the site-grouped
-cross-validated score model has ρ = 0.000 and
-MAE = 0.000, and the calibration of the design predictor
+cross-validated score model has ρ = 0.946 and
+MAE = 0.037 (n=118, tracked fit), and the calibration of the design predictor
 has R² = 0.39. If our dots are no better than the sibling rate we land near
-0.18. Spend one slot, read the receipt, then act on the receipt — not on this page.</p>
+0.18. No slot is spent while the decision is HOLD. Resolve the uniqueness reading first; then any selected file still needs its own gate and the organizer receipt decides.</p>
 
 <h2>Five hypotheses we had not tried, ranked by expected improvement ÷ cost</h2>
 <table>

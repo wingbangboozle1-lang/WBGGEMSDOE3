@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
+<meta name="gemsdoe-decision" content="HOLD">
 <title>How to submit</title><style>
 :root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
 --red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
@@ -51,6 +51,7 @@ max-width:1120px;margin:0 auto}
 <a href="evidence.html">Evidence</a>
 </header><main>
 <h1>How to submit — exact steps</h1>
+<div class="card" style="border-left:6px solid #b00020"><b>HOLD — do not submit yet.</b> No file is cleared: the literal 70% uniqueness rule fails against the 13GEMSDOE r13 lattice (max directed 3-px overlap 0.9944). The steps below describe the process only, for use after a new gate decision of SUBMIT.</div>
 <div class="card ok">
 <h3 style="margin-top:0">1 · Download</h3>
 <p><a class="btn" href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download>⬇ wbggems3-invdesign-anchor-20k-zeros.tif</a></p>
@@ -82,8 +83,8 @@ Two pieces of evidence settle the question in favour of zeros:</p>
 <ul>
 <li>The official format text says “data outside the bounds is null or nan”, but
 <b>every scored sibling file that produced a positive public score is a <code>-zeros</code> file</b>
-(for example the 0.2778 champion <code>…e5eb6e7e-zeros.tif</code>). Acceptance is therefore
-ORGANIZER-CONFIRMED for the zeros encoding, and unproven for NaN.</li>
+(for example the 0.2778 champion <code>…e5eb6e7e-zeros.tif</code>). Acceptance is therefore NOT confirmed for either encoding. NaN-named sibling files also carry
+owner-reported scores (24 0.2477, 25 0.2600, 28 0.2710, 31 0.2708); none of these is an organizer receipt.</li>
 <li>A NaN never compares inside an interval test, so any implementation that checks
 <code>0 ≤ v ≤ 1</code> elementwise will reject it. Zeros cannot trigger that error.</li>
 </ul>

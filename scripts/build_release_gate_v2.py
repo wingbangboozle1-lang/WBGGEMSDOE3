@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# GUARD (2026-10-28): this generator still writes decision SUBMIT. Running it would overwrite the
+# HOLD gate (docs/data/release_gate.json, docs/data/decision.json). Disabled until updated for HOLD.
+import sys as _sys
+if __name__ == "__main__":
+    raise SystemExit("build_release_gate_v2.py is disabled: it writes SUBMIT and would revert the HOLD gate.")
+
 """Write the v2 release gate (docs/data/release_gate.json + decision.json) from the run card.
 
 The gate is only a *pointer plus hashes*: it never restates a number by hand. Run this AFTER

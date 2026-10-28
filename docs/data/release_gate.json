@@ -1,11 +1,11 @@
 {
  "schema": "gems-release-gate-v2",
  "generated_utc": null,
- "decision": "SUBMIT",
- "okay_to_submit": true,
- "decision_scope": "ONE file only: docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
- "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
- "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "decision": "HOLD",
+ "okay_to_submit": false,
+ "decision_scope": "ZERO files cleared. Inspection copy only: docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
+ "submission_name": null,
+ "note": null,
  "estimate": {
   "calibrated": 0.4699720899416122,
   "pi95": [
@@ -14,25 +14,34 @@
   ],
   "floor_equal_yield": 0.1797897163700542,
   "ceiling_raw_posterior": 0.5756358734346434,
-  "breakeven_credit_per_dot": 0.2245,
-  "calibration_r2": 0.38547465753273524
+  "label": "ESTIMATE (model; not a score; M=15,200 assumed; sensitivity M=27,110 gives DTI ~0.30)"
  },
- "why": "The earlier DO-NOT-SUBMIT banner rested on a dense near-uniform raster whose 3-px collar covers most of the footprint, so every design 'overlaps' it. The user's rule is a directed duplicate test against ONE registry raster plus a rank-correlation test; this design satisfies both and its reverse overlap with every focus champion is <= 0.174, i.e. it is not a copy. The estimate is a model, not a receipt.",
+ "why": "The 2026-10-28 SUBMIT was based on a 58-raster uniqueness pass (max 0.6874). The full audit of all 457 real sibling submissions (evidence/uniqueness_gate_full_2026-10-28.json) fails the user's literal rule: max directed 3-px overlap 0.9944 against 13GEMSDOE r13 lattice (206,895 dots), plus GEMSDOE23 h30 0.8165 and GEMSDOE46 r11f 0.7177. The same lattice also fails the KHD, FCHD and TDE30k files (0.9991, 0.9996, 0.9895). The registry's 3-px footprint covers 100% of the footprint, and the lattice leaves 0.14% free.",
  "source_cards": {
   "run_card": "evidence/run_card_v3.json",
-  "run_card_sha256": "70ab79e87896a451a2018b0b2e9c33083349b29d5cb33c483fd82c44509e110d",
+  "run_card_sha256": "a6cd987ffeddfb1aece3e44bfe5b3a370fdde055a1463f496f5faef6381abbd2",
   "design": "evidence/design_estimate.json",
   "design_sha256": "23e1dbd64481caf732318178081fc6b7cb738b804ba37bf91231d1f740172201",
-  "uniqueness": "evidence/uniqueness_gate.json",
-  "uniqueness_sha256": "f794d7b3830f6d3a76d83aad051ee4ccfaca5a26b02efa5d5eb6c786e08c26ce",
+  "uniqueness": "evidence/uniqueness_gate_full_2026-10-28.json",
+  "uniqueness_sha256": "9a2594d547b12260cf90bfa919e2f9bbd2278b520d5483e3d6d8e400acd372cb",
   "pair": "evidence/pair_identification.json",
   "pair_sha256": "710ae531b51941ae0a8262521283b09d8719677901cf0315bf9761b995c797e6"
  },
+ "uniqueness_result": {
+  "unique": false,
+  "n_registry_compared": 457,
+  "max_directed_overlap": 0.9944,
+  "limit_directed_overlap": 0.7,
+  "binding_comparator": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "max_abs_spearman": 0.0507
+ },
  "blocking_reasons": [
-  "The brief's leaderboard figures (0.4413, 0.3195) are stale; the live public leaderboard read on 2026-10-28 shows #1 = 0.4544.",
+  "Literal uniqueness fails: 13GEMSDOE r13 lattice overlap 0.9944 > 0.70 (457 submissions compared).",
+  "Lane convention excluded 'lattice' masks from the 3-px test; the user's rule says 'any registry raster'. This is an open decision for the user.",
+  "Under the literal rule a 30% dot share must sit in 7,103 free footprint cells (0.14%); no constrained design has been built or validated.",
+  "The brief's leaderboard figures (0.4413, 0.3195) are stale; the dated public observation is #1 = 0.4544.",
   "Every sibling score is owner-reported; no organizer receipt for any sibling file is available in this sandbox.",
-  "The nine 'distinct' focus champions are one pruned dot set (directed 3-px overlap up to 1.000), so their scores are not independent evidence.",
-  "The previous DO-NOT-SUBMIT banner was driven by a 100%-overlap 'witness' against a dense near-uniform raster; the directed rule is satisfied here (0.687 <= 0.70) and the reverse overlap is 0.070-0.174, i.e. this design is not a subset of any sibling.",
-  "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files."
+  "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files.",
+  "The 0.47 estimate assumes M=15,200 (not observed); other repo lanes use M=9,150 and 27,110."
  ]
 }

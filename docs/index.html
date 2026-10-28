@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="SUBMIT">
-<title>WB-GEMS-DOE-3 · download &amp; submit</title><style>
+<meta name="gemsdoe-decision" content="HOLD">
+<title>WB-GEMS-DOE-3 · HOLD — no file cleared</title><style>
 :root{--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--green:#0a7d2c;--greenbg:#f0fdf4;
 --red:#b91c1c;--redbg:#fef2f2;--amber:#b45309;--amberbg:#fffbeb;--blue:#1d4ed8;--bg:#f8fafc}
 *{box-sizing:border-box}
@@ -50,20 +50,21 @@ max-width:1120px;margin:0 auto}
 <a href="method.html">Method &amp; science</a>
 <a href="evidence.html">Evidence</a>
 </header><main>
-<h1>One unique GeoTIFF. Download it, submit it.</h1>
+<h1>No file is cleared for submission (HOLD)</h1>
 <p class="muted">DOE GEMS Prize (DrivenData #306) · grid EPSG:32611 · 3730 × 3292 · 100 m · float32 · values in [0, 1]</p>
 
 <div class="card ok">
-<h2 style="margin-top:0;border:none">✅ SUBMIT THIS FILE</h2>
+<h2 style="margin-top:0;border:none">⛔ HOLD — not cleared; do not submit yet</h2>
+<p><b>Why:</b> the literal uniqueness rule fails. Max directed 3-px overlap is <b>0.9944</b> against the 13GEMSDOE r13 lattice (limit 0.70), across 457 sibling submissions. Published for inspection only. Details: <a href="executive-summary.html">executive summary</a>.</p>
 <div class="cta">
-  <a class="btn" href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download>⬇ Download wbggems3-invdesign-anchor-20k-zeros.tif</a>
+  <a class="btn" href="downloads/wbggems3-invdesign-anchor-20k-zeros.tif" download>⬇ Download for inspection (not cleared)</a>
   <a class="btn alt small" href="how-to-submit.html">Step-by-step upload instructions →</a>
 </div>
 <div class="kpi">
   <div><b>20,000</b><span>dots (single-band probability, 1.0 on 0.4% of the study area)</span></div>
   <div><b>0.47</b><span>ESTIMATE (model, bias-corrected) · 95% PI 0.32–0.62</span></div>
   <div><b>0.0%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar)</span></div>
-  <div><b>0.047</b><span>max |rank correlation| vs 58 sibling rasters (limit 0.90)</span></div>
+  <div><b>0.051</b><span>max |rank correlation| vs 457 sibling submissions (limit 0.90)</span></div>
 </div>
 <table>
 <tr><th>Gate</th><th>Result</th><th>Evidence</th></tr>
@@ -77,12 +78,12 @@ max-width:1120px;margin:0 auto}
     <td><span class="pill g">PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
     <td>same</td></tr>
 <tr><td>Unique: ≤70% of dots within 3 px of any registry raster</td>
-    <td><span class="pill g">PASS</span> max 0.687 of 58 rasters</td>
-    <td><code>evidence/uniqueness_gate.json</code></td></tr>
+    <td><span class="pill r">FAIL</span> max 0.9944 of 457 sibling submissions (13GEMSDOE r13 lattice; 3 above 0.70)</td>
+    <td><code>evidence/uniqueness_gate_full_2026-10-28.json</code></td></tr>
 <tr><td>Unique: |Spearman| ≤ 0.90 vs any registry raster</td>
-    <td><span class="pill g">PASS</span> max 0.047</td><td>same</td></tr>
+    <td><span class="pill g">PASS</span> max 0.051 (457 submissions)</td><td>same</td></tr>
 <tr><td>Not a copy of any of the nine focus-site files</td>
-    <td><span class="pill g">PASS</span> reverse overlap ≤ 0.174</td>
+    <td><span class="pill g">PASS</span> reverse overlap max 0.204 (measured; the earlier “≤ 0.174” was wrong)</td>
     <td>same</td></tr>
 </table>
 <p><b>SHA-256</b> <code>283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda</code></p>
@@ -109,11 +110,11 @@ why the honest band is 0.18 (no better than siblings) to 0.58 (posterior exactly
 <h2>Where the numbers come from</h2>
 <div class="kpi">
   <div><b>98</b><span>published sibling scores re-measured from bytes</span></div>
-  <div><b>0.000</b><span>in-sample ρ of the score model</span></div>
-  <div><b>0.000</b><span>site-grouped cross-validated ρ</span></div>
-  <div><b>0.000</b><span>cross-validated MAE (score units)</span></div>
+  <div><b>0.989</b><span>in-sample ρ of the score model (n=118 probes; evidence/ledger_inversion.json)</span></div>
+  <div><b>0.946</b><span>site-grouped cross-validated ρ (n=118)</span></div>
+  <div><b>0.037</b><span>cross-validated MAE (score units; n=118)</span></div>
 </div>
-<h2>ADJDIS lane — generated alongside, <b>NOT cleared</b> (do not submit this file)</h2>
+<h2>ADJDIS lane — generated alongside, <b>NOT cleared</b> (do not submit it)</h2>
 <div class="card bad">
 <p>A second session ran its own frozen 3-experiment preregistration (adjacency-band two-phase
 allocation over reused FCHD out-of-fold surfaces). Its verdict is <b>negative</b>: Gate 1 fails

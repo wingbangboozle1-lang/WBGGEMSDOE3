@@ -21,8 +21,9 @@ def test_release_gate_is_hash_bound_and_agrees_with_the_run_card():
     gate = json.loads((DOCS / "data/release_gate.json").read_text())
     card = json.loads((ROOT / gate["source_cards"]["run_card"]).read_text())
     assert gate["schema"] == "gems-release-gate-v2"
-    assert gate["decision"] == card["verdict"].split()[0].upper().replace("PROMOTE", "SUBMIT")
-    assert gate["okay_to_submit"] is True
+    expected = {"PROMOTE": "SUBMIT", "SUPERSEDED": "HOLD"}[card["verdict"].split()[0].upper()]
+    assert gate["decision"] == expected
+    assert gate["okay_to_submit"] is (expected == "SUBMIT")
     assert gate["blocking_reasons"], "irregularities must be published with the decision"
     for key in ("run_card", "design", "uniqueness", "pair"):
         assert _sha(ROOT / gate["source_cards"][key]) == gate["source_cards"][key + "_sha256"]
@@ -56,9 +57,10 @@ def test_pair_identification_is_reproducible_and_physical():
 
 
 def test_every_current_page_is_estimate_labelled_and_decision_tagged():
+    decision = json.loads((DOCS / "data/release_gate.json").read_text())["decision"]
     for page in PAGES:
         body = (DOCS / page).read_text()
-        assert '<meta name="gemsdoe-decision" content="SUBMIT">' in body
+        assert f'<meta name="gemsdoe-decision" content="{decision}">' in body
         assert "estimate" in body.lower()
         assert "organizer-confirmed score is" not in body.lower()
 
@@ -114,18 +116,17 @@ def test_figures_are_bound_to_the_published_bytes():
 
 
 def test_downloads_notice_agrees_with_the_gate():
-    """The plain-text notice shipped next to the TIFFs may not contradict the decision."""
+    """The plain-text notice shipped next to the TIFFs may not contradict the decision.
+
+    2026-10-28 (HOLD): no file is cleared; every .tif in downloads/ must be listed as not cleared.
+    """
     gate = json.loads((DOCS / "data/release_gate.json").read_text())
     notice = (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
-    khd = json.loads((ROOT / "evidence/khd_run_card.json").read_text())
-    cleared = {Path(gate["decision_scope"].split(": ", 1)[1]).name,
-               khd["submission_name"] + ".tif"}
-    assert "CLEARED FOR SUBMISSION (2 files)" in notice
-    for name in cleared:
-        assert name in notice
-    assert gate["submission_name"] in notice
-    assert "No file in this directory is cleared" not in notice
+    assert gate["decision"] == "HOLD" and gate["okay_to_submit"] is False
+    assert "CLEARED FOR SUBMISSION (0 files)" in notice
+    assert "No file in this directory is cleared" in notice
+    assert "0.9944" in notice
     listed = {ln.strip() for ln in notice.splitlines()
               if ln.startswith("  ") and not ln.startswith("    ") and ln.strip().endswith(".tif")}
     present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
-    assert listed == present - cleared, (listed ^ (present - cleared))
+    assert listed == present, (listed ^ present)

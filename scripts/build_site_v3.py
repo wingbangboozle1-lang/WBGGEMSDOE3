@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# GUARD (2026-10-28): this builder's template still declares SUBMIT and would overwrite the HOLD pages.
+# Refuse to run until the template is rewritten for the gate decision (see docs/data/release_gate.json).
+if __name__ == "__main__":
+    raise SystemExit("build_site_v3.py is disabled: its template still declares SUBMIT; "
+                     "running it would revert the HOLD decision. Update the template first.")
+
 """Build the public site (docs/) from the evidence JSONs.  No number is typed by hand:
 every figure on every page is read from evidence/*.json produced by the scripts below.
 
@@ -32,8 +38,9 @@ cal = j("design_calibration.json")
 uniq = j("uniqueness_gate.json")
 ladder = j("probe_ladder.json", {"probes": []})
 figs = j("design_figures.json", {})
-inv = json.loads((ROOT / "data" / "work" / "inversion98b.json").read_text()) \
-    if (ROOT / "data" / "work" / "inversion98b.json").exists() else {}
+# Source fixed 2026-10-28: the untracked data/work/inversion98b.json (git-ignored) made every
+# KPI show 0.000. The tracked fit is evidence/ledger_inversion.json (n=118 probes), not the 98-probe run.
+inv = json.loads((ROOT / "evidence" / "ledger_inversion.json").read_text())
 
 SUBMIT_NAME = "WBGGEMS3-INVDESIGN-ANCHOR-20K"
 NOTE = ("probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; "
@@ -539,7 +546,7 @@ from the file they describe (<code>evidence/design_figures.json</code>).</p>
 <h2>5 · Validation (all from <code>evidence/</code>)</h2>
 <table>
 <tr><th>Check</th><th>Value</th><th>Gate</th></tr>
-<tr><td>Exact 98-probe score model, in-sample ρ</td><td class="num">{inv.get('full_sample',{}).get('spearman',0):.3f}</td><td><span class="pill g">informative</span></td></tr>
+<tr><td>Exact {inv.get('full_sample',{}).get('n',0)}-probe score model, in-sample ρ</td><td class="num">{inv.get('full_sample',{}).get('spearman',0):.3f}</td><td><span class="pill g">informative</span></td></tr>
 <tr><td>Site-grouped CV ρ / MAE</td><td class="num">{inv.get('site_grouped_cv',{}).get('spearman',0):.3f} / {inv.get('site_grouped_cv',{}).get('mae',0):.3f}</td><td><span class="pill a">moderate</span></td></tr>
 <tr><td>Design-predictor calibration R² (98 siblings)</td><td class="num">{calm.get('r2',0):.2f}</td><td><span class="pill a">moderate</span></td></tr>
 <tr><td>Candidate-truth correlations (catalogue / SGMC / off-SGMC)</td><td class="num">+0.07 / +0.23 / +0.24</td><td><span class="pill r">no public map explains it</span></td></tr>

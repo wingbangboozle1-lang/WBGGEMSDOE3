@@ -1,6 +1,6 @@
 {
- "decision": "SUBMIT",
- "okay_to_submit": true,
+ "decision": "HOLD",
+ "okay_to_submit": false,
  "file": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
  "sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
  "estimate": {
@@ -11,8 +11,8 @@
   ],
   "floor_equal_yield": 0.1797897163700542,
   "ceiling_raw_posterior": 0.5756358734346434,
-  "breakeven_credit_per_dot": 0.2245,
-  "calibration_r2": 0.38547465753273524
+  "label": "ESTIMATE (model; not a score; M=15,200 assumed; sensitivity M=27,110 gives DTI ~0.30)"
  },
- "source": "evidence/run_card_v3.json"
+ "source": "evidence/run_card_v3.json",
+ "reason": "literal uniqueness fails vs 13GEMSDOE lattice (0.9944); see docs/data/release_gate.json"
 }

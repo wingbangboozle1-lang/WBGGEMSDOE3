@@ -1,0 +1,36 @@
+{
+  "B2_dots_within_3px_of_catalogue": 2171,
+  "D2-8_minus_H27-4": {
+    "distance_to_catalogue_px_histogram": {
+      "1.0000": 3891
+    },
+    "n": 3891,
+    "on_catalogue_pixels": 0
+  },
+  "H27-4_minus_B2": {
+    "distance_to_catalogue_px_histogram": {
+      "1.4142": 1201,
+      "2.0000": 1344
+    },
+    "max_px": 2.0,
+    "min_px": 1.4142135623730951,
+    "n": 2545,
+    "on_catalogue_pixels": 0
+  },
+  "all_inside_footprint": true,
+  "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "dots": {
+    "GEMSDOE25_D2-8": 44090,
+    "GEMSDOE31_H27-4": 40199,
+    "GEMSDOE32_B2": 37654
+  },
+  "exact_subset": {
+    "B2_subset_of_H27-4": true,
+    "H27-4_subset_of_D2-8": true
+  },
+  "schema": "gems-chain-0.2778-verify-v1",
+  "wording_corrections": [
+    "The 3,891 D2-8-minus-H27-4 dots are 1.0 px from the catalogue (not 'on' it); none sit on a catalogue pixel.",
+    "The 2,545 H27-4-minus-B2 dots lie between 1.414 and 2.000 px from the catalogue (a diagonal and 2-px shell), not in a 1.01-2.01 px band."
+  ]
+}

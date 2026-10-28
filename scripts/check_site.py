@@ -34,6 +34,11 @@ DOCS = ROOT / "docs"
 PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "method.html", "evidence.html")
 LEGACY_NEGATIVE = ("downloads/index.html", "rfl/index.html", "thcs/index.html",
                    "session-1f0b051d/index.html")
+HOLD_FORBIDDEN = (
+    "submit this file",
+    "one unique geotiff. download it, submit it.",
+    "promote — download and submit",
+)
 FORBIDDEN = (
     "organizer-confirmed score is",
     "confirmed leaderboard score",
@@ -73,10 +78,13 @@ class Links(HTMLParser):
 
 def main() -> int:
     errors: list[str] = []
-    decision = "SUBMIT"
+    decision = "HOLD"  # overwritten from the gate below; SUBMIT and HOLD are the only valid values
     published = None
     try:
         gate = json.loads((DOCS / "data" / "release_gate.json").read_text())
+        decision = gate.get("decision")
+        if decision not in {"SUBMIT", "HOLD"}:
+            errors.append(f"unknown release decision: {decision!r}")
         card = json.loads((ROOT / gate["source_cards"]["run_card"]).read_text())
         est = json.loads((ROOT / gate["source_cards"]["design"]).read_text())
         uniq = json.loads((ROOT / gate["source_cards"]["uniqueness"]).read_text())
@@ -86,10 +94,13 @@ def main() -> int:
                 errors.append(f"{key}: decision source SHA-256 mismatch")
         if gate.get("schema") != "gems-release-gate-v2":
             errors.append("unexpected release-gate schema")
-        if gate.get("decision") != decision or gate.get("okay_to_submit") is not True:
-            errors.append("release gate does not authorise the published file")
-        if card.get("verdict", "").split()[0] != "promote":
+        if gate.get("okay_to_submit") is not (decision == "SUBMIT"):
+            errors.append("okay_to_submit disagrees with the decision")
+        verdict_word = card.get("verdict", "").split()[0] if card.get("verdict") else ""
+        if decision == "SUBMIT" and verdict_word != "promote":
             errors.append("run card verdict is not promote")
+        if decision == "HOLD" and verdict_word != "SUPERSEDED":
+            errors.append("HOLD requires the run card verdict to be marked SUPERSEDED")
         published = ROOT / est["validation"]["path"]
         if sha(published) != card["raster"]["sha256"]:
             errors.append("published GeoTIFF bytes differ from the run card")
@@ -100,14 +111,22 @@ def main() -> int:
         if not (est["validation"]["crs_match"] and est["validation"]["shape_match"]
                 and est["validation"]["transform_match"]):
             errors.append("grid mismatch against sample_submission.tif")
-        if not uniq.get("unique"):
-            errors.append("uniqueness gate failed")
-        if uniq["max_directed_overlap"] > 0.70 or uniq["max_abs_spearman"] > 0.90:
-            errors.append("uniqueness thresholds breached")
+        if decision == "SUBMIT":
+            if not uniq.get("unique"):
+                errors.append("uniqueness gate failed")
+            if uniq["max_directed_overlap"] > 0.70 or uniq["max_abs_spearman"] > 0.90:
+                errors.append("uniqueness thresholds breached")
+        else:
+            # HOLD must be backed by a recorded failure, not an unexplained hold.
+            if uniq.get("unique") is not False or uniq["max_directed_overlap"] <= 0.70:
+                errors.append("HOLD is not backed by a recorded uniqueness failure")
+            ur = gate.get("uniqueness_result", {})
+            if ur.get("unique") is not False or ur.get("max_directed_overlap") != uniq["max_directed_overlap"]:
+                errors.append("release gate uniqueness_result disagrees with the uniqueness card")
         if not pair["pair"]["champion_is_subset_of_base"]:
             errors.append("pair identification is not reproducible from the bytes")
         decision_json = json.loads((DOCS / "data" / "decision.json").read_text())
-        if decision_json.get("decision") != decision or decision_json.get("okay_to_submit") is not True:
+        if decision_json.get("decision") != decision or decision_json.get("okay_to_submit") is not (decision == "SUBMIT"):
             errors.append("secondary decision.json contradicts the release gate")
         if decision_json.get("sha256") != card["raster"]["sha256"]:
             errors.append("decision.json points at different bytes")
@@ -131,6 +150,10 @@ def main() -> int:
         for phrase in FORBIDDEN:
             if is_current and phrase in folded:
                 errors.append(f"{rel}: forbidden stale or unqualified claim: {phrase}")
+        if is_current and decision == "HOLD":
+            for phrase in HOLD_FORBIDDEN:
+                if phrase in folded:
+                    errors.append(f"{rel}: SUBMIT wording on a HOLD page: {phrase}")
         if is_current:
             if parser.meta.get("gemsdoe-decision") != decision:
                 errors.append(f"{page.name}: missing or inconsistent decision meta")
@@ -150,7 +173,7 @@ def main() -> int:
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print("Site check PASS: hash-bound SUBMIT gate, published bytes, format, uniqueness and links.")
+    print(f"Site check PASS: hash-bound {decision} gate, published bytes, format, uniqueness and links.")
     return 0
 
 

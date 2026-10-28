@@ -1,38 +1,35 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT A UNIQUE FILE BELOW** (selector picks the slot)
+> ## ⛔ CURRENT DECISION — 2026-10-28: **HOLD — NO FILE IS CLEARED TO SUBMIT**
 >
-> **Primary download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
-> · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
-> · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
-> · run card [evidence/run_card_v3.json](evidence/run_card_v3.json) · gate [docs/data/release_gate.json](docs/data/release_gate.json)
+> **Why.** The user's uniqueness rule is ≤ 70% of dots within 3 px of *any* registry raster. Re-run
+> against all **457 real sibling submissions** ([`evidence/uniqueness_gate_full_2026-10-28.json`](evidence/uniqueness_gate_full_2026-10-28.json)):
+> the candidate [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
+> (SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`) reaches **0.9944** against the 13GEMSDOE r13 lattice. The earlier SUBMIT rested on a
+> 58-raster pass (max 0.6874) and is **withdrawn**. Gate: [docs/data/release_gate.json](docs/data/release_gate.json) (decision `HOLD`).
 >
-> **Second candidate (KHD lane):** [`docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif`](docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif)
-> · SHA-256 `787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa`
-> · 37,654 dots · all-finite zeros-outside encoding · ESTIMATE **0.275** (band 0.23–0.31;
->   ledger-tomography + class-anchor triangulation — never a score)
-> · content-aware uniqueness PASS (max directed 3-px overlap 0.640 vs 148 sparse registry masks;
->   0.56–0.59 vs the nine focus sites) · run card [evidence/khd_run_card.json](evidence/khd_run_card.json)
-> · KHD's preregistered holdout promotion gate is **negative** (that holdout is anti-correlated
->   with the leaderboard for this family); the file is a lower-variance, lower-estimate bet.
+> **Same failure for every candidate in the repo:** KHD `0.9991`, FCHD `0.9996`, TDE30k `0.9895` against the same lattice
+> ([`evidence/uniqueness_khd_full_2026-10-28.json`](evidence/uniqueness_khd_full_2026-10-28.json),
+> [`evidence/uniqueness_fchd_full_2026-10-28.json`](evidence/uniqueness_fchd_full_2026-10-28.json),
+> [`evidence/uniqueness_tde30k_full_2026-10-28.json`](evidence/uniqueness_tde30k_full_2026-10-28.json)).
+> The lanes passed because they excluded "lattice" masks from the 3-px test; the user's rule says "any registry raster".
 >
-> Both files pass every locally checkable portal-format gate (values in [0, 1], no non-finite
-> cells, grid identical to `sample_submission.tif`, zeros outside the footprint — the encoding
-> that fixes the “Predicted values must be in range [0, 1]” rejection) and the content-aware
-> uniqueness gate. The literal dense-witness reading (17GEMSDOE positive on the whole footprint,
-> IR-01) is unsatisfiable by construction and is disclosed in the evidence pages. Neither
-> number above is a score; the only organizer-confirmed scores will be your own receipts.
+> **Structural finding.** The 3-px footprint of all 457 submissions covers **100%** of the footprint, so no design can have zero overlap
+> with every submission. The lattice leaves **7,103 free cells (0.14%)** ([`evidence/uniqueness_coverage_2026-10-28.json`](evidence/uniqueness_coverage_2026-10-28.json)).
+> Under the literal rule, ≥ 30% of a design's dots must sit in those cells.
 >
-> **ADJDIS lane (this session) — NOT cleared, do not submit:** `wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif`
-> (HOLDOUT-DTI `0.059897`, Gate 1 fail, Gate 3 fails under the literal reading, selector
-> approval **false**) is published for review/testing only; its 3/3 preregistered experiments
-> are documented below.
+> **Open decision for you.** Either (a) adopt the lane convention (exclude lattice-class rasters, disclose the lattice excess) so the candidates pass,
+> or (b) keep the literal rule, which requires a registry-aware constrained allocator that has not been built or validated.
+> No slot is spent until this is decided.
 >
-> [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
-> [How to submit](docs/how-to-submit.html) · [Submission file](docs/submission.html) ·
-> [Evidence](docs/evidence.html) · [Method](docs/method.html) ·
-> [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
-> [ADJDIS TIFF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif)
+> **Estimates.** The 0.47 estimate (95% PI 0.32–0.62) is a model ESTIMATE, not a score. It assumes M = 15,200; other repo lanes use M = 9,150 and 27,110 (sensitivity: DTI ≈ 0.30 at 27,110).
+> No file here carries an organizer-confirmed score. The leaderboard observation #1 = 0.4544 is dated and unverified; the brief's 0.4413 and 0.3195 are older references.
+>
+> Navigation: [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) · [How to submit](docs/how-to-submit.html) · [Submission file](docs/submission.html) · [Evidence](docs/evidence.html) · [Method](docs/method.html) · [Older SGCE TIFF — research only, do not submit](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) · [ADJDIS TIFF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif)
+>
+> **Corrections made this session:** site KPIs read a git-ignored file and showed 0.000 (fixed to tracked n=118 fit); the "ORGANIZER-CONFIRMED" zeros claim is withdrawn;
+> release-note and reverse-overlap figures corrected (reverse max 0.204, not ≤ 0.174); `scripts/build_site_v3.py` is disabled until its template is rewritten
+> (it would revert this HOLD). Full list: [knowledge/session-review-2026-10-28-uniqueness.md](knowledge/session-review-2026-10-28-uniqueness.md).
 
 ## Start every session here
 
