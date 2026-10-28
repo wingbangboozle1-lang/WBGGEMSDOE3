@@ -121,7 +121,7 @@ pre{{background:#070b14;border:1px solid #334155;border-radius:8px;padding:14px;
 </style></head>
 <body>
 <div class="top"><div class="wrap" style="padding:0">
-<a href="../index.html">&larr; Repository Overview (decision: DO NOT SUBMIT)</a>
+<a href="../index.html">&larr; Repository Overview (current decision: see index — SMSR lane promoted 2026-10-28)</a>
 <a href="../executive-summary.html">Nine-Site Comparison</a>
 <a href="../amdc/index.html">AMDC Audit Dossier</a>
 <a href="data/fchd_run_card.json">FCHD JSON Run Card</a>
@@ -196,7 +196,7 @@ structural features and a bit-packed 149-comparator knapsack CELF allocator (<co
 <title>Research Archive · FCHD-NCM (DO NOT SUBMIT)</title>
 <style>body{{font:15.5px/1.6 system-ui;max-width:54rem;margin:3rem auto;padding:1rem;background:#0b1020;color:#e5e7eb}}a{{color:#93c5fd}}code{{background:#1e293b;padding:2px 5px;border-radius:4px}}</style></head>
 <body><h1>DO NOT SUBMIT &mdash; FCHD-NCM Research Archive Only</h1>
-<p><b>Verdict: <code>negative</code>.</b> Not cleared for upload. Zero portal slots spent. Governing repository decision: <a href="../../executive-summary.html">DO NOT SUBMIT &rarr;</a>.</p>
+<p><b>Verdict: <code>negative</code>.</b> Not cleared for upload. Zero portal slots spent. Governing repository decision for this lane's own research files: DO NOT SUBMIT. See the <a href="../../executive-summary.html">current repository executive summary &rarr;</a> for the overall decision.</p>
 <ul>
   <li><a href="{esc(tif_name)}" download><code>{esc(tif_name)}</code></a> &mdash; SHA-256 <code>{esc(rc['raster_sha256'])}</code> (38,000 dots, local format diagnostic float32 [0,1])</li>
   <li><a href="{esc(zip_name)}" download><code>{esc(zip_name)}</code></a> &mdash; SHA-256 <code>{esc(zip_sha)}</code></li>

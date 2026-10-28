@@ -33,6 +33,6 @@
     "candidate": "evidence/session2_run_card.json",
     "candidate_sha256": "739debf46d4e40129c3dc186adbc073f17baec435d0480015ff200a92934f018",
     "witness_audit": "evidence/registry_witness_recheck_2026-10-27.json",
-    "witness_audit_sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
+    "witness_audit_sha256": "07a212f848608a2f0d85931dbe5dc3d1c6fb2a8d6ed6e227a81e5c237b16f21b"
   }
 }

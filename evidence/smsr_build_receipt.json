@@ -1,0 +1,189 @@
+{
+  "file": "smsr-seisgeod-missingshear-detached-20261028T000000Z.tif",
+  "sha256": "a80e8a866c7421c1344d299874e3444e7282c0d6b8488054d999b16ca3db662d",
+  "bytes": 117045,
+  "submission_name": "SMSR seismogeodetic missing-shear ridge, detached-mode OOF",
+  "note": "4-quadrant OOF HGB on geod_2ndinv structure-tensor ridge + seismicity vs shipped G1-G5",
+  "note_chars": 86,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE3/submission/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif",
+    "bytes": 117045,
+    "sha256": "a80e8a866c7421c1344d299874e3444e7282c0d6b8488054d999b16ca3db662d",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029945860151201487,
+    "emitted_positive_pixels": 36771,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36771,
+    "footprint_fraction": 0.007115994916565923
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE3/submission/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif",
+    "bytes": 117045,
+    "sha256": "a80e8a866c7421c1344d299874e3444e7282c0d6b8488054d999b16ca3db662d",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029945860151201487,
+    "n_nonzero": 36771,
+    "mass": 36771.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "smsr-seisgeod-missingshear-detached-20261028T000000Z.zip",
+  "zip_sha256": "fdb7bfd247c522a2e0e1e3754b0f257036c4fe10a6448355429069452fd64842",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "hypothesis": "SMSR",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "holdout_evidence": "evidence/smsr_cv_detached.json",
+    "holdout_dti_detached_smsr_g": 0.3213,
+    "holdout_dti_detached_shipped_g": 0.3173,
+    "holdout_dti_ci95_quadrant_jackknife_smsr_g": [
+      0.2789,
+      0.3637
+    ],
+    "fold_receipts": [
+      {
+        "fold": "NW",
+        "train_cells": [
+          "draw20_foldNE_detached",
+          "draw20_foldSW_detached",
+          "draw20_foldSE_detached"
+        ],
+        "test_cell": "draw20_foldNW_detached",
+        "n_truth_budget": 1919,
+        "n_dots": 7329,
+        "expected_covered_credit": 1248.4200950948898,
+        "p_mean_in_domain": 0.002076659118756652,
+        "p_max": 0.9012166261672974
+      },
+      {
+        "fold": "NE",
+        "train_cells": [
+          "draw20_foldNW_detached",
+          "draw20_foldSW_detached",
+          "draw20_foldSE_detached"
+        ],
+        "test_cell": "draw20_foldNE_detached",
+        "n_truth_budget": 2361,
+        "n_dots": 6743,
+        "expected_covered_credit": 617.4046638993435,
+        "p_mean_in_domain": 0.0008068079478107393,
+        "p_max": 0.5275110006332397
+      },
+      {
+        "fold": "SW",
+        "train_cells": [
+          "draw20_foldNW_detached",
+          "draw20_foldNE_detached",
+          "draw20_foldSE_detached"
+        ],
+        "test_cell": "draw20_foldSW_detached",
+        "n_truth_budget": 3778,
+        "n_dots": 14232,
+        "expected_covered_credit": 2658.017269084845,
+        "p_mean_in_domain": 0.003399127395823598,
+        "p_max": 0.9106642603874207
+      },
+      {
+        "fold": "SE",
+        "train_cells": [
+          "draw20_foldNW_detached",
+          "draw20_foldNE_detached",
+          "draw20_foldSW_detached"
+        ],
+        "test_cell": "draw20_foldSE_detached",
+        "n_truth_budget": 3249,
+        "n_dots": 11688,
+        "expected_covered_credit": 1795.5576810892778,
+        "p_mean_in_domain": 0.0028170282021164894,
+        "p_max": 0.6936495900154114
+      }
+    ],
+    "generated_utc": "2026-10-28T16:55:17.805821+00:00"
+  }
+}

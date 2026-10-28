@@ -1,0 +1,84 @@
+{
+  "schema": "run-card-v1",
+  "lane": "SMSR (Seismogeodetic Missing-Shear Ridge)",
+  "hypothesis": "Walker Lane GPS/geodetic shear-strain rate (geod_2ndinv) exceeds what the mapped Quaternary catalogue can kinematically explain in places (Bormann, Hammond & Kreemer 2016, Geology 44:535, 'missing shear' across the central Walker Lane). Where that strain forms an anisotropic (elongated, not blob-like) ridge AND instrumental seismicity (deq_n100a15 / ieq_n100a15) corroborates it, the catalogue-masked gap is a candidate unmapped structure.",
+  "mechanism": "Structure-tensor coherence x log-gradient of geod_2ndinv (reusing gems57.strand_orientation.magnetic_geometry, originally built for TMI, applied here to a strain-rate scalar) distinguishes elongated tectonic strain ridges from isotropic non-tectonic blobs; deq_n100a15/ieq_n100a15 (never used in the shipped 9-plane gems57.geo.GEO_FEATURES block) add independent seismic corroboration. These 3 new planes are appended to the shared, pinned gems57 fault-zone-anatomy feature matrix and fit with the identical HistGradientBoostingClassifier recipe used by the template's shipped configuration.",
+  "named_non_fault_mimic": "Fluid-production/injection-induced subsidence or inflation at producing or developed geothermal fields (e.g., Dixie Valley, Brady's, Desert Peak, Steamboat Springs) and groundwater-pumping cones can generate local geodetic strain-rate anomalies unrelated to tectonic faulting. The anisotropy/elongation gate is a partial defense (production bowls are typically isotropic, not lineated), but no well/production-siting layer could be ingested in this sandbox (OpenEI/NV production GIS hosts are outside the outbound allowlist), so this mimic is reported, not fully deconfounded, and is flagged for the next session.",
+  "holdout_dti": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "instrument": "GEMSDOE32-style hide-and-recover, 4-quadrant leave-one-quadrant-out, 2 modes",
+    "all_mode": {
+      "shipped_g": 0.3207749807484661,
+      "smsr_g": 0.31029995119825676,
+      "smsr_g_ci95_quadrant_jackknife": [
+        0.271081187997502,
+        0.3495187143990115
+      ],
+      "withheld_positive_pixels": 22641,
+      "delta_smsr_minus_shipped": -0.010475029550209347
+    },
+    "detached_mode_primary": {
+      "shipped_g": 0.3173061910356896,
+      "smsr_g": 0.3212597555312413,
+      "smsr_g_ci95_quadrant_jackknife": [
+        0.27886395858036594,
+        0.3636555524821167
+      ],
+      "withheld_positive_pixels": 22619,
+      "delta_smsr_minus_shipped": 0.003953564495551731,
+      "note": "Detached mode (withheld components not touching any visible trace) is the closer analogue to a genuinely unmapped splay; the shipped production field is the stitched 4-fold OOF model from this mode."
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "flagged_features": {
+      "shipped_g": {
+        "d_perp": 0.9352529207920792
+      },
+      "smsr_g": {
+        "d_perp": 0.9352529207920792
+      }
+    },
+    "note": "'d' and/or 'd_perp' (distance/cross-strike offset to nearest VISIBLE fault, inherited base features present in every gems57 anatomy configuration, identical in both shipped_g and smsr_g) exceed the 0.90 discriminative-AUC bar in both arms (0.9245 all-mode, 0.9353 detached-mode). This is a known, previously-documented characteristic of this exact hide-and-recover design (gems57.fitting.canary docstring: 'd is expected to be highly discriminative... but it must not be near-perfect'); 0.92-0.94 is flagged but not near-perfect (>0.99). It affects the ABSOLUTE 0.32 HOLDOUT-DTI level in both arms equally and therefore does not bias the SMSR-vs-shipped DIFFERENTIAL result, but the absolute number should be treated with this caveat. None of the 3 new SMSR planes individually exceeds 0.90."
+  },
+  "uniqueness": {
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "vs_9_focus_sites_and_10_prior_wbggemsdoe3_lanes": "max dot_overlap_3px=0.516 (SGCE), max |spearman_full_footprint|=0.0197; PASS on both gates for all 19 comparators",
+    "vs_dense_witness_17GEMSDOE_E_proba_multiscale": {
+      "dot_overlap_3px": 1.0,
+      "spearman_full_footprint": 0.0942,
+      "literal_reading": "FLAGGED duplicate (dot_overlap>0.70); this dense comparator has positive support on 100% of the 5,167,373-cell footprint (continuous surface, min=0.00046, 4.73M unique values), so the directed-overlap test is mathematically guaranteed to read 1.0 for ANY nonempty candidate -- a measurement artifact of applying a sparse-dot overlap test to a 100%-dense continuous comparator, not evidence of content similarity.",
+      "content_aware_reading": "PASS (rho=0.094 << 0.90); the rank-correlation test the same protocol paragraph names for exactly this situation shows the two surfaces are essentially uncorrelated.",
+      "recommendation": "Report both readings transparently to the human selector before upload; do not silently override the literal rule."
+    },
+    "raw_data": "evidence/smsr_uniqueness.json"
+  },
+  "raster_sha256": "a80e8a866c7421c1344d299874e3444e7282c0d6b8488054d999b16ca3db662d",
+  "validator_output": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+  },
+  "submission_name": "SMSR seismogeodetic missing-shear ridge, detached-mode OOF",
+  "note_140char": "4-quadrant OOF HGB on geod_2ndinv structure-tensor ridge + seismicity vs shipped G1-G5",
+  "file": "submission/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif",
+  "dots_emitted": 36771,
+  "data_provenance": "Real official competition bridge: training_features.tif (19-band GeoDAWN numerical-features stack), existing_faults.tif, sample_submission.tif -- public GitHub mirrors (buffedlizard55-lab/6GEMSDOE commit e2fe3f41c6f5dd2dcb2fc91958ee67698f114ada), sha256-pinned, fetched and reverified in this session via `gh api`. These are owner-supplied mirrors of DrivenData's login-walled competition files; NOT independently organizer-authenticated.",
+  "verdict": "promote-to-selector",
+  "slots_used_by_this_session": 0,
+  "experiments_run": 2,
+  "experiments_budget": 3
+}

@@ -1,5 +1,5 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
+  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json and the SMSR lane for the current recommendation.",
   "schema": "parallel-run card v1 (owner protocol rule 5)",
   "lane": "LBCAL",
   "version": "lbcal-v1.0",
