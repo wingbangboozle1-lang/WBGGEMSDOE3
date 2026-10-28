@@ -5,24 +5,33 @@
 > cells of the hash-pinned mirrored sample footprint. Under the shared
 > positive-support definition, every nonempty in-footprint candidate overlaps it
 > by 100% at zero distance—above the user's 70% / 3-pixel duplicate stop.
-> This is one conclusive witness, **not** a complete registry audit or proof
-> that the mirror is an authenticated organizer download. No experiment or
-> competition slot was used in this session.
+> This decision covers **upload and slot selection**. One generated candidate exists —
+> `wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif` (HOLDOUT-DTI `0.059897`,
+> gates 3/5, selector approval **false**) — published for review/testing only and
+> **NOT CLEARED**: Gate 1 fails, Gate 3 fails under the literal witness, and no
+> receipt exists. This session spent its preregistered 3/3 experiment budget and 0 slots.
 >
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit *after* clearance](docs/how-to-submit.html) ·
 > [Evidence and limitations](docs/evidence.html) ·
+> [Generated ADJDIS TIFF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif) ·
 > [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
+Read this README, [`AGENTS.md`](AGENTS.md), the stored standing prompt
+[`PROJECT_PROMPT.md`](PROJECT_PROMPT.md), the [current session run card](evidence/session_6984642c_run_card.json),
+the [current session review](knowledge/session-review-6984642c.md), the
+[ADJDIS preregistration](knowledge/preregistration-2026-10-28-adjdis.md) +
+[its irregularities `IR-29`/`IR-30`](knowledge/irregularities-2026-10-28-adjdis.md),
+the [previous negative run card](evidence/session_9b794637_run_card.json),
 the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
+[2026-10-27 preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
 Outcome** central: weigh risk and evidence, act autonomously when safe, and treat
 a negative result as a deliverable. The reconstructed standing brief is included
-at the end of this README. It is **not verbatim**: the full original prompt was
+at the end of this README; `PROJECT_PROMPT.md` holds the stored copy that is
+reread each session. Both are **not verbatim**: the full original prompt was
 not available to this session, and the previous verbatim claim was incorrect.
 
 ## Executive summary: nine requested sites
@@ -79,6 +88,47 @@ here. The separate [focus audit](evidence/focus_audit.json) and
   this session and is not a score for any project file. The portal, live quota,
   authenticated official data and official USGS/GDR sites were inaccessible
   from this sandbox; pinning a public mirror only proves byte identity.
+
+## Parallel lane: ADJDIS (2026-10-28, negative; 3/3 experiments)
+
+Session `arena/6984642c-wbggemsdoe3` froze
+[`knowledge/preregistration-2026-10-28-adjdis.md`](knowledge/preregistration-2026-10-28-adjdis.md)
+(five ranked hypotheses; H2 adjacency-band first) and executed E1–E3 in full
+with [`scripts/run_adjdis_lane.py`](scripts/run_adjdis_lane.py), reusing the
+FCHD OOF surfaces, shared allocator and shared byte validator (no forks).
+**Baseline reproduced exactly** (`0.099202`, CI `[0.085951, 0.112668]`, 22,232
+withheld); **Gate 0 passed** (73 canaries, max directional AUC `0.77593 ≤ 0.90`);
+surface gates max |Spearman| `0.5300`. Results: E1 `0.03492`; E2 grid winner
+`s=0.45 d0=3.5` → `0.05607` (Draw-21 `0.05603`); **E3 winner `K=42,000` → pooled
+HOLDOUT-DTI `0.059897` `[0.052989, 0.066831]`, paired Δ `−0.039306`
+(CI `[−0.049786, −0.029076]`) → Gate 1 FAIL**. Verdict `negative`, 0 slots.
+Uniqueness disclosed both ways: content-aware **passes** (max 3-px overlap
+`0.63497 ≤ 0.70` over 153 masks, pre-placement |Spearman| `0.52995 ≤ 0.90`, no
+exact duplicate) while the **literal** reading fails at `1.0` (dense witness
+IR-01) and the direct FCHD-file overlap is `0.9964` → Gate 3 fail.
+[Session review](knowledge/session-review-6984642c.md) ·
+[session run card](evidence/session_6984642c_run_card.json) ·
+[lane run card](evidence/adjdis_run_card.json) ·
+[leakage canary](evidence/adjdis_leakage_canary.json) ·
+[uniqueness audit](evidence/adjdis_uniqueness_audit.json) ·
+[experiments](evidence/adjdis_experiments.json) ·
+[`IR-29`/`IR-30`](knowledge/irregularities-2026-10-28-adjdis.md) ·
+[generated TIF — review only, NOT CLEARED](docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif).
+
+1. **`IR-30` explains the negative honestly:** the shared allocator's strict
+   final repair pass enforces the 0.635 multi-comparator cap over *each call's
+   own selected set*, so the per-phase Phase-A stream (≈100% inside the
+   corridors of the 7–8 whole-catalogue comparators) was pruned to **27 of
+   18,900** cells — reproduced bit-exact by the attribution replays in
+   [`evidence/adjdis_ir28_04_diagnostic.json`](evidence/adjdis_ir28_04_diagnostic.json)
+   and [`evidence/adjdis_ir28_05_fullphase_replay.json`](evidence/adjdis_ir28_05_fullphase_replay.json).
+   Gate 1's failure is therefore mechanical: hypothesis H2 was never engaged.
+   Next session must preregister the **joint-allocation** correction and must
+   not retry per-phase call semantics unchanged.
+2. **`IR-29` (fixed):** the 62-feature stack was OOM-killed at the 3.8 GiB
+   cgroup limit despite the "< 500 MB" docstring; explicit group `del`s plus a
+   `_memory_sweep()` (gc + malloc_trim) in `src/fchd/features.py` fixed it once
+   in shared code with unchanged numerics (cache rebuilt, gates re-passed).
 
 ## Parallel lane: FCHD-NCM (2026-10-28, negative)
 
@@ -144,6 +194,8 @@ release-gate function checks a documented prospective schema, but its caller
 must independently verify actual bytes and evidence. Historical generators and
 the flawed local holdout wrapper are blocked rather than used as private forks.
 Full reviews and next steps are in
+[`knowledge/session-review-6984642c.md`](knowledge/session-review-6984642c.md)
+(current) and
 [`knowledge/session-review-9b794637.md`](knowledge/session-review-9b794637.md).
 Historical lane records, including [LBCAL](docs/lbcal/index.html),
 [HCE](docs/hce/index.html) and [THCS](docs/thcs/index.html), remain research-only

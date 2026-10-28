@@ -1,0 +1,129 @@
+{
+  "a_full_count": 1004610,
+  "b_full_count": 3858215,
+  "labels_positive": 60988,
+  "cells": {
+    "draw20_fold0": {
+      "active": 1090250,
+      "a_elig": 159569,
+      "b_elig": 897903,
+      "d_vis_minmax": [
+        0.0,
+        403.58642578125
+      ],
+      "visible_true": -1
+    },
+    "draw20_fold1": {
+      "active": 1351789,
+      "a_elig": 201629,
+      "b_elig": 1110601,
+      "d_vis_minmax": [
+        0.0,
+        215.45533752441406
+      ],
+      "visible_true": -1
+    },
+    "draw20_fold2": {
+      "active": 1328689,
+      "a_elig": 269880,
+      "b_elig": 997159,
+      "d_vis_minmax": [
+        0.0,
+        1176.648193359375
+      ],
+      "visible_true": -1
+    },
+    "draw20_fold3": {
+      "active": 1069921,
+      "a_elig": 204656,
+      "b_elig": 816136,
+      "d_vis_minmax": [
+        0.0,
+        618.5208129882812
+      ],
+      "visible_true": -1
+    },
+    "draw21_fold0": {
+      "active": 1090450,
+      "a_elig": 159148,
+      "b_elig": 899198,
+      "d_vis_minmax": [
+        0.0,
+        403.58642578125
+      ],
+      "visible_true": -1
+    },
+    "draw21_fold1": {
+      "active": 1351703,
+      "a_elig": 206288,
+      "b_elig": 1105342,
+      "d_vis_minmax": [
+        0.0,
+        215.45533752441406
+      ],
+      "visible_true": -1
+    },
+    "draw21_fold2": {
+      "active": 1328588,
+      "a_elig": 269904,
+      "b_elig": 996433,
+      "d_vis_minmax": [
+        0.0,
+        1176.648193359375
+      ],
+      "visible_true": -1
+    },
+    "draw21_fold3": {
+      "active": 1069796,
+      "a_elig": 211468,
+      "b_elig": 808526,
+      "d_vis_minmax": [
+        0.0,
+        619.0202026367188
+      ],
+      "visible_true": -1
+    }
+  },
+  "k_a_total": 22800,
+  "k_b_total": 15200,
+  "draw_budgets": {
+    "draw20": {
+      "a_cells_px": 835734,
+      "b_cells_px": 3821799,
+      "draw_a": 18967,
+      "draw_b": 15057,
+      "per_cell_k_a": {
+        "draw20_fold0": 3582,
+        "draw20_fold1": 4516,
+        "draw20_fold2": 6152,
+        "draw20_fold3": 4717
+      }
+    },
+    "draw21": {
+      "a_cells_px": 846808,
+      "b_cells_px": 3809499,
+      "draw_a": 19219,
+      "draw_b": 15008,
+      "per_cell_k_a": {
+        "draw21_fold0": 3565,
+        "draw21_fold1": 4610,
+        "draw21_fold2": 6186,
+        "draw21_fold3": 4858
+      }
+    }
+  },
+  "phaseA_fold0_replay": {
+    "eligible": 159569,
+    "w_a_pos": 159569,
+    "budget_k": 3582,
+    "selected": 13,
+    "info": {
+      "selected": 13,
+      "budget_k": 3582,
+      "hard_cap_hits": 2274,
+      "max_empirical_overlap": 0.61538,
+      "comparators_capped": 7,
+      "blocked_by_knapsack": 1386
+    }
+  }
+}

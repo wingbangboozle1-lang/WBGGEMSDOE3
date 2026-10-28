@@ -1,0 +1,71 @@
+{
+  "evidence_class": "NEGATIVE method run with a generated research raster; not a competition score",
+  "lane": "ADJDIS — preregistered adjacency-band two-phase CELF allocation over reused FCHD OOF surfaces (physical E1 + NCM E2)",
+  "hypothesis": "H2 (rank 1 of frozen preregistration knowledge/preregistration-2026-10-28-adjdis.md): a fold-legal Gaussian visibility-adjacency ridge (d0=4.0 px, sigma=2.5) on the Phase-A stream plus NCM-structured Phase-B discovery beats the champion proxy 0.099202 with paired CI lower > 0 while staying inside the 0.635 multi-comparator cap.",
+  "mechanism": "Phase-A dots 2-10 px off fold-visible catalogue weighted by the adjacency band (quota s), Phase-B discovery dots >10 px weighted by sharpened reused FCHD OOF posteriors; shared bit-packed CELF allocator with 0.635 per-comparator knapsack cap.",
+  "named_non_fault_process": "StageLine-ups and clastic-accident analogs remain flagged; adjacency to visible faults is the only leaderboard- and holdout-evidenced mechanism family, but attempt-1 could not place Phase-A cells (IR-30).",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "value": 0.059897,
+    "ci95": [0.052989, 0.066831],
+    "draw20_mean": 0.057615,
+    "draw21_mean": 0.061068,
+    "paired_delta_vs_gemsdoe32": -0.039306,
+    "paired_delta_ci95": [-0.049786, -0.029076],
+    "champion_proxy_baseline": 0.099202,
+    "reason": "E3 final emission (selected experiment ADJDIS-E3-FINAL). Gate 1 (beat 0.099202 with paired CI lower > 0) FAILED; the failure is mechanical (IR-30 Phase-A starvation), not a test of H2."
+  },
+  "correlation_overlap_vs_registry": {
+    "content_aware_max_nonlattice_overlap_3px": 0.63497,
+    "content_aware_limit": 0.70,
+    "content_aware_pass": true,
+    "pre_placement_max_abs_spearman": 0.52995,
+    "pre_placement_limit": 0.90,
+    "surface_gates_max_spearman": 0.52995,
+    "unique_masks_compared": 153,
+    "fchd_direct_max_overlap_3px": 0.996368,
+    "literal_all_files_max_overlap": 1.0,
+    "literal_witness_note": "IR-01/IR-09: registered 17GEMSDOE_E-proba (ab0a0a62...) is positive on 100% of the footprint, so the LITERAL all-registry 70% reading fails for every non-empty raster; reported, not waived.",
+    "exact_duplicate_of_any_registry_file": false,
+    "scope": "Full 195-file-equivalent registry index as rebuilt this session (195 discovered, 153 unique masks), plus a direct directed 3-px overlap check against the FCHD research TIF that the shared discovery function excludes by construction."
+  },
+  "leakage_canary": {
+    "passed": true,
+    "n_features_tested": 73,
+    "max_directional_auc": 0.77593,
+    "band_directional_auc": 0.77593,
+    "threshold": 0.90,
+    "receipt": "evidence/adjdis_leakage_canary.json"
+  },
+  "gates": {
+    "gate0_leakage_canary": true,
+    "gate1_holdout_beats_gemsdoe32_sig": false,
+    "gate2_dot_budget_discipline": true,
+    "gate3_full_universe_uniqueness": false,
+    "gate4_portal_geotiff_0_to_1": true,
+    "all_passed": false
+  },
+  "raster_sha256": "817901562c8708139a761269fd4976e1fd70edabff359142a18da64da8abf8f0",
+  "validator_output": {
+    "new_candidate": "PASS (local byte diagnostic only): single-band float32, EPSG:32611, 3730x3292, 100 m transform exact, all finite, full-grid values in [0,1], exact zeros outside footprint, zero on catalogue faults, 23,127 positive pixels; receipt evidence/adjdis_run_card.json validator_output.",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "existing_research_file": "Prior SGCE research file unchanged; see evidence/registry_witness_recheck_2026-10-27.json."
+  },
+  "submission_name": "wbggems3-adjdis-23127d-20261028T171558Z-07355e06",
+  "submission_note": "ADJDIS: fold-legal 3.5px adjacency-band quota s=0.45 + NCM physical discovery >10px, CELF cap 0.635 (23127d)",
+  "submission_file": "submission/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif",
+  "docs_copy": "docs/downloads/wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif",
+  "download_status": "Published for review/testing only. NOT CLEARED: Gate 1 failed, Gate 3 fails under the literal witness, selector approval false.",
+  "verdict": "negative",
+  "selector_approval": false,
+  "experiments_run": 3,
+  "experiment_budget_max": 3,
+  "experiment_window_utc": "16:43-17:16 (executions); 17:33-17:52 (attribution diagnostics, no scoring)",
+  "weekly_slots_used": 0,
+  "irregularities": ["IR-29 feature-stack OOM fix", "IR-30 Phase-A starvation under per-phase strict cap (attribution in evidence/adjdis_ir28_04_diagnostic.json + evidence/adjdis_ir28_05_fullphase_replay.json)"],
+  "next_session_first_step": "Preregister the joint-allocation correction (IR-30) before running; do not retry per-phase call semantics unchanged."
+}

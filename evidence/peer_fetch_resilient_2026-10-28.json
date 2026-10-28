@@ -1,0 +1,163 @@
+{
+  "schema": "peer-fetch-resilient-v1",
+  "checked_utc": "2026-10-28T16:34:59.007535+00:00",
+  "expected": 17,
+  "verified_or_cached": 17,
+  "skipped": [],
+  "rows": [
+    {
+      "site": "GEMSDOE92",
+      "submission": "gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
+      "sha256": "e928d3c3fde8b3f1f622bb4f6e638620f0a1897fb6f8178cf26fe93f9c3b3a1c",
+      "ref_used": "HEAD",
+      "ref_note": "pinned commit 404; default-branch bytes match the registered sha256"
+    },
+    {
+      "site": "GEMSDOE92",
+      "submission": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+      "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
+      "ref_used": "HEAD",
+      "ref_note": "pinned commit 404; default-branch bytes match the registered sha256"
+    },
+    {
+      "site": "GEMSDOEkarage1",
+      "submission": "karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+      "sha256": "198076f81067353c3ee41d947c7830ef11db2e8128bc5f8c5bd20ef036736f76",
+      "ref_used": "65c07db29591228add2a216542607234156aab30",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOEkarage1",
+      "submission": "gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+      "sha256": "75ac577a9131f6837b2de28be8932c326d1083bb46fcaebc1efc28e177526dbd",
+      "ref_used": "65c07db29591228add2a216542607234156aab30",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOEkarage2",
+      "submission": "gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+      "sha256": "28451a64b659b4e206bb483140fac169987db2edea7dc6a2cdc54f1c0f5fbfff",
+      "ref_used": "690d7dd51ae458969e82fb62855babcf90a55437",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOEkarage3",
+      "submission": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+      "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
+      "ref_used": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOEkarage3",
+      "submission": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+      "ref_used": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "ref_note": null
+    },
+    {
+      "site": "ApartGEMSDOE1",
+      "submission": "apartgems1-udth-submod-e3-20261027-50e7b334-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+      "sha256": "16f7101f41dd0331ac6076d6f55c906b7c1aa9fc7180258361450e9ecf87eede",
+      "ref_used": "43e6cb59ef82f666663cd9bea1be4869c7af870a",
+      "ref_note": null
+    },
+    {
+      "site": "ApartGEMSDOE2",
+      "submission": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+      "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+      "ref_used": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "ref_note": null
+    },
+    {
+      "site": "ApartGEMSDOE2",
+      "submission": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+      "sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e",
+      "ref_used": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "ref_note": null
+    },
+    {
+      "site": "ApartGEMSDOE2",
+      "submission": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+      "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+      "ref_used": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "ref_note": null
+    },
+    {
+      "site": "ApartGEMSDOE3",
+      "submission": "apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+      "sha256": "afbfee1f46d6d3ca16297904cadf29d9cf9327d2ec5519e37f472c85bfaec065",
+      "ref_used": "c47c806d1bac18367ca3866230d3b2bc88815a20",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOESASS1",
+      "submission": "gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+      "sha256": "f98c20df5bc67a482de6debd4abef9d3d104498bda0aacf464d693e271287729",
+      "ref_used": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOESASS2",
+      "submission": "gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+      "sha256": "cc854482215ec665a17175447474066e3418692c9604f150cc4f5459dc459707",
+      "ref_used": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOESASS2",
+      "submission": "gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+      "sha256": "28bb9419d592797dcac1bfb1eb19fcffa7581a51718230f1f4f957a3e3d610d6",
+      "ref_used": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOESASS3",
+      "submission": "gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+      "sha256": "bc9109d9dd22d2f7193bafca7366acdf9432bfda7a393eb96d8fd8b48c0ed84a",
+      "ref_used": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+      "ref_note": null
+    },
+    {
+      "site": "GEMSDOESASS3",
+      "submission": "gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros",
+      "status": "verified",
+      "local": "data/peer_extra/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+      "sha256": "250b22eaf2411c75c8587ffb8c7747f0f2f942e2c6a4a219b1371b340d4403fb",
+      "ref_used": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+      "ref_note": null
+    }
+  ],
+  "note": "Byte identity is decided by sha256 against registry/peer_prompt_2026-10-27.json; a default-branch fallback only relocates identical bytes and is disclosed per row."
+}
