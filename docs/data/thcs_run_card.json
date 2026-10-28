@@ -1,5 +1,4 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
   "schema_version": "parallel-run-card-v1",
   "generated_utc": "20261027T200639Z",
   "branch": "arena/f226cee3-wbggemsdoe3",
@@ -281,5 +280,6 @@
   "experiments_used": 3,
   "experiment_budget_max": 3,
   "verdict": "negative",
-  "status_banner": "DO NOT SUBMIT (NEGATIVE / GATE FAILURE)"
+  "status_banner": "DO NOT SUBMIT (NEGATIVE / GATE FAILURE)",
+  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }

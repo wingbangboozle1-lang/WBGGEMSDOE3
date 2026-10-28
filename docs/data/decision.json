@@ -1,18 +1,10 @@
 {
- "decision": "HOLD",
- "okay_to_submit": false,
- "file": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
- "sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
- "estimate": {
-  "calibrated": 0.4699720899416122,
-  "pi95": [
-   0.3155834007759659,
-   0.6243607791072585
-  ],
-  "floor_equal_yield": 0.1797897163700542,
-  "ceiling_raw_posterior": 0.5756358734346434,
-  "label": "ESTIMATE (model; not a score; M=15,200 assumed; sensitivity M=27,110 gives DTI ~0.30)"
- },
- "source": "evidence/run_card_v3.json",
- "reason": "literal uniqueness fails vs 13GEMSDOE lattice (0.9944); see docs/data/release_gate.json"
+  "schema": "gems-project-decision-v1",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_submit": false,
+  "candidate": null,
+  "source": "release_gate.json",
+  "run_card": "session_7393d521_run_card.json",
+  "run_card_sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1",
+  "reason": "Literal registry witness stop; no candidate or shared holdout run."
 }

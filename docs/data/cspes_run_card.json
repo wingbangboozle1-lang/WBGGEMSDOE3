@@ -1,5 +1,4 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
   "lane": "CSPES \u2014 cross-scale potential-field edge stability",
   "hypothesis": "Scale-persistent, orientation-collinear gravity and RTP magnetic gradient edges, topo-conditioned, mark buried structural boundaries missing from the surface catalogue.",
   "mechanism": "Multi-scale (sigma=2,5 px) gradient persistence P_g*P_m times polarity-invariant grav/mag collinearity (0.5+0.5A) times topographic conditioning (1-0.5T); label-independent ranks; greedy 2-px NMS, K=37,654.",
@@ -290,5 +289,6 @@
   "slots_spent": 0,
   "experiments_used": 3,
   "run_time_utc": "2026-10-27T17:38:05Z",
-  "elapsed_s": 105.9
+  "elapsed_s": 105.9,
+  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }

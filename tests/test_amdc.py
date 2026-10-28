@@ -75,24 +75,20 @@ def test_bytes_audit_corrects_the_headline_and_matches_served_bytes():
     assert "SUBMITTABLE" in audit["validator_rerun"]["zeros_variant"]
 
 
-def test_governing_gate_is_hash_bound_to_verified_sources():
-    """The gate may only speak about bytes that hash-match its own source cards.
-
-    The AMDC lane's DO-NOT-SUBMIT verdict still applies to the SGCE file it audited
-    (evidence/amdc_run_card.json).  The *site-wide* decision moved to a different artifact on
-    2026-10-28 (schema v2, evidence/run_card_v3.json); this test now checks the property that
-    actually matters — a decision is never free-floating, it is bound to hashed evidence.
-    """
+def test_governing_gate_is_hash_bound_and_negative():
+    """The project-level gate is negative and bound to the current review evidence."""
     gate = _load("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v2"
-    # 2026-10-28: the gate is HOLD (literal uniqueness fails vs 13GEMSDOE r13 lattice, 0.9944).
-    assert gate["decision"] == "HOLD" and gate["okay_to_submit"] is False
-    assert gate["blocking_reasons"], "irregularities must be published with the decision"
-    for key in ("run_card", "design", "uniqueness", "pair"):
-        src = ROOT / gate["source_cards"][key]
-        assert hashlib.sha256(src.read_bytes()).hexdigest() == gate["source_cards"][key + "_sha256"]
+    assert gate["schema"] == "gems-release-gate-v1"
+    assert gate["decision"] == "DO-NOT-SUBMIT" and gate["okay_to_submit"] is False
+    assert gate["candidate"] is None and gate["authority"]["selector_approval"] is False
+    assert gate["blocking_reasons"], "the reason for the negative decision must be published"
+    for row in gate["source_cards"].values():
+        src = ROOT / row["path"]
+        assert hashlib.sha256(src.read_bytes()).hexdigest() == row["sha256"]
+    current = _load("docs/data/session_7393d521_run_card.json")
+    assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
     amdc = _load("evidence/amdc_run_card.json")
-    assert amdc["verdict"] == "negative", "the positive SGCE lane result contradicts the AMDC re-score"
+    assert amdc["verdict"] == "negative"
 
 
 def test_amdc_data_copies_match_evidence():
@@ -136,14 +132,12 @@ def test_amdc_lane_page_is_scoped_negative_with_working_links():
 
 def test_readme_records_the_negative_lane_without_claiming_clearance():
     readme = (ROOT / "README.md").read_text()
-    assert "Parallel lane: AMDC audit (2026-10-28, negative)" in readme
     assert "docs/amdc/index.html" in readme
-    # The AMDC lane itself stays negative; the only cleared file is the KHD release.
-    # (The phrase "OK TO DOWNLOAD AND SUBMIT" appears inside the verbatim user
-    # brief quoted in the README — that quotation is required and is not a claim.)
-    assert "AMDC" in readme and "negative" in readme.split("## KHD lane")[0]
-    assert "wbggems3-sgce-20261027-f52d35d8-zeros.tif" in readme
+    assert "AMDC" in readme and "DO NOT SUBMIT" in readme
+    assert "DO NOT SUBMIT" in readme.split("## Historical lane records")[0]
     assert "research only" in readme.lower() or "research-only" in readme.lower()
+    # The original task is preserved as a brief, but it cannot override the current gate.
+    assert "HOLDOUT-DTI" in readme and "Maximize P(Win)" in readme
 
 
 def test_amdc_step_is_deterministic():

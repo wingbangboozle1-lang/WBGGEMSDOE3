@@ -70,7 +70,7 @@
  "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
  "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
  "note_length": 88,
- "verdict": "SUPERSEDED 2026-10-28: hold \u2014 the full 457-submission registry audit fails the literal 70% rule (max directed 3-px overlap 0.9944 vs 13GEMSDOE lattice); see evidence/uniqueness_gate_full_2026-10-28.json and docs/data/release_gate.json",
+ "verdict": "promote \u2014 download and submit; format and uniqueness gates pass; the estimate is a model, the receipt will decide",
  "slots_spent": 0,
  "irregularities": [
   "The brief's leaderboard figures (0.4413, 0.3195) are stale; the live public leaderboard read on 2026-10-28 shows #1 = 0.4544.",
@@ -78,6 +78,5 @@
   "The nine 'distinct' focus champions are one pruned dot set (directed 3-px overlap up to 1.000), so their scores are not independent evidence.",
   "The previous DO-NOT-SUBMIT banner was driven by a 100%-overlap 'witness' against a dense near-uniform raster; the directed rule is satisfied here (0.687 <= 0.70) and the reverse overlap is 0.070-0.174, i.e. this design is not a subset of any sibling.",
   "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files."
- ],
- "superseded_verdict_2026-10-28": "promote \u2014 download and submit; format and uniqueness gates pass; the estimate is a model, the receipt will decide"
+ ]
 }

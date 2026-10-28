@@ -95,14 +95,13 @@ def test_local_html_links_resolve():
 
 
 def test_dossier_is_reproducible():
-    """The published pages must be a pure function of the recorded evidence.
-
-    Since 2026-10-27 the active generator is scripts/session2_site.py (reached through
-    scripts/build_site.py); regenerating must be a byte-for-byte no-op.
-    """
+    """The active fail-closed pages are a pure function of committed evidence."""
     from build_site import main
-    names = ['index.html', 'executive-summary.html', 'research.html', 'evidence.html']
+    names = ['index.html', 'executive-summary.html', 'research.html', 'evidence.html',
+             'method.html', 'how-to-submit.html', 'session-review.html', 'submission.html',
+             'downloads/index.html', 'downloads/LEGACY-DO-NOT-SUBMIT.txt',
+             'data/release_gate.json', 'data/decision.json', 'data/session_7393d521_run_card.json']
     before = {n: (ROOT / 'docs' / n).read_bytes() for n in names}
-    main()
+    assert main() == 0
     assert all((ROOT / 'docs' / n).read_bytes() == before[n] for n in names)
 

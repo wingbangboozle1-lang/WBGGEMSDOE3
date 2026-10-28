@@ -1,132 +1,209 @@
-"""The published site must stay bound to recorded evidence, never to a claim.
+"""The published project site must be bound to the current negative evidence."""
+from __future__ import annotations
 
-These tests encode the *genuine* invariant of this project: a page may only advertise an upload
-when a hash-bound evidence card, a format validation and the uniqueness gate all pass — and even
-then the number it shows must be labelled an ESTIMATE.
-"""
 import hashlib
 import json
+from html.parser import HTMLParser
 from pathlib import Path
+import subprocess
+import sys
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "method.html", "evidence.html")
+CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
+              "method.html", "evidence.html", "session-review.html", "submission.html")
+CURRENT_CARD = "evidence/session_7393d521_run_card.json"
 
 
-def _sha(p):
-    return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def _json(path: str) -> dict:
+    return json.loads((ROOT / path).read_text())
 
 
-def test_release_gate_is_hash_bound_and_agrees_with_the_run_card():
-    gate = json.loads((DOCS / "data/release_gate.json").read_text())
-    card = json.loads((ROOT / gate["source_cards"]["run_card"]).read_text())
-    assert gate["schema"] == "gems-release-gate-v2"
-    expected = {"PROMOTE": "SUBMIT", "SUPERSEDED": "HOLD"}[card["verdict"].split()[0].upper()]
-    assert gate["decision"] == expected
-    assert gate["okay_to_submit"] is (expected == "SUBMIT")
-    assert gate["blocking_reasons"], "irregularities must be published with the decision"
-    for key in ("run_card", "design", "uniqueness", "pair"):
-        assert _sha(ROOT / gate["source_cards"][key]) == gate["source_cards"][key + "_sha256"]
+def _sha(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def test_published_bytes_pass_every_portal_gate():
-    est = json.loads((ROOT / "evidence/design_estimate.json").read_text())
-    v = est["validation"]
-    assert _sha(ROOT / v["path"]) == v["sha256"]
-    assert v["in_0_1"] and v["n_nonfinite"] == 0
-    assert v["crs_match"] and v["shape_match"] and v["transform_match"]
-    assert v["zeros_outside_footprint"]
-    assert v["n_positive"] == est["stats"]["n_dots"] > 0
+class Links(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.targets = []
+        self.meta = {}
+        self.text = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "meta" and attrs.get("name") in {"gemsdoe-decision", "gemsdoe-lane-decision"}:
+            self.meta[attrs["name"]] = attrs.get("content", "")
+        for key, value in attrs.items():
+            if key in {"href", "src"} and value:
+                self.targets.append(value)
+
+    def handle_data(self, data):
+        self.text.append(data)
 
 
-def test_uniqueness_gate_matches_the_user_rule():
-    u = json.loads((ROOT / "evidence/uniqueness_gate.json").read_text())
-    assert u["unique"] is True
-    assert u["max_directed_overlap"] <= 0.70
-    assert u["max_abs_spearman"] <= 0.90
-    assert u["n_registry_compared"] >= 50
+def test_project_release_gate_is_negative_and_hash_bound():
+    gate = _json("docs/data/release_gate.json")
+    assert gate["schema"] == "gems-release-gate-v1"
+    assert gate["decision"] == "DO-NOT-SUBMIT"
+    assert gate["okay_to_submit"] is False
+    assert gate["candidate"] is None
+    assert gate["authority"]["selector_approval"] is False
+    assert any("witness" in reason.lower() for reason in gate["blocking_reasons"])
+    for row in gate["source_cards"].values():
+        path = ROOT / row["path"]
+        assert path.is_file()
+        assert _sha(path) == row["sha256"]
+
+    decision = _json("docs/data/decision.json")
+    assert decision["decision"] == "DO-NOT-SUBMIT"
+    assert decision["okay_to_submit"] is False and decision["candidate"] is None
+    assert decision["run_card_sha256"] == _sha(ROOT / CURRENT_CARD)
 
 
-def test_pair_identification_is_reproducible_and_physical():
-    p = json.loads((ROOT / "evidence/pair_identification.json").read_text())
-    assert p["pair"]["champion_is_subset_of_base"] is True
-    assert p["pair"]["removed_within_3px_of_catalogue_frac"] == 1.0
-    M = p["identification"]["hidden_truth_cells_M"]
-    T = p["identification"]["identity_covers_T"]
-    assert 10_000 < M < 25_000 and 0 < T < M
+def test_current_run_card_is_a_complete_negative_not_a_fake_score():
+    card = _json(CURRENT_CARD)
+    assert card["verdict"] == "negative" and card["okay_to_submit"] is False
+    assert card["raster"]["generated"] is False
+    assert card["raster"]["sha256"] is None
+    assert card["holdout_dti"]["label"] == "NOT-RUN"
+    assert card["holdout_dti"]["value"] is None
+    assert card["holdout_dti"]["ci95"] is None
+    assert card["holdout_dti"]["evaluator_version"] is None
+    assert card["holdout_dti"]["withheld_positive_count"] is None
+    assert card["registry"]["surface_rank_correlation"]["status"] == "NOT_RUN_NO_SURFACE"
+    assert card["registry"]["final_dot_overlap"]["status"] == "NOT_RUN_NO_CANDIDATE"
+    assert card["registry"]["literal_dense_witness"]["conditional_directed_overlap_for_any_nonempty_in_footprint_candidate"] == 1.0
+    assert card["validator"]["status"] == "NOT_RUN_NO_CANDIDATE"
+    assert card["submission"]["name"] is None
+    assert len(card["submission"]["note"]) <= 140
+    assert card["submission"]["note_characters"] == len(card["submission"]["note"])
+    assert card["experiments"]["geological_experiments_completed"] == 0
+    assert card["selector"]["weekly_slots_used"] == 0
+    prior = card["preexisting_main_artifact"]
+    assert prior["status"] == "UNAPPROVED_ARCHIVE_ONLY"
+    assert prior["byte_identity_rechecked_against_upstream_record"] is True
+    assert prior["scientific_or_format_validation_in_this_review"] is False
+    prior_path = ROOT / prior["path"]
+    assert prior_path.is_file() and _sha(prior_path) == prior["upstream_recorded_sha256"]
 
 
-def test_every_current_page_is_estimate_labelled_and_decision_tagged():
-    decision = json.loads((DOCS / "data/release_gate.json").read_text())["decision"]
-    for page in PAGES:
-        body = (DOCS / page).read_text()
-        assert f'<meta name="gemsdoe-decision" content="{decision}">' in body
-        assert "estimate" in body.lower()
-        assert "organizer-confirmed score is" not in body.lower()
+def test_preregistration_has_five_distinct_testable_hypotheses():
+    prereg = _json("evidence/preregistration_2026-10-28.json")
+    rows = prereg["hypotheses"]
+    assert 3 <= len(rows) <= 5
+    assert len({r["id"] for r in rows}) == len(rows)
+    for row in rows:
+        assert row["mechanism"]
+        assert row["named_non_fault_mimic"]
+        assert row["physical_signature"]
+        assert row["difference_from_repository"]
+        assert row["expected_dti"] is None
+        assert row["validation_status"].startswith("NOT RUN")
+    assert prereg["global_stop"]["active"] is True
+    assert prereg["experiment_budget"]["experiments_completed_at_preregistration"] == 0
 
 
-def test_nine_site_table_is_present_and_labelled():
-    body = (DOCS / "executive-summary.html").read_text()
+def test_literal_witness_is_recorded_as_a_stop_not_a_clearance():
+    witness = _json("evidence/registry_witness_recheck_2026-10-27.json")["witness"]
+    assert witness["universal_blocker"] is True
+    assert witness["witness_positive_inside"] == witness["footprint_cells"] == 5_167_373
+    assert witness["sha256"] == "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    assert "owner mirrors" in _json("evidence/preregistration_2026-10-28.json")["global_stop"]["provenance_caveat"]
+
+
+def test_every_current_page_is_tagged_negative_and_has_no_clearance_claim():
+    for rel in CORE_PAGES:
+        page = DOCS / rel
+        assert page.is_file(), rel
+        parser = Links()
+        parser.feed(page.read_text())
+        assert parser.meta.get("gemsdoe-decision") == "DO-NOT-SUBMIT", rel
+        text = " ".join(" ".join(parser.text).lower().split())
+        assert "do not submit" in text or "no file is cleared" in text or "global stop is active" in text, rel
+        assert "ok to download and submit" not in text, rel
+        assert "one new file cleared" not in text, rel
+
+
+def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
+    page = (DOCS / "executive-summary.html").read_text()
     for n in (24, 25, 27, 28, 30, 31, 32, 33, 36):
-        assert f"GEMSDOE{n}" in body
-    assert "OWNER-REPORTED" in body
-    assert "0.2778" in body
-    assert "Do not submit" in body
-    assert "ESTIMATE" in body
+        assert f"GEMSDOE{n}" in page
+    assert "OWNER-REPORTED" in page
+    assert "0.2778" in page
+    assert "not a verified causal account" in page.lower()
+    assert "not estimable" in page.lower()
+    assert "DO NOT SUBMIT" in page
 
 
-def test_legacy_negative_lane_pages_stay_negative():
-    for rel in ("downloads/index.html", "rfl/index.html", "thcs/index.html"):
-        p = DOCS / rel
-        if p.is_file():
-            text = p.read_text().lower()
-            assert "do not submit" in text, rel
-    # the downloads index may advertise exactly one file, and must label it an estimate
-    dl = (DOCS / "downloads/index.html").read_text()
-    assert dl.count("wbggems3-invdesign-anchor-20k-zeros.tif") >= 1
-    assert "estimate" in dl.lower()
+def test_current_leaderboard_and_official_source_captures_are_labeled():
+    obs = _json("evidence/leaderboard_observation_2026-10-28.json")
+    assert obs["visible_public_scores"]["rank_1"] == "0.4544"
+    assert obs["visible_public_scores"]["rank_25"] == "0.3217"
+    assert obs["visible_public_scores"]["rank_26"] == "0.3195"
+    assert "not a submission receipt" in obs["evidence_class"].lower()
+    source = _json("evidence/official_source_check_2026-10-28.json")
+    ids = {row["id"] for row in source["sources"]}
+    assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
+    assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
 
 
-def test_pages_publisher_uses_the_same_layout():
-    workflow = (ROOT / ".github/workflows/pages.yml").read_text()
-    assert "url=docs/index.html" in (ROOT / "index.html").read_text()
-    assert "cp -a docs .cache/pages-release/docs" in workflow
-
-
-def test_site_checker_passes_on_committed_pages():
-    from check_site import main
-    assert main() == 0
-
-
-def test_figures_are_bound_to_the_published_bytes():
-    """The two method.html figures must describe the *cleared* file, not an older lane."""
-    figs = json.loads((ROOT / "evidence/design_figures.json").read_text())
-    tif = ROOT / figs["deliverable"]
-    assert _sha(tif) == json.loads((ROOT / "evidence/run_card_v3.json").read_text())["raster"]["sha256"]
-    assert figs["design_dots"] == 20000
-    for rel in figs["figures"]:
-        assert (ROOT / rel).stat().st_size > 10_000, rel
-        assert (ROOT / rel).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n", rel
-    method = (DOCS / "method.html").read_text()
-    for rel in figs["figures"]:
-        assert Path(rel).name in method
-    # the gate numbers the caption quotes must be the measured ones, and must clear the gate
-    assert figs["frac_design_on_public_catalogue"] < 0.01
-    assert figs["frac_design_within_3px_of_champion"] <= 0.70
-
-
-def test_downloads_notice_agrees_with_the_gate():
-    """The plain-text notice shipped next to the TIFFs may not contradict the decision.
-
-    2026-10-28 (HOLD): no file is cleared; every .tif in downloads/ must be listed as not cleared.
-    """
-    gate = json.loads((DOCS / "data/release_gate.json").read_text())
+def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
+    page = DOCS / "downloads/index.html"
+    parser = Links()
+    parser.feed(page.read_text())
+    assert parser.meta.get("gemsdoe-decision") == "DO-NOT-SUBMIT"
+    assert not any(Path(urlparse(url).path).suffix.lower() == ".tif" for url in parser.targets)
     notice = (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
-    assert gate["decision"] == "HOLD" and gate["okay_to_submit"] is False
-    assert "CLEARED FOR SUBMISSION (0 files)" in notice
-    assert "No file in this directory is cleared" in notice
-    assert "0.9944" in notice
-    listed = {ln.strip() for ln in notice.splitlines()
-              if ln.startswith("  ") and not ln.startswith("    ") and ln.strip().endswith(".tif")}
+    listed = {line.strip() for line in notice.splitlines() if line.startswith("  ") and line.strip().endswith(".tif")}
     present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
-    assert listed == present, (listed ^ present)
+    assert listed == present
+    assert "No TIFF in this directory is cleared" in notice
+    assert "DO NOT SUBMIT" in notice
+    prior = _json(CURRENT_CARD)["preexisting_main_artifact"]
+    assert Path(prior["path"]).name in notice
+
+
+def test_all_site_links_resolve_inside_docs():
+    for page in DOCS.rglob("*.html"):
+        parser = Links()
+        parser.feed(page.read_text())
+        for link in parser.targets:
+            parsed = urlparse(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:
+                continue
+            target = (page.parent / unquote(parsed.path)).resolve()
+            assert target.is_relative_to(DOCS.resolve()) and target.is_file(), (page, link)
+
+
+def test_retired_positive_builders_stop_before_writing_docs():
+    before = (DOCS / "index.html").read_bytes()
+    for name in ("build_site_v3.py", "build_release_gate_v2.py", "build_evidence_page.py"):
+        proc = subprocess.run([sys.executable, str(ROOT / "scripts" / name)], cwd=ROOT,
+                              capture_output=True, text=True, timeout=15)
+        assert proc.returncode != 0, name
+        assert "BLOCKED" in proc.stderr, (name, proc.stderr)
+    assert (DOCS / "index.html").read_bytes() == before
+
+
+def test_active_site_builder_is_deterministic():
+    from build_site import main
+    names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
+             "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
+             "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
+             "data/leaderboard.json", "data/fchd_run_card.json", "data/amdc_run_card.json",
+             "fchd/index.html", "amdc/index.html"]
+    before = {name: (DOCS / name).read_bytes() for name in names}
+    assert main() == 0
+    for name in names:
+        assert (DOCS / name).read_bytes() == before[name], name
+
+
+def test_pages_workflow_still_runs_the_active_builder_and_checker():
+    workflow = (ROOT / ".github/workflows/pages.yml").read_text()
+    checks = (ROOT / ".github/workflows/checks.yml").read_text()
+    assert "python scripts/refresh_feed.py" in workflow
+    assert "python scripts/build_site.py && python scripts/check_site.py" in workflow
+    assert "python scripts/build_site.py" in checks
+    assert "python scripts/check_site.py" in checks

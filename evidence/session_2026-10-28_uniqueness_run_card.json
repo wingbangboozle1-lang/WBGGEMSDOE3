@@ -71,9 +71,10 @@
   "lattice_free_cells_ge3px_excl_collar": 7103,
   "lattice_free_fraction_of_footprint": 0.001375
  },
- "decision": "HOLD",
+ "decision": "DO-NOT-SUBMIT",
  "okay_to_submit": false,
- "verdict": "hold \u2014 no file cleared; decision needed on the uniqueness reading (lattice-class exclusion vs literal rule)",
- "estimates_labels": "ESTIMATE only (0.47 model, M=15,200 assumed); no HOLDOUT-DTI or ORGANIZER-CONFIRMED value is produced here",
- "slots_spent": 0
+ "verdict": "negative for the literal rule, confirmed on every candidate in the repo: no file is cleared; additional independent failure vs the 13GEMSDOE r13 lattice (0.9895-0.9996)",
+ "slots_spent": 0,
+ "governing_decision_source": "docs/data/release_gate.json on main (fail-closed literal dense-witness stop); this branch does not change it",
+ "estimates_labels": "No estimate or score is produced here. The 0.47 (invdesign) and 0.275 (KHD) figures are ESTIMATE-labelled model outputs carried from earlier evidence; none is HOLDOUT-DTI or ORGANIZER-CONFIRMED."
 }

@@ -1,47 +1,43 @@
 {
- "schema": "gems-release-gate-v2",
- "generated_utc": null,
- "decision": "HOLD",
- "okay_to_submit": false,
- "decision_scope": "ZERO files cleared. Inspection copy only: docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
- "submission_name": null,
- "note": null,
- "estimate": {
-  "calibrated": 0.4699720899416122,
-  "pi95": [
-   0.3155834007759659,
-   0.6243607791072585
+  "schema": "gems-release-gate-v1",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_submit": false,
+  "okay_to_download_for_research": false,
+  "candidate": null,
+  "authority": {
+    "verdict": "negative",
+    "selector_approval": false,
+    "raster_sha256": null
+  },
+  "blocking_reasons": [
+    "The literal registered dense-witness stop is active: any nonempty in-footprint candidate would have 100% directed overlap under the documented owner-mirror support rule, above the 70% threshold.",
+    "No candidate raster, byte hash, or submission name exists in this review.",
+    "No compliant shared-tool HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI was run.",
+    "No separate selector approval exists; no weekly slot was selected or spent.",
+    "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
+    "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
   ],
-  "floor_equal_yield": 0.1797897163700542,
-  "ceiling_raw_posterior": 0.5756358734346434,
-  "label": "ESTIMATE (model; not a score; M=15,200 assumed; sensitivity M=27,110 gives DTI ~0.30)"
- },
- "why": "The 2026-10-28 SUBMIT was based on a 58-raster uniqueness pass (max 0.6874). The full audit of all 457 real sibling submissions (evidence/uniqueness_gate_full_2026-10-28.json) fails the user's literal rule: max directed 3-px overlap 0.9944 against 13GEMSDOE r13 lattice (206,895 dots), plus GEMSDOE23 h30 0.8165 and GEMSDOE46 r11f 0.7177. The same lattice also fails the KHD, FCHD and TDE30k files (0.9991, 0.9996, 0.9895). The registry's 3-px footprint covers 100% of the footprint, and the lattice leaves 0.14% free.",
- "source_cards": {
-  "run_card": "evidence/run_card_v3.json",
-  "run_card_sha256": "a6cd987ffeddfb1aece3e44bfe5b3a370fdde055a1463f496f5faef6381abbd2",
-  "design": "evidence/design_estimate.json",
-  "design_sha256": "23e1dbd64481caf732318178081fc6b7cb738b804ba37bf91231d1f740172201",
-  "uniqueness": "evidence/uniqueness_gate_full_2026-10-28.json",
-  "uniqueness_sha256": "9a2594d547b12260cf90bfa919e2f9bbd2278b520d5483e3d6d8e400acd372cb",
-  "pair": "evidence/pair_identification.json",
-  "pair_sha256": "710ae531b51941ae0a8262521283b09d8719677901cf0315bf9761b995c797e6"
- },
- "uniqueness_result": {
-  "unique": false,
-  "n_registry_compared": 457,
-  "max_directed_overlap": 0.9944,
-  "limit_directed_overlap": 0.7,
-  "binding_comparator": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
-  "max_abs_spearman": 0.0507
- },
- "blocking_reasons": [
-  "Literal uniqueness fails: 13GEMSDOE r13 lattice overlap 0.9944 > 0.70 (457 submissions compared).",
-  "Lane convention excluded 'lattice' masks from the 3-px test; the user's rule says 'any registry raster'. This is an open decision for the user.",
-  "Under the literal rule a 30% dot share must sit in 7,103 free footprint cells (0.14%); no constrained design has been built or validated.",
-  "The brief's leaderboard figures (0.4413, 0.3195) are stale; the dated public observation is #1 = 0.4544.",
-  "Every sibling score is owner-reported; no organizer receipt for any sibling file is available in this sandbox.",
-  "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files.",
-  "The 0.47 estimate assumes M=15,200 (not observed); other repo lanes use M=9,150 and 27,110."
- ]
+  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
+  "source_cards": {
+    "run_card": {
+      "path": "evidence/session_7393d521_run_card.json",
+      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
+    },
+    "witness_recheck": {
+      "path": "evidence/registry_witness_recheck_2026-10-27.json",
+      "sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
+    },
+    "preregistration": {
+      "path": "evidence/preregistration_2026-10-28.json",
+      "sha256": "09338a4a92de88b4968f4eeb7ddd917001a3afe555a599a854a4cbfcf203c137"
+    },
+    "official_sources": {
+      "path": "evidence/official_source_check_2026-10-28.json",
+      "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
+    },
+    "leaderboard_snapshot": {
+      "path": "evidence/leaderboard_observation_2026-10-28.json",
+      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
+    }
+  }
 }
