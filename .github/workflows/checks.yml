@@ -12,7 +12,8 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: Site must be reproducible from the evidence JSON
-        run: python scripts/build_site.py && git diff --exit-code -- docs/
+        # build_site.py is a retired stub that only prints a message (it made this step a no-op).
+        run: python scripts/build_site_v3.py && python scripts/build_release_gate_v2.py && git diff --exit-code -- docs/
       - name: Site contract
         run: python scripts/check_site.py
       - run: python -m pytest -q

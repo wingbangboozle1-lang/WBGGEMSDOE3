@@ -62,19 +62,22 @@ max-width:1120px;margin:0 auto}
 <div class="kpi">
   <div><b>20,000</b><span>dots (single-band probability, 1.0 on 0.4% of the study area)</span></div>
   <div><b>0.47</b><span>ESTIMATE (model, bias-corrected) · 95% PI 0.32–0.62</span></div>
-  <div><b>0.0%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar)</span></div>
+  <div><b>0.0%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar; from the design run, not re-run here)</span></div>
   <div><b>0.047</b><span>max |rank correlation| vs 58 sibling rasters (limit 0.90)</span></div>
 </div>
 <table>
 <tr><th>Gate</th><th>Result</th><th>Evidence</th></tr>
-<tr><td>Values inside [0, 1] (portal error "Predicted values must be in range [0, 1]")</td>
-    <td><span class="pill g">PASS</span> min 0.0 · max 1.0</td>
+<tr><td>Values inside [0, 1] (local check; guards the portal error "Predicted values must be in range [0, 1]")</td>
+    <td><span class="pill g">LOCAL PASS</span> min 0.0 · max 1.0</td>
     <td><code>evidence/design_estimate.json</code></td></tr>
+<tr><td>Project validator record (format + uniqueness, re-run 2026-10-28)</td>
+    <td><span class="pill g">PASS</span> record <a href="data/submission_validation_2026-10-28.json">docs/data/submission_validation_2026-10-28.json</a></td>
+    <td>scripts/validate_submission.py</td></tr>
 <tr><td>No NaN / no non-finite cell anywhere</td>
     <td><span class="pill g">PASS</span> 0 non-finite</td>
     <td>same</td></tr>
-<tr><td>CRS / shape / geotransform identical to <code>sample_submission.tif</code></td>
-    <td><span class="pill g">PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
+<tr><td>CRS / shape / geotransform identical to the mirror-derived sample grid (<code>data/template_grid.tif</code>; official sample login-gated)</td>
+    <td><span class="pill g">LOCAL PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
     <td>same</td></tr>
 <tr><td>Unique: ≤70% of dots within 3 px of any registry raster</td>
     <td><span class="pill g">PASS</span> max 0.687 of 58 rasters</td>
@@ -87,7 +90,7 @@ max-width:1120px;margin:0 auto}
 </table>
 <p><b>SHA-256</b> <code>283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda</code></p>
 <p class="muted">Submission name (≤ 60 chars): <code>WBGGEMS3-INVDESIGN-ANCHOR-20K</code> ·
-Note (≤ 140 chars): <code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass</code></p>
+Note (≤ 140 chars): <code>Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, not a score; unique vs 9 focus sites</code></p>
 </div>
 
 <div class="card warn">

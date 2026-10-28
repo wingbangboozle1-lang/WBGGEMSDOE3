@@ -5,7 +5,7 @@
  "okay_to_submit": true,
  "decision_scope": "ONE file only: docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
  "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
- "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "note": "Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, not a score; unique vs 9 focus sites",
  "estimate": {
   "calibrated": 0.4699720899416122,
   "pi95": [
@@ -20,9 +20,9 @@
  "why": "The earlier DO-NOT-SUBMIT banner rested on a dense near-uniform raster whose 3-px collar covers most of the footprint, so every design 'overlaps' it. The user's rule is a directed duplicate test against ONE registry raster plus a rank-correlation test; this design satisfies both and its reverse overlap with every focus champion is <= 0.174, i.e. it is not a copy. The estimate is a model, not a receipt.",
  "source_cards": {
   "run_card": "evidence/run_card_v3.json",
-  "run_card_sha256": "70ab79e87896a451a2018b0b2e9c33083349b29d5cb33c483fd82c44509e110d",
+  "run_card_sha256": "8d20951a77850483992481e00ab7256b5835918e3a431fe0aa09f082c5130726",
   "design": "evidence/design_estimate.json",
-  "design_sha256": "23e1dbd64481caf732318178081fc6b7cb738b804ba37bf91231d1f740172201",
+  "design_sha256": "8dbda592a2a0d98246acd1a85ac254be80da075ac7cb7abc232789e09ef37f27",
   "uniqueness": "evidence/uniqueness_gate.json",
   "uniqueness_sha256": "f794d7b3830f6d3a76d83aad051ee4ccfaca5a26b02efa5d5eb6c786e08c26ce",
   "pair": "evidence/pair_identification.json",

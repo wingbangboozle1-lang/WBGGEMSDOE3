@@ -68,8 +68,8 @@ max |ρ| 0.047 (limit 0.90); reverse overlap vs focus files
 </tr>
 </table>
 <p><b>Portal fields.</b> Name <code>WBGGEMS3-INVDESIGN-ANCHOR-20K</code> · note (≤ 140 characters)
-<code>probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass</code> (109/140). The upload must not return
-“Predicted values must be in range [0, 1]”: every cell is finite and inside the range.</p>
+<code>Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, not a score; unique vs 9 focus sites</code> (113/140). Expected to avoid the reported error “Predicted values must be in range [0, 1]”: every cell is finite and inside [0, 1]
+(checked by <code>scripts/validate_submission.py</code>). Portal behaviour is not yet observed.</p>
 <p class="muted">ESTIMATE = bias-corrected model output, not a competition score. The only real evidence is the
 submission-page receipt. Floor 0.18 · ceiling 0.58.
 Beats 0.2778 iff credit per dot ≥ 0.22 (siblings measured 0.124–0.145).</p>

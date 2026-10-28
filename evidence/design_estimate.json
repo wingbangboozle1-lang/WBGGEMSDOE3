@@ -78,7 +78,7 @@
   "catalogue_collar_px": 3.0
  },
  "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
- "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "note": "Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, not a score; unique vs 9 focus sites",
  "verdict": "promote (format + uniqueness gates pass; estimate exceeds 0.2778)",
  "elapsed_s": 10.6
 }

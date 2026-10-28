@@ -36,8 +36,9 @@ inv = json.loads((ROOT / "data" / "work" / "inversion98b.json").read_text()) \
     if (ROOT / "data" / "work" / "inversion98b.json").exists() else {}
 
 SUBMIT_NAME = "WBGGEMS3-INVDESIGN-ANCHOR-20K"
-NOTE = ("probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; "
-        "format+uniqueness gates pass")
+NOTE = ("Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, "
+        "not a score; unique vs 9 focus sites")
+assert len(NOTE) <= 140, len(NOTE)
 TIF = "downloads/wbggems3-invdesign-anchor-20k-zeros.tif"
 SHA = est.get("validation", {}).get("sha256", "pending")
 M = pair.get("identification", {}).get("hidden_truth_cells_M", 0)
@@ -152,19 +153,22 @@ index = f"""
 <div class="kpi">
   <div><b>{N:,}</b><span>dots (single-band probability, 1.0 on 0.4% of the study area)</span></div>
   <div><b>{dti_base:.2f}</b><span>ESTIMATE (model, bias-corrected) · 95% PI {dti_pi[0]:.2f}–{dti_pi[1]:.2f}</span></div>
-  <div><b>{st.get('frac_within_3px_catalogue',0)*100:.1f}%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar)</span></div>
+  <div><b>{st.get('frac_within_3px_catalogue',0)*100:.1f}%</b><span>of our dots lie within 3 px of the public catalogue (zero-yield collar; from the design run, not re-run here)</span></div>
   <div><b>{uniq.get('max_abs_spearman',0):.3f}</b><span>max |rank correlation| vs {uniq.get('n_registry_compared',0)} sibling rasters (limit 0.90)</span></div>
 </div>
 <table>
 <tr><th>Gate</th><th>Result</th><th>Evidence</th></tr>
-<tr><td>Values inside [0, 1] (portal error "Predicted values must be in range [0, 1]")</td>
-    <td><span class="pill g">PASS</span> min {est.get('validation',{}).get('min',0)} · max {est.get('validation',{}).get('max',0)}</td>
+<tr><td>Values inside [0, 1] (local check; guards the portal error "Predicted values must be in range [0, 1]")</td>
+    <td><span class="pill g">LOCAL PASS</span> min {est.get('validation',{}).get('min',0)} · max {est.get('validation',{}).get('max',0)}</td>
     <td><code>evidence/design_estimate.json</code></td></tr>
+<tr><td>Project validator record (format + uniqueness, re-run 2026-10-28)</td>
+    <td><span class="pill g">PASS</span> record <a href="data/submission_validation_2026-10-28.json">docs/data/submission_validation_2026-10-28.json</a></td>
+    <td>scripts/validate_submission.py</td></tr>
 <tr><td>No NaN / no non-finite cell anywhere</td>
     <td><span class="pill g">PASS</span> {est.get('validation',{}).get('n_nonfinite','?')} non-finite</td>
     <td>same</td></tr>
-<tr><td>CRS / shape / geotransform identical to <code>sample_submission.tif</code></td>
-    <td><span class="pill g">PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
+<tr><td>CRS / shape / geotransform identical to the mirror-derived sample grid (<code>data/template_grid.tif</code>; official sample login-gated)</td>
+    <td><span class="pill g">LOCAL PASS</span> EPSG:32611 · 3730×3292 · (100,0,243350,0,−100,4508550)</td>
     <td>same</td></tr>
 <tr><td>Unique: ≤70% of dots within 3 px of any registry raster</td>
     <td><span class="pill g">PASS</span> max {uniq.get('max_directed_overlap',0):.3f} of {uniq.get('n_registry_compared',0)} rasters</td>
@@ -292,8 +296,8 @@ max |ρ| {uniq.get('max_abs_spearman',0):.3f} (limit 0.90); reverse overlap vs f
 </tr>
 </table>
 <p><b>Portal fields.</b> Name <code>{SUBMIT_NAME}</code> · note (≤ 140 characters)
-<code>{NOTE}</code> ({len(NOTE)}/140). The upload must not return
-“Predicted values must be in range [0, 1]”: every cell is finite and inside the range.</p>
+<code>{NOTE}</code> ({len(NOTE)}/140). Expected to avoid the reported error “Predicted values must be in range [0, 1]”: every cell is finite and inside [0, 1]
+(checked by <code>scripts/validate_submission.py</code>). Portal behaviour is not yet observed.</p>
 <p class="muted">ESTIMATE = bias-corrected model output, not a competition score. The only real evidence is the
 submission-page receipt. Floor {dti_floor:.2f} · ceiling {dti_ceil:.2f}.
 Beats 0.2778 iff credit per dot ≥ {breakeven:.2f} (siblings measured 0.124–0.145).</p>
@@ -414,24 +418,43 @@ submission's CRS (EPSG:32611), shape (3730 × 3292) and geotransform
 <tr><td>Name</td><td><code>{SUBMIT_NAME}</code></td><td class="num">{len(SUBMIT_NAME)}</td></tr>
 <tr><td>Note (optional)</td><td><code>{NOTE}</code></td><td class="num">{len(NOTE)}/140</td></tr>
 </table>
-<h3>5 · What you should see</h3>
-<p>The portal should accept the file and return a score. It will <b>not</b> return
-“Predicted values must be in range [0, 1]”: every one of the 12,279,160 cells is finite and inside
-[0, 1] — min {est.get('validation',{}).get('min',0)}, max {est.get('validation',{}).get('max',0)},
-non-finite {est.get('validation',{}).get('n_nonfinite','?')}.</p>
+<h3>5 · What to expect (not yet observed)</h3>
+<p>The format checks that run in this project (<code>scripts/validate_submission.py</code>, record
+<a href="data/submission_validation_2026-10-28.json">docs/data/submission_validation_2026-10-28.json</a>)
+find every one of the 12,279,160 cells finite and inside [0, 1] — min {est.get('validation',{}).get('min',0)},
+max {est.get('validation',{}).get('max',0)}, non-finite {est.get('validation',{}).get('n_nonfinite','?')}.
+Those are local checks. The portal's response is the only acceptance evidence, and none has been
+received for this file.</p>
 </div>
 
-<h2>Why the earlier upload failed</h2>
-<p>The repository's previous file used NaN outside the study footprint. DrivenData's validator
-rejects some NaN-outside encodings with “Predicted values must be in range [0, 1]”.
-Two pieces of evidence settle the question in favour of zeros:</p>
+<h2>Official submission rules (verified 2026-10-28)</h2>
+<div class="card">
 <ul>
-<li>The official format text says “data outside the bounds is null or nan”, but
-<b>every scored sibling file that produced a positive public score is a <code>-zeros</code> file</b>
-(for example the 0.2778 champion <code>…e5eb6e7e-zeros.tif</code>). Acceptance is therefore
-ORGANIZER-CONFIRMED for the zeros encoding, and unproven for NaN.</li>
-<li>A NaN never compares inside an interval test, so any implementation that checks
-<code>0 ≤ v ≤ 1</code> elementwise will reject it. Zeros cannot trigger that error.</li>
+<li><b>Format</b> — single layer, <code>float32</code>, values between 0 and 1; same CRS (EPSG:32611),
+resolution (100 m) and bounds as the training data; “data outside the bounds is null or nan”.
+Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page, “Submission format”</a>
+and <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Official Rules, §3.2–3.5</a>.</li>
+<li><b>Automatic scoring</b> — the rules say submissions “will be automatically evaluated”. Expert review
+happens <i>after</i> the initial round, to revise labels, and does not gate an upload.
+No human inspector is part of acceptance.</li>
+<li><b>Limits</b> — three submissions per week; one final submission per entity, chosen before the deadline
+(NLR §3.2, §3.4).</li>
+<li><b>Generative AI disclosure</b> — required in the submission narrative: the extent and manner of any
+generative-AI use (NLR §3.2). Keep this in mind before final selection.</li>
+</ul>
+</div>
+
+<h2>Why the zeros encoding was chosen (not proven)</h2>
+<p>An earlier file wrote NaN outside the grid, and the portal once returned
+“Predicted values must be in range [0, 1]” for a file of this kind. The cause is not confirmed:
+no receipt for the rejected bytes is available. The official text allows “null or nan” outside the
+bounds, so NaN is not ruled out by the rules.</p>
+<ul>
+<li>Zeros outside the footprint is the stricter encoding: every cell is finite and inside [0, 1]. A file
+that passes this project's gate therefore cannot fail the range rule for a NaN reason.</li>
+<li>This is <b>not</b> evidence that the portal prefers zeros. Several owner-reported scores in the
+public list are for <code>-nan</code> files (for example GEMSDOE24 at 0.2477 and GEMSDOE28 at 0.2710),
+so NaN files have scored positive. The encoding question is open until your own receipt arrives.</li>
 </ul>
 
 <h2>How to read the result</h2>

@@ -68,7 +68,7 @@
   "zeros_outside_footprint": true
  },
  "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
- "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "note": "Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, not a score; unique vs 9 focus sites",
  "note_length": 88,
  "verdict": "promote \u2014 download and submit; format and uniqueness gates pass; the estimate is a model, the receipt will decide",
  "slots_spent": 0,

@@ -338,8 +338,8 @@ def main() -> int:
         "stats": stats, "validation": validation, "uniqueness": uniq,
         "field": meta,
         "submission_name": a.name.upper()[:60],
-        "note": ("probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; "
-                 "unique 9-site check")[:140],
+        "note": ("Inverse-design anchor: 20k dots, zeros-outside float32; model estimate only, "
+                 "not a score; unique vs 9 focus sites")[:140],
         "verdict": "promote (format + uniqueness gates pass; estimate exceeds 0.2778)",
         "elapsed_s": round(time.time() - t0, 1),
     }
