@@ -28,6 +28,9 @@ AUTHORITY = ROOT / "evidence/session_9b794637_run_card.json"
 SGCE_CARD = ROOT / "evidence/session2_run_card.json"
 RECHECK = ROOT / "evidence/registry_witness_recheck_2026-10-27.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
+INDEPENDENT_FOCUS = ROOT / "evidence/focus_uniqueness_independent_2026-10-27.json"
+INDEPENDENT_NAN = ROOT / "evidence/format_independent_sgce_nan_2026-10-27.json"
+INDEPENDENT_ZERO = ROOT / "evidence/format_independent_sgce_zeros_2026-10-27.json"
 FEED = ROOT / "registry/leaderboard.json"
 SHA_CANDIDATE = "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09"
 CANDIDATE_FILE = "wbggems3-sgce-20261027-f52d35d8-zeros.tif"
@@ -120,7 +123,7 @@ def steps() -> str:
 <li>Download the exact approved single-band GeoTIFF or single-TIFF ZIP, and verify its SHA-256 against the approved run card. It must match the official sample’s CRS, shape and transform and contain valid predictions in [0,1].</li>
 <li>Sign in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData’s submission page</a>; check the current quota and rules there. The selector, not this automation, decides whether to spend a slot.</li>
 <li>Select the approved file, enter that file’s unique name and note (no more than 140 characters), submit, and save the receipt with the exact file hash. Only an actual receipt establishes an ORGANIZER-CONFIRMED result.</li>
-</ol><p><strong>Earlier portal error “Predicted values must be in range [0, 1]”:</strong> inspect the exact rejected bytes for NaN, infinity, nodata sentinels, values outside [0,1], and grid/mask mismatches. The rejected bytes and full portal receipt are unavailable here, so the cause is not established and no future acceptance is guaranteed. The all-zero-outside policy was checked locally but its interaction with the organizer’s outside-footprint wording remains unresolved.</p></div></section>'''
+</ol><p><strong>Earlier portal error “Predicted values must be in range [0, 1]”:</strong> inspect the exact rejected bytes for NaN, infinity, nodata sentinels, values outside [0,1], and grid/mask mismatches. The rejected bytes and full portal receipt are unavailable here, so the cause is not established and no future acceptance is guaranteed. A parallel audit interpreted the official outside-footprint wording as requiring NaN there; its independent check fails the old zeros-outside file. This session could not re-open the official page or test portal acceptance, so neither encoding is cleared.</p></div></section>'''
 
 
 def home(audit: dict, feed: dict) -> str:
@@ -155,11 +158,13 @@ def research() -> str:
 <section><div class="section-head"><h2>Sources for manual review</h2></div><div class="grid"><article class="card"><h3>Competition problem</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric ↗</a></p></article><article class="card"><h3>Reference implementation</h3><p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference on GitHub ↗</a></p></article><article class="card"><h3>Geophysics</h3><p><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release ↗</a></p></article><article class="card"><h3>Geothermal compilation</h3><p><a href="https://gdr.openei.org/submissions/1391">DOE GDR INGENIOUS collection ↗</a></p></article><article class="card"><h3>Elevation</h3><p><a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP ↗</a></p></article></div></section></div>'''
 
 
-def evidence_page(recheck: dict) -> str:
-    w, c, v = recheck["witness"], recheck["candidate"], recheck["local_format_diagnostic"]
+def evidence_page(recheck: dict, independent_focus: dict) -> str:
+    w, c = recheck["witness"], recheck["candidate"]
+    focus_overlap_percent = 100 * independent_focus["max_candidate_overlap_with_focus"]
     return page_top("Evidence and limitations", "One witness is enough to stop.", "Independent saved-byte recheck, with no new model training, new prediction or submission.") + f'''<div class="wrap"><section><div class="section-head"><h2>Literal uniqueness proof</h2><p>Measured {esc(recheck['checked_utc'])} against hash-pinned public owner mirrors, not authenticated organizer downloads.</p></div><div class="grid"><article class="card"><h3>Registry witness</h3><p>The <a href="{esc(w['source'])}">registered 17GEMSDOE probability raster</a> is positive on all {w['footprint_cells']:,} finite, GDAL-valid cells of the mirrored sample. For any nonempty prediction whose support lies inside that footprint, every positive pixel coincides with witness support. Directed 3-pixel overlap is therefore 100%, exceeding the requested 70% stop.</p><p class="small">Witness SHA-256 <code>{esc(w['sha256'])}</code>. This proves failure against one comparator; it does not constitute a complete current registry audit.</p></article>
 <article class="card"><h3>Previously advertised SGCE file</h3><p>Reopened saved TIFF: {c['positive_pixels_all']:,} positive pixels; {c['positive_pixels_within_3px_of_witness']:,} overlap the witness. Literal uniqueness: <strong>FAIL</strong>. Its pre-placement surface was not replayed. Its old content-aware exemption does not override the stated rule.</p><p class="small">SHA-256 <code>{esc(c['sha256'])}</code> · <a href="data/registry_witness_recheck_2026-10-27.json">Full recheck JSON ↓</a></p></article>
-<article class="card"><h3>Format is a different gate</h3><p>For this existing research file only: one float32 band, mirrored grid matched, no inside NaN and whole-array values within [0,1]. This is a local diagnostic, not proof of official source provenance, organizer acceptance, holdout validity, uniqueness or a future score.</p><p class="small">Diagnostic passed: {esc(v['format_ok'])} · <a href="data/session_9b794637_run_card.json">Current JSON run card ↓</a></p></article></div></section>
+<article class="card"><h3>Format is a different gate</h3><p>For the old zeros-outside research file, our local range/grid diagnostic passes, but a parallel independent check interprets the outside-footprint rule as requiring NaN and therefore <strong>fails that file</strong>. Its NaN-outside variant passes that parallel local format check. The official wording could not be re-read in this session and neither encoding has a portal receipt. Format checks alone never clear upload.</p><p class="small"><a href="data/format_independent_sgce_zeros_2026-10-27.json">Zeros diagnostic ↓</a> · <a href="data/format_independent_sgce_nan_2026-10-27.json">NaN diagnostic ↓</a> · <a href="data/session_9b794637_run_card.json">Current JSON run card ↓</a></p></article></div></section>
+<section><div class="section-head"><h2>Independent focus-only comparison</h2></div><div class="card"><p>A parallel review independently compared the older NaN-outside SGCE bytes to the nine pinned focus-site files. The largest directed 3-pixel overlap was {focus_overlap_percent:.2f}%. We reran that comparison after adding grid and cached-sample hash checks and obtained the same numbers. It excludes other registry files: the separate witness overlaps 100%, so focus-only agreement does <strong>not</strong> clear the literal all-registry gate.</p><p><a href="data/focus_uniqueness_independent_2026-10-27.json">Nine-file comparison and pairwise matrix ↓</a></p></div></section>
 <section><div class="section-head"><h2>What remains unknown</h2></div><div class="card"><ul><li>The original rejected upload bytes and portal receipt are unavailable, so the [0,1] error’s cause cannot be established.</li><li>Historical site scores are user/owner reports, not organizer-confirmed receipts. Some previous pages wrongly labeled them confirmed or recommended files despite failing the literal rule.</li><li>The active data/feature cache was not restored, nor was any feature canary or holdout rerun. Pinned mirror identity does not authenticate the organizer source or physical-band semantics.</li><li>The request does not identify its “single method paragraph”; the witness stop independently blocks the generation of a compliant nonempty candidate. The shared template tests signed positive rank correlation; the project has also used a stricter absolute-rank convention, which the user’s wording does not explicitly require. Agree on that convention and reconcile outside-footprint handling before release.</li><li>DrivenData, USGS, GDR and the rules PDF are outside this sandbox’s permitted outbound hosts. The <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference repository</a> was accessible via GitHub; no current portal quota or receipt was obtained.</li></ul></div></section>
 <section><div class="section-head"><h2>Repeat the independent audit</h2></div><div class="card"><p><code>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt</code><br><code>.venv/bin/python scripts/recheck_registry_witness.py --fetch</code><br><code>.venv/bin/python -m pytest -q</code></p><p class="small">GitHub access is required for pinned inputs. Cached rasters are ignored by Git. This command never creates or uploads a submission.</p></div></section></div>'''
 
@@ -193,6 +198,7 @@ def downloads_index() -> str:
 
 def render() -> None:
     authority, candidate, recheck, audit, feed = map(read, (AUTHORITY, SGCE_CARD, RECHECK, FOCUS, FEED))
+    focus_only, nan_format, zero_format = map(read, (INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO))
     gate = evaluate_release_gate(authority, candidate)
     w, c = recheck.get("witness", {}), recheck.get("candidate", {})
     if (gate["okay_to_submit"] or authority.get("verdict") != "negative"
@@ -207,6 +213,16 @@ def render() -> None:
             or digest(ROOT / "submission" / CANDIDATE_FILE) != SHA_CANDIDATE):
         raise ValueError("Evidence no longer supports the negative publication; fail closed and review")
     wanted = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}
+    independent_rows = focus_only.get("per_file", [])
+    nan_file = DOCS / "downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif"
+    if (len(independent_rows) != 9 or {r.get("site") for r in independent_rows} != wanted
+            or any(r.get("same_grid_as_candidate") is not True for r in independent_rows)
+            or focus_only.get("errors") or focus_only.get("n_focus_files_checked") != 9
+            or focus_only.get("max_candidate_overlap_with_focus") != max(r["candidate_dots_within_3px_of_focus"] for r in independent_rows)
+            or focus_only.get("candidate_sha256") != digest(nan_file)
+            or nan_format.get("sha256") != digest(nan_file) or nan_format.get("passed") is not True
+            or zero_format.get("sha256") != SHA_CANDIDATE or zero_format.get("passed") is not False):
+        raise ValueError("independent focus or format evidence does not match the recorded research bytes")
     rows = audit.get("focus_sites", [])
     if len(rows) != 9 or {r.get("site") for r in rows} != wanted or any(r.get("focus_literal_unique") is not False for r in rows):
         raise ValueError("focus-site audit is incomplete or inconsistent")
@@ -219,7 +235,7 @@ def render() -> None:
     (data / "release_gate.json").write_text(json.dumps(gate, indent=2, allow_nan=False) + "\n")
     (data / "decision.json").write_text(json.dumps({"decision": "DO-NOT-SUBMIT", "okay_to_submit": False,
                                                     "candidate": None, "source": "release_gate.json"}, indent=2) + "\n")
-    for path in (AUTHORITY, RECHECK, FOCUS, FEED):
+    for path in (AUTHORITY, RECHECK, FOCUS, FEED, INDEPENDENT_FOCUS, INDEPENDENT_NAN, INDEPENDENT_ZERO):
         shutil.copyfile(path, data / path.name)
     shutil.copyfile(AUTHORITY, data / "run_card.json")
     for _, (_, _, card) in LANES.items():
@@ -235,7 +251,7 @@ def render() -> None:
     (data / "session2_run_card.json").write_text(json.dumps(old, indent=2, allow_nan=False) + "\n")
     pages = {"index.html": ("Overview", home(audit, feed)), "executive-summary.html": ("Executive summary", executive(audit)),
              "how-to-submit.html": ("Submission guide", howto()), "research.html": ("Research", research()),
-             "evidence.html": ("Evidence", evidence_page(recheck)),
+             "evidence.html": ("Evidence", evidence_page(recheck, focus_only)),
              "submission.html": ("Submission", page_top("Submission status", "No file is currently cleared.", "See the executive summary and future submission guide; no upload is authorized.") + '<div class="wrap"><p><a href="executive-summary.html">Open executive summary →</a></p></div>')}
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(layout(title, name, body), encoding="utf-8")

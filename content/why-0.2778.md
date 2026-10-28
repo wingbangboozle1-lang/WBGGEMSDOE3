@@ -34,7 +34,7 @@ Unpruned: 0.13520 [0.11846, 0.15306]; ≤2 px proximity-pruned: 0.13526
 [0.11849, 0.15310]. Paired Δ versus unpruned: +0.000054
 [+0.000027, +0.000089]; versus equal-count random pruning: +0.000108
 [−0.0000008, +0.000235], including zero. Its own verdict was **negative**.
-[Saved source receipt](../evidence/h6_1_proximity_pruning_holdout.json) ·
+[Saved historical experiment record](../evidence/h6_1_proximity_pruning_holdout.json) ·
 [pinned upstream](https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/docs/data/h6_1_proximity_pruning_holdout.json).
 This is historical and was not replayed in this session.
 
@@ -51,12 +51,13 @@ higher competition score exists, not that a new file from this project will achi
 This session produced no candidate or valid local holdout estimate. The literal
 registry definition stops every nonempty in-footprint candidate because a registered
 soft raster is positive throughout the footprint; do not submit or silently exempt it.
-See the [current dashboard](../docs/index.html) and [negative card](../evidence/run_card.json).
+See the [current dashboard](../docs/index.html) and [negative card](../evidence/session_9b794637_run_card.json).
 
 ## Verification addendum — 2026-10-27 (independent recomputation)
 
-Every number here was recomputed this session from SHA-pinned bytes. Labels: owner-reported and
-projection figures are **not** scores.
+The focus overlap and B2 dot counts were independently recomputed from SHA-pinned bytes;
+the historical projection figures below were carried forward, not re-fitted. Owner-reported and
+projection figures are **not** organizer-confirmed scores.
 
 1. **Arithmetic.** GEMSDOE31's base has 40,199 positive cells; GEMSDOE32's B2 file has 37,654
    (`evidence/nine_site_table.json`). Difference **2,545**, matching the earlier statement.
@@ -69,7 +70,8 @@ projection figures are **not** scores.
    effect of the 2,545 removed cells (1.4–2 px from the catalogue) from the hidden labels. A plausible
    mechanism is that the removal lowers false-positive mass while keeping most true-positive credit under
    the 300 m kernel. The same public data could not confirm it, and no receipt ties 0.2778 to these bytes.
-4. **Can a new TIF beat 0.2778? Not demonstrated.** The unique SGCE candidate's projection is 0.0669
-   (80 % 0.0285–0.1053); the TDE-30k candidate's bias-corrected ledger estimate is 0.2074 but its
-   holdout is 0.0722 and both are circular (`docs/data/decision.json`). Neither is a validated gain.
+4. **Can a new TIF beat 0.2778? Not demonstrated.** Historical ledger projections and holdout
+   estimates were not re-fitted here and are subject to selection and circularity caveats
+   (`evidence/session2_projection.json`, `evidence/candidate_run_card.json`). No gain is validated;
+   SGCE's focus-only uniqueness also does not satisfy the literal all-registry requirement.
    See `knowledge/irregularities-2026-10-27.md` IR-28-06 to IR-28-08.

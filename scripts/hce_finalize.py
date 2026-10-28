@@ -28,6 +28,7 @@ OUT = ROOT / "docs" / "hce" / "downloads"
 
 
 def main():
+    raise RuntimeError("BLOCKED: historical HCE finalizer exempts the dense registry witness; no submission is cleared")
     t0 = time.time()
     meta, X, fidx, foot = F.load()
     with rasterio.open(RAW / "labels.tif") as ds:

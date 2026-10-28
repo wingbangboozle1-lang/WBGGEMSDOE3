@@ -53,7 +53,7 @@ def evaluate_release_gate(authority: dict[str, Any], candidate: dict[str, Any]) 
         reasons.append("The candidate lane itself is not marked promote.")
     if not isinstance(candidate_name, str) or not candidate_name.strip() or len(candidate_name) > 140:
         reasons.append("The candidate has no valid submission name.")
-    if not isinstance(note, str) or not 1 <= len(note) <= 140:
+    if not isinstance(note, str) or not note.strip() or len(note) > 140:
         reasons.append("The submission note is missing or exceeds 140 characters.")
 
     value, ci = holdout.get("value"), holdout.get("ci95")
@@ -72,10 +72,10 @@ def evaluate_release_gate(authority: dict[str, Any], candidate: dict[str, Any]) 
         reasons.append("A comparable fold-local HOLDOUT-DTI, evaluator, positive count, CI and positive paired improvement are not all established.")
 
     canary = _mapping(candidate.get("canary"))
-    count = canary.get("n_features")
+    count, tested = canary.get("n_features"), canary.get("n_features_tested")
     if (canary.get("all_features_tested") is not True
             or not isinstance(count, int) or isinstance(count, bool) or count <= 0
-            or canary.get("n_features_tested") != count
+            or not isinstance(tested, int) or isinstance(tested, bool) or tested != count
             or not _number(canary.get("max_auc"), 0, 0.90)):
         reasons.append("A complete per-feature leakage canary is missing or exceeds the threshold.")
 
@@ -84,7 +84,7 @@ def evaluate_release_gate(authority: dict[str, Any], candidate: dict[str, Any]) 
     expected, checked = uniqueness.get("registry_expected"), uniqueness.get("registry_checked")
     if (literal_pass is not True or uniqueness.get("complete_registry") is not True
             or not isinstance(expected, int) or isinstance(expected, bool) or expected <= 0
-            or checked != expected):
+            or not isinstance(checked, int) or isinstance(checked, bool) or checked != expected):
         reasons.append("The candidate does not record a complete passing literal all-registry uniqueness gate.")
     for name in ("surface", "final"):
         phase = _mapping(uniqueness.get(name))
@@ -94,11 +94,17 @@ def evaluate_release_gate(authority: dict[str, Any], candidate: dict[str, Any]) 
             reasons.append(f"The {name} phase lacks passing literal correlation and overlap measurements.")
 
     validation = _mapping(candidate.get("validator"))
-    required = ("passed", "single_band", "no_nan_inside_footprint", "values_in_0_1",
-                "crs_shape_transform_match", "saved_bytes_equal_audited_dots")
+    required = ("passed", "single_band", "dtype_float32", "no_inf", "no_nan_inside_footprint",
+                "values_in_0_1", "crs_shape_transform_match", "outside_footprint_compliant",
+                "saved_bytes_equal_audited_dots")
+    footprint_sha = validation.get("reference_footprint_sha256")
+    outside_policy = validation.get("outside_footprint_policy")
+    positives = validation.get("positive_cells_inside_footprint")
     if (any(validation.get(key) is not True for key in required)
-            or validation.get("sha256") != candidate_sha
-            or not candidate_sha):
+            or validation.get("sha256") != candidate_sha or not candidate_sha
+            or not isinstance(footprint_sha, str) or not SHA256.fullmatch(footprint_sha)
+            or not isinstance(outside_policy, str) or not outside_policy.strip()
+            or not isinstance(positives, int) or isinstance(positives, bool) or positives <= 0):
         reasons.append("Saved-byte format validation is missing, incomplete, or bound to different bytes.")
 
     approved = not reasons

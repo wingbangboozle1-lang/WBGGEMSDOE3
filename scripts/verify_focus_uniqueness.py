@@ -21,6 +21,9 @@ import numpy as np
 import rasterio
 from scipy import ndimage as ndi
 
+# The reference sample is independently hash-checked even when cached.
+from verify_format_independent import sample_path
+
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / ".cache" / "focus_check"
 RADIUS_PX = 3.0
@@ -50,10 +53,15 @@ def main(candidate: Path, out_json: Path) -> int:
     ledger = json.loads((ROOT / "registry/upstream_live_ledger_rasters.json").read_text())
     by_sha = {r["sha256"]: r for r in ledger["rows"] if r.get("sha256") and r.get("status") == "ok"}
     CACHE.mkdir(parents=True, exist_ok=True)
+    with rasterio.open(sample_path()) as s:
+        footprint = np.isfinite(s.read(1))
+        ref_grid = (s.shape, s.transform, s.crs)
     with rasterio.open(candidate) as c:
         cand = c.read(1)
         cshape, ctr, ccrs = c.shape, c.transform, c.crs
-    cdots = dots_of(cand)
+        if c.count != 1 or (cshape, ctr, ccrs) != ref_grid:
+            raise ValueError("candidate must be single-band and match the pinned sample grid")
+    cdots = dots_of(cand) & footprint
     results, errors = [], []
     for row in table["rows"]:
         sha = row["sha256"]
@@ -73,8 +81,11 @@ def main(candidate: Path, out_json: Path) -> int:
             continue
         with rasterio.open(raw_path) as f:
             a = f.read(1)
-            same_grid = f.shape == cshape and f.transform == ctr and f.crs == ccrs
-        fdots = dots_of(a)
+            same_grid = f.count == 1 and f.shape == cshape and f.transform == ctr and f.crs == ccrs
+        if not same_grid:
+            errors.append(f"{row['site']}: single-band grid mismatch")
+            continue
+        fdots = dots_of(a) & footprint
         results.append({
             "site": row["site"],
             "file": meta["path"].split("/")[-1],
@@ -91,7 +102,7 @@ def main(candidate: Path, out_json: Path) -> int:
     masks = {}
     for r in results:
         with rasterio.open(CACHE / f"{r['sha256']}.tif") as f:
-            masks[r["site"]] = dots_of(f.read(1))
+            masks[r["site"]] = dots_of(f.read(1)) & footprint
     pairwise = {}
     for a_site, am in masks.items():
         for b_site, bm in masks.items():
@@ -104,7 +115,7 @@ def main(candidate: Path, out_json: Path) -> int:
         "candidate": candidate.name,
         "candidate_sha256": hashlib.sha256(candidate.read_bytes()).hexdigest(),
         "radius_px": RADIUS_PX,
-        "dot_definition": "finite and > 0 inside candidate footprint (repo definition)",
+        "dot_definition": "finite and > 0 inside the hash-pinned sample footprint (repo definition)",
         "n_focus_files_checked": len(results),
         "max_candidate_overlap_with_focus": worst,
         "per_file": results,

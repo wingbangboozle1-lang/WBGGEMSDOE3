@@ -23,8 +23,10 @@ def good():
                        "registry_checked": 2,
                        "surface": {"passed": True, "max_abs_spearman": 0.90, "max_dot_overlap": 0.70},
                        "final": {"passed": True, "max_abs_spearman": 0.80, "max_dot_overlap": 0.69}},
-        "validator": {"passed": True, "single_band": True, "no_nan_inside_footprint": True,
-                      "values_in_0_1": True, "crs_shape_transform_match": True,
+        "validator": {"passed": True, "single_band": True, "dtype_float32": True, "no_inf": True,
+                      "no_nan_inside_footprint": True, "values_in_0_1": True, "crs_shape_transform_match": True,
+                      "outside_footprint_compliant": True, "outside_footprint_policy": "fixture-only",
+                      "reference_footprint_sha256": "b" * 64, "positive_cells_inside_footprint": 2,
                       "saved_bytes_equal_audited_dots": True, "sha256": SHA},
     }
     return authority, candidate
@@ -40,6 +42,7 @@ def test_complete_synthetic_contract_is_internally_consistent():
     ("authority", "selector_approval", False), ("authority", "selector_approval", "true"),
     ("authority", "selector_approval", 1), ("authority", "raster_sha256", "b" * 64),
     ("candidate", "raster_sha256", "not-a-hash"), ("candidate", "submission_note", "x" * 141),
+    ("candidate", "submission_note", "   "),
     ("candidate", "verdict", "promote-with-caveat"),
     ("holdout_dti", "label", "PROXY-DTI"), ("holdout_dti", "withheld_positives", 0),
     ("holdout_dti", "ci95", [0.1, 0.2]), ("holdout_dti", "ci95", [float('nan'), 0.9]),
@@ -53,6 +56,12 @@ def test_complete_synthetic_contract_is_internally_consistent():
     ("uniqueness", "registry_checked", 1),
     ("validator", "values_in_0_1", 1), ("validator", "sha256", "b" * 64),
     ("validator", "no_nan_inside_footprint", False),
+    ("validator", "outside_footprint_compliant", False),
+    ("validator", "outside_footprint_policy", " "),
+    ("validator", "reference_footprint_sha256", None),
+    ("validator", "no_inf", False), ("validator", "dtype_float32", False),
+    ("validator", "positive_cells_inside_footprint", 0),
+    ("validator", "positive_cells_inside_footprint", True),
 ])
 def test_each_missing_or_invalid_gate_blocks(section, key, value):
     authority, candidate = good()
@@ -73,6 +82,17 @@ def test_each_missing_or_invalid_gate_blocks(section, key, value):
 def test_both_registry_phases_must_pass(phase, key, value):
     authority, candidate = good()
     candidate["uniqueness"][phase][key] = value
+    assert not evaluate_release_gate(authority, candidate)["okay_to_submit"]
+
+
+def test_boolean_counts_are_not_accepted_as_integer_counts():
+    authority, candidate = good()
+    candidate["canary"]["n_features"] = 1
+    candidate["canary"]["n_features_tested"] = True
+    assert not evaluate_release_gate(authority, candidate)["okay_to_submit"]
+    authority, candidate = good()
+    candidate["uniqueness"]["registry_expected"] = 1
+    candidate["uniqueness"]["registry_checked"] = True
     assert not evaluate_release_gate(authority, candidate)["okay_to_submit"]
 
 

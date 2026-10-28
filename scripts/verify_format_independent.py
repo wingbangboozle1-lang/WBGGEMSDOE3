@@ -38,6 +38,9 @@ def sample_path() -> Path:
         if hashlib.sha256(data).hexdigest() != SAMPLE_SHA:
             raise SystemExit("pinned sample SHA-256 mismatch; refusing to validate")
         p.write_bytes(data)
+    # Cached bytes are untrusted too; a prior download is not a permanent proof.
+    if hashlib.sha256(p.read_bytes()).hexdigest() != SAMPLE_SHA:
+        raise SystemExit("cached sample SHA-256 mismatch; refusing to validate")
     return p
 
 
@@ -62,13 +65,13 @@ def main() -> int:
         }
     fin = np.isfinite(a)
     vals = a[fin]
-    outside = a[~foot]
+    same_shape = a.shape == foot.shape
     checks.update({
         "no_inf": bool(not np.isinf(a).any()),
-        "finite_values_in_0_1": bool(((vals >= 0) & (vals <= 1)).all()),
-        "finite_mask_equals_sample_footprint": bool(np.array_equal(fin, foot)),
-        "outside_footprint_is_nan (official text)": bool(np.isnan(outside).all()),
-        "inside_footprint_all_finite": bool(np.isfinite(a[foot]).all()),
+        "finite_values_in_0_1": bool(vals.size and ((vals >= 0) & (vals <= 1)).all()),
+        "finite_mask_equals_sample_footprint": bool(same_shape and np.array_equal(fin, foot)),
+        "outside_footprint_is_nan (official text)": bool(same_shape and np.isnan(a[~foot]).all()),
+        "inside_footprint_all_finite": bool(same_shape and np.isfinite(a[foot]).all()),
     })
     result = {
         "schema": "format-independent-v1",

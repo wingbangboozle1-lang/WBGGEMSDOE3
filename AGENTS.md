@@ -1,7 +1,9 @@
 # Working agreement
 
-At the start of every session read `README.md`, `knowledge/preregistration-2026-10-27.md`,
-`knowledge/review-passes-2026-10-27.md`, `knowledge/preregistration-2026-10-26.md`,
+At the start of every session read `README.md`, `knowledge/session-review-9b794637.md`,
+`evidence/session_9b794637_run_card.json`, `evidence/registry_witness_recheck_2026-10-27.json`,
+`knowledge/preregistration-2026-10-27-9b794637.md`, `knowledge/protocol.md`,
+`knowledge/preregistration-2026-10-27.md`, `knowledge/review-passes-2026-10-27.md`, `knowledge/preregistration-2026-10-26.md`,
 `knowledge/review-and-irregularities-2026-10-26.md`, `research/REVIEW.md`, and the latest
 `evidence/session2_run_card.json` (plus the historical `evidence/run_card.json`) before working. Preserve the user's parallel-run protocol and
 literal stop rules. Never present a proxy, owner report, or projection as an
