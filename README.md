@@ -25,11 +25,19 @@ a negative result as a deliverable. The reconstructed standing brief is included
 at the end of this README. It is **not verbatim**: the full original prompt was
 not available to this session, and the previous verbatim claim was incorrect.
 
-## Latest review — 2026-10-28 UTC
+## Latest review — 2026-10-28 (negative; no experiment)
 
-**Negative preflight; DO NOT SUBMIT.** No new TIFF or method experiment was generated. The current literal overlap rule remains infeasible for every nonempty prediction because one registered mirrored raster is positive on the entire 5,167,373-cell footprint (RASTER-ARTIFACT MEASUREMENT; see [witness audit](evidence/registry_witness_recheck_2026-10-27.json)). The candidate ideas, constraints, missing data, three-pass repo review, official source links and limitations are in [the 2026-10-28 review](knowledge/review-2026-10-28.md); the machine-readable negative run card is [here](evidence/review_2026-10-28_run_card.json). This is not an all-registry completeness claim or organizer-confirmed result.
+Re-read the standing brief and release protocol and reviewed the four-hypothesis
+preregistration. The literal all-footprint registry witness remains a blocker
+under the current shared `finite & value > 0` support definition. No new
+surface/TIF, HOLDOUT-DTI, leaderboard refresh, competition submission, or slot
+was produced. The local checkout lacks the competition feature stack, labels,
+segment identifiers and saved folds; the assigned method paragraph is still
+not identifiable. Full tests: **224 passed, 4 skipped, 72 warnings**;
+`python scripts/check_site.py`: **PASS**. The user-reported 0.3195 is not a
+live verified leaderboard value. See the [three-pass session review](knowledge/session-review-2026-10-28.md)
+and [machine-readable run card](evidence/session_review_2026-10-28.json).
 
-Verification: `.venv/bin/python -m pytest -q` → **223 passed, 4 skipped, 72 warnings (TEST RESULTS)**. `python scripts/build_site.py`, `python scripts/check_site.py`, and a docs diff check passed. These validate software/site consistency, not scientific performance or portal acceptance. Official DrivenData/USGS/GDR/NLR pages were not re-fetched because those hosts are outside this sandbox's outbound allowlist.
 
 ## Executive summary: nine requested sites
 
@@ -61,11 +69,11 @@ physically distinct method might score higher; no such result has been demonstra
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
 
-**Latest review (2026-10-28):** no candidate TIFF was generated or cleared. The
-literal registry rule still has a universal positive-support blocker, and the
-assigned method paragraph is missing. Four explicitly unexecuted research
-hypotheses, three review passes, test results, and next-session blockers are in
-[the current session review](knowledge/session-review-2026-10-28-arena82fb40b8.md).
+**Parallel review note (2026-10-28):** a separate session also documented a
+negative preflight before this review. Its evidence is retained in
+[that session's review](knowledge/review-2026-10-28.md) and
+[run card](evidence/review-2026-10-28_run_card.json); its reported test count
+belongs to that session, not the current review above.
 
 ## What has and has not been validated
 
