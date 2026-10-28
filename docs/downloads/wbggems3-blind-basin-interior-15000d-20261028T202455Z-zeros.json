@@ -1,0 +1,20 @@
+{
+  "name": "wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros",
+  "file": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif",
+  "sha256": "4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea",
+  "size_bytes": 169562,
+  "n_dots": 15000,
+  "hypothesis": "blind-fault basin-interior emission",
+  "method": "6px staggered grid, suitability-weighted (distance-from-crowding + basin structure), min-distance 5px",
+  "max_forward_overlap": 0.0,
+  "max_abs_spearman": 0.0021,
+  "unique_vs_nine_focus_sites": true,
+  "values_in_0_1": true,
+  "no_nan": true,
+  "crs_shape_transform_match": true,
+  "zeros_outside_footprint": true,
+  "generated_utc": "20261028T202455Z",
+  "submission_name": "wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros",
+  "submission_note": "blind-fault basin-interior emission; 15000 dots; 6px staggered grid; zeros-outside; unique vs nine GEMSDOE focus sites",
+  "estimate_label": "ESTIMATE (not organizer-confirmed; no leaderboard receipt yet)"
+}

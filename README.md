@@ -444,3 +444,13 @@ for the next session.
   curvature contacts + GDR springs), H4 Euler depth clusters + Curie corridors.
   Instrument fixes needed first: a fold-legal placement instrument (the catalogue holdout
   cannot rank this family), and a leakage-safe off-catalogue canary.
+
+---
+
+## Appendix — full standing prompt (2026-10-28 user brief)
+
+> Review our competition performance and place us at the top of the leaderboard. Explain why 306: GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros scored 0.2778. Generate a unique TIF submission that scores higher. I want you to pick 3195, and then 4413 if 4413 is the highest right now.
+>
+> Executive summary of the top submissions for these sites: GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Each entry: best submission file available for download on that site, estimated score (label HOLDOUT-DTI vs ORGANIZER-CONFIRMED; projections never as scores), and whether it is unique vs the others. A file I can download directly in one click must be obvious at the top of the site, plus a subpage explaining exactly how to submit (unique name + short note ≤140 chars).
+>
+> MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION — must not copy any previous GEMSDOE-site submission. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION after inspection/validation run in-project (no manual input). Before implementing: 3–5 candidate geological hypotheses (named layers, physical signature, why it catches uncatalogued faults, difference from repo, ranked by DTI improvement vs cost); validate the top one on a spatially-blocked holdout before any submission slot. Validate format (no NaN in footprint, values in [0,1], CRS/shape/transform) and uniqueness gates (≤0.90 rank-corr, ≤70% dots within 3 px vs every registry raster, surface + final). Put this prompt in the repo README.md and update documentation per this request. Re-read the prompt each session. Three experiments / two hours max per lane; end with a JSON run card (hypothesis, mechanism, named non-fault mimic, holdout DTI+CI, corr/overlap vs registry, raster sha256, validator output, submission name+note ≤140 chars, verdict promote/negative). Then create a pull request and merge it onto main, and suggest remaining work and limitations for the next session. Maximize P(Win); Own the Outcome.
