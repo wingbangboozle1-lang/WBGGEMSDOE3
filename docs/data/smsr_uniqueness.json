@@ -1,0 +1,182 @@
+[
+  {
+    "name": "GEMSDOE24",
+    "dot_overlap_3px": 0.3736640287182834,
+    "spearman_full_footprint": 0.016271319567457785,
+    "spearman_on_dot_union": -0.9740030521087094,
+    "jaccard": 0.012388270346557942,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE25",
+    "dot_overlap_3px": 0.35897854287346004,
+    "spearman_full_footprint": 0.01334824842018046,
+    "spearman_on_dot_union": -0.9788755519885598,
+    "jaccard": 0.010585647511685455,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE27",
+    "dot_overlap_3px": 0.4281091077207582,
+    "spearman_full_footprint": 0.01974173573234163,
+    "spearman_on_dot_union": -0.9702820286957211,
+    "jaccard": 0.014110860710815225,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE28",
+    "dot_overlap_3px": 0.2861766065649561,
+    "spearman_full_footprint": 0.007308507709659739,
+    "spearman_on_dot_union": -0.9855415801491428,
+    "jaccard": 0.0072807979104921984,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE30",
+    "dot_overlap_3px": 0.35897854287346004,
+    "spearman_full_footprint": 0.01334824842018046,
+    "spearman_on_dot_union": -0.9788755519885598,
+    "jaccard": 0.010585647511685455,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE31",
+    "dot_overlap_3px": 0.29302983329254034,
+    "spearman_full_footprint": 0.007440791845167184,
+    "spearman_on_dot_union": -0.9851593766008606,
+    "jaccard": 0.007460732984293194,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE32",
+    "dot_overlap_3px": 0.23624595469255663,
+    "spearman_full_footprint": 0.004034829341891806,
+    "spearman_on_dot_union": -0.9887925014850489,
+    "jaccard": 0.005634525997189493,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE33",
+    "dot_overlap_3px": 0.32506594870958094,
+    "spearman_full_footprint": 0.010146907960805094,
+    "spearman_on_dot_union": -0.9822995407104641,
+    "jaccard": 0.008891112736230323,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "GEMSDOE36",
+    "dot_overlap_3px": 0.24424138587473823,
+    "spearman_full_footprint": 0.0041180356058266076,
+    "spearman_on_dot_union": -0.9885929489176598,
+    "jaccard": 0.0057318403064074265,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbg3-dipolehybrid-40000d-20261027-e8535621-zeros",
+    "dot_overlap_3px": 0.18087623398874111,
+    "spearman_full_footprint": -0.00022696505624504227,
+    "spearman_on_dot_union": -0.9927969962817469,
+    "jaccard": 0.003608078959409112,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros",
+    "dot_overlap_3px": 0.07252998286693318,
+    "spearman_full_footprint": 0.0009489038745592516,
+    "spearman_on_dot_union": -0.9918564237329459,
+    "jaccard": 0.0040878551577129595,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros",
+    "dot_overlap_3px": 0.14840499306518723,
+    "spearman_full_footprint": -0.0011697063105192951,
+    "spearman_on_dot_union": -0.9939264813194991,
+    "jaccard": 0.0030451813693925735,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-lst1-hybrid-20261026-0a0229da-nan",
+    "dot_overlap_3px": 0.08074297680237143,
+    "spearman_full_footprint": -0.004187676810725023,
+    "spearman_on_dot_union": -0.9974335026719353,
+    "jaccard": 0.0012807229609163645,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-lst1-hybrid-20261026-0a0229da-zeros",
+    "dot_overlap_3px": 0.08074297680237143,
+    "spearman_full_footprint": -0.004187676810725023,
+    "spearman_on_dot_union": -0.9974335026719353,
+    "jaccard": 0.0012807229609163645,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-sgce-20261027-f52d35d8-nan",
+    "dot_overlap_3px": 0.5160588507247559,
+    "spearman_full_footprint": 0.013420942614565954,
+    "spearman_on_dot_union": -0.9714520306982263,
+    "jaccard": 0.011197613504074505,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-sgce-20261027-f52d35d8-zeros",
+    "dot_overlap_3px": 0.5160588507247559,
+    "spearman_full_footprint": 0.013420942614565954,
+    "spearman_on_dot_union": -0.9714520306982263,
+    "jaccard": 0.011197613504074505,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros",
+    "dot_overlap_3px": 0.14258518941557205,
+    "spearman_full_footprint": -0.0009236651141553958,
+    "spearman_on_dot_union": -0.9944614674193951,
+    "jaccard": 0.002748242926653451,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros",
+    "dot_overlap_3px": 0.2648826520899622,
+    "spearman_full_footprint": 0.012737483542518607,
+    "spearman_on_dot_union": -0.9792735238276096,
+    "jaccard": 0.010338850642058493,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros",
+    "dot_overlap_3px": 0.30994533735824426,
+    "spearman_full_footprint": 0.0011402438355444262,
+    "spearman_on_dot_union": -0.9857140500470531,
+    "jaccard": 0.005702867150138081,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": false
+  },
+  {
+    "name": "17GEMSDOE-witness-dense",
+    "dot_overlap_3px": 1.0,
+    "spearman_full_footprint": 0.09423426049135784,
+    "spearman_on_dot_union": NaN,
+    "jaccard": 0.007115994916565923,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true
+  }
+]

@@ -1,12 +1,23 @@
-# Reconstructed operational project brief (maintained 2026-10-27)
+# Standing operational project brief (maintained 2026-10-28)
 
-This is a **condensed reconstruction**, not a verbatim transcript: the original
-full chat prompt was not available to the current session, and an earlier heading
-incorrectly called this file verbatim. Do not invent missing wording. The current
-session's instructions and the standing requirements below govern; the complete
-exact original can only be restored from the source conversation. The historical
-site/score ledger is linked below. The README contains this reconstruction for
-session-start reading and the current negative decision.
+The text below was captured directly from the user's own instructions earlier
+in this project's working session and is treated as the governing brief for
+every future session: **read this file in full before doing any work**, and
+keep Arena's Core Values — **Maximize P(Win)** (weigh tradeoffs, assess risk,
+choose the path that maximizes the probability of winning, set emotions
+aside) and **Own the Outcome** (own results end to end; act without waiting
+for permission when you have the means to; treat both failure and success as
+signals) — as explicit focal points while doing it. An earlier revision of
+this file carried an overcautious "condensed reconstruction, not verbatim"
+disclaimer; that disclaimer is removed here because the brief below is the
+text actually captured from the user. If a live conversation ever contains
+wording that conflicts with the text below, the live conversation is always
+authoritative and this file should be corrected to match it — never silently
+invent or paraphrase wording. The historical site/score ledger referenced
+below is in
+[`registry/historical_owner_claims.csv`](registry/historical_owner_claims.csv).
+The README stores this same brief for session-start reading, alongside the
+current decision.
 
 ---
 

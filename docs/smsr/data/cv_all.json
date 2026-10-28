@@ -1,0 +1,958 @@
+{
+  "mode": "all",
+  "n_cells": 8,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "variants": {
+    "shipped_g": {
+      "canary": {
+        "d": {
+          "auc_per_fold": [
+            0.09998210519480517,
+            0.11428550741525424,
+            0.1240044265873016,
+            0.12056905010759299
+          ],
+          "auc_mean": 0.11471027232623851,
+          "auc_min": 0.09998210519480517,
+          "auc_max": 0.1240044265873016,
+          "discriminative_auc_mean": 0.8852897276737615,
+          "discriminative_auc_max": 0.9000178948051948,
+          "leakage_threshold": 0.9,
+          "leakage_flag": true
+        },
+        "d_perp": {
+          "auc_per_fold": [
+            0.07620762337662339,
+            0.07547479131355932,
+            0.1031154332010582,
+            0.08522279203811865
+          ],
+          "auc_mean": 0.0850051599823399,
+          "auc_min": 0.07547479131355932,
+          "auc_max": 0.1031154332010582,
+          "discriminative_auc_mean": 0.9149948400176602,
+          "discriminative_auc_max": 0.9245252086864407,
+          "leakage_threshold": 0.9,
+          "leakage_flag": true
+        },
+        "d_par_abs": {
+          "auc_per_fold": [
+            0.35016732597402594,
+            0.39376486122881355,
+            0.33397763293650795,
+            0.3512499846295727
+          ],
+          "auc_mean": 0.35728995119223006,
+          "auc_min": 0.33397763293650795,
+          "auc_max": 0.39376486122881355,
+          "discriminative_auc_mean": 0.6427100488077699,
+          "discriminative_auc_max": 0.666022367063492,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "side": {
+          "auc_per_fold": [
+            0.4811759467532467,
+            0.49525306779661016,
+            0.5107760826719576,
+            0.4864611005225945
+          ],
+          "auc_mean": 0.49341654943610225,
+          "auc_min": 0.4811759467532467,
+          "auc_max": 0.5107760826719576,
+          "discriminative_auc_mean": 0.5119714918998766,
+          "discriminative_auc_max": 0.5188240532467533,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "log_len": {
+          "auc_per_fold": [
+            0.43621699610389614,
+            0.4212844290254237,
+            0.45722793518518523,
+            0.47442038426068245
+          ],
+          "auc_mean": 0.4472874361437969,
+          "auc_min": 0.4212844290254237,
+          "auc_max": 0.47442038426068245,
+          "discriminative_auc_mean": 0.5527125638562032,
+          "discriminative_auc_max": 0.5787155709745764,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "sin2": {
+          "auc_per_fold": [
+            0.5198323493506494,
+            0.4699891790254237,
+            0.520957617063492,
+            0.47448452966492466
+          ],
+          "auc_mean": 0.49631591877612247,
+          "auc_min": 0.4699891790254237,
+          "auc_max": 0.520957617063492,
+          "discriminative_auc_mean": 0.5240790644309482,
+          "discriminative_auc_max": 0.5300108209745763,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "cos2": {
+          "auc_per_fold": [
+            0.5154496909090909,
+            0.5381002680084745,
+            0.4767289087301587,
+            0.5343134545035352
+          ],
+          "auc_mean": 0.5161480805378148,
+          "auc_min": 0.4767289087301587,
+          "auc_max": 0.5381002680084745,
+          "discriminative_auc_mean": 0.5277836261727354,
+          "discriminative_auc_max": 0.5381002680084745,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "coherence": {
+          "auc_per_fold": [
+            0.35046143766233767,
+            0.33350996398305083,
+            0.4226537037037037,
+            0.38223812096526283
+          ],
+          "auc_mean": 0.37221580657858877,
+          "auc_min": 0.33350996398305083,
+          "auc_max": 0.4226537037037037,
+          "discriminative_auc_mean": 0.6277841934214112,
+          "discriminative_auc_max": 0.6664900360169492,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "density": {
+          "auc_per_fold": [
+            0.7291671675324676,
+            0.6869908262711864,
+            0.7511370899470899,
+            0.7484809153089456
+          ],
+          "auc_mean": 0.7289439997649223,
+          "auc_min": 0.6869908262711864,
+          "auc_max": 0.7511370899470899,
+          "discriminative_auc_mean": 0.7289439997649223,
+          "discriminative_auc_max": 0.7511370899470899,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "sin2d": {
+          "auc_per_fold": [
+            0.397374938961039,
+            0.32353059639830506,
+            0.46774653505291003,
+            0.4059167637565324
+          ],
+          "auc_mean": 0.3986422085421966,
+          "auc_min": 0.32353059639830506,
+          "auc_max": 0.46774653505291003,
+          "discriminative_auc_mean": 0.6013577914578034,
+          "discriminative_auc_max": 0.6764694036016949,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "cos2d": {
+          "auc_per_fold": [
+            0.3385073779220779,
+            0.38612195127118637,
+            0.37396521626984125,
+            0.3491155633261605
+          ],
+          "auc_mean": 0.3619275271973165,
+          "auc_min": 0.3385073779220779,
+          "auc_max": 0.38612195127118637,
+          "discriminative_auc_mean": 0.6380724728026834,
+          "discriminative_auc_max": 0.661492622077922,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_tmi_hg": {
+          "auc_per_fold": [
+            0.5421017909090908,
+            0.47564476271186445,
+            0.5379526798941798,
+            0.5275164509683369
+          ],
+          "auc_mean": 0.520803921120868,
+          "auc_min": 0.47564476271186445,
+          "auc_max": 0.5421017909090908,
+          "discriminative_auc_mean": 0.5329815397649358,
+          "discriminative_auc_max": 0.5421017909090908,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_tc": {
+          "auc_per_fold": [
+            0.4331952649350649,
+            0.4291744788135593,
+            0.4466592156084656,
+            0.3988791577005841
+          ],
+          "auc_mean": 0.4269770292644185,
+          "auc_min": 0.3988791577005841,
+          "auc_max": 0.4466592156084656,
+          "discriminative_auc_mean": 0.5730229707355815,
+          "discriminative_auc_max": 0.6011208422994159,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_slope": {
+          "auc_per_fold": [
+            0.5868802922077923,
+            0.546647722457627,
+            0.5374988042328043,
+            0.5885841669228404
+          ],
+          "auc_mean": 0.564902746455266,
+          "auc_min": 0.5374988042328043,
+          "auc_max": 0.5885841669228404,
+          "discriminative_auc_mean": 0.564902746455266,
+          "discriminative_auc_max": 0.5885841669228404,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_grav_hg": {
+          "auc_per_fold": [
+            0.4548166181818182,
+            0.5730245360169491,
+            0.48371041666666664,
+            0.4726436281893637
+          ],
+          "auc_mean": 0.4960487997636994,
+          "auc_min": 0.4548166181818182,
+          "auc_max": 0.5730245360169491,
+          "discriminative_auc_mean": 0.5404634682447752,
+          "discriminative_auc_max": 0.5730245360169491,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_curv": {
+          "auc_per_fold": [
+            0.5409555987012986,
+            0.5497374226694915,
+            0.5156938789682539,
+            0.5566667537657547
+          ],
+          "auc_mean": 0.5407634135261997,
+          "auc_min": 0.5156938789682539,
+          "auc_max": 0.5566667537657547,
+          "discriminative_auc_mean": 0.5407634135261997,
+          "discriminative_auc_max": 0.5566667537657547,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_edge_max": {
+          "auc_per_fold": [
+            0.5303310909090908,
+            0.49060702648305077,
+            0.5217725304232804,
+            0.49149332462342454
+          ],
+          "auc_mean": 0.5085509931097116,
+          "auc_min": 0.49060702648305077,
+          "auc_max": 0.5303310909090908,
+          "discriminative_auc_mean": 0.5175008175564739,
+          "discriminative_auc_max": 0.5303310909090908,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_cond": {
+          "auc_per_fold": [
+            0.5199430571428572,
+            0.48438724576271186,
+            0.5065802605820107,
+            0.4862265777743622
+          ],
+          "auc_mean": 0.49928428531548547,
+          "auc_min": 0.48438724576271186,
+          "auc_max": 0.5199430571428572,
+          "discriminative_auc_mean": 0.5139773735469484,
+          "discriminative_auc_max": 0.5199430571428572,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_base_edge": {
+          "auc_per_fold": [
+            0.5218749220779221,
+            0.570150308262712,
+            0.5090051977513228,
+            0.5424632101137412
+          ],
+          "auc_mean": 0.5358734095514246,
+          "auc_min": 0.5090051977513228,
+          "auc_max": 0.570150308262712,
+          "discriminative_auc_mean": 0.5358734095514246,
+          "discriminative_auc_max": 0.570150308262712,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_strain": {
+          "auc_per_fold": [
+            0.5755710974025974,
+            0.49091759639830507,
+            0.4884400621693122,
+            0.47854029588072544
+          ],
+          "auc_mean": 0.5083672629627349,
+          "auc_min": 0.47854029588072544,
+          "auc_max": 0.5755710974025974,
+          "discriminative_auc_mean": 0.5294182857385636,
+          "discriminative_auc_max": 0.5755710974025974,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        }
+      },
+      "pooled": {
+        "pooled_dti": 0.3207749807484661,
+        "coverage": 0.4918675160486301,
+        "coverage_ci95": [
+          0.48535747113914224,
+          0.4983803201385945
+        ],
+        "dti_ci95_coverage_only": [
+          0.3167984057385557,
+          0.3247464894727511
+        ],
+        "dti_ci95_quadrant_jackknife": [
+          0.278871186484829,
+          0.3626787750121032
+        ],
+        "jackknife_drop_quadrant": {
+          "foldNE": 0.33059771173812874,
+          "foldNW": 0.3156947966547041,
+          "foldSE": 0.30337200369635037,
+          "foldSW": 0.33435882874428036
+        },
+        "tp": 11136.372430857034,
+        "fp": 71885.05503721532,
+        "fn": 11504.627569142966,
+        "n_truth": 22641,
+        "n_dots": 89700
+      },
+      "per_cell": [
+        {
+          "key": "draw20_foldNW_all",
+          "mode": "all",
+          "n_truth": 1925,
+          "n_dots": 7363,
+          "dti": 0.3363026715933107,
+          "coverage": 0.5067188357365651,
+          "tp": 975.4337587928878,
+          "fp": 5826.88574660306,
+          "fn": 949.5662412071122,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 1263.7809384227585,
+          "p_mean": 0.002142015378922224,
+          "p_max": 0.8071640133857727
+        },
+        {
+          "key": "draw21_foldNW_all",
+          "mode": "all",
+          "n_truth": 1919,
+          "n_dots": 7385,
+          "dti": 0.3561600997385689,
+          "coverage": 0.534778672999557,
+          "tp": 1026.2402734861498,
+          "fp": 5704.767617620091,
+          "fn": 892.7597265138502,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 1253.6923013314315,
+          "p_mean": 0.0021193355787545443,
+          "p_max": 0.8963674902915955
+        },
+        {
+          "key": "draw20_foldNE_all",
+          "mode": "all",
+          "n_truth": 2360,
+          "n_dots": 10356,
+          "dti": 0.2789609930229327,
+          "coverage": 0.44986540734672903,
+          "tp": 1061.6823613382805,
+          "fp": 8527.543729260735,
+          "fn": 1298.3176386617195,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2287.984772595384,
+          "p_mean": 0.002386571606621146,
+          "p_max": 0.8474155068397522
+        },
+        {
+          "key": "draw21_foldNE_all",
+          "mode": "all",
+          "n_truth": 2365,
+          "n_dots": 10467,
+          "dti": 0.2925755944919107,
+          "coverage": 0.4701367195649435,
+          "tp": 1111.8733417710914,
+          "fp": 8429.597777205527,
+          "fn": 1253.1266582289086,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2341.3654659304343,
+          "p_mean": 0.0024131066165864468,
+          "p_max": 0.9181972742080688
+        },
+        {
+          "key": "draw20_foldSW_all",
+          "mode": "all",
+          "n_truth": 3780,
+          "n_dots": 14561,
+          "dti": 0.2993383575249092,
+          "coverage": 0.45640386034422525,
+          "tp": 1725.2065921011715,
+          "fp": 11971.791776669683,
+          "fn": 2054.7934078988283,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2201.3769332823817,
+          "p_mean": 0.002966232132166624,
+          "p_max": 0.802535891532898
+        },
+        {
+          "key": "draw21_foldSW_all",
+          "mode": "all",
+          "n_truth": 3786,
+          "n_dots": 14607,
+          "dti": 0.2877442895262551,
+          "coverage": 0.4398186403287156,
+          "tp": 1665.1533722845172,
+          "fp": 12125.449900399733,
+          "fn": 2120.846627715483,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2235.1082822032436,
+          "p_mean": 0.0029970903415232897,
+          "p_max": 0.754390299320221
+        },
+        {
+          "key": "draw20_foldSE_all",
+          "mode": "all",
+          "n_truth": 3253,
+          "n_dots": 12500,
+          "dti": 0.3571746760364161,
+          "coverage": 0.5373811795870215,
+          "tp": 1748.100977196581,
+          "fp": 9711.132490351258,
+          "fn": 1504.899022803419,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2083.8833320594163,
+          "p_mean": 0.0033452303614467382,
+          "p_max": 0.8611683249473572
+        },
+        {
+          "key": "draw21_foldSE_all",
+          "mode": "all",
+          "n_truth": 3253,
+          "n_dots": 12461,
+          "dti": 0.37315522518370076,
+          "coverage": 0.5603079477056112,
+          "tp": 1822.6817538863534,
+          "fp": 9587.885999105238,
+          "fn": 1430.3182461136466,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2039.160163936565,
+          "p_mean": 0.003284884849563241,
+          "p_max": 0.7032383680343628
+        }
+      ]
+    },
+    "smsr_g": {
+      "canary": {
+        "d": {
+          "auc_per_fold": [
+            0.09998210519480517,
+            0.11428550741525424,
+            0.1240044265873016,
+            0.12056905010759299
+          ],
+          "auc_mean": 0.11471027232623851,
+          "auc_min": 0.09998210519480517,
+          "auc_max": 0.1240044265873016,
+          "discriminative_auc_mean": 0.8852897276737615,
+          "discriminative_auc_max": 0.9000178948051948,
+          "leakage_threshold": 0.9,
+          "leakage_flag": true
+        },
+        "d_perp": {
+          "auc_per_fold": [
+            0.07620762337662339,
+            0.07547479131355932,
+            0.1031154332010582,
+            0.08522279203811865
+          ],
+          "auc_mean": 0.0850051599823399,
+          "auc_min": 0.07547479131355932,
+          "auc_max": 0.1031154332010582,
+          "discriminative_auc_mean": 0.9149948400176602,
+          "discriminative_auc_max": 0.9245252086864407,
+          "leakage_threshold": 0.9,
+          "leakage_flag": true
+        },
+        "d_par_abs": {
+          "auc_per_fold": [
+            0.35016732597402594,
+            0.39376486122881355,
+            0.33397763293650795,
+            0.3512499846295727
+          ],
+          "auc_mean": 0.35728995119223006,
+          "auc_min": 0.33397763293650795,
+          "auc_max": 0.39376486122881355,
+          "discriminative_auc_mean": 0.6427100488077699,
+          "discriminative_auc_max": 0.666022367063492,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "side": {
+          "auc_per_fold": [
+            0.4811759467532467,
+            0.49525306779661016,
+            0.5107760826719576,
+            0.4864611005225945
+          ],
+          "auc_mean": 0.49341654943610225,
+          "auc_min": 0.4811759467532467,
+          "auc_max": 0.5107760826719576,
+          "discriminative_auc_mean": 0.5119714918998766,
+          "discriminative_auc_max": 0.5188240532467533,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "log_len": {
+          "auc_per_fold": [
+            0.43621699610389614,
+            0.4212844290254237,
+            0.45722793518518523,
+            0.47442038426068245
+          ],
+          "auc_mean": 0.4472874361437969,
+          "auc_min": 0.4212844290254237,
+          "auc_max": 0.47442038426068245,
+          "discriminative_auc_mean": 0.5527125638562032,
+          "discriminative_auc_max": 0.5787155709745764,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "sin2": {
+          "auc_per_fold": [
+            0.5198323493506494,
+            0.4699891790254237,
+            0.520957617063492,
+            0.47448452966492466
+          ],
+          "auc_mean": 0.49631591877612247,
+          "auc_min": 0.4699891790254237,
+          "auc_max": 0.520957617063492,
+          "discriminative_auc_mean": 0.5240790644309482,
+          "discriminative_auc_max": 0.5300108209745763,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "cos2": {
+          "auc_per_fold": [
+            0.5154496909090909,
+            0.5381002680084745,
+            0.4767289087301587,
+            0.5343134545035352
+          ],
+          "auc_mean": 0.5161480805378148,
+          "auc_min": 0.4767289087301587,
+          "auc_max": 0.5381002680084745,
+          "discriminative_auc_mean": 0.5277836261727354,
+          "discriminative_auc_max": 0.5381002680084745,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "coherence": {
+          "auc_per_fold": [
+            0.35046143766233767,
+            0.33350996398305083,
+            0.4226537037037037,
+            0.38223812096526283
+          ],
+          "auc_mean": 0.37221580657858877,
+          "auc_min": 0.33350996398305083,
+          "auc_max": 0.4226537037037037,
+          "discriminative_auc_mean": 0.6277841934214112,
+          "discriminative_auc_max": 0.6664900360169492,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "density": {
+          "auc_per_fold": [
+            0.7291671675324676,
+            0.6869908262711864,
+            0.7511370899470899,
+            0.7484809153089456
+          ],
+          "auc_mean": 0.7289439997649223,
+          "auc_min": 0.6869908262711864,
+          "auc_max": 0.7511370899470899,
+          "discriminative_auc_mean": 0.7289439997649223,
+          "discriminative_auc_max": 0.7511370899470899,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "sin2d": {
+          "auc_per_fold": [
+            0.397374938961039,
+            0.32353059639830506,
+            0.46774653505291003,
+            0.4059167637565324
+          ],
+          "auc_mean": 0.3986422085421966,
+          "auc_min": 0.32353059639830506,
+          "auc_max": 0.46774653505291003,
+          "discriminative_auc_mean": 0.6013577914578034,
+          "discriminative_auc_max": 0.6764694036016949,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "cos2d": {
+          "auc_per_fold": [
+            0.3385073779220779,
+            0.38612195127118637,
+            0.37396521626984125,
+            0.3491155633261605
+          ],
+          "auc_mean": 0.3619275271973165,
+          "auc_min": 0.3385073779220779,
+          "auc_max": 0.38612195127118637,
+          "discriminative_auc_mean": 0.6380724728026834,
+          "discriminative_auc_max": 0.661492622077922,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_tmi_hg": {
+          "auc_per_fold": [
+            0.5421017909090908,
+            0.47564476271186445,
+            0.5379526798941798,
+            0.5275164509683369
+          ],
+          "auc_mean": 0.520803921120868,
+          "auc_min": 0.47564476271186445,
+          "auc_max": 0.5421017909090908,
+          "discriminative_auc_mean": 0.5329815397649358,
+          "discriminative_auc_max": 0.5421017909090908,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_tc": {
+          "auc_per_fold": [
+            0.4331952649350649,
+            0.4291744788135593,
+            0.4466592156084656,
+            0.3988791577005841
+          ],
+          "auc_mean": 0.4269770292644185,
+          "auc_min": 0.3988791577005841,
+          "auc_max": 0.4466592156084656,
+          "discriminative_auc_mean": 0.5730229707355815,
+          "discriminative_auc_max": 0.6011208422994159,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_slope": {
+          "auc_per_fold": [
+            0.5868802922077923,
+            0.546647722457627,
+            0.5374988042328043,
+            0.5885841669228404
+          ],
+          "auc_mean": 0.564902746455266,
+          "auc_min": 0.5374988042328043,
+          "auc_max": 0.5885841669228404,
+          "discriminative_auc_mean": 0.564902746455266,
+          "discriminative_auc_max": 0.5885841669228404,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_grav_hg": {
+          "auc_per_fold": [
+            0.4548166181818182,
+            0.5730245360169491,
+            0.48371041666666664,
+            0.4726436281893637
+          ],
+          "auc_mean": 0.4960487997636994,
+          "auc_min": 0.4548166181818182,
+          "auc_max": 0.5730245360169491,
+          "discriminative_auc_mean": 0.5404634682447752,
+          "discriminative_auc_max": 0.5730245360169491,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_curv": {
+          "auc_per_fold": [
+            0.5409555987012986,
+            0.5497374226694915,
+            0.5156938789682539,
+            0.5566667537657547
+          ],
+          "auc_mean": 0.5407634135261997,
+          "auc_min": 0.5156938789682539,
+          "auc_max": 0.5566667537657547,
+          "discriminative_auc_mean": 0.5407634135261997,
+          "discriminative_auc_max": 0.5566667537657547,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_edge_max": {
+          "auc_per_fold": [
+            0.5303310909090908,
+            0.49060702648305077,
+            0.5217725304232804,
+            0.49149332462342454
+          ],
+          "auc_mean": 0.5085509931097116,
+          "auc_min": 0.49060702648305077,
+          "auc_max": 0.5303310909090908,
+          "discriminative_auc_mean": 0.5175008175564739,
+          "discriminative_auc_max": 0.5303310909090908,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_cond": {
+          "auc_per_fold": [
+            0.5199430571428572,
+            0.48438724576271186,
+            0.5065802605820107,
+            0.4862265777743622
+          ],
+          "auc_mean": 0.49928428531548547,
+          "auc_min": 0.48438724576271186,
+          "auc_max": 0.5199430571428572,
+          "discriminative_auc_mean": 0.5139773735469484,
+          "discriminative_auc_max": 0.5199430571428572,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_base_edge": {
+          "auc_per_fold": [
+            0.5218749220779221,
+            0.570150308262712,
+            0.5090051977513228,
+            0.5424632101137412
+          ],
+          "auc_mean": 0.5358734095514246,
+          "auc_min": 0.5090051977513228,
+          "auc_max": 0.570150308262712,
+          "discriminative_auc_mean": 0.5358734095514246,
+          "discriminative_auc_max": 0.570150308262712,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_strain": {
+          "auc_per_fold": [
+            0.5755710974025974,
+            0.49091759639830507,
+            0.4884400621693122,
+            0.47854029588072544
+          ],
+          "auc_mean": 0.5083672629627349,
+          "auc_min": 0.47854029588072544,
+          "auc_max": 0.5755710974025974,
+          "discriminative_auc_mean": 0.5294182857385636,
+          "discriminative_auc_max": 0.5755710974025974,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_strain_ridge": {
+          "auc_per_fold": [
+            0.5122649974025975,
+            0.478193779661017,
+            0.49782890145502645,
+            0.4958786835229019
+          ],
+          "auc_mean": 0.4960415905103857,
+          "auc_min": 0.478193779661017,
+          "auc_max": 0.5122649974025975,
+          "discriminative_auc_mean": 0.5100909081909131,
+          "discriminative_auc_max": 0.521806220338983,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_seis_dist": {
+          "auc_per_fold": [
+            0.5469828766233766,
+            0.5407640836864407,
+            0.4739702123015873,
+            0.4577638241623117
+          ],
+          "auc_mean": 0.504870249193429,
+          "auc_min": 0.4577638241623117,
+          "auc_max": 0.5469828766233766,
+          "discriminative_auc_mean": 0.5390032309614796,
+          "discriminative_auc_max": 0.5469828766233766,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        },
+        "g_seis_intensity": {
+          "auc_per_fold": [
+            0.5472041896103896,
+            0.5130855794491526,
+            0.4813584272486772,
+            0.5711626844451276
+          ],
+          "auc_mean": 0.5282027201883368,
+          "auc_min": 0.4813584272486772,
+          "auc_max": 0.5711626844451276,
+          "discriminative_auc_mean": 0.5375235065639982,
+          "discriminative_auc_max": 0.5711626844451276,
+          "leakage_threshold": 0.9,
+          "leakage_flag": false
+        }
+      },
+      "pooled": {
+        "pooled_dti": 0.31029995119825676,
+        "coverage": 0.488247860642096,
+        "coverage_ci95": [
+          0.48173936725131306,
+          0.4947603412861792
+        ],
+        "dti_ci95_coverage_only": [
+          0.3064170501810195,
+          0.31417880590168057
+        ],
+        "dti_ci95_quadrant_jackknife": [
+          0.271081187997502,
+          0.3495187143990115
+        ],
+        "jackknife_drop_quadrant": {
+          "foldNE": 0.3226440459131565,
+          "foldNW": 0.30486804673183376,
+          "foldSE": 0.29429145465355777,
+          "foldSW": 0.32008920344535285
+        },
+        "tp": 11054.419812797696,
+        "fp": 76506.32319972709,
+        "fn": 11586.580187202304,
+        "n_truth": 22641,
+        "n_dots": 94418
+      },
+      "per_cell": [
+        {
+          "key": "draw20_foldNW_all",
+          "mode": "all",
+          "n_truth": 1925,
+          "n_dots": 7778,
+          "dti": 0.3312445586395208,
+          "coverage": 0.5111112167052496,
+          "tp": 983.8890921576055,
+          "fp": 6167.510976097242,
+          "fn": 941.1109078423945,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 1389.560045865531,
+          "p_mean": 0.0023230919614434242,
+          "p_max": 0.9148048162460327
+        },
+        {
+          "key": "draw21_foldNW_all",
+          "mode": "all",
+          "n_truth": 1919,
+          "n_dots": 7723,
+          "dti": 0.34403188124804235,
+          "coverage": 0.5271832795882053,
+          "tp": 1011.664713529766,
+          "fp": 6015.401610727098,
+          "fn": 907.335286470234,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 1376.2983085715755,
+          "p_mean": 0.0023041008971631527,
+          "p_max": 0.8749540448188782
+        },
+        {
+          "key": "draw20_foldNE_all",
+          "mode": "all",
+          "n_truth": 2360,
+          "n_dots": 11535,
+          "dti": 0.26109642249901627,
+          "coverage": 0.4458768191839767,
+          "tp": 1052.269293274185,
+          "fp": 9658.701815457676,
+          "fn": 1307.730706725815,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2737.550300023822,
+          "p_mean": 0.0027429743204265833,
+          "p_max": 0.9076002240180969
+        },
+        {
+          "key": "draw21_foldNE_all",
+          "mode": "all",
+          "n_truth": 2365,
+          "n_dots": 11767,
+          "dti": 0.27524755233670967,
+          "coverage": 0.4707478007390758,
+          "tp": 1113.3185487479143,
+          "fp": 9650.631479080019,
+          "fn": 1251.6814512520857,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2838.6781661404552,
+          "p_mean": 0.002801616210490465,
+          "p_max": 0.9745449423789978
+        },
+        {
+          "key": "draw20_foldSW_all",
+          "mode": "all",
+          "n_truth": 3780,
+          "n_dots": 15166,
+          "dti": 0.2956114522804191,
+          "coverage": 0.4598253728823117,
+          "tp": 1738.1399094951382,
+          "fp": 12540.92254371331,
+          "fn": 2041.8600905048618,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2402.096602184344,
+          "p_mean": 0.0032003773376345634,
+          "p_max": 0.7803215384483337
+        },
+        {
+          "key": "draw21_foldSW_all",
+          "mode": "all",
+          "n_truth": 3786,
+          "n_dots": 15146,
+          "dti": 0.28529021610257743,
+          "coverage": 0.44351233982882504,
+          "tp": 1679.1377185919316,
+          "fp": 12605.45155325659,
+          "fn": 2106.862281408068,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2409.0288579143667,
+          "p_mean": 0.0032069331500679255,
+          "p_max": 0.7503194212913513
+        },
+        {
+          "key": "draw20_foldSE_all",
+          "mode": "all",
+          "n_truth": 3253,
+          "n_dots": 12669,
+          "dti": 0.34733111982265424,
+          "coverage": 0.5267725046871725,
+          "tp": 1713.5909577473722,
+          "fp": 9942.382338488276,
+          "fn": 1539.4090422526278,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2236.0603913573914,
+          "p_mean": 0.00355181354098022,
+          "p_max": 0.8590434789657593
+        },
+        {
+          "key": "draw21_foldSE_all",
+          "mode": "all",
+          "n_truth": 3253,
+          "n_dots": 12634,
+          "dti": 0.35676696592979956,
+          "coverage": 0.5417797661401114,
+          "tp": 1762.4095792537823,
+          "fp": 9925.32088290689,
+          "fn": 1490.5904207462177,
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "expected_covered_credit": 2220.7566130254077,
+          "p_mean": 0.0035369680263102055,
+          "p_max": 0.8210875391960144
+        }
+      ]
+    }
+  }
+}

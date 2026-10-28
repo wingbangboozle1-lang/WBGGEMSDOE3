@@ -45,7 +45,7 @@
     "literal_duplicate": true
   },
   "schema": "registry-witness-recheck-v1",
-  "checked_utc": "2026-10-27T23:47:05.403625+00:00",
+  "checked_utc": "2026-10-28T16:17:09.254199+00:00",
   "evidence_class": "RASTER-ARTIFACT MEASUREMENT; not HOLDOUT-DTI and not a competition score",
   "sample": {
     "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",

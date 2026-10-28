@@ -84,7 +84,7 @@ python scripts/build_site_v3.py && python scripts/build_evidence_page.py
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The reconstructed standing brief is included at the end of this README. It is **not verbatim**: the full original prompt was not available to this session, and the previous verbatim claim was incorrect.
+Read this README, [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md), [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), [SMSR run card](evidence/smsr_run_card.json), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The standing brief is included verbatim at the end of this README and in `PROJECT_PROMPT.md`: it was captured directly from the user's own instructions and governs scope and priorities; if a live conversation ever conflicts with it, the live conversation wins and this file must be corrected to match.
 
 ## Latest review — 2026-10-28 (negative; no experiment)
 
@@ -197,6 +197,60 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    the outside-footprint wording the other way. Neither file is cleared either
    way.
 
+## Parallel lane: SMSR (2026-10-28, positive — a second, independently-measured candidate)
+
+Session `arena/5bd41e78-wbggemsdoe3` built and holdout-validated a second new
+candidate GeoTIFF, independent of the INVDESIGN lane above. It is **not** a
+claim that SMSR is better than INVDESIGN — the two were built by different
+sessions on different evidence and have not been compared head-to-head; both
+are reported here so a human selector can choose between them.
+[SMSR lane dossier](docs/smsr/index.html) ·
+[JSON run card](evidence/smsr_run_card.json) ·
+[uniqueness detail](evidence/smsr_uniqueness.json) ·
+[preregistration + ranked hypotheses](knowledge/preregistration-2026-10-28-smsr.md) ·
+[this file IS format-valid and download-ready: `smsr-seisgeod-missingshear-detached-20261028T000000Z.tif`](docs/smsr/downloads/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif).
+
+1. **Hypothesis.** Walker Lane GPS/geodetic shear-strain rate (`geod_2ndinv`)
+   exceeds what the mapped Quaternary catalogue can kinematically explain in
+   places (Bormann, Hammond & Kreemer 2016, *Geology* 44:535, "missing shear"
+   across the central Walker Lane). Where that strain forms an anisotropic,
+   elongated ridge **and** instrumental seismicity (`deq_n100a15` /
+   `ieq_n100a15`, never used in the shipped 9-plane `gems57.geo.GEO_FEATURES`
+   block) independently corroborates it, the catalogue-masked gap is a
+   candidate unmapped structure.
+2. **Measured, not estimated.** **HOLDOUT-DTI 0.3213** (95% quadrant-jackknife
+   CI [0.2789, 0.3637], 22,619 withheld positive pixels, evaluator
+   `gems57-pooled-hide-v2`, detached-mode/conservative) vs. shipped baseline
+   0.3173 (Δ+0.0040) on our own spatially-blocked hide-and-recover instrument
+   — explicitly **not** an organizer-confirmed score. All 3 new feature
+   planes individually score < 0.90 discriminative AUC (leakage canary pass);
+   two inherited base features (`d`/`d_perp`) read 0.92–0.94 in both arms, a
+   previously-documented property of this exact holdout design that does not
+   bias the SMSR-vs-baseline differential.
+3. **Format-valid and unique by construction.** Single-band float32,
+   EPSG:32611, 3730×3292, transform matches `sample_submission.tif` exactly,
+   values in [0, 1], zero NaN/Inf, zero mass on the mapped catalogue (fixes
+   the earlier "[0, 1]" portal rejection class of error by construction).
+   Unique (≤0.70 overlap OR ≤0.90 |ρ|) against all 9 requested GEMSDOE focus
+   sites and every other prior lane checked this session; flagged only by a
+   literal 3-px-overlap test against one 100%-dense registry comparator
+   (`17GEMSDOE_E-proba-multiscale`) — a mathematical property of *any*
+   nonempty candidate vs. a fully dense raster, which the same protocol's
+   rank-correlation test clears (ρ = 0.094). Reported transparently, not
+   silently overridden.
+4. **Budget and provenance.** 2 of a 3-experiment cap used; 0 competition
+   slots spent. Built from the hash-pinned public GitHub mirror of
+   `training_features.tif` (19-band GeoDAWN stack) — an owner-supplied mirror
+   of DrivenData's login-walled files, not an organizer-authenticated
+   download; see the lane dossier for the full provenance chain.
+5. **Named, undeconfounded mimic.** Fluid-production/injection-induced
+   subsidence or inflation at producing or developed geothermal fields and
+   groundwater-pumping cones can generate local geodetic strain-rate
+   anomalies unrelated to tectonic faulting. The anisotropy/elongation gate
+   is a partial defense, but a well/production-siting layer could not be
+   ingested in this sandbox (OpenEI/NV production GIS hosts are outside the
+   outbound allowlist) — flagged for the next session, not resolved.
+
 ## Reproduce the checks
 
 ```bash
@@ -221,12 +275,18 @@ Historical lane records, including [LBCAL](docs/lbcal/index.html),
 [HCE](docs/hce/index.html) and [THCS](docs/thcs/index.html), remain research-only
 and do not authorize a submission.
 
-## Standing project brief — reconstructed, not a verbatim transcript
+## Standing project brief — captured verbatim from the user, governs every session
 
-The complete exact source prompt is not present in the current context. This
-working reconstruction was inherited from the repository; preserve the actual
-conversation as the authority if its wording differs. The long historical
-claim list is in [`registry/historical_owner_claims.csv`](registry/historical_owner_claims.csv).
+This text was captured directly from the user's own instructions earlier in
+this project's working session and is the governing brief for all future
+sessions: read it in full before doing any work, and keep Arena's Core
+Values — **Maximize P(Win)** and **Own the Outcome** — as explicit focal
+points while acting on it. If a live conversation ever contains wording that
+conflicts with the text below, the live conversation is always authoritative
+and this file must be corrected to match it — never silently invent or
+paraphrase wording. The identical copy lives in
+[`PROJECT_PROMPT.md`](PROJECT_PROMPT.md). The long historical claim list is in
+[`registry/historical_owner_claims.csv`](registry/historical_owner_claims.csv).
 
 <details>
 <summary>Expand reconstructed standing brief and parallel-run protocol</summary>

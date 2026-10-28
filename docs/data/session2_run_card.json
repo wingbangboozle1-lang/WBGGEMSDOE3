@@ -1,5 +1,5 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane claims; no repository-wide upload approval. See release_gate.json.",
+  "_archive_notice": "SUPERSEDED historical lane claims; no repository-wide auto-submit approval. See release_gate.json.",
   "run_card_version": "2",
   "lane": "WBGGEMSDOE3 / SGCE (session 2026-10-27)",
   "hypothesis": "Hidden expert faults are preferentially along-strike continuations, relays and strain-gated corridors of mapped faults; the DTI optimum is a larger, coverage-optimised dot set, not a fixed-size dotted ridge. RELEASED CONSTRUCTION adds a contrarian no-crowd prior that removes pixels already covered by >=7 of 10 dense registered emission rasters.",

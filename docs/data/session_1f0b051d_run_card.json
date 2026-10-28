@@ -1,5 +1,5 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
+  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json and the SMSR lane for the current recommendation.",
   "schema": "parallel-run card v1 (session 2026-10-27, branch arena/1f0b051d-wbggemsdoe3)",
   "lane": "H1 lidar scarp-dipole polarity + segment coherence, piedmont-gated, frontier-hybrid emission",
   "hypothesis": "Young normal-fault scarps missing from the Quaternary catalogue are signed lidar dipoles (crest convexity lapneg + base concavity lappos + dominant face polarity) that are strike-coherent over >500 m in low-relief piedmont settings; emitting them as 2.83 px-spaced dots half inside the corroborated H19-5 corridor and half on novel off-network strands recovers faults the catalogue and the champion family missed.",

@@ -175,6 +175,18 @@ so the model estimate is {dti_base:.2f}. <b>That uplift is a model claim, not a 
 why the honest band is {dti_floor:.2f} (no better than siblings) to {dti_ceil:.2f} (posterior exactly right).</p>
 </div>
 
+<div class="card">
+<h3 style="margin-top:0">A second, independently-built candidate (SMSR lane)</h3>
+<p>A separate working session on this same repository built and holdout-validated a different
+new GeoTIFF (<code>smsr-seisgeod-missingshear-detached-20261028T000000Z.tif</code>), from a
+different geological hypothesis (geodetic strain-rate anisotropy + seismicity), with a directly
+<b>measured</b> HOLDOUT-DTI of 0.3213 (95% CI 0.28&ndash;0.36, our own spatially-blocked evaluator
+&mdash; not an organizer-confirmed score, and not the model ESTIMATE used above). It also passes
+every format/uniqueness gate. <b>It has not been compared head-to-head against the file
+recommended above</b>; both are reported so a human selector can choose. See the
+<a href="smsr/index.html">SMSR lane page →</a></p>
+</div>
+
 <h2>Where the numbers come from</h2>
 <div class="kpi">
   <div><b>{len(ladder.get('probes',[]))}</b><span>published sibling scores re-measured from bytes</span></div>

@@ -1,5 +1,5 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json. SUPERSEDED RESEARCH RECORD: not an approved submission, score estimate, or proof of fold-local validation. Legacy exemptions violated the literal registry rule. See evidence/run_card.json and evidence/archive_audit.json.",
+  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json and the SMSR lane for the current recommendation. SUPERSEDED RESEARCH RECORD: not an approved submission, score estimate, or proof of fold-local validation. Legacy exemptions violated the literal registry rule. See evidence/run_card.json and evidence/archive_audit.json.",
   "authoritative_current_card": "evidence/run_card.json",
   "historical_original_readiness_claims": {
     "ready_to_submit": true,
