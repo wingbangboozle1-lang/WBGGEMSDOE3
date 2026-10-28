@@ -138,20 +138,17 @@ def test_fchd_run_card_canary_and_saved_geotiff_contracts():
 
 
 def test_governing_fail_closed_gate_and_fchd_dossier_consistency():
-    """The FCHD-NCM dossier stays negative, and the site-wide decision stays evidence-bound.
-
-    2026-10-28: the site-wide gate moved to schema v2 (evidence/run_card_v3.json, decision SUBMIT for
-    one distinct artifact).  The FCHD-NCM dossier keeps its own negative verdict and must not
-    advertise clearance, which is what this test now enforces.
-    """
+    """The scoped FCHD lane stays negative under the current project-wide stop."""
     dec = _j("docs/data/decision.json")
     gate = _j("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v2"
-    assert dec["decision"] == gate["decision"]
-    assert dec["okay_to_submit"] == gate["okay_to_submit"] == True  # noqa: E712
-    assert gate["decision_scope"].endswith(dec["file"])
-    published = ROOT / dec["file"]
-    assert hashlib.sha256(published.read_bytes()).hexdigest() == dec["sha256"]
+    assert gate["schema"] == "gems-release-gate-v1"
+    assert dec["decision"] == gate["decision"] == "DO-NOT-SUBMIT"
+    assert dec["okay_to_submit"] is gate["okay_to_submit"] is False
+    assert dec["candidate"] is None and gate["candidate"] is None
+    assert gate["authority"]["selector_approval"] is False
+    assert any("witness" in r.lower() for r in gate["blocking_reasons"])
+    current = _j("docs/data/session_7393d521_run_card.json")
+    assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
 
     fchd_page = (ROOT / "docs" / "fchd" / "index.html").read_text()
     assert 'content="DO-NOT-SUBMIT"' in fchd_page

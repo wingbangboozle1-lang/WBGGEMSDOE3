@@ -1,5 +1,4 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
   "schema": "HCE-1 parallel-run card v1",
   "session_branch": "arena/50217887-wbggemsdoe3",
   "uniqueness_repair": {
@@ -376,5 +375,6 @@
     "format": "PASS (13-point independent validator + shared fail-closed writer; no NaN inside footprint, all values in [0,1], single-band float32, EPSG:32611, exact CRS/shape/transform).",
     "overall": "DOWNLOAD OK \u2014 unique under the audited content-aware rule and format-valid. NOT an organizer-confirmed score; the owner-reported-ledger projection does not support beating 0.2778. A real weekly slot is a separate selector step and is NOT taken here.",
     "caveat": "The literal finite-positive registry reading rejects every possible submission; user ratification of IR-09 is required. No hidden labels, no submission-page receipt, no portal quota were available."
-  }
+  },
+  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }

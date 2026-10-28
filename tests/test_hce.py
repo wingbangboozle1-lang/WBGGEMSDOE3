@@ -1,4 +1,4 @@
-"""Self-contained release gates for the HCE-1 lane (no competition data needed)."""
+"""Historical HCE evidence and current fail-closed publication contract."""
 from __future__ import annotations
 import hashlib
 import json
@@ -23,15 +23,12 @@ def _sha(p: Path) -> str:
 class _Links(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.targets, self.text = [], []
+        self.targets = []
 
     def handle_starttag(self, tag, attrs):
         for k, v in attrs:
             if k in {"href", "src"} and v:
                 self.targets.append(v)
-
-    def handle_data(self, data):
-        self.text.append(data)
 
 
 def test_deliverable_tif_matches_run_card_and_official_format():
@@ -70,9 +67,11 @@ def test_run_card_labels_every_number_and_reports_both_uniqueness_readings():
     assert len(rc["submission_name"]) <= 140
     assert rc["organizer_confirmed_score"] is None
     assert rc["weekly_slots_used"] == 0
-    assert any("NOT_A_SCORE" in k for k in rc)  # a projection must never be written as a score
+    assert any("NOT_A_SCORE" in k for k in rc)
     assert rc["registry"]["content_aware_pass"] is True
-    assert rc["registry"]["literal_pass"] is False  # IR-09 reported, not hidden
+    assert rc["registry"]["literal_pass"] is False
+    assert "literal FAIL" in rc["verdict"]["uniqueness"]
+    assert "NOT an organizer-confirmed score" in rc["verdict"]["overall"]
 
 
 def test_uniqueness_and_canary_thresholds_are_unchanged():
@@ -87,32 +86,36 @@ def test_uniqueness_and_canary_thresholds_are_unchanged():
     assert c["threshold"] == 0.90 and c["all_pass"] and c["max_auc"] <= 0.90
 
 
-def test_site_marks_hce_artifact_research_only_and_has_no_broken_links():
+def test_site_marks_hce_artifact_research_only_and_has_no_candidate_links():
     pages = ["index.html", "how-to-submit.html", "why-0.2778.html", "hypotheses.html",
              "evidence.html", "sources.html", "limitations.html"]
     assert all((DOCS / p).exists() for p in pages)
     idx = (DOCS / "index.html").read_text()
-    assert "DO NOT SUBMIT" in idx
-    assert "DOWNLOAD RESEARCH TIF" in idx
-    assert "downloads/wbggems3-hce1-latest.tif" in idx
+    assert "DO NOT SUBMIT" in idx and "100% witness overlap" in idx
+    assert "research-only" in idx
+    assert "DOWNLOAD RESEARCH TIF" not in idx
+    assert "downloads/wbggems3-hce1-latest.tif" not in idx
     for p in pages:
         text = (DOCS / p).read_text()
         assert "Global release gate: DO NOT SUBMIT" in text
+        assert "Do not submit any file." in text
         parser = _Links()
         parser.feed(text)
         for link in parser.targets:
             if link.startswith(("http", "mailto:", "#", "data:")):
                 continue
-            assert (DOCS / link.split("#")[0]).exists(), (p, link)
+            target = (DOCS / p).parent / link.split("#")[0]
+            assert target.exists(), (p, link, target)
     root = (ROOT / "docs" / "index.html").read_text()
     assert "hce/index.html" in root
 
 
-def test_site_builder_is_deterministic_and_banner_is_fail_closed():
-    from build_site import HCE_BANNER, main
-    before = {p.name: _sha(p) for p in (ROOT / "docs").glob("*.html")}
-    main()
-    after = {p.name: _sha(p) for p in (ROOT / "docs").glob("*.html")}
+def test_site_builder_is_deterministic_and_fail_closed():
+    from build_site import main
+    before = {p.relative_to(ROOT / "docs"): _sha(p) for p in (ROOT / "docs").rglob("*.html")}
+    assert main() == 0
+    after = {p.relative_to(ROOT / "docs"): _sha(p) for p in (ROOT / "docs").rglob("*.html")}
     assert before == after
-    assert "DO NOT SUBMIT" in HCE_BANNER
-    assert "hce/index.html" in HCE_BANNER
+    idx = (DOCS / "index.html").read_text()
+    assert "DO NOT SUBMIT" in idx
+    assert "DOWNLOAD RESEARCH TIF" not in idx

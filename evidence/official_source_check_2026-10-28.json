@@ -1,0 +1,150 @@
+{
+  "schema": "gems-official-source-check-v1",
+  "checked_date_utc": "2026-10-28",
+  "retrieval_method": "Official pages were retrieved using the web-page fetch tool during this review. The retrieval interface exposes the UTC date but not a reliable exact fetch timestamp. No login, submission, data upload, or account access was attempted.",
+  "sources": [
+    {
+      "id": "competition_home",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "source_owner": "DrivenData competition site / DOE GEMS Prize",
+      "status": "verified page retrieved",
+      "observations": [
+        "The competition describes predictions of geological faults indicative of geothermal resources.",
+        "The site shows an end date of 2026-12-03 at 11:59 p.m. UTC.",
+        "The same submission is scored in the initial private test round and again after expert review against an expanded label set.",
+        "External data are encouraged only when the competitor has the necessary license and can share data for independent verification."
+      ],
+      "caveat": "Public page content is not a private submission receipt or a participant-specific quota display."
+    },
+    {
+      "id": "competition_problem_and_format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "source_owner": "DrivenData competition problem description",
+      "status": "verified page retrieved",
+      "observations": [
+        "The task is to predict geological faults; the expert test faults are described as not contained in the existing public USGS fault database.",
+        "The official metric is distance-weighted Tversky with alpha=0.2, beta=0.8, and a 300 m linear triangular kernel (three 100 m pixels).",
+        "The submission must be a GeoTIFF for the full study area, UTM zone 11N / EPSG:32611, 100 m resolution, same bounds as the training data, one float32 raster layer, values in [0,1].",
+        "The official text says data outside the bounds must be null or NaN; finite zero outside is not the stated null/NaN encoding.",
+        "The problem page describes training features from USGS and INGENIOUS, and references the 1 m DEM URL list."
+      ],
+      "caveat": "This page verifies the written format requirements, not portal acceptance of any saved file."
+    },
+    {
+      "id": "official_rules",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "source_owner": "National Laboratory of the Rockies / DOE GEMS Prize Official Rules",
+      "document_date": "September 2026",
+      "status": "verified PDF retrieved and parsed through sections 1.2, 3.2, 3.4, 3.5, and Appendix A",
+      "observations": [
+        "Sections 3.2 and 3.4 state a limit of three submissions per week per participating entity.",
+        "Section 3.4 says each entity must select only one final submission; multiple finalized submissions are not allowed.",
+        "Section 3.5 says the chosen final submission is used across both prize rounds.",
+        "The rules require disclosure in the narrative of whether and how generative AI was used.",
+        "Appendix A.1 gives a 5:00 p.m. ET submission-time instruction on the deadline date."
+      ],
+      "irregularity": "The public competition homepage lists 2026-12-03 11:59 p.m. UTC, while the September 2026 official rules Appendix A.1 says 5:00 p.m. ET on the deadline date. On 2026-12-03, 5:00 p.m. ET is 22:00 UTC, earlier than 23:59 UTC. Treat the effective deadline as unresolved and use the earlier time for safety unless the organizer confirms otherwise.",
+      "caveat": "No participant-specific live quota, final-selection status, or portal receipt was visible without login."
+    },
+    {
+      "id": "public_leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "fragment_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1",
+      "source_owner": "DrivenData public leaderboard",
+      "status": "verified public page and HTMX fragment retrieved on 2026-10-28",
+      "observation_date_utc": "2026-10-28",
+      "retrieval_time_precision": "date only; exact fetch timestamp not exposed",
+      "visible_public_scores": {
+        "rank_1": "0.4544",
+        "rank_2": "0.3916",
+        "rank_25": "0.3217",
+        "rank_26": "0.3195",
+        "rank_48": "0.2895"
+      },
+      "interpretation": "These are visible public-test leaderboard observations only. They are not scores for this project, not private-test scores, not final-round scores, and not identification of any submitted TIFF's bytes. The previously requested 0.3195 is rank 26 in this captured page, not the highest score.",
+      "caveat": "The leaderboard can change; the repository's scheduled feed is the continuing monitor."
+    },
+    {
+      "id": "submission_portal",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "source_owner": "DrivenData submission portal",
+      "status": "verified redirect to login page",
+      "observations": [
+        "The submission route redirects to the account login page for unauthenticated requests.",
+        "No live account quota, weekly usage, candidate submission form, or receipt was accessible."
+      ],
+      "caveat": "No credentials were requested or used; portal acceptance and remaining slots remain unknown."
+    },
+    {
+      "id": "competition_data_page",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "source_owner": "DrivenData competition data page",
+      "status": "verified redirect to login page",
+      "observations": ["Training data and organizer download endpoints were not accessible without account login."],
+      "caveat": "The repository manifest describes owner-mirrored bytes, which do not authenticate organizer origin."
+    },
+    {
+      "id": "geodawn_usgs",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "source_owner": "U.S. Geological Survey data release; DOI 10.5066/P93LGLVQ",
+      "status": "verified official page retrieved",
+      "observations": [
+        "USGS describes airborne magnetic and radiometric surveys over northern/western Nevada and eastern California and identifies magnetic data with subsurface structure/geology and radiometric data with surface geology/soil composition.",
+        "The page reports surveys from 2021-11-01 through 2022-11-20 and lists line, tie-line, flight-path, grid, and line-data products.",
+        "It warns that actual terrain clearance can vary in steep terrain.",
+        "The page states magnetic processing includes tie-line leveling and micro-leveling, and radiometric processing includes altitude-variation corrections.",
+        "The page marks the work CC0 1.0 Universal."
+      ],
+      "caveat": "The published source confirms products exist, but no new source files were downloaded or AOI-matched during this review."
+    },
+    {
+      "id": "geodawn_sciencebase",
+      "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+      "source_owner": "USGS ScienceBase catalog; GeoDAWN data release",
+      "status": "verified official catalog record retrieved",
+      "observations": ["The record identifies the 2024 USGS GeoDAWN data release and lists the 2021-11-01 to 2022-11-20 survey period."],
+      "caveat": "Catalog verification is not a download or provenance check of the repository mirror."
+    },
+    {
+      "id": "gdr_1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "source_owner": "U.S. DOE Geothermal Data Repository, INGENIOUS Great Basin Regional Dataset Compilation; DOI 10.15121/1881483",
+      "status": "verified official dataset page retrieved",
+      "observations": [
+        "The page marks the collection publicly accessible under CC BY 4.0.",
+        "It lists data on 2 m temperature probes, faults/volcanic features, geodetic strain, heat flow, conductivity, magnetics, gravity, paleogeothermal features, seismicity, springs/wells, and geochemistry.",
+        "The page describes the files as provided as-is and assigns users responsibility for fitness for purpose."
+      ],
+      "caveat": "The page verifies the source and license statement; exact local files, attribution, processing, AOI coverage, and sampling bias were not rechecked."
+    },
+    {
+      "id": "usgs_3dep",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "source_owner": "U.S. Geological Survey 3D Elevation Program",
+      "status": "verified official page retrieved",
+      "observations": [
+        "USGS describes 3DEP's mission as current high-quality topographic data and 3D representations.",
+        "The page links to 1 m DEM products, spatial metadata for current lidar availability, and elevation access tools.",
+        "The page states 3DEP products are available free of charge and without use restrictions."
+      ],
+      "caveat": "This program page does not establish exact usable DEM coverage/resolution for every proposed AOI cell; the coverage grid must be checked before use."
+    },
+    {
+      "id": "landsat_collection_2",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2",
+      "source_owner": "U.S. Geological Survey Landsat Missions",
+      "status": "verified official page retrieved",
+      "observations": [
+        "Collection 2 includes Level-1 data for Landsats 1-9 and Level-2/Level-3 science products for Landsats 4-9.",
+        "The page describes global Level-2 surface reflectance and surface-temperature products from 1982 to present and U.S. Analysis Ready Data from 1982 to present.",
+        "The page notes improved geolocation and other processing updates."
+      ],
+      "caveat": "No scene search, cloud-free AOI check, downloaded imagery, index validation, or scene-specific license review was completed."
+    }
+  ],
+  "overall_limits": [
+    "Official source page checks verify public statements, not feature-stack numerical correctness.",
+    "No organizer training data, private test data, portal quota, or candidate receipt was accessible.",
+    "No geological experiment, feature canary, holdout run, prediction, or slot selection was performed."
+  ]
+}

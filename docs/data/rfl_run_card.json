@@ -1,5 +1,4 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
   "lane": "RFL - range-front relief-discontinuity lineaments (self-assigned; no external lane was identified)",
   "session": "arena/bd44f94b-wbggemsdoe3, 2026-10-27",
   "preregistration": "knowledge/preregistration-2026-10-27-rfl.md (incl. transparent Amendment 1)",
@@ -123,5 +122,6 @@
     "skarpline_correction": "wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif FAILS full-registry uniqueness (0.735 GEMSDOE23 h30, 0.724 GEMSDOE50 h59; ex-self) and has no fold-local holdout - superseded."
   },
   "elapsed_note": "within 3-experiment / 2-hour modelling budget for E1+E2; E0/Pass-2 are read-only audits",
-  "created_utc": "2026-10-27"
+  "created_utc": "2026-10-27",
+  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }

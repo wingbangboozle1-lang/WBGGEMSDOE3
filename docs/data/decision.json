@@ -1,18 +1,10 @@
 {
- "decision": "SUBMIT",
- "okay_to_submit": true,
- "file": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
- "sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
- "estimate": {
-  "calibrated": 0.4699720899416122,
-  "pi95": [
-   0.3155834007759659,
-   0.6243607791072585
-  ],
-  "floor_equal_yield": 0.1797897163700542,
-  "ceiling_raw_posterior": 0.5756358734346434,
-  "breakeven_credit_per_dot": 0.2245,
-  "calibration_r2": 0.38547465753273524
- },
- "source": "evidence/run_card_v3.json"
+  "schema": "gems-project-decision-v1",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_submit": false,
+  "candidate": null,
+  "source": "release_gate.json",
+  "run_card": "session_7393d521_run_card.json",
+  "run_card_sha256": "e92fe310dc31d9185ca90a7fe7631e8a35357e386506840e2b9b313109203bbe",
+  "reason": "Literal registry witness stop; no candidate or shared holdout run."
 }

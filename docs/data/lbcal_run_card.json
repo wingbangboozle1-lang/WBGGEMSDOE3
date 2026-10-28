@@ -1,5 +1,4 @@
 {
-  "_archive_notice": "SUPERSEDED historical lane record; its claims were not replayed in this review and do not authorize an upload. See release_gate.json.",
   "schema": "parallel-run card v1 (owner protocol rule 5)",
   "lane": "LBCAL",
   "version": "lbcal-v1.0",
@@ -432,5 +431,6 @@
     "ratio_adjusted_estimate": 0.562,
     "worst_case_ratio_adjusted_estimate": 0.332,
     "interpretation": "28 scored rasters share the candidate's dot locations beyond chance (excess > 0.25). The model under-predicts 17 of them by >10% (owner/CV up to 1.46; mostly the d2.8 dotted-ridge lineage) and over-predicts 4 by >10% (down to 0.66: h23-a-dti-optimal-emissi, h23-b-dti-optimal-emissi, h30-arrangement-matched-, ovtr-ml-cover-tau3p0-202). So the candidate's ESTIMATE has a plausible range rather than a point: ratio-adjusted 0.332-0.733. These are heuristics, not scores."
-  }
+  },
+  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }
