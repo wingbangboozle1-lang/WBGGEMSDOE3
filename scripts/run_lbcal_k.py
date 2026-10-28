@@ -13,19 +13,25 @@ Steps (all automated, fail-closed, no human inspection):
   0. Restore inputs (SHA-pinned mirrors; no portal login).
   1. pi surface from the preregistered bounded model + G1 pre-placement |Spearman| <= 0.90.
   2. G0 leakage canary on every fold-local feature and pi itself (AUC <= 0.90).
-  3. Knapsack-constrained CELF placement (cap 0.60, headroom under the 0.70 rule)
-     over eligible = footprint & (d_cat > 2 px), ceiling 120k, then exact
-     Dinkelbach leave-one-out prune (removal-only).
+  3. Fixed-budget knapsack-constrained CELF placement: budget swept over
+     {45k, 50k, 55k, 60k} with construction-guaranteed cap 0.635 vs every
+     sparse registry mask; choose the gate-passing argmax of in-model E[DTI].
+     (E1 used a 120k pool + exact Dinkelbach prune and FAILED G2 at 0.999 --
+     the prune re-concentrates capped pools inside dense halos, IR-30; the
+     adaptive-cap repair then collapsed to 119 dots. Both records preserved.)
   4. Cross-fit ESTIMATE (design half A, evaluate under half B and vice versa,
-     seeds 1/2) with the same capped+pruned procedure; family bootstrap 95 %.
+     seeds 1/2) mirroring the EXACT final procedure (fixed budget, cap 0.635,
+     no prune); family bootstrap 95 %.
   5. HOLDOUT-DTI: fold-local pi replay (d_cat rebuilt from visible faults only),
      identical capped allocation per holdout cell, pooled evaluator with
      b_visible_px = 2.0, 256-block cluster bootstrap (labelled, IR-11 caveat).
   6. Template writer + validator + independent byte re-read (range [0,1]
      everywhere, zeros outside footprint -- the portal range-error fix).
   7. G2 final-dot audit vs the FULL registry (content-aware gates + literal IR-01
-     disclosure).  G3 format, G4 cross-fit ESTIMATE > 0.2778 => verdict.
+     disclosure); removal-only repair backstop (0.68, fail-closed if it guts
+     >25% of dots).  G3 format, G4 cross-fit ESTIMATE > 0.2778 => verdict.
   8. Run card: evidence/lbcal_k_run_card.json (labels per protocol rule 3).
+E2 (cross-model second opinion) lives in scripts/run_lbcal_k_e2.py.
 """
 from __future__ import annotations
 
