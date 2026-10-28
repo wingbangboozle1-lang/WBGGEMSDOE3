@@ -68,7 +68,8 @@ def human_age(feed: dict) -> str:
 def layout(title: str, current: str, body: str) -> str:
     nav = [("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
            ("Submission guide", "how-to-submit.html"), ("Research", "research.html"),
-           ("Evidence", "evidence.html")]
+           ("Evidence", "evidence.html"), ("FCHD-NCM lane", "fchd/index.html"),
+           ("AMDC lane", "amdc/index.html")]
     links = "".join(f'<a href="{url}"' + (' aria-current="page"' if current == url else '') + f'>{name}</a>'
                     for name, url in nav)
     return f'''<!doctype html>
@@ -267,8 +268,11 @@ def render() -> None:
 
 def main() -> int:
     from amdc_site import main as _amdc_main
+    from build_site_fchd import main as _fchd_main
     render()
-    return _amdc_main() or 0
+    r1 = _amdc_main() or 0
+    r2 = _fchd_main() or 0
+    return r1 or r2
 
 
 def build() -> int:

@@ -29,12 +29,15 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 DEST="${1:-$ROOT/data/raw}"
 
-echo "[1/3] Fetching 26 hash-pinned mirror files into ${DEST} ..."
+echo "[1/4] Fetching 26 hash-pinned mirror files into ${DEST} ..."
 bash scripts/fetch_mirrors.sh "$DEST"
 
-echo "[2/3] Running scripts/prepare_data.py ..."
 if [[ -x .venv/bin/python ]]; then PY=.venv/bin/python; else PY=python3; fi
+echo "[2/4] Fetching 4 hash-pinned 3DEP 10 m / fluvial-chi / BLM external rasters ..."
+"$PY" scripts/fetch_fchd_external.py
+
+echo "[3/4] Running scripts/prepare_data.py ..."
 "$PY" scripts/prepare_data.py
 
-echo "[3/3] Data placement complete. Pins: registry/data_manifest.json; grid: data/manifest.json."
+echo "[4/4] Data placement complete. Pins: registry/data_manifest.json + registry/fchd_external_manifest.json; grid: data/manifest.json."
 echo "REMINDER: mirror bytes are NOT organizer-authenticated; verify provenance before a real upload."

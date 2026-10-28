@@ -80,6 +80,21 @@ here. The separate [focus audit](evidence/focus_audit.json) and
   authenticated official data and official USGS/GDR sites were inaccessible
   from this sandbox; pinning a public mirror only proves byte identity.
 
+## Parallel lane: FCHD-NCM (2026-10-28, negative)
+
+Session `arena/6ea84033-wbggemsdoe3` executed the 62-ch 10 m 3DEP Perron–Royden $\chi$ + planar facet + Lahontan/BLM deconfounder + 0→150 m upward-continued basin potential-field worms + DOE GDR #1391 + 4-fold out-of-component Nested Component-Masked (NCM) OOF HGB lane with a bit-packed 149-comparator knapsack CELF allocator (`38,000` dots, `wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif`, SHA-256 `35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2`). Verdict `negative` — consistent with the governing `DO-NOT-SUBMIT` decision above; zero portal slots spent.
+[Lane dossier](docs/fchd/index.html) ·
+[JSON run card](evidence/fchd_run_card.json) ·
+[72-feature leakage canary](evidence/fchd_leakage_canary.json) ·
+[master 195-file & Oct-27-peer audit](evidence/master_audit_2026-10-27.json) ·
+[preregistration + 5 ranked hypotheses](knowledge/preregistration-2026-10-27-fchd.md) ·
+[irregularities `IR-24`..`IR-28`](knowledge/irregularities-2026-10-28-fchd.md) ·
+[research-only TIF — DO NOT SUBMIT](docs/fchd/downloads/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif).
+
+1. **Content-aware registry uniqueness solved across all 195 TIFs (`<= 63.50%`), blocked only by the literal 100%-footprint dense witness (`IR-01`).** Where `THCS-OOF` (`0.921`) and `AMDC E3` (`0.936`) collided with `GEMSDOE67-ovtr`, `FCHD-NCM`'s bit-packed multi-comparator knapsack allocator holds max non-lattice 3-px overlap to **`0.6350 <= 0.70`** across all 149 sparse/blanket masks and **`0.4191 <= 0.70`** across all 17 newly added Oct 27 peer GeoTIFFs (`GEMSDOE92`, `GEMSDOEkarage1..3`, `ApartGEMSDOE1..3`, `GEMSDOESASS1..3`, `KANLERGEMSDOE2..3`, `WBGGEMSDOE1..2`), with pre-placement `max |Spearman| = 0.5300 <= 0.90`.
+2. **Gate 0 Leakage Canaries & 3 Preregistered Experiments (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld):** `72/72` single-feature AUCs `<= 0.90` (`max = 0.74318`). `E1` (62-ch ZeroCat OOF) = **`0.07534`** (`[0.0663, 0.0835]`); **`E2` (72-ch NCM-Struct OOF, winner) = `0.09702`** (`[0.0873, 0.1065]`, Draw-20 `0.10220`, `+28.8%` lift over `E1`, `#1` ~38k-dot spatially-blocked model in `WBGGEMSDOE3` ahead of `THCS-OOF 0.09573`, saved `HCE-1 0.09313`, and `AMDC E3 0.0552`); `E3` (DualRegime OOF) = **`0.09472`**.
+3. **Pass-2 TIFF Band-Order Fix (`IR-27`) & #1 Non-Circular `LBCAL-Physics ESTIMATE` (`0.0927`, not a score):** Pass-2 line-by-line checking against `training_features.tif` TIFF descriptions fixed interleaved band indices (`b2=rtp`, `b6=tc`, `b13=iso_grav_anom`, `b14=tmi`, `b15=depth_to_base_surf`, `b19=det_elev_slope`). Restoring true `b15` moved upward-continued 0→150 m basin worms off mountain slopes into true alluvial basins, raising off-catalogue `SGMC-Cal ESTIMATE` (`0.0494 -> 0.0502`) and reaching **`LBCAL-Physics ESTIMATE = 0.0927`** (`#1` among valid lanes in `WBGGEMSDOE3`, vs `HCE-1 0.0882`, `THCS-OOF 0.0876`, `SGCE 0.0711`, `TDE-30k 0.0507`). Because pooled `0.09702 < 0.09920` pre-collar `GEMSDOE32` proxy (`paired Δ = -0.00218`) and the literal witness blocks upload, verdict is `negative`.
+
 ## Parallel lane: AMDC audit (2026-10-28, negative)
 
 Session `arena/2759fec7-wbggemsdoe3` re-scored shipped bytes and re-audited the

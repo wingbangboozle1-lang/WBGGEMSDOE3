@@ -1,0 +1,262 @@
+{
+  "schema": "fchd-experiments-v1",
+  "generated_utc": "20261028T013811Z",
+  "lane_id": "FCHD-NCM",
+  "total_elapsed_sec": 908.42,
+  "experiments_used": 3,
+  "experiment_budget_max": 3,
+  "baseline_gemsdoe32_holdout": {
+    "candidate_id": "GEMSDOE32-H33-2-B2",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "pooled_dti": 0.099202,
+    "ci95_cluster_bootstrap": [
+      0.085951,
+      0.112668
+    ],
+    "n_withheld_positives": 22232,
+    "owner_reported_portal_score_unverified": 0.2778
+  },
+  "e3_lambda_calibration_draw20": [
+    {
+      "lambda_zerocat": 0.25,
+      "draw20_mean_dti": 0.096375,
+      "pooled_dti": 0.090938
+    },
+    {
+      "lambda_zerocat": 0.35,
+      "draw20_mean_dti": 0.094035,
+      "pooled_dti": 0.090186
+    },
+    {
+      "lambda_zerocat": 0.45,
+      "draw20_mean_dti": 0.094072,
+      "pooled_dti": 0.090164
+    }
+  ],
+  "experiments": [
+    {
+      "exp_id": "FCHD-E1-ZeroCat-OOF",
+      "n_features": 62,
+      "chosen_budget": 38000,
+      "emitted_dots": 38000,
+      "fit_sec": 220.21,
+      "alloc_sec": 21.44,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.075343,
+      "ci95_cluster_bootstrap": [
+        0.066253,
+        0.083541
+      ],
+      "paired_delta_vs_gemsdoe32": -0.023859,
+      "paired_delta_ci95": [
+        -0.034945,
+        -0.012592
+      ],
+      "draw20_mean_dti": 0.074771,
+      "draw21_mean_dti": 0.074686,
+      "per_quadrant_dti": {
+        "NW": 0.060172,
+        "NE": 0.081476,
+        "SW": 0.072537,
+        "SE": 0.08473
+      },
+      "budget_sweep": {
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.07534289359712339,
+          "ci95_cluster_bootstrap": [
+            0.06625334072518829,
+            0.08354149324601068
+          ],
+          "paired_delta_vs_gemsdoe32": -0.023859,
+          "paired_delta_ci95": [
+            -0.034945,
+            -0.012592
+          ],
+          "fold_mean_dti": 0.07472895069651614,
+          "draw20_mean_dti": 0.07477142401842912,
+          "draw21_mean_dti": 0.07468647737460317,
+          "per_quadrant_dti": {
+            "NW": 0.060172385355321684,
+            "NE": 0.08147581989714997,
+            "SW": 0.07253715216174278,
+            "SE": 0.08473044537185012
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        }
+      },
+      "pre_placement_max_abs_spearman": 0.50706,
+      "post_placement_max_nonlattice_3px_overlap": 0.635,
+      "uniqueness_content_aware_pass": true
+    },
+    {
+      "exp_id": "FCHD-E2-NCM-Struct-OOF",
+      "n_features": 72,
+      "chosen_budget": 38000,
+      "emitted_dots": 38000,
+      "fit_sec": 511.29,
+      "alloc_sec": 20.4,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.097024,
+      "ci95_cluster_bootstrap": [
+        0.087257,
+        0.106516
+      ],
+      "paired_delta_vs_gemsdoe32": -0.002179,
+      "paired_delta_ci95": [
+        -0.012192,
+        0.008389
+      ],
+      "draw20_mean_dti": 0.102201,
+      "draw21_mean_dti": 0.094261,
+      "per_quadrant_dti": {
+        "NW": 0.090181,
+        "NE": 0.120784,
+        "SW": 0.083565,
+        "SE": 0.098396
+      },
+      "budget_sweep": {
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.09702353336564881,
+          "ci95_cluster_bootstrap": [
+            0.08725704572931296,
+            0.10651619876484361
+          ],
+          "paired_delta_vs_gemsdoe32": -0.002179,
+          "paired_delta_ci95": [
+            -0.012192,
+            0.008389
+          ],
+          "fold_mean_dti": 0.09823127701084464,
+          "draw20_mean_dti": 0.10220117590028341,
+          "draw21_mean_dti": 0.09426137812140586,
+          "per_quadrant_dti": {
+            "NW": 0.09018113268624416,
+            "NE": 0.12078394327559666,
+            "SW": 0.08356451601844603,
+            "SE": 0.09839551606309166
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        }
+      },
+      "pre_placement_max_abs_spearman": 0.52995,
+      "post_placement_max_nonlattice_3px_overlap": 0.635,
+      "uniqueness_content_aware_pass": true
+    },
+    {
+      "exp_id": "FCHD-E3-DualRegime-OOF",
+      "n_features": 72,
+      "chosen_budget": 42000,
+      "emitted_dots": 42000,
+      "fit_sec": 731.5,
+      "alloc_sec": 45.29,
+      "score_label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "n_withheld_positives": 22232,
+      "pooled_dti": 0.094716,
+      "ci95_cluster_bootstrap": [
+        0.08518,
+        0.103299
+      ],
+      "paired_delta_vs_gemsdoe32": -0.004487,
+      "paired_delta_ci95": [
+        -0.014487,
+        0.004991
+      ],
+      "draw20_mean_dti": 0.099563,
+      "draw21_mean_dti": 0.092645,
+      "per_quadrant_dti": {
+        "NW": 0.086374,
+        "NE": 0.116283,
+        "SW": 0.078415,
+        "SE": 0.103344
+      },
+      "budget_sweep": {
+        "35000": {
+          "budget_full_map": 35000,
+          "pooled_dti": 0.08800200435460889,
+          "ci95_cluster_bootstrap": [
+            0.07920985618258765,
+            0.09622803318146535
+          ],
+          "paired_delta_vs_gemsdoe32": -0.0112,
+          "paired_delta_ci95": [
+            -0.020988,
+            -0.001671
+          ],
+          "fold_mean_dti": 0.08924368974778166,
+          "draw20_mean_dti": 0.092946715242476,
+          "draw21_mean_dti": 0.0855406642530873,
+          "per_quadrant_dti": {
+            "NW": 0.08000051266114672,
+            "NE": 0.10806871565229689,
+            "SW": 0.07305002773251101,
+            "SE": 0.09585550294517199
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "38000": {
+          "budget_full_map": 38000,
+          "pooled_dti": 0.09093801239973966,
+          "ci95_cluster_bootstrap": [
+            0.08155931186131928,
+            0.09969612865420832
+          ],
+          "paired_delta_vs_gemsdoe32": -0.008264,
+          "paired_delta_ci95": [
+            -0.018056,
+            0.001219
+          ],
+          "fold_mean_dti": 0.09240893139612562,
+          "draw20_mean_dti": 0.09637454129636139,
+          "draw21_mean_dti": 0.08844332149588985,
+          "per_quadrant_dti": {
+            "NW": 0.0835689359895849,
+            "NE": 0.11319567298182343,
+            "SW": 0.07473124911502818,
+            "SE": 0.09813986749806596
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "42000": {
+          "budget_full_map": 42000,
+          "pooled_dti": 0.09471563576702641,
+          "ci95_cluster_bootstrap": [
+            0.08517968843804218,
+            0.10329854762394938
+          ],
+          "paired_delta_vs_gemsdoe32": -0.004487,
+          "paired_delta_ci95": [
+            -0.014487,
+            0.004991
+          ],
+          "fold_mean_dti": 0.09610418646928202,
+          "draw20_mean_dti": 0.09956331525766995,
+          "draw21_mean_dti": 0.0926450576808941,
+          "per_quadrant_dti": {
+            "NW": 0.08637427526803837,
+            "NE": 0.11628336346968245,
+            "SW": 0.07841525449056101,
+            "SE": 0.10334385264884625
+          },
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        }
+      },
+      "pre_placement_max_abs_spearman": 0.55877,
+      "post_placement_max_nonlattice_3px_overlap": 0.635,
+      "uniqueness_content_aware_pass": true
+    }
+  ],
+  "selected_winner": "FCHD-E2-NCM-Struct-OOF"
+}

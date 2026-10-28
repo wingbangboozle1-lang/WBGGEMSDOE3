@@ -1,0 +1,415 @@
+{
+  "schema_version": "parallel-run-card-v1",
+  "generated_utc": "20261028T013811Z",
+  "branch": "arena/6ea84033-wbggemsdoe3",
+  "lane_id": "FCHD-NCM",
+  "selected_experiment": "FCHD-E2-NCM-Struct-OOF",
+  "hypothesis": "Unmapped Great Basin faults span three distinct physical regimes missed by scarp-only Quaternary compilations: (1) eroded bedrock/piedmont fault-line scarps preserving native 10 m 3DEP Perron-Royden fluvial chi knickpoints, cross-divide k_sn disequilibrium, and planar triangular facets; (2) concealed sub-alluvial intrabasin faults (depth_to_base_surf > 0) traced by upward-continued 0->150 m magnetic/gravity tilt worms and DOE GDR #1391 2m temperature probes (F2mDAB), paleo-sinter/tufa, and silica geothermometry; and (3) unmapped fault-tip propagation lobes, Crider-Pollard relay ramps, and 1.8/4.2 km piedmont/graben step-out strands.",
+  "physical_mechanism": "Importance-weighted Relief-Matched + Mimic-Hard-Negative 4-quadrant spatially blocked (1.5 km collar) OOF Histogram Gradient Boosting over 62 zero-catalogue physical features + 10 strictly out-of-component 4-fold Nested Component-Masked (NCM) structural-physical features, blended out-of-fold with pure zero-catalogue off-trace discovery and placed via running-ratio knapsack-constrained lazy-greedy CELF submodular 300 m kernel DTI optimization.",
+  "named_non_fault_mimics": [
+    "Pleistocene Lake Lahontan Sehoo highstand (~1,330-1,345 m ASL) wave-cut shoreline scarps & tufa benches (deconfounded via restored 10 m absolute zmean_m elevation without basement gravity step)",
+    "US BLM open-pit mines, waste-rock dumps, heap-leach pads (< 350 m of blm_closed_claim_distance_m.tif) & TIGER highway/rail embankments (< 250 m)",
+    "Ordinary non-fault steep mountain hillslopes & erosional spurs (defeated via Importance-Weighted Relief-Matched Hard-Negative Contrastive Sampling)"
+  ],
+  "gates": {
+    "gate0_leakage_canary": true,
+    "gate1_holdout_beats_gemsdoe32_sig": false,
+    "gate2_dot_budget_discipline": true,
+    "gate3_full_universe_uniqueness": true,
+    "gate4_portal_geotiff_0_to_1": true,
+    "all_passed": false
+  },
+  "leakage_canary": {
+    "passed": true,
+    "n_features_tested": 72,
+    "max_directional_auc": 0.74318,
+    "threshold": 0.9,
+    "receipt": "evidence/fchd_leakage_canary.json"
+  },
+  "holdout": {
+    "score_label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "pooled_dti": 0.097024,
+    "ci95_cluster_bootstrap": [
+      0.087257,
+      0.106516
+    ],
+    "draw20_mean_dti": 0.102201,
+    "draw21_mean_dti": 0.094261,
+    "per_quadrant_dti": {
+      "NW": 0.090181,
+      "NE": 0.120784,
+      "SW": 0.083565,
+      "SE": 0.098396
+    },
+    "baseline_gemsdoe32_pooled_dti": 0.099202,
+    "baseline_gemsdoe32_ci95": [
+      0.085951,
+      0.112668
+    ],
+    "paired_delta_vs_gemsdoe32": -0.002179,
+    "paired_delta_ci95": [
+      -0.012192,
+      0.008389
+    ],
+    "relative_lift_vs_gemsdoe32_pct": -2.2
+  },
+  "diagnostic_estimates_not_confirmed_scores": {
+    "evidence_warning": "ESTIMATE / PROXY ONLY \u2014 NEVER AN ORGANIZER-CONFIRMED LEADERBOARD SCORE",
+    "sgmc_off_catalogue_raw_dti": 0.07558,
+    "sgmc_off_catalogue_raw_ci95": [
+      0.06143,
+      0.09098
+    ],
+    "sgmc_prevalence_calibrated_dti_estimate": 0.05024,
+    "sgmc_prevalence_calibrated_ci95": [
+      0.04198,
+      0.05904
+    ],
+    "loso_profile_dti_estimate": 0.03305,
+    "lbcal_7feature_physics_estimate": 0.0927
+  },
+  "uniqueness": {
+    "total_files_indexed": 195,
+    "unique_masks_compared": 153,
+    "sparse_nonlattice_masks_compared": 149,
+    "pre_placement_max_abs_spearman": 0.52995,
+    "pre_placement_passed_le_0p90": true,
+    "U1_exact_duplicate": false,
+    "U3_max_nonlattice_overlap_3px": 0.635,
+    "U3_nonlattice_passed_le_0p70": true,
+    "U3_lattice_overlap_3px": 0.922711,
+    "U3_lattice_null_rate": 0.91393,
+    "U3_lattice_excess": 0.008781,
+    "U3_lattice_excess_passed_le_0p05": true,
+    "literal_all_files_max_overlap": 1.0,
+    "literal_reading_note": "17GEMSDOE_E-proba (ab0a0a62eecf066a) is positive on 100.0% of footprint; literal overlap is 1.000 for every non-empty submission (IR-01).",
+    "content_aware_all_gates_pass": true,
+    "top5_nonlattice_overlaps": [
+      {
+        "dot_hash": "d03b66851e56c980",
+        "primary_file": "data/ledger/15GEMSDOE__gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+        "groups": [
+          "ledger"
+        ],
+        "comparator_dots": 99999,
+        "comparator_cov3": 0.632528,
+        "overlap_3px": 0.635
+      },
+      {
+        "dot_hash": "7421de7aa27faa85",
+        "primary_file": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "groups": [
+          "ledger"
+        ],
+        "comparator_dots": 516738,
+        "comparator_cov3": 0.596972,
+        "overlap_3px": 0.635
+      },
+      {
+        "dot_hash": "8665f2c44f0ee381",
+        "primary_file": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "groups": [
+          "ledger"
+        ],
+        "comparator_dots": 167597,
+        "comparator_cov3": 0.624856,
+        "overlap_3px": 0.635
+      },
+      {
+        "dot_hash": "2e6bbc55301c6260",
+        "primary_file": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+        "groups": [
+          "ledger"
+        ],
+        "comparator_dots": 201260,
+        "comparator_cov3": 0.635637,
+        "overlap_3px": 0.635
+      },
+      {
+        "dot_hash": "c90bc8635ff7eed8",
+        "primary_file": "docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+        "groups": [
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 169968,
+        "comparator_cov3": 0.513393,
+        "overlap_3px": 0.635
+      }
+    ],
+    "top5_peer_prompt_20261027_overlaps": [
+      {
+        "dot_hash": "f47d40bbbf952cc0",
+        "primary_file": "data/peer_extra/GEMSDOESASS2__gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+        "groups": [
+          "peer_extra_20261027"
+        ],
+        "comparator_dots": 44090,
+        "comparator_cov3": 0.293552,
+        "overlap_3px": 0.41905
+      },
+      {
+        "dot_hash": "1ab9d137563e5553",
+        "primary_file": "data/peer_extra/GEMSDOEkarage3__gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+        "groups": [
+          "peer_extra_20261027"
+        ],
+        "comparator_dots": 37654,
+        "comparator_cov3": 0.222783,
+        "overlap_3px": 0.38142
+      },
+      {
+        "dot_hash": "10ae08a272ad2168",
+        "primary_file": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+        "groups": [
+          "peer_extra_20261027"
+        ],
+        "comparator_dots": 44090,
+        "comparator_cov3": 0.212454,
+        "overlap_3px": 0.37447
+      },
+      {
+        "dot_hash": "d61d8c42ab757973",
+        "primary_file": "data/peer_extra/ApartGEMSDOE3__apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+        "groups": [
+          "peer_extra_20261027"
+        ],
+        "comparator_dots": 37654,
+        "comparator_cov3": 0.225849,
+        "overlap_3px": 0.36389
+      },
+      {
+        "dot_hash": "950f4874339a5d82",
+        "primary_file": "data/peer_extra/GEMSDOESASS2__gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+        "groups": [
+          "peer_extra_20261027"
+        ],
+        "comparator_dots": 37654,
+        "comparator_cov3": 0.170348,
+        "overlap_3px": 0.34287
+      }
+    ],
+    "top5_wbggems3_prior_lane_overlaps": [
+      {
+        "dot_hash": "c90bc8635ff7eed8",
+        "primary_file": "docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+        "groups": [
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 169968,
+        "comparator_cov3": 0.513393,
+        "overlap_3px": 0.635
+      },
+      {
+        "dot_hash": "b87792cad0c17e57",
+        "primary_file": "submission/wbggems3-sgce-20261027-f52d35d8-nan.tif",
+        "groups": [
+          "wbggems3_sub",
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 102208,
+        "comparator_cov3": 0.384771,
+        "overlap_3px": 0.52284
+      },
+      {
+        "dot_hash": "1f5a6206ff322561",
+        "primary_file": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+        "groups": [
+          "wbggems3_sub",
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 97608,
+        "comparator_cov3": 0.34728,
+        "overlap_3px": 0.39134
+      },
+      {
+        "dot_hash": "e2a99a07451d212d",
+        "primary_file": "submission/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+        "groups": [
+          "wbggems3_sub",
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 46000,
+        "comparator_cov3": 0.142209,
+        "overlap_3px": 0.36134
+      },
+      {
+        "dot_hash": "8a041edde87272a8",
+        "primary_file": "submission/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+        "groups": [
+          "wbggems3_sub",
+          "wbggems3_docs"
+        ],
+        "comparator_dots": 40000,
+        "comparator_cov3": 0.287201,
+        "overlap_3px": 0.33387
+      }
+    ],
+    "receipt": "evidence/fchd_uniqueness_audit.json",
+    "max_u3_overlap_vs_oct27_peers": 0.4191
+  },
+  "submission_name": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb",
+  "submission_file": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+  "submission_path": "submission/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+  "docs_download_path": null,
+  "raster_sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+  "emitted_dots": 38000,
+  "submission_note": "FCHD-NCM: 10m 3DEP chi+facet+Lahontan/BLM deconf+0-150m worms+GDR1391+NCM OOF HGB+contrarian CELF (38000d)",
+  "submission_note_length": 106,
+  "validator_output": {
+    "file": "submission/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+    "sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+    "size_bytes": 146304,
+    "nodata": null,
+    "emitted_positive_pixels": 38000,
+    "total_mass": 38000.0,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "nan_count": 0,
+    "inf_count": 0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_3730x3292": true,
+      "transform_100m_exact": true,
+      "full_grid_all_finite_no_nan": true,
+      "in_footprint_no_nan": true,
+      "full_grid_range_0_to_1": true,
+      "in_footprint_range_0_to_1": true,
+      "outside_footprint_exact_zeros": true,
+      "zero_on_catalogue_faults": true,
+      "emits_positive_dots": true
+    },
+    "passed": true
+  },
+  "writer_receipt": {
+    "file": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+    "sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+    "bytes": 146304,
+    "submission_name": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb",
+    "note": "FCHD-NCM: 10m 3DEP chi+facet+Lahontan/BLM deconf+0-150m worms+GDR1391+NCM OOF HGB+contrarian CELF (38000d)",
+    "note_chars": 106,
+    "validator": {
+      "file": "/home/user/WBGGEMSDOE3/submission/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+      "bytes": 146304,
+      "sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030946743208914995,
+      "emitted_positive_pixels": 38000,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 38000,
+      "footprint_fraction": 0.007353833369489681
+    },
+    "template_report": {
+      "path": "/home/user/WBGGEMSDOE3/submission/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+      "bytes": 146304,
+      "sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030946743208914995,
+      "n_nonzero": 38000,
+      "mass": 38000.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "zip_file": "wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.zip",
+    "zip_sha256": "1046097db224f5afbb0bbf8f544e61eac30f03149a768dda25e28be5a13dc283",
+    "approved_for_weekly_slot": false,
+    "promoted": false,
+    "submission_slots_used": 0,
+    "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+    "metadata": {}
+  },
+  "experiments_used": 3,
+  "experiment_budget_max": 3,
+  "slots_spent": 0,
+  "organizer_receipt": null,
+  "selector_approval": false,
+  "ok_to_download": false,
+  "verdict": "negative",
+  "budget_disclosure": "3 preregistered model experiments (E1 ZeroCat=0.07534, E2 NCM-Struct=0.09702, E3 DualRegime=0.09472) executed on verified training_features.tif TIFF-tag band indices. Pass-2 debugging caught and fixed two implementation bugs disclosed here in full: (a) an aborted pre-run where min_gain_frac=0.035 halted CELF at 1,653/38,000 dots, and (b) a band-index bug where b4/b5/b19 (det_elev_slope) had been read in place of b13/b14/b15 (depth_to_base_surf), which had scored E1=0.08948, E2=0.10342, E3=0.10433 (paired delta +0.00513, 95% CI [-0.00464, +0.01545], also negative under the strict CI>0 promotion bar). Both pre- and post-bugfix runs confirm negative verdict vs promoted SGCE (0.16749)."
+}
