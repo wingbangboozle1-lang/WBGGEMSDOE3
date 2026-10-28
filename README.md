@@ -12,11 +12,12 @@
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit *after* clearance](docs/how-to-submit.html) ·
 > [Evidence and limitations](docs/evidence.html) ·
+> [2026-10-28 repository review](knowledge/review-2026-10-28.md) ·
 > [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md), the [current negative run card](evidence/session_9b794637_run_card.json),
 the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
 [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the

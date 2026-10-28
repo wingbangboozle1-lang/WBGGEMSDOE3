@@ -73,6 +73,19 @@ def test_feed_does_not_claim_old_data_is_live():
     assert 'data-freshness' in (DOCS / "index.html").read_text()
 
 
+def test_published_leaderboard_observation_is_dated_and_not_called_current():
+    body = (DOCS / "index.html").read_text()
+    observation = json.loads((DOCS / "data/leaderboard_observation_2026-10-27.json").read_text())
+    card = json.loads((DOCS / "data/review_2026-10-28.json").read_text())
+    assert observation["observed_date_utc"] == "2026-10-27"
+    assert observation["best_public_dti"] == "0.4544"
+    assert observation["rank_25_public_dti"] == "0.3195"
+    assert "rank 25" in body and "current live ranking was not rechecked" in body
+    assert card["verdict"] == "negative" and card["raster_sha256"] is None
+    assert card["experiments_run"] == 0 and card["weekly_slots_used"] == 0
+    assert "data/review_2026-10-28.json" in (DOCS / "evidence.html").read_text()
+
+
 def test_site_checker_passes_on_committed_pages():
     from check_site import main
     assert main() == 0

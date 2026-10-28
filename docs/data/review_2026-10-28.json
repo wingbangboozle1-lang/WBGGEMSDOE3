@@ -1,0 +1,60 @@
+{
+  "schema": "wbggemsdoe3-review-run-card-v1",
+  "review_date_utc": "2026-10-28",
+  "lane": "Approval-safety and requested-site evidence review; the prompt's referenced single method paragraph was not identifiable in the available repository brief.",
+  "hypothesis": "No new geological candidate is tested. The most relevant prior explanation for GEMSDOE32 H33-B2 is that sparse pruning near mapped catalogue traces may reduce false-positive mass under the distance-tolerant metric while retaining useful credit; causality is unverified.",
+  "mechanism": "Pinned raster comparison shows H33-B2 has 37,654 positive cells, an exact subset of the 40,199-cell GEMSDOE28 H27-4 support, removing 2,545 cells 1.414–2 pixels from the mirrored fault catalogue. Hidden labels and an organizer receipt linking score to these bytes are unavailable.",
+  "named_non_fault_process": "A dipping lithologic contact can mimic the magnetic/gravity edge or profile asymmetry proposed by the ranked prospective hypotheses; survey stitching and alluvial boundaries are additional confounders.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Not run in this review. The mandatory pre-placement uniqueness check is blocked by a registered mirrored raster positive on every cell of the mirrored sample footprint, under the repo's finite-and-greater-than-zero support definition. No candidate surface was built."
+  },
+  "correlation_overlap_vs_registry": {
+    "new_candidate_surface_rank_correlation": null,
+    "new_candidate_final_dot_overlap": null,
+    "new_candidate_tested": false,
+    "existing_research_file": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+    "existing_research_file_sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+    "existing_research_file_overlap_with_registered_witness": 1.0,
+    "registered_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_scope": "One hash-pinned public owner-mirror raster; it is positive in all 5,167,373 cells of the hash-pinned mirrored sample footprint. This one witness blocks literal overlap clearance but is not a complete current registry audit and is not authenticated as an organizer download."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_generated": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT RUN for a new candidate; no candidate exists.",
+    "existing_research_file_local_diagnostic": "Local zero-outside saved-byte diagnostic passed for its mirrored reference grid and finite [0,1] range, but independent outside-footprint interpretation conflicts and there is no portal receipt. It is not submission-cleared."
+  },
+  "submission_name": null,
+  "submission_note": "Negative preflight; no candidate cleared. Existing TIFFs are research-only; do not submit.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "leaderboard_context": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION from the saved official-page snapshot; not an upload receipt and not current as of this review.",
+    "observed_date_utc": "2026-10-27",
+    "best_public_dti": 0.4544,
+    "rank_25_public_dti": 0.3195,
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "current_status": "Not rechecked on 2026-10-28 because the DrivenData host is outside this sandbox's permitted outbound hosts. The user-provided 0.3195 as the current leaderboard high cannot be confirmed here."
+  },
+  "verification": {
+    "site_builder": "PASS",
+    "site_checker": "PASS",
+    "tests": "228 passed, 72 warnings",
+    "no_new_tif_or_upload": true,
+    "commands": [
+      "PYTHONPATH=src .venv/bin/python -c 'from gems_project.template import ensure_template; print(ensure_template())'",
+      ".venv/bin/python scripts/build_site.py",
+      ".venv/bin/python scripts/check_site.py",
+      ".venv/bin/python -m pytest -q"
+    ]
+  }
+}
