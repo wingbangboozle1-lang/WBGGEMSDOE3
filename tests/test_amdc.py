@@ -75,17 +75,36 @@ def test_bytes_audit_corrects_the_headline_and_matches_served_bytes():
     assert "SUBMITTABLE" in audit["validator_rerun"]["zeros_variant"]
 
 
-def test_governing_gate_stays_negative_with_verified_sources():
+def test_governing_gate_is_verified_v2_with_historical_sources_intact():
     gate = _load("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v1"
-    assert gate["decision"] == "DO-NOT-SUBMIT"
-    assert gate["okay_to_submit"] is False
-    assert gate["authority"]["selector_approval"] is False
-    assert gate["candidate"]["sha256"] == SGCE_SHA
-    assert gate["blocking_reasons"]
-    for key in ("authority", "candidate", "witness_audit"):
+    if gate["schema"] == "gems-release-gate-v1":
+        # historical negative mode remains a supported fail-closed state
+        assert gate["decision"] == "DO-NOT-SUBMIT"
+        assert gate["okay_to_submit"] is False
+        assert gate["authority"]["selector_approval"] is False
+        assert gate["candidate"]["sha256"] == SGCE_SHA
+        assert gate["blocking_reasons"]
+        keys = ("authority", "candidate", "witness_audit")
+    else:
+        # current mode: preregistered content-aware gates promoted ONE new file
+        assert gate["schema"] == "gems-release-gate-v2"
+        assert gate["decision"] == "SUBMIT"
+        assert gate["okay_to_download_and_submit"] is True
+        assert not gate["blocking_reasons"]
+        assert gate["selector_slot_spend"]["authorized"] is False
+        assert gate["selector_slot_spend"]["slots_used"] == 0
+        assert "IR-01" in gate["historical_record"]
+        assert gate["candidate"]["sha256"] != SGCE_SHA  # a NEW file, not the SGCE research TIFF
+        keys = ("authority", "preregistration", "focus_overlap", "irregularities",
+                "witness_audit", "historical_negative_authority")
+    for key in keys:
         src = ROOT / gate["source_cards"][key]
         assert hashlib.sha256(src.read_bytes()).hexdigest() == gate["source_cards"][key + "_sha256"]
+    # the AMDC lane itself must remain a negative dossier in either mode
+    amdc_page = (ROOT / "docs" / "amdc" / "index.html").read_text()
+    assert 'content="DO-NOT-SUBMIT"' in amdc_page
+    assert "DO NOT SUBMIT" in amdc_page
+    assert "OK TO DOWNLOAD AND SUBMIT" not in amdc_page
 
 
 def test_amdc_data_copies_match_evidence():
@@ -127,11 +146,15 @@ def test_amdc_lane_page_is_scoped_negative_with_working_links():
         assert target.is_relative_to(DOCS.resolve()) and target.is_file(), link
 
 
-def test_readme_records_the_negative_lane_without_claiming_clearance():
+def test_readme_records_the_lane_and_binds_any_clearance_to_the_new_file():
     readme = (ROOT / "README.md").read_text()
     assert "Parallel lane: AMDC audit (2026-10-28, negative)" in readme
     assert "docs/amdc/index.html" in readme
-    assert "OK TO DOWNLOAD AND SUBMIT" not in readme
+    if "OK TO DOWNLOAD AND SUBMIT" in readme:
+        # any clearance language must be tied to the gate-cleared LBCAL-K file
+        assert "wbggems3-lbcalk" in readme
+        assert "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e" in readme
+    assert "DO NOT SUBMIT" in readme  # historical research TIFFs stay negative
 
 
 def test_amdc_step_is_deterministic():

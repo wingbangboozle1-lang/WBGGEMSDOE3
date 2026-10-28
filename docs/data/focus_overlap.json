@@ -1,0 +1,62 @@
+{
+ "method": "directed overlap: candidate dots within chebyshev-3px (7x7 dilation, same as registry_full audit) of the site's pinned top file, over candidate dots inside footprint",
+ "my_dots_inside_footprint": 60000,
+ "candidate": "submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif",
+ "candidate_sha256": "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e",
+ "sites": {
+  "GEMSDOE24": {
+   "their_dots": 60069,
+   "my_dots_within_3px": 25467,
+   "overlap": 0.42445,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE25": {
+   "their_dots": 44090,
+   "my_dots_within_3px": 25023,
+   "overlap": 0.41705,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE27": {
+   "their_dots": 61328,
+   "my_dots_within_3px": 25512,
+   "overlap": 0.4252,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE28": {
+   "their_dots": 37660,
+   "my_dots_within_3px": 24607,
+   "overlap": 0.41012,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE30": {
+   "their_dots": 44090,
+   "my_dots_within_3px": 25023,
+   "overlap": 0.41705,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE31": {
+   "their_dots": 40199,
+   "my_dots_within_3px": 24792,
+   "overlap": 0.4132,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE32": {
+   "their_dots": 37654,
+   "my_dots_within_3px": 24470,
+   "overlap": 0.40783,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE33": {
+   "their_dots": 41865,
+   "my_dots_within_3px": 24906,
+   "overlap": 0.4151,
+   "unique_under_0p70": true
+  },
+  "GEMSDOE36": {
+   "their_dots": 38854,
+   "my_dots_within_3px": 24696,
+   "overlap": 0.4116,
+   "unique_under_0p70": true
+  }
+ }
+}

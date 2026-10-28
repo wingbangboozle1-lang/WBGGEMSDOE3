@@ -1,0 +1,27 @@
+{
+ "n_continuous_compared": 4,
+ "max_abs_spearman": 0.07112,
+ "passed_le_0p90": true,
+ "top10": [
+  {
+   "comparator": "ledger:20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unve",
+   "spearman": 0.07112,
+   "abs_spearman": 0.07112
+  },
+  {
+   "comparator": "ledger:GEMSDOE84__gems84-h84-kthm-tworegime-58000px-202",
+   "spearman": -0.01212,
+   "abs_spearman": 0.01212
+  },
+  {
+   "comparator": "ledger:GEMSDOE68__gems68-autoctx-s3-strands-35000dots-2",
+   "spearman": 0.00777,
+   "abs_spearman": 0.00777
+  },
+  {
+   "comparator": "ledger:GEMSDOE40__gemsdoe40-h8-euler-lineament-depthclu",
+   "spearman": 0.00429,
+   "abs_spearman": 0.00429
+  }
+ ]
+}

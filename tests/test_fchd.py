@@ -138,11 +138,21 @@ def test_fchd_run_card_canary_and_saved_geotiff_contracts():
 
 
 def test_governing_fail_closed_gate_and_fchd_dossier_consistency():
-    """Ensure FCHD-NCM dossier aligns with the governing fail-closed DO-NOT-SUBMIT gate."""
+    """Ensure FCHD-NCM dossier aligns with the governing decision in either mode.
+
+    The FCHD lane itself stays DO NOT SUBMIT regardless of the repository-wide
+    decision (which may be the v2 SUBMIT for the LBCAL-K candidate)."""
     dec = _j("docs/data/decision.json")
     gate = _j("docs/data/release_gate.json")
-    assert dec["decision"] == "DO-NOT-SUBMIT" and dec["okay_to_submit"] is False
-    assert gate["decision"] == "DO-NOT-SUBMIT" and gate["okay_to_submit"] is False
+    assert dec["decision"] == gate["decision"]
+    if gate["schema"] == "gems-release-gate-v2":
+        assert gate["decision"] == "SUBMIT"
+        assert dec["okay_to_download_and_submit"] is True
+        assert gate["selector_slot_spend"]["authorized"] is False
+        assert gate["selector_slot_spend"]["slots_used"] == 0
+    else:
+        assert dec["decision"] == "DO-NOT-SUBMIT" and dec["okay_to_submit"] is False
+        assert gate["decision"] == "DO-NOT-SUBMIT" and gate["okay_to_submit"] is False
 
     fchd_page = (ROOT / "docs" / "fchd" / "index.html").read_text()
     assert 'content="DO-NOT-SUBMIT"' in fchd_page

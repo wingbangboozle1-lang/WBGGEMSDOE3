@@ -1,0 +1,20 @@
+[17:10:52] grid foot=5167373 cat=60988
+[17:10:52] model pi_max=0.2|lam=0.0001: G=23612 pi_max=0.2 max_pi=0.1953
+[17:10:52] eligible after 2.0px export collar: 4862825
+[17:12:28] registry: files=183 masks=153 sparse=150
+[17:12:28] G1 surface: max|rho|=0.0711 over 4 surfaces (0s)
+[17:12:33] holdout context: 8 cells, 22232 withheld px
+[17:12:43] G0 canary: worst=0.8343 (d_visible_px@draw21_fold0) (16s)
+[17:13:17]   [prune] round 0: removed 81265; E[DTI] 0.3350 -> 0.5322
+[17:13:23]   [prune] round 1: removed 1475; E[DTI] 0.5322 -> 0.5329
+[17:13:29]   [prune] round 2: removed 3; E[DTI] 0.5329 -> 0.5329
+[17:13:29] pass 1: cap_abs=36830 CELF=120000 -> 37257 dots, in-model E[DTI]=0.5329, max_nonlattice=0.9852 (46s)
+[17:13:53]   [prune] round 0: removed 19124; E[DTI] 0.1771 -> 0.2105
+[17:13:56] pass 2: cap_abs=22948 CELF=23645 -> 4521 dots, in-model E[DTI]=0.2105, max_nonlattice=1.0000 (72s)
+[17:14:09]   [prune] round 0: removed 4958; E[DTI] 0.0096 -> 0.0100
+[17:14:10] pass 3: cap_abs=2784 CELF=5077 -> 119 dots, in-model E[DTI]=0.0100, max_nonlattice=0.9832 (87s)
+[17:14:11] in-model estimate check: 0.0100
+[17:14:55] cross-fit seed=1 design=A eval=B: dots=36995 in=0.5577 cross=0.4057
+[17:15:36] cross-fit seed=1 design=B eval=A: dots=39689 in=0.4713 cross=0.4980
+[17:16:21] cross-fit seed=2 design=A eval=B: dots=38813 in=0.4890 cross=0.5043
+[17:17:01] cross-fit seed=2 design=B eval=A: dots=37957 in=0.5215 cross=0.4773

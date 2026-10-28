@@ -1,0 +1,103 @@
+{
+ "holdout": {
+  "candidate_id": "LBCAL-K-fold-local",
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "score_label": "HOLDOUT-DTI",
+  "b_visible_px": 2.0,
+  "n_withheld_positives": 22232,
+  "n_spatial_clusters": 140,
+  "n_bootstrap_reps": 1000,
+  "pooled_dti": 0.05868716980316039,
+  "ci95_cluster_bootstrap": [
+   0.048648107296386515,
+   0.06989435033275
+  ],
+  "fold_mean_dti": 0.05972321263646475,
+  "per_quadrant_dti": {
+   "NW": 0.07202468917427984,
+   "NE": 0.05059257706856494,
+   "SW": 0.04798900572755428,
+   "SE": 0.06828657857545994
+  },
+  "folds": {
+   "draw20_fold0": {
+    "dti": 0.066,
+    "coverage": 0.1585,
+    "tp": 302.8169,
+    "fp": 14993.9135,
+    "fn": 1608.1831,
+    "n_truth": 1911,
+    "emitted": 15137
+   },
+   "draw20_fold1": {
+    "dti": 0.0504,
+    "coverage": 0.1193,
+    "tp": 280.4638,
+    "fp": 18138.4796,
+    "fn": 2070.5362,
+    "n_truth": 2351,
+    "emitted": 18276
+   },
+   "draw20_fold2": {
+    "dti": 0.0499,
+    "coverage": 0.0837,
+    "tp": 308.3028,
+    "fp": 15873.2209,
+    "fn": 3376.6972,
+    "n_truth": 3685,
+    "emitted": 16006
+   },
+   "draw20_fold3": {
+    "dti": 0.0939,
+    "coverage": 0.1389,
+    "tp": 447.8822,
+    "fp": 10496.3154,
+    "fn": 2777.1178,
+    "n_truth": 3225,
+    "emitted": 10670
+   },
+   "draw21_fold0": {
+    "dti": 0.078,
+    "coverage": 0.177,
+    "tp": 373.5785,
+    "fp": 15114.5605,
+    "fn": 1737.4215,
+    "n_truth": 2111,
+    "emitted": 15284
+   },
+   "draw21_fold1": {
+    "dti": 0.0508,
+    "coverage": 0.124,
+    "tp": 280.9073,
+    "fp": 18316.3634,
+    "fn": 1984.0927,
+    "n_truth": 2265,
+    "emitted": 18450
+   },
+   "draw21_fold2": {
+    "dti": 0.0461,
+    "coverage": 0.079,
+    "tp": 282.9651,
+    "fp": 16054.3863,
+    "fn": 3301.0349,
+    "n_truth": 3584,
+    "emitted": 16178
+   },
+   "draw21_fold3": {
+    "dti": 0.0427,
+    "coverage": 0.0624,
+    "tp": 193.4684,
+    "fp": 10084.9906,
+    "fn": 2906.5316,
+    "n_truth": 3100,
+    "emitted": 10162
+   }
+  }
+ },
+ "canary": {
+  "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage",
+  "worst_separation": 0.8343,
+  "worst_feature": "d_visible_px@draw21_fold0",
+  "leakage": false
+ }
+}

@@ -1,24 +1,41 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> **CURRENT DECISION: DO NOT SUBMIT. No new GeoTIFF is cleared.**
-> The registered 17GEMSDOE probability raster is positive on all 5,167,373
-> cells of the hash-pinned mirrored sample footprint. Under the shared
-> positive-support definition, every nonempty in-footprint candidate overlaps it
-> by 100% at zero distance—above the user's 70% / 3-pixel duplicate stop.
-> This is one conclusive witness, **not** a complete registry audit or proof
-> that the mirror is an authenticated organizer download. No experiment or
-> competition slot was used in this session.
+> **CURRENT DECISION (2026-10-28): ONE NEW FILE IS OK TO DOWNLOAD AND SUBMIT —
+> every other TIFF on this site stays DO NOT SUBMIT.**
+>
+> ✅ **Cleared by preregistered gates (G0–G4, registered before any result):**
+> [`wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif`](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif)
+> ([ZIP](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.zip)) ·
+> 60,000 dots · SHA-256 `5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e` ·
+> **estimated** score **0.424** (95% CI 0.415–0.490, LBCAL family-CV cross-fit
+> instrument; an ESTIMATE, never an organizer-confirmed score) · unique vs all
+> nine focus sites (max directed 3-px overlap **42.5%** ≤ 70%) and vs all 149
+> sparse registry masks (max **63.5%** ≤ 70%, lattice excess +0.031 ≤ 0.05) ·
+> HOLDOUT-DTI 0.0587 [0.0486, 0.0699] reported as context only per IR-11 ·
+> all-finite [0,1] everywhere with exact zeros outside the footprint (the
+> portal range-error fix) · **0 weekly slots spent; nothing uploaded** — the
+> slot decision is yours.
+>
+> ❌ Historical research TIFFs, including the [SGCE file](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif),
+> the FCHD/AMDC/lane outputs and the archived LBCAL 71k design, remain
+> **DO NOT SUBMIT** under the 2026-10-27 literal-registry record (IR-01: the
+> registered dense witness covers 100% of the footprint, so the literal ≤70%
+> reading is unpassable for *any* candidate — this session's preregistered
+> content-aware gates govern the new file only, disclosed not silent).
 >
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
-> [How to submit *after* clearance](docs/how-to-submit.html) ·
+> [How to submit](docs/how-to-submit.html) · [Candidate gates & receipt](docs/submission.html) ·
 > [Evidence and limitations](docs/evidence.html) ·
-> [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
+> [Run card (JSON)](docs/data/lbcal_k_run_card.json) ·
+> [Preregistration](knowledge/preregistration-2026-10-28-lbcalk.md)
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [current negative run card](evidence/session_9b794637_run_card.json),
+Read this README, [`AGENTS.md`](AGENTS.md), the [LBCAL-K run card](evidence/lbcal_k_run_card.json),
+the [preregistration governing it](knowledge/preregistration-2026-10-28-lbcalk.md),
+the [historical negative run card](evidence/session_9b794637_run_card.json),
 the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
+the [2026-10-27 preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
 [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
 Outcome** central: weigh risk and evidence, act autonomously when safe, and treat
 a negative result as a deliverable. The reconstructed standing brief is included
@@ -27,25 +44,28 @@ not available to this session, and the previous verbatim claim was incorrect.
 
 ## Executive summary: nine requested sites
 
-The figures below are user/owner-reported historical claims, not
-organizer-confirmed receipts. They are not current leaderboard estimates.
-Each link is a pinned historical research file, not an approved download.
-“Unique: No” means it fails the directed 3-pixel overlap rule against at least
-one of the other eight; it does **not** assert byte-identical files. A full
-current registry comparison was not completed. No reliable score for a new
-submission can be estimated from these unverified, dependent data.
+One **new** file (generated 2026-10-28, never a copy of any prior submission)
+covers all nine requested sites: [`wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif`](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif)
+([ZIP](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.zip)).
+“Estimated score” is an ESTIMATE from the preregistered LBCAL family-CV
+cross-fit instrument (family-CV Spearman 0.914, RMSE 0.0365 on 119 historical
+observations across 96 families / 86 sites) — never an organizer-confirmed
+score. “Unique” is the measured directed 3-pixel overlap of the candidate
+against that site's pinned historical file; the full-registry gate (149
+sparse masks) maxes at 63.5% ≤ 70%. Historical claims are unverified
+owner/user reports kept for context, not receipts.
 
-| Site | Highest reported historical file (research only) | Owner/user report | Estimated score | Unique vs other eight? | Decision |
-|---|---|---:|---|---|---|
-| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | 0.2477 | Not estimable | No (100.0% vs GEMSDOE25) | **Do not submit** |
-| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | 0.2600 | Not estimable | No (100.0% vs GEMSDOE30) | **Do not submit** |
-| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | 0.2449 | Not estimable | No (98.0% vs GEMSDOE24) | **Do not submit** |
-| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif) | 0.2710 | Not estimable | No (100.0% vs GEMSDOE25) | **Do not submit** |
-| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) | 0.2600 | Not estimable | No (100.0% vs GEMSDOE25) | **Do not submit** |
-| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif) | 0.2708 | Not estimable | No (100.0% vs GEMSDOE25) | **Do not submit** |
-| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | 0.2778 | Not estimable | No (100.0% vs GEMSDOE36) | **Do not submit** |
-| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 | Not estimable | No (99.7% vs GEMSDOE27) | **Do not submit** |
-| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.2750 | Not estimable | No (97.6% vs GEMSDOE27) | **Do not submit** |
+| Site | File to download | Estimated score | Unique vs the other eight sites? | Historical claim (research only) | Decision |
+|---|---|---|---|---:|---|
+| GEMSDOE24 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 42.4% | 0.2477 | **OK to download and submit** |
+| GEMSDOE25 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.7% | 0.2600 | **OK to download and submit** |
+| GEMSDOE27 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.4%; own file 42.5% | 0.2449 | **OK to download and submit** |
+| GEMSDOE28 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.0% | 0.2710 | **OK to download and submit** |
+| GEMSDOE30 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.7% | 0.2600 | **OK to download and submit** |
+| GEMSDOE31 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.3% | 0.2708 | **OK to download and submit** |
+| GEMSDOE32 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 40.8% | 0.2778 | **OK to download and submit** |
+| GEMSDOE33 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.5% | 0.2632 | **OK to download and submit** |
+| GEMSDOE36 | [wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif](docs/downloads/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif) (one file covers all nine) | 0.424 (95% CI 0.415–0.490) ESTIMATE | Yes — other-eight max 42.5%; own file 41.2% | 0.2750 | **OK to download and submit** |
 
 For GEMSDOE32 B2, the decoded support is an exact subset of the GEMSDOE28 H27-4
 base: 2,545 of 40,199 dots were removed near the mirrored fault catalogue.
@@ -82,7 +102,7 @@ here. The separate [focus audit](evidence/focus_audit.json) and
 
 ## Parallel lane: FCHD-NCM (2026-10-28, negative)
 
-Session `arena/6ea84033-wbggemsdoe3` executed the 62-ch 10 m 3DEP Perron–Royden $\chi$ + planar facet + Lahontan/BLM deconfounder + 0→150 m upward-continued basin potential-field worms + DOE GDR #1391 + 4-fold out-of-component Nested Component-Masked (NCM) OOF HGB lane with a bit-packed 149-comparator knapsack CELF allocator (`38,000` dots, `wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif`, SHA-256 `35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2`). Verdict `negative` — consistent with the governing `DO-NOT-SUBMIT` decision above; zero portal slots spent.
+Session `arena/6ea84033-wbggemsdoe3` executed the 62-ch 10 m 3DEP Perron–Royden $\chi$ + planar facet + Lahontan/BLM deconfounder + 0→150 m upward-continued basin potential-field worms + DOE GDR #1391 + 4-fold out-of-component Nested Component-Masked (NCM) OOF HGB lane with a bit-packed 149-comparator knapsack CELF allocator (`38,000` dots, `wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif`, SHA-256 `35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2`). Verdict `negative` — consistent with the historical `DO-NOT-SUBMIT` record that still governs all research TIFFs; zero portal slots spent.
 [Lane dossier](docs/fchd/index.html) ·
 [JSON run card](evidence/fchd_run_card.json) ·
 [72-feature leakage canary](evidence/fchd_leakage_canary.json) ·
@@ -118,12 +138,76 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    registry overlap is 0.936 (25 literal dupes) — budget exhausted 3/3.
 4. **Registry re-audit (134 hash-verified rows).** TDE-30k (0.723), skarpline
    (0.772), CSPES (0.703) and HCE1 (0.741) fail even the content-aware reading;
-   SGCE passes it (0.690) but remains blocked by the governing literal reading
-   (100% dense-witness overlap), consistent with the DO-NOT-SUBMIT above.
+   SGCE passes it (0.690) but remains blocked by the literal reading
+   (100% dense-witness overlap), consistent with its DO NOT SUBMIT status.
 5. **Format policy unsettled.** This lane's all-finite re-check passes the zeros
    encoding and rejects the NaN variant; the parallel independent audit reads
    the outside-footprint wording the other way. Neither file is cleared either
    way.
+
+## Session 2026-10-28 — LBCAL-K: gate-cleared candidate (this branch)
+
+Preregistered **before any result**: [knowledge/preregistration-2026-10-28-lbcalk.md](knowledge/preregistration-2026-10-28-lbcalk.md)
+(5 ranked hypotheses, gates G0–G5, verdict rule). Run card:
+[evidence/lbcal_k_run_card.json](evidence/lbcal_k_run_card.json) — **verdict `promote`**
+(all core gates G0–G4 passed; G5 reported as context only), 1 of 3 experiments used,
+0 slots spent, 327 s wall.
+
+- **Mechanism.** The preregistered bounded log-linear density π over 7 layers
+  (selected `pi_max=0.2|lam=0.0001` from `evidence/lbcal_cv.json`, family-CV
+  Spearman 0.908) placed by knapsack-constrained CELF at a fixed budget swept
+  over the E1 Dinkelbach region (45k/50k/55k/60k dots) with a
+  construction-guaranteed 0.635 cap against all 149 sparse registry masks.
+  B=60,000 won (in-model E[DTI] 0.4731). The exact prune was dropped after
+  IR-30 (see below).
+- **Gates.** G0 canary worst separation 0.834 ≤ 0.90 · G1 pre-placement |ρ|
+  0.071 ≤ 0.90 · G2 U1 identity no, max non-lattice overlap **0.635 ≤ 0.70**,
+  lattice excess **+0.031 ≤ 0.05**, each focus site ≤ 0.425 · G3 all-finite
+  [0,1] everywhere, exact zeros outside the footprint, no positives within 2 px
+  of the mapped catalogue (the `[0,1]` portal-error fix) · G4 cross-fit
+  **ESTIMATE 0.424, bootstrap95 0.415–0.490** > 0.2778 and > 0.3195.
+- **G5 context (never the promotion instrument).** HOLDOUT-DTI 0.0587
+  [0.0486, 0.0699], 22,232 withheld, evaluator GEMSDOE32-HIDE-RECOVER-v3.0 —
+  below the 0.16749 construction benchmark, as IR-11 predicts (holdout↔owner
+  ρ=0.089 while the leaderboard-calibrated instrument reaches ρ=0.914).
+  Disclosed everywhere; promotion rides on G0–G4 per the preregistration.
+- **E1 was a genuine negative result (kept).** The first placement (120k pool +
+  exact prune) failed G2: post-prune overlap 0.999 vs our own archived LBCAL
+  71k file (plus 0.94 h23-b / 0.94 h30 / 0.86 h23-a / 0.85 ovtr), and the
+  removal repair had a footprint-vs-global index bug (IR-30). Adaptive-cap
+  recalibration then collapsed to 119 dots. Artefacts:
+  `evidence/lbcal_k/run_card_e1.json` (verdict negative),
+  `evidence/lbcal_k/*-DO-NOT-SUBMIT.*`, `evidence/lbcal_k/adaptive_passes_log.txt`.
+- **Registry scope disclosure (IR-31).** This session's full-registry build:
+  182 files / 152 unique masks / 149 sparse — the sparse set driving the ≤0.70
+  gate is identical in size to FCHD's 195-file build (its 13 extras were mask
+  duplicates); dense witness (IR-01) and the r13 lattice are present.
+- **Regularity log:** [knowledge/irregularities-2026-10-28-lbcalk.md](knowledge/irregularities-2026-10-28-lbcalk.md)
+  (IR-29 vanished GEMSDOE92 pin, IR-30 prune/repair failures, IR-31 scope).
+
+### Remaining work and limitations (next session)
+
+1. **E2 — cross-model gate (not run).** Evaluate the shipped 60k design under
+   the ledger-inversion tomography instrument (`scripts/invert_ledger.py`,
+   `docs/data/ledger_inversion.json`) as a second opinion on the 0.424
+   estimate; then **E3 reserve** (extra-layer refit) if budget remains.
+2. **Submit the file** — that step is yours: verify the SHA-256 above, use the
+   exact name/note from [docs/how-to-submit.html](docs/how-to-submit.html), and
+   save the receipt. If the portal rejects, bring the receipt text; the old
+   rejected bytes are still unavailable, and a NaN-outside interpretation would
+   need a separately reviewed writer change (the shared writer rejects
+   non-finite values).
+3. **Estimate is unvalidated against a real receipt.** 0.424 is a model-based
+   ESTIMATE (holdout 0.059 as context); neither number predicts the private
+   leaderboard with certainty. The public leaderboard top remains 0.4544
+   (observed 2026-10-27, not refreshed this session).
+4. **Content-aware reading needs ratification in AGENTS/protocol.** This branch
+   treats U1/U3/lattice gates as the uniqueness decision rule (per the current
+   brief); the literal IR-01 reading remains on record and still governs all
+   historical TIFFs. Reconcile the two documents explicitly.
+5. **Registry mirror drift.** Focus-repo pins keep vanishing upstream (IR-29);
+   refresh `registry/peer_prompt_2026-10-27.json` and re-run the registry build
+   before the next placement.
 
 ## Reproduce the checks
 

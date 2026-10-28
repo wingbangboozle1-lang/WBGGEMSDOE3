@@ -1,351 +1,363 @@
 {
-  "schema": "peer-prompt-2026-10-27-v1",
-  "generated_utc": "2026-10-27",
-  "note": "Read-only SHA-256-pinned comparator inventory of peer GeoTIFFs newly listed in the 2026-10-27 prompt. Used exclusively for uniqueness gates and research comparison; never copied into a submission.",
-  "rasters": [
-    {
-      "site": "GEMSDOE92",
-      "submission": "gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "buffedlizard55-lab/GEMSDOE92",
-      "commit": "0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
-      "path": "docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
-      "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
-      "local": "data/peer_extra/GEMSDOE92__gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
-      "sha256": "e928d3c3fde8b3f1f622bb4f6e638620f0a1897fb6f8178cf26fe93f9c3b3a1c",
-      "bytes": 140192,
-      "positive_pixels": 35801,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOE92",
-      "submission": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
-      "score": 0.0255,
-      "score_class": "OWNER-REPORTED (unverified)",
-      "repo": "buffedlizard55-lab/GEMSDOE92",
-      "commit": "0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
-      "path": "docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
-      "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
-      "local": "data/peer_extra/GEMSDOE92__gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
-      "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
-      "bytes": 141115,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOEkarage1",
-      "submission": "karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "karagemop466-tech/GEMSDOEkarage1",
-      "commit": "65c07db29591228add2a216542607234156aab30",
-      "path": "docs/downloads/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
-      "url": "https://github.com/karagemop466-tech/GEMSDOEkarage1/blob/65c07db29591228add2a216542607234156aab30/docs/downloads/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
-      "local": "data/peer_extra/GEMSDOEkarage1__karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
-      "sha256": "198076f81067353c3ee41d947c7830ef11db2e8128bc5f8c5bd20ef036736f76",
-      "bytes": 142885,
-      "positive_pixels": 38200,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOEkarage1",
-      "submission": "gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "karagemop466-tech/GEMSDOEkarage1",
-      "commit": "65c07db29591228add2a216542607234156aab30",
-      "path": "docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
-      "url": "https://github.com/karagemop466-tech/GEMSDOEkarage1/blob/65c07db29591228add2a216542607234156aab30/docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
-      "local": "data/peer_extra/GEMSDOEkarage1__gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
-      "sha256": "75ac577a9131f6837b2de28be8932c326d1083bb46fcaebc1efc28e177526dbd",
-      "bytes": 141275,
-      "positive_pixels": 36000,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOEkarage2",
-      "submission": "gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "karagemop466-tech/GEMSDOEkarage2",
-      "commit": "690d7dd51ae458969e82fb62855babcf90a55437",
-      "path": "docs/downloads/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
-      "url": "https://github.com/karagemop466-tech/GEMSDOEkarage2/blob/690d7dd51ae458969e82fb62855babcf90a55437/docs/downloads/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
-      "local": "data/peer_extra/GEMSDOEkarage2__gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
-      "sha256": "28451a64b659b4e206bb483140fac169987db2edea7dc6a2cdc54f1c0f5fbfff",
-      "bytes": 735586,
-      "positive_pixels": 12195,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOEkarage3",
-      "submission": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "karagemop466-tech/GEMSDOEkarage3",
-      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
-      "path": "docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
-      "url": "https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/ad17f0a45859a54d261d1246249bb205dfa33f88/docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
-      "local": "data/peer_extra/GEMSDOEkarage3__gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
-      "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
-      "bytes": 212468,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOEkarage3",
-      "submission": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "karagemop466-tech/GEMSDOEkarage3",
-      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
-      "path": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
-      "url": "https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/ad17f0a45859a54d261d1246249bb205dfa33f88/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
-      "local": "data/peer_extra/GEMSDOEkarage3__karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
-      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
-      "bytes": 196536,
-      "positive_pixels": 34835,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "ApartGEMSDOE1",
-      "submission": "apartgems1-udth-submod-e3-20261027-50e7b334-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "apartanish22-droid/ApartGEMSDOE1",
-      "commit": "43e6cb59ef82f666663cd9bea1be4869c7af870a",
-      "path": "docs/downloads/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
-      "url": "https://github.com/apartanish22-droid/ApartGEMSDOE1/blob/43e6cb59ef82f666663cd9bea1be4869c7af870a/docs/downloads/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
-      "local": "data/peer_extra/ApartGEMSDOE1__apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
-      "sha256": "16f7101f41dd0331ac6076d6f55c906b7c1aa9fc7180258361450e9ecf87eede",
-      "bytes": 93217,
-      "positive_pixels": 38500,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "ApartGEMSDOE2",
-      "submission": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "apartanish22-droid/ApartGEMSDOE2",
-      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
-      "path": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
-      "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
-      "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
-      "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
-      "bytes": 164130,
-      "positive_pixels": 26173,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "ApartGEMSDOE2",
-      "submission": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "apartanish22-droid/ApartGEMSDOE2",
-      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
-      "path": "docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
-      "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
-      "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
-      "sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e",
-      "bytes": 231547,
-      "positive_pixels": 44090,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "ApartGEMSDOE2",
-      "submission": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "apartanish22-droid/ApartGEMSDOE2",
-      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
-      "path": "docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
-      "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
-      "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
-      "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
-      "bytes": 258085,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "ApartGEMSDOE3",
-      "submission": "apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "apartanish22-droid/ApartGEMSDOE3",
-      "commit": "c47c806d1bac18367ca3866230d3b2bc88815a20",
-      "path": "docs/downloads/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
-      "url": "https://github.com/apartanish22-droid/ApartGEMSDOE3/blob/c47c806d1bac18367ca3866230d3b2bc88815a20/docs/downloads/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
-      "local": "data/peer_extra/ApartGEMSDOE3__apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
-      "sha256": "afbfee1f46d6d3ca16297904cadf29d9cf9327d2ec5519e37f472c85bfaec065",
-      "bytes": 216370,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOESASS1",
-      "submission": "gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "sassnarep3-star/GEMSDOESASS1",
-      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
-      "path": "swgb/downloads/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
-      "url": "https://github.com/sassnarep3-star/GEMSDOESASS1/blob/7f87fc64ddedb259f898eed17daa0bfc11cc0d7b/swgb/downloads/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
-      "local": "data/peer_extra/GEMSDOESASS1__gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
-      "sha256": "f98c20df5bc67a482de6debd4abef9d3d104498bda0aacf464d693e271287729",
-      "bytes": 152542,
-      "positive_pixels": 44090,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOESASS2",
-      "submission": "gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "sassnarep3-star/GEMSDOESASS2",
-      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
-      "path": "docs/downloads/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
-      "url": "https://github.com/sassnarep3-star/GEMSDOESASS2/blob/3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957/docs/downloads/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
-      "local": "data/peer_extra/GEMSDOESASS2__gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
-      "sha256": "cc854482215ec665a17175447474066e3418692c9604f150cc4f5459dc459707",
-      "bytes": 161119,
-      "positive_pixels": 44090,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOESASS2",
-      "submission": "gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "sassnarep3-star/GEMSDOESASS2",
-      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
-      "path": "docs/downloads/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
-      "url": "https://github.com/sassnarep3-star/GEMSDOESASS2/blob/3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957/docs/downloads/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
-      "local": "data/peer_extra/GEMSDOESASS2__gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
-      "sha256": "28bb9419d592797dcac1bfb1eb19fcffa7581a51718230f1f4f957a3e3d610d6",
-      "bytes": 154994,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOESASS3",
-      "submission": "gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "sassnarep3-star/GEMSDOESASS3",
-      "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
-      "path": "docs/downloads/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
-      "url": "https://github.com/sassnarep3-star/GEMSDOESASS3/blob/86874b72302197a78eb8ad5edbf413acf1c02efe/docs/downloads/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
-      "local": "data/peer_extra/GEMSDOESASS3__gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
-      "sha256": "bc9109d9dd22d2f7193bafca7366acdf9432bfda7a393eb96d8fd8b48c0ed84a",
-      "bytes": 211511,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    },
-    {
-      "site": "GEMSDOESASS3",
-      "submission": "gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros",
-      "score": null,
-      "score_class": "UNSCORED (listed without score)",
-      "repo": "sassnarep3-star/GEMSDOESASS3",
-      "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
-      "path": "docs/downloads/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
-      "url": "https://github.com/sassnarep3-star/GEMSDOESASS3/blob/86874b72302197a78eb8ad5edbf413acf1c02efe/docs/downloads/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
-      "local": "data/peer_extra/GEMSDOESASS3__gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
-      "sha256": "250b22eaf2411c75c8587ffb8c7747f0f2f942e2c6a4a219b1371b340d4403fb",
-      "bytes": 121706,
-      "positive_pixels": 37654,
-      "shape": [
-        3730,
-        3292
-      ]
-    }
-  ],
-  "empty_repos_verified_zero_tif": [
-    {
-      "site": "GINNYGEMSDOE1",
-      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE1",
-      "tree_sha12": "761158ab9f7a",
-      "tif_count": 0
-    },
-    {
-      "site": "GINNYGEMSDOE2",
-      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE2",
-      "tree_sha12": "91d564fcda6c",
-      "tif_count": 0
-    },
-    {
-      "site": "GINNYGEMSDOE3",
-      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE3",
-      "tree_sha12": "4e00b89ed122",
-      "tif_count": 0
-    },
-    {
-      "site": "EUGGEMSDOE1",
-      "repo": "eugboogieman123-ops/EUGGEMSDOE1",
-      "tree_sha12": "81ac8521ea03",
-      "tif_count": 0
-    },
-    {
-      "site": "EUGGEMSDOE2",
-      "repo": "eugboogieman123-ops/EUGGEMSDOE2",
-      "tree_sha12": "3ae1fc951e54",
-      "tif_count": 0
-    },
-    {
-      "site": "EUGGEMSDOE3",
-      "repo": "eugboogieman123-ops/EUGGEMSDOE3",
-      "tree_sha12": "8fbb61b58ea0",
-      "tif_count": 0
-    }
-  ]
+ "schema": "peer-prompt-rasters-v2",
+ "note": "fail-soft refetch; pinned-ref 404 fallbacks disclosed in pin_status; sha256 of on-disk bytes recorded",
+ "rasters": [
+  {
+   "site": "GEMSDOE92",
+   "submission": "gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "buffedlizard55-lab/GEMSDOE92",
+   "commit": "6d1c43a7dd67e85d0c8a65f3006c57b306250f61",
+   "path": "docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
+   "local": "data/peer_extra/GEMSDOE92__gemsdoe92-lbmc1-35801dots-20261027-89a660f6-zeros.tif",
+   "sha256": "e928d3c3fde8b3f1f622bb4f6e638620f0a1897fb6f8178cf26fe93f9c3b3a1c",
+   "bytes": 140192,
+   "positive_pixels": 35801,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
+   "pin_status": "PINNED_REF_404_used_HEAD; original_pin=0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOE92",
+   "submission": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
+   "score": 0.0255,
+   "score_class": "OWNER-REPORTED (unverified)",
+   "repo": "buffedlizard55-lab/GEMSDOE92",
+   "commit": "6d1c43a7dd67e85d0c8a65f3006c57b306250f61",
+   "path": "docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE92/blob/0fd35bc0ef0654bf511b40d15eb19c53fc229a08/docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+   "local": "data/peer_extra/GEMSDOE92__gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+   "sha256": "91e26530ad25cfc19e05d3fc38b75c0e295ee1e128f571a3ba4afcf8df10934e",
+   "bytes": 141115,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
+   "pin_status": "PINNED_REF_404_used_HEAD; original_pin=0fd35bc0ef0654bf511b40d15eb19c53fc229a08",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOEkarage1",
+   "submission": "karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "karagemop466-tech/GEMSDOEkarage1",
+   "commit": "65c07db29591228add2a216542607234156aab30",
+   "path": "docs/downloads/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+   "url": "https://github.com/karagemop466-tech/GEMSDOEkarage1/blob/65c07db29591228add2a216542607234156aab30/docs/downloads/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+   "local": "data/peer_extra/GEMSDOEkarage1__karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+   "sha256": "198076f81067353c3ee41d947c7830ef11db2e8128bc5f8c5bd20ef036736f76",
+   "bytes": 142885,
+   "positive_pixels": 38200,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "65c07db29591",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOEkarage1",
+   "submission": "gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "karagemop466-tech/GEMSDOEkarage1",
+   "commit": "65c07db29591228add2a216542607234156aab30",
+   "path": "docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+   "url": "https://github.com/karagemop466-tech/GEMSDOEkarage1/blob/65c07db29591228add2a216542607234156aab30/docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+   "local": "data/peer_extra/GEMSDOEkarage1__gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+   "sha256": "75ac577a9131f6837b2de28be8932c326d1083bb46fcaebc1efc28e177526dbd",
+   "bytes": 141275,
+   "positive_pixels": 36000,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "65c07db29591",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOEkarage2",
+   "submission": "gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "karagemop466-tech/GEMSDOEkarage2",
+   "commit": "690d7dd51ae458969e82fb62855babcf90a55437",
+   "path": "docs/downloads/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+   "url": "https://github.com/karagemop466-tech/GEMSDOEkarage2/blob/690d7dd51ae458969e82fb62855babcf90a55437/docs/downloads/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+   "local": "data/peer_extra/GEMSDOEkarage2__gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+   "sha256": "28451a64b659b4e206bb483140fac169987db2edea7dc6a2cdc54f1c0f5fbfff",
+   "bytes": 735586,
+   "positive_pixels": 12195,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "690d7dd51ae4",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOEkarage3",
+   "submission": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "karagemop466-tech/GEMSDOEkarage3",
+   "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+   "path": "docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+   "url": "https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/ad17f0a45859a54d261d1246249bb205dfa33f88/docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+   "local": "data/peer_extra/GEMSDOEkarage3__gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+   "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
+   "bytes": 212468,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "ad17f0a45859",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOEkarage3",
+   "submission": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "karagemop466-tech/GEMSDOEkarage3",
+   "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+   "path": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+   "url": "https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/ad17f0a45859a54d261d1246249bb205dfa33f88/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+   "local": "data/peer_extra/GEMSDOEkarage3__karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+   "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+   "bytes": 196536,
+   "positive_pixels": 34835,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "ad17f0a45859",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "ApartGEMSDOE1",
+   "submission": "apartgems1-udth-submod-e3-20261027-50e7b334-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "apartanish22-droid/ApartGEMSDOE1",
+   "commit": "43e6cb59ef82f666663cd9bea1be4869c7af870a",
+   "path": "docs/downloads/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+   "url": "https://github.com/apartanish22-droid/ApartGEMSDOE1/blob/43e6cb59ef82f666663cd9bea1be4869c7af870a/docs/downloads/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+   "local": "data/peer_extra/ApartGEMSDOE1__apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+   "sha256": "16f7101f41dd0331ac6076d6f55c906b7c1aa9fc7180258361450e9ecf87eede",
+   "bytes": 93217,
+   "positive_pixels": 38500,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "43e6cb59ef82",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "ApartGEMSDOE2",
+   "submission": "apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "apartanish22-droid/ApartGEMSDOE2",
+   "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+   "path": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+   "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+   "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+   "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9",
+   "bytes": 164130,
+   "positive_pixels": 26173,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "e72ec0626ac7",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "ApartGEMSDOE2",
+   "submission": "apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "apartanish22-droid/ApartGEMSDOE2",
+   "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+   "path": "docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+   "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+   "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+   "sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e",
+   "bytes": 231547,
+   "positive_pixels": 44090,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "e72ec0626ac7",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "ApartGEMSDOE2",
+   "submission": "apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "apartanish22-droid/ApartGEMSDOE2",
+   "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+   "path": "docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+   "url": "https://github.com/apartanish22-droid/ApartGEMSDOE2/blob/e72ec0626ac73b9ee519453f92c1b32a1b903b5b/docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+   "local": "data/peer_extra/ApartGEMSDOE2__apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+   "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28",
+   "bytes": 258085,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "e72ec0626ac7",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "ApartGEMSDOE3",
+   "submission": "apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "apartanish22-droid/ApartGEMSDOE3",
+   "commit": "c47c806d1bac18367ca3866230d3b2bc88815a20",
+   "path": "docs/downloads/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+   "url": "https://github.com/apartanish22-droid/ApartGEMSDOE3/blob/c47c806d1bac18367ca3866230d3b2bc88815a20/docs/downloads/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+   "local": "data/peer_extra/ApartGEMSDOE3__apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+   "sha256": "afbfee1f46d6d3ca16297904cadf29d9cf9327d2ec5519e37f472c85bfaec065",
+   "bytes": 216370,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "c47c806d1bac",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOESASS1",
+   "submission": "gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "sassnarep3-star/GEMSDOESASS1",
+   "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+   "path": "swgb/downloads/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+   "url": "https://github.com/sassnarep3-star/GEMSDOESASS1/blob/7f87fc64ddedb259f898eed17daa0bfc11cc0d7b/swgb/downloads/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+   "local": "data/peer_extra/GEMSDOESASS1__gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+   "sha256": "f98c20df5bc67a482de6debd4abef9d3d104498bda0aacf464d693e271287729",
+   "bytes": 152542,
+   "positive_pixels": 44090,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "7f87fc64dded",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOESASS2",
+   "submission": "gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "sassnarep3-star/GEMSDOESASS2",
+   "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+   "path": "docs/downloads/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+   "url": "https://github.com/sassnarep3-star/GEMSDOESASS2/blob/3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957/docs/downloads/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+   "local": "data/peer_extra/GEMSDOESASS2__gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+   "sha256": "cc854482215ec665a17175447474066e3418692c9604f150cc4f5459dc459707",
+   "bytes": 161119,
+   "positive_pixels": 44090,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "3b21e4e9bf70",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOESASS2",
+   "submission": "gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "sassnarep3-star/GEMSDOESASS2",
+   "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+   "path": "docs/downloads/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+   "url": "https://github.com/sassnarep3-star/GEMSDOESASS2/blob/3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957/docs/downloads/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+   "local": "data/peer_extra/GEMSDOESASS2__gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+   "sha256": "28bb9419d592797dcac1bfb1eb19fcffa7581a51718230f1f4f957a3e3d610d6",
+   "bytes": 154994,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "3b21e4e9bf70",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOESASS3",
+   "submission": "gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "sassnarep3-star/GEMSDOESASS3",
+   "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+   "path": "docs/downloads/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+   "url": "https://github.com/sassnarep3-star/GEMSDOESASS3/blob/86874b72302197a78eb8ad5edbf413acf1c02efe/docs/downloads/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+   "local": "data/peer_extra/GEMSDOESASS3__gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+   "sha256": "bc9109d9dd22d2f7193bafca7366acdf9432bfda7a393eb96d8fd8b48c0ed84a",
+   "bytes": 211511,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "86874b723021",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  },
+  {
+   "site": "GEMSDOESASS3",
+   "submission": "gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros",
+   "score": null,
+   "score_class": "UNSCORED (listed without score)",
+   "repo": "sassnarep3-star/GEMSDOESASS3",
+   "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+   "path": "docs/downloads/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+   "url": "https://github.com/sassnarep3-star/GEMSDOESASS3/blob/86874b72302197a78eb8ad5edbf413acf1c02efe/docs/downloads/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+   "local": "data/peer_extra/GEMSDOESASS3__gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+   "sha256": "250b22eaf2411c75c8587ffb8c7747f0f2f942e2c6a4a219b1371b340d4403fb",
+   "bytes": 121706,
+   "positive_pixels": 37654,
+   "shape": [
+    3730,
+    3292
+   ],
+   "pin": "86874b723021",
+   "pin_status": "resolved_short_ref",
+   "status": "ok"
+  }
+ ]
 }

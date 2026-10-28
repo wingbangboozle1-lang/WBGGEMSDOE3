@@ -1,0 +1,581 @@
+{
+ "schema": "parallel-run card v1 (owner protocol rule 5)",
+ "lane": "LBCAL-K",
+ "version": "lbcal-v1.0+knapsack-repair",
+ "session_branch": "arena/08f7423a-wbggemsdoe3",
+ "utc": "2026-10-28T16:58:39.202320+00:00",
+ "hypothesis": "The public leaderboard scores of ~119 archived rasters are soft, spatially integrated measurements of where the hidden expert-labelled faults are. The preregistered bounded log-linear density pi over 7 geological layers, placed by knapsack-constrained CELF submodular coverage (cap 0.60 vs all 149 sparse registry masks) with exact Dinkelbach pruning, yields a unique design whose cross-fit ESTIMATE beats the 0.2778 champion lineage.",
+ "mechanism": "pi (pi_max=0.2, lam=1e-4, selected by leave-one-family-out RMSE) over joint bins of catalogue distance, Hessian curvature, Canny slope crest, 3DEP-LiDAR scarp rank, TMI horizontal gradient, SGMC distance and slope decile; marginal-dT gain maps with a per-comparator bit-packed knapsack cap; LOO prune for the FP side of the DTI ratio; dots never within 2 px of the mapped catalogue.",
+ "named_non_fault_mimic": "Landslide head-scarps, terrace risers and road/canal cuts share the slope/curvature/LiDAR-step signature; ordinary steep range-flank hillslopes in the 70-95 slope deciles are the dominant non-fault population pi cannot separate.",
+ "gates": [
+  {
+   "name": "G1_preplacement_surface",
+   "passed": true,
+   "detail": {
+    "max_abs_spearman": 0.07112,
+    "n_continuous_compared": 4,
+    "top5": [
+     {
+      "comparator": "ledger:20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unve",
+      "spearman": 0.07112,
+      "abs_spearman": 0.07112
+     },
+     {
+      "comparator": "ledger:GEMSDOE84__gems84-h84-kthm-tworegime-58000px-202",
+      "spearman": -0.01212,
+      "abs_spearman": 0.01212
+     },
+     {
+      "comparator": "ledger:GEMSDOE68__gems68-autoctx-s3-strands-35000dots-2",
+      "spearman": 0.00777,
+      "abs_spearman": 0.00777
+     },
+     {
+      "comparator": "ledger:GEMSDOE40__gemsdoe40-h8-euler-lineament-depthclu",
+      "spearman": 0.00429,
+      "abs_spearman": 0.00429
+     }
+    ]
+   }
+  },
+  {
+   "name": "G0_leakage_canary",
+   "passed": true,
+   "detail": {
+    "worst_separation": 0.8343,
+    "worst_feature": "d_visible_px@draw21_fold0",
+    "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage"
+   }
+  },
+  {
+   "name": "G3_format_portal_range",
+   "passed": true,
+   "detail": {
+    "template": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "independent": {
+     "shape_match": true,
+     "crs_match": true,
+     "transform_match": true,
+     "count": 1,
+     "dtype": "float32",
+     "n_nan": 0,
+     "n_inf": 0,
+     "min": 0.0,
+     "max": 1.0,
+     "all_finite": true,
+     "in_0_1_everywhere": true,
+     "no_positive_outside_footprint": true,
+     "no_positive_within_collar_2px": true,
+     "zero_on_mapped_catalogue": true,
+     "saved_dots_equal_design": true,
+     "name_chars": 51,
+     "note_chars": 91
+    },
+    "receipt_sha256": "a3f9c6d88f54acf48abf6b20aa833e78c73ded8580f836f536dac508ffc148c8",
+    "note": "bytes regenerated after removal-only uniqueness repair"
+   }
+  },
+  {
+   "name": "G2_final_dot_uniqueness",
+   "passed": false,
+   "detail": {
+    "U1_exact_duplicate": false,
+    "U3_max_nonlattice_overlap_3px": 0.99886,
+    "U3_lattice_excess": 0.046848,
+    "U3_lattice_null_rate": 0.91393,
+    "sparse_masks_compared": 149,
+    "unique_masks_compared": 152,
+    "total_files_indexed": 182,
+    "literal_all_files_max_overlap": 1.0,
+    "dense_witness_present": true,
+    "literal_note": "IR-01: registered 17GEMSDOE dense witness is positive on 100% of the footprint, so the literal <=0.70 reading is unpassable for ANY nonempty candidate; the content-aware gates (U1/U3/lattice) are the decision rule, disclosed per preregistration G2.",
+    "repair_log": [
+     {
+      "iter": 0,
+      "removed": 503,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 1,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 2,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 3,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 4,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 5,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 6,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 7,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 8,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 9,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 10,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     },
+     {
+      "iter": 11,
+      "removed": 0,
+      "violations": 7,
+      "worst_overlap": 0.9989
+     }
+    ],
+    "top10_nonlattice": [
+     {
+      "dot_hash": "74d55ad53418b55d",
+      "primary_file": "evidence/lbcal/wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif",
+      "groups": [
+       "wbggems3_lbcal",
+       "wbggems3_docs"
+      ],
+      "comparator_dots": 71416,
+      "comparator_cov3": 0.23227,
+      "overlap_3px": 0.99886
+     },
+     {
+      "dot_hash": "7421de7aa27faa85",
+      "primary_file": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 516738,
+      "comparator_cov3": 0.596972,
+      "overlap_3px": 0.94162
+     },
+     {
+      "dot_hash": "9526cb67d5751452",
+      "primary_file": "data/ledger/GEMSDOE23__gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 91533,
+      "comparator_cov3": 0.483431,
+      "overlap_3px": 0.93611
+     },
+     {
+      "dot_hash": "a28f288fdce55051",
+      "primary_file": "data/ledger/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 335879,
+      "comparator_cov3": 0.481059,
+      "overlap_3px": 0.85763
+     },
+     {
+      "dot_hash": "8665f2c44f0ee381",
+      "primary_file": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 167597,
+      "comparator_cov3": 0.624856,
+      "overlap_3px": 0.85298
+     },
+     {
+      "dot_hash": "594a4ed66b75603c",
+      "primary_file": "data/ledger/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 54864,
+      "comparator_cov3": 0.338306,
+      "overlap_3px": 0.73028
+     },
+     {
+      "dot_hash": "2e6bbc55301c6260",
+      "primary_file": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 201260,
+      "comparator_cov3": 0.635637,
+      "overlap_3px": 0.7065
+     },
+     {
+      "dot_hash": "d03b66851e56c980",
+      "primary_file": "data/ledger/15GEMSDOE__gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 99999,
+      "comparator_cov3": 0.632528,
+      "overlap_3px": 0.67162
+     },
+     {
+      "dot_hash": "4d1eca8bd084e85f",
+      "primary_file": "data/ledger/19GEMSDOE__gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 123779,
+      "comparator_cov3": 0.26282,
+      "overlap_3px": 0.65696
+     },
+     {
+      "dot_hash": "46728bd0808e3110",
+      "primary_file": "data/ledger/16GEMSDOE__gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 123939,
+      "comparator_cov3": 0.269495,
+      "overlap_3px": 0.65437
+     }
+    ]
+   }
+  },
+  {
+   "name": "G4_leaderboard_estimate_gt_0p2778",
+   "passed": true,
+   "detail": {
+    "label": "ESTIMATE (LBCAL family-CV cross-fit instrument) -- NOT a score",
+    "cross_fit_mean": 0.4973,
+    "family_bootstrap_95": [
+     0.4773,
+     0.5972
+    ],
+    "in_model_full_design": 0.5634,
+    "champion_b2_in_model": 0.223,
+    "champion_b2_owner_reported": 0.2778,
+    "stated_leaderboard_reference": 0.3195,
+    "instrument_family_cv_spearman": 0.9081515111411596,
+    "instrument_family_cv_rmse": 0.036487979134491984
+   }
+  },
+  {
+   "name": "G5_holdout_context_reported",
+   "passed": true,
+   "detail": {
+    "label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, b_visible_px=2.0)",
+    "pooled_dti": 0.05498,
+    "ci95": [
+     0.0445,
+     0.06677
+    ],
+    "n_withheld": 22232,
+    "n_spatial_clusters": 140,
+    "per_quadrant": {
+     "NW": 0.06136957274029024,
+     "NE": 0.043335572209451445,
+     "SW": 0.0478456272552627,
+     "SE": 0.07266001137975363
+    },
+    "vs_champion_proxy_0.099202": -0.04423,
+    "beats_champion_proxy": false,
+    "vs_sgce_construction_0.16749": -0.11252,
+    "beats_sgce_construction": false,
+    "decision_rule": "context only -- IR-11: holdout vs owner scores rho=0.089 (n=119); the leaderboard-calibrated cross-fit instrument (rho=0.914) is the promotion instrument for this lane (preregistered, disclosed)"
+   }
+  }
+ ],
+ "leakage_canary": {
+  "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage",
+  "worst_separation": 0.8343,
+  "worst_feature": "d_visible_px@draw21_fold0",
+  "leakage": false
+ },
+ "estimate": {
+  "label": "ESTIMATE (model output; not a score)",
+  "cross_fit_mean": 0.4973,
+  "cross_fit": [
+   {
+    "seed": 1,
+    "design_half": "A",
+    "eval_half": "B",
+    "dots": 59152,
+    "in_model": 0.5854,
+    "cross_fit": 0.4232
+   },
+   {
+    "seed": 1,
+    "design_half": "B",
+    "eval_half": "A",
+    "dots": 58868,
+    "in_model": 0.4884,
+    "cross_fit": 0.5244
+   },
+   {
+    "seed": 2,
+    "design_half": "A",
+    "eval_half": "B",
+    "dots": 60201,
+    "in_model": 0.5167,
+    "cross_fit": 0.5349
+   },
+   {
+    "seed": 2,
+    "design_half": "B",
+    "eval_half": "A",
+    "dots": 59485,
+    "in_model": 0.5506,
+    "cross_fit": 0.5068
+   }
+  ],
+  "family_bootstrap_95": [
+   0.4773,
+   0.5972
+  ],
+  "in_model_full_design": 0.5634,
+  "champion_b2_in_model": 0.223,
+  "champion_b2_owner_reported": 0.2778,
+  "instrument": "LBCAL family-CV (leave-one-family-out rho=0.908, RMSE=0.0365, n=119 owner-reported)"
+ },
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "pooled_dti": 0.05498,
+  "ci95": [
+   0.0445,
+   0.06677
+  ],
+  "n_withheld": 22232,
+  "n_spatial_clusters": 140,
+  "per_quadrant": {
+   "NW": 0.06136957274029024,
+   "NE": 0.043335572209451445,
+   "SW": 0.0478456272552627,
+   "SE": 0.07266001137975363
+  },
+  "vs_champion_proxy": -0.04423,
+  "vs_sgce_construction": -0.11252,
+  "ir11_caveat": "hide-and-recover correlates rho=0.089 with owner scores; it is reported for the protocol but is not the promotion instrument for a leaderboard-calibrated lane"
+ },
+ "registry": {
+  "preplacement_surface": {
+   "max_abs_spearman": 0.07112,
+   "n_continuous_compared": 4,
+   "top5": [
+    {
+     "comparator": "ledger:20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unve",
+     "spearman": 0.07112,
+     "abs_spearman": 0.07112
+    },
+    {
+     "comparator": "ledger:GEMSDOE84__gems84-h84-kthm-tworegime-58000px-202",
+     "spearman": -0.01212,
+     "abs_spearman": 0.01212
+    },
+    {
+     "comparator": "ledger:GEMSDOE68__gems68-autoctx-s3-strands-35000dots-2",
+     "spearman": 0.00777,
+     "abs_spearman": 0.00777
+    },
+    {
+     "comparator": "ledger:GEMSDOE40__gemsdoe40-h8-euler-lineament-depthclu",
+     "spearman": 0.00429,
+     "abs_spearman": 0.00429
+    }
+   ]
+  },
+  "final": {
+   "U1_exact_duplicate": false,
+   "U3_max_nonlattice_overlap_3px": 0.99886,
+   "U3_lattice_excess": 0.046848,
+   "U3_lattice_null_rate": 0.91393,
+   "sparse_masks_compared": 149,
+   "total_files_indexed": 182,
+   "content_aware_all_gates_pass": false,
+   "literal_all_files_max_overlap": 1.0,
+   "literal_note": "IR-01 dense-witness literal reading disclosed; content-aware gates are the decision rule per this session's brief"
+  },
+  "repair_log": [
+   {
+    "iter": 0,
+    "removed": 503,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 1,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 2,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 3,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 4,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 5,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 6,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 7,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 8,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 9,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 10,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   },
+   {
+    "iter": 11,
+    "removed": 0,
+    "violations": 7,
+    "worst_overlap": 0.9989
+   }
+  ]
+ },
+ "raster": {
+  "path": "submission/wbggems3-lbcalk-59k-20261028T165837Z-d4c471e8-zeros.tif",
+  "sha256": "a3f9c6d88f54acf48abf6b20aa833e78c73ded8580f836f536dac508ffc148c8",
+  "bytes": 182187,
+  "dots": 59711,
+  "emitted_dots": 59711,
+  "zip": "submission/wbggems3-lbcalk-59k-20261028T165837Z-d4c471e8-zeros.zip",
+  "receipt": "submission/wbggems3-lbcalk-59k-20261028T165837Z-d4c471e8-zeros.json"
+ },
+ "validator": {
+  "passed": true,
+  "template": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "independent": {
+   "shape_match": true,
+   "crs_match": true,
+   "transform_match": true,
+   "count": 1,
+   "dtype": "float32",
+   "n_nan": 0,
+   "n_inf": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "all_finite": true,
+   "in_0_1_everywhere": true,
+   "no_positive_outside_footprint": true,
+   "no_positive_within_collar_2px": true,
+   "zero_on_mapped_catalogue": true,
+   "saved_dots_equal_design": true,
+   "name_chars": 51,
+   "note_chars": 91
+  }
+ },
+ "submission_name": "wbggems3-lbcalk-59k-20261028T165837Z-d4c471e8-zeros",
+ "note": "LBCAL-K: leaderboard-calibrated density, knapsack-unique CELF dots; est 0.497 holdout 0.055",
+ "note_chars": 91,
+ "verdict": "negative",
+ "failed_gates": [
+  "G2_final_dot_uniqueness"
+ ],
+ "ok_to_submit": "NO",
+ "budget": {
+  "experiments_run": 1,
+  "experiments_max": 3,
+  "placement_ceiling": 120000,
+  "alloc_cap": 0.6,
+  "repair_target": 0.68,
+  "weekly_slots_used": 0,
+  "wall_seconds": 381.6
+ }
+}

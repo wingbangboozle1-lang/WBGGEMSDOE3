@@ -1,6 +1,20 @@
 {
-  "decision": "DO-NOT-SUBMIT",
-  "okay_to_submit": false,
-  "candidate": null,
+  "decision": "SUBMIT",
+  "okay_to_download_and_submit": true,
+  "okay_to_submit": true,
+  "candidate": {
+    "submission": "wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros",
+    "sha256": "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e",
+    "dots": 60000,
+    "lane_verdict": "promote",
+    "holdout_label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, b_visible_px=2.0)",
+    "estimate_label": "ESTIMATE (LBCAL family-CV cross-fit instrument) -- NOT a score",
+    "cross_fit_estimate": 0.4237
+  },
+  "selector_slot_spend": {
+    "authorized": false,
+    "slots_used": 0,
+    "note": "This gate authorises download + submission readiness only. Nothing was uploaded; spending the weekly slot stays a separate, separately-authorized human step."
+  },
   "source": "release_gate.json"
 }

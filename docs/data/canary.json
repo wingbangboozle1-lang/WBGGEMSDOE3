@@ -1,0 +1,104 @@
+{
+ "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage",
+ "worst_separation": 0.8343,
+ "worst_feature": "d_visible_px@draw21_fold0",
+ "leakage": false,
+ "per_cell": [
+  {
+   "cell": "draw20_fold0",
+   "n_truth": 1911,
+   "topo_rank": 0.583,
+   "crest": 0.5046,
+   "lidar_rank": 0.5595,
+   "mag_rank": 0.4707,
+   "d_sgmc_px": 0.2782,
+   "slope_rank": 0.6216,
+   "d_visible_px": 0.1672,
+   "lbcal_pi": 0.4933
+  },
+  {
+   "cell": "draw20_fold1",
+   "n_truth": 2351,
+   "topo_rank": 0.5108,
+   "crest": 0.5022,
+   "lidar_rank": 0.5531,
+   "mag_rank": 0.487,
+   "d_sgmc_px": 0.3019,
+   "slope_rank": 0.5503,
+   "d_visible_px": 0.2175,
+   "lbcal_pi": 0.5257
+  },
+  {
+   "cell": "draw20_fold2",
+   "n_truth": 3685,
+   "topo_rank": 0.5195,
+   "crest": 0.4925,
+   "lidar_rank": 0.5036,
+   "mag_rank": 0.5464,
+   "d_sgmc_px": 0.4036,
+   "slope_rank": 0.5091,
+   "d_visible_px": 0.215,
+   "lbcal_pi": 0.432
+  },
+  {
+   "cell": "draw20_fold3",
+   "n_truth": 3225,
+   "topo_rank": 0.6014,
+   "crest": 0.5076,
+   "lidar_rank": 0.5276,
+   "mag_rank": 0.507,
+   "d_sgmc_px": 0.2929,
+   "slope_rank": 0.6642,
+   "d_visible_px": 0.2777,
+   "lbcal_pi": 0.5206
+  },
+  {
+   "cell": "draw21_fold0",
+   "n_truth": 2111,
+   "topo_rank": 0.6364,
+   "crest": 0.5049,
+   "lidar_rank": 0.608,
+   "mag_rank": 0.5588,
+   "d_sgmc_px": 0.2287,
+   "slope_rank": 0.6657,
+   "d_visible_px": 0.1657,
+   "lbcal_pi": 0.498
+  },
+  {
+   "cell": "draw21_fold1",
+   "n_truth": 2265,
+   "topo_rank": 0.4978,
+   "crest": 0.4918,
+   "lidar_rank": 0.4991,
+   "mag_rank": 0.4336,
+   "d_sgmc_px": 0.2326,
+   "slope_rank": 0.5507,
+   "d_visible_px": 0.2202,
+   "lbcal_pi": 0.5418
+  },
+  {
+   "cell": "draw21_fold2",
+   "n_truth": 3584,
+   "topo_rank": 0.5425,
+   "crest": 0.4965,
+   "lidar_rank": 0.5676,
+   "mag_rank": 0.5213,
+   "d_sgmc_px": 0.4031,
+   "slope_rank": 0.5404,
+   "d_visible_px": 0.2476,
+   "lbcal_pi": 0.4414
+  },
+  {
+   "cell": "draw21_fold3",
+   "n_truth": 3100,
+   "topo_rank": 0.5006,
+   "crest": 0.4961,
+   "lidar_rank": 0.5521,
+   "mag_rank": 0.4765,
+   "d_sgmc_px": 0.3469,
+   "slope_rank": 0.5271,
+   "d_visible_px": 0.2588,
+   "lbcal_pi": 0.4372
+  }
+ ]
+}

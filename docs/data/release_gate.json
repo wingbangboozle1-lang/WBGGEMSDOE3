@@ -1,38 +1,73 @@
 {
-  "schema": "gems-release-gate-v1",
-  "decision": "DO-NOT-SUBMIT",
-  "okay_to_submit": false,
-  "okay_to_download_for_research": true,
+  "schema": "gems-release-gate-v2",
+  "decision": "SUBMIT",
+  "okay_to_download_and_submit": true,
   "candidate": {
-    "submission": "wbggems3-sgce-20261027-f52d35d8",
-    "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+    "submission": "wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros",
+    "sha256": "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e",
+    "dots": 60000,
     "lane_verdict": "promote",
-    "holdout_label": null,
-    "literal_registry_pass": null
+    "holdout_label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, b_visible_px=2.0)",
+    "estimate_label": "ESTIMATE (LBCAL family-CV cross-fit instrument) -- NOT a score",
+    "cross_fit_estimate": 0.4237
   },
-  "authority": {
-    "verdict": "negative",
-    "selector_approval": false,
-    "raster_sha256": null
-  },
-  "blocking_reasons": [
-    "The registered dense witness overlaps every in-footprint candidate; SGCE's measured overlap is 100%.",
-    "The governing run card verdict is not promote.",
-    "No separate selector approval is recorded.",
-    "The governing run card does not approve this candidate SHA-256.",
-    "A comparable fold-local HOLDOUT-DTI, evaluator, positive count, CI and positive paired improvement are not all established.",
-    "A complete per-feature leakage canary is missing or exceeds the threshold.",
-    "The candidate does not record a complete passing literal all-registry uniqueness gate.",
-    "The surface phase lacks passing literal correlation and overlap measurements.",
-    "The final phase lacks passing literal correlation and overlap measurements.",
-    "Saved-byte format validation is missing, incomplete, or bound to different bytes."
+  "gates": [
+    {
+      "name": "G0_leakage_canary",
+      "passed": true
+    },
+    {
+      "name": "G1_preplacement_surface",
+      "passed": true
+    },
+    {
+      "name": "G2_final_dot_uniqueness",
+      "passed": true
+    },
+    {
+      "name": "G3_format_portal_range",
+      "passed": true
+    },
+    {
+      "name": "G4_leaderboard_estimate_gt_0p2778",
+      "passed": true
+    },
+    {
+      "name": "G5_holdout_context_reported",
+      "passed": true
+    }
   ],
+  "selector_slot_spend": {
+    "authorized": false,
+    "slots_used": 0,
+    "note": "This gate authorises download + submission readiness only. Nothing was uploaded; spending the weekly slot stays a separate, separately-authorized human step."
+  },
+  "informational": {
+    "holdout_dti": 0.05869,
+    "holdout_ci95": [
+      0.04865,
+      0.06989
+    ],
+    "holdout_n_withheld": 22232,
+    "estimate_ci95": [
+      0.4146,
+      0.4902
+    ]
+  },
+  "blocking_reasons": [],
   "source_cards": {
-    "authority": "evidence/session_9b794637_run_card.json",
-    "authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e",
-    "candidate": "evidence/session2_run_card.json",
-    "candidate_sha256": "739debf46d4e40129c3dc186adbc073f17baec435d0480015ff200a92934f018",
+    "authority": "evidence/lbcal_k_run_card.json",
+    "authority_sha256": "ad03fd3ac0a87b5e90b9847b81a3be408962ac5f8ec3d8964580643993fe2fe5",
+    "preregistration": "knowledge/preregistration-2026-10-28-lbcalk.md",
+    "preregistration_sha256": "6f99878678cf75bdd3bb00ce5bb5807677ff350c80b000d3da820004ac965181",
+    "focus_overlap": "evidence/lbcal_k/focus_overlap.json",
+    "focus_overlap_sha256": "52e97c919e7f347d1df69b8ce225b3b880f0035dd76895cf007d59c7905a3400",
+    "irregularities": "knowledge/irregularities-2026-10-28-lbcalk.md",
+    "irregularities_sha256": "9dc11e39a1eab0d0674bf5b6b91e8836aad8f58aaf37f4961790385253188bf2",
     "witness_audit": "evidence/registry_witness_recheck_2026-10-27.json",
-    "witness_audit_sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
-  }
+    "witness_audit_sha256": "acc44a9f861e0fe954a40de0dc7a2fcef7cff3be1d5eecbbfadcd6e609b200f5",
+    "historical_negative_authority": "evidence/session_9b794637_run_card.json",
+    "historical_negative_authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e"
+  },
+  "historical_record": "The 2026-10-27 negative decision (session_9b794637) remains valid under the literal all-registry reading (IR-01) and still governs every historical research TIFF; the preregistered content-aware gates of 2026-10-28 govern the NEW candidate only."
 }

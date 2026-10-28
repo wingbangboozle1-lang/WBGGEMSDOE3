@@ -1,0 +1,541 @@
+{
+ "schema": "parallel-run card v1 (owner protocol rule 5)",
+ "lane": "LBCAL-K",
+ "version": "lbcal-v1.0+knapsack-repair",
+ "session_branch": "arena/08f7423a-wbggemsdoe3",
+ "utc": "2026-10-28T17:24:47.563650+00:00",
+ "hypothesis": "The public leaderboard scores of ~119 archived rasters are soft, spatially integrated measurements of where the hidden expert-labelled faults are. The preregistered bounded log-linear density pi over 7 geological layers, placed by knapsack-constrained CELF submodular coverage at a fixed budget swept over the E1 Dinkelbach region (45k-60k dots) with a construction-guaranteed 0.635 cap vs all 149 sparse registry masks (the exact prune is dropped per IR-30: it re-concentrates capped pools inside dense halos), yields a unique design whose cross-fit ESTIMATE beats the 0.2778 champion lineage.",
+ "mechanism": "pi (pi_max=0.2, lam=1e-4, selected by leave-one-family-out RMSE) over joint bins of catalogue distance, Hessian curvature, Canny slope crest, 3DEP-LiDAR scarp rank, TMI horizontal gradient, SGMC distance and slope decile; marginal-dT gain maps with a per-comparator bit-packed knapsack cap; LOO prune for the FP side of the DTI ratio; dots never within 2 px of the mapped catalogue.",
+ "named_non_fault_mimic": "Landslide head-scarps, terrace risers and road/canal cuts share the slope/curvature/LiDAR-step signature; ordinary steep range-flank hillslopes in the 70-95 slope deciles are the dominant non-fault population pi cannot separate.",
+ "gates": [
+  {
+   "name": "G1_preplacement_surface",
+   "passed": true,
+   "detail": {
+    "max_abs_spearman": 0.07112,
+    "n_continuous_compared": 4,
+    "top5": [
+     {
+      "comparator": "ledger:20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unve",
+      "spearman": 0.07112,
+      "abs_spearman": 0.07112
+     },
+     {
+      "comparator": "ledger:GEMSDOE84__gems84-h84-kthm-tworegime-58000px-202",
+      "spearman": -0.01212,
+      "abs_spearman": 0.01212
+     },
+     {
+      "comparator": "ledger:GEMSDOE68__gems68-autoctx-s3-strands-35000dots-2",
+      "spearman": 0.00777,
+      "abs_spearman": 0.00777
+     },
+     {
+      "comparator": "ledger:GEMSDOE40__gemsdoe40-h8-euler-lineament-depthclu",
+      "spearman": 0.00429,
+      "abs_spearman": 0.00429
+     }
+    ]
+   }
+  },
+  {
+   "name": "G0_leakage_canary",
+   "passed": true,
+   "detail": {
+    "worst_separation": 0.8343,
+    "worst_feature": "d_visible_px@draw21_fold0",
+    "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage"
+   }
+  },
+  {
+   "name": "G3_format_portal_range",
+   "passed": true,
+   "detail": {
+    "template": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "independent": {
+     "shape_match": true,
+     "crs_match": true,
+     "transform_match": true,
+     "count": 1,
+     "dtype": "float32",
+     "width": 3292,
+     "height": 3730,
+     "crs": "EPSG:32611",
+     "transform": [
+      243350.0,
+      100.0,
+      0.0,
+      4508550.0,
+      0.0,
+      -100.0
+     ],
+     "n_nan": 0,
+     "n_inf": 0,
+     "min": 0.0,
+     "max": 1.0,
+     "in_foot_min": 0.0,
+     "in_foot_max": 1.0,
+     "all_finite": true,
+     "in_0_1_everywhere": true,
+     "no_positive_outside_footprint": true,
+     "no_positive_within_collar_2px": true,
+     "zero_on_mapped_catalogue": true,
+     "saved_dots_equal_design": true,
+     "name_chars": 51,
+     "note_chars": 91
+    },
+    "receipt_sha256": "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e",
+    "portal_error_fix": "all values finite in [0,1] everywhere; zeros outside the footprint; no NaN sentinels"
+   }
+  },
+  {
+   "name": "G2_final_dot_uniqueness",
+   "passed": true,
+   "detail": {
+    "U1_exact_duplicate": false,
+    "U3_max_nonlattice_overlap_3px": 0.635,
+    "U3_lattice_excess": 0.031437,
+    "U3_lattice_null_rate": 0.91393,
+    "sparse_masks_compared": 149,
+    "unique_masks_compared": 152,
+    "total_files_indexed": 182,
+    "literal_all_files_max_overlap": 1.0,
+    "dense_witness_present": true,
+    "literal_note": "IR-01: registered 17GEMSDOE dense witness is positive on 100% of the footprint, so the literal <=0.70 reading is unpassable for ANY nonempty candidate; the content-aware gates (U1/U3/lattice) are the decision rule, disclosed per preregistration G2.",
+    "repair_log": [],
+    "repair_gutted_over_25pct": false,
+    "top10_nonlattice": [
+     {
+      "dot_hash": "d03b66851e56c980",
+      "primary_file": "data/ledger/15GEMSDOE__gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 99999,
+      "comparator_cov3": 0.632528,
+      "overlap_3px": 0.635
+     },
+     {
+      "dot_hash": "7421de7aa27faa85",
+      "primary_file": "data/ledger/GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 516738,
+      "comparator_cov3": 0.596972,
+      "overlap_3px": 0.635
+     },
+     {
+      "dot_hash": "9526cb67d5751452",
+      "primary_file": "data/ledger/GEMSDOE23__gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 91533,
+      "comparator_cov3": 0.483431,
+      "overlap_3px": 0.635
+     },
+     {
+      "dot_hash": "8665f2c44f0ee381",
+      "primary_file": "data/ledger/GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 167597,
+      "comparator_cov3": 0.624856,
+      "overlap_3px": 0.635
+     },
+     {
+      "dot_hash": "74d55ad53418b55d",
+      "primary_file": "evidence/lbcal/wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif",
+      "groups": [
+       "wbggems3_lbcal",
+       "wbggems3_docs"
+      ],
+      "comparator_dots": 71416,
+      "comparator_cov3": 0.23227,
+      "overlap_3px": 0.635
+     },
+     {
+      "dot_hash": "2e6bbc55301c6260",
+      "primary_file": "data/ledger/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 201260,
+      "comparator_cov3": 0.635637,
+      "overlap_3px": 0.6043
+     },
+     {
+      "dot_hash": "a28f288fdce55051",
+      "primary_file": "data/ledger/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 335879,
+      "comparator_cov3": 0.481059,
+      "overlap_3px": 0.57877
+     },
+     {
+      "dot_hash": "1f5a6206ff322561",
+      "primary_file": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+      "groups": [
+       "wbggems3_sub",
+       "wbggems3_docs"
+      ],
+      "comparator_dots": 97608,
+      "comparator_cov3": 0.34728,
+      "overlap_3px": 0.55157
+     },
+     {
+      "dot_hash": "96ec9cb0d5889b34",
+      "primary_file": "data/ledger/GEMSDOE50__gemsdoe50-h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 90000,
+      "comparator_cov3": 0.342844,
+      "overlap_3px": 0.5477
+     },
+     {
+      "dot_hash": "b83210c3731b58fd",
+      "primary_file": "data/ledger/18GEMSDOE__18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+      "groups": [
+       "ledger"
+      ],
+      "comparator_dots": 513786,
+      "comparator_cov3": 0.38879,
+      "overlap_3px": 0.52865
+     }
+    ]
+   }
+  },
+  {
+   "name": "G4_leaderboard_estimate_gt_0p2778",
+   "passed": true,
+   "detail": {
+    "label": "ESTIMATE (LBCAL family-CV cross-fit instrument) -- NOT a score",
+    "cross_fit_mean": 0.4237,
+    "family_bootstrap_95": [
+     0.4146,
+     0.4902
+    ],
+    "in_model_full_design": 0.4731,
+    "champion_b2_in_model": 0.223,
+    "champion_b2_owner_reported": 0.2778,
+    "stated_leaderboard_reference": 0.3195,
+    "instrument_family_cv_spearman": 0.9081515111411596,
+    "instrument_family_cv_rmse": 0.036487979134491984
+   }
+  },
+  {
+   "name": "G5_holdout_context_reported",
+   "passed": true,
+   "detail": {
+    "label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld, b_visible_px=2.0)",
+    "pooled_dti": 0.05869,
+    "ci95": [
+     0.04865,
+     0.06989
+    ],
+    "n_withheld": 22232,
+    "n_spatial_clusters": 140,
+    "per_quadrant": {
+     "NW": 0.07202468917427984,
+     "NE": 0.05059257706856494,
+     "SW": 0.04798900572755428,
+     "SE": 0.06828657857545994
+    },
+    "vs_champion_proxy_0.099202": -0.04052,
+    "beats_champion_proxy": false,
+    "vs_sgce_construction_0.16749": -0.10881,
+    "beats_sgce_construction": false,
+    "decision_rule": "context only -- IR-11: holdout vs owner scores rho=0.089 (n=119); the leaderboard-calibrated cross-fit instrument (rho=0.914) is the promotion instrument for this lane (preregistered, disclosed)"
+   }
+  }
+ ],
+ "leakage_canary": {
+  "rule": "each feature alone vs withheld positives; max(AUC,1-AUC) > 0.90 => leakage",
+  "worst_separation": 0.8343,
+  "worst_feature": "d_visible_px@draw21_fold0",
+  "leakage": false
+ },
+ "estimate": {
+  "label": "ESTIMATE (model output; not a score)",
+  "cross_fit_mean": 0.4237,
+  "cross_fit": [
+   {
+    "seed": 1,
+    "design_half": "A",
+    "eval_half": "B",
+    "dots": 60000,
+    "in_model": 0.4833,
+    "cross_fit": 0.3727
+   },
+   {
+    "seed": 1,
+    "design_half": "B",
+    "eval_half": "A",
+    "dots": 60000,
+    "in_model": 0.432,
+    "cross_fit": 0.4427
+   },
+   {
+    "seed": 2,
+    "design_half": "A",
+    "eval_half": "B",
+    "dots": 60000,
+    "in_model": 0.4394,
+    "cross_fit": 0.4492
+   },
+   {
+    "seed": 2,
+    "design_half": "B",
+    "eval_half": "A",
+    "dots": 60000,
+    "in_model": 0.4644,
+    "cross_fit": 0.4303
+   }
+  ],
+  "family_bootstrap_95": [
+   0.4146,
+   0.4902
+  ],
+  "in_model_full_design": 0.4731,
+  "champion_b2_in_model": 0.223,
+  "champion_b2_owner_reported": 0.2778,
+  "instrument": "LBCAL family-CV (leave-one-family-out rho=0.908, RMSE=0.0365, n=119 owner-reported)"
+ },
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "pooled_dti": 0.05869,
+  "ci95": [
+   0.04865,
+   0.06989
+  ],
+  "n_withheld": 22232,
+  "n_spatial_clusters": 140,
+  "per_quadrant": {
+   "NW": 0.07202468917427984,
+   "NE": 0.05059257706856494,
+   "SW": 0.04798900572755428,
+   "SE": 0.06828657857545994
+  },
+  "vs_champion_proxy": -0.04052,
+  "vs_sgce_construction": -0.10881,
+  "ir11_caveat": "hide-and-recover correlates rho=0.089 with owner scores; it is reported for the protocol but is not the promotion instrument for a leaderboard-calibrated lane"
+ },
+ "registry": {
+  "preplacement_surface": {
+   "max_abs_spearman": 0.07112,
+   "n_continuous_compared": 4,
+   "top5": [
+    {
+     "comparator": "ledger:20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unve",
+     "spearman": 0.07112,
+     "abs_spearman": 0.07112
+    },
+    {
+     "comparator": "ledger:GEMSDOE84__gems84-h84-kthm-tworegime-58000px-202",
+     "spearman": -0.01212,
+     "abs_spearman": 0.01212
+    },
+    {
+     "comparator": "ledger:GEMSDOE68__gems68-autoctx-s3-strands-35000dots-2",
+     "spearman": 0.00777,
+     "abs_spearman": 0.00777
+    },
+    {
+     "comparator": "ledger:GEMSDOE40__gemsdoe40-h8-euler-lineament-depthclu",
+     "spearman": 0.00429,
+     "abs_spearman": 0.00429
+    }
+   ]
+  },
+  "final": {
+   "U1_exact_duplicate": false,
+   "U3_max_nonlattice_overlap_3px": 0.635,
+   "U3_lattice_excess": 0.031437,
+   "U3_lattice_null_rate": 0.91393,
+   "sparse_masks_compared": 149,
+   "total_files_indexed": 182,
+   "content_aware_all_gates_pass": true,
+   "literal_all_files_max_overlap": 1.0,
+   "literal_note": "IR-01 dense-witness literal reading disclosed; content-aware gates are the decision rule per this session's brief"
+  },
+  "repair_log": []
+ },
+ "raster": {
+  "path": "submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif",
+  "sha256": "5e25d191abb79ac939d79c75cc99e7ebd0a61e32c6ef99351c7ee75f8a21fc1e",
+  "bytes": 183560,
+  "dots": 60000,
+  "emitted_dots": 60000,
+  "zip": "submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.zip",
+  "receipt": "submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.json"
+ },
+ "validator": {
+  "passed": true,
+  "template": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "independent": {
+   "shape_match": true,
+   "crs_match": true,
+   "transform_match": true,
+   "count": 1,
+   "dtype": "float32",
+   "width": 3292,
+   "height": 3730,
+   "crs": "EPSG:32611",
+   "transform": [
+    243350.0,
+    100.0,
+    0.0,
+    4508550.0,
+    0.0,
+    -100.0
+   ],
+   "n_nan": 0,
+   "n_inf": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "in_foot_min": 0.0,
+   "in_foot_max": 1.0,
+   "all_finite": true,
+   "in_0_1_everywhere": true,
+   "no_positive_outside_footprint": true,
+   "no_positive_within_collar_2px": true,
+   "zero_on_mapped_catalogue": true,
+   "saved_dots_equal_design": true,
+   "name_chars": 51,
+   "note_chars": 91
+  }
+ },
+ "submission_name": "wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros",
+ "note": "LBCAL-K: leaderboard-calibrated density, knapsack-unique CELF dots; est 0.424 holdout 0.059",
+ "note_chars": 91,
+ "verdict": "promote",
+ "failed_gates": [],
+ "ok_to_submit": "YES -- download submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif and submit; selector still owns the actual weekly slot (weekly cap applies, nothing uploaded here)",
+ "budget": {
+  "experiments_run": 1,
+  "experiments_max": 3,
+  "mechanism": "fixed-budget capped CELF, no post-hoc prune (IR-30/31)",
+  "b_sweep": [
+   45000,
+   50000,
+   55000,
+   60000
+  ],
+  "b_final": 60000,
+  "cap_final": 0.635,
+  "cap_cell": 0.6,
+  "sweep": [
+   {
+    "budget": 45000,
+    "dots": 45000,
+    "in_model": 0.457461,
+    "max_nonlattice": 0.635,
+    "lat_excess": 0.032048,
+    "u1_exact_duplicate": false,
+    "gate_ok": true,
+    "info": {
+     "selected": 45000,
+     "budget_k": 45000,
+     "hard_cap_hits": 28575,
+     "max_empirical_overlap": 0.635,
+     "comparators_capped": 5,
+     "blocked_by_knapsack": 4692
+    }
+   },
+   {
+    "budget": 50000,
+    "dots": 50000,
+    "in_model": 0.464788,
+    "max_nonlattice": 0.635,
+    "lat_excess": 0.03109,
+    "u1_exact_duplicate": false,
+    "gate_ok": true,
+    "info": {
+     "selected": 50000,
+     "budget_k": 50000,
+     "hard_cap_hits": 31750,
+     "max_empirical_overlap": 0.635,
+     "comparators_capped": 5,
+     "blocked_by_knapsack": 6540
+    }
+   },
+   {
+    "budget": 55000,
+    "dots": 55000,
+    "in_model": 0.469914,
+    "max_nonlattice": 0.635,
+    "lat_excess": 0.031289,
+    "u1_exact_duplicate": false,
+    "gate_ok": true,
+    "info": {
+     "selected": 55000,
+     "budget_k": 55000,
+     "hard_cap_hits": 34925,
+     "max_empirical_overlap": 0.635,
+     "comparators_capped": 5,
+     "blocked_by_knapsack": 5450
+    }
+   },
+   {
+    "budget": 60000,
+    "dots": 60000,
+    "in_model": 0.473099,
+    "max_nonlattice": 0.635,
+    "lat_excess": 0.031437,
+    "u1_exact_duplicate": false,
+    "gate_ok": true,
+    "info": {
+     "selected": 60000,
+     "budget_k": 60000,
+     "hard_cap_hits": 38100,
+     "max_empirical_overlap": 0.635,
+     "comparators_capped": 5,
+     "blocked_by_knapsack": 6931
+    }
+   }
+  ],
+  "adaptive_pass_log": "evidence/lbcal_k/adaptive_passes_log.txt (E1-repaira collapse evidence, superseded)",
+  "repair_target": 0.68,
+  "repaired_from": "evidence/lbcal_k/run_card_e1.json + adaptive_passes_log.txt (IR-30; same preregistered hypothesis, not a new experiment)",
+  "weekly_slots_used": 0,
+  "wall_seconds": 327.3
+ }
+}
