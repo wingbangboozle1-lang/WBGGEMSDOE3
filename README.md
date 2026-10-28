@@ -12,19 +12,18 @@
 > [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
 > [How to submit *after* clearance](docs/how-to-submit.html) ·
 > [Evidence and limitations](docs/evidence.html) ·
-> [2026-10-28 repository review](knowledge/review-2026-10-28.md) ·
+> [Latest 2026-10-28 review](knowledge/review-2026-10-28.md) ·
 > [Existing TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)
 
 ## Start every session here
 
-Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md), the [current negative run card](evidence/session_9b794637_run_card.json),
-the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
-[release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
-Outcome** central: weigh risk and evidence, act autonomously when safe, and treat
-a negative result as a deliverable. The reconstructed standing brief is included
-at the end of this README. It is **not verbatim**: the full original prompt was
-not available to this session, and the previous verbatim claim was incorrect.
+Read this README, [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The reconstructed standing brief is included at the end of this README. It is **not verbatim**: the full original prompt was not available to this session, and the previous verbatim claim was incorrect.
+
+## Latest review — 2026-10-28 UTC
+
+**Negative preflight; DO NOT SUBMIT.** No new TIFF, geological experiment, HOLDOUT-DTI, upload, or slot selection was made. One registered public owner-mirror raster is positive over every cell in the mirrored sample footprint, so any non-empty prediction fails the literal 70% overlap stop under the repo's support definition. This is a blocking witness, not a complete registry audit or organizer-authenticated source.
+
+Verification: site builder and site checker passed; **228 tests passed, 72 warnings**. The dated leaderboard record is from 2026-10-27 (0.4544 top, 0.3195 rank 25), not a live 2026-10-28 check. Full detail and next steps are in [the latest review](knowledge/review-2026-10-28.md).
 
 ## Executive summary: nine requested sites
 
@@ -55,6 +54,12 @@ receipt are missing, so the cause of the reported **0.2778** is unproved. A
 physically distinct method might score higher; no such result has been demonstrated
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
+
+**Latest review (2026-10-28):** no candidate TIFF was generated or cleared. The
+literal registry rule still has a universal positive-support blocker, and the
+assigned method paragraph is missing. Four explicitly unexecuted research
+hypotheses, three review passes, test results, and next-session blockers are in
+[the current session review](knowledge/session-review-2026-10-28-arena82fb40b8.md).
 
 ## What has and has not been validated
 
