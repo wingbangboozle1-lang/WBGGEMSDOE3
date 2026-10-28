@@ -1,22 +1,7 @@
 #!/usr/bin/env python3
-"""Retired unsafe positive gate generator.
+"""Retired positive v2 release-gate builder; blocked from writing approval artifacts.
 
-The former v2 script promoted a candidate based on a limited registry set and
-without the required HOLDOUT-DTI. It is intentionally blocked. The current
-repository-wide gate is regenerated from the reviewed negative evidence by
-scripts/build_site.py.
+The current project status is negative. Do not regenerate the historical SUBMIT
+artifact; use scripts/build_site.py and scripts/check_site.py.
 """
-import sys
-
-
-def main() -> int:
-    print(
-        "BLOCKED: positive release-gate-v2 generation is retired. "
-        "No current candidate satisfies the literal registry and holdout rules.",
-        file=sys.stderr,
-    )
-    return 2
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+raise SystemExit("BLOCKED: historical positive release-gate builder is retired")

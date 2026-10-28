@@ -1,0 +1,125 @@
+{
+  "schema": "gems-session-run-card-v1",
+  "session_branch": "arena/7393d521-wbggemsdoe3",
+  "review_date_utc": "2026-10-28",
+  "evidence_class": "NEGATIVE PREFLIGHT / NO CANDIDATE RUN",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_submission": false,
+  "decision_reason": "The literal-registry witness stop fires before feature construction or placement. A registered owner-mirrored raster is positive on every cell of the mirrored sample footprint; under the recorded support definition, every nonempty in-footprint raster has 100% directed overlap at distance zero, exceeding the user's >70%/3-pixel stop.",
+  "hypothesis": {
+    "rank": 1,
+    "id": "H1-RMIX",
+    "name": "Local radiometric mixing-manifold residual at concealed structures",
+    "status": "PREREGISTERED_NOT_TESTED",
+    "mechanism": "A permeability/alteration corridor may change local K-Th-U-total-count composition; a concealed structural boundary may preserve a narrow multiscale compositional residual where surface scarps are muted.",
+    "named_non_fault_mimic": "Non-fault lithologic or weathering contact; GeoDAWN flight-line leveling or variable terrain clearance.",
+    "preregistration": "knowledge/preregistration-2026-10-28.md",
+    "machine_readable_preregistration": "evidence/preregistration_2026-10-28.json"
+  },
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "status": "BLOCKED_BEFORE_EXPERIMENT",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No candidate surface or feature was generated, so a holdout score would not be defined. The pinned shared holdout tooling and cache were not restored or executed.",
+    "required_method_if_resumed": "Shared pooled DTI; alpha=0.2, beta=0.8, 300 m triangular kernel; whole fault segments held out with buffer; visible-fault-only catalogue features and pixel-exact visible-fault masking."
+  },
+  "registry": {
+    "complete_registry_audit": false,
+    "provenance": "Hash-pinned owner mirrors in the committed registry; organizer provenance and complete portal-registry coverage are not authenticated.",
+    "surface_rank_correlation": {
+      "status": "NOT_RUN_NO_SURFACE",
+      "max_abs_spearman": null,
+      "stop_threshold": 0.9
+    },
+    "final_dot_overlap": {
+      "status": "NOT_RUN_NO_CANDIDATE",
+      "max_directed_overlap_within_3px": null,
+      "stop_threshold": 0.7,
+      "radius_px": 3
+    },
+    "literal_dense_witness": {
+      "status": "MEASURED_ON_HASH_PINNED_OWNER_MIRRORS",
+      "registry_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_cells_inside_sample_footprint": 5167373,
+      "sample_footprint_cells": 5167373,
+      "conditional_directed_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
+      "threshold_exceeded": true,
+      "evidence": "evidence/registry_witness_recheck_2026-10-27.json",
+      "interpretation": "A conditional support-overlap theorem for the mirrored bytes and documented positive-support rule, not a candidate-specific comparison, complete registry audit, or organizer-provenance finding."
+    }
+  },
+  "raster": {
+    "generated": false,
+    "path": null,
+    "sha256": null,
+    "positive_cells": null
+  },
+  "preexisting_main_artifact": {
+    "status": "UNAPPROVED_ARCHIVE_ONLY",
+    "origin": "GitHub main advanced with PR #53 after this session branch was cut",
+    "path": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif",
+    "upstream_run_card": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.json",
+    "upstream_recorded_sha256": "4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea",
+    "byte_identity_rechecked_against_upstream_record": true,
+    "scientific_or_format_validation_in_this_review": false,
+    "reason": "Not generated or tested as a candidate in this review; only its bytes were compared with the upstream-reported SHA-256 for archive identity. Under the active literal witness rule, it cannot be promoted; it is retained only as an explicitly quarantined historical artifact."
+  },
+  "validator": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "passed": false,
+    "single_band_float32": null,
+    "values_in_0_1": null,
+    "no_inf": null,
+    "no_nan_inside_footprint": null,
+    "outside_footprint_null_or_nan": null,
+    "crs_shape_transform_match": null,
+    "saved_bytes_match_audited_prediction": null,
+    "reason": "No new TIFF was generated; validating a historical artifact would not validate a new candidate. Official format requirements were checked separately against the DrivenData problem page."
+  },
+  "submission": {
+    "name": null,
+    "note": "No candidate generated; literal registry witness stop.",
+    "note_characters": 54,
+    "note_is_upload_instruction": false,
+    "status": "NOT_ASSIGNED"
+  },
+  "experiments": {
+    "geological_experiments_completed": 0,
+    "maximum": 3,
+    "experiment_hours": 0,
+    "maximum_hours": 2
+  },
+  "selector": {
+    "action": "NONE",
+    "weekly_slots_used": 0,
+    "separate_selector_approval": false,
+    "organizer_receipt": null
+  },
+  "official_source_check": "evidence/official_source_check_2026-10-28.json",
+  "focus_site_claims": {
+    "status": "OWNER_REPORTED_UNVERIFIED",
+    "scores": {
+      "GEMSDOE24": 0.2477,
+      "GEMSDOE25": 0.26,
+      "GEMSDOE27": 0.2449,
+      "GEMSDOE28": 0.271,
+      "GEMSDOE30": 0.26,
+      "GEMSDOE31": 0.2708,
+      "GEMSDOE32": 0.2778,
+      "GEMSDOE33": 0.2632,
+      "GEMSDOE36": 0.275
+    },
+    "organizer_receipts": null
+  },
+  "gemsdoe32_explanation": {
+    "finding": "The saved-support analysis reports the GEMSDOE32 B2 positive support as an exact subset of the GEMSDOE28 H27-4 base, removing 2545 cells near a mirrored catalogue. Under a metric that penalizes false-positive mass, such pruning could raise a score if removed dots receive little hidden-fault credit.",
+    "label": "MECHANISTIC POSSIBILITY, NOT ORGANIZER-VERIFIED CAUSAL EXPLANATION",
+    "reported_score": 0.2778,
+    "score_status": "OWNER_REPORTED_UNVERIFIED",
+    "receipt": null
+  }
+}

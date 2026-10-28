@@ -1,23 +1,6 @@
 #!/usr/bin/env python3
-"""Retired unsafe renderer.
+"""Retired positive renderer; blocked to prevent bypassing the current fail-closed site.
 
-The former version rendered an INVDESIGN TIFF as cleared despite having no
-compliant HOLDOUT-DTI and omitting a registered dense raster from its literal
-uniqueness decision. The current builder is scripts/build_site.py, which
-publishes the negative gate. Do not restore this renderer without a separately
-reviewed protocol change and complete evidence.
+Use scripts/build_site.py. No code in this module renders or mutates docs/.
 """
-import sys
-
-
-def main() -> int:
-    print(
-        "BLOCKED: build_site_v3.py is retired; it can publish unsupported upload approval. "
-        "Run scripts/build_site.py and scripts/check_site.py instead.",
-        file=sys.stderr,
-    )
-    return 2
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+raise SystemExit("BLOCKED: historical positive renderer is retired; use scripts/build_site.py")

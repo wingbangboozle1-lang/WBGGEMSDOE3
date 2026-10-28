@@ -1,17 +1,6 @@
 #!/usr/bin/env python3
-"""Retired legacy evidence renderer.
+"""Retired evidence-page renderer; blocked because it imported the positive v3 builder.
 
-The historical implementation imported a renderer that emitted positive
-submission instructions and could leave a mixed-status site. The current
-evidence page is built as part of scripts/build_site.py from reviewed evidence.
+The current evidence-first site is rendered only by scripts/build_site.py.
 """
-import sys
-
-
-def main() -> int:
-    print("BLOCKED: use scripts/build_site.py to render the consistent negative site.", file=sys.stderr)
-    return 2
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+raise SystemExit("BLOCKED: historical evidence renderer is retired; use scripts/build_site.py")
