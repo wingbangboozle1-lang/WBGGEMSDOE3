@@ -22,9 +22,11 @@ from session2_site import human_age, main as _session2_main  # noqa: E402,F401
 
 def main() -> int:
     from build_site_thcs import main as _thcs_main
+    from amdc_site import main as _amdc_main
     r1 = _session2_main() or 0
     r2 = _thcs_main() or 0
-    return r1 or r2
+    r3 = _amdc_main() or 0
+    return r1 or r2 or r3
 
 
 def build() -> int:

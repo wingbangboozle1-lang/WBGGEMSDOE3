@@ -1,12 +1,12 @@
 {
- "decision": "ONE FILE CLEARED FOR UPLOAD (best unique candidate; estimated 0.19-0.27)",
- "submission": "wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
- "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
- "ledger_inversion_estimate": 0.26868255297457,
- "bias_corrected_estimate": 0.20742293089636804,
- "holdout_dti": 0.07222651552422349,
+ "decision": "ONE FILE CLEARED FOR UPLOAD (best unique candidate; shipped-bytes holdout 0.0191; projections disagree 0.07-0.27)",
+ "submission": "wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+ "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+ "shipped_bytes_holdout_dti": 0.0191,
+ "projection_ledger": 0.0669,
+ "projection_matched_holdout_ols": 0.2726,
  "uniqueness_pass": true,
  "focus_champion_owner_reported": 0.2778,
  "public_leaderboard": "0.4544",
- "generated_utc": "2026-10-27T18:57:00Z"
+ "generated_utc": "2026-10-28T00:00:00Z"
 }

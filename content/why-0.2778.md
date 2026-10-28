@@ -52,3 +52,24 @@ This session produced no candidate or valid local holdout estimate. The literal
 registry definition stops every nonempty in-footprint candidate because a registered
 soft raster is positive throughout the footprint; do not submit or silently exempt it.
 See the [current dashboard](../docs/index.html) and [negative card](../evidence/run_card.json).
+
+## Addendum 2026-10-28 — shipped-bytes audit (AMDC lane)
+
+The paragraphs above predate the SGCE file and are left as history. This session re-scored
+the shipped bytes of every repository candidate on identical withheld folds instead of
+trusting construction-time figures:
+
+* SGCE shipped bytes: **0.0191** [0.0169, 0.0211] (native evaluator, 22,232 withheld) and
+  0.0190 [0.0171, 0.0208] (matched evaluator, 22,893 withheld) — vs B2 reference bytes at
+  0.0045 / 0.0039. The earlier 0.1675 headline described per-cell rebuild files with
+  asymmetric dot budgets, not the downloadable file.
+* Owner-reported scores and matched-holdout scores are **inverted** on the 9 focus sites
+  (Spearman −0.849, Pearson −0.886): the near-catalogue dotted family that owners score
+  highest (B2 0.2778, unverified) scores lowest on the holdout (0.0039), and vice versa.
+* Method projections for the same files span 0.05–0.27 (SGCE ledger PROJECTION 0.0669 vs
+  matched-holdout OLS 0.2726 ±0.005). The disagreement between methods is itself the
+  uncertainty statement; none of them is a score, and the reported 0.2778 remains unverified.
+
+Records: [bytes audit](../evidence/amdc/sgce_bytes_audit.json) ·
+[run card v2](../evidence/amdc_run_card.json) ·
+[irregularities](../knowledge/irregularities-2026-10-28-amdc.md).

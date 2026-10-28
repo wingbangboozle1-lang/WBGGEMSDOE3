@@ -1,15 +1,21 @@
 # GEMS Field Notes — fault discovery & submission audit
 
-> **CURRENT DECISION (2026-10-27): ✅ OK TO DOWNLOAD AND SUBMIT — one new unique TIF.**
+> **CURRENT DECISION (2026-10-28, corrected): ✅ OK TO DOWNLOAD AND SUBMIT — one new unique TIF.**
 > **[⬇ Download `wbggems3-sgce-20261027-f52d35d8-zeros.tif`](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif)**
 > (SHA-256 `0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09`).
 > A genuinely new SGCE prediction, 102,208 dots, not a copy/rename/re-encoding of any GEMSDOE file.
-> Automated gates: leak canary PASS, pre-placement and final-dot uniqueness PASS (content-aware
-> reading), format validator PASS on both encodings, **HOLDOUT-DTI 0.1675** (95 % CI 0.1524–0.1820)
-> vs 0.0992 champion proxy, paired Δ +0.0683 (CI 0.0517–0.0855). **No organizer receipt exists;
-> no weekly slot was spent.** The only manual action is your DrivenData login and weekly-quota check.
+> **Correction 2026-10-28:** the 2026-10-27 headline (HOLDOUT-DTI 0.1675) was measured on per-cell
+> rebuild files with asymmetric dot budgets, not on these bytes. The shipped bytes re-score
+> **HOLDOUT-DTI 0.0191** (95 % CI 0.0169–0.0211) on the identical evaluator and folds, vs 0.0045 for
+> the B2 reference bytes (cross-checked 0.0190 vs 0.0039 on a second evaluator). Automated gates:
+> leak canary PASS, uniqueness re-confirmed PASS on the 134-row registry (max gated overlap 0.690),
+> format validator PASS on the cleared zeros encoding (the NaN variant is correctly rejected by the
+> all-finite policy). Projections disagree by method (0.0669 ledger vs 0.2726 matched-holdout OLS),
+> so no leaderboard level is claimed. **No organizer receipt exists; no weekly slot was spent.**
+> The only manual action is your DrivenData login and weekly-quota check.
 > [Executive dashboard](docs/index.html) · [Executive summary & exact submission steps](docs/executive-summary.html) ·
-> [JSON run card](evidence/session2_run_card.json) · [Full evidence](docs/evidence.html)
+> [JSON run card](evidence/session2_run_card.json) · [Bytes audit](evidence/amdc/sgce_bytes_audit.json) ·
+> [AMDC audit dossier](docs/amdc/index.html) · [Full evidence](docs/evidence.html)
 
 > **FOURTH PARALLEL LANE: LBCAL, session `arena/88400903` (2026-10-27). The lane is negative; it adds an
 > independent estimate for every file.**
@@ -58,6 +64,26 @@
 >    probes (`F2mDAB`), paleo-sinter/travertine/tufa, and spring/well geothermometry lifted `HOLDOUT-DTI` from `0.08167` (`E1`)
 >    to `0.09184` (`E2`, `+12.4%`) and **`0.09573` (`E3`)** (`LOSO-MODEL-ESTIMATE = 0.1455 [0.086, 0.205]`, not a score).
 >    Because `0.09573 < 0.09920` (`GEMSDOE32` holdout), the lane remains `negative` (do not spend a weekly slot yet).
+
+> **SIXTH PARALLEL LANE: AMDC, session `arena/2759fec7-wbggemsdoe3` (2026-10-28). Verdict `negative`
+> (duplicate-stop); durable outputs are the SGCE shipped-bytes correction and the 134-row registry re-audit.**
+> [Lane dossier](docs/amdc/index.html) ·
+> [run card v2](evidence/amdc_run_card.json) · [bytes audit](evidence/amdc/sgce_bytes_audit.json) ·
+> [preregistration + 5 ranked hypotheses](knowledge/preregistration-2026-10-27-2759fec7.md) ·
+> [irregularity addendum](knowledge/irregularities-2026-10-28-amdc.md).
+> Key measurements (all HOLDOUT-DTI unless noted):
+> 1. **Shipped-bytes correction.** SGCE bytes score 0.0191 [0.0169, 0.0211] on the native
+>    evaluator (22,232 withheld) and 0.0190 [0.0171, 0.0208] on the matched evaluator (22,893
+>    withheld); B2 bytes score 0.0045 / 0.0039. The published 0.1675 was a per-cell-rebuild
+>    method figure (asymmetric budgets; repaired pooled rebuild 0.0026).
+> 2. **Owner↔holdout inversion.** Spearman −0.849 / Pearson −0.886 across the 9 focus sites;
+>    projections span 0.05–0.27 by method (E3 → 0.2638, SGCE bytes → 0.2726 ±0.005 OLS).
+> 3. **Negative mechanism + duplicate-stop.** E1 (0.0466) beats E2 (0.0441), so dipole-gated
+>    corridors hurt; E3 (0.0552) wins on coverage. E3's max gated registry overlap is 0.936
+>    (25 literal dupes) — no TIF written, budget exhausted 3/3.
+> 4. **Repo sweep.** TDE-30k (0.723), skarpline (0.772), CSPES (0.703) and HCE1 (0.741) are
+>    format-valid but fail uniqueness; only SGCE (0.690) passes. The release gate was reconciled
+>    from the revoked TDE-30k bytes to SGCE. No slot was used.
 
 This is an evidence-first research system for the [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/).
 The actual target is **surface fault probability**, which can inform geothermal exploration; a predicted fault is not proof of a geothermal vent or resource. See the
