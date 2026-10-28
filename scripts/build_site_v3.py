@@ -31,6 +31,7 @@ est = j("design_estimate.json")
 cal = j("design_calibration.json")
 uniq = j("uniqueness_gate.json")
 ladder = j("probe_ladder.json", {"probes": []})
+figs = j("design_figures.json", {})
 inv = json.loads((ROOT / "data" / "work" / "inversion98b.json").read_text()) \
     if (ROOT / "data" / "work" / "inversion98b.json").exists() else {}
 
@@ -430,6 +431,31 @@ instead of re-claiming a neighbour's.</li>
 uniform scaling λ multiplies the numerator by λ while the 0.8·M term does not scale, so soft rasters are
 strictly worse than their own binarisation.</li>
 </ol>
+
+<h2>4b · The published file, drawn from its own bytes</h2>
+<p>Both figures below are rendered by <code>scripts/design_map_png.py</code> directly from
+<code>{figs.get('deliverable','docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif')}</code>,
+the public catalogue and the champion raster — nothing is hand-drawn, so the pictures cannot drift
+from the file they describe (<code>evidence/design_figures.json</code>).</p>
+<figure>
+  <img class="map" src="assets/design-map.png" width="823"
+       alt="20,000 submitted dots (red) against the public USGS/INGENIOUS catalogue (green) and the extended SGMC proxy catalogue (blue)">
+  <figcaption><b>Where the dots are.</b> Red = the {int(figs.get('design_dots',0) or 0):,} submitted dots,
+  green = the public catalogue, blue = the extended SGMC proxy catalogue.
+  Measured on the full-resolution rasters: <b>{100*float(figs.get('frac_design_on_public_catalogue',0) or 0):.2f}%</b>
+  of dots sit on a public catalogue cell and <b>{100*float(figs.get('frac_design_on_extended_catalogue',0) or 0):.2f}%</b>
+  on the extended proxy — the catalogue is used as a negative mask, not as the target.</figcaption>
+</figure>
+<figure>
+  <img class="map" src="assets/design-compare.png" width="823"
+       alt="Submitted dots (red) against the GEMSDOE32 0.2778 champion (amber), white where within the 3-px kernel">
+  <figcaption><b>Against the 0.2778 champion.</b> Amber = the champion's {int(figs.get('champion_dots',0) or 0):,} dots,
+  white = submitted dots within the 3-px (300 m) kernel of a champion dot,
+  red = submitted dots with no champion dot within the kernel.
+  <b>{100*float(figs.get('frac_design_within_3px_of_champion',0) or 0):.1f}%</b> land near a champion dot, which is
+  expected — both designs chase the same truth field — but the file is not a subset, superset or relabelling of it
+  (the directed-overlap gate is 0.70; see the validation table).</figcaption>
+</figure>
 
 <h2>5 · Validation (all from <code>evidence/</code>)</h2>
 <table>

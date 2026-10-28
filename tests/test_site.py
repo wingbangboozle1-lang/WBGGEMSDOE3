@@ -94,3 +94,34 @@ def test_pages_publisher_uses_the_same_layout():
 def test_site_checker_passes_on_committed_pages():
     from check_site import main
     assert main() == 0
+
+
+def test_figures_are_bound_to_the_published_bytes():
+    """The two method.html figures must describe the *cleared* file, not an older lane."""
+    figs = json.loads((ROOT / "evidence/design_figures.json").read_text())
+    tif = ROOT / figs["deliverable"]
+    assert _sha(tif) == json.loads((ROOT / "evidence/run_card_v3.json").read_text())["raster"]["sha256"]
+    assert figs["design_dots"] == 20000
+    for rel in figs["figures"]:
+        assert (ROOT / rel).stat().st_size > 10_000, rel
+        assert (ROOT / rel).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n", rel
+    method = (DOCS / "method.html").read_text()
+    for rel in figs["figures"]:
+        assert Path(rel).name in method
+    # the gate numbers the caption quotes must be the measured ones, and must clear the gate
+    assert figs["frac_design_on_public_catalogue"] < 0.01
+    assert figs["frac_design_within_3px_of_champion"] <= 0.70
+
+
+def test_downloads_notice_agrees_with_the_gate():
+    """The plain-text notice shipped next to the TIFFs may not contradict the decision."""
+    gate = json.loads((DOCS / "data/release_gate.json").read_text())
+    notice = (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
+    cleared = Path(gate["decision_scope"].split(": ", 1)[1]).name
+    assert f"CLEARED FOR SUBMISSION (1 file): {cleared}" in notice
+    assert gate["submission_name"] in notice
+    assert "No file in this directory is cleared" not in notice
+    listed = {ln.strip() for ln in notice.splitlines()
+              if ln.startswith("  ") and not ln.startswith("    ") and ln.strip().endswith(".tif")}
+    present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
+    assert listed == present - {cleared}, (listed ^ (present - {cleared}))

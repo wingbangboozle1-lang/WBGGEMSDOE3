@@ -72,3 +72,27 @@ def test_kernel_radius_is_three_pixels():
     assert EX.RADIUS_PX == 3.0
     assert EX.kernel_from_distance(np.array([0.0, 1.0, 3.0, 4.0])).tolist() == \
         pytest.approx([1.0, 2 / 3, 0.0, 0.0])
+
+
+def test_page_967_worked_example_reproduces_060():
+    """The organiser's own worked example (page 967): TP=3.00, FP=1.89, FN=2.00 -> 0.60.
+
+    This is the one number in the whole project that comes straight from the competition
+    page rather than from our own measurements, so it must be reproduced exactly.
+    """
+    dti = EX.score_from_credit_counts(tp_w=3.00, fp_w=1.89, mass=3.00 + 2.00)
+    assert round(dti, 2) == 0.60
+    assert dti == pytest.approx(3.00 / (3.00 + 0.2 * 1.89 + 0.8 * 2.00), abs=1e-12)
+
+
+def test_worked_example_cannot_by_itself_pin_alpha_beta():
+    """Honest limitation, recorded as a test.
+
+    With the three rounded terms (3.00 / 1.89 / 2.00) the swapped weighting gives 0.61, so the
+    worked example *alone* is not sensitive enough to prove alpha = 0.2 / beta = 0.8 -- the page
+    text is what pins them.  Unrounded, the organiser's example is 0.6027, which rounds to the
+    published 0.60.
+    """
+    swapped = 3.00 / (3.00 + 0.8 * 1.89 + 0.2 * 2.00)
+    assert round(swapped, 2) == 0.61
+    assert round(3.00 / (3.00 + 0.2 * 1.89 + 0.8 * 2.00), 4) == 0.6027
