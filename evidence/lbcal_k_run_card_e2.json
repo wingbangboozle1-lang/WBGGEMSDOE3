@@ -1,0 +1,44 @@
+{
+ "schema": "parallel-run card v1 (owner protocol rule 5)",
+ "lane": "LBCAL-K-E2",
+ "version": "crossmodel-gate-v1",
+ "session_branch": "arena/08f7423a-wbggemsdoe3",
+ "utc": "2026-10-28T17:52:06.788840+00:00",
+ "hypothesis": "H-XMODEL-GATE (prereg 2026-10-28 rank 2): both the feature-LBCAL model and the location-tomography model rate the candidate above 0.2778.",
+ "verdict": "negative",
+ "failed_gates": [
+  "H-XMODEL-GATE"
+ ],
+ "gates": [
+  {
+   "name": "H-XMODEL-GATE",
+   "passed": false,
+   "detail": {
+    "name": "H-XMODEL-GATE",
+    "rule": "tomography ESTIMATE > 0.2778 (prereg rank 2)",
+    "value": 0.195,
+    "passed": false,
+    "lbcalk_e1_estimate": 0.4237,
+    "both_models_above_champion": false
+   }
+  }
+ ],
+ "estimate": {
+  "cross_model_estimate": 0.195,
+  "b2_calibration_delta": 0.08368,
+  "label": "LEDGER-INVERSION ESTIMATE -- NOT a score"
+ },
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "note": "not re-run in E2; E1 value reported as context"
+ },
+ "budget": {
+  "experiments_run": 2,
+  "experiments_max": 3,
+  "weekly_slots_used": 0,
+  "wall_seconds": 204.3
+ },
+ "artifacts": {
+  "crossmodel_json": "evidence/lbcal_k/e2_crossmodel.json"
+ }
+}

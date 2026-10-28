@@ -52,7 +52,17 @@
     "estimate_ci95": [
       0.4146,
       0.4902
-    ]
+    ],
+    "cross_model_second_opinion": {
+      "card": "evidence/lbcal_k_run_card_e2.json",
+      "verdict": "negative",
+      "gate": "H-XMODEL-GATE",
+      "passed": false,
+      "tomography_estimate": 0.195,
+      "b2_calibration_delta": 0.08368,
+      "label": "LEDGER-INVERSION ESTIMATE -- NOT a score",
+      "reported_as": "disclosed second opinion -- disagreement with G4's 0.424 estimate reduces confidence; both are ESTIMATES"
+    }
   },
   "blocking_reasons": [],
   "source_cards": {
@@ -67,7 +77,11 @@
     "witness_audit": "evidence/registry_witness_recheck_2026-10-27.json",
     "witness_audit_sha256": "acc44a9f861e0fe954a40de0dc7a2fcef7cff3be1d5eecbbfadcd6e609b200f5",
     "historical_negative_authority": "evidence/session_9b794637_run_card.json",
-    "historical_negative_authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e"
+    "historical_negative_authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e",
+    "e2_crossmodel_card": "evidence/lbcal_k_run_card_e2.json",
+    "e2_crossmodel_card_sha256": "bbb2bc2566ee10fa4fa72b23db3c3219a50f2bfd26ed7a088058078c1be392be",
+    "e2_crossmodel_numbers": "evidence/lbcal_k/e2_crossmodel.json",
+    "e2_crossmodel_numbers_sha256": "93742c910e870e6a170acf36ac4280230514918ab3e41adcb2d1738f81195676"
   },
   "historical_record": "The 2026-10-27 negative decision (session_9b794637) remains valid under the literal all-registry reading (IR-01) and still governs every historical research TIFF; the preregistered content-aware gates of 2026-10-28 govern the NEW candidate only."
 }

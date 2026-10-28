@@ -154,6 +154,31 @@ def evaluate_release_gate_v2(card: dict[str, Any], root: Path,
     if prereg_path is not None and not prereg_path.is_file():
         reasons.append("The preregistration file is missing.")
 
+    # E2 (H-XMODEL-GATE) second-opinion evidence must exist and travel with the
+    # publication. Its own verdict (which may be negative) is reported, never
+    # hidden; §3 of the preregistration defines `promote` as G0-G4 passing.
+    cross_model: dict[str, Any] = {}
+    e2_path = root / "evidence" / "lbcal_k_run_card_e2.json"
+    if not e2_path.is_file():
+        reasons.append("The E2 cross-model second-opinion card is missing.")
+    else:
+        import json as _json
+        e2 = _json.loads(e2_path.read_text(encoding="utf-8"))
+        e2_gate = (e2.get("gates") or [{}])[0]
+        cross_model = {
+            "card": "evidence/lbcal_k_run_card_e2.json",
+            "verdict": e2.get("verdict"),
+            "gate": e2_gate.get("name"),
+            "passed": e2_gate.get("passed"),
+            "tomography_estimate": (e2.get("estimate") or {}).get("cross_model_estimate"),
+            "b2_calibration_delta": (e2.get("estimate") or {}).get("b2_calibration_delta"),
+            "label": (e2.get("estimate") or {}).get("label"),
+            "reported_as": "disclosed second opinion -- disagreement with G4's "
+                           "0.424 estimate reduces confidence; both are ESTIMATES",
+        }
+        if e2.get("verdict") not in ("promote", "negative"):
+            reasons.append("The E2 cross-model card has no recognised verdict.")
+
     approved = not reasons
     return {
         "schema": "gems-release-gate-v2",
@@ -180,6 +205,7 @@ def evaluate_release_gate_v2(card: dict[str, Any], root: Path,
             "holdout_ci95": g5d.get("ci95"),
             "holdout_n_withheld": g5d.get("n_withheld"),
             "estimate_ci95": ci,
+            "cross_model_second_opinion": cross_model,
         },
         "blocking_reasons": reasons,
     }

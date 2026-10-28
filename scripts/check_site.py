@@ -184,9 +184,12 @@ def main() -> int:
             if parser.meta.get("gemsdoe-decision") != expected_meta:
                 errors.append(f"{page.name}: missing or inconsistent decision meta")
         if page.parent == DOCS and page.name in clearance_pages:
-            for needle in ("ok to download and submit", "sha-256", "ir-01", "estimates are estimates"):
+            for needle in ("ok to download and submit", "sha-256", "ir-01", "estimates are estimates",
+                           "0.195"):
                 if needle not in folded:
                     errors.append(f"{page.name}: clearance page missing disclosure {needle!r}")
+            if "cross-model" not in folded and "second opinion" not in folded:
+                errors.append(f"{page.name}: clearance page missing the E2 cross-model disclosure")
         if page.parent == DOCS and page.name not in clearance_pages and page.parent == DOCS:
             if "ok to download and submit" in folded and page.name not in ("research.html", "evidence.html"):
                 errors.append(f"{page.name}: unexpected clearance language")

@@ -1,0 +1,85 @@
+{
+ "schema": "lbcal-k-e2-crossmodel-v1",
+ "evidence_class": "LEDGER-INVERSION ESTIMATE (owner-reported scores, no organizer receipts)",
+ "utc": "2026-10-28T17:52:06.788396+00:00",
+ "instrument": "gemsw.inversion v2 tomography, 400 m blocks, exact EDT kernel, full-sample solve (lam_smooth=1.0, lam_l1=0, iters=120, mass0=180k, n_outer=3)",
+ "instrument_quality_site_grouped_cv": {
+  "mae": 0.037336973056575594,
+  "rmse": 0.04983300093566254,
+  "r2": 0.6383841711185084,
+  "max_abs": 0.15068942081501696,
+  "spearman": 0.9459446629190249,
+  "n": 118
+ },
+ "instrument_quality_note": "CV metrics copied from docs/data/ledger_inversion.json (same probe inputs; that run's CV, reported as context)",
+ "probes_sha256_file": "data/work/probes_f4.npz",
+ "n_probes": 118,
+ "results": [
+  {
+   "label": "LBCAL-K-60k (candidate)",
+   "path": "submission/wbggems3-lbcalk-60k-20261028T172445Z-fcc6bdff-zeros.tif",
+   "dots": 60000,
+   "estimate": 0.195,
+   "T": 6883.2,
+   "FP": 59394.0,
+   "truth_mass": 27553.3,
+   "actual_owner_reported": null
+  },
+  {
+   "label": "GEMSDOE32 B2 (actual 0.2778)",
+   "path": ".cache/focus/GEMSDOE32.tif",
+   "dots": 37654,
+   "estimate": 0.36148,
+   "T": 11444.9,
+   "FP": 36647.8,
+   "truth_mass": 27553.3,
+   "actual_owner_reported": 0.2778
+  },
+  {
+   "label": "E1 failed design (0.999 overlap, archived)",
+   "path": "evidence/lbcal_k/wbggems3-lbcalk-60k-20261028T165833Z-4f0a58dc-zeros-DO-NOT-SUBMIT.tif",
+   "dots": 60214,
+   "estimate": 0.2166,
+   "T": 7678.2,
+   "FP": 59352.0,
+   "truth_mass": 27553.3,
+   "actual_owner_reported": null
+  },
+  {
+   "label": "FCHD-NCM 38k (holdout 0.0970)",
+   "path": "submission/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+   "dots": 38000,
+   "estimate": 0.13469,
+   "T": 4095.0,
+   "FP": 37705.4,
+   "truth_mass": 27553.3,
+   "actual_owner_reported": null
+  },
+  {
+   "label": "SGCE zeros (holdout-era research file)",
+   "path": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+   "dots": 102208,
+   "estimate": 0.08525,
+   "T": 3679.9,
+   "FP": 101933.2,
+   "truth_mass": 27553.3,
+   "actual_owner_reported": null
+  }
+ ],
+ "b2_calibration_delta": 0.08368,
+ "gate": {
+  "name": "H-XMODEL-GATE",
+  "rule": "tomography ESTIMATE > 0.2778 (prereg rank 2)",
+  "value": 0.195,
+  "passed": false,
+  "lbcalk_e1_estimate": 0.4237,
+  "both_models_above_champion": false
+ },
+ "verdict": "negative",
+ "disclosures": [
+  "Estimate, never a score or receipt (IR-11 applies to holdout; this is a third instrument).",
+  "Probes are owner-reported scores from sibling repositories.",
+  "B2 calibration row is diagnostic: the model's error on B2 bounds how much weight this second opinion deserves."
+ ],
+ "wall_seconds": 204.3
+}

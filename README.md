@@ -12,6 +12,7 @@
 > nine focus sites (max directed 3-px overlap **42.5%** ≤ 70%) and vs all 149
 > sparse registry masks (max **63.5%** ≤ 70%, lattice excess +0.031 ≤ 0.05) ·
 > HOLDOUT-DTI 0.0587 [0.0486, 0.0699] reported as context only per IR-11 ·
+> **cross-model second opinion (E2, verdict negative): the ledger-inversion tomography rates the file 0.195 — the instruments disagree (0.424 vs 0.195) and both are estimates** ·
 > all-finite [0,1] everywhere with exact zeros outside the footprint (the
 > portal range-error fix) · **0 weekly slots spent; nothing uploaded** — the
 > slot decision is yours.
@@ -187,10 +188,17 @@ Preregistered **before any result**: [knowledge/preregistration-2026-10-28-lbcal
 
 ### Remaining work and limitations (next session)
 
-1. **E2 — cross-model gate (not run).** Evaluate the shipped 60k design under
-   the ledger-inversion tomography instrument (`scripts/invert_ledger.py`,
-   `docs/data/ledger_inversion.json`) as a second opinion on the 0.424
-   estimate; then **E3 reserve** (extra-layer refit) if budget remains.
+1. **E2 — cross-model gate (RUN, negative).** The ledger-inversion tomography
+   (rebuilt 118-probe operators, full-sample solve, site-grouped CV Spearman
+   0.946 / MAE 0.037 from `docs/data/ledger_inversion.json`) rates the shipped
+   60k file at **0.195** — below 0.2778, so H-XMODEL-GATE verdict `negative`
+   (`evidence/lbcal_k_run_card_e2.json`, `evidence/lbcal_k/e2_crossmodel.json`).
+   It rates the actual-0.2778 B2 at 0.3615 (+0.084 calibration error), the
+   failed E1 design at 0.2166, FCHD at 0.1347, SGCE at 0.0853. The disagreement
+   with G4's 0.424 is published on every clearance page; the prereg §3 verdict
+   rule (promote iff G0–G4) governs clearance, and this result reduces
+   confidence in the headline estimate. **E3 (extra-layer refit) not run** —
+   time budget reached (2 experiments, <2 h).
 2. **Submit the file** — that step is yours: verify the SHA-256 above, use the
    exact name/note from [docs/how-to-submit.html](docs/how-to-submit.html), and
    save the receipt. If the portal rejects, bring the receipt text; the old

@@ -78,6 +78,13 @@ def test_clearance_pages_carry_file_hash_and_all_disclosures():
         assert "organizer-confirmed" in folded, page  # labelled what it is not
         if page in ("index.html", "submission.html"):
             assert name in body, page
+    # E2 cross-model disagreement must be disclosed on every clearance page
+    e2 = json.loads((DOCS / "data" / "lbcal_k_run_card_e2.json").read_text())
+    assert e2["verdict"] == "negative"  # the disagreement record exists
+    for page in CLEARANCE_PAGES:
+        folded = " ".join((DOCS / page).read_text().lower().split())
+        assert "cross-model" in folded or "second opinion" in folded, page
+        assert "0.195" in folded, page
     for page in PAGES:
         body = (DOCS / page).read_text()
         assert "DO NOT SUBMIT" in body, page  # lane/historical quarantine visible everywhere
