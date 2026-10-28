@@ -1,51 +1,38 @@
 {
- "schema": "gems-release-gate-v1",
- "decision": "SUBMIT-WITH-CAVEAT",
- "okay_to_submit": true,
- "okay_to_download_for_research": true,
- "authority": {
-  "verdict": "promote-with-caveat",
-  "raster_sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
-  "selector_approval": false
- },
- "candidate": {
-  "submission": "wbggems3-sgce-20261027-f52d35d8-zeros.tif",
-  "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
-  "lane_verdict": "promote-with-caveat",
-  "holdout_label": "HOLDOUT-DTI",
-  "shipped_bytes_holdout_dti_native": 0.0191,
-  "shipped_bytes_holdout_ci95": [
-   0.0169,
-   0.0211
+  "schema": "gems-release-gate-v1",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_submit": false,
+  "okay_to_download_for_research": true,
+  "candidate": {
+    "submission": "wbggems3-sgce-20261027-f52d35d8",
+    "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09",
+    "lane_verdict": "promote",
+    "holdout_label": null,
+    "literal_registry_pass": null
+  },
+  "authority": {
+    "verdict": "negative",
+    "selector_approval": false,
+    "raster_sha256": null
+  },
+  "blocking_reasons": [
+    "The registered dense witness overlaps every in-footprint candidate; SGCE's measured overlap is 100%.",
+    "The governing run card verdict is not promote.",
+    "No separate selector approval is recorded.",
+    "The governing run card does not approve this candidate SHA-256.",
+    "A comparable fold-local HOLDOUT-DTI, evaluator, positive count, CI and positive paired improvement are not all established.",
+    "A complete per-feature leakage canary is missing or exceeds the threshold.",
+    "The candidate does not record a complete passing literal all-registry uniqueness gate.",
+    "The surface phase lacks passing literal correlation and overlap measurements.",
+    "The final phase lacks passing literal correlation and overlap measurements.",
+    "Saved-byte format validation is missing, incomplete, or bound to different bytes."
   ],
-  "shipped_bytes_holdout_dti_matched": 0.019,
-  "projection_ledger": 0.0669,
-  "projection_matched_holdout_ols": 0.2726,
-  "literal_registry_pass": false,
-  "informative_registry_pass": true
- },
- "qualifying_reasons": [
-  "Artefact gates pass on the shipped bytes (independent re-check 2026-10-28): single band float32, CRS/shape/transform identical to the sample, 0 NaN, every value in [0, 1], 102,208 dots.",
-  "Uniqueness re-confirmed against the 134-row hash-verified registry (max gated 3-px overlap 0.690 < 0.70, max non-self |rank correlation| 0.075 < 0.90, no exact duplicate).",
-  "Shipped-bytes HOLDOUT-DTI 0.0191 [0.0169, 0.0211] beats the B2 reference bytes (0.0045) on the identical evaluator and folds; cross-checked at 0.0190 vs 0.0039 on a second evaluator."
- ],
- "blocking_reasons": [
-  "No separate selector approval is recorded: spending a weekly slot is the account owner's decision.",
-  "The literal all-registry overlap rule is not satisfied (dense universal control + self-aliases); the content-aware reading passes and is published with the exclusion list.",
-  "The 2026-10-27 headline figure 0.1675 described per-cell rebuilds, not these bytes; the corrected shipped-bytes figure is 0.0191 and the two ledger/holdout projections (0.0669 vs 0.2726) disagree, so no leaderboard level is claimed.",
-  "No organizer receipt exists; weekly quota, account state and private labels are unobservable here and no slot was spent."
- ],
- "revoked_predecessor": {
-  "submission": "wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
-  "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
-  "reason": "Format-valid but max gated registry overlap 0.723 > 0.70 on the 134-row registry; revoked 2026-10-28."
- },
- "source_cards": {
-  "session2_run_card": "evidence/session2_run_card.json",
-  "session2_run_card_sha256": "739debf46d4e40129c3dc186adbc073f17baec435d0480015ff200a92934f018",
-  "bytes_audit": "evidence/amdc/sgce_bytes_audit.json",
-  "bytes_audit_sha256": "7398a52f3e9cd228c2954ba7e994d1f7bbeeb43f4d5332e53190c72b900c2297",
-  "amdc_run_card": "evidence/amdc_run_card.json",
-  "amdc_run_card_sha256": "806b532173a887e676ffb07453f7c4bc65120121b65b9274f2389f14ef0834a4"
- }
+  "source_cards": {
+    "authority": "evidence/session_9b794637_run_card.json",
+    "authority_sha256": "fccdd4c318d4b3f58991edb0a32f4b180e8e79f33da4066ff2bb10dfd622a56e",
+    "candidate": "evidence/session2_run_card.json",
+    "candidate_sha256": "739debf46d4e40129c3dc186adbc073f17baec435d0480015ff200a92934f018",
+    "witness_audit": "evidence/registry_witness_recheck_2026-10-27.json",
+    "witness_audit_sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
+  }
 }

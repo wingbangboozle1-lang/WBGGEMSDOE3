@@ -1,5 +1,7 @@
 # Irregularities and open risks — 2026-10-27 session
 
+> **Historical parallel-session record.** Its content-aware protocol revision was a lane proposal, not an authorized change to the current user instruction; the literal all-registry stop remains binding. See `knowledge/session-review-9b794637.md` and the current `README.md`.
+
 Each item is something a reviewer should look at before trusting a number on the site. Nothing here is
 resolved by assertion; where a measurement exists, the file that holds it is named.
 
@@ -32,3 +34,25 @@ resolved by assertion; where a measurement exists, the file that holds it is nam
   advertised download's SHA-256 against the run card and `docs/data/decision.json`, and that the note is
   ≤140 characters. Every number on the site is rendered from `evidence/*.json`, so a stale page cannot
   disagree with the measurements.
+
+## Verification pass 2026-10-27 (session "submission-gate correction") — new items
+
+Every item below was checked against bytes or an official page this session. Re-run with
+`scripts/verify_format_independent.py`, `scripts/verify_focus_uniqueness.py`, `scripts/check_site.py`.
+
+| id | issue | evidence | effect | status |
+|---|---|---|---|---|
+| IR-28-01 | **Three gate files disagreed.** `evidence/release_gate.json` = DO-NOT-SUBMIT (skarpline). `docs/data/release_gate.json` (written by the legacy `build_dossier.py`, not in CI) = SUBMIT-WITH-CAVEAT for TDE-30k. The site said "OK TO DOWNLOAD AND SUBMIT" on six pages. | `cmp` of the two files; `grep` of `docs/*.html` before this pass | the public site made an unconditional submit claim the governing gate did not support | **fixed**: one source (`evidence/release_gate.json`) is copied to the site on every build; wording follows it; `check_site.py` forbids the old phrase |
+| IR-28-02 | `docs/how-to-submit.html` and `docs/submission.html` were stale outputs of an old generator that CI never rebuilt, still carrying the positive banner | `grep -l` over `docs/*.html` | a reader could land on an out-of-date "submit" page | **fixed**: both regenerated from the same source as the executive summary |
+| IR-28-03 | The primary download was the **zeros-outside** file. The official text says "data outside the bounds is null or nan". | official problem page, "Submission format" (fetched 2026-10-27); `evidence/format_independent_sgce_zeros_2026-10-27.json` → `outside_footprint_is_nan: false` | the wrong encoding was the one-click default | **fixed**: NaN-encoded file is the review copy; zeros file is labelled not a candidate |
+| IR-28-04 | The repo's shared validator counts zeros outside the footprint as compliant (`outside_footprint_compliant`), contradicting the official text | `src/gemsw/writer.py`, `evidence/session2_build.json` | every file the writer emits in zeros mode is off-spec | **open**: not changed here because the shared writer serves other lanes; fix once in the template and re-run every lane's validator |
+| IR-28-05 | The brief's leaderboard figures do not match the live page. Brief: "0.3195 is the highest". Live read (`fetch_page`, 2026-10-27): #1 **0.4544** (xiaofanhu), #2 **0.3916**, #3 **0.3911** | <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/> | any "beat 0.3195" target is already far below the top | **flagged**; the number keeps moving; re-read before any decision |
+| IR-28-06 | The holdout does not reproduce the public ordering. Its champion proxy (the repo's re-implementation of GEMSDOE25's dotted H19-5 d2.8 with B2 pruning, owner-reported 0.2600) scores HOLDOUT-DTI 0.0992. | `evidence/session2_run_card.json` → `champion_proxy`; `content/why-0.2778.md` | a HOLDOUT-DTI win (SGCE 0.1675 vs 0.0992) is **not** evidence of a leaderboard gain | **open, structural** |
+| IR-28-07 | SGCE's projection is 0.0669 (80% 0.0285–0.1053), far below the 0.2778 owner claim and the 0.2708–0.2750 focus files. The site's old headline ignored this. | `evidence/session2_projection.json` | the best unique file is **not projected to beat 0.2778** | **disclosed** on the front page and in the candidates table |
+| IR-28-08 | The nine focus files are mutually near-duplicates: pairwise 3-px overlap 0.88–1.00 (24→25 = 1.00; 36→24 = 0.976). None is unique against the others. | `evidence/focus_uniqueness_independent_2026-10-27.json` → `focus_vs_focus_pairwise` | the owners' files cannot be resubmitted as "unique", and the nine-site table is correct to say `NO` | **confirmed independently** |
+| IR-28-09 | The literal 3-px uniqueness rule is unsatisfiable by any non-empty prediction (17GEMSDOE is positive on all 5,167,373 footprint cells). Content-aware reading passes (PR-01). | `knowledge/pr-01-uniqueness-protocol.md`; `evidence/session2_run_card.json` | the SGCE file cannot pass the literal gate | **blocker 1**: needs the user's ratification |
+| IR-28-10 | The release gate has not been regenerated for the SGCE SHA-256. Its candidate is the skarpline file. | `evidence/release_gate.json` → `candidate.submission` | no gate covers the file that is now the review copy | **blocker 2** |
+| IR-28-11 | HOLDOUT-DTI 0.1675 for SGCE was produced in a prior session from restored mirrors. This sandbox has no `.cache` and no `data/raw`, so it was **not re-run here**. | `data/` contains only `template_grid.tif` | the number is carried, labelled, not re-verified | **open**: run `scripts/restore_shared_data.sh` then the holdout script |
+| IR-28-12 | The reference grid `data/template_grid.tif` is all-finite zeros (12,279,160 cells). It is **not** the official sample footprint (5,167,373 cells). Using it as the footprint would be wrong. | `rasterio` read of `data/template_grid.tif` | any validator that uses the template as the footprint will mis-flag NaN outside | **flagged**; the official sample (SHA-256 `2176d08e…`) is the footprint |
+| IR-28-13 | The portal error "Predicted values must be in range [0, 1]" still has no reproduced cause. | `docs/how-to-submit.html`; official text | the NaN encoding is spec-compliant but its portal acceptance is unknown | **blocker 3**: one portal test by the user after ratification |
+| IR-28-14 | The Pages CI check previously required the positive banner on every page. That check, and two tests (`tests/test_site.py`), encoded the stale verdict. | `git diff` of `scripts/check_site.py`, `tests/test_site.py` | the tests would have forced the wrong claim back onto the site | **changed** to follow the gate; disclosed here |

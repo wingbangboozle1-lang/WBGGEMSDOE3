@@ -1,6 +1,15 @@
-"""WB-GEMS-DOE-3 holdout evaluation: distance-weighted Tversky Index (DTI).
+"""Historical local metric helpers; the old holdout/CI wrappers are disabled.
 
-Implements the official competition metric (DrivenData page 967):
+This is not the pinned shared template. Its former hide_and_recover masked the
+entire non-withheld domain rather than visible fault pixels, and its CI averaged
+block DTIs instead of bootstrapping pooled metric terms. Do not use those
+wrappers to score candidates. Use the pinned shared evaluator after prerequisites
+are resolved; no private replacement is provided here.
+
+WB-GEMS-DOE-3 historical distance-weighted Tversky Index (DTI).
+
+The historical code attempted to implement the following published metric; its
+implementation is disabled and is not evidence of organizer equivalence:
 
     k(d) = max(1 - d / R, 0),  R = 300 m = 3 px at 100 m resolution
     DTI(alpha=0.2, beta=0.8) = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w + eps)
@@ -22,7 +31,6 @@ from dataclasses import dataclass
 from typing import Optional
 
 import numpy as np
-from scipy.ndimage import distance_transform_edt
 
 ALPHA = 0.2
 BETA = 0.8
@@ -37,51 +45,14 @@ def _kernel(d: np.ndarray, radius: float = RADIUS_PX) -> np.ndarray:
 def dti_components(pred: np.ndarray, truth: np.ndarray,
                    valid: Optional[np.ndarray] = None,
                    known: Optional[np.ndarray] = None) -> dict:
-    """Exact distance-weighted TP_w / FP_w / FN_w components.
+    """Disabled historical TP_w / FP_w / FN_w wrapper.
 
     `pred` : soft or binary predictions in [0, 1], same shape as `truth`
     `truth`: boolean ground-truth fault pixels
     `valid`: scored domain mask (defaults to all True)
     `known`: catalogue faults masked out of scoring (hide-and-recover positives)
     """
-    pred = np.asarray(pred, dtype=np.float64)
-    truth = np.asarray(truth, dtype=bool)
-    if pred.shape != truth.shape:
-        raise ValueError("prediction and truth must share shape")
-    H, W = pred.shape
-    valid = np.ones((H, W), bool) if valid is None else np.asarray(valid, bool)
-    known = np.zeros((H, W), bool) if known is None else np.asarray(known, bool)
-    active = valid & ~known
-    p = np.where(active & np.isfinite(pred), pred, 0.0)
-    g = truth & active
-    p = np.clip(p, 0.0, 1.0)
-
-    n_truth = int(g.sum())
-    # TP_w: each truth pixel gets max kernel-weighted prediction within radius.
-    dg = distance_transform_edt(~g)  # distance from every pixel to nearest truth
-    k_near = _kernel(dg)
-    credit = np.minimum(p * k_near, k_near)  # per-truth max via distance transform below
-    # Exact per-truth max: shift prediction field by kernel offsets around each truth pixel.
-    r = int(np.ceil(RADIUS_PX))
-    best = np.zeros((H, W), dtype=np.float64)
-    for dy in range(-r, r + 1):
-        for dx in range(-r, r + 1):
-            k = _kernel(np.hypot(dy, dx))
-            if k <= 0:
-                continue
-            shifted = np.zeros_like(p)
-            ys0, ys1 = max(0, -dy), min(H, H - dy)
-            xs0, xs1 = max(0, -dx), min(W, W - dx)
-            shifted[ys0:ys1, xs0:xs1] = p[max(0, dy):min(H, H + dy),
-                                          max(0, dx):min(W, W + dx)]
-            np.maximum(best, shifted * k, out=best)
-    tp = float(best[g].sum())
-    fn = float(n_truth) - tp
-    # FP_w: each predicted pixel penalised by 1 - max kernel over truth pixels.
-    fp = float((p * (1.0 - k_near)).sum())
-    dti = tp / (tp + ALPHA * fp + BETA * fn + EPS)
-    return dict(tp=tp, fp=fp, fn=fn, n_truth=n_truth, dti=float(dti),
-                coverage=(tp / n_truth) if n_truth else 0.0)
+    raise RuntimeError("BLOCKED: historical local metric is not the required shared evaluator")
 
 
 @dataclass
@@ -107,19 +78,8 @@ class HoldoutResult:
 
 
 def spatial_block_ci(dti_values, n_blocks: int) -> tuple:
-    """95% CI via spatial-block bootstrap (percentile method)."""
-    vals = np.asarray(dti_values, dtype=float)
-    if vals.size == 0:
-        return float("nan"), float("nan"), []
-    rng = np.random.RandomState(20261026)
-    boots = []
-    for _ in range(max(200, 20 * n_blocks)):
-        sample = rng.choice(vals, size=vals.size, replace=True)
-        boots.append(float(np.mean(sample)))
-    boots = np.sort(boots)
-    lo = float(np.percentile(boots, 2.5))
-    hi = float(np.percentile(boots, 97.5))
-    return lo, hi, [float(x) for x in boots]
+    """Retired: averaging block DTIs is not a pooled-component bootstrap."""
+    raise RuntimeError("BLOCKED: historical block-mean CI is not the shared pooled evaluator")
 
 
 def hide_and_recover(predictions: np.ndarray, truth: np.ndarray,
@@ -132,34 +92,4 @@ def hide_and_recover(predictions: np.ndarray, truth: np.ndarray,
     scoring inputs and used as the held-out positive set. Catalogue (known) faults
     are masked so they cannot leak into the score.
     """
-    truth = np.asarray(truth, dtype=bool)
-    withhold_mask = np.asarray(withhold_mask, dtype=bool)
-    valid = np.ones(truth.shape, bool) if valid is None else np.asarray(valid, bool)
-    known = valid & ~withhold_mask  # catalogue/visible faults excluded from scoring
-
-    n_withheld = int((truth & withhold_mask).sum())
-    comp = dti_components(predictions, truth & withhold_mask,
-                          valid=valid, known=known)
-    # Spatial-block CI: evaluate per block of the withheld set.
-    H, W = truth.shape
-    block_dtis = []
-    n_rows = n_cols = 4
-    bh = int(np.ceil(H / n_rows)); bw = int(np.ceil(W / n_cols))
-    for br in range(n_rows):
-        for bc in range(n_cols):
-            blk = np.zeros((H, W), bool)
-            r0, r1 = br * bh, min(H, (br + 1) * bh)
-            c0, c1 = bc * bw, min(W, (bc + 1) * bw)
-            blk[r0:r1, c0:c1] = True
-            sub_valid = valid & blk
-            sub_truth = truth & withhold_mask & blk
-            if sub_truth.sum() == 0:
-                continue
-            c2 = dti_components(predictions, sub_truth, valid=sub_valid, known=known & sub_valid)
-            block_dtis.append(c2["dti"])
-    ci_lo, ci_hi, _ = spatial_block_ci(np.asarray(block_dtis), len(block_dtis))
-    return HoldoutResult(
-        evaluator_version=evaluator_version, n_withheld=n_withheld,
-        dti=comp["dti"], ci_lo=ci_lo, ci_hi=ci_hi,
-        n_blocks=len(block_dtis), block_dtis=block_dtis,
-    )
+    raise RuntimeError("BLOCKED: historical wrapper masks non-withheld pixels and does not implement the required shared holdout")

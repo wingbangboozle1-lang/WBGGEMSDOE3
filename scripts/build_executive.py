@@ -78,6 +78,7 @@ def focus_rows(audit: dict) -> str:
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer overwrites the current negative dashboard; use scripts/build_site.py")
     authority_path = ROOT / "evidence" / "run_card.json"
     candidate_path = ROOT / "evidence" / "gemsdoe_run_card.json"
     authority = json.loads(authority_path.read_text())

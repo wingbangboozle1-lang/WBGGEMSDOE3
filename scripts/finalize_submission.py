@@ -41,6 +41,7 @@ def find_latest_zeros():
 
 
 def main():
+    raise RuntimeError("BLOCKED: DISABLED / DO NOT SUBMIT; superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     # Preserve the earlier investigation, but never overwrite the authoritative
     # negative card with the incomplete 58-reference audit or a format claim.
     raise RuntimeError(

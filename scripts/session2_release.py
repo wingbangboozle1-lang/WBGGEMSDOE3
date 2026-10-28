@@ -20,6 +20,7 @@ T0 = time.time()
 
 
 def main() -> None:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     g = G.load_grid()
     bins = sgce.load_bins(g)
     cnt = np.load(ROOT / "data" / "work" / "dense_cover_count.npy")

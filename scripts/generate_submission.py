@@ -154,6 +154,7 @@ def poisson_disk_select(candidate_mask: np.ndarray, min_dist_px: float,
 
 
 def main():
+    raise RuntimeError("BLOCKED: DISABLED / DO NOT SUBMIT; superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     # Historical implementation retained for reproducibility only. Its grid
     # marks the whole rectangle valid, and the literal registry witness makes
     # every nonempty in-footprint candidate fail before placement. Never emit a

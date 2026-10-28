@@ -34,7 +34,7 @@ Unpruned: 0.13520 [0.11846, 0.15306]; ≤2 px proximity-pruned: 0.13526
 [0.11849, 0.15310]. Paired Δ versus unpruned: +0.000054
 [+0.000027, +0.000089]; versus equal-count random pruning: +0.000108
 [−0.0000008, +0.000235], including zero. Its own verdict was **negative**.
-[Saved source receipt](../evidence/h6_1_proximity_pruning_holdout.json) ·
+[Saved historical experiment record](../evidence/h6_1_proximity_pruning_holdout.json) ·
 [pinned upstream](https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/docs/data/h6_1_proximity_pruning_holdout.json).
 This is historical and was not replayed in this session.
 
@@ -51,13 +51,36 @@ higher competition score exists, not that a new file from this project will achi
 This session produced no candidate or valid local holdout estimate. The literal
 registry definition stops every nonempty in-footprint candidate because a registered
 soft raster is positive throughout the footprint; do not submit or silently exempt it.
-See the [current dashboard](../docs/index.html) and [negative card](../evidence/run_card.json).
+See the [current dashboard](../docs/index.html) and [negative card](../evidence/session_9b794637_run_card.json).
 
-## Addendum 2026-10-28 — shipped-bytes audit (AMDC lane)
+## Verification addendum — 2026-10-27 (independent recomputation)
 
-The paragraphs above predate the SGCE file and are left as history. This session re-scored
-the shipped bytes of every repository candidate on identical withheld folds instead of
-trusting construction-time figures:
+The focus overlap and B2 dot counts were independently recomputed from SHA-pinned bytes;
+the historical projection figures below were carried forward, not re-fitted. Owner-reported and
+projection figures are **not** organizer-confirmed scores.
+
+1. **Arithmetic.** GEMSDOE31's base has 40,199 positive cells; GEMSDOE32's B2 file has 37,654
+   (`evidence/nine_site_table.json`). Difference **2,545**, matching the earlier statement.
+2. **Near-duplicate structure (new).** `scripts/verify_focus_uniqueness.py` → `focus_vs_focus_pairwise`:
+   every GEMSDOE32 dot lies within 3 px of a dot in GEMSDOE24, 25, 27, 30, 31 and 36 (overlap
+   1.000 each), and within 0.9988–0.9998 of 28 and 33. In the other direction, GEMSDOE32 covers only
+   0.867–0.974 of those files' dots. So 0.2778's file is a sparser subset of the other top-scoring
+   files, within the 3-px tolerance, and it is **not unique** against them.
+3. **Why it could score highest — hypothesis, not established.** The public data cannot separate the
+   effect of the 2,545 removed cells (1.4–2 px from the catalogue) from the hidden labels. A plausible
+   mechanism is that the removal lowers false-positive mass while keeping most true-positive credit under
+   the 300 m kernel. The same public data could not confirm it, and no receipt ties 0.2778 to these bytes.
+4. **Can a new TIF beat 0.2778? Not demonstrated.** Historical ledger projections and holdout
+   estimates were not re-fitted here and are subject to selection and circularity caveats
+   (`evidence/session2_projection.json`, `evidence/candidate_run_card.json`). No gain is validated;
+   SGCE's focus-only uniqueness also does not satisfy the literal all-registry requirement.
+   See `knowledge/irregularities-2026-10-27.md` IR-28-06 to IR-28-08.
+
+## Addendum 2026-10-28 — shipped-bytes audit (AMDC lane, negative)
+
+The AMDC lane re-scored the shipped bytes of every repository candidate on identical
+withheld folds instead of trusting construction-time figures. It does not change the
+repository's DO-NOT-SUBMIT decision:
 
 * SGCE shipped bytes: **0.0191** [0.0169, 0.0211] (native evaluator, 22,232 withheld) and
   0.0190 [0.0171, 0.0208] (matched evaluator, 22,893 withheld) — vs B2 reference bytes at

@@ -214,6 +214,7 @@ Independent gemsw validator: passed={card['validator_output']['independent_gemsw
 
 
 def main() -> None:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     OUT.mkdir(parents=True, exist_ok=True)
     DATA.mkdir(parents=True, exist_ok=True)
     (OUT / "index.html").write_text(index_page(), encoding="utf-8")

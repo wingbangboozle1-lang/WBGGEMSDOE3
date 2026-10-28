@@ -76,6 +76,7 @@ def _spearman_sample(a: np.ndarray, b: np.ndarray, sidx: np.ndarray) -> float:
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: historical comparison treats owner reports as organizer receipts; see evidence/focus_and_lane_comparison.json")
     raw = ROOT / "data" / "raw"
     with rasterio.open(raw / "sample_submission.tif") as ds:
         foot = np.isfinite(ds.read(1))

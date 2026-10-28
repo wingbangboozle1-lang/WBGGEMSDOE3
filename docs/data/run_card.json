@@ -1,44 +1,38 @@
 {
-  "evidence_class": "NEGATIVE preflight, not a competition score",
-  "hypothesis": "CSPES: cross-scale collinear gravity and reduced-to-pole magnetic gradient edges, conditioned on detrended elevation.",
-  "mechanism": "A persistent multi-domain discontinuity may mark a buried structural boundary lacking a surface catalogue trace.",
-  "named_non_fault_mimic": "Lithologic contact or aeromagnetic survey stripe.",
+  "evidence_class": "NEGATIVE prerequisite and saved-raster audit; not a competition score",
+  "lane": "Approval-safety and reproducibility review; no single geological method paragraph was identifiable in the request",
+  "hypothesis": "Prospective only: persistent signed cross-edge asymmetry in gravity and reduced-to-pole magnetics may indicate a buried dipping structural boundary.",
+  "mechanism": "Fit local background profiles across candidate edges and test whether the residual asymmetry repeats along strike; not executed in this session.",
+  "named_non_fault_process": "Dipping lithologic contacts and remanent magnetization can mimic the proposed profile asymmetry.",
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
-    "value": null,
-    "evaluator_version": "gems57-pooled-hide-v2 (planned, not run)",
+    "evaluator_version": null,
     "withheld_positives": null,
-    "ci_95": null,
-    "reason": "Mandatory universal-registry STOP occurred before a surface, canary, placement, or holdout."
+    "value": null,
+    "ci95": null,
+    "reason": "Not run: the literal all-registry pre-placement feasibility stop was independently rechecked and remains blocking; no candidate surface was built."
   },
   "correlation_overlap_vs_registry": {
-    "surface_spearman": null,
-    "final_dot_overlap": null,
-    "candidate_tested": false,
-    "witness_positive_inside_fraction": 1.0,
-    "witness_implied_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
-    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "registry_coverage": "One registered witness proves failure; the current full registry was not exhaustively re-audited."
+    "new_candidate_surface_rank_correlation": null,
+    "new_candidate_final_dot_overlap": null,
+    "new_candidate_tested": false,
+    "registered_witness_universal_in_mirrored_footprint": true,
+    "existing_sgce_research_file_overlap_within_3px": 1.0,
+    "existing_sgce_evidence": "evidence/registry_witness_recheck_2026-10-27.json",
+    "scope": "One conclusive witness, not an exhaustive current registry audit; the existing file's pre-placement surface was not replayed."
   },
   "raster_sha256": null,
   "validator_output": {
-    "status": "NOT_RUN: this lane created no candidate raster",
-    "required": "No NaN in footprint; values in [0,1]; single float32 band; CRS, shape and affine equal verified sample."
+    "new_candidate": "NOT RUN; no new candidate was generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "existing_research_file": "Local saved-byte diagnostic in evidence/registry_witness_recheck_2026-10-27.json; not a new candidate or portal acceptance."
   },
   "submission_name": null,
-  "submission_note": "No lane candidate; registry duplicate stop. DO NOT SUBMIT.",
+  "submission_note": "Negative preflight: literal registry overlap blocks a new nonempty raster; no submission slot used.",
   "verdict": "negative",
   "selector_approval": false,
-  "experiments": 0,
-  "slots_spent": 0,
-  "run_time_utc": "2026-10-27T17:18:14.108774+00:00",
-  "source_audit_sha256": "0f8b9db7fd2591aa37d01f74034237374f96b6e9dfb4342967c36e13db013495",
-  "follow_up": "Resolve the literal registry support definition by explicit protocol revision; reconcile the shared tool's one-sided rho and outside-footprint convention upstream; then rerun canaries, blocked holdout, registry checks and validation.",
-  "parallel_artifact_review": {
-    "evidence_sha256": "a9240a3d81a53f891eec724977e39da86b2ff137562583b0aca65196513fc42b",
-    "reviewed_sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059",
-    "forward_overlap_vs_registered_witness": 0.9854857142857143,
-    "outside_mirrored_footprint": 747,
-    "verdict": "negative; research only, not this lane's candidate"
-  }
+  "experiments_run": 0,
+  "weekly_slots_used": 0
 }

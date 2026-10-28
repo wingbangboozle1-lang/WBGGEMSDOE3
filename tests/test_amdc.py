@@ -1,7 +1,9 @@
-"""2026-10-28 AMDC lane: shipped-bytes audit, run card v2, site corrections.
+"""2026-10-28 AMDC lane: shipped-bytes audit, run card v2, negative dossier.
 
 No network, no heavy rasters: everything asserted here comes from committed
-evidence/*.json, the generated docs/ bytes, and the served download.
+evidence/*.json, the generated docs/ bytes, and the served research download.
+The lane verdict is negative and nothing here overrides the repository's
+governing DO-NOT-SUBMIT decision.
 """
 import hashlib
 import json
@@ -14,7 +16,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 SGCE_SHA = "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09"
 SGCE_NAME = "wbggems3-sgce-20261027-f52d35d8-zeros.tif"
-TDE_SHA = "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817"
+FORBIDDEN = (
+    "ok to download and submit", "one new file cleared", "one file cleared for upload",
+    "approved submission download", "the repository's cleared upload", "submit it only as",
+    "why this file will not trigger", "all automated local gates pass",
+)
 
 
 def _load(path: str):
@@ -65,46 +71,19 @@ def test_bytes_audit_corrects_the_headline_and_matches_served_bytes():
     assert audit["evaluator_B_matched"]["sgce_fixed_dti"] == 0.019
     assert audit["evaluator_A_native"]["withheld_positives"] == 22232
     assert audit["evaluator_B_matched"]["withheld_positives"] == 22893
-    assert audit["uniqueness_reaudit"]["verdict"].startswith("PASS")
     assert audit["uniqueness_reaudit"]["gated_max_overlap"] < 0.70
     assert "SUBMITTABLE" in audit["validator_rerun"]["zeros_variant"]
 
 
-def test_site_pages_carry_the_corrected_bytes_figure():
-    for page in ("index.html", "executive-summary.html", "research.html", "evidence.html"):
-        body = (DOCS / page).read_text()
-        assert "0.0191" in body, page
-        assert "0.0169–0.0211" in body, page
-        assert 'id="bytes-audit"' in body, page
-        assert "per-cell rebuild" in body, page
-        assert "LEDGER-INVERSION ESTIMATE" in body, page
-        assert "OK TO DOWNLOAD AND SUBMIT" in body, page
-
-
-def test_how_to_submit_names_the_cleared_file_and_a_short_note():
-    body = (DOCS / "how-to-submit.html").read_text()
-    assert "OK TO DOWNLOAD AND SUBMIT" in body
-    assert SGCE_NAME in body and SGCE_SHA in body
-    assert "TDE-30k" in body and "revoked" in body.lower()
-    assert "Predicted values must be in range [0, 1]" in body
-    card = _load("evidence/session2_run_card.json")
-    note = card["submission_note"]
-    assert 0 < len(note) <= 140
-    assert note in body
-    assert f"({len(note)} chars" in body
-
-
-def test_release_gate_points_at_sgce_with_verified_sources():
+def test_governing_gate_stays_negative_with_verified_sources():
     gate = _load("docs/data/release_gate.json")
     assert gate["schema"] == "gems-release-gate-v1"
-    assert gate["decision"] == "SUBMIT-WITH-CAVEAT"
-    assert gate["okay_to_submit"] is True
+    assert gate["decision"] == "DO-NOT-SUBMIT"
+    assert gate["okay_to_submit"] is False
     assert gate["authority"]["selector_approval"] is False
-    assert gate["authority"]["raster_sha256"] == SGCE_SHA
     assert gate["candidate"]["sha256"] == SGCE_SHA
-    assert "slot" in " ".join(gate["blocking_reasons"]).lower()
-    assert gate["revoked_predecessor"]["sha256"] == TDE_SHA
-    for key in ("session2_run_card", "bytes_audit", "amdc_run_card"):
+    assert gate["blocking_reasons"]
+    for key in ("authority", "candidate", "witness_audit"):
         src = ROOT / gate["source_cards"][key]
         assert hashlib.sha256(src.read_bytes()).hexdigest() == gate["source_cards"][key + "_sha256"]
 
@@ -135,6 +114,9 @@ def test_amdc_lane_page_is_scoped_negative_with_working_links():
     assert '<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT">' in body
     assert 'name="gemsdoe-decision"' not in body
     assert "DO NOT SUBMIT" in body and "../index.html" in body
+    folded = " ".join(body.lower().split())
+    for phrase in FORBIDDEN:
+        assert phrase not in folded, phrase
     parser = _Links()
     parser.feed(body)
     for link in parser.targets:
@@ -142,14 +124,22 @@ def test_amdc_lane_page_is_scoped_negative_with_working_links():
         if parsed.scheme or parsed.netloc or not parsed.path:
             continue
         target = (page.parent / unquote(parsed.path)).resolve()
-        assert target.is_relative_to(DOCS.resolve()) and target.exists(), link
+        assert target.is_relative_to(DOCS.resolve()) and target.is_file(), link
+
+
+def test_readme_records_the_negative_lane_without_claiming_clearance():
+    readme = (ROOT / "README.md").read_text()
+    assert "Parallel lane: AMDC audit (2026-10-28, negative)" in readme
+    assert "docs/amdc/index.html" in readme
+    assert "OK TO DOWNLOAD AND SUBMIT" not in readme
 
 
 def test_amdc_step_is_deterministic():
     from build_site import main
     names = ["index.html", "executive-summary.html", "research.html", "evidence.html",
-             "how-to-submit.html", "data/release_gate.json", "data/decision.json",
-             "amdc/index.html"]
+             "how-to-submit.html", "submission.html", "data/release_gate.json",
+             "data/decision.json", "amdc/index.html", "data/amdc_run_card.json",
+             "data/sgce_bytes_audit.json"]
     before = {n: (DOCS / n).read_bytes() for n in names}
     assert main() == 0
     for n in names:

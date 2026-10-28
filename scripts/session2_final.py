@@ -56,6 +56,7 @@ def avoid_from(audit, shape, threshold=0.65):
 
 
 def main() -> None:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     g = G.load_grid()
     bins = sgce.load_bins(g)
     geo = sgce.geometry(g.labels, g.foot, sigma=15.0)
