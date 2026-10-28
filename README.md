@@ -20,6 +20,12 @@
 > current site: [`docs/index.html`](docs/index.html) ·
 > full evidence: [`docs/evidence.html`](docs/evidence.html).
 
+> ## Uniqueness audit on branch `arena/0d17f7d5-wbggemsdoe3` (2026-10-28, evidence only)
+>
+> Re-measured every candidate against the **457 real sibling submissions** with the shared 3-px kernel. All four fail the literal 70% rule, and all four fail on the same comparator, the 13GEMSDOE r13 lattice: invdesign **0.9944**, KHD **0.9991**, FCHD **0.9996**, TDE30k **0.9895**. The 3-px footprint of all 457 submissions covers **100%** of the footprint, and the lattice leaves **0.14%** free. No file is cleared; the governing decision above is unchanged.
+> Open question for you: keep the literal lattice class in the test, or follow the earlier convention that excludes dense/lattice rasters.
+> Details: [knowledge/session-review-2026-10-28-uniqueness.md](knowledge/session-review-2026-10-28-uniqueness.md) · [evidence/session_2026-10-28_uniqueness_run_card.json](evidence/session_2026-10-28_uniqueness_run_card.json) · [evidence/uniqueness_coverage_2026-10-28.json](evidence/uniqueness_coverage_2026-10-28.json)
+
 ## Start every session here
 
 Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),

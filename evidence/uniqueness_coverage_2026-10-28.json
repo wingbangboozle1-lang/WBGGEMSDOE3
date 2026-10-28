@@ -1,0 +1,69 @@
+{
+ "schema": "uniqueness-coverage-v1",
+ "source_gate": "evidence/uniqueness_gate_full_2026-10-28.json",
+ "source_gate_sha256": "9a2594d547b12260cf90bfa919e2f9bbd2278b520d5483e3d6d8e400acd372cb",
+ "n_submission_comparators": 457,
+ "footprint_cells": 5167373,
+ "union_dots": 3964929,
+ "footprint_share_within_3px_of_any_submission": 1.0,
+ "zero_overlap_complement_exists": false,
+ "top_comparators_by_overlap": [
+  {
+   "file": "b4570b406efec198_13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+   "n_dots": 206895,
+   "free_cells_ge3px_excl_collar": 7103,
+   "free_fraction_of_footprint": 0.001375
+  },
+  {
+   "file": "38539dc647d5ede0_gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+   "sha256": "38539dc647d5ede0d8fa90123810d18130ee15e524097f55e83b6b8a57976ea9",
+   "n_dots": 91533,
+   "free_cells_ge3px_excl_collar": 2957455,
+   "free_fraction_of_footprint": 0.572332
+  },
+  {
+   "file": "57be86502a03a22e_gems46-r11f-scarp-radiometric-fusion-00e049b51218-zeros.tif",
+   "sha256": "57be86502a03a22eb755f04204cb090b49ba4b89158662a728ca2e34b1d37f95",
+   "n_dots": 44090,
+   "free_cells_ge3px_excl_collar": 3679226,
+   "free_fraction_of_footprint": 0.712011
+  },
+  {
+   "file": "d0c5fd6825b544eb_gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+   "n_dots": 516738,
+   "free_cells_ge3px_excl_collar": 2414221,
+   "free_fraction_of_footprint": 0.467205
+  },
+  {
+   "file": "37f9d5b855ee1b6c_pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+   "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+   "n_dots": 155021,
+   "free_cells_ge3px_excl_collar": 1521741,
+   "free_fraction_of_footprint": 0.29449
+  },
+  {
+   "file": "f347b70daa95170b_pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+   "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+   "n_dots": 155021,
+   "free_cells_ge3px_excl_collar": 1527361,
+   "free_fraction_of_footprint": 0.295578
+  },
+  {
+   "file": "8624c5a58c681f57_gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "sha256": "8624c5a58c681f57a6d26cab0652cfe654bcd46dc8ba68a7d5a4c0feaa29bc89",
+   "n_dots": 167597,
+   "free_cells_ge3px_excl_collar": 2392582,
+   "free_fraction_of_footprint": 0.463017
+  },
+  {
+   "file": "e5f3684e9b49e8f1_gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+   "n_dots": 335879,
+   "free_cells_ge3px_excl_collar": 2994041,
+   "free_fraction_of_footprint": 0.579413
+  }
+ ],
+ "reading": "The 3-px footprint of all 457 sibling submissions covers the whole footprint, so no design can have zero overlap with every submission. Under the literal per-raster 70% rule, the binding comparator is the 13GEMSDOE lattice: only the free cells above (0.14% of footprint) are available to keep its overlap at or below 70%."
+}

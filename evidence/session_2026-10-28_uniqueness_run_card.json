@@ -1,0 +1,80 @@
+{
+ "schema_version": "parallel-run-card-v1",
+ "lane_id": "UNIQUENESS-AUDIT-2026-10-28",
+ "branch": "arena/0d17f7d5-wbggemsdoe3",
+ "evidence_class": "MEASUREMENT (registry geometry + gate correction); no new score, no holdout, no organizer receipt",
+ "method_paragraph": "Re-measured the candidate and three alternatives against all real sibling submissions in the registry using the shared 3-px kernel (gemsw.exact.kernel_credit_field, RADIUS_PX=3.0) through scripts/check_uniqueness.py (candidate path now an argument; rows classified submission vs input_feature). Directed overlap = share of candidate dots within 3 px of any comparator dot; rank correlation = Spearman. Also measured the union coverage of all submissions (scripts/uniqueness_coverage.py).",
+ "hypothesis": "The candidate passes the user's literal uniqueness rule (<=0.70 directed 3-px overlap vs any registry raster).",
+ "result": "REFUTED for all four candidates; the binding comparator is the 13GEMSDOE r13 lattice (0.9895-0.9996).",
+ "design_experiments_run": 0,
+ "audits_run": 4,
+ "wall_clock_budget_note": "Three experiments or two hours maximum: 0 design experiments; 4 full-registry audits plus 1 coverage pass.",
+ "gates": {
+  "rank_corr_le_0p90_all_candidates": true,
+  "directed_overlap_le_0p70_all_registry_rasters": false,
+  "leakage_canary_auc_le_0p90": "not re-run (no new model)",
+  "format_validator": "unchanged; see evidence/run_card_v3.json"
+ },
+ "runs": {
+  "invdesign": {
+   "candidate": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
+   "candidate_sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
+   "evidence": "evidence/uniqueness_gate_full_2026-10-28.json",
+   "evidence_sha256": "9a2594d547b12260cf90bfa919e2f9bbd2278b520d5483e3d6d8e400acd372cb",
+   "n_registry_compared": 457,
+   "max_directed_overlap_3px": 0.9944,
+   "max_reverse_overlap_3px": 0.274251968503937,
+   "max_abs_spearman": 0.05067822461755399,
+   "literal_unique": false,
+   "n_over_0_70_submissions": 3
+  },
+  "khd": {
+   "candidate": "docs/downloads/wbggems3-khd-tomo-20261028-bd69b5b3-zeros.tif",
+   "candidate_sha256": "787f83e11d9e3c28b742e8fc3b02af97553a872e3b88bf9b74abb2b2d5866aaa",
+   "evidence": "evidence/uniqueness_khd_full_2026-10-28.json",
+   "evidence_sha256": "f6bd3f6f5352be32c8e732ff18191b67311d76ae5443273ef7c0cf05dc120c38",
+   "n_registry_compared": 457,
+   "max_directed_overlap_3px": 0.9990704838795347,
+   "max_reverse_overlap_3px": 0.5488659903330323,
+   "max_abs_spearman": 0.20186502984435573,
+   "literal_unique": false,
+   "n_over_0_70_submissions": 1
+  },
+  "fchd": {
+   "candidate": "docs/fchd/downloads/wbggems3-fchd-ncm-38000d-20261028T013811Z-d90297fb-zeros.tif",
+   "candidate_sha256": "35b37288b8b1ac2a87c4ea11d8eb5cc7b50c5cd749d2983f4b5a3d36c01583d2",
+   "evidence": "evidence/uniqueness_fchd_full_2026-10-28.json",
+   "evidence_sha256": "447c141ed380523be93d4ab3fa13601de2758bd411854538e4db676c14beceea",
+   "n_registry_compared": 458,
+   "max_directed_overlap_3px": 0.999578947368421,
+   "max_reverse_overlap_3px": 0.9903143511912483,
+   "max_abs_spearman": 0.6231950742950864,
+   "literal_unique": false,
+   "n_over_0_70_submissions": 2
+  },
+  "tde30k": {
+   "candidate": "docs/downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+   "candidate_sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817",
+   "evidence": "evidence/uniqueness_tde30k_full_2026-10-28.json",
+   "evidence_sha256": "84775d18c0949ca88113f7038287afd7cc7d031b46a84ab8e61e5deccd7c37c9",
+   "n_registry_compared": 457,
+   "max_directed_overlap_3px": 0.9895333333333334,
+   "max_reverse_overlap_3px": 0.3583152066442555,
+   "max_abs_spearman": 0.04002288447722201,
+   "literal_unique": false,
+   "n_over_0_70_submissions": 1
+  }
+ },
+ "coverage": {
+  "evidence": "evidence/uniqueness_coverage_2026-10-28.json",
+  "footprint_share_within_3px_of_any_submission": 1.0,
+  "lattice_free_cells_ge3px_excl_collar": 7103,
+  "lattice_free_fraction_of_footprint": 0.001375
+ },
+ "decision": "DO-NOT-SUBMIT",
+ "okay_to_submit": false,
+ "verdict": "negative for the literal rule, confirmed on every candidate in the repo: no file is cleared; additional independent failure vs the 13GEMSDOE r13 lattice (0.9895-0.9996)",
+ "slots_spent": 0,
+ "governing_decision_source": "docs/data/release_gate.json on main (fail-closed literal dense-witness stop); this branch does not change it",
+ "estimates_labels": "No estimate or score is produced here. The 0.47 (invdesign) and 0.275 (KHD) figures are ESTIMATE-labelled model outputs carried from earlier evidence; none is HOLDOUT-DTI or ORGANIZER-CONFIRMED."
+}
