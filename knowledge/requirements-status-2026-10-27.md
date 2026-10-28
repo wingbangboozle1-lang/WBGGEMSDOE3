@@ -1,5 +1,7 @@
 # Requirements status — 2026-10-27
 
+> **Historical parallel-session snapshot, not the current decision.** The current review did not obtain the full verbatim source prompt, verify all official sources, assign a method lane, run canaries or a compliant holdout, or generate a cleared candidate. A proposed registry exemption is not an authorized protocol change. See `knowledge/session-review-9b794637.md` and the current `README.md`.
+
 Condensed from the project brief (full standing instructions: README §"Project prompt").
 Status words: **DONE** (evidence in repo), **PARTIAL**, **BLOCKED** (cannot be done under the stated rules), **NOT DONE**.
 

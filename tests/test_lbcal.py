@@ -109,7 +109,7 @@ def test_lbcal_lane_pages_are_scoped_and_hash_bound():
     served = docs / "downloads" / name
     assert hashlib.sha256(served.read_bytes()).hexdigest() == lane["sha256"]
     readme = (ROOT / "README.md").read_text()
-    assert "FOURTH PARALLEL LANE: LBCAL" in readme and "docs/lbcal/index.html" in readme
+    assert "docs/lbcal/index.html" in readme and "research-only" in readme
 
 
 def test_lbcal_delta_scan_covers_the_rasters_merged_later():

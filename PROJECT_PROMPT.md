@@ -1,9 +1,12 @@
-# Verbatim operational project prompt (preserved 2026-10-27)
+# Reconstructed operational project brief (maintained 2026-10-27)
 
-The following is the user's standing brief, preserved verbatim (minus chat-only
-attachment blocks) so every session starts from the same requirements. The
-condensed working record in `README.md` interprets it into current repo state;
-this file is the source text.
+This is a **condensed reconstruction**, not a verbatim transcript: the original
+full chat prompt was not available to the current session, and an earlier heading
+incorrectly called this file verbatim. Do not invent missing wording. The current
+session's instructions and the standing requirements below govern; the complete
+exact original can only be restored from the source conversation. The historical
+site/score ledger is linked below. The README contains this reconstruction for
+session-start reading and the current negative decision.
 
 ---
 
@@ -162,7 +165,7 @@ for the next session.
 
 ## Session reading order (maintained by every lane)
 
-1. `PROJECT_PROMPT.md` (this verbatim brief) — the requirements.
+1. `README.md` and this reconstructed brief — the standing requirements and provenance caveat.
 2. `README.md` — current repository-wide decision and each lane's status.
 3. `AGENTS.md`, `knowledge/preregistration-2026-10-27-hce.md` (HCE-1 lane +
    four ranked hypotheses), `knowledge/preregistration-2026-10-26.md` and
@@ -170,8 +173,8 @@ for the next session.
 4. `evidence/hce_run_card.json` — the HCE-1 run card; also read
    `evidence/gemsdoe_run_card.json` and `evidence/cspes_run_card.json` for the
    other parallel lanes. Never merge their verdicts without checking the bytes.
-5. `docs/hce/index.html` — HCE-1 executive summary and one-click download;
-   `docs/index.html` — repository-wide executive summary.
+5. `docs/index.html` — current negative repository-wide executive summary;
+   historical lane pages (including HCE-1) are archived and do not authorize upload.
 6. LBCAL lane (`arena/88400903`): `knowledge/preregistration-2026-10-27-lbcal.md` (five ranked
    hypotheses), `knowledge/lbcal-findings-2026-10-27.md` (science, gate audit, irregularities),
    `evidence/lbcal_lane_decision.json`, `evidence/lbcal_run_card.json`, `docs/lbcal/index.html`.

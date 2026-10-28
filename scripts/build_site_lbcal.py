@@ -102,6 +102,7 @@ def e(s):
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     card = load("lbcal_lane_decision.json")
     delta = load("registry_delta_main.json")
     lb = load("lbcal_run_card.json")

@@ -343,6 +343,7 @@ def write_tif(dots: np.ndarray, g: G.Grid, path: Path) -> dict:
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", default="wbggems3-cand")
     ap.add_argument("--quota", type=int, default=42000)

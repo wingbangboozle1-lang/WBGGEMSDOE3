@@ -66,13 +66,13 @@ def test_rfl_run_card_schema_and_verdict():
 
 def test_rfl_banner_and_site_wiring():
     from rfl_banner import RFL_BANNER
-    assert "rfl/index.html" in RFL_BANNER and "wbggems3-tde30k-tomography-emission" in RFL_BANNER
-    idx = (ROOT / "docs/rfl/index.html").read_text()
-    assert "HOLDOUT-DTI" in idx and "USER-REPORTED" in idx and "ESTIMATE" in idx
-    assert "wbggems3-hce1-latest.tif" in idx
-    how = (ROOT / "docs/rfl/how-to-submit.html").read_text()
-    note = "HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt."
-    assert note in how and len(note) <= 140
+    assert "rfl/index.html" in RFL_BANNER and "DO NOT SUBMIT" in RFL_BANNER
+    for name in ("index.html", "how-to-submit.html"):
+        body = (ROOT / "docs/rfl" / name).read_text()
+        assert "Global release gate: DO NOT SUBMIT" in body
+        assert "research only" in body.lower()
+        assert "../data/rfl_run_card.json" in body
+        assert "cleared upload" not in body.lower()
 
 
 def test_recommended_file_validation_receipt():

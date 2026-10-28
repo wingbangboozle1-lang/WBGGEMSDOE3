@@ -1,44 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to submit · WBGGEMSDOE3</title><style>:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--fg:#e6edf3;--mut:#9aa7b4;--ok:#2ea043;--warn:#d29922;--bad:#da3633;--accent:#58a6ff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{background:#010409;border-bottom:1px solid var(--line);padding:14px 20px}main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
-h1{font-size:29px;line-height:1.25}h2{font-size:22px;margin:34px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}h3{font-size:17px}
-code{background:#1f2630;padding:1px 5px;border-radius:4px;font-size:13px}.small{font-size:13.5px;color:var(--mut)}
-.hero{border:1px solid var(--ok);background:linear-gradient(180deg,#0f2418,#0d1117);border-radius:12px;padding:22px;margin:14px 0}
-.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--ok);color:#04150a}
-.tag.no{background:var(--bad);color:#fff}.tag.warn{background:var(--warn);color:#1a1200}
-.btn{display:inline-block;background:var(--ok);color:#fff;font-weight:700;padding:13px 22px;border-radius:9px;text-decoration:none;margin:12px 10px 4px 0}
-.btn.alt{background:#21262d;border:1px solid var(--line);color:var(--fg)}table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
-th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-size:12px;text-transform:uppercase}
-.yes{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}.mid{color:var(--warn);font-weight:700}
-.note{background:var(--panel);border-left:3px solid var(--accent);padding:12px 14px;margin:14px 0}.warnbox{background:var(--panel);border-left:3px solid var(--warn);padding:12px 14px;margin:14px 0}
-img.map{width:100%;border:1px solid var(--line);border-radius:10px}a{color:var(--accent)}</style></head><body><header><b>WBGGEMSDOE3</b> · RFL audit & corrected selector decision (2026-10-27) · <a href="../index.html">Start</a> · <a href="how-to-submit.html">How to submit</a></header><main>
-<div class="warnbox"><b>POST-MERGE NOTE:</b> the repository's cleared upload is now the TDE-30k file on the
-<a href="../index.html">dashboard</a> (note: <code>TDE-30k: truth-posterior from score tomography x lidar/gravity/magnetic edge concordance; all dots &gt;=200 m off catalogue</code>).
-The steps below document this session's gated HCE-1 file and the [0,1]-error analysis; do not spend a slot on
-both files without a selector decision.</div>
-<h1>Exactly how to submit the gated file</h1>
-<ol>
-<li>Download <a href="../hce/downloads/wbggems3-hce1-latest.tif" download><code>wbggems3-hce1-latest.tif</code></a>
-(or the <a href="../hce/downloads/wbggems3-hce1-latest.zip" download>single-TIFF .zip</a>). Do not rename the TIFF inside the zip;
-upload the bytes unchanged. Expected SHA-256: <code>0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2</code> (183,134 bytes, 169,968 positive pixels).</li>
-<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → New submission</a>
-and check the <b>weekly submission cap</b> shown there first — this repository cannot see your quota, and uploading is the
-human selector's step (no slot was spent by any automated lane).</li>
-<li>Choose the downloaded file in <i>File to submit</i>.</li>
-<li>Paste this note (129 chars, ≤140):<br><code>HCE-1: phase-congruent physical susceptibility; HGB on visible faults; 3px lattice + registry-novel repair. No organizer receipt.</code></li>
-<li>Submit, then record the receipt (score + timestamp + file SHA above) back into <code>registry/</code> — it would be this project's first ORGANIZER-CONFIRMED number.</li>
-</ol>
-<h2>Why this file will not trigger “Predicted values must be in range [0, 1]”</h2>
-<p>Independently re-validated from the saved bytes this session (<code>evidence/rfl_recommended_validation.json</code>):
-single band · float32 · 3730×3292 · EPSG:32611 · transform identical to the sample submission ·
-<b>zero NaN / zero Inf / no sentinel values anywhere in the array</b> · whole-array minimum 0.0 and maximum
-1.0 · zeros outside the scored footprint · zero positive pixels on the mapped catalogue.
-The historical portal error is not reproduced by any of the 11 locally downloadable TIFFs audited this session;
-files with NaN outside the footprint remain the prime suspect, which is why only <b>zeros-outside, all-finite</b>
-artifacts are presented as submittable here.</p>
-<h2>What not to submit</h2>
-<ul>
-<li><code>wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif</code> — fails the project uniqueness gate on the full registry (IR-20). The uniqueness gate is a <i>project protocol</i>, not an organizer rule (IR-10); submitting it anyway is a conscious waiver decision for the selector, not something this page recommends or hides.</li>
-<li>Any GEMSDOE24–36 historical leader — measured duplicates of one another (see <a href="index.html">executive summary</a>); also not this project's work to re-submit.</li>
-<li>CSPES / LST1 / stepover / lattice files — negative or research-only lanes.</li>
-</ul></main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT"><title>RFL · historical research</title><link rel="stylesheet" href="../assets/safe.css"></head>
+<body><header class="top"><div class="wrap"><a class="brand" href="../index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Historical lane · RFL</div><h1>Research archive, not a release.</h1>
+<div class="decision"><strong>Global release gate: DO NOT SUBMIT.</strong><p>No competition file is cleared. Do not submit any historical TIFF. The literal registry has a 100% witness overlap for any nonempty in-footprint candidate; a local format pass is not portal acceptance. Not cleared for upload.</p></div>
+<p>These artifacts are research only. Earlier versions of this lane’s pages contained inconsistent approval, score or portal-acceptance claims. They are retained in version history for provenance, not as current instructions. Their holdout and source claims have not been independently replayed by this audit.</p>
+<p><a class="btn" href="../executive-summary.html">Current executive summary</a><a class="btn secondary" href="../data/rfl_run_card.json">Historical lane card</a></p>
+<p class="small">For historical context only: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/tree/1dcca8bb473f732403213928b7c633cd2a22b403/docs/rfl">superseded page snapshot ↗</a>. The governing decision is the <a href="../index.html">main site</a>.</p></div></section></main></body></html>

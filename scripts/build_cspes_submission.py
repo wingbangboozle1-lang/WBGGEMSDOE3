@@ -15,6 +15,8 @@ Steps (all automatic; no slot is selected and nothing is uploaded):
 """
 from __future__ import annotations
 
+raise SystemExit("BLOCKED: this historical generator bypasses the literal registry stop; see evidence/session_9b794637_run_card.json")
+
 import hashlib
 import json
 import sys

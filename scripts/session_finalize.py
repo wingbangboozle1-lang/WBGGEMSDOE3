@@ -57,6 +57,7 @@ def within3_frac(dots_pts, other_pts):
 
 
 def main():
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     t0 = time.time()
     foot, labels = grid()
     stack, names = load_fields()

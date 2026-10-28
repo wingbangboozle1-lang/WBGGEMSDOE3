@@ -107,7 +107,12 @@ def binary_spearman(a: np.ndarray, b: np.ndarray, valid: np.ndarray) -> float | 
 
 
 def violates_literal_protocol(overlap: float, rank_correlation: float | None) -> bool:
-    """The user's rank gate is two-sided: |rho| > 0.90, or overlap > 0.70."""
+    """Apply the project's conservative two-sided rank policy and the literal overlap stop.
+
+    The current user wording says correlation > 0.90; it does not explicitly
+    specify |rho|. The absolute-value check is a stricter project convention,
+    not evidence that the upstream signed test violates the user's wording.
+    """
     if not math.isfinite(overlap) or not 0.0 <= overlap <= 1.0:
         raise ValueError("overlap must be a finite fraction")
     if rank_correlation is not None and (not math.isfinite(rank_correlation) or abs(rank_correlation) > 1.0):
@@ -279,5 +284,5 @@ def audit(template_root: Path | None = None, cache: Path | None = None) -> dict:
         "model_experiments_run": 0, "preplacement_surface_created": False,
         "candidate_dots_placed": False, "submission_tif_created": False,
         "weekly_slots_used": 0,
-        "limitations": ["One witness proves a failure, not a complete current registry inventory.", "Owner scores have no authenticated submission-page receipts.", "No leakage canaries, holdout evaluation, or GeoTIFF validator were run on a new candidate because the mandatory stop precedes candidate generation.", "The data mirror is hash-pinned, but not authenticated as the official DrivenData download.", "The shared uniqueness tool checks positive rho only, whereas the user's rank rule is two-sided; the independent focus audit applies absolute rho. Upstream correction remains blocked by read-only access.", "The official outside-bounds null/NaN wording and the shared all-finite zero-outside writer differ; their interpretation and portal acceptance are unverified."],
+        "limitations": ["One witness proves a failure, not a complete current registry inventory.", "Owner scores have no authenticated submission-page receipts.", "No leakage canaries, holdout evaluation, or GeoTIFF validator were run on a new candidate because the mandatory stop precedes candidate generation.", "The data mirror is hash-pinned, but not authenticated as the official DrivenData download.", "The shared uniqueness tool checks signed positive rho, while the independent audit conservatively checks absolute rho. The user's wording says correlation > 0.90 but does not explicitly specify an absolute-value test; the convention needs clarification, not a claim of an upstream defect.", "The official outside-bounds null/NaN wording and the shared all-finite zero-outside writer differ; their interpretation and portal acceptance are unverified."],
     }

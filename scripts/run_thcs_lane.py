@@ -76,6 +76,7 @@ def verify_saved_geotiff_bytes(tif_path: Path, template_path: Path, labels_path:
 
 
 def main() -> int:
+    raise RuntimeError("BLOCKED: superseded renderer or generator bypasses the literal registry gate; use scripts/build_site.py and see evidence/session_9b794637_run_card.json")
     t_start = time.time()
     raw_dir = ROOT / "data" / "raw"
     cache_dir = ROOT / "data" / "cache_thcs"

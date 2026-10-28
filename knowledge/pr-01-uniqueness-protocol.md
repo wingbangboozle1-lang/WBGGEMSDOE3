@@ -1,5 +1,7 @@
 # PR-01 · Uniqueness protocol revision (2026-10-27)
 
+> **Historical lane-specific proposal, not an authorized amendment of the user's current all-registry stop.** Its exclusions cannot clear a current submission. Also, the current prompt does not explicitly require two-sided rank correlation; the absolute-rank test is a conservative project convention. See `knowledge/session-review-9b794637.md`.
+
 **Status:** adopted for this lane. **Supersedes:** the literal reading in the 2026-10-26 note that
 "one registered raster makes every nonempty candidate a duplicate".
 

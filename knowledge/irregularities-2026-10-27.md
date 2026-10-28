@@ -1,5 +1,7 @@
 # Irregularities and open risks — 2026-10-27 session
 
+> **Historical parallel-session record.** Its content-aware protocol revision was a lane proposal, not an authorized change to the current user instruction; the literal all-registry stop remains binding. See `knowledge/session-review-9b794637.md` and the current `README.md`.
+
 Each item is something a reviewer should look at before trusting a number on the site. Nothing here is
 resolved by assertion; where a measurement exists, the file that holds it is named.
 

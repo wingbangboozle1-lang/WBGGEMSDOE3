@@ -20,6 +20,7 @@ PAGES = ('index.html', 'summary.html', 'how-to-submit.html', 'why.html',
 
 
 def build() -> None:
+    raise RuntimeError("BLOCKED: superseded lane renderer; use scripts/build_site.py")
     report = json.loads((ROOT / 'evidence/archive_audit.json').read_text())
     rows = report.get('tiffs', [])
     if (len(rows) != 2 or report.get('approved_for_submission') is not False or

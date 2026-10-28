@@ -3,7 +3,7 @@
  "candidate": "wbggems3-sgce-20261027-f52d35d8-nan.tif",
  "candidate_sha256": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1",
  "radius_px": 3.0,
- "dot_definition": "finite and > 0 inside candidate footprint (repo definition)",
+ "dot_definition": "finite and > 0 inside the hash-pinned sample footprint (repo definition)",
  "n_focus_files_checked": 9,
  "max_candidate_overlap_with_focus": 0.1668,
  "per_file": [
