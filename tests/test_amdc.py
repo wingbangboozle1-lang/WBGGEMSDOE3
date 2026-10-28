@@ -78,16 +78,16 @@ def test_bytes_audit_corrects_the_headline_and_matches_served_bytes():
 def test_governing_gate_is_hash_bound_to_verified_sources():
     """The gate may only speak about bytes that hash-match its own source cards.
 
-    The AMDC lane's DO-NOT-SUBMIT verdict still applies to the SGCE file it audited
-    (evidence/amdc_run_card.json).  The *site-wide* decision moved to a different artifact on
-    2026-10-28 (schema v2, evidence/run_card_v3.json); this test now checks the property that
-    actually matters — a decision is never free-floating, it is bound to hashed evidence.
+    The global decision is negative. The earlier v2 gate is retired because it
+    omitted the dense registry witness and lacked the required HOLDOUT-DTI.
+    The current negative gate must remain bound to its authority, candidate and
+    witness audit.
     """
     gate = _load("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v2"
-    assert gate["decision"] == "SUBMIT" and gate["okay_to_submit"] is True
+    assert gate["schema"] == "gems-release-gate-v1"
+    assert gate["decision"] == "DO-NOT-SUBMIT" and gate["okay_to_submit"] is False
     assert gate["blocking_reasons"], "irregularities must be published with the decision"
-    for key in ("run_card", "design", "uniqueness", "pair"):
+    for key in ("authority", "candidate", "witness_audit"):
         src = ROOT / gate["source_cards"][key]
         assert hashlib.sha256(src.read_bytes()).hexdigest() == gate["source_cards"][key + "_sha256"]
     amdc = _load("evidence/amdc_run_card.json")
@@ -137,7 +137,7 @@ def test_readme_records_the_negative_lane_without_claiming_clearance():
     readme = (ROOT / "README.md").read_text()
     assert "Parallel lane: AMDC audit (2026-10-28, negative)" in readme
     assert "docs/amdc/index.html" in readme
-    # The AMDC lane itself stays negative; the only cleared file is the KHD release.
+    # All lane artifacts remain research-only under the global negative gate.
     # (The phrase "OK TO DOWNLOAD AND SUBMIT" appears inside the verbatim user
     # brief quoted in the README — that quotation is required and is not a claim.)
     assert "AMDC" in readme and "negative" in readme.split("## KHD lane")[0]
