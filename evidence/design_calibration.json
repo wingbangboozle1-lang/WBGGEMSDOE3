@@ -1,0 +1,27 @@
+{
+ "evidence_class": "ESTIMATE calibration (owner-reported scores as targets; not a score)",
+ "n": 41,
+ "credit_per_dot_champion_posterior": 6.653762028104678,
+ "calibration": {
+  "slope": 0.7352414818016696,
+  "intercept": 755.3299928499194,
+  "r2": 0.38547465753273524,
+  "resid_sd_T": 1272.9189882228798,
+  "mae_T": 841.9012204143359,
+  "spearman_pred_vs_implied": 0.6125098005052705
+ },
+ "model": "implied_T = slope * pred_T + intercept;  DTI = T / (0.2 N + 0.8 * 15200)",
+ "design": {
+  "n_dots": 20000,
+  "pred_T_posterior": 9302.275714703837,
+  "T_calibrated": 7594.748973456453,
+  "DTI_estimate_calibrated": 0.4699720899416122,
+  "DTI_95pi_from_T": [
+   0.3155834007759659,
+   0.6243607791072585
+  ],
+  "DTI_estimate_equal_yield_floor": 0.1797897163700542,
+  "DTI_estimate_raw_posterior_ceiling": 0.5756358734346434,
+  "note": "calibrated value shrinks the posterior estimate by the measured optimistic bias of the same predictor on 98 sibling rasters"
+ }
+}

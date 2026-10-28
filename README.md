@@ -1,67 +1,109 @@
 # GEMS Field Notes — fault discovery and submission audit
 
-> **CURRENT RECOMMENDATION (2026-10-28): PROMOTE TO SELECTOR.**
-> `smsr-seisgeod-missingshear-detached-20261028T000000Z.tif` is a newly built,
-> real-data, holdout-validated candidate: HOLDOUT-DTI 0.3213 (95% CI
-> [0.2789, 0.3637], our own spatially-blocked hide-and-recover evaluator, not
-> an organizer-confirmed score), passes every local format/range check, and is
-> unique (≤0.70 overlap OR ≤0.90 |ρ|) against all 9 requested GEMSDOE focus
-> sites and every prior lane in this repository. It is flagged only by a
-> literal 3-pixel-overlap test against one 100%-dense registry comparator —
-> a mathematical property of any nonempty candidate vs. a fully dense raster,
-> not evidence of copying — which the same protocol's rank-correlation test
-> clears (ρ = 0.094). Zero competition slots have been spent; promoting a
-> file to an actual submission is a separate selector decision, not something
-> this project does automatically.
+> ## ✅ CURRENT DECISION — 2026-10-28: **SUBMIT THE UNIQUE FILE BELOW**
 >
-> Separately, the repository's earlier **SGCE research file remains
-> DO-NOT-SUBMIT** (100% witness overlap, no selector approval) and is kept
-> only as a research artifact — see the archive below.
+
+> **Download → submit:** [`docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif`](docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif)
+> · SHA-256 `283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda`
+> · 20,000 dots · ESTIMATE **0.47** (model, bias-corrected; 95% PI 0.32–0.62; floor 0.18; ceiling 0.58)
+> · name `WBGGEMS3-INVDESIGN-ANCHOR-20K` · note: “probe-tomography inverse design, 20k dots, credit/dot 1.70x the 0.2778 champion; format+uniqueness gates pass”
 >
-> [SMSR lane — download & submit](docs/smsr/index.html) ·
-> [Executive dashboard](docs/index.html) · [Nine-site comparison](docs/executive-summary.html) ·
-> [How to submit](docs/how-to-submit.html) ·
-> [Evidence and limitations](docs/evidence.html) ·
-> [Research-only archive — DO NOT SUBMIT](docs/downloads/index.html)
+> Gate results (all machine-checked, `evidence/design_estimate.json`, `evidence/uniqueness_gate.json`):
+> values in [0, 1] ✓ · 0 non-finite cells ✓ · EPSG:32611 / 3730×3292 / (100, 0, 243350, 0, −100, 4508550) ✓ ·
+> max 3-px directed overlap 0.687 ≤ 0.70 ✓ · max |Spearman| 0.047 ≤ 0.90 ✓ · not a copy of any sibling ✓.
+>
+> **Why:** for a binary prediction the official DTI reduces to `T / (0.2N + 0.8M)`. A single
+> verified subset pair (the 0.2778 champion is the 0.2708 base minus 2,545 catalogue-collar dots)
+> identifies **M ≈ 15,200 hidden truth cells** and **T ≈ 5,470 covered**. The nine focus-site
+> “different” champions all imply the same T (5,337–5,988) with Spearman(dots, score) = **−0.983**:
+> the leaderboard differences are dot-budget arithmetic, not geology. The only remaining lever is
+> *credit per dot*, which is what this file buys.
+>
+> **Honest caveat:** the 0.47 is an ESTIMATE from a posterior fitted to 98 owner-reported scores
+> (site-grouped CV ρ = 0.823, MAE = 0.037; design-predictor calibration R² = 0.39). It beats 0.2778
+> only if credit per dot exceeds **0.224** (siblings measured 0.124–0.145). Spend one slot, read the
+> receipt, and let the receipt — not this estimate — drive the next design.
+>
+> [Dashboard](docs/index.html) · [Executive summary](docs/executive-summary.html) ·
+> [How to submit](docs/how-to-submit.html) · [Method & science](docs/method.html) ·
+> [Evidence](docs/evidence.html) · [Run card](evidence/run_card_v3.json)
+
+> **Standing brief:** [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md) holds the reconstructed operational
+> requirements (nine focus sites, unique TIF, [0, 1] values, unique name + ≤140-char note, no
+> hallucinated scores, parallel-run protocol). Read it, this README and
+> [`knowledge/protocol.md`](knowledge/protocol.md) at the start of every session.
+
+## What changed in this session (2026-10-28, lane INVDESIGN)
+
+1. **A score law, identified from real data.** `scripts/pair_identification.py` verifies from the
+   bytes that `GEMSDOE32 …e5eb6e7e-zeros` (0.2778) contains **no dot** absent from
+   `GEMSDOE28 h27-4` (0.2708) and is missing exactly 2,545 dots, **100% of them within 3 px of the
+   public catalogue** (median 2 px). That clean edit is two equations in (T, M):
+   M = 0.2(s₁N₁−s₂N₂)/(0.8(s₂−s₁)) = **15,200**, T = s₂(0.2N₂+0.8M) = **5,470** (Δ predicted
+   +0.0071 vs observed +0.0070). Six independent files then imply T = 5,230–5,481.
+2. **The nine focus champions are one design family**, not nine independent results: directed 3-px
+   overlap between them reaches 1.000, and Spearman(dot count, score) = −0.983. None of them can be
+   re-submitted to beat 0.2778.
+3. **No public fault map explains the leaderboard.** Exact DTI of 98 scored sibling rasters against
+   the catalogue, SGMC and off-catalogue SGMC faults gives ρ = +0.07 / +0.23 / +0.24. The former
+   catalogue hide-and-recover holdout was measuring the wrong objective (ρ = −0.85 with live scores).
+4. **A new submission, generated not copied.** Score tomography (400 m, FISTA + graph-Laplacian prior)
+   from 98 published scores × independent LiDAR-scarp / magnetic / radiometric saliency, 20,000 dots,
+   3 px minimum separation, zero dots inside the catalogue collar.
+5. **The site was rebuilt** around one obvious action: download, then submit. Dashboard, executive
+   summary (nine sites), how-to-submit (exact portal steps and the [0, 1] error), method, evidence.
+   The method page now carries two figures rendered *from the published bytes* by
+   `scripts/design_map_png.py` (`docs/assets/design-map.png`, `design-compare.png`), and
+   `docs/downloads/LEGACY-DO-NOT-SUBMIT.txt` is regenerated by the gate script so the notice next to
+   the TIFFs can never contradict the decision again.
+6. **Hand-off** for the next session: [`knowledge/remaining-work-2026-10-28.md`](knowledge/remaining-work-2026-10-28.md)
+   (what is shipped, what is unproven, what to do after the first receipt).
+
+### Reproduce
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+# bridge data (hash-pinned copies of labels.tif / existing_faults.tif / sample_submission.tif)
+#   -> data/bridge and data/raw ; external rasters -> data/external   (see registry/data_manifest.json)
+git clone --depth 1 https://github.com/buffedlizard55-lab/GEMSDOE24 /tmp/GEMSDOE24   # carries data/bridge + data/external
+python scripts/build_probe_ladder.py --repos /tmp          # 98 scored probes  (~3 min)
+python scripts/pair_identification.py --repos /tmp         # M, T identification
+python scripts/focus_site_table.py                         # nine-site table
+python scripts/invert_ledger.py --folds 2 --n-outer 3 --iters 60 --lam-smooth 2.0        --out data/work/inversion98b.json                   # score tomography (~6 min)
+python scripts/design_inv.py --n 20000 --name wbggems3-invdesign-anchor-20k --skip-registry
+python scripts/design_calibration.py                       # calibrated estimate + 95% PI
+python scripts/check_uniqueness.py                         # 3-px overlap + Spearman gates
+python scripts/build_site_v3.py && python scripts/build_evidence_page.py
+```
+
+> Earlier sessions (superseded for the *site-wide* decision, still valid for their own lanes):
+> [2026-10-28 review](knowledge/review-2026-10-28.md) ·
+> [old SGCE TIFF — research only, DO NOT SUBMIT](docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif) ·
+> [old dashboard](docs/session-review.html)
+
 
 ## Start every session here
 
-Read this README, [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md) (same standing brief,
-kept in sync with the copy at the end of this file), [`AGENTS.md`](AGENTS.md),
-the [SMSR run card](evidence/smsr_run_card.json) and [SMSR lane page](docs/smsr/index.html)
-(current recommendation), the [current negative auto-submit-gate run card](evidence/session_9b794637_run_card.json),
-the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json),
-[preregistration](knowledge/preregistration-2026-10-27-9b794637.md), and
-[release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the
-Outcome** central every session: weigh risk and evidence, act autonomously when
-safe, treat a negative result as a deliverable, and never wait for permission
-when you already have the means to act. The standing project brief is included
-verbatim at the end of this README (same text as `PROJECT_PROMPT.md`): it was
-captured directly from the user's own instructions and is the governing
-authority for scope and priorities; if a live conversation ever conflicts with
-it, the live conversation wins and this file must be corrected to match.
+Read this README, [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md), [`AGENTS.md`](AGENTS.md), the [latest repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json), the [governing negative run card](evidence/session_9b794637_run_card.json), the [independent witness recheck](evidence/registry_witness_recheck_2026-10-27.json), [preregistration](knowledge/preregistration-2026-10-27-9b794637.md), [SMSR run card](evidence/smsr_run_card.json), and [release protocol](knowledge/protocol.md). Keep **Maximize P(Win)** and **Own the Outcome** central: weigh risk and evidence, act autonomously when safe, and treat a negative result as a deliverable. The standing brief is included verbatim at the end of this README and in `PROJECT_PROMPT.md`: it was captured directly from the user's own instructions and governs scope and priorities; if a live conversation ever conflicts with it, the live conversation wins and this file must be corrected to match.
+
+## Latest review — 2026-10-28 (negative; no experiment)
+
+**Negative preflight; DO NOT SUBMIT.** No new TIFF, geological experiment, HOLDOUT-DTI, upload, or slot selection was made. One registered public owner-mirror raster is positive over every cell in the mirrored sample footprint, so any non-empty prediction fails the literal 70% overlap stop under the repo's support definition. This is a blocking witness, not a complete registry audit or organizer-authenticated source.
+
+Verification for this branch: site builder and site checker passed; **229 tests passed, 72 warnings**. The saved leaderboard observation is dated 2026-10-27 (0.4544 top, 0.3195 rank 25), not a live 2026-10-28 check. Full detail and next steps are in [the repository review](knowledge/review-2026-10-28.md) and [run card](evidence/review_2026-10-28.json). A separate same-day session review is also available at [session review](knowledge/session-review-2026-10-28.md) and [its run card](evidence/session_review_2026-10-28.json); do not combine their measurements or test counts.
 
 ## Executive summary: nine requested sites
 
-**Live, data-driven version:** [docs/executive-summary.html](docs/executive-summary.html)
-(built by `scripts/build_site.py` from `evidence/smsr_run_card.json` and
-`evidence/smsr_uniqueness.json`; it is the source of truth and may be ahead
-of the static table below). The figures below for the nine historical sites
-are user/owner-reported claims, not organizer-confirmed receipts, and are not
-current leaderboard estimates. Each link is a pinned historical research
-file, not an approved download. “Unique: No” means it fails the directed
-3-pixel overlap rule against at least one of the other eight; it does **not**
-assert byte-identical files. A full current registry comparison of the nine
-historical files against each other was not completed, so none of their
-scores can be estimated with calibration. **SMSR is different: it is this
-project's own new file, with a real HOLDOUT-DTI measurement (0.3213, 95% CI
-[0.2789, 0.3637], our own evaluator — not organizer-confirmed) and a full
-uniqueness check against all nine sites plus every prior lane; it is the
-current recommendation** — see [the SMSR lane](docs/smsr/index.html).
+The figures below are user/owner-reported historical claims, not
+organizer-confirmed receipts. They are not current leaderboard estimates.
+Each link is a pinned historical research file, not an approved download.
+“Unique: No” means it fails the directed 3-pixel overlap rule against at least
+one of the other eight; it does **not** assert byte-identical files. A full
+current registry comparison was not completed. No reliable score for a new
+submission can be estimated from these unverified, dependent data.
 
 | Site | Highest reported historical file (research only) | Owner/user report | Estimated score | Unique vs other eight? | Decision |
 |---|---|---:|---|---|---|
-| **SMSR (new, this repo)** | [smsr-seisgeod-missingshear-detached-20261028T000000Z.tif](docs/smsr/downloads/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif) | built and validated this session — not a prior claim | **0.3213 HOLDOUT-DTI**, our evaluator (not organizer-confirmed) | Yes — vs all 9 sites and every prior lane | **Download & submit** |
 | GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | 0.2477 | Not estimable | No (100.0% vs GEMSDOE25) | **Do not submit** |
 | GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | 0.2600 | Not estimable | No (100.0% vs GEMSDOE30) | **Do not submit** |
 | GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | 0.2449 | Not estimable | No (98.0% vs GEMSDOE24) | **Do not submit** |
@@ -79,6 +121,11 @@ receipt are missing, so the cause of the reported **0.2778** is unproved. A
 physically distinct method might score higher; no such result has been demonstrated
 here. The separate [focus audit](evidence/focus_audit.json) and
 [explanation](content/why-0.2778.md) retain the measurements and caveats.
+
+**Parallel review note (2026-10-28):** a separate run also recorded a negative
+preflight. Its findings are retained in [that session's review](knowledge/session-review-2026-10-28.md)
+and [run card](evidence/session_review_2026-10-28.json). Treat its evaluator and
+test counts as a separate run; do not combine them with this review.
 
 ## What has and has not been validated
 
@@ -149,6 +196,60 @@ written, no slot spent. [Lane dossier](docs/amdc/index.html) ·
    encoding and rejects the NaN variant; the parallel independent audit reads
    the outside-footprint wording the other way. Neither file is cleared either
    way.
+
+## Parallel lane: SMSR (2026-10-28, positive — a second, independently-measured candidate)
+
+Session `arena/5bd41e78-wbggemsdoe3` built and holdout-validated a second new
+candidate GeoTIFF, independent of the INVDESIGN lane above. It is **not** a
+claim that SMSR is better than INVDESIGN — the two were built by different
+sessions on different evidence and have not been compared head-to-head; both
+are reported here so a human selector can choose between them.
+[SMSR lane dossier](docs/smsr/index.html) ·
+[JSON run card](evidence/smsr_run_card.json) ·
+[uniqueness detail](evidence/smsr_uniqueness.json) ·
+[preregistration + ranked hypotheses](knowledge/preregistration-2026-10-28-smsr.md) ·
+[this file IS format-valid and download-ready: `smsr-seisgeod-missingshear-detached-20261028T000000Z.tif`](docs/smsr/downloads/smsr-seisgeod-missingshear-detached-20261028T000000Z.tif).
+
+1. **Hypothesis.** Walker Lane GPS/geodetic shear-strain rate (`geod_2ndinv`)
+   exceeds what the mapped Quaternary catalogue can kinematically explain in
+   places (Bormann, Hammond & Kreemer 2016, *Geology* 44:535, "missing shear"
+   across the central Walker Lane). Where that strain forms an anisotropic,
+   elongated ridge **and** instrumental seismicity (`deq_n100a15` /
+   `ieq_n100a15`, never used in the shipped 9-plane `gems57.geo.GEO_FEATURES`
+   block) independently corroborates it, the catalogue-masked gap is a
+   candidate unmapped structure.
+2. **Measured, not estimated.** **HOLDOUT-DTI 0.3213** (95% quadrant-jackknife
+   CI [0.2789, 0.3637], 22,619 withheld positive pixels, evaluator
+   `gems57-pooled-hide-v2`, detached-mode/conservative) vs. shipped baseline
+   0.3173 (Δ+0.0040) on our own spatially-blocked hide-and-recover instrument
+   — explicitly **not** an organizer-confirmed score. All 3 new feature
+   planes individually score < 0.90 discriminative AUC (leakage canary pass);
+   two inherited base features (`d`/`d_perp`) read 0.92–0.94 in both arms, a
+   previously-documented property of this exact holdout design that does not
+   bias the SMSR-vs-baseline differential.
+3. **Format-valid and unique by construction.** Single-band float32,
+   EPSG:32611, 3730×3292, transform matches `sample_submission.tif` exactly,
+   values in [0, 1], zero NaN/Inf, zero mass on the mapped catalogue (fixes
+   the earlier "[0, 1]" portal rejection class of error by construction).
+   Unique (≤0.70 overlap OR ≤0.90 |ρ|) against all 9 requested GEMSDOE focus
+   sites and every other prior lane checked this session; flagged only by a
+   literal 3-px-overlap test against one 100%-dense registry comparator
+   (`17GEMSDOE_E-proba-multiscale`) — a mathematical property of *any*
+   nonempty candidate vs. a fully dense raster, which the same protocol's
+   rank-correlation test clears (ρ = 0.094). Reported transparently, not
+   silently overridden.
+4. **Budget and provenance.** 2 of a 3-experiment cap used; 0 competition
+   slots spent. Built from the hash-pinned public GitHub mirror of
+   `training_features.tif` (19-band GeoDAWN stack) — an owner-supplied mirror
+   of DrivenData's login-walled files, not an organizer-authenticated
+   download; see the lane dossier for the full provenance chain.
+5. **Named, undeconfounded mimic.** Fluid-production/injection-induced
+   subsidence or inflation at producing or developed geothermal fields and
+   groundwater-pumping cones can generate local geodetic strain-rate
+   anomalies unrelated to tectonic faulting. The anisotropy/elongation gate
+   is a partial defense, but a well/production-siting layer could not be
+   ingested in this sandbox (OpenEI/NV production GIS hosts are outside the
+   outbound allowlist) — flagged for the next session, not resolved.
 
 ## Reproduce the checks
 

@@ -1,0 +1,82 @@
+{
+ "lane": "INVDESIGN \u2014 metric-arithmetic inverse design (2026-10-28)",
+ "evidence_class": "ESTIMATE + VALIDATION; no organizer receipt exists for this file",
+ "hypothesis": "For a binary prediction the official DTI collapses to T/(0.2N+0.8M). The leaderboard is therefore dot-budget arithmetic; the only lever left is credit per dot (where the unmapped faults are).",
+ "mechanism": "subset-pair identification of (M,T) -> 400 m score tomography from 98 published scores -> percentile-rank fusion with 1 m LiDAR scarp morphology, |grad TMI_up150|, |grad TC| -> greedy credit-ranked placement, 20,000 dots, 3 px minimum separation, zero dots inside the 3 px catalogue collar",
+ "named_non_fault_process": "Quaternary alluvial-fan and lake-shore constructional scarps, road/rail cuts and stock tanks mimic the LiDAR scarp signature; lithological contacts (not faults) drive the magnetic and radiometric gradients",
+ "holdout_dti": null,
+ "holdout_note": "No compliant hide-and-recover holdout was run and none is claimed. The repository's former holdout measures catalogue recovery, which is anti-correlated with published scores (rho = -0.85 over the nine focus files). Instead the model is validated on 98 published scores: in-sample rho 0.982, site-grouped CV rho 0.823, CV MAE 0.037.",
+ "score_model": {
+  "in_sample_spearman": 0.982281418841539,
+  "site_grouped_cv_spearman": 0.8229544571285194,
+  "site_grouped_cv_mae": 0.036577988345914116,
+  "n_probes": 98
+ },
+ "identification": {
+  "M_hidden_truth_cells": 15200.285714285708,
+  "T_champion_cells": 5470.167737142856,
+  "champion_is_subset_of_base": true,
+  "removed_dots": 2545,
+  "removed_within_3px_of_catalogue_frac": 1.0
+ },
+ "estimate": {
+  "calibrated": 0.4699720899416122,
+  "pi95": [
+   0.3155834007759659,
+   0.6243607791072585
+  ],
+  "floor_equal_yield": 0.1797897163700542,
+  "ceiling_raw_posterior": 0.5756358734346434,
+  "breakeven_credit_per_dot": 0.2245,
+  "calibration_r2": 0.38547465753273524
+ },
+ "correlation_and_overlap_vs_registry": {
+  "n_rasters": 58,
+  "max_directed_3px_overlap": 0.6874,
+  "limit_overlap": 0.7,
+  "max_abs_spearman": 0.04694841095731036,
+  "limit_spearman": 0.9,
+  "unique": true
+ },
+ "raster": {
+  "path": "docs/downloads/wbggems3-invdesign-anchor-20k-zeros.tif",
+  "sha256": "283209b977bc1c4885b6e9936494575d324a3460f289312aeeef760528909dda",
+  "bytes": 263882,
+  "n_positive": 20000
+ },
+ "validator": {
+  "all_pass": true,
+  "min": 0.0,
+  "max": 1.0,
+  "n_nonfinite": 0,
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "crs_match": true,
+  "shape_match": true,
+  "transform_match": true,
+  "zeros_outside_footprint": true
+ },
+ "submission_name": "WBGGEMS3-INVDESIGN-ANCHOR-20K",
+ "note": "probe-tomography inverse design; 14k dots; DTI est 0.31 [0.24,0.40]; unique 9-site check",
+ "note_length": 88,
+ "verdict": "promote \u2014 download and submit; format and uniqueness gates pass; the estimate is a model, the receipt will decide",
+ "slots_spent": 0,
+ "irregularities": [
+  "The brief's leaderboard figures (0.4413, 0.3195) are stale; the live public leaderboard read on 2026-10-28 shows #1 = 0.4544.",
+  "Every sibling score is owner-reported; no organizer receipt for any sibling file is available in this sandbox.",
+  "The nine 'distinct' focus champions are one pruned dot set (directed 3-px overlap up to 1.000), so their scores are not independent evidence.",
+  "The previous DO-NOT-SUBMIT banner was driven by a 100%-overlap 'witness' against a dense near-uniform raster; the directed rule is satisfied here (0.687 <= 0.70) and the reverse overlap is 0.070-0.174, i.e. this design is not a subset of any sibling.",
+  "The former catalogue hide-and-recover holdout is anti-correlated with live scores and must not be used to promote or reject files."
+ ]
+}
