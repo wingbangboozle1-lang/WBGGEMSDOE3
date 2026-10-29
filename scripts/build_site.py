@@ -29,8 +29,11 @@ PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
+SOURCE_FRESHNESS = DOCS / "freshness.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
+CURRENT_REVIEW_MD = ROOT / "knowledge/repo-review-2026-10-29.md"
+CURRENT_REVIEW_CARD = ROOT / "evidence/repo_review_2026-10-29.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -117,6 +120,41 @@ latest successful check is <span data-freshness data-checked="{esc(freshness)}" 
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
 
 
+def source_freshness_panel(freshness: dict) -> str:
+    """Show source-repository drift without misrepresenting it as a score update."""
+    peers = [row for row in freshness.get("rows", [])
+             if row.get("repo", "").startswith("buffedlizard55-lab/")]
+    changed = sum(row.get("state") == "CHANGED" for row in peers)
+    unknown = sum(row.get("state") not in {"CHANGED", "UNCHANGED"} for row in peers)
+    checked = freshness.get("checked_utc", "unknown")
+    if not peers:
+        summary = "No peer-source observations are available."
+    elif unknown:
+        summary = f"{changed}/{len(peers)} changed; {unknown} source checks are unknown."
+    else:
+        summary = f"{changed}/{len(peers)} pinned peer repositories have moved since the audited commits."
+    entries = []
+    for row in peers:
+        repo = row.get("repo", "")
+        observed = row.get("observed")
+        state = row.get("state", "UNKNOWN")
+        if not isinstance(repo, str) or not repo.startswith("buffedlizard55-lab/"):
+            continue
+        if isinstance(observed, str) and len(observed) == 40 and all(c in "0123456789abcdef" for c in observed):
+            url = f"https://github.com/{repo}/tree/{observed}"
+            target = f'<a href="{esc(url)}">{esc(repo.rsplit("/", 1)[-1])} ↗</a>'
+            rev = esc(observed[:12])
+        else:
+            target, rev = esc(repo.rsplit("/", 1)[-1]), "unavailable"
+        entries.append(f"<li>{target}: <strong>{esc(state)}</strong> <code>{rev}</code></li>")
+    detail = "".join(entries)
+    return f'''<article class="card source-freshness"><div class="small">Peer-source freshness · checked {esc(checked)}</div>
+<h2>{esc(summary)}</h2>
+<p>HEAD movement is an identity-change signal only. It does not tell us that a reported score or TIFF changed, verify a receipt, or update the historical nine-site comparison. Re-audit changed source content before using a newer claim.</p>
+<details><summary>Show per-site observed commits</summary><ul>{detail}</ul></details>
+<p><a href="data/source-freshness.json">Open machine-readable source check ↓</a> · <a href="evidence.html">Review evidence limits →</a></p></article>'''
+
+
 def focus_table(focus: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
     body = []
@@ -136,7 +174,7 @@ def focus_table(focus: dict) -> str:
 <th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 
-def index_page(feed: dict, snapshot: dict, card: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict, freshness: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
@@ -146,7 +184,8 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 {leaderboard_panel(feed, snapshot)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
 </div></div></section>
-<div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
+<div class="wrap"><section>{source_freshness_panel(freshness)}</section>
+<section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
 <p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
 {focus_table(read_json(FOCUS))}
@@ -162,12 +201,13 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div>'''
 
 
-def executive_page(focus: dict, card: dict) -> str:
+def executive_page(focus: dict, card: dict, freshness: dict) -> str:
     why = card["gemsdoe32_explanation"]
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
 <h1>Nine sites. Honest status. No cleared file.</h1>
 <p class="lede">This is a research comparison, not a slot selector. No organizer receipt or reliable leaderboard projection supports picking one historical TIFF.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
+<div class="wrap"><section>{source_freshness_panel(freshness)}</section>
+<section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
 <p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
 <div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
@@ -259,21 +299,22 @@ def evidence_page(card: dict, prereg: dict, source_check: dict, focus: dict) -> 
 <section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div>'''
 
 
-def session_review_page(card: dict) -> str:
+def session_review_page(card: dict, freshness: dict) -> str:
     prior = card.get("preexisting_main_artifact", {})
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-28</div>
-<h1>Negative preflight. Zero experiments.</h1><p class="lede">Three implementation/review passes reconciled the publication path, gate, evidence, and safeguards.</p>{decision_panel()}</div></section>
-<div class="wrap"><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
-<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
-<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
-<section><div class="section-head"><h2>Final status</h2></div><div class="card"><ul>
-<li>Verdict: <strong>{esc(card['verdict'].upper())}</strong>; this review's candidate: none; raster SHA-256: null.</li>
-<li>Pre-existing main-branch artifact: <code>{esc(prior.get('path', 'none'))}</code> (upstream SHA-256 <code>{esc(prior.get('upstream_recorded_sha256', 'none'))}</code>); not generated or assessed for science/format here, byte identity only, quarantined as research-only, and not cleared.</li>
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest repository review · 2026-10-29</div>
+<h1>Negative decision. Source drift is now visible.</h1><p class="lede">The 2026-10-29 review made no scientific experiment and generated no candidate. It adds a clearly caveated GitHub peer-source freshness feed; the 2026-10-28 research/release review below remains the evidence basis for the active hard stop.</p>{decision_panel()}</div></section>
+<div class="wrap"><section>{source_freshness_panel(freshness)}</section>
+<section><div class="section-head"><h2>2026-10-29 repository-review passes</h2></div><div class="grid"><article class="card"><div class="eyebrow">Pass 1 · inspection and implementation</div><h2>Audited current repo/source state</h2><p>Reviewed the standing requirements and negative gate, refreshed GitHub source identities, and added a visible, per-site drift panel to the overview and executive summary.</p></article>
+<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Kept source drift separate from claims</h2><p>The feed reports commit identities only. It does not update scores, identify TIFF changes, validate receipts, estimate leaderboard performance, or authorize downloads. All nine sites remain content-re-audit items.</p></article>
+<article class="card"><div class="eyebrow">Pass 3 · requirements and tests</div><h2>Rechecked the negative release contract</h2><p>Site checker passed; pytest passed 237 tests with 4 cache-dependent skips; Python compilation and whitespace checks passed. No candidate or holdout was attempted.</p></article></div>
+<p><a href="data/repo-review-2026-10-29.md">Read the full review ↓</a> · <a href="data/repo_review_2026-10-29.json">Download review JSON card ↓</a></p></section>
+<section><div class="section-head"><h2>2026-10-28 research / release review (historical)</h2></div><div class="card"><p>The preceding review preregistered five hypotheses and reconciled the publication gate against the literal registry witness. The five hypotheses remain untested; its published negative card is still the active scientific-run record.</p><ul>
+<li>Verdict: <strong>{esc(card['verdict'].upper())}</strong>; no candidate raster or SHA-256 exists.</li>
 <li>HOLDOUT-DTI: not run; no evaluator version, withheld-positive count, value, or CI is claimed.</li>
-<li>Registry surface correlation: not run. The literal witness is positive on the entire mirrored sample footprint; a nonempty candidate would fail the directed overlap threshold at 100% under the documented rule.</li>
-<li>Experiments: 0/3; experimental time: 0/2 hours; selector actions: 0; weekly slots: 0.</li>
-<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only, not a project score.</li>
-</ul><p><a href="data/session_7393d521_run_card.json">Download current negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div>'''
+<li>Registry surface correlation: not run. The saved witness measurement is positive on the entire mirrored sample footprint under the documented conditional rule.</li>
+<li>Experiments: 0/3; selector actions: 0; weekly slots: 0.</li>
+<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only and dated, not a project score.</li>
+</ul><p><a href="data/session_7393d521_run_card.json">Download the 2026-10-28 negative scientific run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div>'''
 
 
 def submission_page() -> str:
@@ -342,7 +383,7 @@ def build_gate(card: dict) -> dict:
     return gate
 
 
-def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
+def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict, freshness: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
@@ -350,6 +391,10 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
+    shutil.copyfile(CURRENT_REVIEW_MD, data / "repo-review-2026-10-29.md")
+    shutil.copyfile(CURRENT_REVIEW_CARD, data / "repo_review_2026-10-29.json")
+    (data / "source-freshness.json").write_text(
+        json.dumps(freshness, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     for _, (_, card_name) in ARCHIVE_LANES.items():
         source_card = ROOT / "evidence" / card_name
         if source_card.is_file():
@@ -381,6 +426,7 @@ def render() -> None:
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
+    freshness = read_json(SOURCE_FRESHNESS)
 
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
@@ -400,17 +446,23 @@ def render() -> None:
         raise ValueError("dated official leaderboard observation changed; re-review before publishing")
     if source_check.get("checked_date_utc") != "2026-10-28":
         raise ValueError("official source check date is not current for this review")
+    freshness_rows = freshness.get("rows", [])
+    peer_repos = {row.get("repo") for row in freshness_rows
+                  if isinstance(row, dict) and str(row.get("repo", "")).startswith("buffedlizard55-lab/")}
+    expected_peers = {f"buffedlizard55-lab/GEMSDOE{n}" for n in (24, 25, 27, 28, 30, 31, 32, 33, 36)}
+    if peer_repos != expected_peers or not freshness.get("checked_utc"):
+        raise ValueError("source freshness must contain all nine focus-site repos and a check time")
     gate = build_gate(card)
-    copy_site_data(card, prereg, focus, gate)
+    copy_site_data(card, prereg, focus, gate, freshness)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card)),
+        "index.html": ("Overview", index_page(feed, snapshot, card, freshness)),
+        "executive-summary.html": ("Executive summary", executive_page(focus, card, freshness)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
         "evidence.html": ("Evidence and limitations", evidence_page(card, prereg, source_check, focus)),
-        "session-review.html": ("Latest review", session_review_page(card)),
+        "session-review.html": ("Latest review", session_review_page(card, freshness)),
         "submission.html": ("Submission status", submission_page()),
     }
     for name, (title, body) in pages.items():

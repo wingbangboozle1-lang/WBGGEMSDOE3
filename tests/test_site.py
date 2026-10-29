@@ -137,6 +137,32 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
     assert "DO NOT SUBMIT" in page
 
 
+def test_visible_peer_freshness_feed_distinguishes_drift_from_score_updates():
+    freshness = _json("docs/freshness.json")
+    published = _json("docs/data/source-freshness.json")
+    assert published == freshness
+    page = (DOCS / "executive-summary.html").read_text()
+    review_page = (DOCS / "session-review.html").read_text()
+    assert "Peer-source freshness" in page
+    assert "does not tell us that a reported score or TIFF changed" in page
+    assert "Latest repository review · 2026-10-29" in review_page
+    assert "2026-10-28 research / release review (historical)" in review_page
+    for n in (24, 25, 27, 28, 30, 31, 32, 33, 36):
+        assert f"GEMSDOE{n}" in page
+
+
+def test_current_repository_review_card_is_negative_and_bound_to_source_feed():
+    card = _json("evidence/repo_review_2026-10-29.json")
+    assert card["decision"] == "DO-NOT-SUBMIT"
+    assert card["okay_to_download_for_submission"] is False
+    assert card["verdict"] == "negative"
+    assert card["holdout_dti"]["label"] == "NOT-RUN"
+    assert card["raster"]["generated"] is False and card["raster"]["sha256"] is None
+    assert card["experiment_and_selector_accounting"]["submission_slots_used"] == 0
+    assert card["submission"]["note_characters"] == len(card["submission"]["note"]) <= 140
+    assert card["source_freshness"]["focus_repositories_changed_since_pinned_audit"] == 9
+
+
 def test_current_leaderboard_and_official_source_captures_are_labeled():
     obs = _json("evidence/leaderboard_observation_2026-10-28.json")
     assert obs["visible_public_scores"]["rank_1"] == "0.4544"
@@ -192,7 +218,9 @@ def test_active_site_builder_is_deterministic():
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/leaderboard.json", "data/fchd_run_card.json", "data/amdc_run_card.json",
+             "data/source-freshness.json", "data/repo-review-2026-10-29.md",
+             "data/repo_review_2026-10-29.json", "data/leaderboard.json",
+             "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
     assert main() == 0
@@ -204,6 +232,7 @@ def test_pages_workflow_still_runs_the_active_builder_and_checker():
     workflow = (ROOT / ".github/workflows/pages.yml").read_text()
     checks = (ROOT / ".github/workflows/checks.yml").read_text()
     assert "python scripts/refresh_feed.py" in workflow
+    assert "python scripts/check_freshness.py" in workflow
     assert "python scripts/build_site.py && python scripts/check_site.py" in workflow
     assert "python scripts/build_site.py" in checks
     assert "python scripts/check_site.py" in checks

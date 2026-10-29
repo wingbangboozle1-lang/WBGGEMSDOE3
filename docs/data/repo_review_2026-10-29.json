@@ -1,0 +1,93 @@
+{
+  "schema": "gems-repository-review-card-v1",
+  "review_date_utc": "2026-10-29",
+  "checked_at_utc": "2026-10-29T20:24:47.206235+00:00",
+  "scope": "Repository/site review, current GitHub source-identity feed, and test verification; not a geological experiment or competition submission decision.",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_download_for_submission": false,
+  "verdict": "negative",
+  "hypothesis": {
+    "status": "NOT_SELECTED; no experiment was eligible under the active hard stop",
+    "id": null,
+    "mechanism": null,
+    "named_non_fault_mimic": null
+  },
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No candidate was built; the literal registry-witness stop remains active, and the required cached holdout inputs/runtime are absent."
+  },
+  "registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "prior_conditional_witness_overlap": 1.0,
+    "prior_witness_positive_cells": 5167373,
+    "prior_mirrored_footprint_cells": 5167373,
+    "prior_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "interpretation": "The 1.0 value is the saved conditional overlap under the repository's documented support rule for one hash-pinned owner mirror; it is not a candidate measurement, authenticated organizer provenance, or a complete portal-registry census."
+  },
+  "source_freshness": {
+    "path": "docs/freshness.json",
+    "sha256": "2c6552e83a40f4b8df81d0de634c5788330d01040dbe76c49ee1ceeb136f032c",
+    "focus_repositories_expected": 9,
+    "focus_repositories_changed_since_pinned_audit": 9,
+    "focus_repositories_unknown": 0,
+    "official_reference_repository_state": "UNCHANGED",
+    "scope_limit": "GitHub HEAD identity only. This does not establish that any particular score, raster, receipt, or scientific result changed. The nine-site score/file table was not content-refreshed in this review."
+  },
+  "raster": {
+    "generated": false,
+    "path": null,
+    "sha256": null
+  },
+  "validator": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "single_band_float32": null,
+    "values_in_0_1": null,
+    "no_nan_inside_footprint": null,
+    "crs_shape_transform_match": null,
+    "outside_footprint_policy_checked": false
+  },
+  "submission": {
+    "name": null,
+    "note": "No candidate generated; literal registry-witness stop remains active.",
+    "note_characters": 69
+  },
+  "experiment_and_selector_accounting": {
+    "geological_experiments": 0,
+    "holdout_runs": 0,
+    "candidate_tiffs": 0,
+    "submission_slots_used": 0,
+    "selector_action": "NONE",
+    "organizer_receipt": null
+  },
+  "software_verification": {
+    "site_builder": "PASS",
+    "site_checker": "PASS",
+    "pytest": {
+      "passed": 238,
+      "skipped": 4,
+      "warnings": 72,
+      "result": "PASS"
+    },
+    "warnings_summary": "72 Rasterio Affine PendingDeprecationWarnings; no test failures.",
+    "compileall": "PASS"
+  },
+  "limitations": [
+    "The public leaderboard refresh uses DrivenData, outside the current network allowlist; its latest successful committed observation remains dated 2026-10-28.",
+    "Official competition data/submission pages require authentication and are not accessible from this environment.",
+    "All nine peer repositories have new HEADs relative to the pinned source snapshots; their changed content and new score claims require a separate pinned-content re-audit.",
+    "No candidate score can be estimated defensibly from the available evidence."
+  ],
+  "evidence_links": [
+    "docs/freshness.json",
+    "evidence/latest-upstream-check.json",
+    "evidence/session_7393d521_run_card.json",
+    "evidence/registry_witness_recheck_2026-10-27.json",
+    "evidence/focus_audit.json",
+    "evidence/official_source_check_2026-10-28.json"
+  ]
+}

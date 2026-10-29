@@ -1,7 +1,8 @@
 # Working agreement
 
 At the start of every session read `README.md`, `PROJECT_PROMPT.md`, the latest
-`knowledge/review-2026-10-28-session.md` and
+`knowledge/repo-review-2026-10-29.md` and
+`evidence/repo_review_2026-10-29.json`, `docs/freshness.json`,
 `evidence/session_7393d521_run_card.json`, `knowledge/preregistration-2026-10-28.md`,
 `evidence/preregistration_2026-10-28.json`, `evidence/official_source_check_2026-10-28.json`,
 `knowledge/protocol.md`, the earlier preregistrations/reviews listed below, and the
@@ -43,7 +44,9 @@ research lane. The separate selector owns any real final-slot decision.
 ## Site/build contract
 
 `scripts/build_site.py` is the only active project-level site generator and always publishes a
-hash-bound negative decision for the current review. `scripts/check_site.py` must fail closed
+hash-bound negative decision for the current review. It also renders `docs/freshness.json` as a
+peer-source drift panel; source HEAD movement is not a refreshed score or raster audit.
+The Pages workflow must refresh that file before building. `scripts/check_site.py` must fail closed
 against positive/stale approval. `scripts/build_site_v3.py`, `scripts/build_release_gate_v2.py`,
 and `scripts/build_evidence_page.py` are blocked retired positive paths; do not revive them.
 The FCHD and AMDC renderers may only update their scoped negative archive pages. Do not copy

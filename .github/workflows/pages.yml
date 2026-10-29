@@ -27,6 +27,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/refresh_upstream.py
+      - name: Refresh focus-site and reference-source identities for the visible feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/check_freshness.py
       - name: Render site from evidence and check links
         run: python scripts/build_site.py && python scripts/check_site.py
       # The repository still has branch-based Pages enabled. Keep the same

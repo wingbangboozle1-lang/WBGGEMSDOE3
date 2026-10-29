@@ -1,6 +1,20 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
+> ## CURRENT REVIEW UPDATE — 2026-10-29: **DO NOT SUBMIT; no candidate generated**
+>
+> This repository review ran no geological experiment or holdout and created no TIFF. The
+> literal registry-witness stop documented below remains binding. A GitHub API identity check
+> found all **9/9 focus-site repositories changed** since their pinned audit commits; this is
+> source drift only, not evidence that any score, raster, or receipt changed. The old nine-site
+> table remains owner-reported historical context and has not been content-refreshed. The
+> current site now surfaces per-site observed commits and links the full report. Do not download
+> any archived TIFF for submission.
+>
+> Review: [`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md) ·
+> JSON card: [`evidence/repo_review_2026-10-29.json`](evidence/repo_review_2026-10-29.json) ·
+> source identities: [`docs/freshness.json`](docs/freshness.json).
+>
+> ## CURRENT PROJECT DECISION — **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
 > progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
@@ -30,8 +44,10 @@
 
 Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
-[review](knowledge/review-2026-10-28-session.md) and
-[negative run card](evidence/session_7393d521_run_card.json), the
+[repository review](knowledge/repo-review-2026-10-29.md) and
+[review JSON card](evidence/repo_review_2026-10-29.json), the current
+[negative project run card](evidence/session_7393d521_run_card.json), the
+[source-freshness feed](docs/freshness.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
 [machine-readable copy](evidence/preregistration_2026-10-28.json), the
 [official-source check](evidence/official_source_check_2026-10-28.json), the
@@ -171,11 +187,14 @@ run a holdout while the literal witness stop remains unresolved.
 
 ## Three review passes and remaining work
 
-The current review performed three passes: (1) preregistered five hypotheses and rendered a
+The 2026-10-28 review performed three passes: (1) preregistered five hypotheses and rendered a
 negative, source-bound executive/site summary; (2) removed positive build/check/test paths and
 checked lane safeguards; (3) fetched official sources, refreshed the dated public leaderboard
 observation, and rechecked the task against the prompt and exact release contract. Details and
 limitations are in [`knowledge/review-2026-10-28-session.md`](knowledge/review-2026-10-28-session.md).
+The 2026-10-29 repository review adds the visible peer-commit drift feed and records that 9/9
+focus-source HEADs moved; no scores or files were content-refreshed. See
+[`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md).
 
 Next: resolve the dense-witness protocol interpretation through documented evidence, verify
 organizer access/provenance and current portal deadline/quota, restore the shared cache and
