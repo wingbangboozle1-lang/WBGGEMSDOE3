@@ -25,6 +25,8 @@
 - **Reproduce the summary and verification record:**
   `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
   writes `evidence/verification_2026_10_29.json` and the summary above.
+- **Engineering review / source freshness:** [three-pass repo review](knowledge/repo-review-2026-10-29.md) ·
+  [latest nine-site source identity check](evidence/latest-upstream-check.json). This feed is about GitHub HEADs only, not scores, TIFFs, receipts, or approval.
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
@@ -108,6 +110,8 @@ Sources: [competition](https://www.drivendata.org/competitions/306/competition-d
 
 Read this README (including the verbatim prompt below), the [2026-10-29 review](knowledge/review-2026-10-29-session.md) and [its run card](evidence/session_2026-10-29_gate-recheck_run_card.json), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
+[repository review](knowledge/repo-review-2026-10-29.md) and
+[source-identity feed](evidence/latest-upstream-check.json), then the scientific
 [review](knowledge/review-2026-10-28-session.md) and
 [negative run card](evidence/session_7393d521_run_card.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its

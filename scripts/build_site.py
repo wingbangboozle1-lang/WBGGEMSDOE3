@@ -36,6 +36,7 @@ SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.
 WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
+UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -125,6 +126,22 @@ latest successful check is <span data-freshness data-checked="{esc(freshness)}" 
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
 
 
+def upstream_panel(upstream: dict) -> str:
+    rows = upstream.get("repositories", [])
+    checked = len(rows)
+    fetched = sum(row.get("fetch_status") == "FETCHED" for row in rows)
+    changed = sum(row.get("comparison_to_baseline") == "CHANGED" for row in rows)
+    unknown = checked - fetched
+    checked_at = upstream.get("checked_at", "unknown")
+    status = (
+        f"{fetched}/{checked} repositories checked; {changed} changed"
+        if not unknown else f"{fetched}/{checked} checked; {unknown} unknown/failed"
+    )
+    return f'''<article class="card"><div class="small">Focus-site source freshness · GitHub HEADs only</div>
+<h3>{esc(status)}</h3><p>Checked {esc(checked_at)}. A changed repository HEAD means only that its source commit advanced since the recorded baseline; it does not prove a score, TIFF, receipt, or registry changed. This monitor never authorizes a submission.</p>
+<a href="data/latest-upstream-check.json">Open the dated nine-site source check ↓</a></article>'''
+
+
 def focus_table(focus: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
     body = []
@@ -144,7 +161,7 @@ def focus_table(focus: dict) -> str:
 <th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 
-def index_page(feed: dict, snapshot: dict, card: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
@@ -153,6 +170,7 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
 {leaderboard_panel(feed, snapshot)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
+{upstream_panel(upstream)}
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
@@ -355,7 +373,8 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
                    LEADERBOARD_SNAPSHOT, LEADERBOARD_LATEST, OFFICIAL_SOURCES_LATEST,
-                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, ROOT / "evidence/pair_identification.json"):
+                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, UPSTREAM_CHECK,
+                   ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -390,7 +409,16 @@ def render() -> None:
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
+    upstream = read_json(UPSTREAM_CHECK)
 
+    upstream_rows = upstream.get("repositories", [])
+    if (upstream.get("approved_for_submission") is not False
+            or len(upstream_rows) != len(FOCUS_ORDER)
+            or {row.get("site") for row in upstream_rows} != set(FOCUS_ORDER)
+            or any(row.get("fetch_status") not in {"FETCHED", "FAILED"}
+                   or row.get("comparison_to_baseline") not in {"CHANGED", "UNCHANGED", "UNKNOWN"}
+                   for row in upstream_rows)):
+        raise ValueError("latest upstream identity check is missing, incomplete, or not fail-closed")
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
             or card.get("holdout_dti", {}).get("status") != "BLOCKED_BEFORE_EXPERIMENT"
@@ -413,7 +441,7 @@ def render() -> None:
     copy_site_data(card, prereg, focus, gate)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card)),
+        "index.html": ("Overview", index_page(feed, snapshot, card, upstream)),
         "executive-summary.html": ("Executive summary", executive_page(focus, card)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
