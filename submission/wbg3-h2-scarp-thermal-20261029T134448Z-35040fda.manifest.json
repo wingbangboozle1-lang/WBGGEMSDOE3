@@ -1,0 +1,22 @@
+{
+  "hypothesis": "H2-lidar-scarp-x-thermal-convergence",
+  "mechanism": "Subtle lidar scarps near geothermal springs/Quaternary vents, placed off known catalogue faults",
+  "mimic": "Glacial/fluvial terraces, landslide scarps, survey leveling/clearance",
+  "submission_name": "wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif",
+  "note": "Off-catalogue blind faults near geothermal springs with lidar scarp support",
+  "sha256": "6dbc2f3efaf659ebce497ce2513bad2acb4db741a9b8e6e1e731d0d2167fcb36",
+  "bytes": 371700,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "resolution_m": 100.0,
+  "n_dots": 18000,
+  "positive_cells": 78309,
+  "values_in_01": true,
+  "nan_outside_footprint": true,
+  "created_utc": "2026-10-29T20:44:54.407932+00:00",
+  "status": "RESEARCH_ARTIFACT_DO_NOT_SUBMIT",
+  "reason": "Repository-wide release gate is DO-NOT-SUBMIT (literal registry stop unresolved)"
+}
