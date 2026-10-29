@@ -1,8 +1,76 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-> ## CURRENT PROJECT DECISION — 2026-10-29 review: **DO NOT SUBMIT**
+## Start here — 2026-10-29 executive summary
+
+**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
+(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
+  2026-10-29, and no holdout score or slot selection exists.
+- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
+  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
+- **Why no new file yet:** the competition labels cannot be reached from this sandbox
+  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
+  portal's `Predicted values must be in range [0, 1]` error is unexplained.
+- **Reproduce the summary and verification record:**
+  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
+  writes `evidence/verification_2026_10_29.json` and the summary above.
+- **Engineering review / source freshness:** [three-pass repo review](knowledge/repo-review-2026-10-29.md) ·
+  [latest nine-site source identity check](evidence/latest-upstream-check.json). This feed is about GitHub HEADs only, not scores, TIFFs, receipts, or approval.
+
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
+
+1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
+   best submission file, an estimated score, and a uniqueness verdict.
+2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
+   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
+3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
+   non-fault mimic and a holdout test on the spatially blocked set.
+4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
+   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
+5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
+6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+
+### Irregularities flagged for review (2026-10-29)
+
+- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
+  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
+  resolution match. (Extends IR-28-12.)
+- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
+  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
+- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
+  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
+  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
+- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
+  reproduction; the archived writer's cause is unproven.
+- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+
+Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
+[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
+[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+
+---
+
+> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
 >
-> The underlying release-gate and dense-witness evidence is dated 2026-10-28; the 2026-10-29 review refreshed the nine-site source identity feed and did not clear or generate a candidate.
+> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
+> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
+> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
+> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
+> The code comment already calls this surface "not dots", so the gate and the code disagree.
+> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
+> exceed 70% for the invdesign candidate.
+>
+> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
+> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
+> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
+> reproducible script: `scripts/check_witness_definition.py`.
+>
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
+> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
+
+> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
 > progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
@@ -32,8 +100,8 @@
 
 Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
-[repository review](knowledge/repo-review-2026-10-29.md), the current
-[source-identity feed](evidence/latest-upstream-check.json), the 2026-10-28 scientific
+[repository review](knowledge/repo-review-2026-10-29.md) and
+[source-identity feed](evidence/latest-upstream-check.json), then the scientific
 [review](knowledge/review-2026-10-28-session.md) and
 [negative run card](evidence/session_7393d521_run_card.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
@@ -173,23 +241,9 @@ The site builder renders only the current fail-closed decision. `scripts/build_s
 positive paths. The scoped FCHD and AMDC archives remain negative. Do not generate a TIFF or
 run a holdout while the literal witness stop remains unresolved.
 
-## Repository review — 2026-10-29
-
-The latest engineering review refreshed the identity feed for all nine requested upstream
-repositories: **9/9 responded; all nine heads changed** since the 2026-10-26 baseline. A changed
-HEAD is not evidence that a score or TIFF changed and is not a receipt. The site now publishes
-the dated identity check at [`docs/data/latest-upstream-check.json`](docs/data/latest-upstream-check.json)
-and shows an explicitly caveated source-freshness panel on its overview page. The code change
-only makes the feed visible; it does not change the **DO NOT SUBMIT** decision.
-
-No new TIF, holdout, geological experiment, score estimate, or slot selection was produced.
-The dense-witness stop remains unresolved and binding. The repository review records all three
-passes, the 237-pass test result, source freshness caveats, and next steps in
-[`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md).
-
 ## Three review passes and remaining work
 
-The prior 2026-10-28 review performed three passes: (1) preregistered five hypotheses and rendered a
+The current review performed three passes: (1) preregistered five hypotheses and rendered a
 negative, source-bound executive/site summary; (2) removed positive build/check/test paths and
 checked lane safeguards; (3) fetched official sources, refreshed the dated public leaderboard
 observation, and rechecked the task against the prompt and exact release contract. Details and
