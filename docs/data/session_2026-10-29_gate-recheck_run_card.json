@@ -1,0 +1,89 @@
+{
+  "schema": "gems-session-run-card-v2",
+  "relationship_to_gate_card": "Addendum. The project-level release gate remains bound to evidence/session_7393d521_run_card.json (2026-10-28); this card re-verifies the witness and sources and does NOT change the decision.",
+  "session_branch": "arena/c3775ee9-wbggemsdoe3",
+  "date_utc": "2026-10-29",
+  "evidence_class": "NEGATIVE GATE RECHECK / NO CANDIDATE GENERATED",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_submission": false,
+  "decision_reason": "The registered dense witness (17GEMSDOE E-proba-multiscale) is a continuous score surface, positive in every one of 5,167,373 in-footprint cells. Under the literal rule 'dot = finite value > 0', any nonempty in-footprint candidate has 100% directed 3-px overlap, above the 70% stop. The stop stays binding until the user decides the dot definition (see knowledge/review-2026-10-29-session.md).",
+  "hypothesis": {
+    "status": "NOT_RUN",
+    "tested_this_session": null,
+    "candidates_listed_untested": [
+      "H6-ECO: ECOSTRESS 70 m nighttime LST anomaly aligned to structural trends (source page verified; access not verified)",
+      "H7-FM: earthquake focal-mechanism nodal-plane strike field from the USGS ComCat (source documentation verified; regional coverage not verified)",
+      "H8-MT: magnetotelluric resistivity contrast (BLOCKED: no official source verified)"
+    ],
+    "preregistered_upstream": "knowledge/preregistration-2026-10-28.md (H1-RMIX, H2-XCATCH, H3-ANISO-THERM, H4-XOVER, H5-LANDSAT; none tested)"
+  },
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No candidate surface was generated and the shared cache is absent (data/ holds only template_grid.tif). The stop is active, so a holdout is not permitted."
+  },
+  "registry_overlap": {
+    "witness": {
+      "name": "17GEMSDOE E-proba-multiscale",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "verified_sha256_this_session": true,
+      "positive_cells_inside_footprint": 5167373,
+      "footprint_cells": 5167373,
+      "inside_value_min": 0.0004625781439244747,
+      "inside_value_max": 0.984115719795227,
+      "top_n_thresholds": {
+        "n_37654": 0.8438428044319153,
+        "n_44090": 0.8304872512817383,
+        "n_60069": 0.8010967969894409
+      },
+      "source_card": "evidence/witness_independent_stats_2026-10-29.json",
+      "recheck": "evidence/registry_witness_recheck_2026-10-29.json"
+    },
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap_within_3px": null,
+    "complete_registry_audit": false
+  },
+  "raster": {
+    "generated": false,
+    "path": null,
+    "sha256": null,
+    "positive_cells": null
+  },
+  "validator": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "reason": "No candidate was produced, so no output-format validation was run on a new file. The official format was re-verified from source (see official_source_check_2026-10-29.json)."
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_characters": null,
+    "status": "NOT_ASSIGNED"
+  },
+  "experiments": {
+    "geological_experiments_completed": 0,
+    "maximum": 3,
+    "experiment_hours": 0,
+    "maximum_hours": 2
+  },
+  "selector": {
+    "action": "NONE",
+    "weekly_slots_used": 0,
+    "weekly_cap_source": "Official rules 3.2 and 3.4: three submissions per week per entity; one final submission",
+    "organizer_receipt": null
+  },
+  "score_labels": {
+    "HOLDOUT-DTI": "none produced",
+    "ORGANIZER-CONFIRMED": "none (no submission receipt)",
+    "owner_reported_focus_scores": "OWNER-REPORTED, unverified, listed in the executive summary"
+  },
+  "sources": {
+    "official_source_check": "evidence/official_source_check_2026-10-29.json",
+    "leaderboard": "evidence/leaderboard_observation_2026-10-29.json"
+  }
+}

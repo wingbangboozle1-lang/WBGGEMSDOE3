@@ -12,8 +12,23 @@
 A literal registered dense-witness stop fires before feature construction or dot placement.
 Historical rasters in the archive are for research only; a local format pass, owner-reported score,
 model estimate, or content-aware exception does not clear a file.</p>
+<p><strong>Not OK to download or submit.</strong> No TIFF was generated on 2026-10-29. The dense witness is positive in all 5,167,373 in-bounds cells, so the literal 70% rule blocks every candidate.</p>
+<p><strong>Decisions needed from you:</strong> <strong>Q1</strong> what counts as a dot (literal positive, top-N, or a fixed threshold set in advance); <strong>Q2</strong> whether the binary 13GEMSDOE lattice counts as a registry raster. Options: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div></div></section>
+<a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
+<a class="btn secondary" href="data/session_2026-10-29_gate-recheck_run_card.json">2026-10-29 addendum card</a></p></div></div></section>
+<div class="wrap"><section><div class="section-head"><div class="eyebrow">Portal error</div><h2>“Predicted values must be in range [0, 1]”</h2></div>
+<div class="card"><p><strong>Not reproduced.</strong> All nine focus rasters contain only finite values inside [0, 1] (no infinities, no values below 0 or above 1), so this check does not explain the error for any of them. Nothing here proves portal acceptance.</p>
+<p>Two candidate causes remain untested (hypotheses only): (a) NaN cells outside the footprint, if the portal's range test does not skip NaN; (b) a nodata sentinel or out-of-range values written by the export tool. To test your file, send its exact file name and SHA-256 and we will classify it with <code>src/validate.py</code> and <code>scripts/verify_focus_files.py</code>'s checks. No values are clipped or filled.</p></div></section>
+<section><div class="section-head"><div class="eyebrow">Official steps</div><h2>How a file is submitted (as stated by the organizer)</h2></div>
+<div class="card"><ol class="steps">
+<li>Create a DrivenData profile, enroll in the competition, and open <em>Submit</em> → <em>Make new submission</em> (competition homepage).</li>
+<li>File: a single-band GeoTIFF (.tif) or a .zip with one GeoTIFF. Format: float32, EPSG:32611, 100 m, same bounds as the training data, values 0–1, null/NaN outside bounds (problem description, page 967).</li>
+<li>Note: a short comment to tell submissions apart (project convention: ≤140 characters).</li>
+<li>Limit: three submissions per week per entity; one final submission across both prize rounds (official rules §3.2 and §3.4; <a href="data/official_source_check_2026-10-29.json">source check</a>).</li>
+<li>Deadline: homepage says Dec. 3, 2026, 11:59 p.m. UTC; rules Appendix A.1 says 5:00 p.m. ET on the deadline date (= 22:00 UTC on Dec. 3, 2026, since ET is UTC−5 in December). Conservative cutoff: 2026-12-03 22:00 UTC.</li>
+<li>Disclose any generative-AI use in the narrative (rules §3.2).</li>
+</ol></div></section>
 <div class="wrap"><section><div class="section-head"><h2>Future steps after clearance</h2></div><div class="card"><ol class="steps">
 <li>Wait for a candidate-specific negative/positive run card and release gate. There is no cleared candidate today.</li>
 <li>For the exact selected bytes, verify SHA-256, single-band float32, EPSG:32611, 100 m grid/shape/transform/bounds, values in [0,1], no NaN/Inf inside the footprint, and null/NaN outside the bounds per the official text.</li>
