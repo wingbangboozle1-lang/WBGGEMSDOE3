@@ -135,3 +135,38 @@ dead mass. What remains cannot be improved by pruning alone; scoring above 0.277
 *unique* submission requires placing new dots near hidden truth that the family does not
 already cover — i.e. new geological information (hypotheses H2/H3 in
 `knowledge/preregistration-2026-10-28-khd.md`).
+
+## Verification addendum — 2026-10-29 (mechanism, verified bytes; score still unproven)
+
+Sources: [`evidence/focus_files_verification_2026-10-29.json`](../evidence/focus_files_verification_2026-10-29.json)
+(script `scripts/verify_focus_files.py`), and the organizer statements in
+[`evidence/official_source_check_2026-10-29.json`](../evidence/official_source_check_2026-10-29.json).
+
+1. **Exact construction, verified.** GEMSDOE32's 37,654 positive cells are a subset of the 40,199
+   positive cells of the GEMSDOE28 H27-4 base, and the removed set is exactly the base cells within
+   2.0 px of a catalogue fault. Rule "base AND distance > 2.0 px" reproduces GEMSDOE32 with **0
+   mismatches** over the 12.28 M-cell grid. GEMSDOE31's dot set is identical to the base. So the
+   owner-reported pair GEMSDOE31 (0.2708) → GEMSDOE32 (0.2778) differs **only** by this exclusion.
+   Owner-reported difference: +0.0070 (not a receipt).
+2. **Organizer masking rule, verified (forum staff reply).** DrivenData staff say pixels "corresponding to
+   known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards
+   penalty terms." The reply does not say that neighbouring pixels are masked. A prediction 1.4–2 px
+   from a catalogue fault therefore keeps its false-positive weight, unless the hidden test faults lie
+   within 300 m of it. That is the mechanism proposed here: removing low-credit cells near the catalogue
+   lowers FP mass. Whether the 300 m kernel gives back enough TP credit is **unknown**.
+3. **Pattern across the nine owner-reported scores (descriptive, n = 9).** The two top files (GEMSDOE32
+   0.2778, GEMSDOE36 0.2750) are the only two with **0.0%** of dots within 2 px of the catalogue; the
+   other seven have 6.2%–14.6%. Dot count vs owner score: Spearman ρ = −0.983. Catalogue-ring fraction vs
+   owner score: ρ = −0.895. These are correlations over nine self-reported numbers from different authors.
+   They are not evidence of causation.
+4. **Counter-evidence from the only holdout test of the same idea.** The historical H6-1 proxy
+   (`evidence/h6_1_proximity_pruning_holdout.json`, HOLDOUT-DTI, evaluator gems57-pooled-hide-v2) pruned
+   ≤2 px cells and changed DTI from 0.13520 to 0.13526 (paired Δ +0.000054, CI [+0.000027, +0.000089]).
+   Its FP mass fell by about 32 units out of 32,206 (0.1%), and TP was unchanged. The proxy's scope
+   excludes the near-catalogue new-fault regime, and it did not score GEMSDOE32's file. So it neither
+   confirms nor refutes a +0.007 owner-reported gain, but the owner gain is about 130× larger than the
+   proxy gain. This discrepancy is recorded as an irregularity to review, not as an explanation.
+5. **Why this does not give a new TIF.** Any variant that changes only the exclusion radius, or applies
+   the same rule to another focus file, lands at more than 0.97 directed 3-px overlap with the focus set
+   and fails the literal uniqueness rule. A new candidate needs a different evidence source (see the
+   preregistered H1–H5 and the session review), and none has been validated. No holdout was run here.

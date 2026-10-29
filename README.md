@@ -80,6 +80,18 @@ Sources: [competition](https://www.drivendata.org/competitions/306/competition-d
 > **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved observations
 > (rank 1 = 0.4544 on 2026-10-28 and 2026-10-29). The parallel session's sandbox could not reach `drivendata.org` (HTTP 000).
 > This session's `fetch_page` did reach it on 2026-10-29: rank 1 0.4544, rank 26 0.3328 ([capture](evidence/leaderboard_observation_2026-10-29.json)).
+> ## FOCUS-SITE VERIFICATION ADDENDUM — 2026-10-29 (branch `arena/bec1b1b6-wbggemsdoe3`)
+>
+> - **Still no file is cleared.** No candidate TIFF, no holdout, no slot selected, no upload.
+> - **Measured (pinned SHA-256, 0 mismatches):** GEMSDOE32 (owner-reported 0.2778) equals GEMSDOE28's H27-4 base minus the 2,545 cells within 2.0 px of the USGS/INGENIOUS catalogue. GEMSDOE31's dot set is identical to that base. Evidence: [`evidence/focus_files_verification_2026-10-29.json`](evidence/focus_files_verification_2026-10-29.json), script [`scripts/verify_focus_files.py`](scripts/verify_focus_files.py).
+> - **Organizer text (staff forum reply, re-fetched today):** pixels on known catalogue faults are masked from scoring. Neighbouring cells 1.4–2 px away are not stated to be masked. This is the proposed mechanism, **unproven**. The only holdout test of the same idea (H6-1) gained +0.000054, far below the owner-reported +0.0070.
+> - **Uniqueness:** every focus file exceeds the literal 70%/3-px rule against another focus file (max overlap 0.980–1.000). GEMSDOE25 and GEMSDOE30 are the identical dot set, both reported at 0.2600.
+> - **Leaderboard (live page, 2026-10-29):** rank 1 is **0.4544**; rank 26 is **0.3328** (newway). The 0.3195 figure, which was rank 26 in the 2026-10-28 capture, does not appear in ranks 1–46 today. The brief's "0.4413" is not on the page. Evidence: [`evidence/official_source_check_2026-10-29_focus.json`](evidence/official_source_check_2026-10-29_focus.json).
+> - **Deadline:** homepage Dec. 3, 2026 11:59 p.m. UTC; rules A.1 5:00 p.m. ET = **22:00 UTC on Dec. 3, 2026**. Use 22:00 UTC as the conservative cutoff.
+> - **Sample irregularity:** the owner-mirrored `sample_submission.tif` has 60,988 positive cells identical to the training labels, contrary to the official "total absence" description. Do not use it as a null baseline.
+> - **Portal error "Predicted values must be in range [0, 1]":** not reproduced. All nine files have finite values in [0,1]. Send the exact file name and SHA-256 to classify it.
+> - **Decision needed from you:** Q1 (what counts as a dot) and Q2 (whether the 13GEMSDOE lattice counts). Options and recommendation: [knowledge/session-review-2026-10-29.md §6](knowledge/session-review-2026-10-29.md).
+
 
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
@@ -109,11 +121,7 @@ Sources: [competition](https://www.drivendata.org/competitions/306/competition-d
 
 ## Start every session here
 
-Read this README (including the verbatim prompt below), the [2026-10-29 review](knowledge/review-2026-10-29-session.md) and [its run card](evidence/session_2026-10-29_gate-recheck_run_card.json), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
-[`AGENTS.md`](AGENTS.md), the latest
-[repository review](knowledge/repo-review-2026-10-29.md) and
-[source-identity feed](evidence/latest-upstream-check.json), then the scientific
-[review](knowledge/review-2026-10-28-session.md) and
+Read this README (including the verbatim prompt below), the [2026-10-29 review](knowledge/session-review-2026-10-29.md) and [its run card](evidence/session_2026-10-29_gate-recheck_run_card.json), the [2026-10-29 focus verification](evidence/focus_files_verification_2026-10-29.json) and [official-source check](evidence/official_source_check_2026-10-29_focus.json), [`AGENTS.md`](AGENTS.md), the latest [repository review](knowledge/repo-review-2026-10-29.md) and [source-identity feed](evidence/latest-upstream-check.json), then the scientific [review](knowledge/review-2026-10-28-session.md) and
 [negative run card](evidence/session_7393d521_run_card.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
 [machine-readable copy](evidence/preregistration_2026-10-28.json), the
@@ -150,8 +158,11 @@ recommendation. A local format check or published owner score is not a receipt.
 
 ### Why GEMSDOE32's reported 0.2778 is plausible—but unproved
 
-The saved byte-level analysis reports the GEMSDOE32 B2 positive support as an exact subset of
-the GEMSDOE28 H27-4 base, with 2,545 cells removed near a mirrored catalogue. Under the
+Verified 2026-10-29: the GEMSDOE32 positive support is exactly the GEMSDOE28 H27-4 base minus the
+2,545 cells within 2.0 px of the USGS/INGENIOUS catalogue (0 mismatches over 12.28 M cells). Organizer
+staff say catalogue pixels are masked from scoring, but not their neighbours, so those cells keep
+their false-positive weight. The only holdout test of this idea gained +0.000054 (H6-1), far below the
+owner-reported +0.0070. The mechanism is therefore a hypothesis, not a finding. Under the
 competition's false-positive penalty, pruning low-credit dots could improve a distance-weighted
 Tversky score if useful coverage remains. That is a plausible metric mechanism, **not a proven
 causal explanation**: the 0.2778 remains an owner report, the hidden labels are unavailable,
