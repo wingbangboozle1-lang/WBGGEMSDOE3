@@ -1,6 +1,8 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
+> ## CURRENT PROJECT DECISION — 2026-10-29 review: **DO NOT SUBMIT**
+>
+> The underlying release-gate and dense-witness evidence is dated 2026-10-28; the 2026-10-29 review refreshed the nine-site source identity feed and did not clear or generate a candidate.
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
 > progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
@@ -30,6 +32,8 @@
 
 Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
+[repository review](knowledge/repo-review-2026-10-29.md), the current
+[source-identity feed](evidence/latest-upstream-check.json), the 2026-10-28 scientific
 [review](knowledge/review-2026-10-28-session.md) and
 [negative run card](evidence/session_7393d521_run_card.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
@@ -169,9 +173,23 @@ The site builder renders only the current fail-closed decision. `scripts/build_s
 positive paths. The scoped FCHD and AMDC archives remain negative. Do not generate a TIFF or
 run a holdout while the literal witness stop remains unresolved.
 
+## Repository review — 2026-10-29
+
+The latest engineering review refreshed the identity feed for all nine requested upstream
+repositories: **9/9 responded; all nine heads changed** since the 2026-10-26 baseline. A changed
+HEAD is not evidence that a score or TIFF changed and is not a receipt. The site now publishes
+the dated identity check at [`docs/data/latest-upstream-check.json`](docs/data/latest-upstream-check.json)
+and shows an explicitly caveated source-freshness panel on its overview page. The code change
+only makes the feed visible; it does not change the **DO NOT SUBMIT** decision.
+
+No new TIF, holdout, geological experiment, score estimate, or slot selection was produced.
+The dense-witness stop remains unresolved and binding. The repository review records all three
+passes, the 237-pass test result, source freshness caveats, and next steps in
+[`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md).
+
 ## Three review passes and remaining work
 
-The current review performed three passes: (1) preregistered five hypotheses and rendered a
+The prior 2026-10-28 review performed three passes: (1) preregistered five hypotheses and rendered a
 negative, source-bound executive/site summary; (2) removed positive build/check/test paths and
 checked lane safeguards; (3) fetched official sources, refreshed the dated public leaderboard
 observation, and rechecked the task against the prompt and exact release contract. Details and
