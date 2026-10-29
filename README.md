@@ -1,5 +1,73 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+## Start here — 2026-10-29 executive summary
+
+**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
+(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
+  2026-10-29, and no holdout score or slot selection exists.
+- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
+  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
+- **Why no new file yet:** the competition labels cannot be reached from this sandbox
+  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
+  portal's `Predicted values must be in range [0, 1]` error is unexplained.
+- **Reproduce the summary and verification record:**
+  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
+  writes `evidence/verification_2026_10_29.json` and the summary above.
+
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
+
+1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
+   best submission file, an estimated score, and a uniqueness verdict.
+2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
+   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
+3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
+   non-fault mimic and a holdout test on the spatially blocked set.
+4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
+   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
+5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
+6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+
+### Irregularities flagged for review (2026-10-29)
+
+- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
+  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
+  resolution match. (Extends IR-28-12.)
+- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
+  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
+- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
+  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
+  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
+- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
+  reproduction; the archived writer's cause is unproven.
+- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+
+Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
+[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
+[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+
+---
+
+> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
+>
+> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
+> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
+> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
+> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
+> The code comment already calls this surface "not dots", so the gate and the code disagree.
+> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
+> exceed 70% for the invdesign candidate.
+>
+> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
+> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
+> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
+> reproducible script: `scripts/check_witness_definition.py`.
+>
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
+> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
+
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
@@ -238,3 +306,155 @@ Older work is retained for audit, not clearance: [FCHD-NCM](docs/fchd/index.html
 ([findings](knowledge/lbcal-findings-2026-10-27.md)), and earlier repository reviews are all scoped research records. None overrides the current
 project-wide `DO-NOT-SUBMIT` gate. Historical TIFFs are inventoried in
 [`docs/downloads/LEGACY-DO-NOT-SUBMIT.txt`](docs/downloads/LEGACY-DO-NOT-SUBMIT.txt).
+
+---
+
+# Standing task prompt (preserved for every session)
+
+Read this section at the start of every work session. It is the authoritative statement of what
+we are building and why. Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+## Focus
+
+I want to focus on the highest scoring submissions from the following sites:
+GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32,
+GEMSDOE33, GEMSDOE36.
+
+I want an executive summary on every site that is clear and obvious which is the best submission
+to submit to obtain a high score on the leaderboard. It should also be unique and not an exact
+duplicate of any previous submission that is the same as below. Keep iterating and testing until
+we have the highest scoring submission to download and submit.
+
+We should be able to estimate the score for a submission. I want a table in the executive summary
+that clearly lists what file to download, what the estimate score is, and whether it is a unique
+submission unlike any of the other GEMSDOE sites listed below.
+
+## Highest urgency — MUST FOLLOW
+
+MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION
+UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST
+BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+
+There should be an easy to download submission tif file as described by the prompt. Read the
+entire prompt. A lot of sites mention inspection only and a human inspector, but the inspection
+needs to be done through the project and needs to be validated for submission without human
+intervention.
+
+## Parallel-run protocol
+
+1. LANE. Your lane is the single method paragraph below. Stay inside it. If your raster's
+   rank-correlation with any registry raster exceeds [0.90], or more than [70%] of your dots fall
+   within 3 px of one registry raster's dots, you have drifted into another lane: log it as a
+   duplicate and stop. Check this on the surface before placement AND on the final dots.
+2. REUSE, DON'T REBUILD. Use the template's cached feature stack, evaluate_holdout.py and
+   submission_writer.py. Holdout = hide-and-recover: withhold whole fault segments with a buffer,
+   derive every catalogue-based feature only from the visible faults, mask visible faults
+   pixel-exactly, score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). If a shared
+   tool is wrong, fix it once in the template and report it; never keep a private fork.
+3. LABEL EVERY NUMBER as HOLDOUT-DTI (evaluator version, number of withheld positives, 95% CI)
+   or ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written
+   as a score.
+4. LEAKAGE CANARY. Test each feature alone on the holdout before trusting any result. AUC above
+   [0.90] means leakage until proven otherwise.
+5. RUN CARD. End with one JSON card: hypothesis; mechanism; the named non-fault process that
+   could mimic it; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator
+   output (no NaN inside the footprint, values in [0,1], CRS/shape/transform match); submission
+   name + note of at most 140 characters; verdict promote / negative. Negative results are
+   deliverables.
+6. BUDGET. Stop after [3] experiments or [2] hours. Do not pick submissions: promotion to a real
+   slot is a separate selector step, within the weekly cap shown on the submission page.
+
+## Sites to study (starting point for understanding TIF generation)
+
+GEMSDOE32: h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778
+GEMSDOE: gems-submission-20260925T001403Z-7f00890a: 0.1563
+6GEMSDOE: gems6_hgb88-topk03_33cec71ff0: 0.0286
+GEMSDOE3: pindrop-v4-nodes-...: 0.1193 / pindrop-v4-discovery-...: 0.0830 / pindrop-v4-ridge-...: 0.1152
+GEMSDOE2: gemsdoe2-dual-family-union-...: 0.1560
+GEMSDOE4: gems-submission-20260926T163915Z-237f0063: 0.0343
+5GEMSDOE: gems-submission-20260926T175114Z-7f00890a: 0.1563
+7GEMSDOE: lidarscarp-ridge-top2pct-36c3a3f341c8: 0.1461
+8GEMSDOE: Hedge-v2_submission: 0.1563
+GEMSDOE9: 2314b599: 0.0107
+11GEMSDOE: gems-structural-area06-v1: 0.0202
+12GEMSDOE: r7-nms3-dem10-scarp_0c9199f14e62: 0.1294
+15GEMSDOE: gems-tso1-20260929T005627Z-conj_alteration_mag: 0.0782
+14GEMSDOE: GEMS_r5-geom-horse-ensemble_...: 0.0020
+17GEMSDOE: 17GEMSDOE_F-ensemble-2pct_20260930T050626Z: 0.0187
+18GEMSDOE: H19-C_20260930T212401Z_c11e495e: 0.0297
+19GEMSDOE: h19-4-multiline-corroborated-openness-thermal-pop-...: 0.1894 / h19-5-powerlaw-budget-multiline-corroborated-...: 0.1922
+GEMSDOE10: h16-continuation-...: 0.0461 / h20-dem10-scarp-thin-...: 0.0921 / H25-ctx-ridge-...: 0.1280 / h28-dotted-ridge-...: 0.1839
+13GEMSDOE: 20261001_r13-lattice-s5_v2_nan-outside: 0.0904
+16GEMSDOE: h16-1-topo-geophys-baseline-ridges-...: 0.1855 / h18-3a-topo-geophys-x-complexity-prior-...: 0.0976 / h18-4-usgs-geologic-map-faults-gap-...: 0.0360
+GEMSDOE21: h19-4-reference-20260930-691e4dfa: 0.1894
+20GEMSDOE: h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-...: 0.1890 / h20-5-continuous-pu-proxy-unverified-...: 0.1859
+GEMSDOE22: h23-a-dti-optimal-emission-6pct-...: 0.1002 / h23-b-dti-optimal-emission-10pct-...: 0.0748
+GEMSDOE23: h30-arrangement-matched-habitat-...: 0.1352
+GEMSDOE24: h25-1-dotted-h19-5-d1-5-...: 0.2477
+GEMSDOE25: dotted-h19-5-d2-8-...: 0.2600
+GEMSDOE26: dilcond-oof-v1-...: 0.1223
+GEMSDOE27: topo-gap-closure-t-v2-on-d1-5-...: 0.2449
+GEMSDOE30: d28-poisson300m-offcat-44090-...: 0.2600
+GEMSDOE31: h27-4-solo-d28-...: 0.2708
+GEMSDOE32: h33-h33-2-b2-...: 0.2778
+GEMSDOE33: h33d-analog-tip-stepover-r30-...: 0.2632
+GEMSDOE36: anderson-geothermal-pinn-38854-...: 0.2750
+
+Current competition leaderboard GEMSDOE high score: 0.4413 (also cited: 0.3195).
+
+## Key question
+
+Why and how did GEMSDOE32 (h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778) get the highest
+score, and are we able to generate a submission that scores higher than 0.2778?
+
+Answer using PhD-level experience, knowledge, and judgement. Then use the answer to generate a
+unique TIF submission into the competition. Must be unique submission unlike any within the
+GEMSDOE sites above. Verify working line by line, no hallucinations.
+
+## Required outputs
+
+1. Executive summary subpage explaining exactly how to make a submission into the contest.
+   Table listing: file to download, estimate score, unique submission verdict.
+2. Unique TIF submission — easy to download, clear whether OK to download and submit.
+   Values must be in [0,1] (fixes "Predicted values must be in range [0, 1]" portal error).
+   Unique name and short comment (≤140 chars, e.g. clustering with k=25).
+3. 3–5 candidate geological hypotheses not yet tried, each naming: specific layer(s), physical
+   signature, why it catches a fault missing from USGS/INGENIOUS catalogue, how it differs from
+   repo code. Rank by expected DTI improvement and implementation cost. Validate top candidate on
+   spatially-blocked holdout before touching a weekly submission slot.
+4. Work line by line verifying from official verified trusted sources; provide links for manual
+   review; no manual input; no hallucinations; flag irregularities.
+5. Store all information from official verified sources; contrarian but smart approaches;
+   find overlooked data sources for geothermal vent discovery.
+6. Put this prompt into the repo README and read it every time we work on the project.
+7. Generate submission system that can score higher than 0.3195 (current cited high).
+8. Create a PR and merge onto main; suggest remaining work and limitations.
+
+## Competition references
+
+- https://www.drivendata.org/competitions/306/competition-doe-gems/
+- https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- https://www.drivendata.org/competitions/306/competition-doe-gems/data/
+- https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- https://github.com/drivendataorg/gems-prize-reference-solution
+- https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- https://gbcge.org/current-projects/ingenious/
+- https://gdr.openei.org/submissions/1391
+- https://epsg.io/32611
+- https://en.wikipedia.org/wiki/Tversky_index
+
+## Known access limitation
+
+No DrivenData auth → cannot auto-download training_features.tif, labels.tif,
+sample_submission.tif, 1m_DEM_links.csv from the data tab (verified redirect to login).
+The project restores a hash-pinned public GitHub mirror instead; mirror bytes establish byte
+identity, not organizer provenance.
+
+## Core values
+
+- Maximize P(Win): weigh tradeoffs, assess risk, choose the path that maximizes the probability
+  of winning. Set emotions aside.
+- Own the Outcome: own results end to end. When problems arise and we have the means to act, do
+  so without waiting for permission. Treat failure and success as signals.

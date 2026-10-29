@@ -137,6 +137,22 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
     assert "DO NOT SUBMIT" in page
 
 
+def test_latest_upstream_identity_feed_is_published_and_never_implies_approval():
+    source = _json("evidence/latest-upstream-check.json")
+    published = _json("docs/data/latest-upstream-check.json")
+    assert published == source
+    assert source["approved_for_submission"] is False
+    assert len(source["repositories"]) == 9
+    assert {row["site"] for row in source["repositories"]} == {
+        "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+        "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"
+    }
+    page = (DOCS / "index.html").read_text()
+    assert "Focus-site source freshness" in page
+    assert "does not prove a score, TIFF, receipt" in page
+    assert "data/latest-upstream-check.json" in page
+
+
 def test_current_leaderboard_and_official_source_captures_are_labeled():
     obs = _json("evidence/leaderboard_observation_2026-10-28.json")
     assert obs["visible_public_scores"]["rank_1"] == "0.4544"
@@ -192,7 +208,8 @@ def test_active_site_builder_is_deterministic():
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/leaderboard.json", "data/fchd_run_card.json", "data/amdc_run_card.json",
+             "data/latest-upstream-check.json", "data/leaderboard.json",
+             "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
     assert main() == 0
