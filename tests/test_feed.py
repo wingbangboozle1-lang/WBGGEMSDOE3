@@ -51,6 +51,7 @@ def test_refresh_reads_public_htmx_fragment_and_rejects_redirect(tmp_path):
     assert result['rank_25_public_dti'] == '0.3125'
     assert result['captured_ranks'] == {'1': '0.4567', '25': '0.3125'}
     assert result['last_attempt_error'] is None and result['last_success_utc']
+    assert "request start" in result["observation_time_precision"]
     with patch('urllib.request.urlopen', return_value=Response('https://www.drivendata.org/accounts/login/')):
         rejected = refresh(path)
     assert rejected['best_public_dti'] == '0.4567'

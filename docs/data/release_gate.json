@@ -17,11 +17,15 @@
     "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
     "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
   ],
-  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
+  "decision_scope": "Project-wide status for the 2026-10-29 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
   "source_cards": {
     "run_card": {
-      "path": "evidence/session_7393d521_run_card.json",
-      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
+      "path": "evidence/session_3b056688_run_card.json",
+      "sha256": "3cd47cfd7330c905182b42accb88a08e6d2d2b6d449bc1c1950708e079315716"
+    },
+    "review": {
+      "path": "knowledge/review-2026-10-29-session.md",
+      "sha256": "23770b87612d174dac48a9c395a3db6687e6668a2dcf353a694a4db3780478e6"
     },
     "witness_recheck": {
       "path": "evidence/registry_witness_recheck_2026-10-27.json",
@@ -36,8 +40,12 @@
       "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
     },
     "leaderboard_snapshot": {
-      "path": "evidence/leaderboard_observation_2026-10-28.json",
-      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
+      "path": "evidence/leaderboard_observation_2026-10-29.json",
+      "sha256": "f7c9652ff1c2c68aaf718416ba4c59ee076f3a07dbd6ec72355348019f276581"
+    },
+    "leaderboard_feed": {
+      "path": "registry/leaderboard.json",
+      "sha256": "f3417f8f2a58573a84b1402f0c31b318b844e9e2eacf238d18de70af139e3e57"
     }
   }
 }

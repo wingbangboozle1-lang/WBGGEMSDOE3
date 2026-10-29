@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
               "method.html", "evidence.html", "session-review.html", "submission.html")
-CURRENT_CARD = "evidence/session_7393d521_run_card.json"
+CURRENT_CARD = "evidence/session_3b056688_run_card.json"
 
 
 def _json(path: str) -> dict:
@@ -138,11 +138,23 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
 
 
 def test_current_leaderboard_and_official_source_captures_are_labeled():
-    obs = _json("evidence/leaderboard_observation_2026-10-28.json")
+    obs = _json("evidence/leaderboard_observation_2026-10-29.json")
+    assert obs["observed_date_utc"] == "2026-10-29"
     assert obs["visible_public_scores"]["rank_1"] == "0.4544"
-    assert obs["visible_public_scores"]["rank_25"] == "0.3217"
-    assert obs["visible_public_scores"]["rank_26"] == "0.3195"
+    assert obs["visible_public_scores"]["rank_25"] == "0.3330"
+    assert obs["visible_public_scores"]["rank_26"] == "0.3328"
+    assert obs["visible_public_scores"]["rank_47"] == "0.3195"
+    assert obs["visible_public_scores"]["rank_48"] == "0.3180"
+    assert "date only" in obs["observation_time_precision"]
     assert "not a submission receipt" in obs["evidence_class"].lower()
+
+    feed = _json("registry/leaderboard.json")
+    assert feed["last_success_utc"] == "2026-10-29"
+    assert feed["captured_ranks"]["1"] == obs["visible_public_scores"]["rank_1"]
+    assert feed["captured_ranks"]["25"] == obs["visible_public_scores"]["rank_25"]
+    assert feed["captured_ranks"]["26"] == obs["visible_public_scores"]["rank_26"]
+    assert feed["captured_ranks"]["48"] == obs["visible_public_scores"]["rank_48"]
+
     source = _json("evidence/official_source_check_2026-10-28.json")
     ids = {row["id"] for row in source["sources"]}
     assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
@@ -190,14 +202,21 @@ def test_retired_positive_builders_stop_before_writing_docs():
 def test_active_site_builder_is_deterministic():
     from build_site import main
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
-             "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
-             "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/leaderboard.json", "data/fchd_run_card.json", "data/amdc_run_card.json",
-             "fchd/index.html", "amdc/index.html"]
+             "data/release_gate.json", "data/decision.json", "data/session_3b056688_run_card.json",
+             "data/review-2026-10-29-session.md", "data/preregistration_2026-10-28.json",
+             "data/official_source_check_2026-10-28.json", "data/leaderboard.json",
+             "data/leaderboard_observation_2026-10-29.json", "data/fchd_run_card.json",
+             "data/amdc_run_card.json", "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
     assert main() == 0
     for name in names:
         assert (DOCS / name).read_bytes() == before[name], name
+
+
+def test_date_only_leaderboard_observation_gets_precision_aware_staleness():
+    status = (DOCS / "assets/status.js").read_text()
+    assert "const dateOnly = /^\\d{4}-\\d{2}-\\d{2}$/.test(stamp);" in status
+    assert "(dateOnly ? 36 : 12) * 3600000" in status
 
 
 def test_pages_workflow_still_runs_the_active_builder_and_checker():

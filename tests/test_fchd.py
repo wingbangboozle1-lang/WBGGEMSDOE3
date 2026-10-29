@@ -147,7 +147,7 @@ def test_governing_fail_closed_gate_and_fchd_dossier_consistency():
     assert dec["candidate"] is None and gate["candidate"] is None
     assert gate["authority"]["selector_approval"] is False
     assert any("witness" in r.lower() for r in gate["blocking_reasons"])
-    current = _j("docs/data/session_7393d521_run_card.json")
+    current = _j("docs/data/session_3b056688_run_card.json")
     assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
 
     fchd_page = (ROOT / "docs" / "fchd" / "index.html").read_text()

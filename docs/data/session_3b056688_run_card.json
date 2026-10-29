@@ -1,0 +1,153 @@
+{
+  "schema": "gems-session-run-card-v1",
+  "session_branch": "arena/3b056688-wbggemsdoe3",
+  "review_date_utc": "2026-10-29",
+  "evidence_class": "REPOSITORY REVIEW / PUBLIC-SOURCE UPDATE / NEGATIVE PREFLIGHT; NO CANDIDATE RUN",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_submission": false,
+  "decision_reason": "The literal-registry witness stop remains unresolved and fires before feature construction or placement. A registered owner-mirrored raster is positive on all cells of the mirrored sample footprint; under the recorded finite-and-positive support rule, every nonempty in-footprint candidate has conditional 100% directed overlap at distance zero, above the user's >70%/3-pixel stop. This is conditional on the mirrored bytes and is not organizer provenance or a complete portal-registry census.",
+  "hypothesis": {
+    "rank": 1,
+    "id": "H1-RMIX",
+    "name": "Local radiometric mixing-manifold residual at concealed structures",
+    "status": "PREREGISTERED_NOT_TESTED",
+    "mechanism": "A permeability/alteration corridor may change local K-Th-U-total-count composition; a concealed structural boundary may preserve a narrow multiscale compositional residual where surface scarps are muted.",
+    "named_non_fault_mimic": "Non-fault lithologic or weathering contact; GeoDAWN flight-line leveling or variable terrain clearance.",
+    "preregistration": "knowledge/preregistration-2026-10-28.md",
+    "machine_readable_preregistration": "evidence/preregistration_2026-10-28.json"
+  },
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "status": "BLOCKED_BEFORE_EXPERIMENT",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No candidate surface or feature was generated because the literal duplicate stop remains active. The shared cache and evaluator/writer runtime were not present in this checkout; no new holdout was run.",
+    "required_method_if_resumed": "Reuse the shared pooled-DTI evaluator and writer; alpha=0.2, beta=0.8, 300 m triangular kernel; hold out whole fault segments with a buffer; derive catalogue features from visible faults only and mask visible faults pixel-exactly."
+  },
+  "estimated_score": {
+    "status": "NOT_ESTIMATED",
+    "value": null,
+    "reason": "No candidate or scientifically eligible holdout exists. Public leaderboard values, owner reports, historical lane holdouts, and projections are not a score estimate for a new file."
+  },
+  "registry": {
+    "complete_registry_audit": false,
+    "provenance": "The current stop is measured on hash-pinned owner mirrors; organizer provenance and complete portal-registry coverage are not authenticated.",
+    "surface_rank_correlation": {
+      "status": "NOT_RUN_NO_SURFACE",
+      "max_abs_spearman": null,
+      "stop_threshold": 0.9
+    },
+    "final_dot_overlap": {
+      "status": "NOT_RUN_NO_CANDIDATE",
+      "max_directed_overlap_within_3px": null,
+      "stop_threshold": 0.7,
+      "radius_px": 3
+    },
+    "literal_dense_witness": {
+      "status": "MEASURED_ON_HASH_PINNED_OWNER_MIRRORS",
+      "registry_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_cells_inside_sample_footprint": 5167373,
+      "sample_footprint_cells": 5167373,
+      "conditional_directed_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
+      "threshold_exceeded": true,
+      "evidence": "evidence/registry_witness_recheck_2026-10-27.json",
+      "interpretation": "A conditional support-overlap theorem for the mirrored bytes and documented positive-support rule, not a candidate-specific comparison, complete registry audit, or organizer-provenance finding."
+    }
+  },
+  "raster": {
+    "generated": false,
+    "path": null,
+    "sha256": null,
+    "positive_cells": null
+  },
+  "preexisting_main_artifact": {
+    "status": "UNAPPROVED_ARCHIVE_ONLY",
+    "path": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif",
+    "upstream_run_card": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.json",
+    "upstream_recorded_sha256": "4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea",
+    "byte_identity_rechecked_against_upstream_record": true,
+    "scientific_or_format_validation_in_this_review": false,
+    "reason": "An existing historical artifact was not generated or used as a candidate in this review. Its byte identity is retained for quarantine only; it is not cleared for download-and-submit and cannot override the literal witness stop."
+  },
+  "validator": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "passed": false,
+    "single_band_float32": null,
+    "values_in_0_1": null,
+    "no_inf": null,
+    "no_nan_inside_footprint": null,
+    "outside_footprint_null_or_nan": null,
+    "crs_shape_transform_match": null,
+    "saved_bytes_match_audited_prediction": null,
+    "reason": "No new GeoTIFF exists to validate. Official written format requirements were checked separately; local compliance would not establish portal acceptance."
+  },
+  "submission": {
+    "name": null,
+    "note": "No candidate generated; literal registry witness stop remains unresolved.",
+    "note_characters": 73,
+    "note_is_upload_instruction": false,
+    "status": "NOT_ASSIGNED"
+  },
+  "experiments": {
+    "geological_experiments_completed": 0,
+    "maximum": 3,
+    "experiment_hours": 0,
+    "maximum_hours": 2
+  },
+  "selector": {
+    "action": "NONE",
+    "weekly_slots_used": 0,
+    "separate_selector_approval": false,
+    "organizer_receipt": null
+  },
+  "leaderboard_observation": {
+    "path": "evidence/leaderboard_observation_2026-10-29.json",
+    "observed_date_utc": "2026-10-29",
+    "observation_time_precision": "date only",
+    "public_rank_1": "0.4544",
+    "public_rank_25": "0.3330",
+    "public_rank_26": "0.3328",
+    "public_rank_47": "0.3195",
+    "public_rank_48": "0.3180",
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not a score for this project"
+  },
+  "official_source_check": "evidence/official_source_check_2026-10-28.json",
+  "focus_site_claims": {
+    "status": "OWNER_REPORTED_UNVERIFIED",
+    "organizer_receipts": null,
+    "reliable_new_file_estimate": null,
+    "scores": {
+      "GEMSDOE24": 0.2477,
+      "GEMSDOE25": 0.26,
+      "GEMSDOE27": 0.2449,
+      "GEMSDOE28": 0.271,
+      "GEMSDOE30": 0.26,
+      "GEMSDOE31": 0.2708,
+      "GEMSDOE32": 0.2778,
+      "GEMSDOE33": 0.2632,
+      "GEMSDOE36": 0.275
+    }
+  },
+  "gemsdoe32_explanation": {
+    "finding": "The pinned B2 positive support has 37,654 cells and is an exact subset of the pinned GEMSDOE28 H27-4 base with 40,199 cells; 2,545 cells were removed near a mirrored catalogue. This is a byte-level construction relationship, not a verified score effect.",
+    "label": "MECHANISTIC POSSIBILITY, NOT ORGANIZER-VERIFIED CAUSAL EXPLANATION",
+    "reported_score": 0.2778,
+    "score_status": "OWNER_REPORTED_UNVERIFIED",
+    "receipt": null,
+    "interpretation": "Removing redundant or low-credit predictions could lower false-positive mass while retaining distance-tolerant credit, but hidden labels and an authenticated receipt tying that score to those bytes are unavailable. No causal contribution or numeric gain is identified."
+  },
+  "review_passes": {
+    "pass_1": "Evidence synthesis across the focus sites, prior method lanes, preregistrations, and the global release stop.",
+    "pass_2": "Refresh the date-stamped public leaderboard observation; update the negative site, feed, tests, and persistent brief without generating a candidate.",
+    "pass_3": "Adversarially verify source/date labels, no-candidate and no-slot invariants, output links, and the full test/site checks."
+  },
+  "limitations": [
+    "The checkout contains only data/template_grid.tif; no shared .cache, authenticated labels, or restored feature stack is present.",
+    "The 2026-10-29 leaderboard retrieval has date-only precision and is public-page evidence, not an automated refresh or submission receipt.",
+    "The historic HCE/CSPES/LBCAL/FCHD holdouts are lane-specific research measurements and do not establish public or private leaderboard scores.",
+    "Official submission/data pages are login-gated; quota, current account state, upload acceptance, and receipts are unknown."
+  ]
+}

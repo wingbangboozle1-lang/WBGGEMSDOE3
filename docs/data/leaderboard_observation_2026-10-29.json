@@ -1,0 +1,30 @@
+{
+  "schema": "gems-public-leaderboard-observation-v1",
+  "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not a submission receipt or score for any repository file",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "observed_date_utc": "2026-10-29",
+  "observation_time_precision": "date only; the retrieval interface exposed no exact response timestamp",
+  "method": "Official public leaderboard page fetched in chunks on 2026-10-29; ranks 1-50 were inspected. The source page is public, but this was not an authenticated portal API call or an automated feed refresh.",
+  "visible_public_scores": {
+    "rank_1": "0.4544",
+    "rank_2": "0.3916",
+    "rank_25": "0.3330",
+    "rank_26": "0.3328",
+    "rank_46": "0.3217",
+    "rank_47": "0.3195",
+    "rank_48": "0.3180"
+  },
+  "scope": "Public leaderboard rows only. Private-test scores, final-round scores, the submitted file bytes behind a row, the user's account quota, and any project receipt are not visible in this observation.",
+  "comparison_with_previous_capture": {
+    "previous_observation": "evidence/leaderboard_observation_2026-10-28.json",
+    "previous_rank_25": "0.3217",
+    "previous_rank_26": "0.3195",
+    "interpretation": "The previous capture's ranks 25 and 26 are stale as current ranks. The new 2026-10-29 capture shows 0.3330 at rank 25, 0.3328 at rank 26, and 0.3195 at rank 47. The leader remains 0.4544."
+  },
+  "conflicts_with_prior_brief": {
+    "0.4413": "Not the visible rank-1 value in this dated capture; rank 1 is 0.4544.",
+    "0.3195": "Not the leader; the value is visible at rank 47 in this capture."
+  },
+  "important_limit": "A public leaderboard observation cannot identify a repository raster, verify an owner-reported score, reveal private-test performance, or authorize a submission.",
+  "feed_file": "registry/leaderboard.json"
+}

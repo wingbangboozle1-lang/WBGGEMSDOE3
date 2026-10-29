@@ -60,11 +60,13 @@ class PageParser(HTMLParser):
 def main() -> int:
     errors: list[str] = []
     expected_sources = {
-        "run_card": "evidence/session_7393d521_run_card.json",
+        "run_card": "evidence/session_3b056688_run_card.json",
+        "review": "knowledge/review-2026-10-29-session.md",
         "witness_recheck": "evidence/registry_witness_recheck_2026-10-27.json",
         "preregistration": "evidence/preregistration_2026-10-28.json",
         "official_sources": "evidence/official_source_check_2026-10-28.json",
-        "leaderboard_snapshot": "evidence/leaderboard_observation_2026-10-28.json",
+        "leaderboard_snapshot": "evidence/leaderboard_observation_2026-10-29.json",
+        "leaderboard_feed": "registry/leaderboard.json",
     }
     gate_path = DOCS / "data/release_gate.json"
     current_card_path = ROOT / expected_sources["run_card"]
@@ -75,6 +77,7 @@ def main() -> int:
         prereg = json.loads((ROOT / expected_sources["preregistration"]).read_text(encoding="utf-8"))
         sources = json.loads((ROOT / expected_sources["official_sources"]).read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / expected_sources["leaderboard_snapshot"]).read_text(encoding="utf-8"))
+        feed = json.loads((ROOT / expected_sources["leaderboard_feed"]).read_text(encoding="utf-8"))
         witness = json.loads((ROOT / expected_sources["witness_recheck"]).read_text(encoding="utf-8"))
 
         if gate.get("schema") != "gems-release-gate-v1":
@@ -104,7 +107,11 @@ def main() -> int:
             errors.append("secondary decision.json unexpectedly names a candidate")
         if decision.get("run_card_sha256") != sha(current_card_path):
             errors.append("secondary decision.json is not hash-bound to the current run card")
+        if decision.get("run_card") != current_card_path.name:
+            errors.append("secondary decision.json names a stale current run card")
 
+        if card.get("session_branch") != "arena/3b056688-wbggemsdoe3" or card.get("review_date_utc") != "2026-10-29":
+            errors.append("current run card branch/date does not match this review")
         if card.get("verdict") != "negative" or card.get("okay_to_submit") is not False:
             errors.append("current run card is not negative")
         if card.get("raster", {}).get("generated") is not False or card.get("raster", {}).get("sha256") is not None:
@@ -113,6 +120,12 @@ def main() -> int:
             errors.append("current run card must not claim a holdout score")
         if card.get("holdout_dti", {}).get("ci95") is not None or card.get("holdout_dti", {}).get("withheld_positive_count") is not None:
             errors.append("current run card must not invent a CI or withheld-positive count")
+        if card.get("holdout_dti", {}).get("evaluator_version") is not None:
+            errors.append("a not-run holdout must not claim an evaluator version")
+        if card.get("estimated_score", {}).get("value") is not None or card.get("estimated_score", {}).get("status") != "NOT_ESTIMATED":
+            errors.append("current run card must not publish an unsupported estimate")
+        if card.get("raster", {}).get("path") is not None:
+            errors.append("current run card must not name a candidate raster")
         if card.get("experiments", {}).get("geological_experiments_completed") != 0:
             errors.append("geological experiment budget count is not zero")
         if card.get("selector", {}).get("weekly_slots_used") != 0 or card.get("selector", {}).get("action") != "NONE":
@@ -145,17 +158,44 @@ def main() -> int:
             errors.append("saved witness SHA-256 differs from preregistration")
 
         if sources.get("checked_date_utc") != "2026-10-28":
-            errors.append("official-source audit date mismatch")
-        if snapshot.get("observed_date_utc") != "2026-10-28":
-            errors.append("public leaderboard snapshot date mismatch")
-        if snapshot.get("visible_public_scores", {}).get("rank_1") != "0.4544":
-            errors.append("public leaderboard snapshot leader value changed")
-        if snapshot.get("visible_public_scores", {}).get("rank_25") != "0.3217" or snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3195":
-            errors.append("public leaderboard ranks 25/26 do not match the dated capture")
+            errors.append("2026-10-28 official-source audit date mismatch")
+        if snapshot.get("observed_date_utc") != "2026-10-29":
+            errors.append("2026-10-29 public leaderboard snapshot date mismatch")
+        visible = snapshot.get("visible_public_scores", {})
+        expected_snapshot = {"rank_1": "0.4544", "rank_25": "0.3330", "rank_26": "0.3328", "rank_48": "0.3180"}
+        if any(visible.get(rank) != value for rank, value in expected_snapshot.items()):
+            errors.append("public leaderboard rows do not match the dated 2026-10-29 capture")
+        if "not a submission receipt" not in snapshot.get("evidence_class", "").lower():
+            errors.append("public leaderboard snapshot is missing its evidence caveat")
 
-        copied_card = json.loads((DOCS / "data/session_7393d521_run_card.json").read_text())
+        ranks = feed.get("captured_ranks")
+        if not isinstance(ranks, dict) or not all(str(rank) in ranks for rank in (1, 2, 25, 26, 48)):
+            errors.append("current public feed is missing one or more tracked ranks")
+        else:
+            for rank in (1, 2, 25, 26, 48):
+                try:
+                    value = float(ranks[str(rank)])
+                    if not 0.0 <= value <= 1.0:
+                        raise ValueError("outside range")
+                except (TypeError, ValueError):
+                    errors.append(f"current public feed rank {rank} is not a valid DTI")
+        if feed.get("last_success_utc") is None:
+            errors.append("current public feed has no last-success observation to display")
+        if "not an upload receipt" not in feed.get("evidence_class", "").lower():
+            errors.append("current public feed is missing its evidence caveat")
+
+        copied_card = json.loads((DOCS / "data" / current_card_path.name).read_text())
         if copied_card != card:
             errors.append("published current run card differs from the source evidence")
+        copied_feed = json.loads((DOCS / "data/leaderboard.json").read_text())
+        if copied_feed != feed:
+            errors.append("published current public feed differs from the source registry")
+        copied_snapshot = json.loads((DOCS / "data" / Path(expected_sources["leaderboard_snapshot"]).name).read_text())
+        if copied_snapshot != snapshot:
+            errors.append("published dated leaderboard snapshot differs from source evidence")
+        copied_review = (DOCS / "data" / Path(expected_sources["review"]).name).read_text(encoding="utf-8")
+        if copied_review != (ROOT / expected_sources["review"]).read_text(encoding="utf-8"):
+            errors.append("published latest review differs from the source review")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"missing or malformed current evidence: {type(exc).__name__}: {exc}")
 

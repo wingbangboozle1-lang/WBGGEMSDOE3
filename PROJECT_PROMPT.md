@@ -1,4 +1,4 @@
-# Reconstructed operational project brief (maintained 2026-10-27)
+# Reconstructed operational project brief (maintained 2026-10-29)
 
 This is a **condensed reconstruction**, not a verbatim transcript: the original
 full chat prompt was not available to the current session, and an earlier heading
@@ -6,7 +6,10 @@ incorrectly called this file verbatim. Do not invent missing wording. The curren
 session's instructions and the standing requirements below govern; the complete
 exact original can only be restored from the source conversation. The historical
 site/score ledger is linked below. The README contains this reconstruction for
-session-start reading and the current negative decision.
+session-start reading and the current negative decision. The prompt's supplied
+0.4413 and 0.3195 leaderboard values are preserved as time-dependent historical
+claims; see `README.md` and `evidence/leaderboard_observation_2026-10-29.json`
+for the latest date-stamped official public-page observation.
 
 ---
 

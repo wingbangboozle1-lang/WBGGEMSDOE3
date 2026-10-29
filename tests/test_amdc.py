@@ -85,7 +85,7 @@ def test_governing_gate_is_hash_bound_and_negative():
     for row in gate["source_cards"].values():
         src = ROOT / row["path"]
         assert hashlib.sha256(src.read_bytes()).hexdigest() == row["sha256"]
-    current = _load("docs/data/session_7393d521_run_card.json")
+    current = _load("docs/data/session_3b056688_run_card.json")
     assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
     amdc = _load("evidence/amdc_run_card.json")
     assert amdc["verdict"] == "negative"

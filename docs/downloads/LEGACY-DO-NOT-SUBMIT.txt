@@ -16,4 +16,4 @@ This list is a file inventory, not an approval list:
   wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif
 
 Current decision: docs/data/release_gate.json
-Current negative run card: docs/data/session_7393d521_run_card.json
+Current negative run card: docs/data/session_3b056688_run_card.json

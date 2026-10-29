@@ -1,29 +1,31 @@
 # Working agreement
 
 At the start of every session read `README.md`, `PROJECT_PROMPT.md`, the latest
-`knowledge/review-2026-10-28-session.md` and
-`evidence/session_7393d521_run_card.json`, `knowledge/preregistration-2026-10-28.md`,
+`knowledge/review-2026-10-29-session.md` and
+`evidence/session_3b056688_run_card.json`, `knowledge/preregistration-2026-10-28.md`,
 `evidence/preregistration_2026-10-28.json`, `evidence/official_source_check_2026-10-28.json`,
-`knowledge/protocol.md`, the earlier preregistrations/reviews listed below, and the
-pinned source/lane cards required by the repository history. The repo is the source of truth.
+`evidence/leaderboard_observation_2026-10-29.json`, `knowledge/protocol.md`, the earlier
+preregistrations/reviews listed below, and the pinned source/lane cards required by the
+repository history. The repo is the source of truth.
 
 ## Current project-wide decision
 
-**DO NOT SUBMIT. No file is cleared; this review generated no candidate.** GitHub `main`
-advanced while this branch was in progress with PR #53, which added a 15,000-dot blind-basin
-TIFF under `docs/downloads/`. This review did not generate or use it as a candidate, and did not
-assess scientific or format eligibility; its bytes were only matched to the upstream-reported
-SHA-256 for archive identity. It is quarantined as a pre-existing research artifact and is not
-cleared. The 2026-10-28 evidence-first
-review recorded a literal-registry stop: a registered, hash-pinned owner-mirrored raster is
-positive on all 5,167,373 cells of the mirrored
-sample footprint. Under the committed finite-and-positive support definition, every
-nonempty in-footprint dot map would have 100% directed overlap at distance zero, above
-the user's 70%/3-pixel stop. This is a conditional owner-mirror measurement—not proof
-of organizer provenance or complete portal-registry coverage—but it must be honored
-under the current literal protocol. Do not build a candidate, run a holdout, or select a
-slot unless a documented evidence-based correction resolves the stop. Never waive the
-threshold or silently exempt the dense witness.
+**DO NOT SUBMIT. No file is cleared; the 2026-10-29 review generated no candidate.** A
+historical 15,000-dot blind-basin TIFF exists in `docs/downloads/` as a quarantined research
+artifact; this review neither generated it nor assessed its scientific or format eligibility.
+The current literal-registry stop remains active: a registered, hash-pinned owner-mirrored
+raster is positive on all 5,167,373 cells of the mirrored sample footprint. Under the
+committed finite-and-positive support definition, every nonempty in-footprint dot map would
+have 100% directed overlap at distance zero, above the user's 70%/3-pixel stop. This is
+conditional owner-mirror evidence—not proof of organizer provenance or complete
+portal-registry coverage—but it must be honored under the current literal protocol. Do not
+build a candidate, run a holdout, or select a slot unless a documented evidence-based
+correction resolves the stop. Never waive the threshold or silently exempt the dense witness.
+
+The 2026-10-29 official public leaderboard capture is date-only and records rank 1 = 0.4544,
+rank 25 = 0.3330, rank 26 = 0.3328, rank 48 = 0.3180; these values are public observations,
+not this project's scores or receipts. See the dated observation and current negative card
+listed above.
 
 Do not present owner reports, projections, holdout results, raster measurements, or
 format checks as organizer-confirmed scores. An `ORGANIZER-CONFIRMED` score requires an

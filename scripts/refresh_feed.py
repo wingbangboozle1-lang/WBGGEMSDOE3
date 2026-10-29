@@ -103,7 +103,8 @@ def refresh(path: Path = PATH) -> dict:
         old.update(source=URL, best_public_dti=scores[1], last_success_utc=now, last_attempt_error=None,
                    evidence_class="PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt or candidate score",
                    scope="Captured public leaderboard rows only; private scores, project file identities, user quota, and receipts are unavailable.",
-                   observation_method="Official public leaderboard HTMX fragment parsed automatically.")
+                   observation_time_precision="UTC timestamp recorded at refresh request start; the source does not expose a server observation time",
+                   observation_method="Official public leaderboard HTMX fragment parsed automatically; the feed records requested ranks only.")
         for rank in TRACKED_RANKS:
             key = f"rank_{rank}_public_dti"
             if rank in scores:

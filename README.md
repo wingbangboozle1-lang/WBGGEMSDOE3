@@ -1,22 +1,16 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
+> ## CURRENT PROJECT DECISION — 2026-10-29: **DO NOT SUBMIT**
 >
-> **No file is cleared. This review generated no candidate TIFF.** While this branch was in
-> progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
-> `docs/downloads/`. It was not generated or used as a candidate in this review, and its
-> science/format eligibility was not assessed; its bytes were only matched to the upstream
-> reported SHA-256 for quarantine identity. It is not cleared and is treated as a legacy research
-> file. This review ran no geological experiment, ran no holdout, and selected no slot.
-> The saved owner-mirror witness is positive on all **5,167,373** cells of the mirrored
-> sample footprint. Under the committed finite-and-positive support rule, any nonempty
-> in-footprint dot map would have 100% directed overlap at distance zero, above the user's
-> 70%/3-pixel stop. The finding is conditional on hash-pinned owner mirrors; it is not
-> authenticated organizer provenance or a full portal-registry census. The stop is still
-> binding under the current literal protocol. **Do not upload any historical TIFF.**
+> **No file is cleared. This review generated no candidate TIFF, ran no geological experiment or holdout, and selected no slot.** The historical 15,000-dot blind-basin TIFF remains in `docs/downloads/` for research-only archive identity; this review did not create it or assess its science/format eligibility. It is not a candidate and is not cleared.
+>
+> The saved owner-mirror witness is positive on all **5,167,373** cells of the mirrored sample footprint. Under the committed finite-and-positive support rule, any nonempty in-footprint dot map would have 100% directed overlap at distance zero, above the user's 70%/3-pixel stop. This is conditional on hash-pinned owner mirrors, not authenticated organizer provenance or a complete portal-registry census. The literal stop remains binding. **Do not upload or download any historical TIFF for submission.**
+>
+> The official public leaderboard was re-observed on **2026-10-29**: rank 1 = **0.4544**; ranks 25/26 = **0.3330 / 0.3328**; rank 48 = **0.3180**. The source retrieval exposed date-only precision. These are public-page observations, not this project's scores, private results, or submission receipts.
 >
 > Current machine-readable decision: [`docs/data/release_gate.json`](docs/data/release_gate.json) ·
-> current negative run card: [`evidence/session_7393d521_run_card.json`](evidence/session_7393d521_run_card.json) ·
+> current negative run card: [`evidence/session_3b056688_run_card.json`](evidence/session_3b056688_run_card.json) ·
+> current review: [`knowledge/review-2026-10-29-session.md`](knowledge/review-2026-10-29-session.md) ·
 > current site: [`docs/index.html`](docs/index.html) ·
 > full evidence: [`docs/evidence.html`](docs/evidence.html).
 
@@ -30,8 +24,8 @@
 
 Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
-[review](knowledge/review-2026-10-28-session.md) and
-[negative run card](evidence/session_7393d521_run_card.json), the
+[review](knowledge/review-2026-10-29-session.md) and
+[negative run card](evidence/session_3b056688_run_card.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
 [machine-readable copy](evidence/preregistration_2026-10-28.json), the
 [official-source check](evidence/official_source_check_2026-10-28.json), the
@@ -77,22 +71,26 @@ and no verified portal receipt ties the number to those bytes. See
 [`evidence/pair_identification.json`](evidence/pair_identification.json), and the
 [official metric page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
 
-## Current public leaderboard feed (2026-10-28)
+## Current public leaderboard feed (2026-10-29)
 
-The official public leaderboard page displayed rank 1 **0.4544**, rank 25 **0.3217**,
-rank 26 **0.3195**, and rank 48 **0.2895** in the 2026-10-28 observation. Thus 0.3195 is
-not the current top value in that capture. These are public-test scores for other entries,
-not a score for any file in this repository, not private-test results, and not receipts.
-The [snapshot](evidence/leaderboard_observation_2026-10-28.json) records the date and
-precision; [`registry/leaderboard.json`](registry/leaderboard.json) is the scheduled feed
-snapshot. The Pages workflow refreshes the public leaderboard feed every six hours and
-retains the last successful observation marked stale if a refresh fails.
+The official public leaderboard page was re-fetched in chunks on 2026-10-29. The dated
+observation records rank 1 **0.4544**, rank 2 **0.3916**, rank 25 **0.3330**, rank 26
+**0.3328**, rank 47 **0.3195**, and rank 48 **0.3180**. The prior 2026-10-28 capture had
+0.3195 at rank 26; those rank numbers are now historical. The retrieval exposed no exact
+fetch timestamp. These are public leaderboard observations for other entries, not a score
+for a repository file, private-test results, or receipts. See
+[`evidence/leaderboard_observation_2026-10-29.json`](evidence/leaderboard_observation_2026-10-29.json)
+and [`registry/leaderboard.json`](registry/leaderboard.json). The Pages workflow is scheduled
+to refresh the public leaderboard feed every six hours and retains the last successful
+observation marked stale if a refresh fails; that network workflow was not invoked in this
+review.
 
 ## Official-source checks and access limits
 
-The public competition description and official rules, public leaderboard, USGS GeoDAWN,
-DOE GDR #1391, USGS 3DEP, and USGS Landsat Collection 2 pages were checked on 2026-10-28.
-Source-by-source facts, scope, and caveats are stored in
+The public competition description and official rules, GeoDAWN, DOE GDR #1391, USGS 3DEP,
+and USGS Landsat Collection 2 pages were checked on 2026-10-28. The public leaderboard was
+re-observed on 2026-10-29 and is documented separately. Source-by-source facts, scope, and
+caveats for the 2026-10-28 checks are stored in
 [`evidence/official_source_check_2026-10-28.json`](evidence/official_source_check_2026-10-28.json).
 
 - Official DTI: α=0.2, β=0.8, 300 m triangular kernel. Required raster: single-band float32,
@@ -171,11 +169,12 @@ run a holdout while the literal witness stop remains unresolved.
 
 ## Three review passes and remaining work
 
-The current review performed three passes: (1) preregistered five hypotheses and rendered a
-negative, source-bound executive/site summary; (2) removed positive build/check/test paths and
-checked lane safeguards; (3) fetched official sources, refreshed the dated public leaderboard
-observation, and rechecked the task against the prompt and exact release contract. Details and
-limitations are in [`knowledge/review-2026-10-28-session.md`](knowledge/review-2026-10-28-session.md).
+The 2026-10-29 review performed three passes: (1) synthesized the nine focus-site claims,
+GEMSDOE32's byte-level explanation, and historical HCE/GEMSDOE/CSPES/LBCAL/FCHD evidence;
+(2) refreshed the dated public leaderboard feed and updated the site, README, and submission
+guide without creating a candidate; (3) adversarially checked the current gate, provenance,
+links, no-candidate/no-slot invariants, and available software tests. Details and limitations
+are in [`knowledge/review-2026-10-29-session.md`](knowledge/review-2026-10-29-session.md).
 
 Next: resolve the dense-witness protocol interpretation through documented evidence, verify
 organizer access/provenance and current portal deadline/quota, restore the shared cache and

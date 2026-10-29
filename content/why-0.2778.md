@@ -51,7 +51,7 @@ higher competition score exists, not that a new file from this project will achi
 This session produced no candidate or valid local holdout estimate. The literal
 registry definition stops every nonempty in-footprint candidate because a registered
 soft raster is positive throughout the footprint; do not submit or silently exempt it.
-See the [current dashboard](../docs/index.html) and [negative card](../evidence/session_9b794637_run_card.json).
+See the [current dashboard](../docs/index.html), [2026-10-29 review](../knowledge/review-2026-10-29-session.md), and [current negative card](../evidence/session_3b056688_run_card.json).
 
 ## Verification addendum — 2026-10-27 (independent recomputation)
 
