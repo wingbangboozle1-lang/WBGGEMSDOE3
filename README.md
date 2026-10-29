@@ -4,7 +4,7 @@
 >
 > - **Why:** the user's parallel-run rule stops any candidate with more than 70% of its dots within 3 px of a registry raster. The registered dense witness (`17GEMSDOE E-proba-multiscale`) is positive in all **5,167,373 / 5,167,373** in-bounds cells, so under the literal definition of "dot" every candidate fails. Independently re-measured and hash-verified: [`evidence/witness_independent_stats_2026-10-29.json`](evidence/witness_independent_stats_2026-10-29.json).
 > - **Decisions needed from you** (both change the protocol, so they need your answer): **Q1** what counts as a dot (literal positive, top-N, or fixed threshold); **Q2** whether the binary 13GEMSDOE lattice counts as a registry raster. Full options: [`knowledge/review-2026-10-29-session.md`](knowledge/review-2026-10-29-session.md).
-> - **Leaderboard correction:** the public high is **0.4544** (rank 1, dated 2026-10-29). The brief's "0.3195 is the highest" and "0.4413" are not on the live page. Rank 26 is now **0.3328**, not 0.3195. Capture: [`evidence/leaderboard_observation_2026-10-29.json`](evidence/leaderboard_observation_2026-10-29.json).
+> - **Leaderboard correction:** the public high is **0.4544** (rank 1, dated 2026-10-29). The brief's "0.3195 is the highest" and "0.4413" are not on the live page. Rank 26 is now **0.3328**, not 0.3195. The 2026-10-27 and 2026-10-28 captures (`evidence/leaderboard_observation_2026-10-27.json`, `…-28.json`) are **historical**; they are kept for audit and do not describe the live board. Capture: [`evidence/leaderboard_observation_2026-10-29.json`](evidence/leaderboard_observation_2026-10-29.json).
 > - **Deadline:** homepage 2026-12-03 23:59 UTC; rules Appendix A.1 say 5:00 p.m. ET on the deadline date. Conservative cutoff: **2026-12-03 22:00 UTC** (verified text: [`evidence/official_source_check_2026-10-29.json`](evidence/official_source_check_2026-10-29.json)).
 > - **Format (official):** float32, single band, EPSG:32611, 100 m, values 0–1, outside-bounds **null or NaN**. Several historical files use zeros outside; flagged as IR-29-04.
 > - **Run card (this session):** [`evidence/session_2026-10-29_gate-recheck_run_card.json`](evidence/session_2026-10-29_gate-recheck_run_card.json) — negative, 0 experiments, 0 candidates, 0 slots (addendum; does not change the gate). Parallel session card: [`evidence/session_2026-10-29_run_card.json`](evidence/session_2026-10-29_run_card.json).
@@ -77,8 +77,9 @@ Sources: [competition](https://www.drivendata.org/competitions/306/competition-d
 > run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
 > reproducible script: `scripts/check_witness_definition.py`.
 >
-> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
-> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved observations
+> (rank 1 = 0.4544 on 2026-10-28 and 2026-10-29). The parallel session's sandbox could not reach `drivendata.org` (HTTP 000).
+> This session's `fetch_page` did reach it on 2026-10-29: rank 1 0.4544, rank 26 0.3328 ([capture](evidence/leaderboard_observation_2026-10-29.json)).
 
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
