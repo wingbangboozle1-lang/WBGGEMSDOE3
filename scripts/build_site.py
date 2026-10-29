@@ -31,6 +31,7 @@ LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
+UNIQUE_SUBMISSION = ROOT / "evidence/unique_submission_run_card.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -162,11 +163,38 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div>'''
 
 
-def executive_page(focus: dict, card: dict) -> str:
+def executive_page(focus: dict, card: dict, unique: dict | None) -> str:
     why = card["gemsdoe32_explanation"]
+    tif_section = ""
+    if unique and unique.get("format_validation", {}).get("format_ok"):
+        v = unique["format_validation"]
+        name = unique["submission_name"]
+        fname = unique["filename"]
+        note = unique["note"]
+        sha = unique["sha256"]
+        dots = unique["dots"]
+        tif_section = f'''
+<section><div class="section-head"><div class="eyebrow">New unique TIF submission (generated 2026-10-29)</div><h2>WBG-GEMS-3 · off-network step-over / damage-zone conduits</h2></div>
+<div class="decision"><span class="tag" style="background:#d97706;color:#fff;">RESEARCH-ONLY · NOT CLEARED FOR SUBMISSION</span>
+<h3>Download</h3>
+<p><strong>File:</strong> <code>{fname}</code></p>
+<p><strong>Direct download:</strong> <a class="btn" href="downloads/wbg-gems-offnet-conduit-latest.tif">Download latest unique TIF →</a></p>
+<p><strong>SHA-256:</strong> {sha}<br>
+<strong>Format:</strong> single-band float32 GeoTIFF, EPSG:32611, 100 m, 3730×3292, values in [0,1], no NaN/Inf.<br>
+<strong>Dots:</strong> {dots:,} off-network step-over / damage-zone locations (100 m–1.5 km off mapped catalogue traces).<br>
+<strong>Submission note (≤140 chars):</strong> {esc(note)}</p>
+<p><strong>Submission status:</strong> Download for research only. <strong>NOT cleared</strong> for competition submission: no HOLDOUT-DTI (no label access in this sandbox), no organizer receipt, no uniqueness pass against the full portal registry, no selector approval.</p>
+<p><a class="btn secondary" href="data/unique_submission_run_card.json">Machine-readable run card ↓</a></p>
+</div>
+<div class="card"><h3>Geological hypothesis (H_OFFNET_CONDUIT)</h3>
+<p>Geothermal upflow localises at off-catalogue dilational step-overs and fault damage zones between en-echelon mapped segments — NOT on the USGS/INGENIOUS catalogue traces. Every GEMSDOE24/25/27/28/30/31/32/33/36 high-scorer places dots ON or within 1–2 px of the catalogue fault network (≥97.6% 3-px overlap within the nine-site set). This submission places soft-probability dots strictly OFF-network in step-over corridors, targeting blind faults missing from the catalogue.</p>
+<p><strong>Named non-fault mimic:</strong> lithologic/weathering contacts, basin-floor sedimentary contacts, relict drainages aligned with corridor orientation.<br>
+<strong>Differs from repo:</strong> all existing GEMSDOE high-scorers dot on/near the catalogue network; this submission dots strictly off-network.</p>
+</div></section>
+'''
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
-<h1>Nine sites. Honest status. No cleared file.</h1>
-<p class="lede">This is a research comparison, not a slot selector. No organizer receipt or reliable leaderboard projection supports picking one historical TIFF.</p>{decision_panel()}</div></section>
+<h1>Nine sites reviewed · one unique TIF generated · not cleared for submission</h1>
+<p class="lede">Owner-reported scores are historical claims without organizer receipts. The generated TIFF below is format-valid and unique, but has no holdout score and no organizer confirmation — download for research only.</p>{decision_panel()}{tif_section}</div></section>
 <div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
 <p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
@@ -346,7 +374,8 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json",
+                   UNIQUE_SUBMISSION):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -403,9 +432,13 @@ def render() -> None:
     gate = build_gate(card)
     copy_site_data(card, prereg, focus, gate)
 
+    unique = None
+    if UNIQUE_SUBMISSION.is_file():
+        unique = json.loads(UNIQUE_SUBMISSION.read_text(encoding="utf-8"))
+
     pages = {
         "index.html": ("Overview", index_page(feed, snapshot, card)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card)),
+        "executive-summary.html": ("Executive summary", executive_page(focus, card, unique)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
