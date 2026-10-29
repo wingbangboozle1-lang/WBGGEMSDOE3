@@ -29,6 +29,11 @@ PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
+# 2026-10-29 addenda: re-verification captures. The release gate stays bound to the 2026-10-28 card.
+LEADERBOARD_LATEST = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
+OFFICIAL_SOURCES_LATEST = ROOT / "evidence/official_source_check_2026-10-29.json"
+SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_run_card.json"
+WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 
@@ -97,8 +102,11 @@ def decision_panel() -> str:
 A literal registered dense-witness stop fires before feature construction or dot placement.
 Historical rasters in the archive are for research only; a local format pass, owner-reported score,
 model estimate, or content-aware exception does not clear a file.</p>
+<p><strong>Not OK to download or submit.</strong> No TIFF was generated on 2026-10-29. The dense witness is positive in all 5,167,373 in-bounds cells, so the literal 70% rule blocks every candidate.</p>
+<p><strong>Decisions needed from you:</strong> <strong>Q1</strong> what counts as a dot (literal positive, top-N, or a fixed threshold set in advance); <strong>Q2</strong> whether the binary 13GEMSDOE lattice counts as a registry raster. Options: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
+<a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
+<a class="btn secondary" href="data/session_2026-10-29_run_card.json">2026-10-29 addendum card</a></p></div>'''
 
 
 def leaderboard_panel(feed: dict, snapshot: dict) -> str:
@@ -111,7 +119,7 @@ def leaderboard_panel(feed: dict, snapshot: dict) -> str:
 <div class="metric">{esc(ranks['rank_1'])}</div>
 <div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
 <p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
-The requested 0.3195 appears at rank 26 in this dated capture, not at the top. The official public feed's
+The brief's 0.3195 was visible at rank 26 on 2026-10-28; it is not the public high. Latest capture (2026-10-29): rank 1 <strong>0.4544</strong>, rank 2 0.3916, rank 25 0.3330, rank 26 0.3328 · <a href="data/leaderboard_observation_2026-10-29.json">2026-10-29 capture ↓</a>. The official public feed's
 latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
@@ -346,7 +354,8 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, LEADERBOARD_LATEST, OFFICIAL_SOURCES_LATEST,
+                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
