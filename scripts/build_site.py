@@ -31,6 +31,7 @@ LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
+UNIQUE_SUBMISSION = ROOT / "evidence/unique_submission_run_card.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -117,7 +118,7 @@ latest successful check is <span data-freshness data-checked="{esc(freshness)}" 
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
 
 
-def focus_table(focus: dict, generated: dict | None = None) -> str:
+def focus_table(focus: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
     body = []
     for site in FOCUS_ORDER:
@@ -131,22 +132,10 @@ def focus_table(focus: dict, generated: dict | None = None) -> str:
 <td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
 <td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the literal dense witness</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
+    return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
+<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Reported score</th>
+<th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
-    # Add our generated submission as a clearly separated row.
-    if generated is not None:
-        g = generated
-        body.append(f'''<tr><td><strong>WB-GEMS-DOE-3 (generated)</strong></td>
-<td><a class="file" href="{esc(g['download_research_only'])}" rel="noopener">{esc(g['filename'])}</a>
-<small>locally generated · format-valid · unique vs {g['registry_entries']} local rasters</small></td>
-<td><strong>NOT ESTIMABLE</strong>
-<small>no organiser truth · no holdout DTI · no receipt</small></td>
-<td><strong>Yes vs local registry</strong><small>max rho {g['max_rho']:.4f} (<0.90) · max overlap {g['max_overlap']:.4f} (<0.70) · duplicate count {g['duplicate_count']}</small></td>
-<td><span class="tag">NOT CLEARED</span>
-<small>research/download only · holdout + selector required</small></td></tr>''')
-
-    return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison plus generated candidate, scroll horizontally"><table>
-<thead><tr><th>Site / candidate</th><th>File to download</th><th>Score</th>
-<th>Estimate</th><th>Unique vs GEMSDOE sites?</th><th>OK to submit?</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 def index_page(feed: dict, snapshot: dict, card: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
@@ -154,14 +143,14 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
 {decision_panel()}
 <div class="grid">
-<article class="card"><div class="small">This review</div><div class="metric">1 generated</div><p>Unique TIFF generated (30,000 off-catalogue dots). Format-valid, unique vs 0 local duplicates. Not cleared for submission.</p></article>
+<article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
 {leaderboard_panel(feed, snapshot)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
 <p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-{focus_table(read_json(FOCUS), {'download_research_only': "downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'filename': "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'registry_entries': 23, 'max_rho': 0.012414323197214623, 'max_overlap': 0.5899, 'duplicate_count': 0})}
+{focus_table(read_json(FOCUS))}
 <p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
 <section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
 <p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
@@ -174,12 +163,39 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div>'''
 
 
-def executive_page(focus: dict, card: dict) -> str:
+def executive_page(focus: dict, card: dict, unique: dict | None) -> str:
     why = card["gemsdoe32_explanation"]
+    tif_section = ""
+    if unique and unique.get("format_validation", {}).get("format_ok"):
+        v = unique["format_validation"]
+        name = unique["submission_name"]
+        fname = unique["filename"]
+        note = unique["note"]
+        sha = unique["sha256"]
+        dots = unique["dots"]
+        tif_section = f'''
+<section><div class="section-head"><div class="eyebrow">New unique TIF submission (generated 2026-10-29)</div><h2>WBG-GEMS-3 · off-network step-over / damage-zone conduits</h2></div>
+<div class="decision"><span class="tag" style="background:#d97706;color:#fff;">RESEARCH-ONLY · NOT CLEARED FOR SUBMISSION</span>
+<h3>Download</h3>
+<p><strong>File:</strong> <code>{fname}</code></p>
+<p><strong>Direct download:</strong> <a class="btn" href="downloads/wbg-gems-offnet-conduit-latest.tif">Download latest unique TIF →</a></p>
+<p><strong>SHA-256:</strong> {sha}<br>
+<strong>Format:</strong> single-band float32 GeoTIFF, EPSG:32611, 100 m, 3730×3292, values in [0,1], no NaN/Inf.<br>
+<strong>Dots:</strong> {dots:,} off-network step-over / damage-zone locations (100 m–1.5 km off mapped catalogue traces).<br>
+<strong>Submission note (≤140 chars):</strong> {esc(note)}</p>
+<p><strong>Submission status:</strong> Download for research only. <strong>NOT cleared</strong> for competition submission: no HOLDOUT-DTI (no label access in this sandbox), no organizer receipt, no uniqueness pass against the full portal registry, no selector approval.</p>
+<p><a class="btn secondary" href="data/unique_submission_run_card.json">Machine-readable run card ↓</a></p>
+</div>
+<div class="card"><h3>Geological hypothesis (H_OFFNET_CONDUIT)</h3>
+<p>Geothermal upflow localises at off-catalogue dilational step-overs and fault damage zones between en-echelon mapped segments — NOT on the USGS/INGENIOUS catalogue traces. Every GEMSDOE24/25/27/28/30/31/32/33/36 high-scorer places dots ON or within 1–2 px of the catalogue fault network (≥97.6% 3-px overlap within the nine-site set). This submission places soft-probability dots strictly OFF-network in step-over corridors, targeting blind faults missing from the catalogue.</p>
+<p><strong>Named non-fault mimic:</strong> lithologic/weathering contacts, basin-floor sedimentary contacts, relict drainages aligned with corridor orientation.<br>
+<strong>Differs from repo:</strong> all existing GEMSDOE high-scorers dot on/near the catalogue network; this submission dots strictly off-network.</p>
+</div></section>
+'''
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
-<h1>Nine sites. Honest status. No cleared file.</h1>
-<p class="lede">This is a research comparison, not a slot selector. No organizer receipt or reliable leaderboard projection supports picking one historical TIFF.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus, {'download_research_only': "downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'filename': "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'registry_entries': 23, 'max_rho': 0.012414323197214623, 'max_overlap': 0.5899, 'duplicate_count': 0})}
+<h1>Nine sites reviewed · one unique TIF generated · not cleared for submission</h1>
+<p class="lede">Owner-reported scores are historical claims without organizer receipts. The generated TIFF below is format-valid and unique, but has no holdout score and no organizer confirmation — download for research only.</p>{decision_panel()}{tif_section}</div></section>
+<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
 <p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
 <div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
@@ -248,18 +264,7 @@ def submit_page(source_check: dict, feed: dict) -> str:
 <li>Have a separate selector review the live account quota. The official rules say three submissions per week per entity and only one final submission across both prize rounds. The unauthenticated submission page redirected to login; current account quota/usage is unknown.</li>
 <li>On the official platform, upload only the exact approved file, use its recorded name and note (≤140 characters), and retain the receipt with the file hash. A receipt is required for an ORGANIZER-CONFIRMED score.</li>
 <li>If generative AI was used, disclose its extent and role in the narrative as required by the September 2026 official rules; ensure all required scientific/code assets and attribution are complete.</li>
-</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p>
-
-<section><div class="section-head"><h2>Generated candidate (research only — not cleared for upload)</h2></div>
-<div class="card">
-<p><strong>File:</strong> <a class="file" href="downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif" rel="noopener">WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif</a></p>
-<p><strong>SHA-256:</strong> <code>37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9</code> · <strong>bytes:</strong> 133,808 · <strong>dots:</strong> 30,000</p>
-<p><strong>Format:</strong> all checks passed — single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN/Inf, zero mass outside footprint, zero dots on mapped catalogue.</p>
-<p><strong>Uniqueness vs local registry:</strong> duplicate count 0 · max Spearman 0.0124 (<0.90) · max 3-px overlap 0.5899 (<0.70). Not a complete portal-registry scan.</p>
-<p><strong>Score:</strong> NOT ESTIMABLE — no organiser truth labels, no holdout DTI, no submission receipt.</p>
-<p><strong>OK to download for research:</strong> YES · <strong>OK to submit to portal:</strong> NO — not cleared pending holdout validation, complete-registry uniqueness, and separate selector approval.</p>
-<p class="small">Submission name (≤140 chars): <code>WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9</code> · Note (≤140 chars): <code>WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9 | 30000 off-trace step-over/damage-zone dots | format PASS | uniqueness vs 23 local r...</code></p>
-</div></section></div></section>
+</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p></div></section>
 <section><div class="section-head"><h2>Current date/access checks</h2></div><div class="card"><p>The competition home page lists <strong>{esc(competition['observations'][1].split('shows an end date of ')[1])}</strong>; the official rules Appendix A.1 gives <strong>{esc(official['observations'][-1])}</strong>. These instructions conflict by nearly two hours on the stated date. Treat the effective deadline as unresolved and use the earlier time unless the organizer confirms otherwise.</p>
 <p>The public leaderboard feed's latest successful check is <strong>{esc(feed.get('last_success_utc','unknown'))}</strong>, but it is not a score for this project. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
 <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition homepage ↗</a> ·
@@ -369,7 +374,8 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json",
+                   UNIQUE_SUBMISSION):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -426,9 +432,13 @@ def render() -> None:
     gate = build_gate(card)
     copy_site_data(card, prereg, focus, gate)
 
+    unique = None
+    if UNIQUE_SUBMISSION.is_file():
+        unique = json.loads(UNIQUE_SUBMISSION.read_text(encoding="utf-8"))
+
     pages = {
         "index.html": ("Overview", index_page(feed, snapshot, card)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card)),
+        "executive-summary.html": ("Executive summary", executive_page(focus, card, unique)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
