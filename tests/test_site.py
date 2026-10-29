@@ -133,8 +133,15 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
     assert "OWNER-REPORTED" in page
     assert "0.2778" in page
     assert "not a verified causal account" in page.lower()
-    assert "not estimable" in page.lower()
-    assert "DO NOT SUBMIT" in page
+    assert "LEDGER PROJECTION 0.3599" in page
+    assert "ledger estimate (not a score)" in page.lower()
+    assert "not holdout-dti or organizer-confirmed" in page.lower()
+    assert "do not submit" in page.lower()
+    assert "not scores" in page.lower()
+    ledger = _json("evidence/nine_site_table.json")
+    assert "estimate" in ledger["evidence_class"].lower()
+    assert len(ledger["rows"]) == 9
+    assert all(0 <= row["ledger_estimate"] <= 1 for row in ledger["rows"])
 
 
 def test_latest_upstream_identity_feed_is_published_and_never_implies_approval():
@@ -208,7 +215,8 @@ def test_active_site_builder_is_deterministic():
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/latest-upstream-check.json", "data/leaderboard.json",
+             "data/latest-upstream-check.json", "data/nine_site_table.json",
+             "data/leaderboard.json",
              "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}

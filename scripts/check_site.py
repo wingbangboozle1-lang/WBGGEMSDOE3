@@ -78,6 +78,8 @@ def main() -> int:
         witness = json.loads((ROOT / expected_sources["witness_recheck"]).read_text(encoding="utf-8"))
         upstream = json.loads((ROOT / "evidence/latest-upstream-check.json").read_text(encoding="utf-8"))
         published_upstream = json.loads((DOCS / "data/latest-upstream-check.json").read_text(encoding="utf-8"))
+        ledger = json.loads((ROOT / "evidence/nine_site_table.json").read_text(encoding="utf-8"))
+        published_ledger = json.loads((DOCS / "data/nine_site_table.json").read_text(encoding="utf-8"))
 
         if upstream.get("approved_for_submission") is not False:
             errors.append("upstream identity monitor must explicitly deny submission authorization")
@@ -88,6 +90,12 @@ def main() -> int:
             errors.append("upstream identity monitor must cover each of the nine focus sites exactly once")
         if published_upstream != upstream:
             errors.append("published upstream identity check is stale or differs from its source evidence")
+        ledger_rows = ledger.get("rows", [])
+        if (len(ledger_rows) != 9 or "ESTIMATE" not in ledger.get("evidence_class", "").upper()
+                or published_ledger != ledger
+                or {row.get("site") for row in ledger_rows} !=
+                {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}):
+            errors.append("nine-site estimate source is incomplete, stale, or not explicitly an estimate")
         if gate.get("schema") != "gems-release-gate-v1":
             errors.append("release gate is not the fail-closed v1 schema")
         if gate.get("decision") != "DO-NOT-SUBMIT" or gate.get("okay_to_submit") is not False:

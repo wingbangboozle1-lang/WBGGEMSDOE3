@@ -32,6 +32,7 @@ LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
+NINE_SITE_TABLE = ROOT / "evidence/nine_site_table.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -134,26 +135,31 @@ def upstream_panel(upstream: dict) -> str:
 <a href="data/latest-upstream-check.json">Open the dated nine-site source check ↓</a></article>'''
 
 
-def focus_table(focus: dict) -> str:
+def focus_table(focus: dict, ledger: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
+    projections = {row["site"]: row for row in ledger["rows"]}
     body = []
     for site in FOCUS_ORDER:
         row = rows[site]
+        projection = projections[site]
         overlap = 100.0 * float(row["max_focus_overlap"])
+        if abs(float(projection["owner_reported"]) - float(row["claimed_by_owner_not_receipt"])) > 1e-9:
+            raise ValueError(f"focus owner-claim mismatch in ledger: {site}")
         body.append(f'''<tr><td><strong>{esc(site)}</strong></td>
 <td><a class="file" href="{esc(row['download_research_only'])}" rel="noopener">{esc(row['filename'])}</a>
 <small>pinned historical file · external research mirror only</small></td>
 <td><strong>OWNER-REPORTED {esc(row['claimed_by_owner_not_receipt'])}</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the literal dense witness</small></td>
+<td><strong>LEDGER PROJECTION {float(projection['ledger_estimate']):.4f}</strong>
+<small>model output only · not HOLDOUT-DTI or organizer-confirmed</small></td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the active release gate</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
     return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
-<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Reported score</th>
-<th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
+<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Owner-reported score</th>
+<th>Ledger estimate (NOT a score)</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 
-def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict, ledger: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
@@ -167,8 +173,9 @@ def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
 <p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-{focus_table(read_json(FOCUS))}
-<p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
+{focus_table(read_json(FOCUS), ledger)}
+<p class="small">Ledger estimates are fitted projections from owner-reported site scores (instrument: {esc(ledger['instrument'])}); they are not scores, have no confidence intervals, and may be overconfident because only nine highly overlapping site masks are represented. Do not use them as evidence that a candidate beats a baseline.</p>
+<p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary.</p></section>
 <section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
 <p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
 <a href="evidence.html">Read the evidence and caveats →</a></article>
@@ -180,13 +187,14 @@ def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
 <a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div>'''
 
 
-def executive_page(focus: dict, card: dict) -> str:
+def executive_page(focus: dict, card: dict, ledger: dict) -> str:
     why = card["gemsdoe32_explanation"]
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
 <h1>Nine sites. Honest status. No cleared file.</h1>
-<p class="lede">This is a research comparison, not a slot selector. No organizer receipt or reliable leaderboard projection supports picking one historical TIFF.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
-<p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
+<p class="lede">This is a research comparison, not a slot selector. No organizer receipt or holdout result supports picking one historical TIFF.</p>{decision_panel()}</div></section>
+<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus, ledger)}
+<p class="small">Ledger estimates are model projections from owner-reported scores (instrument: {esc(ledger['instrument'])}). They are not scores, have no confidence intervals, and may be overconfident because only nine highly overlapping site masks are represented. They are not evidence that a candidate beats a baseline. Uniqueness is a byte/support measurement, not a score.</p>
+<p><a href="data/nine_site_table.json">Open projection inputs and per-file caveats ↓</a></p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
 <div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
 <article class="card"><h3>Observed construction</h3><p>The saved-support analysis reports GEMSDOE32 B2 as an exact subset of the GEMSDOE28 H27-4 base, removing 2,545 cells near a mirrored catalogue. This is a raster measurement, not a score measurement.</p></article>
@@ -364,7 +372,7 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, UPSTREAM_CHECK,
+                   LEADERBOARD_SNAPSHOT, FOCUS, UPSTREAM_CHECK, NINE_SITE_TABLE,
                    ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
@@ -401,6 +409,16 @@ def render() -> None:
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
     upstream = read_json(UPSTREAM_CHECK)
+    ledger = read_json(NINE_SITE_TABLE)
+
+    ledger_rows = ledger.get("rows", [])
+    if (len(ledger_rows) != len(FOCUS_ORDER)
+            or {row.get("site") for row in ledger_rows} != set(FOCUS_ORDER)
+            or not any(term in ledger.get("evidence_class", "").upper()
+                       for term in ("PROJECTION", "ESTIMATE"))
+            or any(not isinstance(row.get("ledger_estimate"), (int, float))
+                   or not 0 <= row["ledger_estimate"] <= 1 for row in ledger_rows)):
+        raise ValueError("nine-site ledger projections are incomplete, malformed, or not clearly classified")
 
     upstream_rows = upstream.get("repositories", [])
     if (upstream.get("approved_for_submission") is not False
@@ -432,8 +450,8 @@ def render() -> None:
     copy_site_data(card, prereg, focus, gate)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card, upstream)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card)),
+        "index.html": ("Overview", index_page(feed, snapshot, card, upstream, ledger)),
+        "executive-summary.html": ("Executive summary", executive_page(focus, card, ledger)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
