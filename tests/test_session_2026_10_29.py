@@ -12,7 +12,7 @@ def _json(rel: str) -> dict:
 
 
 def test_session_card_is_negative_and_does_not_change_gate():
-    card = _json("evidence/session_2026-10-29_run_card.json")
+    card = _json("evidence/session_2026-10-29_gate-recheck_run_card.json")
     assert card["verdict"] == "negative"
     assert card["okay_to_submit"] is False
     assert card["okay_to_download_for_submission"] is False

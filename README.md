@@ -7,8 +7,76 @@
 > - **Leaderboard correction:** the public high is **0.4544** (rank 1, dated 2026-10-29). The brief's "0.3195 is the highest" and "0.4413" are not on the live page. Rank 26 is now **0.3328**, not 0.3195. Capture: [`evidence/leaderboard_observation_2026-10-29.json`](evidence/leaderboard_observation_2026-10-29.json).
 > - **Deadline:** homepage 2026-12-03 23:59 UTC; rules Appendix A.1 say 5:00 p.m. ET on the deadline date. Conservative cutoff: **2026-12-03 22:00 UTC** (verified text: [`evidence/official_source_check_2026-10-29.json`](evidence/official_source_check_2026-10-29.json)).
 > - **Format (official):** float32, single band, EPSG:32611, 100 m, values 0–1, outside-bounds **null or NaN**. Several historical files use zeros outside; flagged as IR-29-04.
-> - **Run card (this session):** [`evidence/session_2026-10-29_run_card.json`](evidence/session_2026-10-29_run_card.json) — negative, 0 experiments, 0 candidates, 0 slots.
+> - **Run card (this session):** [`evidence/session_2026-10-29_gate-recheck_run_card.json`](evidence/session_2026-10-29_gate-recheck_run_card.json) — negative, 0 experiments, 0 candidates, 0 slots (addendum; does not change the gate). Parallel session card: [`evidence/session_2026-10-29_run_card.json`](evidence/session_2026-10-29_run_card.json).
 > - **Estimated scores:** none is given. The ledger projections conflict with the matched holdout and are not used; the focus table shows "Not estimable" with reasons.
+
+## Start here — 2026-10-29 executive summary
+
+**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
+(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
+  2026-10-29, and no holdout score or slot selection exists.
+- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
+  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
+- **Why no new file yet:** the competition labels cannot be reached from this sandbox
+  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
+  portal's `Predicted values must be in range [0, 1]` error is unexplained.
+- **Reproduce the summary and verification record:**
+  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
+  writes `evidence/verification_2026_10_29.json` and the summary above.
+
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
+
+1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
+   best submission file, an estimated score, and a uniqueness verdict.
+2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
+   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
+3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
+   non-fault mimic and a holdout test on the spatially blocked set.
+4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
+   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
+5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
+6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+
+### Irregularities flagged for review (2026-10-29)
+
+- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
+  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
+  resolution match. (Extends IR-28-12.)
+- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
+  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
+- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
+  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
+  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
+- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
+  reproduction; the archived writer's cause is unproven.
+- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+
+Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
+[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
+[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+
+---
+
+> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
+>
+> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
+> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
+> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
+> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
+> The code comment already calls this surface "not dots", so the gate and the code disagree.
+> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
+> exceed 70% for the invdesign candidate.
+>
+> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
+> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
+> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
+> reproducible script: `scripts/check_witness_definition.py`.
+>
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
+> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
 
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
@@ -38,7 +106,7 @@
 
 ## Start every session here
 
-Read this README (including the verbatim prompt below), the [2026-10-29 review](knowledge/review-2026-10-29-session.md) and [its run card](evidence/session_2026-10-29_run_card.json), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
+Read this README (including the verbatim prompt below), the [2026-10-29 review](knowledge/review-2026-10-29-session.md) and [its run card](evidence/session_2026-10-29_gate-recheck_run_card.json), [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md),
 [`AGENTS.md`](AGENTS.md), the latest
 [review](knowledge/review-2026-10-28-session.md) and
 [negative run card](evidence/session_7393d521_run_card.json), the

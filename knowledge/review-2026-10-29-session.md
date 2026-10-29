@@ -22,6 +22,8 @@ The repo reports that a 13GEMSDOE binary lattice raster is within 3 px of 99.86%
 
 Any answer should be recorded in `knowledge/protocol.md` before a candidate is generated. The decision is yours, so this review does not assume an answer.
 
+**Cross-check with the parallel 2026-10-29 memo** ([`knowledge/session-review-2026-10-29-witness.md`](session-review-2026-10-29-witness.md), branch `arena/b0600e4e`, merged to `main`). It reaches the same stop and gives three options: **A** keep the literal rule (= Q1a + Q2a); **B** fix only the witness definition (= Q1b/c), which leaves the lattice blocker in place; **C** exclude dense and lattice comparators (= Q2b). Its recommendation is B followed by a fresh uniqueness audit with the lattice reported separately. Its measurements agree with mine (same sha256 `ab0a0a62…`, 5,167,373 positive cells, top-37,654 threshold 0.8438). It also reports that one invdesign candidate overlaps the 13GEMSDOE r13 lattice at 0.9944, GEMSDOE23 h30 at 0.8166, and GEMSDOE46 r11f at 0.7178, so fixing Q1 alone clears nothing. I have not re-measured those three overlaps.
+
 ## Answer to "why did GEMSDOE32 score 0.2778, and can we beat it?"
 
 Full analysis: [`content/why-0.2778.md`](../content/why-0.2778.md). Summary, all owner-reported and unverified:
@@ -70,6 +72,7 @@ So: no estimate is given as a score. The table in the executive summary lists ea
 | IR-29-10 | Rules A.5(1) requires an original work with no undisclosed third-party content. Rule 3.2 requires disclosing any generative-AI use in the narrative. Copying another team's file would be third-party content, so the "do not copy" instruction matches the rules. | official rules PDF | Noted for the submission narrative. |
 | IR-29-11 | Public score is not the final score. Rule 3.2/3.6 uses private and re-labelled sets, and one final submission must be chosen without knowing private results. | official rules PDF | Noted. |
 | IR-29-12 | The EarthScope magnetotelluric URL returned "Page not found". No official MT source was verified. | official_source_check_2026-10-29.json | H8-MT blocked. |
+| IR-29-13 | `scripts/session2_registry.py` line 82 says continuous fields such as the 17GEMSDOE witness "are not dots" (comparator_class dense), but the same registry counts value > 0 as dots, so the witness becomes a universal blocker. Code and gate disagree. (Found by the parallel memo, confirmed in its file.) | scripts/session2_registry.py:69 (rule) and :82 (comment); evidence/witness_definition_check_2026-10-29.json | Owner decision (Q1). |
 
 ## Candidate hypotheses (3, untested, ranked)
 
@@ -108,7 +111,7 @@ These are not a replacement for the five preregistered H1–H5 (`knowledge/prere
 
 ## Pointers
 
-- Run card: [`evidence/session_2026-10-29_run_card.json`](../evidence/session_2026-10-29_run_card.json)
+- Run card: [`evidence/session_2026-10-29_gate-recheck_run_card.json`](../evidence/session_2026-10-29_gate-recheck_run_card.json) (the parallel session's card is `evidence/session_2026-10-29_run_card.json`)
 - Independent witness measurement: [`evidence/witness_independent_stats_2026-10-29.json`](../evidence/witness_independent_stats_2026-10-29.json) · [`scripts/verify_witness_independent.py`](../scripts/verify_witness_independent.py)
 - Recheck (pins verified): [`evidence/registry_witness_recheck_2026-10-29.json`](../evidence/registry_witness_recheck_2026-10-29.json)
 - Official sources: [`evidence/official_source_check_2026-10-29.json`](../evidence/official_source_check_2026-10-29.json)

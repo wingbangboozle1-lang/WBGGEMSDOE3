@@ -32,7 +32,7 @@ LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
 # 2026-10-29 addenda: re-verification captures. The release gate stays bound to the 2026-10-28 card.
 LEADERBOARD_LATEST = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
 OFFICIAL_SOURCES_LATEST = ROOT / "evidence/official_source_check_2026-10-29.json"
-SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_run_card.json"
+SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json"
 WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
@@ -106,7 +106,7 @@ model estimate, or content-aware exception does not clear a file.</p>
 <p><strong>Decisions needed from you:</strong> <strong>Q1</strong> what counts as a dot (literal positive, top-N, or a fixed threshold set in advance); <strong>Q2</strong> whether the binary 13GEMSDOE lattice counts as a registry raster. Options: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
 <a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
-<a class="btn secondary" href="data/session_2026-10-29_run_card.json">2026-10-29 addendum card</a></p></div>'''
+<a class="btn secondary" href="data/session_2026-10-29_gate-recheck_run_card.json">2026-10-29 addendum card</a></p></div>'''
 
 
 def leaderboard_panel(feed: dict, snapshot: dict) -> str:
