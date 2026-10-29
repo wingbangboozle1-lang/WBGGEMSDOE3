@@ -12,7 +12,7 @@ from urllib.parse import unquote, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
-              "method.html", "evidence.html", "session-review.html", "submission.html")
+              "method.html", "evidence.html", "session-review.html", "repo-review.html", "submission.html")
 CURRENT_CARD = "evidence/session_7393d521_run_card.json"
 
 
@@ -137,33 +137,20 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
     assert "DO NOT SUBMIT" in page
 
 
-def test_visible_peer_freshness_feed_distinguishes_drift_from_score_updates():
-    freshness = _json("docs/freshness.json")
-    published = _json("docs/data/source-freshness.json")
-    assert published == freshness
-    page = (DOCS / "executive-summary.html").read_text()
-    review_page = (DOCS / "session-review.html").read_text()
-    assert "Peer-source freshness" in page
-    assert "does not tell us that a reported score or TIFF changed" in page
-    assert "Latest repository review · 2026-10-29" in review_page
-    assert "2026-10-28 research / release review (historical)" in review_page
-    evidence_page = (DOCS / "evidence.html").read_text()
-    assert "dot definition under review" in evidence_page.lower()
-    assert "not a candidate-specific duplicate measurement" in evidence_page.lower()
-    for n in (24, 25, 27, 28, 30, 31, 32, 33, 36):
-        assert f"GEMSDOE{n}" in page
-
-
-def test_current_repository_review_card_is_negative_and_bound_to_source_feed():
-    card = _json("evidence/repo_review_2026-10-29.json")
-    assert card["decision"] == "DO-NOT-SUBMIT"
-    assert card["okay_to_download_for_submission"] is False
-    assert card["verdict"] == "negative"
-    assert card["holdout_dti"]["label"] == "NOT-RUN"
-    assert card["raster"]["generated"] is False and card["raster"]["sha256"] is None
-    assert card["experiment_and_selector_accounting"]["submission_slots_used"] == 0
-    assert card["submission"]["note_characters"] == len(card["submission"]["note"]) <= 140
-    assert card["source_freshness"]["focus_repositories_changed_since_pinned_audit"] == 9
+def test_latest_upstream_identity_feed_is_published_and_never_implies_approval():
+    source = _json("evidence/latest-upstream-check.json")
+    published = _json("docs/data/latest-upstream-check.json")
+    assert published == source
+    assert source["approved_for_submission"] is False
+    assert len(source["repositories"]) == 9
+    assert {row["site"] for row in source["repositories"]} == {
+        "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+        "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"
+    }
+    page = (DOCS / "index.html").read_text()
+    assert "Focus-site source freshness" in page
+    assert "does not prove a score, TIFF, receipt" in page
+    assert "data/latest-upstream-check.json" in page
 
 
 def test_current_leaderboard_and_official_source_captures_are_labeled():
@@ -176,6 +163,24 @@ def test_current_leaderboard_and_official_source_captures_are_labeled():
     ids = {row["id"] for row in source["sources"]}
     assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
     assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
+
+
+def test_repo_review_surface_uses_latest_capture_and_caveats_reported_score():
+    obs = _json("evidence/leaderboard_observation_2026-10-29.json")
+    source = _json("evidence/official_source_check_2026-10-29.json")
+    assert obs["visible_public_scores"]["rank_1"] == "0.4544"
+    assert obs["visible_public_scores"]["rank_25"] == "0.3330"
+    assert obs["visible_public_scores"]["rank_26"] == "0.3328"
+    assert obs["observation_time_precision"].startswith("date only")
+    assert source["checked_date_utc"] == "2026-10-29"
+    page = (DOCS / "repo-review.html").read_text()
+    assert "0.2778" in page and "not a causal finding" in page.lower()
+    assert "0.3330" in page and "0.3328" in page
+    assert "not an organizer receipt" in page.lower()
+    assert "Download the full repository review" in page
+    report = (ROOT / "knowledge/repo-review-2026-10-29.md").read_text()
+    assert "Not estimable" in report
+    assert "DO NOT SUBMIT" in report
 
 
 def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
@@ -221,9 +226,9 @@ def test_active_site_builder_is_deterministic():
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/source-freshness.json", "data/repo-review-2026-10-29.md",
-             "data/repo_review_2026-10-29.json", "data/witness_definition_check_2026-10-29.json",
-             "data/session-review-2026-10-29-witness.md", "data/leaderboard.json",
+             "data/official_source_check_2026-10-29.json", "data/leaderboard_observation_2026-10-29.json",
+             "data/repo-review-2026-10-29.md", "data/repo_review_2026-10-29.json",
+             "data/latest-upstream-check.json", "data/leaderboard.json",
              "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
@@ -236,7 +241,6 @@ def test_pages_workflow_still_runs_the_active_builder_and_checker():
     workflow = (ROOT / ".github/workflows/pages.yml").read_text()
     checks = (ROOT / ".github/workflows/checks.yml").read_text()
     assert "python scripts/refresh_feed.py" in workflow
-    assert "python scripts/check_freshness.py" in workflow
     assert "python scripts/build_site.py && python scripts/check_site.py" in workflow
     assert "python scripts/build_site.py" in checks
     assert "python scripts/check_site.py" in checks

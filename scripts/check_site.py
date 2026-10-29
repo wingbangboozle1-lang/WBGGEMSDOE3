@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html",
               "research.html", "method.html", "evidence.html", "session-review.html",
-              "submission.html")
+              "repo-review.html", "submission.html")
 FORBIDDEN_POSITIVE = (
     "ok to download and submit",
     "one file cleared for upload",
@@ -76,7 +76,18 @@ def main() -> int:
         sources = json.loads((ROOT / expected_sources["official_sources"]).read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / expected_sources["leaderboard_snapshot"]).read_text(encoding="utf-8"))
         witness = json.loads((ROOT / expected_sources["witness_recheck"]).read_text(encoding="utf-8"))
+        upstream = json.loads((ROOT / "evidence/latest-upstream-check.json").read_text(encoding="utf-8"))
+        published_upstream = json.loads((DOCS / "data/latest-upstream-check.json").read_text(encoding="utf-8"))
 
+        if upstream.get("approved_for_submission") is not False:
+            errors.append("upstream identity monitor must explicitly deny submission authorization")
+        upstream_rows = upstream.get("repositories", [])
+        if (len(upstream_rows) != 9 or
+                {row.get("site") for row in upstream_rows} !=
+                {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}):
+            errors.append("upstream identity monitor must cover each of the nine focus sites exactly once")
+        if published_upstream != upstream:
+            errors.append("published upstream identity check is stale or differs from its source evidence")
         if gate.get("schema") != "gems-release-gate-v1":
             errors.append("release gate is not the fail-closed v1 schema")
         if gate.get("decision") != "DO-NOT-SUBMIT" or gate.get("okay_to_submit") is not False:
@@ -151,7 +162,20 @@ def main() -> int:
         if snapshot.get("visible_public_scores", {}).get("rank_1") != "0.4544":
             errors.append("public leaderboard snapshot leader value changed")
         if snapshot.get("visible_public_scores", {}).get("rank_25") != "0.3217" or snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3195":
-            errors.append("public leaderboard ranks 25/26 do not match the dated capture")
+            errors.append("public leaderboard ranks 25/26 do not match the dated 2026-10-28 capture")
+        latest_snapshot = json.loads((ROOT / "evidence/leaderboard_observation_2026-10-29.json").read_text(encoding="utf-8"))
+        latest_sources = json.loads((ROOT / "evidence/official_source_check_2026-10-29.json").read_text(encoding="utf-8"))
+        if (latest_snapshot.get("observed_date_utc") != "2026-10-29"
+                or latest_snapshot.get("visible_public_scores", {}).get("rank_25") != "0.3330"
+                or latest_snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3328"):
+            errors.append("latest dated public leaderboard capture is missing or inconsistent")
+        if latest_sources.get("checked_date_utc") != "2026-10-29":
+            errors.append("latest dated official-source audit is missing or inconsistent")
+        current_review = (DOCS / "repo-review.html").read_text(encoding="utf-8")
+        if "not a causal finding" not in current_review.lower() or "0.2778" not in current_review:
+            errors.append("repository review page lacks GEMSDOE32 score caveat")
+        if "0.3330" not in current_review or "0.3328" not in current_review:
+            errors.append("repository review page lacks latest dated public leaderboard rows")
 
         copied_card = json.loads((DOCS / "data/session_7393d521_run_card.json").read_text())
         if copied_card != card:
