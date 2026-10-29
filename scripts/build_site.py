@@ -29,11 +29,17 @@ PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
+# 2026-10-29 addenda: re-verification captures. The release gate stays bound to the 2026-10-28 card.
+LEADERBOARD_LATEST = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
+OFFICIAL_SOURCES_LATEST = ROOT / "evidence/official_source_check_2026-10-29.json"
+SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json"
+WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 VERIFICATION_2026_10_29 = ROOT / "evidence/focus_files_verification_2026-10-29.json"
-OFFICIAL_2026_10_29 = ROOT / "evidence/official_source_check_2026-10-29.json"
+OFFICIAL_2026_10_29 = ROOT / "evidence/official_source_check_2026-10-29_focus.json"
 NINE_SITE_TABLE = ROOT / "docs/data/nine_site_table.json"
+UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -100,8 +106,11 @@ def decision_panel() -> str:
 A literal registered dense-witness stop fires before feature construction or dot placement.
 Historical rasters in the archive are for research only; a local format pass, owner-reported score,
 model estimate, or content-aware exception does not clear a file.</p>
+<p><strong>Not OK to download or submit.</strong> No TIFF was generated on 2026-10-29. The dense witness is positive in all 5,167,373 in-bounds cells, so the literal 70% rule blocks every candidate.</p>
+<p><strong>Decisions needed from you:</strong> <strong>Q1</strong> what counts as a dot (literal positive, top-N, or a fixed threshold set in advance); <strong>Q2</strong> whether the binary 13GEMSDOE lattice counts as a registry raster. Options: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
+<a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
+<a class="btn secondary" href="data/session_2026-10-29_gate-recheck_run_card.json">2026-10-29 addendum card</a></p></div>'''
 
 
 def leaderboard_panel(feed: dict, snapshot: dict) -> str:
@@ -114,10 +123,26 @@ def leaderboard_panel(feed: dict, snapshot: dict) -> str:
 <div class="metric">{esc(ranks['rank_1'])}</div>
 <div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
 <p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
-The requested 0.3195 appears at rank 26 in this dated capture, not at the top. The official public feed's
+The brief's 0.3195 was visible at rank 26 on 2026-10-28; it is not the public high. Latest capture (2026-10-29): rank 1 <strong>0.4544</strong>, rank 2 0.3916, rank 25 0.3330, rank 26 0.3328 · <a href="data/leaderboard_observation_2026-10-29.json">2026-10-29 capture ↓</a>. The official public feed's
 latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
+
+
+def upstream_panel(upstream: dict) -> str:
+    rows = upstream.get("repositories", [])
+    checked = len(rows)
+    fetched = sum(row.get("fetch_status") == "FETCHED" for row in rows)
+    changed = sum(row.get("comparison_to_baseline") == "CHANGED" for row in rows)
+    unknown = checked - fetched
+    checked_at = upstream.get("checked_at", "unknown")
+    status = (
+        f"{fetched}/{checked} repositories checked; {changed} changed"
+        if not unknown else f"{fetched}/{checked} checked; {unknown} unknown/failed"
+    )
+    return f'''<article class="card"><div class="small">Focus-site source freshness · GitHub HEADs only</div>
+<h3>{esc(status)}</h3><p>Checked {esc(checked_at)}. A changed repository HEAD means only that its source commit advanced since the recorded baseline; it does not prove a score, TIFF, receipt, or registry changed. This monitor never authorizes a submission.</p>
+<a href="data/latest-upstream-check.json">Open the dated nine-site source check ↓</a></article>'''
 
 
 def focus_table(focus: dict) -> str:
@@ -125,7 +150,6 @@ def focus_table(focus: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
     verif = read_json(VERIFICATION_2026_10_29)["rasters"]
     uniq = read_json(VERIFICATION_2026_10_29)["uniqueness_vs_focus_set"]
-    projection = {row["site"]: row["ledger_estimate"] for row in read_json(NINE_SITE_TABLE)["rows"]}
     body = []
     for site in FOCUS_ORDER:
         row = rows[site]
@@ -137,7 +161,7 @@ def focus_table(focus: dict) -> str:
 <small>research mirror only · {esc(style)} · SHA-256 {esc(verif[site]['sha256'][:12])}… matches audit</small></td>
 <td><strong>OWNER-REPORTED {esc(row['claimed_by_owner_not_receipt'])}</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no holdout labels; projection {projection[site]:.4f} is circular and not a score</small></td>
+<td>Not estimable<small>no holdout labels; no validated estimate. Ledger projections are not used.</small></td>
 <td><strong>No</strong><small>{overlap:.1f}% of its dots lie within 3 px of {esc(u['max_overlap_vs'])}</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
     return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
@@ -168,10 +192,10 @@ Across the nine owner-reported scores, dot count has Spearman ρ = {assoc['spear
 <p>The owner-mirrored <code>sample_submission.tif</code> holds {sample['value_1_cells']:,} positive cells identical to the training labels. The official text says the sample predicts total fault absence. Flagged for review; do not use it as a null baseline.</p></article>
 </div>
 <p class="small">Evidence: <a href="data/focus_files_verification_2026-10-29.json">focus_files_verification_2026-10-29.json ↓</a> ·
-<a href="data/official_source_check_2026-10-29.json">official_source_check_2026-10-29.json ↓</a> · Script: <code>scripts/verify_focus_files.py</code></p></section>'''
+<a href="data/official_source_check_2026-10-29_focus.json">official_source_check_2026-10-29_focus.json ↓</a> · Script: <code>scripts/verify_focus_files.py</code></p></section>'''
 
 
-def index_page(feed: dict, snapshot: dict, card: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
@@ -180,6 +204,7 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
 {leaderboard_panel(feed, snapshot)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
+{upstream_panel(upstream)}
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
@@ -279,7 +304,7 @@ def submit_page(source_check: dict, feed: dict) -> str:
 <li>File: a single-band GeoTIFF (.tif) or a .zip with one GeoTIFF. Format: float32, EPSG:32611, 100 m, same bounds as the training data, values 0–1, null/NaN outside bounds (problem description, page 967).</li>
 <li>Note: a short comment to tell submissions apart (project convention: ≤140 characters).</li>
 <li>Limit: three submissions per week per entity; one final submission across both prize rounds (official rules §3.2 and §3.4; <a href="data/official_source_check_2026-10-29.json">source check</a>).</li>
-<li>Deadline: homepage says Dec. 3, 2026, 11:59 p.m. UTC; rules Appendix A.1 says 5:00 p.m. ET on the deadline date. Use the earlier time.</li>
+<li>Deadline: homepage says Dec. 3, 2026, 11:59 p.m. UTC; rules Appendix A.1 says 5:00 p.m. ET on the deadline date (= 22:00 UTC on Dec. 3, 2026, since ET is UTC−5 in December). Conservative cutoff: 2026-12-03 22:00 UTC.</li>
 <li>Disclose any generative-AI use in the narrative (rules §3.2).</li>
 </ol></div></section>
 <div class="wrap"><section><div class="section-head"><h2>Future steps after clearance</h2></div><div class="card"><ol class="steps">
@@ -398,7 +423,9 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, LEADERBOARD_LATEST, OFFICIAL_SOURCES_LATEST,
+                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, UPSTREAM_CHECK,
+                   ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -433,7 +460,16 @@ def render() -> None:
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
+    upstream = read_json(UPSTREAM_CHECK)
 
+    upstream_rows = upstream.get("repositories", [])
+    if (upstream.get("approved_for_submission") is not False
+            or len(upstream_rows) != len(FOCUS_ORDER)
+            or {row.get("site") for row in upstream_rows} != set(FOCUS_ORDER)
+            or any(row.get("fetch_status") not in {"FETCHED", "FAILED"}
+                   or row.get("comparison_to_baseline") not in {"CHANGED", "UNCHANGED", "UNKNOWN"}
+                   for row in upstream_rows)):
+        raise ValueError("latest upstream identity check is missing, incomplete, or not fail-closed")
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
             or card.get("holdout_dti", {}).get("status") != "BLOCKED_BEFORE_EXPERIMENT"
@@ -466,7 +502,7 @@ def render() -> None:
         shutil.copyfile(evidence_file, DOCS / "data" / evidence_file.name)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card)),
+        "index.html": ("Overview", index_page(feed, snapshot, card, upstream)),
         "executive-summary.html": ("Executive summary", executive_page(focus, card)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),

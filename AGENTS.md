@@ -1,5 +1,7 @@
 # Working agreement
 
+**Latest (2026-10-29):** read `knowledge/review-2026-10-29-session.md` and `evidence/session_2026-10-29_gate-recheck_run_card.json` first (the parallel session card is `evidence/session_2026-10-29_run_card.json`). The release gate is still the 2026-10-28 card; the 2026-10-29 card is a re-verification addendum and changes no decision. Two protocol decisions (dot definition; lattice comparator) are open with the user.
+
 At the start of every session read `README.md`, `PROJECT_PROMPT.md`, the latest
 `knowledge/review-2026-10-28-session.md` and
 `evidence/session_7393d521_run_card.json`, `knowledge/preregistration-2026-10-28.md`,

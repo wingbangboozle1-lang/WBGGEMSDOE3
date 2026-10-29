@@ -14,7 +14,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence" / "focus_files_verification_2026-10-29.json"
-OFFICIAL = ROOT / "evidence" / "official_source_check_2026-10-29.json"
+OFFICIAL = ROOT / "evidence" / "official_source_check_2026-10-29_focus.json"
 SCRIPT = ROOT / "scripts" / "verify_focus_files.py"
 
 NINE = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",

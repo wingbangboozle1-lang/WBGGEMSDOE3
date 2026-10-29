@@ -10,7 +10,7 @@ organizer text is labelled as official-source text, and nothing here is an organ
   `evidence/focus_files_verification_2026-10-29.json` (no hidden labels; no network beyond the pinned
   codeload archives).
 - Re-checked official sources on 2026-10-29 with exact quotes:
-  `evidence/official_source_check_2026-10-29.json`.
+  `evidence/official_source_check_2026-10-29_focus.json`.
 - Updated `scripts/build_site.py` (single active generator) to render the nine-site table, the
   "verified 2026-10-29" block, the direct answer, and the portal-error diagnosis from those JSON files.
   It fails closed if the verification or source check is missing or inconsistent.
@@ -20,13 +20,13 @@ organizer text is labelled as official-source text, and nothing here is an organ
 | # | Claim | Status | Source |
 |---|---|---|---|
 | 1 | Competition end: Dec. 3, 2026, 11:59 p.m. UTC | Verified | competition homepage (fetch 2026-10-29) |
-| 2 | Rules Appendix A.1: 5:00 p.m. ET on the deadline date | Verified; **conflicts with #1** | NLR rules PDF, Sept 2026 |
+| 2 | Rules Appendix A.1: 5:00 p.m. ET on the deadline date | Verified; **conflicts with #1**. In December ET is UTC−5, so 5:00 p.m. ET = 22:00 UTC on Dec. 3, 2026; use that as the conservative cutoff | NLR rules PDF, Sept 2026 |
 | 3 | Up to three submissions per week; one final submission | Verified | NLR rules §3.2, §3.4 |
 | 4 | Out-of-bounds data is null or NaN; values in [0,1]; float32; EPSG:32611; 100 m | Verified | problem description page 967 |
 | 5 | α=0.2, β=0.8, R=300 m | Verified | problem description page 967 |
-| 6 | Public leaderboard rank 1 = 0.4544 | Verified (2026-10-29 fetch, first chunk) | leaderboard page |
+| 6 | Public leaderboard rank 1 = 0.4544 | Verified (2026-10-29 fetch, chunks 0–1) | leaderboard page |
 | 7 | User's 0.4413 is the top score | **Not supported** (0.4544 is rank 1) | leaderboard page |
-| 8 | 0.3195 is the top score | **Not supported** (rank 26, per 2026-10-28 snapshot; not re-inspected today) | `evidence/leaderboard_observation_2026-10-28.json` |
+| 8 | 0.3195 is the top score | **Not supported**. It was rank 26 in the 2026-10-28 capture; today rank 26 is newway at 0.3328 and 0.3195 does not appear in ranks 1–46 | `evidence/leaderboard_observation_2026-10-28.json`; live page 2026-10-29 |
 | 9 | Pixels on known catalogue faults are masked from scoring | Verified (staff forum reply, Sep 16) | community.drivendata.org #11516 |
 | 10 | GEMSDOE32 = GEMSDOE28 H27-4 base minus cells within 2 px of catalogue | Verified, 0 mismatches | repository measurement (pinned SHA-256) |
 | 11 | GEMSDOE32's score 0.2778 is due to this exclusion | **Unproven** (owner-reported; H6-1 proxy gain was +0.000054) | `content/why-0.2778.md` |
@@ -38,13 +38,21 @@ organizer text is labelled as official-source text, and nothing here is an organ
 | 17 | Ledger-inversion values (0.33–0.36) | **Projection only**, circular (fit on the same owner reports), not a score | `docs/data/nine_site_table.json` |
 
 ## 3. Irregularities for review
-- IR-01 Deadline conflict (homepage 11:59 p.m. UTC vs Appendix A.1 5:00 p.m. ET). Use the earlier time.
-- IR-02 Leaderboard values in the brief (0.4413 "top"; 0.3195 "top") do not match the live page (0.4544 is rank 1).
+- IR-01 Deadline conflict (homepage 11:59 p.m. UTC vs Appendix A.1 5:00 p.m. ET = 22:00 UTC). Use 22:00 UTC on Dec. 3, 2026.
+- IR-02 Leaderboard values in the brief (0.4413 "top"; 0.3195 "top") do not match the live page: rank 1 is 0.4544, rank 26 is 0.3328, and 0.3195 is not in ranks 1–46 today.
 - IR-03 Owner-mirrored `sample_submission.tif` has 60,988 positive cells identical to the training labels. This conflicts with "predicts total fault absence". Do not use it as a null baseline.
 - IR-04 Two output encodings (NaN outside the footprint in 5 files; zero-filled everywhere in 4). The official text says null/NaN outside bounds, so the zero-filled encoding is a risk to be checked, not a finding of failure.
 - IR-05 GEMSDOE25 and GEMSDOE30 are the same dot set under two owner names, both reported at 0.2600.
 - IR-06 The +0.0070 owner gain from the exclusion is about 130× the H6-1 proxy gain (+0.000054). The proxy scope does not cover the regime, so the discrepancy is unexplained.
 - IR-07 `data/template_grid.tif` (sha 6a1dde6f…) is not the official sample grid (sha 2176d08e…). Its finite cell count (12,279,160) does not match the sample's footprint (5,167,373).
+
+## 3a. Relation to the parallel 2026-10-29 session on `main`
+Main carries a separate 2026-10-29 review (witness definition, executive summary, source-identity feed). It
+reaches the same DO NOT SUBMIT decision and the same leaderboard and deadline corrections. This branch adds the
+focus-site byte verification, the GEMSDOE32 mechanism, the sample-file irregularity, and the portal-error
+diagnosis. Its canonical source check is kept as `evidence/official_source_check_2026-10-29_focus.json`, so the
+main-branch file `evidence/official_source_check_2026-10-29.json` is left unchanged. Main's ledger projections
+are not used here; this review and the site show "Not estimable".
 
 ## 4. Candidate hypotheses (ranked; none validated)
 Ranked by expected value of information per unit cost. Expected DTI gain is **not estimable**: no
@@ -64,7 +72,7 @@ tooling are not restored in this checkout, and the literal uniqueness stop appli
 3. **Adversarial and safety.** Checked that no page or file gives a candidate download as a submission, that no projection is labelled as a score, and that the fail-closed guards in `build_site.py` trip on tampered evidence. `check_site.py` passes.
 
 ## 6. Decision needed from you (not blocking the stop)
-- **Uniqueness definition.** Under the literal rule, any dense registry raster that covers the footprint within 3 px blocks every candidate. Choose one before any candidate exists:
+- **Uniqueness definition (main's Q1/Q2).** Under the literal rule, any dense registry raster that covers the footprint within 3 px blocks every candidate. Choose one before any candidate exists (Q1 = what counts as a dot; Q2 = whether the 13GEMSDOE lattice counts):
   (a) keep the literal rule (no candidate can pass; the project stays at DO NOT SUBMIT);
   (b) pre-register an amendment that excludes dense/lattice rasters, applied to all registry files and written down before generation;
   (c) compare only against sparse top-K dot sets, with K fixed in advance.

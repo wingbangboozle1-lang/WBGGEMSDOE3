@@ -1,0 +1,32 @@
+{
+  "schema": "gems-run-card-v1",
+  "session_branch": "arena/b0600e4e-wbggemsdoe3",
+  "date_utc": "2026-10-29",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_submission": false,
+  "decision": "DO-NOT-SUBMIT (unchanged)",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": {"label": "NOT-RUN", "value": null, "ci95": null, "evaluator_version": null, "withheld_positive_count": null},
+  "correlation_overlap_vs_registry": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "witness_definition_finding": "evidence/witness_definition_check_2026-10-29.json",
+    "witness_positive_fraction_of_footprint_literal": 1.0,
+    "witness_fraction_probability_gt_0_5": 0.1409
+  },
+  "raster": {"generated": false, "path": null, "sha256": null},
+  "validator": {"status": "NOT_RUN_NO_CANDIDATE", "passed": null},
+  "submission": {"name": null, "note": null, "note_characters": 0, "status": "NOT_ASSIGNED"},
+  "experiments": {"geological_experiments_completed": 0, "maximum": 3, "experiment_hours": 0, "maximum_hours": 2},
+  "selector": {"action": "NONE", "weekly_slots_used": 0, "organizer_receipt": null},
+  "verified_inputs": {
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_sha256_verified_against_pinned_commit": true,
+    "witness_source": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "public_leaderboard_recheck": "NOT_POSSIBLE: drivendata.org unreachable from sandbox (HTTP 000)"
+  },
+  "open_decision": "Owner must choose option A/B/C in knowledge/session-review-2026-10-29-witness.md before any candidate is built.",
+  "note": "Negative result is the deliverable. No file was cleared."
+}

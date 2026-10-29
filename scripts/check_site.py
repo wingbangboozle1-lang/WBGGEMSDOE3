@@ -76,7 +76,18 @@ def main() -> int:
         sources = json.loads((ROOT / expected_sources["official_sources"]).read_text(encoding="utf-8"))
         snapshot = json.loads((ROOT / expected_sources["leaderboard_snapshot"]).read_text(encoding="utf-8"))
         witness = json.loads((ROOT / expected_sources["witness_recheck"]).read_text(encoding="utf-8"))
+        upstream = json.loads((ROOT / "evidence/latest-upstream-check.json").read_text(encoding="utf-8"))
+        published_upstream = json.loads((DOCS / "data/latest-upstream-check.json").read_text(encoding="utf-8"))
 
+        if upstream.get("approved_for_submission") is not False:
+            errors.append("upstream identity monitor must explicitly deny submission authorization")
+        upstream_rows = upstream.get("repositories", [])
+        if (len(upstream_rows) != 9 or
+                {row.get("site") for row in upstream_rows} !=
+                {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}):
+            errors.append("upstream identity monitor must cover each of the nine focus sites exactly once")
+        if published_upstream != upstream:
+            errors.append("published upstream identity check is stale or differs from its source evidence")
         if gate.get("schema") != "gems-release-gate-v1":
             errors.append("release gate is not the fail-closed v1 schema")
         if gate.get("decision") != "DO-NOT-SUBMIT" or gate.get("okay_to_submit") is not False:
