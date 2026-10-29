@@ -50,6 +50,24 @@ Sources: [competition](https://www.drivendata.org/competitions/306/competition-d
 
 ---
 
+> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
+>
+> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
+> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
+> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
+> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
+> The code comment already calls this surface "not dots", so the gate and the code disagree.
+> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
+> exceed 70% for the invdesign candidate.
+>
+> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
+> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
+> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
+> reproducible script: `scripts/check_witness_definition.py`.
+>
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
+> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
+
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
