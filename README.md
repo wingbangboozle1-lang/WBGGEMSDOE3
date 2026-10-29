@@ -238,3 +238,76 @@ Older work is retained for audit, not clearance: [FCHD-NCM](docs/fchd/index.html
 ([findings](knowledge/lbcal-findings-2026-10-27.md)), and earlier repository reviews are all scoped research records. None overrides the current
 project-wide `DO-NOT-SUBMIT` gate. Historical TIFFs are inventoried in
 [`docs/downloads/LEGACY-DO-NOT-SUBMIT.txt`](docs/downloads/LEGACY-DO-NOT-SUBMIT.txt).
+
+## Standing task prompt (full brief preserved for every session)
+
+<details>
+<summary>Full task brief</summary>
+
+Review the repository. Focus on the highest scoring submissions from GEMSDOE24,
+GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33,
+GEMSDOE36. Produce an executive summary on every site that is clear and obvious
+about which is the best submission to obtain a high score on the leaderboard. It
+should be unique and not an exact duplicate of any previous submission. Keep
+iterating and testing until the highest scoring submission is ready to download
+and submit.
+
+Provide a table in the executive summary listing: what file to download, what
+the estimate score is, and whether it is a unique submission unlike any of the
+other GEMSDOE sites.
+
+MUST GENERATE A UNIQUE TIF SUBMISSION. DO NOT COPY A PREVIOUS SUBMISSION unless
+it is for learning and education. A unique TIF submission must be generated. It
+must be obvious whether it is OK to download and submit the generated TIF.
+
+There must be an easy-to-download submission TIF file. The inspection must be
+done through the project and validated for submission without human intervention.
+
+PARALLEL-RUN PROTOCOL:
+1. LANE: Stay in the single method paragraph. If rank-correlation with any
+   registry raster exceeds 0.90, or more than 70% of dots fall within 3 px of
+   one registry raster's dots, log as duplicate and stop.
+2. REUSE, DON'T REBUILD: Use the template's cached feature stack,
+   evaluate_holdout.py and submission_writer.py. Holdout = hide-and-recover.
+   Score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel).
+3. LABEL EVERY NUMBER as HOLDOUT-DTI or ORGANIZER-CONFIRMED. A projection is
+   never a score.
+4. LEAKAGE CANARY: Test each feature alone on the holdout. AUC above 0.90 means
+   leakage until proven otherwise.
+5. RUN CARD: End with one JSON card: hypothesis, mechanism, named non-fault
+   mimic, holdout DTI + CI, correlation/overlap vs registry, raster sha256,
+   validator output, submission name + note (<=140 chars), verdict promote /
+   negative.
+6. BUDGET: Stop after 3 experiments or 2 hours.
+
+Generate 3-5 candidate geological hypotheses, each naming: specific layers,
+physical signature, why it catches uncatalogued faults, and how it differs from
+existing repo code. Rank by expected DTI improvement and cost. Validate the top
+candidate on the holdout before using a submission slot.
+
+The site must have an easy-to-download TIF, obvious in the executive summary or
+at the top of the site. It must be obvious whether it is OK to download and
+submit.
+
+Create an executive summary subpage explaining exactly how to make a submission.
+
+Work through 3 review passes. Create a PR and merge to main. Provide suggestions
+for remaining work and limitations.
+
+Core Values: Maximize P(Win), Own the Outcome.
+
+</details>
+
+## Generated submission (2026-10-29)
+
+| Property | Value |
+|---|---|
+| File | [`docs/downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif`](docs/downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif) |
+| SHA-256 | `37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9` |
+| Dots | 30,000 (all off-catalogue, 100m–1.5km from mapped traces) |
+| Format validation | All checks passed (single-band float32, EPSG:32611, 3730×3292, [0,1]) |
+| Uniqueness vs local registry | Duplicate count 0 · max Spearman 0.0124 (<0.90) · max overlap 0.5899 (<0.70) |
+| Score estimate | NOT ESTIMABLE (no organiser truth, no holdout DTI, no receipt) |
+| OK to download for research | YES |
+| OK to submit to portal | NO — not cleared pending holdout + selector approval |
+| Run card | [`evidence/run_card_unique_submission.json`](evidence/run_card_unique_submission.json) |

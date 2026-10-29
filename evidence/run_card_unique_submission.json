@@ -1,0 +1,180 @@
+{
+  "schema": "gems-session-run-card-v1",
+  "generated_utc": "20261029T202958Z",
+  "session_branch": "arena/075fe1bc-wbggemsdoe3",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_research": true,
+  "decision_reason": "Unique TIF generated and locally format-valid. No holdout DTI computable (organiser truth labels not accessible). Not cleared for submission pending holdout validation, uniqueness vs complete registry, and separate selector approval. Unique vs local registry: False.",
+  "hypothesis": {
+    "id": "H_STEP_OVER_DAMAGE",
+    "name": "Dilational step-over and off-trace damage-zone geothermal upflow",
+    "status": "GENERATED_NOT_TESTED",
+    "mechanism": "Geothermal upflow localises at dilational fault step-overs, relay ramps, and the off-trace damage zone where fracture density and permeability are enhanced. These structures are frequently absent from the USGS/INGENIOUS catalogue which maps major traces only.",
+    "named_non_fault_mimic": "Lithologic/weathering contacts and erosion-resistant bedrock off mapped traces; non-fault geological features could produce similar off-trace signals.",
+    "layers_targeted": [
+      "off-trace structural damage zone (100-700 m)",
+      "dilational step-over / relay zones (400 m - 1.5 km)"
+    ],
+    "physical_signature": "distance-to-catalogue-trace annulus 100 m - 1.5 km off trace",
+    "why_uncatalogued": "dots are 100 m - 1.5 km off mapped USGS/INGENIOUS traces by construction; targets blind structures absent from the catalogue.",
+    "difference_from_repository": "all GEMSDOE high-scorers dot ON the catalogue fault network (0.2449-0.2778); this submission dots strictly OFF-trace with zero positive pixels on mapped faults.",
+    "implementation_cost": "Low - uses only local grid + catalogue; no external data required."
+  },
+  "layers": [
+    "off-trace structural damage zone",
+    "dilational step-over / relay zones"
+  ],
+  "physical_signature": "distance-to-catalogue-trace annulus 100 m - 1.5 km",
+  "catalogue_cells": 60988,
+  "footprint_cells": 5167373,
+  "candidate_pixels": 1910895,
+  "target_dots": 30000,
+  "dots": 30000,
+  "dots_on_catalogue": 0,
+  "dots_outside_footprint": 0,
+  "submission": {
+    "name": "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9",
+    "filename": "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif",
+    "note": "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9 | 30000 off-trace step-over/damage-zone dots | format PASS | uniqueness vs 23 local r...",
+    "note_characters": 140,
+    "path": "/home/user/WBGGEMSDOE3/docs/downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif",
+    "sha256": "37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9",
+    "zip_sha256": "479ba100c97c6f85442865fbd7321b012b42bc106994c4c97c81a1e289b195c4",
+    "bytes": 133808,
+    "status": "LOCALLY_VALIDATED_NOT_CLEARED"
+  },
+  "format_validation": {
+    "file": "/home/user/WBGGEMSDOE3/docs/downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif",
+    "bytes": 133808,
+    "sha256": "37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002443163888528943,
+    "emitted_positive_pixels": 30000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 30000,
+    "footprint_fraction": 0.005805657923281327
+  },
+  "gates_format_report": {
+    "path": "/home/user/WBGGEMSDOE3/docs/downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif",
+    "bytes": 133808,
+    "sha256": "37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002443163888528943,
+    "n_nonzero": 30000,
+    "mass": 30000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "uniqueness": {
+    "registry_entries_checked": 23,
+    "unique": false,
+    "worst_spearman_full_footprint": 0.012414323197214623,
+    "worst_dot_overlap": 0.5899,
+    "duplicate_count": 0,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7
+  },
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "status": "NO_ORGANISER_TRUTH_ACCESS",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "Organiser truth labels (labels.tif) are behind DrivenData login; no holdout DTI can be computed without them."
+  },
+  "score_estimate": "NOT ESTIMABLE - no organiser receipt, no holdout truth, no leaderboard projection. Owner-reported GEMSDOE32 best: 0.2778 (unverified).",
+  "experiments": {
+    "geological_experiments_completed": 1,
+    "maximum": 3
+  },
+  "selector": {
+    "action": "NONE",
+    "weekly_slots_used": 0,
+    "separate_selector_approval": false
+  }
+}
