@@ -1,0 +1,77 @@
+{
+  "schema": "witness-independent-stats-v1",
+  "evidence_class": "RASTER MEASUREMENT (independent re-computation); not HOLDOUT-DTI, not a competition score",
+  "checked_utc": "2026-10-29T20:25:43.259258+00:00",
+  "inputs": {
+    "sample": {
+      "file": ".cache/verification/owner-sample-submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "source": "https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/data/bridge/sample_submission.tif",
+      "provenance": "public owner mirror, not an organizer download"
+    },
+    "witness": {
+      "file": "17gemsdoe-witness.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "source": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "provenance": "public owner mirror, not an organizer download"
+    }
+  },
+  "grid": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "grid_equal": true
+  },
+  "footprint_cells": 5167373,
+  "witness": {
+    "finite_cells_all": 5167373,
+    "positive_cells_all": 5167373,
+    "positive_cells_inside_footprint": 5167373,
+    "footprint_cells_not_positive": 0,
+    "inside_min": 0.0004625781439244747,
+    "inside_max": 0.984115719795227,
+    "inside_mean": 0.26303554579609173,
+    "inside_quantiles": {
+      "0.01": 0.009462245032191277,
+      "0.1": 0.04305349737405777,
+      "0.5": 0.21869072318077087,
+      "0.9": 0.5516294479370116,
+      "0.99": 0.816057145595551,
+      "0.999": 0.9286151614189135
+    },
+    "inside_distinct_values": 4729578,
+    "inside_exact_zero": 0
+  },
+  "top_n_reading": {
+    "GEMSDOE32 B2 (37,654 dots)": {
+      "n": 37654,
+      "value_threshold_for_top_n": 0.8438428044319153
+    },
+    "GEMSDOE30/25 d2-8 (44,090 dots)": {
+      "n": 44090,
+      "value_threshold_for_top_n": 0.8304872512817383
+    },
+    "GEMSDOE24 d1-5 (60,069 dots)": {
+      "n": 60069,
+      "value_threshold_for_top_n": 0.8010967969894409
+    }
+  },
+  "interpretation": "Under the literal rule 'dot = finite value > 0', the witness has a dot in every footprint cell, so any nonempty in-footprint candidate has 100% directed 3-px overlap. The witness is a continuous score surface (non-binary values), so the literal 'dot' definition is the decision point, not a geological finding.",
+  "not_asserted": [
+    "organizer provenance",
+    "complete registry coverage",
+    "any candidate's overlap (no candidate exists)",
+    "any score"
+  ]
+}
