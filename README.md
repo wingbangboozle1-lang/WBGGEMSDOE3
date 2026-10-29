@@ -1,5 +1,55 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+## Start here — 2026-10-29 executive summary
+
+**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
+(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
+  2026-10-29, and no holdout score or slot selection exists.
+- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
+  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
+- **Why no new file yet:** the competition labels cannot be reached from this sandbox
+  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
+  portal's `Predicted values must be in range [0, 1]` error is unexplained.
+- **Reproduce the summary and verification record:**
+  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
+  writes `evidence/verification_2026_10_29.json` and the summary above.
+
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
+
+1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
+   best submission file, an estimated score, and a uniqueness verdict.
+2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
+   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
+3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
+   non-fault mimic and a holdout test on the spatially blocked set.
+4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
+   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
+5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
+6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+
+### Irregularities flagged for review (2026-10-29)
+
+- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
+  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
+  resolution match. (Extends IR-28-12.)
+- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
+  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
+- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
+  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
+  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
+- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
+  reproduction; the archived writer's cause is unproven.
+- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+
+Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
+[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
+[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+
+---
+
 > ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
