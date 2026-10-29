@@ -91,7 +91,7 @@ def test_site_marks_hce_artifact_research_only_and_has_no_candidate_links():
              "evidence.html", "sources.html", "limitations.html"]
     assert all((DOCS / p).exists() for p in pages)
     idx = (DOCS / "index.html").read_text()
-    assert "DO NOT SUBMIT" in idx and "100% witness overlap" in idx
+    assert "DO NOT SUBMIT" in idx and "definition conflict is unresolved" in idx
     assert "research-only" in idx
     assert "DOWNLOAD RESEARCH TIF" not in idx
     assert "downloads/wbggems3-hce1-latest.tif" not in idx

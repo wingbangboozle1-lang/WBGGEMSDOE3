@@ -91,11 +91,14 @@ def main() -> int:
         if published_upstream != upstream:
             errors.append("published upstream identity check is stale or differs from its source evidence")
         ledger_rows = ledger.get("rows", [])
-        if (len(ledger_rows) != 9 or "ESTIMATE" not in ledger.get("evidence_class", "").upper()
+        if (len(ledger_rows) != 9 or "RETRACTED" not in ledger.get("evidence_class", "").upper()
+                or ledger.get("publication_status") != "WITHDRAWN_NOT_FOR_ESTIMATION"
+                or any(row.get("ledger_estimate") is not None for row in ledger_rows)
+                or not ledger.get("invalidation_reason")
                 or published_ledger != ledger
                 or {row.get("site") for row in ledger_rows} !=
                 {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}):
-            errors.append("nine-site estimate source is incomplete, stale, or not explicitly an estimate")
+            errors.append("nine-site table is stale, incomplete, or still presents a withdrawn estimate")
         if gate.get("schema") != "gems-release-gate-v1":
             errors.append("release gate is not the fail-closed v1 schema")
         if gate.get("decision") != "DO-NOT-SUBMIT" or gate.get("okay_to_submit") is not False:

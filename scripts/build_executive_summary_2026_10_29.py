@@ -4,7 +4,7 @@
 Read-only and fail-closed. It does NOT generate, select, or approve any TIFF.
 
 Inputs (all in this repository unless noted):
-  * docs/data/nine_site_table.json   - owner-reported scores + ledger-inversion projections
+  * docs/data/nine_site_table.json   - owner-reported scores + withdrawn ledger diagnostics
   * data/template_grid.tif           - the local reference grid (rasterio read)
   * optional --archive <tar.gz>      - the pinned 57GEMSDOE archive (codeload), read-only
 
@@ -47,7 +47,7 @@ REPO_CLAIMED_SAMPLE_SHA256 = "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c
 GRID = dict(crs="EPSG:32611", shape=(3730, 3292), origin=(243350.0, 4508550.0), res=100.0)
 # The user-reported public leaderboard figures, kept for the irregularity log.
 USER_LEADERBOARD = {"earlier_high": 0.4413, "stated_current_high": 0.3195}
-REPO_LEADERBOARD_RANK1 = 0.4544  # from docs/data/leaderboard_observation_2026-10-28.json (checked below)
+REPO_LEADERBOARD_RANK1 = 0.4544  # dated public capture: docs/data/leaderboard_observation_2026-10-29.json
 
 
 def sha256_file(path: Path) -> str:
@@ -119,19 +119,23 @@ def check_archive(archive: Path | None) -> dict | None:
 
 
 def leaderboard_check() -> dict:
-    p = ROOT / "docs/data/leaderboard_observation_2026-10-28.json"
+    p = ROOT / "docs/data/leaderboard_observation_2026-10-29.json"
     txt = p.read_text()
     return dict(
-        source="docs/data/leaderboard_observation_2026-10-28.json",
+        source="docs/data/leaderboard_observation_2026-10-29.json",
+        observed_date_utc="2026-10-29",
         contains_0_4544=("0.4544" in txt),
-        contains_0_3195=("0.3195" in txt),
+        prior_0_3195=("0.3195" in txt),
         contains_0_4413=("0.4413" in txt),
+        latest_rank_1="0.4544",
+        latest_rank_25="0.3330",
+        latest_rank_26="0.3328",
         user_reported=USER_LEADERBOARD,
         repo_rank1_value=REPO_LEADERBOARD_RANK1,
         irregularity=(
-            "User-reported leaderboard values disagree with the repo capture: 0.4413 (earlier), "
-            "0.3195 described as the current top, but the repo capture shows rank 1 = 0.4544 and "
-            "0.3195 at rank 26. Flag for manual review; this summary uses the repo capture."
+            "Dated 2026-10-29 public capture: rank 1 = 0.4544 and rank 26 = 0.3328. "
+            "The prior 2026-10-28 capture had 0.3195 at rank 26; its current rank is unknown. "
+            "Neither value is a score for a project file or an organizer receipt."
         ),
     )
 
@@ -148,6 +152,9 @@ def parse_repo_links() -> dict[str, str]:
 
 def build_rows() -> list[dict]:
     table = json.loads((ROOT / "docs/data/nine_site_table.json").read_text())
+    if (table.get("publication_status") != "WITHDRAWN_NOT_FOR_ESTIMATION"
+            or any(row.get("ledger_estimate") is not None for row in table.get("rows", []))):
+        raise ValueError("withdrawn ledger outputs must remain nulled; no score estimates may be rendered")
     links = parse_repo_links()
     rows = []
     for r in table["rows"]:
@@ -159,7 +166,7 @@ def build_rows() -> list[dict]:
                 file=r["file"],
                 owner_reported=r["owner_reported"],
                 owner_matches_user_list=abs(r["owner_reported"] - user) < 1e-9,
-                ledger_projection=r["ledger_estimate"],
+                withdrawn_ledger_projection=r["ledger_estimate"],
                 n_dots=r["n_dots"],
                 sha256=r["sha256"],
                 max_overlap_with=r["max_overlap_with"],
@@ -182,8 +189,7 @@ def write_markdown(rows, tmpl, arch, lb) -> str:
       ">    (`unique_vs_focus_set = false` for all nine). The user's rule requires a unique file.\n"
       "> 2. **No holdout.** Competition labels are not in this sandbox (DrivenData and Dropbox are\n"
       ">    unreachable), so no HOLDOUT-DTI can be computed and no candidate score exists.\n"
-      "> 3. **Open repo stop.** The 2026-10-28 review records a literal dense-witness stop that\n"
-      ">    blocks new candidate construction (see `README.md`, `AGENTS.md`).\n"
+      "> 3. **Open repo stop.** The witness is a continuous probability surface, and the all-positive-support dot reading is definition-dependent. Q1/Q2 remain unresolved; the documented release gate stays closed (see `README.md`, `AGENTS.md`).\n"
       "> 4. **Unverified portal format.** The `Predicted values must be in range [0, 1]` error is\n"
       ">    not reproduced or explained by any local check (see irregularities).\n")
     a("## Best owner-reported file (highest score in the nine sites)\n")
@@ -193,14 +199,13 @@ def write_markdown(rows, tmpl, arch, lb) -> str:
       "its positive support is an exact subset of the GEMSDOE28 base with 2,545 cells removed near the "
       "catalogue. That is a plausible mechanism for a distance-weighted Tversky score, not a proven one.\n")
     a("## Table — file, estimate, uniqueness\n")
-    a("`Ledger projection` is a **model projection, not a score** (ledger-inversion, site-grouped CV MAE "
-      "0.037 per `docs/data/nine_site_table.json`). `Holdout-DTI` is `not run` for every row.\n")
-    a("| Site | File to download? | Owner-reported score | Ledger projection (NOT a score) | Holdout-DTI | Unique vs the nine? | Max 3-px overlap with another nine-site file | Decision |")
+    a("No validated estimate is available. Exploratory ledger-inversion outputs are withdrawn because they conflict with matched-holdout rankings (Spearman −0.849; Pearson −0.886); no projection is used to rank sites or select a candidate. `Holdout-DTI` is `not run` for every row.\n")
+    a("| Site | File to download? | Owner-reported score | Validated estimate | Holdout-DTI | Unique vs the nine? | Max 3-px overlap with another nine-site file | Decision |")
     a("|---|---|---|---|---|---|---|---|")
     for r in rows:
         link = f"[{r['file']}]({r['pinned_link']})" if r["pinned_link"] else f"`{r['file']}`"
         a(f"| {r['site']} | {link} (research archive only) | {r['owner_reported']:.4f} | "
-          f"{r['ledger_projection']:.4f} (projection) | not run | **No** | "
+          f"Not estimable | not run | **No** | "
           f"{r['max_overlap_fraction']*100:.2f}% vs {r['max_overlap_with']} | **DO NOT SUBMIT** |")
     a("")
     a("Links point to the pinned upstream commit recorded in `README.md`, for reproducibility only.\n")
@@ -215,16 +220,14 @@ def write_markdown(rows, tmpl, arch, lb) -> str:
     a(f"1. **Template is not the official footprint.** `data/template_grid.tif` has {tmpl['finite_cells']:,} finite "
       f"cells, all zero, versus the writer's claimed {REPO_CLAIMED_FOOTPRINT:,}. Grid CRS/shape/origin/resolution "
       f"match the writer constants: **{tmpl['grid_matches_writer_constants']}**. Recorded as IR-28-12.\n")
-    a(f"2. **Leaderboard figures disagree.** Your message gives 0.4413 and 0.3195 as the top. The repo capture "
-      f"(`docs/data/leaderboard_observation_2026-10-28.json`) has rank 1 = {REPO_LEADERBOARD_RANK1:.4f}, and 0.3195 "
-      f"at rank 26. Contains 0.4544: {lb['contains_0_4544']}; 0.3195: {lb['contains_0_3195']}.\n")
+    a(f"2. **Leaderboard figures disagree.** The user's 0.4413 and 0.3195 claims are not supported as the top score. The dated 2026-10-29 capture "
+      f"(`{lb['source']}`) has rank 1 = {lb['latest_rank_1']}, rank 25 = {lb['latest_rank_25']}, and rank 26 = {lb['latest_rank_26']}; 0.3195 was at rank 26 in the prior 2026-10-28 capture. These are public page observations, not project scores.\n")
     a("3. **Portal format error unexplained.** `Predicted values must be in range [0, 1]`. Local checks can "
       "confirm values in [0,1] and CRS/shape/transform, but not the portal's own parser or nodata rules.\n")
     a("4. **Deadline conflict.** The competition homepage and the rules PDF Appendix A give different "
       "end-of-competition times (see `knowledge/source-notes-2026-10-27.md`). The earlier time is assumed.\n")
     a("5. **Owner-repo mirror label anomaly** (see the archive note above).\n")
-    a("6. **Projections are not scores.** The ledger estimates (0.33–0.36) above are model outputs and must not "
-      "be read as expected leaderboard results.\n")
+    a("6. **No validated estimate.** The ledger outputs are withdrawn and their table fields nulled because the ordering conflicts with matched-holdout results (Spearman −0.849; Pearson −0.886).\n")
     a("## What is needed to generate a unique, cleared TIFF\n")
     a("1. Log in to DrivenData with your own account and download the competition data and sample "
       "submission to `data/` (the existing `scripts/download_competition_data.sh` and "
@@ -241,7 +244,8 @@ def write_markdown(rows, tmpl, arch, lb) -> str:
       "- [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)\n"
       "- [Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)\n"
       "- [Staff: known-fault masking](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516)\n"
-      "- [Official source check, 2026-10-28](../evidence/official_source_check_2026-10-28.json)\n")
+      "- [Official source check, 2026-10-29](../evidence/official_source_check_2026-10-29.json)\n"
+      "- [Prior official source check, 2026-10-28](../evidence/official_source_check_2026-10-28.json)\n")
     a("## Not in this summary\n")
     a("- No slot selection, no upload, and no organizer receipt. Owner scores are labelled as owner reports.\n")
     a("---\n*Generated by `scripts/build_executive_summary_2026_10_29.py`. Verification record: "

@@ -43,7 +43,7 @@ def test_old_lst1_pages_are_unambiguously_research_only():
                  'hypotheses.html','evidence.html','limitations.html'):
         body = (pages/name).read_text()
         assert 'No competition file is cleared.' in body
-        assert 'Do not submit' in body and '100% witness overlap' in body
+        assert 'Do not submit' in body and 'definition conflict is unresolved' in body
         assert 'portal acceptance' in body
     assert not (pages/'downloads').exists()
     assert not (pages/'lst1_run_card.json').exists()

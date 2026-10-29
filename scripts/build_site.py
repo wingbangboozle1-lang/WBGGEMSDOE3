@@ -29,6 +29,11 @@ PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
+# 2026-10-29 addenda: re-verification captures. The release gate stays bound to the 2026-10-28 card.
+LEADERBOARD_LATEST = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
+OFFICIAL_SOURCES_LATEST = ROOT / "evidence/official_source_check_2026-10-29.json"
+SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json"
+WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
@@ -96,27 +101,32 @@ def decision_panel() -> str:
     return '''<div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
 <h2>DO NOT SUBMIT — no file is cleared.</h2>
 <p>No new candidate TIFF was generated, no holdout was run, and no submission slot was selected.
-A literal registered dense-witness stop fires before feature construction or dot placement.
-Historical rasters in the archive are for research only; a local format pass, owner-reported score,
-model estimate, or content-aware exception does not clear a file.</p>
+The 2026-10-29 remeasurement confirms the registered witness is a continuous probability surface;
+its universal overlap under an all-positive-support rule is definition-dependent. The governing
+protocol has not been changed, so the release gate remains closed. Historical rasters in the archive
+are research references only; format checks, owner reports, ledger projections, or content-aware
+exceptions do not clear a file.</p>
+<p><strong>Not OK to download or submit.</strong> No shared cache/holdout run, full candidate-specific uniqueness audit, or portal-format acceptance exists. Do not download an archived TIFF for competition submission.</p>
+<p><strong>Pending protocol decisions:</strong> <strong>Q1</strong> define a “dot” for continuous probability surfaces; <strong>Q2</strong> decide whether the binary lattice belongs in the comparator set after it is remeasured. See the <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
+<a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
+<a class="btn secondary" href="data/session_2026-10-29_gate-recheck_run_card.json">Read the 2026-10-29 recheck</a></p></div>'''
 
 
-def leaderboard_panel(feed: dict, snapshot: dict) -> str:
-    date = snapshot["observed_date_utc"]
-    ranks = snapshot["visible_public_scores"]
+def leaderboard_panel(feed: dict, snapshot: dict, latest: dict) -> str:
+    old_ranks = snapshot["visible_public_scores"]
+    recent = latest["visible_public_scores"]
+    date = latest["observed_date_utc"]
     freshness = feed.get("last_success_utc") or "unknown"
     error = "yes" if feed.get("last_attempt_error") else "no"
     stale_text = "refresh attempt failed; last success retained" if error == "yes" else "latest successful public feed check"
     return f'''<article class="card"><div class="small">Public leaderboard observation — not our score</div>
-<div class="metric">{esc(ranks['rank_1'])}</div>
+<div class="metric">{esc(recent['rank_1'])}</div>
 <div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
-<p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
-The requested 0.3195 appears at rank 26 in this dated capture, not at the top. The official public feed's
-latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
+<p>Latest capture: rank 25 <strong>{esc(recent['rank_25'])}</strong> · rank 26 <strong>{esc(recent['rank_26'])}</strong>.
+The 2026-10-28 capture had rank 1 {esc(old_ranks['rank_1'])} and rank 26 {esc(old_ranks['rank_26'])}; the brief's 0.3195 was not the public high. These are public-test observations, not scores for project files. The official feed's latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
-· <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
+· <a href="data/leaderboard_observation_2026-10-29.json">2026-10-29 capture ↓</a> · <a href="data/leaderboard_observation_2026-10-28.json">prior capture ↓</a></p></article>'''
 
 
 def upstream_panel(upstream: dict) -> str:
@@ -137,36 +147,37 @@ def upstream_panel(upstream: dict) -> str:
 
 def focus_table(focus: dict, ledger: dict) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
-    projections = {row["site"]: row for row in ledger["rows"]}
+    retired = {row["site"]: row for row in ledger["rows"]}
     body = []
     for site in FOCUS_ORDER:
         row = rows[site]
-        projection = projections[site]
+        archived = retired[site]
         overlap = 100.0 * float(row["max_focus_overlap"])
-        if abs(float(projection["owner_reported"]) - float(row["claimed_by_owner_not_receipt"])) > 1e-9:
-            raise ValueError(f"focus owner-claim mismatch in ledger: {site}")
+        if (abs(float(archived["owner_reported"]) - float(row["claimed_by_owner_not_receipt"])) > 1e-9
+                or archived.get("ledger_estimate") is not None):
+            raise ValueError(f"focus claims mismatch or withdrawn projection is still populated: {site}")
         body.append(f'''<tr><td><strong>{esc(site)}</strong></td>
 <td><a class="file" href="{esc(row['download_research_only'])}" rel="noopener">{esc(row['filename'])}</a>
 <small>pinned historical file · external research mirror only</small></td>
 <td><strong>OWNER-REPORTED {esc(row['claimed_by_owner_not_receipt'])}</strong>
 <small>not an organizer receipt</small></td>
-<td><strong>LEDGER PROJECTION {float(projection['ledger_estimate']):.4f}</strong>
-<small>model output only · not HOLDOUT-DTI or organizer-confirmed</small></td>
+<td><strong>Not estimable</strong>
+<small>ledger outputs withdrawn: contradicted by matched-holdout ranking</small></td>
 <td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the active release gate</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
     return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
 <thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Owner-reported score</th>
-<th>Ledger estimate (NOT a score)</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
+<th>Validated estimate</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 
-def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict, ledger: dict) -> str:
+def index_page(feed: dict, snapshot: dict, latest: dict, card: dict, upstream: dict, ledger: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
 {decision_panel()}
 <div class="grid">
 <article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
-{leaderboard_panel(feed, snapshot)}
+{leaderboard_panel(feed, snapshot, latest)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
 {upstream_panel(upstream)}
 </div></div></section>
@@ -174,13 +185,13 @@ def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict, ledger: d
 <h2>Nine historical claims, no submission recommendation</h2>
 <p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
 {focus_table(read_json(FOCUS), ledger)}
-<p class="small">Ledger estimates are fitted projections from owner-reported site scores (instrument: {esc(ledger['instrument'])}); they are not scores, have no confidence intervals, and may be overconfident because only nine highly overlapping site masks are represented. Do not use them as evidence that a candidate beats a baseline.</p>
+<p class="small">No validated score estimate is available. Exploratory ledger-inversion outputs were withdrawn after they conflicted with the matched-holdout ranking (Spearman −0.849); do not use them to choose a candidate.</p>
 <p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary.</p></section>
 <section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
 <p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
 <a href="evidence.html">Read the evidence and caveats →</a></article>
 <article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
-<article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
+<article class="card"><h3>Current official sources</h3><p>Competition metric/format, rules and public leaderboard were rechecked on 2026-10-29; the submission/data pages remain login-gated. The public leaderboard capture is date-stamped and is not an upload receipt.</p><a href="data/official_source_check_2026-10-29.json">Open 2026-10-29 source audit ↓</a> · <a href="data/official_source_check_2026-10-28.json">prior audit ↓</a></article></div></section>
 <section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the current DO NOT SUBMIT decision; archived scores and format passes are not project-level clearance.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
 <section><div class="decision"><strong>Deadline irregularity:</strong> the competition homepage shows 2026-12-03 23:59 UTC, while the September 2026 official rules state 5:00 p.m. ET on the deadline date. Effective cutoff is unresolved; use the earlier time unless the organizer confirms otherwise. The live account quota could not be viewed.</div></section>
 <p class="small">Current negative run card: <a href="data/session_7393d521_run_card.json"><code>session_7393d521_run_card.json</code> ↓</a> ·
@@ -193,8 +204,8 @@ def executive_page(focus: dict, card: dict, ledger: dict) -> str:
 <h1>Nine sites. Honest status. No cleared file.</h1>
 <p class="lede">This is a research comparison, not a slot selector. No organizer receipt or holdout result supports picking one historical TIFF.</p>{decision_panel()}</div></section>
 <div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus, ledger)}
-<p class="small">Ledger estimates are model projections from owner-reported scores (instrument: {esc(ledger['instrument'])}). They are not scores, have no confidence intervals, and may be overconfident because only nine highly overlapping site masks are represented. They are not evidence that a candidate beats a baseline. Uniqueness is a byte/support measurement, not a score.</p>
-<p><a href="data/nine_site_table.json">Open projection inputs and per-file caveats ↓</a></p></section>
+<p class="small">No validated score estimate is available. The exploratory ledger-inversion outputs were withdrawn after conflicting with matched-holdout results (Spearman −0.849; Pearson −0.886). The underlying table retains provenance and uniqueness diagnostics only, with projection fields nulled. Uniqueness is a byte/support measurement, not a score.</p>
+<p><a href="data/nine_site_table.json">Open retired ledger table and invalidation note ↓</a></p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
 <div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
 <article class="card"><h3>Observed construction</h3><p>The saved-support analysis reports GEMSDOE32 B2 as an exact subset of the GEMSDOE28 H27-4 base, removing 2,545 cells near a mirrored catalogue. This is a raster measurement, not a score measurement.</p></article>
@@ -231,7 +242,7 @@ def method_page(card: dict, prereg: dict) -> str:
     witness = prereg["global_stop"]
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Method and release rules</div>
 <h1>Trust bytes, not projections.</h1><p class="lede">The only acceptable score labels are HOLDOUT-DTI (with full evaluator details) or ORGANIZER-CONFIRMED (with a verifiable receipt).</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Official DTI and raster contract</h2><p>Verified on the DrivenData problem page, 2026-10-28.</p></div><div class="card">
+<div class="wrap"><section><div class="section-head"><h2>Official DTI and raster contract</h2><p>Rechecked on the DrivenData problem page, 2026-10-29.</p></div><div class="card">
 <p>The competition uses a distance-weighted Tversky index with α=0.2, β=0.8, and a linear triangular kernel with 300 m support (three cells at 100 m). This makes the official task a fault-prediction task; it does not make a fault prediction proof of geothermal vent presence.</p>
 <p>The published format requires a single-band float32 GeoTIFF, EPSG:32611, 100 m, matching bounds, values in [0,1], with data outside the bounds null or NaN. These written requirements are not proof of portal acceptance.</p>
 <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description ↗</a></p></div></section>
@@ -248,7 +259,7 @@ def method_page(card: dict, prereg: dict) -> str:
 <p><a href="data/registry_witness_recheck_2026-10-27.json">Saved witness recheck ↓</a> · <a href="data/session_7393d521_run_card.json">Current negative run card ↓</a></p></div></section>
 <section><div class="section-head"><h2>Template/runtime status</h2></div><div class="card"><p>The shared bootstrap is pinned by <code>src/gems_project/template.py</code>. The cached feature stack was absent and the shared evaluator/writer were not restored or run in this review. This is a blocking data/runtime gap, not a reason to substitute a historical estimate.</p>
 <p>Current card status: <strong>{esc(card['holdout_dti']['status'])}</strong>; no DTI value, CI, or withheld-positive count is asserted.</p></div></section>
-<section><p><a href="data/official_source_check_2026-10-28.json">Official-source check ↓</a> · <a href="research.html">Preregistered hypotheses →</a></p></section></div>'''
+<section><p><a href="data/official_source_check_2026-10-29.json">Latest official-source check ↓</a> · <a href="data/witness_independent_stats_2026-10-29.json">Independent witness measurement ↓</a> · <a href="research.html">Preregistered hypotheses →</a></p></section></div>'''
 
 
 def submit_page(source_check: dict, feed: dict) -> str:
@@ -264,7 +275,7 @@ def submit_page(source_check: dict, feed: dict) -> str:
 <li>If generative AI was used, disclose its extent and role in the narrative as required by the September 2026 official rules; ensure all required scientific/code assets and attribution are complete.</li>
 </ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p></div></section>
 <section><div class="section-head"><h2>Current date/access checks</h2></div><div class="card"><p>The competition home page lists <strong>{esc(competition['observations'][1].split('shows an end date of ')[1])}</strong>; the official rules Appendix A.1 gives <strong>{esc(official['observations'][-1])}</strong>. These instructions conflict by nearly two hours on the stated date. Treat the effective deadline as unresolved and use the earlier time unless the organizer confirms otherwise.</p>
-<p>The public leaderboard feed's latest successful check is <strong>{esc(feed.get('last_success_utc','unknown'))}</strong>, but it is not a score for this project. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
+<p>The public leaderboard feed's latest successful check is <strong>{esc(feed.get('last_success_utc','unknown'))}</strong>, but it is not a score for this project. A separate public-page capture dated 2026-10-29 records rank 1 at 0.4544 and rank 26 at 0.3328; see the <a href="data/leaderboard_observation_2026-10-29.json">dated capture</a>. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
 <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition homepage ↗</a> ·
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> ·
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submission portal (login required) ↗</a></p></div></section></div>'''
@@ -280,26 +291,27 @@ def evidence_page(card: dict, prereg: dict, source_check: dict, focus: dict) -> 
 <article class="card"><h3>Provenance and scope</h3><p>The witness and sample are public owner mirrors recorded in the registry, not authenticated organizer downloads. The result is conditional on that entry and does not prove the mirror is the entire current portal registry.</p></article></div>
 <p><a href="data/registry_witness_recheck_2026-10-27.json">Witness measurement JSON ↓</a> · <a href="data/session_7393d521_run_card.json">Current run card ↓</a> · <a href="data/release_gate.json">Release-gate JSON ↓</a></p></section>
 <section><div class="section-head"><h2>GEMSDOE32 explanation status</h2></div><div class="card"><p>The repository records a byte-level subset relationship between GEMSDOE32 B2 and GEMSDOE28 H27-4, with 2,545 removed pixels near a mirrored catalogue. Metric arithmetic makes it plausible that pruning low-credit predictions could improve a distance-weighted Tversky score, but absent hidden labels and a receipt this is not a verified causal explanation of 0.2778.</p><p>The nine owner-reported values in the comparison table are not organizer-confirmed results. The current 0.4544 public leaderboard leader is a public score for a different team and cannot be applied to these files.</p></div></section>
-<section><div class="section-head"><h2>Official-source verification</h2></div><div class="card"><p>Competition metric and format, official rules, public leaderboard, GeoDAWN, DOE GDR #1391, USGS 3DEP, and Landsat Collection 2 pages were retrieved on 2026-10-28. The competition submission and data pages redirected to login.</p><p>Important official inconsistency: the competition homepage lists 2026-12-03 at 23:59 UTC, but Appendix A.1 of the official rules says 5 p.m. ET. The operative deadline remains unresolved. Source-by-source content, data-access limits, and the leaderboard capture are recorded in the JSON.</p><p><a href="data/official_source_check_2026-10-28.json">Download official-source check ↓</a> · <a href="data/leaderboard_observation_2026-10-28.json">Download dated leaderboard snapshot ↓</a></p></div></section>
+<section><div class="section-head"><h2>Official-source verification</h2></div><div class="card"><p>Competition metric/format, rules, and public leaderboard were rechecked on 2026-10-29; the data and submission pages remain login-gated. This repository's dated official-source check and leaderboard observation are public-page evidence, not a participant receipt.</p><p>Deadline inconsistency remains: the homepage says 2026-12-03 at 23:59 UTC, whereas Rules Appendix A.1 says 5 p.m. ET (22:00 UTC) on that date. Use the earlier time unless the organizer confirms otherwise.</p><p><a href="data/official_source_check_2026-10-29.json">Download 2026-10-29 official-source check ↓</a> · <a href="data/leaderboard_observation_2026-10-29.json">Download latest dated leaderboard snapshot ↓</a> · <a href="data/official_source_check_2026-10-28.json">prior source check ↓</a></p></div></section>
 <section><div class="section-head"><h2>Historical scores and files</h2></div><div class="card"><p>Focus-site scores are owner/user reports. Historical rasters remain in the research archive, but all fail the project-level literal uniqueness stop under the current rule. The downloads index intentionally has no direct TIFF links.</p><p><a href="data/focus_audit.json">Nine-site byte audit ↓</a> · <a href="downloads/index.html">Research-download status →</a></p></div></section>
 <section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div>'''
 
 
-def session_review_page(card: dict) -> str:
+def session_review_page(card: dict, latest_card: dict, latest_snapshot: dict) -> str:
     prior = card.get("preexisting_main_artifact", {})
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-28</div>
-<h1>Negative preflight. Zero experiments.</h1><p class="lede">Three implementation/review passes reconciled the publication path, gate, evidence, and safeguards.</p>{decision_panel()}</div></section>
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-29</div>
+<h1>Negative gate recheck. Zero experiments.</h1><p class="lede">The latest source and witness recheck adds evidence but does not change the project-level release gate.</p>{decision_panel()}</div></section>
 <div class="wrap"><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
 <article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
-<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
+<article class="card"><div class="eyebrow">2026-10-29 addendum</div><h2>Independent witness and source recheck</h2><p>The witness is a continuous probability surface; the universal overlap depends on a literal positive-support definition. The protocol and negative gate remain unchanged. A dated public leaderboard observation and official-source audit were added; neither is an organizer receipt.</p></article></section>
 <section><div class="section-head"><h2>Final status</h2></div><div class="card"><ul>
 <li>Verdict: <strong>{esc(card['verdict'].upper())}</strong>; this review's candidate: none; raster SHA-256: null.</li>
 <li>Pre-existing main-branch artifact: <code>{esc(prior.get('path', 'none'))}</code> (upstream SHA-256 <code>{esc(prior.get('upstream_recorded_sha256', 'none'))}</code>); not generated or assessed for science/format here, byte identity only, quarantined as research-only, and not cleared.</li>
 <li>HOLDOUT-DTI: not run; no evaluator version, withheld-positive count, value, or CI is claimed.</li>
 <li>Registry surface correlation: not run. The literal witness is positive on the entire mirrored sample footprint; a nonempty candidate would fail the directed overlap threshold at 100% under the documented rule.</li>
 <li>Experiments: 0/3; experimental time: 0/2 hours; selector actions: 0; weekly slots: 0.</li>
-<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only, not a project score.</li>
-</ul><p><a href="data/session_7393d521_run_card.json">Download current negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div>'''
+<li>Official public leaderboard capture ({esc(latest_snapshot['observed_date_utc'])}): rank 1 {esc(latest_snapshot['visible_public_scores']['rank_1'])}; rank 25 {esc(latest_snapshot['visible_public_scores']['rank_25'])}; rank 26 {esc(latest_snapshot['visible_public_scores']['rank_26'])}. Public-only, not a project score.</li>
+<li>Recheck card: {esc(latest_card['verdict'].upper())}; candidate, holdout, validator, and selector remain not run / none.</li>
+</ul><p><a href="data/session_7393d521_run_card.json">Download project release-gate run card ↓</a> · <a href="data/session_2026-10-29_gate-recheck_run_card.json">Download 2026-10-29 recheck card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-29.json">Download latest official-source audit ↓</a></p></div></section></div>'''
 
 
 def submission_page() -> str:
@@ -313,7 +325,7 @@ def downloads_index() -> str:
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Research archive status · GEMS Field Notes</title><link rel="stylesheet" href="../assets/safe.css"></head>
 <body><header class="top"><div class="wrap"><a class="brand" href="../index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header><main class="wrap"><section class="hero"><div class="eyebrow">Historical archive</div><h1>Research downloads only.</h1>
-<div class="decision"><strong>DO NOT SUBMIT.</strong><p>No current candidate is cleared. The literal dense-witness overlap exceeds the project stop. This index intentionally provides no direct TIFF download link.</p></div>
+<div class="decision"><strong>DO NOT SUBMIT.</strong><p>No current candidate is cleared. The literal all-positive-support witness interpretation exceeds the project stop; the appropriate dot definition remains unresolved. This index intentionally provides no direct TIFF download link.</p></div>
 <p>There are {len(tifs)} historical TIFF file(s) physically retained in this folder for reproducibility. Their names and status are listed in <a href="LEGACY-DO-NOT-SUBMIT.txt">the archive notice</a>; all are not cleared. Do not upload them.</p>
 <p><a class="btn secondary" href="../data/session_7393d521_run_card.json">Current negative run card</a> <a class="btn secondary" href="../executive-summary.html">Executive summary</a></p></section></main>
 <footer class="footer"><div class="wrap">Historical bytes are not an upload recommendation.</div></footer></body></html>'''
@@ -326,7 +338,7 @@ def archive_lane(directory: str, title: str, card: str, page: Path | None = None
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT"><title>{esc(title)} · historical research</title><link rel="stylesheet" href="{up}assets/safe.css"></head>
 <body><header class="top"><div class="wrap"><a class="brand" href="{up}index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Historical lane · {esc(title)}</div>
-<h1>Research archive, not a release.</h1><div class="decision"><strong>Global release gate: DO NOT SUBMIT.</strong><p>No competition file is cleared. The current literal registry witness has 100% witness overlap for any nonempty in-footprint prediction. Do not submit any file.</p></div>
+<h1>Research archive, not a release.</h1><div class="decision"><strong>Global release gate: DO NOT SUBMIT.</strong><p>No competition file is cleared. Under the current literal all-positive-support interpretation, a nonempty in-footprint prediction triggers the overlap stop. The witness is a soft probability surface, so this definition conflict is unresolved; the gate remains closed. Do not submit any file.</p></div>
 <p>Prior lane results are historical evidence in a research-only archive (research only; not cleared) and have not been promoted by this review. Their local holdout/format results cannot override the current project-level release block. Local format checks do not prove portal acceptance or substitute for a receipt.</p>
 <p><a class="btn secondary" href="{up}data/{esc(card)}">Historical lane card</a> <a class="btn" href="{up}executive-summary.html">Current executive summary</a></p>
 <p class="small">This archive page has no direct TIFF download button. See <a href="{up}downloads/index.html">research-download status</a>.</p></div></section></main></body></html>'''
@@ -372,8 +384,9 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, UPSTREAM_CHECK, NINE_SITE_TABLE,
-                   ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, LEADERBOARD_LATEST, OFFICIAL_SOURCES_LATEST,
+                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, UPSTREAM_CHECK,
+                   NINE_SITE_TABLE, ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -408,17 +421,21 @@ def render() -> None:
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
+    latest_snapshot = read_json(LEADERBOARD_LATEST)
+    latest_sources = read_json(OFFICIAL_SOURCES_LATEST)
+    latest_card = read_json(SESSION_CARD_LATEST)
+    witness_stats = read_json(WITNESS_STATS_LATEST)
     upstream = read_json(UPSTREAM_CHECK)
     ledger = read_json(NINE_SITE_TABLE)
 
     ledger_rows = ledger.get("rows", [])
     if (len(ledger_rows) != len(FOCUS_ORDER)
             or {row.get("site") for row in ledger_rows} != set(FOCUS_ORDER)
-            or not any(term in ledger.get("evidence_class", "").upper()
-                       for term in ("PROJECTION", "ESTIMATE"))
-            or any(not isinstance(row.get("ledger_estimate"), (int, float))
-                   or not 0 <= row["ledger_estimate"] <= 1 for row in ledger_rows)):
-        raise ValueError("nine-site ledger projections are incomplete, malformed, or not clearly classified")
+            or "RETRACTED" not in ledger.get("evidence_class", "").upper()
+            or ledger.get("publication_status") != "WITHDRAWN_NOT_FOR_ESTIMATION"
+            or not ledger.get("invalidation_reason")
+            or any(row.get("ledger_estimate") is not None for row in ledger_rows)):
+        raise ValueError("nine-site projection withdrawal is incomplete or an invalid estimate remains published")
 
     upstream_rows = upstream.get("repositories", [])
     if (upstream.get("approved_for_submission") is not False
@@ -428,6 +445,18 @@ def render() -> None:
                    or row.get("comparison_to_baseline") not in {"CHANGED", "UNCHANGED", "UNKNOWN"}
                    for row in upstream_rows)):
         raise ValueError("latest upstream identity check is missing, incomplete, or not fail-closed")
+    latest_ranks = latest_snapshot.get("visible_public_scores", {})
+    if (latest_snapshot.get("observed_date_utc") != "2026-10-29"
+            or latest_ranks.get("rank_1") != "0.4544"
+            or latest_ranks.get("rank_25") != "0.3330"
+            or latest_ranks.get("rank_26") != "0.3328"
+            or latest_sources.get("checked_date_utc") != "2026-10-29"
+            or latest_card.get("verdict") != "negative"
+            or latest_card.get("okay_to_submit") is not False
+            or latest_card.get("raster", {}).get("generated") is not False
+            or witness_stats.get("inputs", {}).get("witness", {}).get("sha256")
+               != prereg.get("global_stop", {}).get("witness_sha256")):
+        raise ValueError("2026-10-29 source recheck is incomplete or inconsistent with the negative gate")
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
             or card.get("holdout_dti", {}).get("status") != "BLOCKED_BEFORE_EXPERIMENT"
@@ -450,13 +479,13 @@ def render() -> None:
     copy_site_data(card, prereg, focus, gate)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card, upstream, ledger)),
+        "index.html": ("Overview", index_page(feed, snapshot, latest_snapshot, card, upstream, ledger)),
         "executive-summary.html": ("Executive summary", executive_page(focus, card, ledger)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
         "evidence.html": ("Evidence and limitations", evidence_page(card, prereg, source_check, focus)),
-        "session-review.html": ("Latest review", session_review_page(card)),
+        "session-review.html": ("Latest review", session_review_page(card, latest_card, latest_snapshot)),
         "submission.html": ("Submission status", submission_page()),
     }
     for name, (title, body) in pages.items():
