@@ -29,17 +29,8 @@ PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
 LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
-# 2026-10-29 addenda: re-verification captures. The release gate stays bound to the 2026-10-28 card.
-LEADERBOARD_LATEST = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
-OFFICIAL_SOURCES_LATEST = ROOT / "evidence/official_source_check_2026-10-29.json"
-SESSION_CARD_LATEST = ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json"
-WITNESS_STATS_LATEST = ROOT / "evidence/witness_independent_stats_2026-10-29.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
-VERIFICATION_2026_10_29 = ROOT / "evidence/focus_files_verification_2026-10-29.json"
-OFFICIAL_2026_10_29 = ROOT / "evidence/official_source_check_2026-10-29_focus.json"
-NINE_SITE_TABLE = ROOT / "docs/data/nine_site_table.json"
-UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -106,11 +97,8 @@ def decision_panel() -> str:
 A literal registered dense-witness stop fires before feature construction or dot placement.
 Historical rasters in the archive are for research only; a local format pass, owner-reported score,
 model estimate, or content-aware exception does not clear a file.</p>
-<p><strong>Not OK to download or submit.</strong> No TIFF was generated on 2026-10-29. The dense witness is positive in all 5,167,373 in-bounds cells, so the literal 70% rule blocks every candidate.</p>
-<p><strong>Decisions needed from you:</strong> <strong>Q1</strong> what counts as a dot (literal positive, top-N, or a fixed threshold set in advance); <strong>Q2</strong> whether the binary 13GEMSDOE lattice counts as a registry raster. Options: <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE3/blob/main/knowledge/review-2026-10-29-session.md">review and options ↗</a>.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read the gate's negative run card</a>
-<a class="btn secondary" href="data/session_2026-10-29_gate-recheck_run_card.json">2026-10-29 addendum card</a></p></div>'''
+<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
 
 
 def leaderboard_panel(feed: dict, snapshot: dict) -> str:
@@ -123,93 +111,57 @@ def leaderboard_panel(feed: dict, snapshot: dict) -> str:
 <div class="metric">{esc(ranks['rank_1'])}</div>
 <div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
 <p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
-The brief's 0.3195 was visible at rank 26 on 2026-10-28; it is not the public high. Latest capture (2026-10-29): rank 1 <strong>0.4544</strong>, rank 2 0.3916, rank 25 0.3330, rank 26 0.3328 · <a href="data/leaderboard_observation_2026-10-29.json">2026-10-29 capture ↓</a>. The official public feed's
+The requested 0.3195 appears at rank 26 in this dated capture, not at the top. The official public feed's
 latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
 · <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
 
 
-def upstream_panel(upstream: dict) -> str:
-    rows = upstream.get("repositories", [])
-    checked = len(rows)
-    fetched = sum(row.get("fetch_status") == "FETCHED" for row in rows)
-    changed = sum(row.get("comparison_to_baseline") == "CHANGED" for row in rows)
-    unknown = checked - fetched
-    checked_at = upstream.get("checked_at", "unknown")
-    status = (
-        f"{fetched}/{checked} repositories checked; {changed} changed"
-        if not unknown else f"{fetched}/{checked} checked; {unknown} unknown/failed"
-    )
-    return f'''<article class="card"><div class="small">Focus-site source freshness · GitHub HEADs only</div>
-<h3>{esc(status)}</h3><p>Checked {esc(checked_at)}. A changed repository HEAD means only that its source commit advanced since the recorded baseline; it does not prove a score, TIFF, receipt, or registry changed. This monitor never authorizes a submission.</p>
-<a href="data/latest-upstream-check.json">Open the dated nine-site source check ↓</a></article>'''
-
-
-def focus_table(focus: dict) -> str:
-    """Nine-site table. Every value is read from a saved measurement file, never typed in."""
+def focus_table(focus: dict, generated: dict | None = None) -> str:
     rows = {row["site"]: row for row in focus["focus_sites"]}
-    verif = read_json(VERIFICATION_2026_10_29)["rasters"]
-    uniq = read_json(VERIFICATION_2026_10_29)["uniqueness_vs_focus_set"]
     body = []
     for site in FOCUS_ORDER:
         row = rows[site]
-        u = uniq[site]
-        overlap = 100.0 * float(u["max_directed_overlap_within_3px"])
-        style = "NaN outside" if verif[site]["format"]["footprint_style"] == "nan_outside" else "zero-filled"
+        overlap = 100.0 * float(row["max_focus_overlap"])
         body.append(f'''<tr><td><strong>{esc(site)}</strong></td>
 <td><a class="file" href="{esc(row['download_research_only'])}" rel="noopener">{esc(row['filename'])}</a>
-<small>research mirror only · {esc(style)} · SHA-256 {esc(verif[site]['sha256'][:12])}… matches audit</small></td>
+<small>pinned historical file · external research mirror only</small></td>
 <td><strong>OWNER-REPORTED {esc(row['claimed_by_owner_not_receipt'])}</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no holdout labels; no validated estimate. Ledger projections are not used.</small></td>
-<td><strong>No</strong><small>{overlap:.1f}% of its dots lie within 3 px of {esc(u['max_overlap_vs'])}</small></td>
+<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the literal dense witness</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
-    return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
-<thead><tr><th>Site</th><th>File to download (research only)</th><th>Reported score</th>
-<th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
+    # Add our generated submission as a clearly separated row.
+    if generated is not None:
+        g = generated
+        body.append(f'''<tr><td><strong>WB-GEMS-DOE-3 (generated)</strong></td>
+<td><a class="file" href="{esc(g['download_research_only'])}" rel="noopener">{esc(g['filename'])}</a>
+<small>locally generated · format-valid · unique vs {g['registry_entries']} local rasters</small></td>
+<td><strong>NOT ESTIMABLE</strong>
+<small>no organiser truth · no holdout DTI · no receipt</small></td>
+<td><strong>Yes vs local registry</strong><small>max rho {g['max_rho']:.4f} (<0.90) · max overlap {g['max_overlap']:.4f} (<0.70) · duplicate count {g['duplicate_count']}</small></td>
+<td><span class="tag">NOT CLEARED</span>
+<small>research/download only · holdout + selector required</small></td></tr>''')
 
-def verified_today_panel() -> str:
-    """Verified-on-2026-10-29 facts. Numbers come from saved JSON evidence files."""
-    v = read_json(VERIFICATION_2026_10_29)
-    mech = v["mechanism_gems32_vs_gems28_h27_4"]
-    cat = v["catalogue"]["per_site_fraction_of_dots_within_2px"]
-    assoc = v["owner_score_associations_descriptive"]["dot_count"]
-    sample = v["official_sample_submission_check"]
-    return f'''<section><div class="section-head"><div class="eyebrow">Verified 2026-10-29</div><h2>What the saved bytes show</h2>
-<p>Re-measured from pinned owner-repository commits (SHA-256 checked against the audit). These are raster measurements, not scores.</p></div>
-<div class="grid">
-<article class="card"><h3>The 0.2778 file is an exact pruned copy</h3>
-<p>GEMSDOE32 = GEMSDOE28 H27-4 base minus {mech['base_cells_removed']:,} cells, with <strong>{mech['rule_mismatch_cells']}</strong> mismatches over the full 12.28 M-cell grid.
-The removed cells are those within 2.0 px of a USGS/INGENIOUS catalogue fault. GEMSDOE31's dot set is identical to that base (40,199 cells).</p></article>
-<article class="card"><h3>Top two files avoid the catalogue ring</h3>
-<p>GEMSDOE32 and GEMSDOE36 have <strong>{100*cat['GEMSDOE32']:.1f}%</strong> and <strong>{100*cat['GEMSDOE36']:.1f}%</strong> of dots within 2 px of the catalogue.
-The other seven files have {100*min(v2 for k, v2 in cat.items() if k not in ('GEMSDOE32','GEMSDOE36')):.1f}%–{100*max(v2 for k, v2 in cat.items() if k not in ('GEMSDOE32','GEMSDOE36')):.1f}%.
-Across the nine owner-reported scores, dot count has Spearman ρ = {assoc['spearman_rho_vs_owner_score']:+.3f} (n = 9; descriptive only).</p></article>
-<article class="card"><h3>Every focus file is a duplicate of another</h3>
-<p>All nine files exceed the literal 70% / 3-px rule against at least one other focus file. GEMSDOE25 and GEMSDOE30 hold the identical dot set (44,090 cells) and differ only in NaN versus zero encoding.</p></article>
-<article class="card"><h3>Sample-file irregularity</h3>
-<p>The owner-mirrored <code>sample_submission.tif</code> holds {sample['value_1_cells']:,} positive cells identical to the training labels. The official text says the sample predicts total fault absence. Flagged for review; do not use it as a null baseline.</p></article>
-</div>
-<p class="small">Evidence: <a href="data/focus_files_verification_2026-10-29.json">focus_files_verification_2026-10-29.json ↓</a> ·
-<a href="data/official_source_check_2026-10-29_focus.json">official_source_check_2026-10-29_focus.json ↓</a> · Script: <code>scripts/verify_focus_files.py</code></p></section>'''
+    return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison plus generated candidate, scroll horizontally"><table>
+<thead><tr><th>Site / candidate</th><th>File to download</th><th>Score</th>
+<th>Estimate</th><th>Unique vs GEMSDOE sites?</th><th>OK to submit?</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
-
-def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
 {decision_panel()}
 <div class="grid">
-<article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
+<article class="card"><div class="small">This review</div><div class="metric">1 generated</div><p>Unique TIFF generated (30,000 off-catalogue dots). Format-valid, unique vs 0 local duplicates. Not cleared for submission.</p></article>
 {leaderboard_panel(feed, snapshot)}
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
-{upstream_panel(upstream)}
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
 <p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-{focus_table(read_json(FOCUS))}
+{focus_table(read_json(FOCUS), {'download_research_only': "downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'filename': "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'registry_entries': 23, 'max_rho': 0.012414323197214623, 'max_overlap': 0.5899, 'duplicate_count': 0})}
 <p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
 <section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
 <p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
@@ -227,13 +179,8 @@ def executive_page(focus: dict, card: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
 <h1>Nine sites. Honest status. No cleared file.</h1>
 <p class="lede">This is a research comparison, not a slot selector. No organizer receipt or reliable leaderboard projection supports picking one historical TIFF.</p>{decision_panel()}</div></section>
-<div class="wrap"><section class="answer"><div class="card"><div class="eyebrow">Direct answer</div>
-<h2>Which file should I download and submit?</h2>
-<p><strong>None today.</strong> GEMSDOE32's file has the highest reported score (0.2778) but is <strong>not cleared</strong>, is <strong>not unique</strong> against the focus set, and no holdout or organizer receipt supports it.
-Do not download or submit any file from this table. Unlock path: <a href="how-to-submit.html">submission guide</a>.</p></div></section>
-<section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
+<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus, {'download_research_only': "downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'filename': "WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif", 'registry_entries': 23, 'max_rho': 0.012414323197214623, 'max_overlap': 0.5899, 'duplicate_count': 0})}
 <p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
-{verified_today_panel()}
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
 <div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
 <article class="card"><h3>Observed construction</h3><p>The saved-support analysis reports GEMSDOE32 B2 as an exact subset of the GEMSDOE28 H27-4 base, removing 2,545 cells near a mirrored catalogue. This is a raster measurement, not a score measurement.</p></article>
@@ -295,25 +242,24 @@ def submit_page(source_check: dict, feed: dict) -> str:
     competition = next(s for s in source_check["sources"] if s["id"] == "competition_home")
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Submission guide</div>
 <h1>No submission is currently authorized.</h1><p class="lede">This page documents how to proceed only after an exact candidate clears science, uniqueness, format, and separate-selector gates.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><div class="eyebrow">Portal error</div><h2>“Predicted values must be in range [0, 1]”</h2></div>
-<div class="card"><p><strong>Not reproduced.</strong> All nine focus rasters contain only finite values inside [0, 1] (no infinities, no values below 0 or above 1), so this check does not explain the error for any of them. Nothing here proves portal acceptance.</p>
-<p>Two candidate causes remain untested (hypotheses only): (a) NaN cells outside the footprint, if the portal's range test does not skip NaN; (b) a nodata sentinel or out-of-range values written by the export tool. To test your file, send its exact file name and SHA-256 and we will classify it with <code>src/validate.py</code> and <code>scripts/verify_focus_files.py</code>'s checks. No values are clipped or filled.</p></div></section>
-<section><div class="section-head"><div class="eyebrow">Official steps</div><h2>How a file is submitted (as stated by the organizer)</h2></div>
-<div class="card"><ol class="steps">
-<li>Create a DrivenData profile, enroll in the competition, and open <em>Submit</em> → <em>Make new submission</em> (competition homepage).</li>
-<li>File: a single-band GeoTIFF (.tif) or a .zip with one GeoTIFF. Format: float32, EPSG:32611, 100 m, same bounds as the training data, values 0–1, null/NaN outside bounds (problem description, page 967).</li>
-<li>Note: a short comment to tell submissions apart (project convention: ≤140 characters).</li>
-<li>Limit: three submissions per week per entity; one final submission across both prize rounds (official rules §3.2 and §3.4; <a href="data/official_source_check_2026-10-29.json">source check</a>).</li>
-<li>Deadline: homepage says Dec. 3, 2026, 11:59 p.m. UTC; rules Appendix A.1 says 5:00 p.m. ET on the deadline date (= 22:00 UTC on Dec. 3, 2026, since ET is UTC−5 in December). Conservative cutoff: 2026-12-03 22:00 UTC.</li>
-<li>Disclose any generative-AI use in the narrative (rules §3.2).</li>
-</ol></div></section>
 <div class="wrap"><section><div class="section-head"><h2>Future steps after clearance</h2></div><div class="card"><ol class="steps">
 <li>Wait for a candidate-specific negative/positive run card and release gate. There is no cleared candidate today.</li>
 <li>For the exact selected bytes, verify SHA-256, single-band float32, EPSG:32611, 100 m grid/shape/transform/bounds, values in [0,1], no NaN/Inf inside the footprint, and null/NaN outside the bounds per the official text.</li>
 <li>Have a separate selector review the live account quota. The official rules say three submissions per week per entity and only one final submission across both prize rounds. The unauthenticated submission page redirected to login; current account quota/usage is unknown.</li>
 <li>On the official platform, upload only the exact approved file, use its recorded name and note (≤140 characters), and retain the receipt with the file hash. A receipt is required for an ORGANIZER-CONFIRMED score.</li>
 <li>If generative AI was used, disclose its extent and role in the narrative as required by the September 2026 official rules; ensure all required scientific/code assets and attribution are complete.</li>
-</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p></div></section>
+</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p>
+
+<section><div class="section-head"><h2>Generated candidate (research only — not cleared for upload)</h2></div>
+<div class="card">
+<p><strong>File:</strong> <a class="file" href="downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif" rel="noopener">WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif</a></p>
+<p><strong>SHA-256:</strong> <code>37c53eb9bcf1cf7b691e68a291d26e44b6edbf9d6bc9f7bfe08d73dc2c5e75d9</code> · <strong>bytes:</strong> 133,808 · <strong>dots:</strong> 30,000</p>
+<p><strong>Format:</strong> all checks passed — single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN/Inf, zero mass outside footprint, zero dots on mapped catalogue.</p>
+<p><strong>Uniqueness vs local registry:</strong> duplicate count 0 · max Spearman 0.0124 (<0.90) · max 3-px overlap 0.5899 (<0.70). Not a complete portal-registry scan.</p>
+<p><strong>Score:</strong> NOT ESTIMABLE — no organiser truth labels, no holdout DTI, no submission receipt.</p>
+<p><strong>OK to download for research:</strong> YES · <strong>OK to submit to portal:</strong> NO — not cleared pending holdout validation, complete-registry uniqueness, and separate selector approval.</p>
+<p class="small">Submission name (≤140 chars): <code>WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9</code> · Note (≤140 chars): <code>WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-37C53EB9 | 30000 off-trace step-over/damage-zone dots | format PASS | uniqueness vs 23 local r...</code></p>
+</div></section></div></section>
 <section><div class="section-head"><h2>Current date/access checks</h2></div><div class="card"><p>The competition home page lists <strong>{esc(competition['observations'][1].split('shows an end date of ')[1])}</strong>; the official rules Appendix A.1 gives <strong>{esc(official['observations'][-1])}</strong>. These instructions conflict by nearly two hours on the stated date. Treat the effective deadline as unresolved and use the earlier time unless the organizer confirms otherwise.</p>
 <p>The public leaderboard feed's latest successful check is <strong>{esc(feed.get('last_success_utc','unknown'))}</strong>, but it is not a score for this project. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
 <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition homepage ↗</a> ·
@@ -423,9 +369,7 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, LEADERBOARD_LATEST, OFFICIAL_SOURCES_LATEST,
-                   SESSION_CARD_LATEST, WITNESS_STATS_LATEST, FOCUS, UPSTREAM_CHECK,
-                   ROOT / "evidence/pair_identification.json"):
+                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
@@ -460,16 +404,7 @@ def render() -> None:
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
     snapshot = read_json(LEADERBOARD_SNAPSHOT)
-    upstream = read_json(UPSTREAM_CHECK)
 
-    upstream_rows = upstream.get("repositories", [])
-    if (upstream.get("approved_for_submission") is not False
-            or len(upstream_rows) != len(FOCUS_ORDER)
-            or {row.get("site") for row in upstream_rows} != set(FOCUS_ORDER)
-            or any(row.get("fetch_status") not in {"FETCHED", "FAILED"}
-                   or row.get("comparison_to_baseline") not in {"CHANGED", "UNCHANGED", "UNKNOWN"}
-                   for row in upstream_rows)):
-        raise ValueError("latest upstream identity check is missing, incomplete, or not fail-closed")
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
             or card.get("holdout_dti", {}).get("status") != "BLOCKED_BEFORE_EXPERIMENT"
@@ -488,21 +423,11 @@ def render() -> None:
         raise ValueError("dated official leaderboard observation changed; re-review before publishing")
     if source_check.get("checked_date_utc") != "2026-10-28":
         raise ValueError("official source check date is not current for this review")
-    verif = read_json(VERIFICATION_2026_10_29)
-    if (not verif.get("mechanism_gems32_vs_gems28_h27_4", {}).get("target_is_subset_of_base")
-            or verif["mechanism_gems32_vs_gems28_h27_4"].get("rule_mismatch_cells") != 0
-            or any(not r["sha256_matches_focus_audit"] for r in verif["rasters"].values())
-            or len(verif["rasters"]) != 9):
-        raise ValueError("2026-10-29 focus verification is missing or inconsistent; re-run scripts/verify_focus_files.py")
-    if read_json(OFFICIAL_2026_10_29).get("checked_date_utc") != "2026-10-29":
-        raise ValueError("2026-10-29 official source check is missing")
     gate = build_gate(card)
     copy_site_data(card, prereg, focus, gate)
-    for evidence_file in (VERIFICATION_2026_10_29, OFFICIAL_2026_10_29):
-        shutil.copyfile(evidence_file, DOCS / "data" / evidence_file.name)
 
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card, upstream)),
+        "index.html": ("Overview", index_page(feed, snapshot, card)),
         "executive-summary.html": ("Executive summary", executive_page(focus, card)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),

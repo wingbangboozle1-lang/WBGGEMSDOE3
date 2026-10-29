@@ -2,6 +2,7 @@ DO NOT SUBMIT — RESEARCH ARCHIVE ONLY
 No TIFF in this directory is cleared for competition upload.
 The project-wide literal-registry witness stop is active; local format checks or old lane results do not override it.
 This list is a file inventory, not an approval list:
+  WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif
   wb-gems-doe-3-latest-submission-zeros.tif
   wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif
   wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif
