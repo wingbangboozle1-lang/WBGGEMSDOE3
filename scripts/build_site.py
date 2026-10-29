@@ -34,6 +34,8 @@ FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 CURRENT_REVIEW_MD = ROOT / "knowledge/repo-review-2026-10-29.md"
 CURRENT_REVIEW_CARD = ROOT / "evidence/repo_review_2026-10-29.json"
+WITNESS_DEFINITION = ROOT / "evidence/witness_definition_check_2026-10-29.json"
+WITNESS_REVIEW_MD = ROOT / "knowledge/session-review-2026-10-29-witness.md"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -97,8 +99,7 @@ def decision_panel() -> str:
     return '''<div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
 <h2>DO NOT SUBMIT — no file is cleared.</h2>
 <p>No new candidate TIFF was generated, no holdout was run, and no submission slot was selected.
-A literal registered dense-witness stop fires before feature construction or dot placement.
-Historical rasters in the archive are for research only; a local format pass, owner-reported score,
+The release gate remains blocked pending a documented definition for treating a registered soft-probability surface as a discrete dot comparator; no protocol correction has been approved. Historical rasters in the archive are for research only; a local format pass, owner-reported score,
 model estimate, or content-aware exception does not clear a file.</p>
 <p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
 <a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
@@ -191,7 +192,7 @@ def index_page(feed: dict, snapshot: dict, card: dict, freshness: dict) -> str:
 {focus_table(read_json(FOCUS))}
 <p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
 <section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
-<p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
+<p>The committed finite-and-positive convention marks the registered soft-probability witness across the full mirrored footprint, but a concurrent byte audit flags that as a dot-definition mismatch. No correction is approved; other comparator overlaps independently block the historical invdesign file. The measurements are conditional on owner mirrors, not organizer provenance or a complete portal-registry census.</p>
 <a href="evidence.html">Read the evidence and caveats →</a></article>
 <article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
 <article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
@@ -235,7 +236,7 @@ def hypothesis_page(prereg: dict) -> str:
 <p class="small"><strong>Cost/access:</strong> {esc(h['implementation_cost'])}; {esc(h['data_access_status'])}</p></article>''')
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Preregistered research only</div>
 <h1>Five distinct geological hypotheses</h1>
-<p class="lede">Rank is qualitative pre-run research priority—not a DTI estimate or submission choice. No hypothesis was tested because the literal-registry stop fires before candidate construction.</p>
+<p class="lede">Rank is qualitative pre-run research priority—not a DTI estimate or submission choice. No hypothesis was tested because the release gate remains blocked pending a documented registry dot-definition decision and eligible shared holdout inputs.</p>
 <div class="decision"><strong>DO NOT SUBMIT. Global stop is active.</strong> No raster, feature canary, holdout score, or slot action was produced.</div>
 <p><a href="data/preregistration_2026-10-28.json">Machine-readable preregistration ↓</a> · <a href="data/preregistration-2026-10-28.md">Full preregistration ↓</a> · <a href="method.html">Locked evaluation protocol →</a></p></div></section>
 <div class="wrap"><section class="grid">{''.join(cards)}</section></div>'''
@@ -257,9 +258,9 @@ def method_page(card: dict, prereg: dict) -> str:
 <li>Every real score needs evaluator version, withheld-positive count, and 95% CI; public leaderboard values and projections are separate. A projection is never a score.</li>
 <li>Maximum three geological experiments or two hours; no real slot selection in this lane. A separate selector checks the weekly cap.</li>
 </ol></div></section>
-<section><div class="section-head"><h2>Current witness stop</h2></div><div class="card"><p>Witness <code>{witness['witness_sha256']}</code> is recorded as positive on {witness['witness_positive_cells']:,} of {witness['mirrored_sample_footprint_cells']:,} cells in an owner-mirrored footprint. If that registered raster is interpreted with the committed finite-and-positive support rule, any nonempty prediction wholly inside the footprint has 100% directed overlap at distance zero, above the 70% stop.</p>
-<p>This is conditional on mirrored bytes and the registry entry. It does not authenticate organizer provenance or establish complete portal-registry coverage. The protocol still requires stopping; do not silently exclude the witness.</p>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Saved witness recheck ↓</a> · <a href="data/session_7393d521_run_card.json">Current negative run card ↓</a></p></div></section>
+<section><div class="section-head"><h2>Witness comparator definition is unresolved</h2></div><div class="card"><p>Witness <code>{witness['witness_sha256']}</code> is a soft-probability surface measured on an owner-mirrored footprint. The committed finite-and-positive support convention marks all {witness['witness_positive_cells']:,} finite cells; a concurrent byte audit reports that a ≥0.5 threshold marks 14.1%. Treating every positive cell as a discrete "dot" may therefore be a definition mismatch, not a measured duplicate.</p>
+<p>The audit does not change the release gate or authorize a new definition. Keep DO NOT SUBMIT while the comparator/dot policy and full registry audit remain unresolved. It does not authenticate organizer provenance or establish complete portal-registry coverage.</p>
+<p><a href="data/witness_definition_check_2026-10-29.json">Definition measurement JSON ↓</a> · <a href="data/session-review-2026-10-29-witness.md">Definition review and options ↓</a> · <a href="data/session_7393d521_run_card.json">2026-10-28 negative run card ↓</a></p></div></section>
 <section><div class="section-head"><h2>Template/runtime status</h2></div><div class="card"><p>The shared bootstrap is pinned by <code>src/gems_project/template.py</code>. The cached feature stack was absent and the shared evaluator/writer were not restored or run in this review. This is a blocking data/runtime gap, not a reason to substitute a historical estimate.</p>
 <p>Current card status: <strong>{esc(card['holdout_dti']['status'])}</strong>; no DTI value, CI, or withheld-positive count is asserted.</p></div></section>
 <section><p><a href="data/official_source_check_2026-10-28.json">Official-source check ↓</a> · <a href="research.html">Preregistered hypotheses →</a></p></section></div>'''
@@ -288,14 +289,14 @@ def evidence_page(card: dict, prereg: dict, source_check: dict, focus: dict) -> 
     witness = prereg["global_stop"]
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Evidence and limitations</div>
 <h1>A measurable stop, not a score.</h1><p class="lede">All claims are assigned an evidence class; mirror identity is not organizer provenance.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Literal registry witness</h2><p>Measured on hash-pinned owner mirrors; not a complete authenticated portal-registry audit.</p></div>
-<div class="grid"><article class="card"><h3>Witness raster</h3><p>SHA-256 <code>{witness['witness_sha256']}</code>; {witness['witness_positive_cells']:,}/{witness['mirrored_sample_footprint_cells']:,} cells positive under the recorded support definition.</p><p>Conditional directed overlap for any nonempty in-footprint candidate: <strong>100%</strong>, exceeding the user's 70% limit before placement. No surface correlation was run because no candidate surface exists.</p></article>
+<div class="wrap"><section><div class="section-head"><h2>Registry witness: dot definition under review</h2><p>Measured on hash-pinned owner mirrors; not a complete authenticated portal-registry audit.</p></div>
+<div class="grid"><article class="card"><h3>Witness raster</h3><p>SHA-256 <code>{witness['witness_sha256']}</code>; {witness['witness_positive_cells']:,}/{witness['mirrored_sample_footprint_cells']:,} cells are positive under the saved finite-and-positive convention. A 2026-10-29 byte audit identifies a soft-probability surface; this support convention may not define a discrete dot set.</p><p>The 100% overlap is conditional on treating every finite positive cell as a dot; it is not a candidate-specific duplicate measurement. The release gate remains negative pending a documented definition decision and other all-registry checks. No surface correlation was run because no candidate surface exists.</p></article>
 <article class="card"><h3>No experiment / no holdout</h3><p>0 geological experiments; no candidate raster; no holdout value or CI; no validator run on a new artifact; no slot selected. The shared feature cache and evaluator runtime were not restored.</p></article>
 <article class="card"><h3>Provenance and scope</h3><p>The witness and sample are public owner mirrors recorded in the registry, not authenticated organizer downloads. The result is conditional on that entry and does not prove the mirror is the entire current portal registry.</p></article></div>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Witness measurement JSON ↓</a> · <a href="data/session_7393d521_run_card.json">Current run card ↓</a> · <a href="data/release_gate.json">Release-gate JSON ↓</a></p></section>
+<p><a href="data/registry_witness_recheck_2026-10-27.json">Original witness recheck ↓</a> · <a href="data/witness_definition_check_2026-10-29.json">Definition measurement ↓</a> · <a href="data/session-review-2026-10-29-witness.md">Definition review ↓</a> · <a href="data/session_7393d521_run_card.json">Negative run card ↓</a> · <a href="data/release_gate.json">Release-gate JSON ↓</a></p></section>
 <section><div class="section-head"><h2>GEMSDOE32 explanation status</h2></div><div class="card"><p>The repository records a byte-level subset relationship between GEMSDOE32 B2 and GEMSDOE28 H27-4, with 2,545 removed pixels near a mirrored catalogue. Metric arithmetic makes it plausible that pruning low-credit predictions could improve a distance-weighted Tversky score, but absent hidden labels and a receipt this is not a verified causal explanation of 0.2778.</p><p>The nine owner-reported values in the comparison table are not organizer-confirmed results. The current 0.4544 public leaderboard leader is a public score for a different team and cannot be applied to these files.</p></div></section>
 <section><div class="section-head"><h2>Official-source verification</h2></div><div class="card"><p>Competition metric and format, official rules, public leaderboard, GeoDAWN, DOE GDR #1391, USGS 3DEP, and Landsat Collection 2 pages were retrieved on 2026-10-28. The competition submission and data pages redirected to login.</p><p>Important official inconsistency: the competition homepage lists 2026-12-03 at 23:59 UTC, but Appendix A.1 of the official rules says 5 p.m. ET. The operative deadline remains unresolved. Source-by-source content, data-access limits, and the leaderboard capture are recorded in the JSON.</p><p><a href="data/official_source_check_2026-10-28.json">Download official-source check ↓</a> · <a href="data/leaderboard_observation_2026-10-28.json">Download dated leaderboard snapshot ↓</a></p></div></section>
-<section><div class="section-head"><h2>Historical scores and files</h2></div><div class="card"><p>Focus-site scores are owner/user reports. Historical rasters remain in the research archive, but all fail the project-level literal uniqueness stop under the current rule. The downloads index intentionally has no direct TIFF links.</p><p><a href="data/focus_audit.json">Nine-site byte audit ↓</a> · <a href="downloads/index.html">Research-download status →</a></p></div></section>
+<section><div class="section-head"><h2>Historical scores and files</h2></div><div class="card"><p>Focus-site scores are owner/user reports. The pinned rasters fail the saved pairwise uniqueness check within the nine-site set (maximum reported 3-px overlaps are at least 97.6%). Full-registry interpretation remains under review; the downloads index intentionally has no direct TIFF links.</p><p><a href="data/focus_audit.json">Nine-site byte audit ↓</a> · <a href="downloads/index.html">Research-download status →</a></p></div></section>
 <section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div>'''
 
 
@@ -306,7 +307,7 @@ def session_review_page(card: dict, freshness: dict) -> str:
 <div class="wrap"><section>{source_freshness_panel(freshness)}</section>
 <section><div class="section-head"><h2>2026-10-29 repository-review passes</h2></div><div class="grid"><article class="card"><div class="eyebrow">Pass 1 · inspection and implementation</div><h2>Audited current repo/source state</h2><p>Reviewed the standing requirements and negative gate, refreshed GitHub source identities, and added a visible, per-site drift panel to the overview and executive summary.</p></article>
 <article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Kept source drift separate from claims</h2><p>The feed reports commit identities only. It does not update scores, identify TIFF changes, validate receipts, estimate leaderboard performance, or authorize downloads. All nine sites remain content-re-audit items.</p></article>
-<article class="card"><div class="eyebrow">Pass 3 · requirements and tests</div><h2>Rechecked the negative release contract</h2><p>Site checker passed; pytest passed 237 tests with 4 cache-dependent skips; Python compilation and whitespace checks passed. No candidate or holdout was attempted.</p></article></div>
+<article class="card"><div class="eyebrow">Pass 3 · requirements and tests</div><h2>Rechecked the negative release contract</h2><p>Site checker passed; pytest passed 242 tests with 4 cache-dependent skips; Python compilation and whitespace checks passed. No candidate or holdout was attempted.</p></article></div>
 <p><a href="data/repo-review-2026-10-29.md">Read the full review ↓</a> · <a href="data/repo_review_2026-10-29.json">Download review JSON card ↓</a></p></section>
 <section><div class="section-head"><h2>2026-10-28 research / release review (historical)</h2></div><div class="card"><p>The preceding review preregistered five hypotheses and reconciled the publication gate against the literal registry witness. The five hypotheses remain untested; its published negative card is still the active scientific-run record.</p><ul>
 <li>Verdict: <strong>{esc(card['verdict'].upper())}</strong>; no candidate raster or SHA-256 exists.</li>
@@ -393,6 +394,8 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict, freshness:
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
     shutil.copyfile(CURRENT_REVIEW_MD, data / "repo-review-2026-10-29.md")
     shutil.copyfile(CURRENT_REVIEW_CARD, data / "repo_review_2026-10-29.json")
+    shutil.copyfile(WITNESS_DEFINITION, data / "witness_definition_check_2026-10-29.json")
+    shutil.copyfile(WITNESS_REVIEW_MD, data / "session-review-2026-10-29-witness.md")
     (data / "source-freshness.json").write_text(
         json.dumps(freshness, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     for _, (_, card_name) in ARCHIVE_LANES.items():

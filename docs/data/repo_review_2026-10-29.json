@@ -27,7 +27,20 @@
     "prior_witness_positive_cells": 5167373,
     "prior_mirrored_footprint_cells": 5167373,
     "prior_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "interpretation": "The 1.0 value is the saved conditional overlap under the repository's documented support rule for one hash-pinned owner mirror; it is not a candidate measurement, authenticated organizer provenance, or a complete portal-registry census."
+    "concurrent_definition_audit": {
+      "path": "evidence/witness_definition_check_2026-10-29.json",
+      "soft_probability_surface": true,
+      "finite_positive_support_fraction": 1.0,
+      "fraction_at_or_above_0_5": 0.14091,
+      "release_gate_changed": false,
+      "independent_existing_invdesign_overlaps": {
+        "13GEMSDOE_r13_lattice": 0.9944,
+        "GEMSDOE23_h30_habitat": 0.8166,
+        "GEMSDOE46_r11f": 0.7178
+      },
+      "note": "Imported evidence from a concurrent main-branch review; not independently rerun here. These overlaps are about the historical invdesign raster, not a candidate from this review."
+    },
+    "interpretation": "The 1.0 value is the saved conditional overlap under the repository's documented finite-and-positive support rule for one hash-pinned owner mirror, not a candidate measurement. A concurrent 2026-10-29 byte audit found that this continuous soft-probability surface may be mislabeled as dots under that support rule; the release gate remains negative pending an explicit definition decision. This is not authenticated organizer provenance or a complete portal-registry census."
   },
   "source_freshness": {
     "path": "docs/freshness.json",
@@ -68,7 +81,7 @@
     "site_builder": "PASS",
     "site_checker": "PASS",
     "pytest": {
-      "passed": 238,
+      "passed": 242,
       "skipped": 4,
       "warnings": 72,
       "result": "PASS"
@@ -80,6 +93,9 @@
     "The public leaderboard refresh uses DrivenData, outside the current network allowlist; its latest successful committed observation remains dated 2026-10-28.",
     "Official competition data/submission pages require authentication and are not accessible from this environment.",
     "All nine peer repositories have new HEADs relative to the pinned source snapshots; their changed content and new score claims require a separate pinned-content re-audit.",
+    "Concurrent verification flags a local template-grid footprint discrepancy (12,279,160 finite cells versus a cited 5,167,373-cell footprint); resolve before any format validation.",
+    "A third-party mirror's labels.tif matches existing_faults.tif by hash; provenance/license are unverified and it was not used for holdout.",
+    "The single method paragraph is not identifiable in the reconstructed project brief, so this review inferred no lane.",
     "No candidate score can be estimated defensibly from the available evidence."
   ],
   "evidence_links": [
@@ -88,6 +104,8 @@
     "evidence/session_7393d521_run_card.json",
     "evidence/registry_witness_recheck_2026-10-27.json",
     "evidence/focus_audit.json",
-    "evidence/official_source_check_2026-10-28.json"
+    "evidence/official_source_check_2026-10-28.json",
+    "evidence/witness_definition_check_2026-10-29.json",
+    "evidence/verification_2026_10_29.json"
   ]
 }

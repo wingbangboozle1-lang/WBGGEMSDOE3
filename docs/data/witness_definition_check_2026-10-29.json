@@ -1,0 +1,68 @@
+{
+ "schema": "witness-definition-check-v1",
+ "date_utc": "2026-10-29",
+ "evidence_class": "RASTER MEASUREMENT of a registered comparator; not a candidate, not HOLDOUT-DTI, not a score",
+ "source": "https://codeload.github.com/buffedlizard55-lab/17GEMSDOE/tar.gz/6fc71d19d49dca4960d5434bd81b6dd06fcc030a",
+ "member": "17GEMSDOE-6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+ "provenance": "public GitHub owner mirror, hash-verified; NOT organizer-authenticated",
+ "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+ "sha256_matches_registry": true,
+ "registry_dots_match_recount": true,
+ "metadata": {
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "dtype": "float32",
+  "count": 1,
+  "nodata": NaN
+ },
+ "footprint_finite_cells": 5167373,
+ "nan_cells": 7111787,
+ "value_min": 0.0004625781439244747,
+ "value_max": 0.984115719795227,
+ "literal_positive_support": {
+  "rule": "finite and value > 0 (repo rule in scripts/session2_registry.py)",
+  "cells": {
+   "0.0": 5167373,
+   "0.1": 3858179,
+   "0.3": 1913380,
+   "0.5": 728137,
+   "0.7": 153076,
+   "0.9": 14054
+  },
+  "fraction_of_finite": {
+   "0.0": 1.0,
+   "0.1": 0.746642,
+   "0.3": 0.370281,
+   "0.5": 0.14091,
+   "0.7": 0.029624,
+   "0.9": 0.00272
+  }
+ },
+ "top_n_dot_definition": {
+  "5000": {
+   "threshold": 0.929415,
+   "cells_at_or_above": 5000
+  },
+  "15000": {
+   "threshold": 0.897491,
+   "cells_at_or_above": 15000
+  },
+  "37654": {
+   "threshold": 0.843843,
+   "cells_at_or_above": 37654
+  }
+ },
+ "finding": "Under the literal positive-support rule the witness is 'dots' on 100% of its footprint. A soft-probability surface is not a set of dots; under a top-N or >=0.5 dot definition it is sparse. The stop that follows from the literal rule is a definition consequence, not a measured duplicate. Changing the dot definition is a protocol decision for the owner and is NOT made here.",
+ "gate_status": "UNCHANGED: docs/data/release_gate.json remains DO-NOT-SUBMIT"
+}

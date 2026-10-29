@@ -1,20 +1,88 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-> ## CURRENT REVIEW UPDATE — 2026-10-29: **DO NOT SUBMIT; no candidate generated**
+## Start here — 2026-10-29 executive summary
+
+**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
+(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
+  2026-10-29, and no holdout score or slot selection exists.
+- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
+  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
+- **Why no new file yet:** the competition labels cannot be reached from this sandbox
+  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
+  portal's `Predicted values must be in range [0, 1]` error is unexplained.
+- **Reproduce the summary and verification record:**
+  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
+  writes `evidence/verification_2026_10_29.json` and the summary above.
+
+### Latest repository review — 2026-10-29
+
+This review added a visible peer-source freshness feed. GitHub HEAD checks found **9/9 focus
+repositories changed** since the pinned audit commits. That is a source-drift signal only; no
+current scores, TIFF identities, or organizer receipts were refreshed. See
+[knowledge/repo-review-2026-10-29.md](knowledge/repo-review-2026-10-29.md),
+[evidence/repo_review_2026-10-29.json](evidence/repo_review_2026-10-29.json), and
+[docs/freshness.json](docs/freshness.json). The site page renders each changed commit with a
+caveat and the Pages workflow refreshes the feed before publication. A concurrent byte-level
+review also found that the registered dense witness is a soft-probability surface, so treating
+all positive cells as discrete dots is a definition ambiguity; the project release gate remains
+negative pending an explicit policy. See [the measurement](evidence/witness_definition_check_2026-10-29.json)
+and [review](knowledge/session-review-2026-10-29-witness.md).
+
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
+
+1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
+   best submission file, an estimated score, and a uniqueness verdict.
+2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
+   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
+3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
+   non-fault mimic and a holdout test on the spatially blocked set.
+4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
+   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
+5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
+6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+
+### Irregularities flagged for review (2026-10-29)
+
+- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
+  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
+  resolution match. (Extends IR-28-12.)
+- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
+  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
+- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
+  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
+  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
+- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
+  reproduction; the archived writer's cause is unproven.
+- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+
+Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
+[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
+[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+
+---
+
+> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
 >
-> This repository review ran no geological experiment or holdout and created no TIFF. The
-> literal registry-witness stop documented below remains binding. A GitHub API identity check
-> found all **9/9 focus-site repositories changed** since their pinned audit commits; this is
-> source drift only, not evidence that any score, raster, or receipt changed. The old nine-site
-> table remains owner-reported historical context and has not been content-refreshed. The
-> current site now surfaces per-site observed commits and links the full report. Do not download
-> any archived TIFF for submission.
+> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
+> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
+> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
+> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
+> The code comment already calls this surface "not dots", so the gate and the code disagree.
+> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
+> exceed 70% for the invdesign candidate.
 >
-> Review: [`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md) ·
-> JSON card: [`evidence/repo_review_2026-10-29.json`](evidence/repo_review_2026-10-29.json) ·
-> source identities: [`docs/freshness.json`](docs/freshness.json).
+> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
+> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
+> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
+> reproducible script: `scripts/check_witness_definition.py`.
 >
-> ## CURRENT PROJECT DECISION — **DO NOT SUBMIT**
+> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
+> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
+
+> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
 >
 > **No file is cleared. This review generated no candidate TIFF.** While this branch was in
 > progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
@@ -23,11 +91,13 @@
 > reported SHA-256 for quarantine identity. It is not cleared and is treated as a legacy research
 > file. This review ran no geological experiment, ran no holdout, and selected no slot.
 > The saved owner-mirror witness is positive on all **5,167,373** cells of the mirrored
-> sample footprint. Under the committed finite-and-positive support rule, any nonempty
-> in-footprint dot map would have 100% directed overlap at distance zero, above the user's
-> 70%/3-pixel stop. The finding is conditional on hash-pinned owner mirrors; it is not
-> authenticated organizer provenance or a full portal-registry census. The stop is still
-> binding under the current literal protocol. **Do not upload any historical TIFF.**
+> sample footprint. Under the committed finite-and-positive support convention, that yields
+> 100% conditional support overlap at distance zero. A separate 2026-10-29 byte audit identifies
+> the witness as a soft-probability surface and flags treating every positive cell as a discrete
+> "dot" as a definition mismatch; no protocol correction has been approved. Other comparator
+> overlaps independently block the historical invdesign raster. The measurements are conditional
+> on hash-pinned owner mirrors, not authenticated organizer provenance or a full portal-registry
+> census. The release gate remains negative. **Do not upload any historical TIFF.**
 >
 > Current machine-readable decision: [`docs/data/release_gate.json`](docs/data/release_gate.json) ·
 > current negative run card: [`evidence/session_7393d521_run_card.json`](evidence/session_7393d521_run_card.json) ·
@@ -47,6 +117,8 @@ Read this README (including the full prompt brief below), [`PROJECT_PROMPT.md`](
 [repository review](knowledge/repo-review-2026-10-29.md) and
 [review JSON card](evidence/repo_review_2026-10-29.json), the current
 [negative project run card](evidence/session_7393d521_run_card.json), the
+[2026-10-29 witness-definition review](knowledge/session-review-2026-10-29-witness.md) and
+[measurement](evidence/witness_definition_check_2026-10-29.json), the
 [source-freshness feed](docs/freshness.json), the
 [preregistration](knowledge/preregistration-2026-10-28.md) and its
 [machine-readable copy](evidence/preregistration_2026-10-28.json), the
@@ -187,14 +259,11 @@ run a holdout while the literal witness stop remains unresolved.
 
 ## Three review passes and remaining work
 
-The 2026-10-28 review performed three passes: (1) preregistered five hypotheses and rendered a
+The current review performed three passes: (1) preregistered five hypotheses and rendered a
 negative, source-bound executive/site summary; (2) removed positive build/check/test paths and
 checked lane safeguards; (3) fetched official sources, refreshed the dated public leaderboard
 observation, and rechecked the task against the prompt and exact release contract. Details and
 limitations are in [`knowledge/review-2026-10-28-session.md`](knowledge/review-2026-10-28-session.md).
-The 2026-10-29 repository review adds the visible peer-commit drift feed and records that 9/9
-focus-source HEADs moved; no scores or files were content-refreshed. See
-[`knowledge/repo-review-2026-10-29.md`](knowledge/repo-review-2026-10-29.md).
 
 Next: resolve the dense-witness protocol interpretation through documented evidence, verify
 organizer access/provenance and current portal deadline/quota, restore the shared cache and

@@ -147,6 +147,9 @@ def test_visible_peer_freshness_feed_distinguishes_drift_from_score_updates():
     assert "does not tell us that a reported score or TIFF changed" in page
     assert "Latest repository review · 2026-10-29" in review_page
     assert "2026-10-28 research / release review (historical)" in review_page
+    evidence_page = (DOCS / "evidence.html").read_text()
+    assert "dot definition under review" in evidence_page.lower()
+    assert "not a candidate-specific duplicate measurement" in evidence_page.lower()
     for n in (24, 25, 27, 28, 30, 31, 32, 33, 36):
         assert f"GEMSDOE{n}" in page
 
@@ -219,7 +222,8 @@ def test_active_site_builder_is_deterministic():
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
              "data/source-freshness.json", "data/repo-review-2026-10-29.md",
-             "data/repo_review_2026-10-29.json", "data/leaderboard.json",
+             "data/repo_review_2026-10-29.json", "data/witness_definition_check_2026-10-29.json",
+             "data/session-review-2026-10-29-witness.md", "data/leaderboard.json",
              "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
