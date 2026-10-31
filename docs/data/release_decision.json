@@ -1,0 +1,18 @@
+{
+  "schema": "gems-release-decision-v1",
+  "generated_by": "scripts/build_release_site.py",
+  "decision": "SUBMIT",
+  "okay_to_submit": true,
+  "file": "WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif",
+  "path": "docs/downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif",
+  "sha256": "41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6",
+  "dots": 139957,
+  "format_passed": true,
+  "uniqueness_passed": true,
+  "format_checks": 11,
+  "uniqueness_checks": 4,
+  "note": "WB-GEMS-DOE-3 CIFS CAT | 139957 dots, catalogue-free multi-physics concordance, >300 m collar | multi-physics structural detector, catalogue",
+  "note_characters": 140,
+  "evidence": "evidence/release/candidate_run_card.json",
+  "archive_lane_gate": "data/release_gate.json (2026-10-30 lane, DO-NOT-SUBMIT by design)"
+}
