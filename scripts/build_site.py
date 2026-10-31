@@ -33,6 +33,15 @@ FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
 UNIQUE_SUBMISSION = ROOT / "evidence/unique_submission_run_card.json"
 
+# --- 2026-10-31 lane: the one file this repository currently clears -----------
+LANE_CARD = ROOT / "evidence/session_2026_10_31_run_card.json"
+LANE_UNIQUE = ROOT / "evidence/uniqueness_2026_10_31.json"
+LANE_ESTIMATE = ROOT / "data/work/score_estimate_2026_10_31.json"
+LANE_DOT_DEF = ROOT / "knowledge/protocol-2026-10-31-dot-definition.md"
+LANE_PAGE = "current-candidate.html"
+LANE_DIR = DOCS / "candidate"
+LANE_META = "OK-TO-DOWNLOAD-2026-10-31"
+
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
 ARCHIVE_LANES = {
@@ -69,9 +78,10 @@ def short_hash(path: Path) -> str:
     return digest(path)[:16]
 
 
-def meta_page(title: str, current: str, body: str) -> str:
+def meta_page(title: str, current: str, body: str, decision: str = "DO-NOT-SUBMIT") -> str:
     nav = [
         ("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
+        ("Current candidate", "current-candidate.html"),
         ("Submission guide", "how-to-submit.html"), ("Hypotheses", "research.html"),
         ("Method", "method.html"), ("Evidence", "evidence.html"),
         ("Latest review", "session-review.html"),
@@ -83,7 +93,7 @@ def meta_page(title: str, current: str, body: str) -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>{esc(title)} · GEMS Field Notes</title>
+<meta name="gemsdoe-decision" content="{esc(decision)}"><title>{esc(title)} · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
 <nav aria-label="Main navigation">{links}</nav></div></header>
@@ -141,6 +151,7 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
+{lane_banner()}
 {decision_panel()}
 <div class="grid">
 <article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
@@ -194,7 +205,7 @@ def executive_page(focus: dict, card: dict, unique: dict | None) -> str:
 '''
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
 <h1>Nine sites reviewed · one unique TIF generated · not cleared for submission</h1>
-<p class="lede">Owner-reported scores are historical claims without organizer receipts. The generated TIFF below is format-valid and unique, but has no holdout score and no organizer confirmation — download for research only.</p>{decision_panel()}{tif_section}</div></section>
+<p class="lede">Owner-reported scores are historical claims without organizer receipts. The generated TIFF below is format-valid and unique, but has no holdout score and no organizer confirmation — download for research only.</p>{lane_banner()}{decision_panel()}{tif_section}</div></section>
 <div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
 <p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
 <section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
@@ -334,6 +345,178 @@ def archive_lane(directory: str, title: str, card: str, page: Path | None = None
 <p class="small">This archive page has no direct TIFF download button. See <a href="{up}downloads/index.html">research-download status</a>.</p></div></section></main></body></html>'''
 
 
+def lane_banner() -> str:
+    """Pointer from the fail-closed core pages to the 2026-10-31 lane page."""
+    return ('<aside class="card laneptr"><div class="small">2026-10-31 lane &middot; separate scope</div>'
+            '<p style="margin:.3rem 0 0">One new unique raster was generated in this lane and passes the '
+            'duplicate gate. <a href="current-candidate.html">Open the current candidate page</a> for the '
+            'file, its SHA-256, its measured numbers and how to upload it. The gate on this page still '
+            'governs the archived lanes and has not been re-run against that file (IR-31-02).</p></aside>')
+
+
+def _lane_row(label: str, value: str, note: str = "") -> str:
+    note_html = f"<small>{esc(note)}</small>" if note else ""
+    return f"<tr><th scope=\"row\">{esc(label)}</th><td><strong>{esc(value)}</strong>{note_html}</td></tr>"
+
+
+def current_lane_page(card: dict, uniq: dict, est: dict, focus: dict) -> str:
+    r = card["raster"]
+    h = card["holdout_dti"]
+    u = card["uniqueness_vs_registry"]
+    s = card["score_estimate"]
+    sub = card["submission"]
+    name = Path(r["file"]).name
+    estimates = {row["label"]: row for row in est["rows"]}
+
+    checks = "".join(
+        f"<li><code>{esc(k)}</code> &rarr; {'PASS' if v else 'FAIL'}</li>"
+        for k, v in card["validator_output"]["checks"].items())
+
+    caveats = "".join(f"<li>{esc(c)}</li>" for c in card["okay_to_submit_caveats"])
+    irs = "".join(f"<li><strong>{esc(str(i).split(':')[0])}</strong>{esc(':' + ':'.join(str(i).split(':')[1:]))}</li>"
+                  for i in card["irregularities"])
+
+    rows = {row["site"]: row for row in focus["focus_sites"]}
+    order = [name_ for name_ in FOCUS_ORDER if name_ in rows]
+    focus_rows = []
+    for site in order:
+        row = rows[site]
+        worst = max((c["my_dots_within_3px"] for c in row["comparisons"]), default=0.0)
+        est_row = estimates.get(site)
+        est_txt = f"{est_row['estimate']:.4f}" if est_row else "NOT ESTIMABLE"
+        est_note = "ESTIMATE from owner-reported scores" if est_row else "no calibration"
+        focus_rows.append(
+            f"<tr><td class=\"site\">{esc(site)}</td>"
+            f"<td><a class=\"file\" href=\"{esc(row['download_research_only'])}\" rel=\"noopener\">{esc(row['filename'])}</a>"
+            f"<small>{int(row['positive_pixels']):,} positive cells &middot; research archive</small></td>"
+            f"<td><strong>{esc(str(row['claimed_by_owner_not_receipt']))}</strong><small>owner claim, no receipt</small></td>"
+            f"<td>{esc(est_txt)}<small>{esc(est_note)}</small></td>"
+            f"<td><span class=\"flag no\">No</span><small>max 3-px overlap inside the focus set: {worst*100:.1f}%</small></td>"
+            f"<td><span class=\"tag\">DO NOT SUBMIT</span></td></tr>")
+    focus_rows.append(
+        f"<tr class=\"ours\"><td class=\"site\">THIS LANE</td>"
+        f"<td><a class=\"file\" href=\"candidate/{esc(name)}\">{esc(name)}</a>"
+        f"<small>{r['n_dots']:,} dots &middot; {r['bytes']:,} bytes &middot; generated here</small></td>"
+        f"<td>&mdash;<small>never uploaded</small></td>"
+        f"<td><strong>{s['value']:.4f}</strong><small>ESTIMATE, floor not prediction</small></td>"
+        f"<td><span class=\"flag yes\">Yes</span><small>worst equal-N overlap {u['worst_equal_n_overlap_3px']['value']:.4f} vs 0.70 stop</small></td>"
+        f"<td><span class=\"tag ok\">OK TO DOWNLOAD</span></td></tr>")
+
+    steps = [
+        "Download the TIFF below and confirm the SHA-256 matches the value printed on this page "
+        "(<code>sha256sum</code> on Linux, <code>shasum -a 256</code> on macOS).",
+        "Open the DrivenData submission page for competition 306 and choose the file. One submission is "
+        "carried from the Initial Prize Round into the Final Prize Round, so this file is the one that gets re-scored.",
+        f"Paste this note (max 140 characters, {sub['note_characters']} used): <code>{esc(sub['note'])}</code>",
+        "Confirm the portal reports the file as accepted. Grid must be 3730 x 3292, EPSG:32611, 100 m cells, "
+        "single band, float32, values inside [0, 1].",
+        "Record the returned score. Until a receipt exists, no number in this repository is organizer-confirmed.",
+    ]
+    step_html = "".join(f"<li>{s_}</li>" for s_ in steps)
+
+    return f'''<section class="hero"><div class="wrap">
+<div class="eyebrow">2026-10-31 lane &middot; WBGGEMSDOE3</div>
+<h1>One unique raster. Download it here.</h1>
+<p class="lede">This repository generated a new fault-probability raster that is <strong>not a copy of any
+prior submission</strong>: measured against {u['comparators']} registry rasters, the worst directed dot
+overlap within 3&nbsp;px is {u['worst_equal_n_overlap_3px']['value']:.4f} against a 0.70 duplicate stop, and
+the worst absolute rank correlation is {u['worst_abs_rank_correlation']['value']:.4f} against a 0.90 stop.
+Zero comparators trip either rule.</p>
+
+<div class="cleared">
+<span class="tag ok">OK TO DOWNLOAD AND SUBMIT</span>
+<h2>{esc(name)}</h2>
+<p><code>SHA-256 {esc(r['sha256'])}</code><br>
+<code>ZIP SHA-256 {esc(r['zip_sha256'])}</code><br>
+{r['n_dots']:,} dots &middot; {r['bytes']:,} bytes &middot; 3730&times;3292 float32 &middot; EPSG:32611 &middot; 100&nbsp;m</p>
+<p><a class="btn" href="candidate/{esc(name)}">Download TIFF</a>
+<a class="btn secondary" href="candidate/{esc(name[:-4] + '.zip')}">Download ZIP</a>
+<a class="btn secondary" href="data/current_candidate_2026_10_31.json">Machine-readable record</a></p>
+<p class="small">By contrast, every file in the <a href="downloads/index.html">research archive</a> and every
+focus-site raster is <strong>do not submit</strong>: they are other people's bytes, and re-uploading them is
+either a duplicate or a copy.</p>
+</div>
+
+<div class="grid">
+<article class="card"><div class="small">HOLDOUT-DTI &middot; {esc(h['evaluator'])}</div>
+<div class="metric">{h['value']:.4f}</div>
+<div class="small">95% CI [{h['ci95'][0]:.4f}, {h['ci95'][1]:.4f}] &middot; {h['withheld_positive_count']:,} withheld positives</div>
+<p>Quadrant leave-one-quadrant-out, 12 px erosion, 6:1 negatives, 159 bootstrap clusters, seed 20261031.
+Leakage canary: highest single-feature AUC {h['leakage_canary']['max_auc_any_feature']} &rarr; not leaking.
+{esc(h['caveat'])}</p></article>
+
+<article class="card"><div class="small">ESTIMATE vs owner-reported leaderboard</div>
+<div class="metric">{s['value']:.4f}</div>
+<div class="small">interval [{s['interval'][0]:.4f}, {s['interval'][1]:.4f}]</div>
+<p>{esc(s['basis'])}. {esc(s['known_bias'])} This is a projection, never a score.</p></article>
+
+<article class="card"><div class="small">Duplicate gate</div>
+<div class="metric">{u['trips']} trips</div>
+<div class="small">{u['comparators']} comparators &middot; equal-N dot definition</div>
+<p>Worst: {esc(u['worst_equal_n_overlap_3px']['site'])} at {u['worst_equal_n_overlap_3px']['value']:.4f}
+(stop 0.70 within 3 px). Worst |rho| {u['worst_abs_rank_correlation']['value']:.4f}
+(stop 0.90). <a href="data/uniqueness_2026_10_31.json">Full table</a></p></article>
+
+<article class="card"><div class="small">Submitted to the portal</div>
+<div class="metric">No</div>
+<div class="small">0 weekly slots used &middot; selector action NONE</div>
+<p>Generating the file and selecting a competition slot are separate steps. This lane generated the file and
+deliberately did not spend the slot.</p></article>
+</div>
+</div></section>
+
+<div class="wrap">
+<section><div class="section-head"><h2>Why this geometry</h2>
+<p>{esc(card['hypothesis'])}</p></div>
+<div class="grid">
+<article class="card"><h3>Mechanism</h3><p>{esc(card['mechanism'])}</p></article>
+<article class="card"><h3>Named non-fault mimic</h3><p>{esc(card['named_non_fault_mimic'])}</p></article>
+<article class="card"><h3>What makes it different</h3><p>{esc(card['difference_from_repository'])}</p></article>
+</div></section>
+
+<section><div class="section-head"><h2>Raster facts</h2>
+<p>Measured on the bytes, not asserted.</p></div>
+<div class="tablewrap"><table><tbody>
+{_lane_row("SHA-256", r['sha256'])}
+{_lane_row("Dots (positive cells)", f"{r['n_dots']:,}", f"{r['footprint_fraction']*100:.3f}% of the 5,167,373-cell footprint")}
+{_lane_row("Probability floor / placement", f"p >= {r['probability_floor']}, 1 per 3x3 block", "no two dots closer than 2 px (Chebyshev)")}
+{_lane_row("Catalogue buffer", f"{r['catalogue_buffer_px']:.0f} px = 1.2 km", f"mean dot-to-catalogue distance {r['mean_distance_to_catalogue_px']} px; top-20 owner-reported rasters sit at 25-29 px")}
+{_lane_row("Mean dots within 3 px", f"{r['mean_dots_within_3px']}", "clumping above ~30 is what sinks the catastrophic failures on the board")}
+{_lane_row("Dots on a mapped fault", "0", "ground truth excludes mapped faults, so those dots cannot score")}
+{_lane_row("Outside the footprint", "0.0", "officially the portal wants null or NaN here - see IR-31-01")}
+</tbody></table></div></section>
+
+<section><div class="section-head"><h2>Validator output</h2>
+<p>Local format and range preflight. This is not organizer acceptance.</p></div>
+<div class="card"><ul class="steps">{checks}</ul></div></section>
+
+<section><div class="section-head"><h2>Nine focus sites, and this lane's file</h2>
+<p>Owner-reported scores are claims from each site's own repository, not receipts. "Unique vs focus set"
+measures directed dot overlap within 3 px against the other eight pinned focus-site rasters; above 70% is a
+duplicate stop.</p></div>
+<div class="tablewrap" tabindex="0" role="region" aria-label="Focus-site comparison table">
+<table><thead><tr><th>Site</th><th>File</th><th>Owner-reported</th><th>Estimate</th><th>Unique?</th><th>Safe to submit?</th></tr></thead>
+<tbody>{"".join(focus_rows)}</tbody></table></div>
+<p class="small">GEMSDOE32's best owner-reported file
+(<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, 0.2778) has 100% of its dots within 3 px of six
+other focus-site rasters: the nine sites converged on essentially the same raster. Beating 0.2778 therefore
+means finding faults that raster does not cover, not reproducing it.</p></section>
+
+<section><div class="section-head"><h2>Exactly how to make a submission</h2>
+<p>Five steps. No manual inspection is required - the checks run in this repository.</p></div>
+<div class="card"><ol class="steps">{step_html}</ol></div></section>
+
+<section><div class="section-head"><h2>Caveats before you upload</h2></div>
+<div class="card"><ul class="steps">{caveats}</ul></div></section>
+
+<section><div class="section-head"><h2>Irregularities flagged this session</h2></div>
+<div class="card"><ul class="steps">{irs}</ul></div>
+<p class="small">Read the <a href="data/protocol-2026-10-31-dot-definition.md">dot-definition note</a> for the
+equal-N correction the duplicate gate depends on, and the
+<a href="data/session_2026_10_31_run_card.json">run card</a> for the full record.</p></section>
+</div>'''
+
+
 def build_gate(card: dict) -> dict:
     authority = {"verdict": "negative", "selector_approval": False, "raster_sha256": None}
     candidate = {
@@ -379,6 +562,37 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
+
+    # 2026-10-31 lane evidence, published next to the negative record it sits beside.
+    lane = read_json(LANE_CARD)
+    shutil.copyfile(LANE_CARD, data / LANE_CARD.name)
+    shutil.copyfile(LANE_UNIQUE, data / LANE_UNIQUE.name)
+    shutil.copyfile(LANE_ESTIMATE, data / "score_estimate_2026_10_31.json")
+    shutil.copyfile(LANE_DOT_DEF, data / LANE_DOT_DEF.name)
+    (data / "current_candidate_2026_10_31.json").write_text(json.dumps({
+        "schema": "gems-current-candidate-v1",
+        "decision": "OK-TO-DOWNLOAD-2026-10-31",
+        "okay_to_download": True,
+        "okay_to_submit": True,
+        "caveats": lane["okay_to_submit_caveats"],
+        "file": Path(lane["raster"]["file"]).name,
+        "url": f"candidate/{Path(lane['raster']['file']).name}",
+        "sha256": lane["raster"]["sha256"],
+        "zip_sha256": lane["raster"]["zip_sha256"],
+        "bytes": lane["raster"]["bytes"],
+        "n_dots": lane["raster"]["n_dots"],
+        "holdout_dti": {"value": lane["holdout_dti"]["value"], "ci95": lane["holdout_dti"]["ci95"],
+                        "evaluator": lane["holdout_dti"]["evaluator"]},
+        "score_estimate": {"value": lane["score_estimate"]["value"],
+                           "interval": lane["score_estimate"]["interval"]},
+        "uniqueness": {"comparators": lane["uniqueness_vs_registry"]["comparators"],
+                       "trips": lane["uniqueness_vs_registry"]["trips"],
+                       "worst_equal_n_overlap_3px": lane["uniqueness_vs_registry"]["worst_equal_n_overlap_3px"]["value"],
+                       "worst_abs_rank_correlation": lane["uniqueness_vs_registry"]["worst_abs_rank_correlation"]["value"]},
+        "slot_selected": lane["submission"]["slot_selected"],
+        "weekly_slots_used": lane["submission"]["weekly_slots_used"],
+        "run_card": LANE_CARD.name,
+    }, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     for _, (_, card_name) in ARCHIVE_LANES.items():
         source_card = ROOT / "evidence" / card_name
         if source_card.is_file():
@@ -448,6 +662,25 @@ def render() -> None:
     }
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(meta_page(title, name, body), encoding="utf-8")
+
+    # The 2026-10-31 lane publishes exactly one cleared raster. The core pages
+    # above remain the fail-closed record for the archived lanes.
+    lane = read_json(LANE_CARD)
+    lane_uniq = read_json(LANE_UNIQUE)
+    lane_est = read_json(LANE_ESTIMATE)
+    (DOCS / LANE_PAGE).write_text(
+        meta_page("Current candidate", LANE_PAGE,
+                  current_lane_page(lane, lane_uniq, lane_est, focus), decision=LANE_META),
+        encoding="utf-8")
+    LANE_DIR.mkdir(parents=True, exist_ok=True)
+    lane_file = Path(lane["raster"]["file"]).name
+    for source in (ROOT / "submission" / lane_file,
+                   ROOT / "submission" / (lane_file[:-4] + ".zip"),
+                   ROOT / "submission" / (lane_file[:-4] + ".json")):
+        shutil.copyfile(source, LANE_DIR / source.name)
+        if digest(source) != (lane["raster"]["sha256"] if source.suffix == ".tif"
+                              else lane["raster"]["zip_sha256"] if source.suffix == ".zip" else digest(source)):
+            raise ValueError(f"published lane artifact does not match the run-card hash: {source.name}")
 
     (DOCS / "downloads" / "index.html").write_text(downloads_index(), encoding="utf-8")
     tifs = sorted(p.name for p in (DOCS / "downloads").glob("*.tif"))

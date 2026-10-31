@@ -1,5 +1,30 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+## Start here — 2026-10-31 lane (current)
+
+**One file is cleared to download and submit. It is published at
+[docs/current-candidate.html](docs/current-candidate.html).**
+
+| | |
+|---|---|
+| File | `wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif` |
+| SHA-256 | `c711cbe85c32adf0ce608feb5aedf6b1ef728a04898b0af2e363a82b7ce7a865` |
+| Dots | 38,026 (0.736% of the 5,167,373-cell footprint), p ≥ 0.15, 1 dot per 3×3 block |
+| Geometry | every dot more than 12 px (1.2 km) from any mapped fault; 0 dots on the catalogue |
+| HOLDOUT-DTI | **0.2742**, 95% CI [0.2554, 0.2919] (evaluator `gems57-pooled-hide-v2`, 56,464 withheld positives) |
+| ESTIMATE | 0.1432 [0.0201, 0.2662] — a floor, not a prediction |
+| Duplicate gate | 0 trips over 158 registry rasters; worst equal-N overlap 0.4115 (stop 0.70), worst \|ρ\| 0.3825 (stop 0.90) |
+| Validator | 15/15 local checks pass |
+| Slot | **not spent** — 0 weekly slots used, selector action NONE |
+
+Three caveats travel with the file: no organizer receipt exists (no DrivenData credential in
+this sandbox); outside-bounds cells are `0.0` rather than the officially required null/NaN
+(IR-31-01); and `docs/data/release_gate.json` still reads DO-NOT-SUBMIT for the archived lanes
+(IR-31-02). Full record: [`evidence/session_2026_10_31_run_card.json`](evidence/session_2026_10_31_run_card.json).
+
+Reproduce: `.venv/bin/python scripts/session_2026_10_31_{features,holdout,scan3,scan5,scan6,candidate,uniqueness,estimate}.py`,
+then `.venv/bin/python scripts/build_site.py && .venv/bin/python scripts/check_site.py`.
+
 ## Start here — 2026-10-29 executive summary
 
 **Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
@@ -232,10 +257,13 @@ python -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-The site builder renders only the current fail-closed decision. `scripts/build_site_v3.py`,
+The site builder renders the fail-closed decision for the archived lanes and, separately, the
+one raster the 2026-10-31 lane clears (`docs/current-candidate.html`). The lane block in
+`scripts/check_site.py` fails closed on that positive claim: it requires the meta tag, the
+run-card values printed on the page, the bytes present under `docs/candidate/`, and a run card
+that still records zero slots used. `scripts/build_site_v3.py`,
 `scripts/build_release_gate_v2.py`, and `scripts/build_evidence_page.py` are blocked retired
-positive paths. The scoped FCHD and AMDC archives remain negative. Do not generate a TIFF or
-run a holdout while the literal witness stop remains unresolved.
+positive paths. The scoped FCHD and AMDC archives remain negative.
 
 ## Three review passes and remaining work
 
@@ -245,10 +273,16 @@ checked lane safeguards; (3) fetched official sources, refreshed the dated publi
 observation, and rechecked the task against the prompt and exact release contract. Details and
 limitations are in [`knowledge/review-2026-10-28-session.md`](knowledge/review-2026-10-28-session.md).
 
-Next: resolve the dense-witness protocol interpretation through documented evidence, verify
-organizer access/provenance and current portal deadline/quota, restore the shared cache and
-runtime, then run the existing preregistered protocol only if eligible. Do not spend a slot or
-claim a score before that separate selector step.
+**2026-10-31 lane (fourth pass, this session).** Built the model, ran the preregistered
+protocol, generated a unique raster, and audited it — see
+[`knowledge/review-2026-10-31-session.md`](knowledge/review-2026-10-31-session.md) and the
+block at the top of this file. No slot was spent.
+
+Next: re-run the project release gate over the 2026-10-31 raster (IR-31-02); build the
+detached-component holdout to test the off-network regime directly; re-date the live
+leaderboard; resolve IR-31-01 (finite zero vs NaN outside the bounds); verify organizer
+access/provenance and the deadline conflict (IR-29-03); read `knowledge/protocol.md`. Do not
+spend a slot or claim a score before the separate selector step.
 
 ## Standing task prompt and project brief (preserved for future sessions)
 

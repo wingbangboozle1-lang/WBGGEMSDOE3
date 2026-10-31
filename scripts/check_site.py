@@ -213,6 +213,66 @@ def main() -> int:
     except OSError as exc:
         errors.append(f"missing legacy download notice: {exc}")
 
+    # ---- 2026-10-31 lane: fail-closed on the ONE raster this lane clears ----
+    # A positive claim is only allowed when it is hash-bound to bytes that are
+    # physically present and to a run card that stays negative about slot use.
+    lane_page = DOCS / "current-candidate.html"
+    lane_card_path = ROOT / "evidence/session_2026_10_31_run_card.json"
+    if not lane_page.is_file():
+        errors.append("missing current-candidate.html: the 2026-10-31 lane page must exist")
+    elif not lane_card_path.is_file():
+        errors.append("missing evidence/session_2026_10_31_run_card.json")
+    else:
+        try:
+            lane = json.loads(lane_card_path.read_text(encoding="utf-8"))
+            parser = PageParser()
+            body = lane_page.read_text(encoding="utf-8")
+            parser.feed(body)
+            folded = " ".join(" ".join(parser.text).lower().split())
+            published = json.loads((DOCS / "data/current_candidate_2026_10_31.json").read_text(encoding="utf-8"))
+            name = Path(lane["raster"]["file"]).name
+
+            if parser.meta.get("gemsdoe-decision") != "OK-TO-DOWNLOAD-2026-10-31":
+                errors.append("current-candidate.html: missing the bound lane-decision meta tag")
+            if lane.get("verdict") != "promote" or lane.get("okay_to_download") is not True:
+                errors.append("lane run card is not a promoting, downloadable record")
+            if lane["submission"].get("slot_selected") is not False or lane["submission"].get("weekly_slots_used") != 0:
+                errors.append("lane run card must not claim a spent submission slot")
+            if len(lane["submission"].get("note", "")) > 140:
+                errors.append("lane submission note exceeds 140 characters")
+
+            # every number the page prints must come from the run card
+            for value in (lane["raster"]["sha256"], lane["raster"]["zip_sha256"],
+                          f"{lane['raster']['n_dots']:,}", f"{lane['holdout_dti']['value']:.4f}",
+                          f"{lane['score_estimate']['value']:.4f}"):
+                if value.lower() not in folded:
+                    errors.append(f"current-candidate.html does not publish run-card value {value}")
+            for claim in ("do not submit", "never uploaded"):
+                if claim not in folded:
+                    errors.append(f"current-candidate.html must keep the archive contrast ({claim})")
+
+            # the bytes must be present and hash-bound
+            tif = DOCS / "candidate" / name
+            if not tif.is_file():
+                errors.append(f"published lane raster is missing: candidate/{name}")
+            elif sha(tif) != lane["raster"]["sha256"]:
+                errors.append("published lane raster sha256 differs from the run card")
+            zip_path = DOCS / "candidate" / (name[:-4] + ".zip")
+            if not zip_path.is_file() or sha(zip_path) != lane["raster"]["zip_sha256"]:
+                errors.append("published lane zip is missing or its sha256 differs from the run card")
+            if published.get("sha256") != lane["raster"]["sha256"] or published.get("n_dots") != lane["raster"]["n_dots"]:
+                errors.append("published current-candidate record is stale versus the run card")
+
+            # the page may link exactly one raster, and only from candidate/
+            tif_links = [u for u in parser.targets if Path(urlparse(u).path).suffix.lower() == ".tif"]
+            local_tifs = [u for u in tif_links if not urlparse(u).netloc]
+            if set(local_tifs) != {f"candidate/{name}"}:
+                errors.append(f"current-candidate.html must link exactly one local raster: {sorted(set(local_tifs))}")
+            if any("downloads/" in u for u in local_tifs):
+                errors.append("current-candidate.html links a raster from the archived downloads folder")
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            errors.append(f"malformed 2026-10-31 lane evidence: {type(exc).__name__}: {exc}")
+
     # All local links must resolve. Archived lane pages are allowed to link to
     # research-only files only when their visible page explicitly says not to submit.
     for page in sorted(DOCS.rglob("*.html")):
