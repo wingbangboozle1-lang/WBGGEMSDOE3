@@ -56,6 +56,6 @@ def test_official_deadline_resolution_is_conservative():
 
 def test_published_index_states_not_ok_to_submit():
     page = (ROOT / "docs/index.html").read_text(encoding="utf-8")
-    assert "Not OK to download or submit" in page
+    assert "DO NOT SUBMIT" in page and "no file is cleared" in page
     assert "Q1" in page and "Q2" in page
-    assert "0.3328" in page
+    assert "0.02879" in page
