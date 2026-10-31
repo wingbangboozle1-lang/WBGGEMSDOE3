@@ -75,6 +75,12 @@ def measure(path: Path, z, footprint, catalogue, fp_idx, tnames, fp_mean) -> dic
 
 
 def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--extra", action="append", default=[],
+                    help="LABEL=PATH to score an additional raster with the same estimator")
+    ap.add_argument("--out", default=None, help="write the record here instead of data/work")
+    a = ap.parse_args()
     doc = json.loads((WORK / "ledger_covariates_2026_10_31.json").read_text())
     rows = doc["rows"]
     fp_mean = doc["target_footprint_mean_credit"]
@@ -119,6 +125,9 @@ def main() -> int:
     for r in sorted(rows, key=lambda r: -r["score"]):
         if r["site"] in focus_sites and not any(r["site"] == t[0] for t in targets):
             targets.append((r["site"], None, r))
+    for spec in a.extra:
+        label, path = spec.split("=", 1)
+        targets.append((label, Path(path), None))
     out_rows = []
     for label, path, rec in targets:
         if rec is None:
@@ -136,7 +145,9 @@ def main() -> int:
         print(f"  {label:44s} n={rec['n_dots']:>7,}  E1 {e1:.4f} -> estimate "
               f"{max(est,0):.4f} [{max(est-1.96*sd_res,0):.4f}, {est+1.96*sd_res:.4f}]"
               + (f"   (owner-reported {rec.get('score')})" if not path else ""))
-    (WORK / "score_estimate_2026_10_31.json").write_text(json.dumps(dict(
+    out_path = Path(a.out) if a.out else (WORK / "score_estimate_2026_10_31.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(dict(
         session="2026-10-31",
         evidence_class="ESTIMATE from owner-reported scores (no organizer receipt)",
         estimator="site-grouped ridge on measured kernel-credit covariates, "

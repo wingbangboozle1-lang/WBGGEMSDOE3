@@ -52,6 +52,18 @@ ARCHIVE_LANES = {
 }
 
 
+# --- 2026-10-31 off-catalogue lane: a second file, measured head-to-head -----
+LANE_CARD = ROOT / "evidence/session_2026_10_31_run_card.json"
+LANE_UNIQUE = ROOT / "evidence/uniqueness_2026_10_31.json"
+LANE_ESTIMATE = ROOT / "data/work/score_estimate_2026_10_31.json"
+LANE_VERSUS = ROOT / "evidence/versus_2026_10_31.json"
+LANE_VERSUS_EST = ROOT / "data/work/versus_estimate_2026_10_31.json"
+LANE_DOT_DEF = ROOT / "knowledge/protocol-2026-10-31-dot-definition.md"
+LANE_PAGE = "lane-comparison.html"
+LANE_DIR = DOCS / "candidate"
+LANE_META = "LANE-RECOMMENDED-2026-10-31"
+
+
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -72,12 +84,14 @@ def num(x: float, nd: int = 3) -> str:
 # layout
 # ------------------------------------------------------------------------------------------------
 
-def meta_page(title: str, current: str, body: str, gate: dict) -> str:
+def meta_page(title: str, current: str, body: str, gate: dict, meta_decision: str | None = None) -> str:
     decision = gate["decision"]
+    meta_decision = meta_decision or decision
     nav = [("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
            ("Download & submit", "how-to-submit.html"), ("Hypotheses", "research.html"),
            ("Method", "method.html"), ("Evidence", "evidence.html"),
-           ("Session review", "session-review.html")]
+           ("Session review", "session-review.html"),
+           ("Lane comparison", "lane-comparison.html")]
     links = "".join(
         f'<a href="{url}"' + (' aria-current="page"' if current == url else "") + f">{esc(name)}</a>"
         for name, url in nav)
@@ -88,7 +102,7 @@ def meta_page(title: str, current: str, body: str, gate: dict) -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{esc(desc)}">
-<meta name="gemsdoe-decision" content="{esc(decision)}">
+<meta name="gemsdoe-decision" content="{esc(meta_decision)}">
 <title>{esc(title)} · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
@@ -375,6 +389,11 @@ account's remaining slots could not be read from here. Check before spending one
 role of generative AI. This lane used an AI agent to write code and run experiments; the scientific
 artefacts (rasters, hashes, holdout JSONs) are in the repository and reproducible.</li>
 </ul></div></section>{scope_banner(gate)}</div>'''
+
+
+def lane_comparison_page(gate: dict) -> str:
+    import lane_page_2026_10_31 as lane_page
+    return lane_page.build(gate, esc)
 
 
 def status_page(gate: dict) -> str:
@@ -697,6 +716,55 @@ def neutralise_desk(gate: dict) -> None:
         path.write_text(text.replace(stale, current), encoding="utf-8")
 
 
+def _publish_lane_artifacts() -> None:
+    """Copy the off-catalogue lane's bytes and evidence next to the gate's."""
+    import shutil
+    card = read_json(LANE_CARD)
+    name = Path(card["raster"]["file"]).name
+    LANE_DIR.mkdir(parents=True, exist_ok=True)
+    for source in (ROOT / "submission" / name,
+                   ROOT / "submission" / (name[:-4] + ".zip"),
+                   ROOT / "submission" / (name[:-4] + ".json")):
+        shutil.copyfile(source, LANE_DIR / source.name)
+    def _sha(path):
+        import hashlib
+        h = hashlib.sha256()
+        with open(path, "rb") as fh:
+            for block in iter(lambda: fh.read(1 << 20), b""):
+                h.update(block)
+        return h.hexdigest()
+
+    if _sha(LANE_DIR / name) != card["raster"]["sha256"]:
+        raise ValueError("published lane raster does not match the run-card sha256")
+    if _sha(LANE_DIR / (name[:-4] + ".zip")) != card["raster"]["zip_sha256"]:
+        raise ValueError("published lane zip does not match the run-card sha256")
+    data = DOCS / "data"
+    for source in (LANE_CARD, LANE_UNIQUE, LANE_VERSUS, LANE_ESTIMATE, LANE_VERSUS_EST, LANE_DOT_DEF):
+        shutil.copyfile(source, data / source.name)
+    (data / "current_candidate_2026_10_31.json").write_text(json.dumps({
+        "schema": "gems-lane-candidate-v1",
+        "lane": "2026-10-31 off-catalogue",
+        "status": "LANE-RECOMMENDED-2026-10-31",
+        "is_project_decision": False,
+        "project_decision": "data/release_gate.json",
+        "file": name,
+        "url": f"candidate/{name}",
+        "sha256": card["raster"]["sha256"],
+        "zip_sha256": card["raster"]["zip_sha256"],
+        "bytes": card["raster"]["bytes"],
+        "n_dots": card["raster"]["n_dots"],
+        "holdout_dti": {"value": card["holdout_dti"]["value"], "ci95": card["holdout_dti"]["ci95"],
+                        "evaluator": card["holdout_dti"]["evaluator"]},
+        "score_estimate": {"value": card["score_estimate"]["value"],
+                           "interval": card["score_estimate"]["interval"]},
+        "uniqueness": {"comparators": card["uniqueness_vs_registry"]["comparators"],
+                       "trips": card["uniqueness_vs_registry"]["trips"],
+                       "worst_equal_n_overlap_3px": card["uniqueness_vs_registry"]["worst_equal_n_overlap_3px"]["value"],
+                       "worst_abs_rank_correlation": card["uniqueness_vs_registry"]["worst_abs_rank_correlation"]["value"]},
+        "run_card": LANE_CARD.name,
+    }, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+
+
 def build() -> dict:
     run_card = read_json(NF / "run_card_2026_10_31.json")
     holdout = read_json(NF / "holdout_final.json")
@@ -807,9 +875,14 @@ def render() -> None:
         "evidence.html": ("Evidence", evidence_page(gate)),
         "session-review.html": ("Session review", review_page(gate)),
         "submission.html": ("Submission status", status_page(gate)),
+        LANE_PAGE: ("Lane comparison", lane_comparison_page(gate)),
     }
     for name, (title, body) in pages.items():
-        (DOCS / name).write_text(meta_page(title, name, body, gate), encoding="utf-8")
+        (DOCS / name).write_text(
+            meta_page(title, name, body, gate,
+                      meta_decision=LANE_META if name == LANE_PAGE else None),
+            encoding="utf-8")
+    _publish_lane_artifacts()
     (DOCS / "downloads" / "index.html").write_text(downloads_index(gate), encoding="utf-8")
     write_legacy_notice(gate)
     for directory, title in ARCHIVE_LANES.items():

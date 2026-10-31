@@ -262,6 +262,54 @@ def main() -> int:
         if not any("DO NOT SUBMIT" in ln for ln in lines):
             errors.append("legacy notice does not state DO NOT SUBMIT for the archive")
 
+    # ---- 2026-10-31 off-catalogue lane: a second file, hash-bound and demoted ---
+    # A lane may recommend its own raster, but only if it says plainly that it is
+    # not the project decision, publishes the head-to-head, and ships bytes that
+    # match its run card.
+    lane_page = DOCS / "lane-comparison.html"
+    lane_card_path = ROOT / "evidence/session_2026_10_31_run_card.json"
+    if not lane_page.is_file():
+        errors.append("missing lane-comparison.html (2026-10-31 off-catalogue lane page)")
+    elif not lane_card_path.is_file():
+        errors.append("missing evidence/session_2026_10_31_run_card.json")
+    else:
+        try:
+            lane = json.loads(lane_card_path.read_text(encoding="utf-8"))
+            lp, ltext = parse(lane_page)
+            low = ltext.lower()
+            name = Path(lane["raster"]["file"]).name
+            if lp.meta.get("gemsdoe-decision") != "LANE-RECOMMENDED-2026-10-31":
+                errors.append("lane-comparison.html: missing the bound lane-decision meta tag")
+            if "release gate" not in low:
+                errors.append("lane-comparison.html: does not name the release gate as the authority")
+            if "not the project" not in low and "does not change the gate" not in low:
+                errors.append("lane-comparison.html: does not state it is not the project decision")
+            for value in (lane["raster"]["sha256"], name, f"{lane['raster']['n_dots']:,}"):
+                if value not in ltext and value.lower() not in low:
+                    errors.append(f"lane-comparison.html omits run-card value {value}")
+            tif = DOCS / "candidate" / name
+            if not tif.is_file() or sha(tif) != lane["raster"]["sha256"]:
+                errors.append("lane raster is missing or its sha256 differs from the run card")
+            zpath = DOCS / "candidate" / (name[:-4] + ".zip")
+            if not zpath.is_file() or sha(zpath) != lane["raster"]["zip_sha256"]:
+                errors.append("lane zip is missing or its sha256 differs from the run card")
+            pub = json.loads((DOCS / "data" / "current_candidate_2026_10_31.json").read_text(encoding="utf-8"))
+            if pub.get("sha256") != lane["raster"]["sha256"] or pub.get("is_project_decision") is not False:
+                errors.append("published lane record is stale or claims to be the project decision")
+            for source in ("versus_2026_10_31.json", "uniqueness_2026_10_31.json",
+                           "session_2026_10_31_run_card.json"):
+                if not (DOCS / "data" / source).is_file():
+                    errors.append(f"lane evidence not published: data/{source}")
+            local_tifs = {u for u in lp.targets
+                          if not urlparse(u).netloc and Path(urlparse(u).path).suffix.lower() == ".tif"}
+            if local_tifs != {f"candidate/{name}"}:
+                errors.append(f"lane-comparison.html links unexpected local rasters: {sorted(local_tifs)}")
+            for phrase in FORBIDDEN_ALWAYS:
+                if phrase in low:
+                    errors.append(f"lane-comparison.html: forbidden overclaim: {phrase!r}")
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            errors.append(f"malformed lane evidence: {type(exc).__name__}: {exc}")
+
     # ---- links -------------------------------------------------------------------
     for page in sorted(DOCS.rglob("*.html")):
         p, _ = parse(page)

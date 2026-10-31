@@ -1,13 +1,9 @@
 {
-  "schema": "gems-current-candidate-v1",
-  "decision": "OK-TO-DOWNLOAD-2026-10-31",
-  "okay_to_download": true,
-  "okay_to_submit": true,
-  "caveats": [
-    "No organizer receipt exists: no DrivenData credential is available in this environment, so every score in this repository is either HOLDOUT-DTI or an ESTIMATE from owner-reported numbers.",
-    "The outside-bounds cells are 0.0, not null/NaN as the official format states (IR-31-01). Every historical raster in this nine-site set uses the same finite-zero convention and owners report scores for them, so the portal accepts it in practice, but it is not literally compliant.",
-    "The project-level release gate in docs/data/release_gate.json still reads DO-NOT-SUBMIT; it is keyed to an older lane's evidence and has not been re-run against this raster (IR-31-02)."
-  ],
+  "schema": "gems-lane-candidate-v1",
+  "lane": "2026-10-31 off-catalogue",
+  "status": "LANE-RECOMMENDED-2026-10-31",
+  "is_project_decision": false,
+  "project_decision": "data/release_gate.json",
   "file": "wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif",
   "url": "candidate/wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif",
   "sha256": "c711cbe85c32adf0ce608feb5aedf6b1ef728a04898b0af2e363a82b7ce7a865",
@@ -35,7 +31,5 @@
     "worst_equal_n_overlap_3px": 0.411482,
     "worst_abs_rank_correlation": 0.382457
   },
-  "slot_selected": false,
-  "weekly_slots_used": 0,
   "run_card": "session_2026_10_31_run_card.json"
 }

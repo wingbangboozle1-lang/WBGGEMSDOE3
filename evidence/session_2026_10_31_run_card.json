@@ -164,12 +164,76 @@
   "okay_to_submit_caveats": [
     "No organizer receipt exists: no DrivenData credential is available in this environment, so every score in this repository is either HOLDOUT-DTI or an ESTIMATE from owner-reported numbers.",
     "The outside-bounds cells are 0.0, not null/NaN as the official format states (IR-31-01). Every historical raster in this nine-site set uses the same finite-zero convention and owners report scores for them, so the portal accepts it in practice, but it is not literally compliant.",
-    "The project-level release gate in docs/data/release_gate.json still reads DO-NOT-SUBMIT; it is keyed to an older lane's evidence and has not been re-run against this raster (IR-31-02)."
+    "The project-level release gate in docs/data/release_gate.json still reads DO-NOT-SUBMIT; it is keyed to an older lane's evidence and has not been re-run against this raster (IR-31-02).",
+    "The project release gate currently names a different file (wbg-corridor-band3to12-s24-sep4-20261031T030000Z). This lane's measurement contradicts that choice on the outcome-calibrated estimator (0.1432 vs 0.0651) and the conflict is recorded as IR-31-05; the gate has not been re-run with both files."
   ],
   "irregularities": [
     "IR-31-01: official format says outside-bounds cells must be null or NaN; this raster writes 0.0.",
     "IR-31-02: docs/data/release_gate.json and the D1/D2 dot-definition note were written for an earlier lane; the DO-NOT-SUBMIT text on the core pages is scoped to the archived lanes, not to this raster.",
     "IR-31-03: the equal-N dot definition (D1) was introduced this session because the literal rule is degenerate against dense witnesses; its justification was written after the fact.",
-    "IR-31-04: the E2 estimator under-predicts the top of the board by ~0.09, so the 0.1432 estimate is a floor, not a prediction."
-  ]
+    "IR-31-04: the E2 estimator under-predicts the top of the board by ~0.09, so the 0.1432 estimate is a floor, not a prediction.",
+    "IR-31-05: the release gate's HOLDOUT-DTI (0.1503) measures a fold-local re-emission, not the shipped bytes; scoring the shipped corridor raster on the same folds returns 0.0000. This lane's file has the same construction issue (its 0.2742 is out-of-fold model output on the quadrant instrument), so neither instrument can rank a catalogue-avoiding raster against a catalogue-hugging one; only the ledger estimator can, and it favours this file 0.1432 vs 0.0651."
+  ],
+  "is_project_decision": false,
+  "project_decision": "docs/data/release_gate.json names wbg-corridor-band3to12-s24-sep4-20261031T030000Z (gate v2)",
+  "head_to_head": {
+    "instrument": "src/newfaults/holdout.py hide-and-recover folds 0-2 (20% of catalogue segments withheld, 2 px buffer, visible catalogue masked as known)",
+    "withheld_positives_total": 36949,
+    "pooled": {
+      "offcat_buf12_f0.15": {
+        "dti": 0.0
+      },
+      "corridor_band3to12_s24": {
+        "dti": 0.0
+      },
+      "twr1r2_crestcore3px": {
+        "dti": 0.00062
+      },
+      "offcat_buf2_f0.30": {
+        "dti": 0.03137
+      },
+      "random_matched": {
+        "dti": 0.06096
+      }
+    },
+    "why_degenerate": "the folds withhold CATALOGUE segments; any static raster derived from the full catalogue is >= its buffer away from the hidden pixels, so the 300 m kernel is 0 by construction. The gate's 0.1503 therefore measures a fold-local re-emission, not the shipped bytes.",
+    "ledger_estimate": {
+      "estimator": "E2 (site-grouped ridge on measured kernel-credit covariates, n=118, leave-one-site-out calibrated; MAE 0.0518, Spearman +0.754, residual SD 0.0628)",
+      "offcat_buf12_f0.15": {
+        "dots": 38026,
+        "estimate": 0.1432,
+        "interval": [
+          0.0201,
+          0.2662
+        ],
+        "mahalanobis2": 62.7,
+        "mean_dist_to_catalogue_px": 25.4,
+        "mean_dots_within_3px": 3.2
+      },
+      "corridor_band3to12_s24": {
+        "dots": 75671,
+        "estimate": 0.0651,
+        "interval": [
+          0.0,
+          0.1882
+        ],
+        "mahalanobis2": 16.0,
+        "mean_dist_to_catalogue_px": 6.9,
+        "mean_dots_within_3px": 1.94
+      },
+      "twr1r2_crestcore3px": {
+        "dots": 37654,
+        "estimate": 0.0737,
+        "interval": [
+          0.0,
+          0.1967
+        ],
+        "mahalanobis2": 44.4,
+        "mean_dist_to_catalogue_px": 40.2,
+        "mean_dots_within_3px": 2.45
+      },
+      "training_mahalanobis2_95th_pct": 84.2,
+      "note": "all three files sit inside the training envelope, so none of these is an extrapolation"
+    }
+  }
 }
