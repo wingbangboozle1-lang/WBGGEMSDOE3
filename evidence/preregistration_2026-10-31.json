@@ -1,0 +1,148 @@
+{
+  "schema": "gems-preregistration-v1",
+  "date_utc": "2026-10-31",
+  "session_branch": "arena/c71d77d7-wbggemsdoe3",
+  "status": "prospective research only; no geological experiment, candidate raster, holdout score, or slot action",
+  "ranking_basis": "Qualitative expected information/gain relative to implementation cost, based on mechanism specificity and source availability. No numeric DTI projection is made.",
+  "lane_assignment": {
+    "assigned": false,
+    "method_lane": null,
+    "reason": "The reconstructed brief says the lane is a single method paragraph, but no assignment paragraph is present in PROJECT_PROMPT.md or the current README. Do not infer a lane."
+  },
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2,
+    "geological_experiments_completed": 0,
+    "holdout_runs": 0,
+    "candidate_rasters": 0,
+    "selector_actions": 0,
+    "weekly_slots_used": 0
+  },
+  "global_stop": {
+    "active": true,
+    "source": "evidence/registry_witness_recheck_2026-10-27.json",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_cells": 5167373,
+    "mirrored_sample_footprint_cells": 5167373,
+    "conditional_candidate_directed_overlap_if_nonempty_in_footprint": 1.0,
+    "stop_rule": "Stop if absolute surface rank correlation > 0.90 or more than 70% of final dots are within 3 px of any registry raster.",
+    "provenance_caveat": "The witness and sample are hash-pinned owner mirrors, not authenticated organizer downloads. This finding is conditional on the committed registry entry and finite-and-positive support definition; it does not establish a complete authenticated portal-registry census.",
+    "action": "Do not build a candidate, compute a candidate holdout, place dots, or select a slot while this literal stop stands."
+  },
+  "data_access": {
+    "shared_cached_feature_stack": "not present in this checkout",
+    "shared_evaluator_and_writer": "historical copies exist in the repository, but the assigned shared runtime/tool contract was not restored or validated for this lane",
+    "competition_data_provenance": "hash-pinned owner mirrors; organizer provenance not authenticated",
+    "external_archives": "official source pages/listings were checked; no data archive was downloaded or inspected",
+    "source_audit": "evidence/official_source_check_2026-10-31.json"
+  },
+  "novelty_screen": {
+    "already_implemented_and_not_new_by_itself": [
+      "DOE GDR #1391 shallow 2 m temperature probes",
+      "paleogeothermal sinter/tufa proximity or density",
+      "well/spring temperature and silica/cation geothermometry",
+      "volcanic-vent proximity",
+      "earthquake distance/density and geodetic strain channels",
+      "raw GeoDAWN radiometric ratios/gradients and raster-domain destriping"
+    ],
+    "code_evidence": [
+      "src/thcs/features.py",
+      "src/fchd/features.py",
+      "src/gemsdoe/config.py"
+    ],
+    "previously_proposed_but_not_counted_as_new_candidates": [
+      "H4-XOVER raw GeoDAWN crossing repeatability from knowledge/preregistration-2026-10-28.md",
+      "H5-LANDSAT surface alteration from knowledge/preregistration-2026-10-28.md",
+      "ECOSTRESS nighttime thermal anomalies from knowledge/review-2026-10-29-session.md",
+      "simple focal-mechanism strike clustering (H7-FM) from knowledge/review-2026-10-29-session.md"
+    ],
+    "screening_rule": "A data layer alone is not treated as novel. Each proposal must specify a new observable/transform and be checked against active code again before any implementation."
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H1-HFLOW-RESID",
+      "name": "Positive well heat-flow residual corridors",
+      "layers": [
+        "USGS 2022 Great Basin heat-flow release point coverage",
+        "per-well heat-flow residual and available quality attributes",
+        "independently derived potential-field/structural orientation for corroboration"
+      ],
+      "mechanism": "Localized convective upflow can make measured well heat flow depart positively from the estimated local conductive background. Where such residuals form a quality-controlled corridor that aligns with independent structural evidence, a permeable concealed fault may be channeling heat and fluid.",
+      "physical_signature": "Use the release's point residual rather than the smoothed background heat-flow map alone. Standardize by documented measurement quality, correct for observation density, and test positive-residual clusters/corridors against matched spatial and lithologic controls. No catalogue-distance feature is allowed.",
+      "uncatalogued_fault_rationale": "A localized hydrothermal/groundwater heat-flow departure may reveal a concealed permeable structure without a mapped surface trace; it does not rely on the fault catalogue to place the anomaly.",
+      "named_non_fault_mimic": "Shallow groundwater circulation unrelated to a tectonic conduit; lithologic thermal-conductivity contrast; biased exploration-well placement; measurement-quality or depth artifacts.",
+      "difference_from_repository": "THCS/FCHD already use GDR #1391 2 m probes, sinter/tufa, well/spring temperatures, and silica/cation geothermometry. The new observable is the separate USGS well heat-flow residual relative to a locally estimated conductive background, followed by density/quality-controlled corridor analysis; this field was not found in active feature code.",
+      "expected_gain_vs_cost": "Moderate-to-high potential for a direct thermal-convection signal at medium implementation cost; qualitative research priority only, not a DTI estimate.",
+      "implementation_cost": "Medium: retrieve and inspect the official point schema, reproject and reconcile quality fields, then build fold-safe features and spatial controls.",
+      "data_access_status": "Official USGS ScienceBase item 6297d2fad34ec53d276c5b28 is reachable and lists a 124.12 MB ZIP attachment; the archive, license details, exact schema, and competition-footprint coverage were not checked. Page-level listing only; not ready to implement.",
+      "official_source": "https://doi.org/10.5066/P9BZPVUC",
+      "expected_dti": null,
+      "validation_status": "NOT RUN; blocked by missing lane assignment, literal registry stop, and unavailable shared cache/runtime",
+      "viable_now": false
+    },
+    {
+      "rank": 2,
+      "id": "H2-HYDROCHEM-MIX",
+      "name": "Conservative-ion hydrothermal mixing residuals",
+      "layers": [
+        "DOE GDR #1391 spring/well aqueous-geochemistry tables, if suitable analytes are present",
+        "independent lithology, elevation, and structural context for controls"
+      ],
+      "mechanism": "Mixing of deep hydrothermal fluid with shallow meteoric groundwater can shift conservative solute composition and produce coherent chemical facies near a permeable conduit, even when a well's maximum temperature or geothermometer is unremarkable.",
+      "physical_signature": "After confirming available analytes, estimate a robust local water-rock/meteoric mixing baseline from conservative-ion ratios or multivariate composition residuals; control for evaporation, host lithology, well depth, and sampling date. Do not substitute silica/cation reservoir-temperature estimates already in the code.",
+      "uncatalogued_fault_rationale": "A spatially coherent fluid-mixing anomaly may indicate a concealed pathway that is not present in the surface-fault catalogue.",
+      "named_non_fault_mimic": "Evaporation and playa concentration; lithology-dependent water-rock reaction; well-screen mixing, agricultural/industrial contamination, or uneven sampling.",
+      "difference_from_repository": "Existing THCS/FCHD code uses well/spring temperatures and silica/cation geothermometry. This proposal tests conservative-ion mixing residuals, not another temperature estimate or raw GDR proximity layer. Exact analytes have not been verified, so this remains conditional.",
+      "expected_gain_vs_cost": "Moderate potential at medium-high cost; highly dependent on analyte coverage and sampling metadata, not a DTI estimate.",
+      "implementation_cost": "Medium-high: inspect the GDR schema and quality flags, harmonize sample dates/units, build endmember controls, and test spatial sampling bias.",
+      "data_access_status": "The official GDR #1391 page is reachable, states CC BY 4.0 with attribution, and describes aqueous-geochemistry analyses. No archive was downloaded; exact conservative-ion fields and AOI coverage are unknown. Not viable until the schema confirms usable variables.",
+      "official_source": "https://gdr.openei.org/submissions/1391",
+      "expected_dti": null,
+      "validation_status": "NOT RUN; blocked by missing lane assignment, literal registry stop, and unavailable shared cache/runtime",
+      "viable_now": false
+    },
+    {
+      "rank": 3,
+      "id": "H3-MT-Coulomb-LINEAMENT",
+      "name": "Focal-mechanism stress inversion on blind geophysical lineaments",
+      "layers": [
+        "USGS ComCat focal-mechanism/moment-tensor products",
+        "independently derived blind potential-field lineament strike/dip candidates",
+        "existing regional strain only as an independent consistency check"
+      ],
+      "mechanism": "A regional stress tensor inferred from multiple focal mechanisms constrains which candidate fault orientations are favorably oriented for slip or dilation. Blind geophysical lineaments compatible with that stress field could be more plausible active fluid pathways than lineaments with incompatible orientations.",
+      "physical_signature": "Infer stress from mechanism tensors without using catalogue labels, then compute a preregistered orientation-dependent slip/dilation propensity for lineaments extracted independently of the fault catalogue. Keep both nodal-plane ambiguity and mechanism quality explicit; compare against randomized lineament orientations.",
+      "uncatalogued_fault_rationale": "The mechanism products provide stress/orientation evidence independent of mapped fault traces; applying it to non-catalogue geophysical lineaments can prioritize concealed structures.",
+      "named_non_fault_mimic": "Quarry blasts or induced seismicity; sparse and spatially biased mechanism coverage; nodal-plane ambiguity; lithologic contacts mistaken for blind faults.",
+      "difference_from_repository": "The active feature stack contains earthquake distance/density and geodetic-strain channels, but no focal-mechanism stress inversion or stress-resolved propensity on independent blind lineaments. A simpler focal-mechanism strike-clustering idea was previously proposed as H7-FM and is not being relabeled as new; this is a distinct, untested tensor-inversion/lineament-projection variant.",
+      "expected_gain_vs_cost": "Low-to-moderate potential at medium-high cost; likely limited by mechanism coverage, not a DTI estimate.",
+      "implementation_cost": "Medium-high: query event products, audit mechanism quality/coverage, resolve nodal-plane ambiguity, and validate lineament orientation features.",
+      "data_access_status": "USGS FDSN documentation is reachable and documents producttype=focal-mechanism plus a count method. The attempted regional query did not return through the page-retrieval tool; local event counts and downloadable product coverage are unverified. Not viable until coverage is measured.",
+      "official_source": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "expected_dti": null,
+      "validation_status": "NOT RUN; blocked by missing lane assignment, literal registry stop, unavailable shared cache/runtime, and unverified mechanism coverage",
+      "viable_now": false
+    }
+  ],
+  "locked_evaluation": {
+    "lane": "assigned single method lane only; currently unassigned",
+    "shared_tools": [
+      "shared cached feature stack",
+      "evaluate_holdout.py",
+      "submission_writer.py"
+    ],
+    "holdout": "Withhold whole fault segments with a buffer; derive catalogue features only from visible faults; pixel-exactly mask visible faults; pooled DTI with alpha=0.2, beta=0.8, and a 300 m triangular kernel.",
+    "leakage": "Test each feature alone on the same holdout. AUC >0.90 is leakage until explained.",
+    "score_labels": [
+      "HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI",
+      "ORGANIZER-CONFIRMED only from an actual receipt"
+    ],
+    "promotion": "Separate selector step; no real slot selection in this research lane.",
+    "duplicate_stops": [
+      "absolute pre-placement Spearman rank correlation >0.90",
+      "more than 70% of final dots within 3 px of any registry raster"
+    ],
+    "current_action": "STOP before any experiment, surface, placement, or holdout."
+  }
+}

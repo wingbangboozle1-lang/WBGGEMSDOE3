@@ -1,21 +1,35 @@
 {
   "schema": "gems-session-run-card-v1",
-  "session_branch": "arena/7393d521-wbggemsdoe3",
-  "review_date_utc": "2026-10-28",
+  "session_branch": "arena/c71d77d7-wbggemsdoe3",
+  "review_date_utc": "2026-10-31",
   "evidence_class": "NEGATIVE PREFLIGHT / NO CANDIDATE RUN",
   "verdict": "negative",
   "okay_to_submit": false,
   "okay_to_download_for_submission": false,
-  "decision_reason": "The literal-registry witness stop fires before feature construction or placement. A registered owner-mirrored raster is positive on every cell of the mirrored sample footprint; under the recorded support definition, every nonempty in-footprint raster has 100% directed overlap at distance zero, exceeding the user's >70%/3-pixel stop.",
+  "decision_reason": "No method-lane paragraph is assigned; the literal registry witness stop remains active; and the shared cached feature stack/evaluator runtime is not restored or verified. Stop before any candidate surface, experiment, holdout, dot placement, or selector action.",
+  "lane_assignment": {
+    "assigned": false,
+    "method_lane": null,
+    "source": "PROJECT_PROMPT.md and README.md reconstructed brief",
+    "reason": "The referenced single method paragraph is absent. No lane was inferred."
+  },
   "hypothesis": {
     "rank": 1,
-    "id": "H1-RMIX",
-    "name": "Local radiometric mixing-manifold residual at concealed structures",
+    "id": "H1-HFLOW-RESID",
+    "name": "Positive well heat-flow residual corridors",
     "status": "PREREGISTERED_NOT_TESTED",
-    "mechanism": "A permeability/alteration corridor may change local K-Th-U-total-count composition; a concealed structural boundary may preserve a narrow multiscale compositional residual where surface scarps are muted.",
-    "named_non_fault_mimic": "Non-fault lithologic or weathering contact; GeoDAWN flight-line leveling or variable terrain clearance.",
-    "preregistration": "knowledge/preregistration-2026-10-28.md",
-    "machine_readable_preregistration": "evidence/preregistration_2026-10-28.json"
+    "mechanism": "A positive point residual from local conductive heat-flow background may indicate convective hydrothermal or groundwater influence; a quality- and sampling-corrected corridor that aligns with independent structure could mark a concealed permeable fault.",
+    "named_non_fault_mimic": "Shallow groundwater circulation unrelated to a tectonic conduit; lithologic thermal-conductivity contrasts; biased exploration-well placement; measurement-quality or depth artifacts.",
+    "preregistration": "knowledge/preregistration-2026-10-31.md",
+    "machine_readable_preregistration": "evidence/preregistration_2026-10-31.json",
+    "official_source": "https://doi.org/10.5066/P9BZPVUC"
+  },
+  "shared_runtime": {
+    "cached_feature_stack": "NOT_AVAILABLE_IN_THIS_CHECKOUT",
+    "shared_evaluate_holdout_runtime": "NOT_RESTORED_OR_VERIFIED_FOR_AN_ASSIGNED_LANE",
+    "shared_submission_writer_runtime": "NOT_RESTORED_OR_VERIFIED_FOR_AN_ASSIGNED_LANE",
+    "repository_contains_historical_copies": true,
+    "action": "Do not substitute a historical copy or private fork."
   },
   "holdout_dti": {
     "label": "NOT-RUN",
@@ -24,8 +38,14 @@
     "ci95": null,
     "evaluator_version": null,
     "withheld_positive_count": null,
-    "reason": "No candidate surface or feature was generated, so a holdout score would not be defined. The pinned shared holdout tooling and cache were not restored or executed.",
-    "required_method_if_resumed": "Shared pooled DTI; alpha=0.2, beta=0.8, 300 m triangular kernel; whole fault segments held out with buffer; visible-fault-only catalogue features and pixel-exact visible-fault masking."
+    "reason": "No lane is assigned, the literal uniqueness stop is active, and no candidate feature/surface was constructed. The shared cached stack and common evaluator runtime were not restored or verified.",
+    "required_method_if_resumed": "Reuse the shared evaluator only after gates are cleared: withhold whole fault segments plus buffer; derive catalogue features only from visible faults; pixel-exactly mask visible faults; pooled DTI alpha=0.2, beta=0.8, 300 m triangular kernel; report evaluator version, withheld positives, and spatial-cluster 95% CI."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES",
+    "n_features_tested": 0,
+    "max_auc": null,
+    "reason": "No experiment was eligible; do not infer a leakage result."
   },
   "registry": {
     "complete_registry_audit": false,
@@ -33,12 +53,12 @@
     "surface_rank_correlation": {
       "status": "NOT_RUN_NO_SURFACE",
       "max_abs_spearman": null,
-      "stop_threshold": 0.9
+      "stop_threshold": 0.90
     },
     "final_dot_overlap": {
       "status": "NOT_RUN_NO_CANDIDATE",
       "max_directed_overlap_within_3px": null,
-      "stop_threshold": 0.7,
+      "stop_threshold": 0.70,
       "radius_px": 3
     },
     "literal_dense_witness": {
@@ -49,7 +69,7 @@
       "conditional_directed_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
       "threshold_exceeded": true,
       "evidence": "evidence/registry_witness_recheck_2026-10-27.json",
-      "interpretation": "A conditional support-overlap theorem for the mirrored bytes and documented positive-support rule, not a candidate-specific comparison, complete registry audit, or organizer-provenance finding."
+      "interpretation": "A conditional support-overlap stop under the documented owner-mirror support rule, not a candidate-specific surface correlation, complete registry census, or organizer-provenance finding."
     }
   },
   "raster": {
@@ -57,16 +77,6 @@
     "path": null,
     "sha256": null,
     "positive_cells": null
-  },
-  "preexisting_main_artifact": {
-    "status": "UNAPPROVED_ARCHIVE_ONLY",
-    "origin": "GitHub main advanced with PR #53 after this session branch was cut",
-    "path": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif",
-    "upstream_run_card": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.json",
-    "upstream_recorded_sha256": "4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea",
-    "byte_identity_rechecked_against_upstream_record": true,
-    "scientific_or_format_validation_in_this_review": false,
-    "reason": "Not generated or tested as a candidate in this review; only its bytes were compared with the upstream-reported SHA-256 for archive identity. Under the active literal witness rule, it cannot be promoted; it is retained only as an explicitly quarantined historical artifact."
   },
   "validator": {
     "status": "NOT_RUN_NO_CANDIDATE",
@@ -78,14 +88,14 @@
     "outside_footprint_null_or_nan": null,
     "crs_shape_transform_match": null,
     "saved_bytes_match_audited_prediction": null,
-    "reason": "No new TIFF was generated; validating a historical artifact would not validate a new candidate. Official format requirements were checked separately against the DrivenData problem page."
+    "reason": "No new TIFF exists. A local validator result from a historical raster would not validate a new candidate or establish portal acceptance."
   },
   "submission": {
     "name": null,
-    "note": "No candidate generated; literal registry witness stop.",
-    "note_characters": 54,
+    "note": "No candidate; stop active, lane and shared runtime unavailable.",
+    "note_characters": 63,
     "note_is_upload_instruction": false,
-    "status": "NOT_ASSIGNED"
+    "status": "NO_FILE_SAFE_TO_DOWNLOAD_OR_SUBMIT"
   },
   "experiments": {
     "geological_experiments_completed": 0,
@@ -99,27 +109,38 @@
     "separate_selector_approval": false,
     "organizer_receipt": null
   },
-  "official_source_check": "evidence/official_source_check_2026-10-28.json",
   "focus_site_claims": {
     "status": "OWNER_REPORTED_UNVERIFIED",
     "scores": {
       "GEMSDOE24": 0.2477,
-      "GEMSDOE25": 0.26,
+      "GEMSDOE25": 0.2600,
       "GEMSDOE27": 0.2449,
-      "GEMSDOE28": 0.271,
-      "GEMSDOE30": 0.26,
+      "GEMSDOE28": 0.2710,
+      "GEMSDOE30": 0.2600,
       "GEMSDOE31": 0.2708,
       "GEMSDOE32": 0.2778,
       "GEMSDOE33": 0.2632,
-      "GEMSDOE36": 0.275
+      "GEMSDOE36": 0.2750
     },
     "organizer_receipts": null
   },
   "gemsdoe32_explanation": {
-    "finding": "The saved-support analysis reports the GEMSDOE32 B2 positive support as an exact subset of the GEMSDOE28 H27-4 base, removing 2545 cells near a mirrored catalogue. Under a metric that penalizes false-positive mass, such pruning could raise a score if removed dots receive little hidden-fault credit.",
-    "label": "MECHANISTIC POSSIBILITY, NOT ORGANIZER-VERIFIED CAUSAL EXPLANATION",
+    "finding": "Repository byte/mask audits report that GEMSDOE32 B2 contains 37,654 positive cells, an exact subset of a 40,199-cell H27-4 base, with 2,545 cells removed near a mirrored fault catalogue. The reported 0.2778 is not tied to an organizer receipt or hidden labels.",
+    "mechanism_status": "Plausible metric mechanism only: pruning low-credit predictions may reduce false-positive mass while nearby predictions retain some distance-kernel credit; the net effect cannot be decomposed without hidden labels and the evaluated bytes.",
+    "label": "OWNER-REPORTED SCORE; CAUSAL EXPLANATION UNVERIFIED",
     "reported_score": 0.2778,
     "score_status": "OWNER_REPORTED_UNVERIFIED",
-    "receipt": null
-  }
+    "receipt": null,
+    "details": "content/why-0.2778.md"
+  },
+  "public_leaderboard_observation": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not a repository file score or receipt",
+    "date_utc": "2026-10-31",
+    "rank_1": "0.4544",
+    "rank_2": "0.3925",
+    "rank_50": "0.3195",
+    "source": "evidence/leaderboard_observation_2026-10-31.json"
+  },
+  "official_source_check": "evidence/official_source_check_2026-10-31.json",
+  "preregistration": "evidence/preregistration_2026-10-31.json"
 }

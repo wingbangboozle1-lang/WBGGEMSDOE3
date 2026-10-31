@@ -281,5 +281,5 @@
   "experiment_budget_max": 3,
   "verdict": "negative",
   "status_banner": "DO NOT SUBMIT (NEGATIVE / GATE FAILURE)",
-  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
+  "_archive_notice": "Historical lane record only. It does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload."
 }

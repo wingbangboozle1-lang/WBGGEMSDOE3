@@ -1,0 +1,161 @@
+{
+  "schema": "gems-official-source-check-v2",
+  "checked_date_utc": "2026-10-31",
+  "retrieval_time_precision": "Date-only; exact fetch timestamps were not exposed by the page-retrieval tool.",
+  "method": "Official source pages were fetched with Arena functions.fetch_page. Page-level statements below are not equivalent to downloading, hashing, or validating a source data package.",
+  "evidence_class": "OFFICIAL-PAGE OBSERVATIONS; no organizer receipt, project score, candidate validation, or submission authorization",
+  "deadline_status": {
+    "status": "UNRESOLVED_CARRIED_FORWARD",
+    "prior_observation_date_utc": "2026-10-29",
+    "rechecked_on_2026-10-31": false,
+    "note": "A previously recorded discrepancy between the competition homepage and official rules remains unresolved. Do not treat either date/time as newly verified in this review; consult the current official pages before any future submission.",
+    "competition_home": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "official_rules": "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  },
+  "sources": [
+    {
+      "id": "competition_problem_and_format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "The published metric is a distance-weighted Tversky score with alpha=0.2, beta=0.8, and a 300 m triangular support kernel.",
+        "The described task is fault prediction; it does not define geothermal vents as the target labels.",
+        "The stated raster contract is one float32 band, EPSG:32611, 100 m, matching bounds, values in [0,1], and null/NaN outside the stated bounds."
+      ],
+      "limitations": [
+        "A written format description is not proof that any local TIFF is accepted by the portal.",
+        "No candidate raster was created or tested."
+      ]
+    },
+    {
+      "id": "public_leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "checked_date_utc": "2026-10-31",
+      "snapshot": "evidence/leaderboard_observation_2026-10-31.json",
+      "verified_facts": [
+        "The captured public page shows rank 1 at 0.4544 and rank 2 at 0.3925.",
+        "The captured page shows 0.3195 at rank 50."
+      ],
+      "limitations": [
+        "Public leaderboard rows do not identify the score of any repository file and are not receipts.",
+        "Exact retrieval time was not exposed; ranks may change."
+      ]
+    },
+    {
+      "id": "usgs_heat_flow",
+      "url": "https://doi.org/10.5066/P9BZPVUC",
+      "resolved_url": "https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "The USGS Great Basin release describes background conductive heat-flow maps made with weighted local regression that de-emphasizes measurements interpreted as locally convective outliers.",
+        "The release says its point coverage includes a heat-flow residual, interpreted as departure from estimated background conditions and potentially useful for identifying hydrothermal or groundwater influence.",
+        "The ScienceBase record publicly lists a 124.12 MB ZIP attachment named heat_flow_maps_and_supporting_data_for_the_Great_Basin_USA.zip."
+      ],
+      "access_check": "The official record and attachment listing were reachable. The archive was not downloaded, inspected, hashed, or co-registered in this review.",
+      "not_verified": [
+        "Exact point-field schema, measurement-quality fields, license terms for redistribution, coordinate reference, and coverage within the competition footprint.",
+        "Whether the residual feature adds signal beyond the existing mirrored geothermal observations."
+      ]
+    },
+    {
+      "id": "geodawn_usgs",
+      "url": "https://doi.org/10.5066/P93LGLVQ",
+      "resolved_url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "The USGS/DOE GeoDAWN record describes airborne magnetic and radiometric surveys over northern and western Nevada and eastern California, with variable survey specifications, terrain clearance, and aircraft/platform blocks.",
+        "The record states that line data, tie-line information, flight paths, and gridded products are included.",
+        "ScienceBase publicly lists CSV, geodatabase, grid, and GeoTIFF archive attachments, including some very large raw-line ZIPs."
+      ],
+      "access_check": "The public release page and attachment inventory were reachable. No raw archive was downloaded; exact competition-footprint intersection and product-level provenance remain unchecked.",
+      "not_verified": [
+        "Per-line schema, processing fields needed for a cross-over analysis, local AOI coverage, and compatibility with the competition feature grid."
+      ]
+    },
+    {
+      "id": "gdr_1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "The repository record identifies the INGENIOUS Great Basin compilation and states CC BY 4.0 terms with attribution.",
+        "The record describes 2 m temperature probes, paleogeothermal sinter/tufa, wells and springs, aqueous geochemistry, heat flow, geodetic shear/dilation, slip/dilation tendency, and other data families.",
+        "Repository inspection confirms that active THCS/FCHD code already implements 2 m probes, paleogeothermal sinter/tufa, well/spring temperatures, silica/cation geothermometry, and volcanic-vent proximity. These data families alone are not new hypotheses."
+      ],
+      "access_check": "The official page was reachable and lists data products. No new archive was downloaded or schema-inspected in this review.",
+      "limitations": [
+        "Exact AOI coverage and exact fields available for a separate hydrochemical-mixing analysis were not checked.",
+        "GDR terms require attribution; check the full license record for any product-specific conditions before redistribution."
+      ]
+    },
+    {
+      "id": "usgs_fdsn_event_api",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "USGS FDSN documentation supports rectangular latitude/longitude constraints and a producttype filter; focal-mechanism and moment-tensor products are listed examples.",
+        "The API also documents a count method, which can screen coverage before downloading event products."
+      ],
+      "access_check": "The official API documentation was reachable. A regional focal-mechanism query was attempted through the page-retrieval tool but failed to return; the AOI event count and product completeness remain unverified.",
+      "limitations": [
+        "No event data were downloaded; the presence of an API endpoint does not establish useful local mechanism coverage."
+      ]
+    },
+    {
+      "id": "landsat_collection_2",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "USGS describes Collection 2 Level-2 surface reflectance and surface-temperature products for Landsat 4-9, with global product availability from 1982 to present.",
+        "The page directs users to USGS data portals for search and download."
+      ],
+      "access_check": "The product page was reachable. No target-AOI scene search, cloud-coverage check, or data download was performed.",
+      "limitations": [
+        "A Landsat surface-alteration idea was already proposed in the repository's 2026-10-28 preregistration; it is not counted as a new candidate here.",
+        "No local scene availability or portal-access requirements were verified."
+      ]
+    },
+    {
+      "id": "nasa_ecostress",
+      "url": "https://ecostress.jpl.nasa.gov/data",
+      "checked_date_utc": "2026-10-31",
+      "verified_facts": [
+        "NASA/JPL describes Collection 2 products and links to NASA Earthdata search and AppEEARS access routes for ECOSTRESS products."
+      ],
+      "access_check": "The official product page was reachable. No Earthdata login flow, AOI granule count, or download was tested.",
+      "limitations": [
+        "A nighttime ECOSTRESS idea was already proposed in repository review notes; it is not counted as a new candidate here."
+      ]
+    },
+    {
+      "id": "official_rules",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "checked_date_utc": "2026-10-29",
+      "carried_forward": true,
+      "rechecked_on_2026-10-31": false,
+      "verified_facts": [
+        "The prior 2026-10-29 source check recorded three submissions per week per entity, one final submission across both prize rounds, and generative-AI disclosure requirements.",
+        "The prior source check recorded an unresolved deadline discrepancy with the competition homepage."
+      ],
+      "limitations": [
+        "Rules and deadline were not re-fetched on 2026-10-31; recheck before any future selector action."
+      ]
+    },
+    {
+      "id": "submission_portal",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "checked_date_utc": "2026-10-29",
+      "carried_forward": true,
+      "rechecked_on_2026-10-31": false,
+      "access_status": "Prior check reported login redirect; account quota, usage, and submission receipts were not accessible.",
+      "limitations": [
+        "No portal session, quota, upload, or receipt was inspected in this review."
+      ]
+    }
+  ],
+  "review_limits": [
+    "No candidate surface or TIFF was generated.",
+    "No candidate rank correlation, final-dot overlap, holdout DTI, leakage canary, or format validation was run.",
+    "No data archive was downloaded from USGS, ScienceBase, GDR, NASA, or DrivenData.",
+    "The assigned method lane paragraph is absent from the reconstructed prompt and README; no lane was inferred."
+  ]
+}

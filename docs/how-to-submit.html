@@ -1,96 +1,30 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Step-by-step guide to making a submission into the DOE GEMS Prize competition.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>How to submit · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"></head>
-<body>
-<header class="top"><div class="wrap toprow">
-<a class="brand" href="index.html">&#9745;&nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation">
-<a href="index.html">Overview</a>
-<a href="executive-summary.html">Executive summary</a>
-<a href="how-to-submit.html" aria-current="page">Submission guide</a>
-<a href="research.html">Hypotheses</a>
-<a href="method.html">Method</a>
-<a href="evidence.html">Evidence</a>
-</nav>
-</div></header>
-
-<main>
-<section class="hero"><div class="wrap">
-<div class="eyebrow">Submission guide</div>
-<h1>How to make a submission into the DOE GEMS Prize</h1>
-<p class="lede">This page explains exactly how to submit a GeoTIFF to the competition. Read the full procedure before uploading. At present the repository-wide gate is DO-NOT-SUBMIT: no file here is cleared for upload.</p>
-
-<div class="decision">
-<span class="tag">READ BEFORE UPLOADING</span>
-<h2>Prerequisites</h2>
-<ul>
-<li><strong>Format:</strong> single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF.</li>
-<li><strong>Grid:</strong> must match the submission format's CRS, shape, and geotransform: EPSG:32611, 3730&times;3292, 100 m resolution, origin (243350, 4508550).</li>
-<li><strong>Values:</strong> float32, all finite predictions inside the footprint must be in [0,1]. Outside the footprint: NaN (nodata).</li>
-<li><strong>Name:</strong> give the file a unique name.</li>
-<li><strong>Note:</strong> add a short comment (&le;140 characters) to tell submissions apart, e.g. "clustering with k=25".</li>
-</ul>
-</div>
-
-</div></section>
-
-<div class="wrap">
-<section>
-<div class="section-head"><h2>Step-by-step</h2></div>
-<ol class="steps">
-<li><strong>Verify the gate.</strong> Check the executive summary decision banner. If it says DO NOT SUBMIT, do not upload. The release gate must show a compliant HOLDOUT-DTI, passing uniqueness, and selector approval for the exact SHA-256.</li>
-<li><strong>Download the TIFF.</strong> From the executive summary, download the exact GeoTIFF and verify its SHA-256 against the published manifest.</li>
-<li><strong>Format-check locally.</strong> Confirm single band, float32, EPSG:32611, 3730&times;3292, exact transform, NaN outside footprint, all in-footprint values in [0,1]. A past portal error ("Predicted values must be in range [0, 1]") was caused by out-of-range values — this check prevents it.</li>
-<li><strong>Log in to DrivenData.</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">the competition page</a> and navigate to New submission.</li>
-<li><strong>Upload the file.</strong> Select the single GeoTIFF or ZIP. The portal validates CRS, shape, and geotransform automatically.</li>
-<li><strong>Add a note.</strong> Enter a unique note (&le;140 characters) so you can tell submissions apart later (e.g. clustering with k=25).</li>
-<li><strong>Check the weekly cap.</strong> The rules allow three submissions per week per entity. Confirm you have quota before uploading.</li>
-<li><strong>Submit and save the receipt.</strong> Keep the organizer submission receipt together with the file's SHA-256. Only an organizer receipt is an ORGANIZER-CONFIRMED score.</li>
-</ul>
-</section>
-
-<section>
-<div class="section-head"><h2>Submission format checklist</h2>
-<table>
-<thead><tr><th>Check</th><th>Required</th><th>Our research TIF</th></tr>
-</thead>
-<tbody>
-<tr><td>Single band</td><td>1 band</td><td>Pass</td></tr>
-<tr><td>Dtype</td><td>float32</td><td>Pass</td></tr>
-<tr><td>CRS</td><td>EPSG:32611</td><td>Pass</td></tr>
-<tr><td>Shape</td><td>3730 &times; 3292</td><td>Pass</td></tr>
-<tr><td>Transform</td><td>Exact match to template</td><td>Pass</td></tr>
-<tr><td>Nodata outside footprint</td><td>NaN</td><td>Pass</td></tr>
-<tr><td>In-footprint range</td><td>[0, 1], all finite</td><td>Pass</td></tr>
-<tr><td>File type</td><td>.tif or .zip of one .tif</td><td>Both provided</td></tr>
-</tbody>
-</table>
-</section>
-
-<section>
-<div class="section-head"><h2>Available download (research artifact)</h2>
-<p>The locally generated TIF below is format-valid but <strong>not cleared for submission</strong> due to the active DO-NOT-SUBMIT gate. Use it to validate your local pipeline, not to upload.</p>
-<p><a class="btn" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif" download>Download GeoTIFF</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.zip" download>Download ZIP</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.manifest.json">Manifest (SHA-256)</a></p>
-</section>
-
-<section>
-<div class="section-head"><h2>Official references</h2>
-<ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">Problem description &amp; metric</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">Competition rules</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/" target="_blank" rel="noopener">Competition data (login required)</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard</a></li>
-</ul>
-</section>
-</div>
-</main>
-
-<footer class="footer"><div class="wrap">
-<p>Evidence-first research for the DOE GEMS Prize. Local format checks are not organizer receipts.</p>
-</div></footer>
-</body></html>
+<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Submission guide · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
+<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
+<nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html" aria-current="page">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Submission guide</div>
+<h1>No submission is authorized.</h1><p class="lede">There is no current candidate file. Do not download or submit any historical TIFF.</p><div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
+<h2>DO NOT DOWNLOAD OR SUBMIT — no file is cleared.</h2>
+<p>This review generated no TIFF and no candidate is safe to download for submission. No geological experiment, holdout, or slot selection was run. The literal registered-witness stop is active, the method lane is unassigned, and the shared cache/runtime is unavailable. Historical TIFFs are research archives only.</p>
+<p><a class="btn secondary" href="downloads/index.html">View research-archive status</a>
+<a class="btn secondary" href="data/session_2026-10-31_run_card.json">Read the current negative run card</a></p></div></div></section>
+<div class="wrap"><section><div class="section-head"><h2>Current file and slot status</h2></div><div class="card"><p><strong>File to upload:</strong> none. <strong>Safe download:</strong> none. <strong>Slot selected/used:</strong> no / 0.</p>
+<p>The competition's written contract is a single-band float32 GeoTIFF, EPSG:32611, 100 m, matching bounds, values in [0,1], and null/NaN outside. Local format validity alone does not establish a score, uniqueness, or portal acceptance.</p></div></section>
+<section><div class="section-head"><h2>Future steps, only after every gate clears</h2></div><div class="card"><ol class="steps">
+<li>Obtain the assigned method-lane paragraph and resolve the literal registry stop through documented, evidence-based protocol clarification.</li>
+<li>Restore and verify the shared cache, `evaluate_holdout.py`, and `submission_writer.py`; do not use a private fork.</li>
+<li>Before placement, check surface rank correlation; stop if |Spearman| &gt;0.90. Stop if more than 70% of final dots fall within 3 px of any registry raster.</li>
+<li>Run each feature's leakage canary, then a whole-fault-segment buffered holdout with visible-only catalogue features and pixel-exact masking. Report the shared evaluator version, withheld-positive count, and 95% CI.</li>
+<li>For exact saved bytes, validate dtype, band count, CRS, shape, transform, bounds, finite/range constraints, and outside-footprint encoding. Hash the final file and preserve the validator report.</li>
+<li>A separate selector checks current account quota/usage and approves a slot. Only then upload the approved exact file, use the recorded submission name/note (≤140 characters), and keep the receipt with the file hash.</li>
+</ol><p>Submission-page access and current quota are not available in this review. No note or filename is assigned without a candidate.</p></div></section>
+<section><div class="section-head"><h2>Official links and access limits</h2></div><div class="card"><p>The latest saved public-leaderboard observation is 2026-10-31; it is not a project score. The 2026-10-31 source audit records the official-page checks and their limitations, including that rules/deadline details were carried forward from 2026-10-29 and not rechecked today.</p>
+<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home ↗</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description ↗</a> ·
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submission portal (login may be required) ↗</a> ·
+<a href="data/official_source_check_2026-10-31.json">Source/access audit ↓</a></p></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>

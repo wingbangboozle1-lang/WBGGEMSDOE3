@@ -1,172 +1,34 @@
-# What can explain the reported GEMSDOE32 B2 result?
+# What can explain GEMSDOE32's reported 0.2778?
 
-**Owner-reported historical claim, not organizer-confirmed:** 0.2778 for the pinned
-GEMSDOE32 H33 B2 file. We did not obtain a DrivenData receipt linking this score to
-these bytes or the hidden labels, so neither the value nor its causal explanation can
-be independently verified. Its upstream repository has advanced since the pinned file
-was selected; this is not a verified current ranking.
+**Bottom line:** 0.2778 is an owner-reported historical claim, not an organizer-confirmed result. The public repository bytes support a plausible pruning mechanism, but they do not establish that it caused the reported score. No hidden labels or receipt linking the score to the exact file are available.
 
-## What the rasters establish
+## What was measured in the public mirror
 
-The B2 positive support has 37,654 cells and is an exact subset of the 40,199 positive
-cells in the pinned GEMSDOE28 H27-4 base: 2,545 cells were removed and none added.
-Those removed cells lie 1.414–2 pixels from the mirrored fault catalogue; the nearest
-retained cell is 2.236 pixels away. The decoded masks, grid and hashes were checked in
-[evidence/focus_audit.json](../evidence/focus_audit.json). This describes a placement
-change, not an identified improvement in geology or score.
+The SHA-pinned byte audit reports that GEMSDOE32's B2 file contains **37,654 positive cells** and is an exact subset of a **40,199-cell H27-4 base**. The removed **2,545 cells** fall near the mirrored fault catalogue; the saved pair-identification card reports all removed dots within 3 px and a median catalogue distance of 2 px. These are measurements of owner-mirrored raster bytes, not organizer labels or score components. The H27-4 base is a separate historical artifact from the GEMSDOE28 H36 file shown as the focus site's highest file in the comparison table.
 
-The [official metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-uses pooled, distance-tolerant Tversky with α=0.2, β=0.8 and a 300 m triangular
-kernel. Thinning can reduce redundant prediction mass; deleting predictions can reduce
-false-positive mass but can also lose true-positive credit. Which effect dominates
-requires the unavailable hidden labels and exact evaluated bytes. There is no defensible
-numeric break-even density or causal decomposition from these artifacts alone.
-[Staff clarify](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516)
-that **known-fault pixels** are excluded in both rounds; that does not imply all
-neighboring pixels are excluded. The B2 removal is near the catalogue, not necessarily
-on excluded pixels.
+Evidence: [`focus_files_verification_2026-10-29.json`](../evidence/focus_files_verification_2026-10-29.json), [`pair_identification.json`](../evidence/pair_identification.json), and [`focus_audit.json`](../evidence/focus_audit.json). The upstream file identities are pinned, but the mirrors are not authenticated organizer downloads.
 
-## Historical H6-1 proximity-pruning holdout
+## Why pruning could help — and why this is not proven
 
-A previous shared-template H6-1 experiment reports **HOLDOUT-DTI** using
-`gems57-pooled-hide-v2`, 11,321 withheld positives and a spatial-cluster 95% CI.
-Unpruned: 0.13520 [0.11846, 0.15306]; ≤2 px proximity-pruned: 0.13526
-[0.11849, 0.15310]. Paired Δ versus unpruned: +0.000054
-[+0.000027, +0.000089]; versus equal-count random pruning: +0.000108
-[−0.0000008, +0.000235], including zero. Its own verdict was **negative**.
-[Saved historical experiment record](../evidence/h6_1_proximity_pruning_holdout.json) ·
-[pinned upstream](https://github.com/buffedlizard55-lab/57GEMSDOE/blob/822a0ce5546c7b6749cdd82eb145b6b3e616603d/docs/data/h6_1_proximity_pruning_holdout.json).
-This is historical and was not replayed in this session.
+The [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) specifies a distance-weighted Tversky score with α=0.2, β=0.8, and a 300 m triangular kernel. Removing predictions can reduce false-positive mass, but it can also discard true-positive credit. DrivenData staff state that known-fault pixels are masked from scoring; that does **not** imply all pixels near those faults are masked. Thus the removed near-catalogue cells might have low score value under the pruning rule, but their exact contribution depends on hidden faults and the evaluated raster.
 
-Crucially, its saved scope caveat says buffered withholding leaves no withheld truth
-within 3 px of visible catalogue context. It cannot identify the near-catalogue
-new-fault regime that motivates B2. A small difference on this proxy does **not** prove
-or disprove the effect on the hidden competition score; the reported 0.2778 remains
-unverified.
+A plausible mechanism is that B2 pruned redundant or low-credit cells while preserving enough nearby kernel support. The repository cannot separate this explanation from other causes, confirm the owner-reported score, or calculate a causal +0.0070 effect from public bytes alone. It would be incorrect to describe the mechanism as established.
 
-## Can a new TIF beat it?
+## Scoped holdout evidence for a related pruning test
 
-Unknown. Another participant's higher public leaderboard result is evidence that a
-higher competition score exists, not that a new file from this project will achieve it.
-This session produced no candidate or valid local holdout estimate. The literal
-registry definition stops every nonempty in-footprint candidate because a registered
-soft raster is positive throughout the footprint; do not submit or silently exempt it.
-See the [current dashboard](../docs/index.html) and [negative card](../evidence/session_9b794637_run_card.json).
+A prior experiment, H6-1, is reported as **HOLDOUT-DTI** using evaluator `gems57-pooled-hide-v2`, **11,321 withheld positives**, and a spatial-cluster bootstrap 95% CI:
 
-## Verification addendum — 2026-10-27 (independent recomputation)
+| Arm | HOLDOUT-DTI | 95% CI |
+|---|---:|---:|
+| Unpruned | 0.13520 | [0.11846, 0.15306] |
+| Within-2-px proximity prune | 0.13526 | [0.11849, 0.15310] |
 
-The focus overlap and B2 dot counts were independently recomputed from SHA-pinned bytes;
-the historical projection figures below were carried forward, not re-fitted. Owner-reported and
-projection figures are **not** organizer-confirmed scores.
+The paired change versus unpruned was **+0.000054 [0.000027, 0.000089] HOLDOUT-DTI**. Against equal-count random pruning the paired change was **+0.000108 [−0.0000008, 0.000235] HOLDOUT-DTI**, including zero; the experiment verdict was negative. This proxy's own scope note says no withheld truth lay within 3 px of visible catalogue context, so it cannot resolve the near-catalogue new-fault regime that motivates B2. It neither validates nor disproves the owner-reported 0.2778.
 
-1. **Arithmetic.** GEMSDOE31's base has 40,199 positive cells; GEMSDOE32's B2 file has 37,654
-   (`evidence/nine_site_table.json`). Difference **2,545**, matching the earlier statement.
-2. **Near-duplicate structure (new).** `scripts/verify_focus_uniqueness.py` → `focus_vs_focus_pairwise`:
-   every GEMSDOE32 dot lies within 3 px of a dot in GEMSDOE24, 25, 27, 30, 31 and 36 (overlap
-   1.000 each), and within 0.9988–0.9998 of 28 and 33. In the other direction, GEMSDOE32 covers only
-   0.867–0.974 of those files' dots. So 0.2778's file is a sparser subset of the other top-scoring
-   files, within the 3-px tolerance, and it is **not unique** against them.
-3. **Why it could score highest — hypothesis, not established.** The public data cannot separate the
-   effect of the 2,545 removed cells (1.4–2 px from the catalogue) from the hidden labels. A plausible
-   mechanism is that the removal lowers false-positive mass while keeping most true-positive credit under
-   the 300 m kernel. The same public data could not confirm it, and no receipt ties 0.2778 to these bytes.
-4. **Can a new TIF beat 0.2778? Not demonstrated.** Historical ledger projections and holdout
-   estimates were not re-fitted here and are subject to selection and circularity caveats
-   (`evidence/session2_projection.json`, `evidence/candidate_run_card.json`). No gain is validated;
-   SGCE's focus-only uniqueness also does not satisfy the literal all-registry requirement.
-   See `knowledge/irregularities-2026-10-27.md` IR-28-06 to IR-28-08.
+Source record: [`h6_1_proximity_pruning_holdout.json`](../evidence/h6_1_proximity_pruning_holdout.json). This is a historical shared-template result, not a new experiment in the current review.
 
-## Addendum 2026-10-28 — shipped-bytes audit (AMDC lane, negative)
+## Current comparison and whether a better file is demonstrated
 
-The AMDC lane re-scored the shipped bytes of every repository candidate on identical
-withheld folds instead of trusting construction-time figures. It does not change the
-repository's DO-NOT-SUBMIT decision:
+The 2026-10-31 official public leaderboard capture shows **0.4544 at rank 1**, **0.3925 at rank 2**, and **0.3195 at rank 50**. These are other participants' public scores. They show that public leaderboard entries exceed 0.2778; they do not estimate or predict a score for this repository.
 
-* SGCE shipped bytes: **0.0191** [0.0169, 0.0211] (native evaluator, 22,232 withheld) and
-  0.0190 [0.0171, 0.0208] (matched evaluator, 22,893 withheld) — vs B2 reference bytes at
-  0.0045 / 0.0039. The earlier 0.1675 headline described per-cell rebuild files with
-  asymmetric dot budgets, not the downloadable file.
-* Owner-reported scores and matched-holdout scores are **inverted** on the 9 focus sites
-  (Spearman −0.849, Pearson −0.886): the near-catalogue dotted family that owners score
-  highest (B2 0.2778, unverified) scores lowest on the holdout (0.0039), and vice versa.
-* Method projections for the same files span 0.05–0.27 (SGCE ledger PROJECTION 0.0669 vs
-  matched-holdout OLS 0.2726 ±0.005). The disagreement between methods is itself the
-  uncertainty statement; none of them is a score, and the reported 0.2778 remains unverified.
-
-Records: [bytes audit](../evidence/amdc/sgce_bytes_audit.json) ·
-[run card v2](../evidence/amdc_run_card.json) ·
-[irregularities](../knowledge/irregularities-2026-10-28-amdc.md).
-
-## Addendum — byte-exact chain (2026-10-28, hash-pinned bytes)
-
-Measured with `np.array_equal` on the hash-pinned raster mirrors (`data_manifest.json`):
-
-| File | sha256 (first 16) | Dots | Chain relation (exact) | Owner-reported |
-|---|---|---:|---|---:|
-| dotted-h19-5-d1-5 | 68d0e2e4fcc594f9 | 60,069 | d1-5 network, 1.5-px spacing | 0.2477 |
-| dotted-h19-5-d2-8 | 91eae1ca42ec844e | 44,090 | 2.8-px spacing skeleton | 0.2600 |
-| d28-poisson (GEMSDOE30) | 8cf893ea… | 44,090 | **identical support** to d2-8 (re-serialized) | 0.2600 |
-| solo-d28 (GEMSDOE31) | 07b6db44… | 40,199 | = d2-8 − 3,891 dots with d_cat ≤ 1.01 px (exact) | 0.2708 |
-| **B2 (GEMSDOE32)** | c55bafc4… | 37,654 | = solo-d28 − 2,545 dots with 1.01 < d_cat ≤ 2.01 px (exact) | **0.2778** |
-| anderson-pinn (GEMSDOE36) | e1589102… | 38,854 | = B2 ∪ 1,200 added dots (exact) | 0.2750 |
-
-One-change marginal effects along the chain (same model, same submission window):
-
-- remove 3,891 on-catalogue dots: **+0.0108**
-- remove 2,545 dots in the 1–2 px catalogue band: **+0.0070**
-- add 1,200 miscellaneous dots back: **−0.0028**
-
-Halo geometry (why nothing else is available on-network): every one of the 121,131 h19-5
-network cells lies within 3 px of a d1-5/d2-8/tgc dot; the network is saturated by the
-family. A submission that satisfies the directed 3-px uniqueness rule against d1-5/d2-8
-must therefore place ≥30% of its dots off-network (the observed family band:
-gems70 0.2478, gate_ortho 0.2376, cvarlw 0.2303, h59-cover 0.2296, h3pack 0.0443).
-
-DTI marginal algebra (binary dots, triangular kernel): removing a dot whose kernel credit
-is duplicated, or whose predicted credit is low, strictly raises DTI; adding a dot needs
-kernel credit k > α·DTI ≈ 0.056 (about one correct cell within ~2.8 px of hidden truth) to
-break even. B2 is therefore a **redundancy-pruned** family member, not a denser one — and
-every marginal addition tested (pinn) hurt.
-
-Catalogue-mask mechanism: the organizer excludes known-fault pixels from scoring (staff
-clarification), but the catalogue is imperfectly masked relative to hidden truth, so
-on-catalogue dots earn no TP while still contributing FP. The B2 trim removes exactly that
-dead mass. What remains cannot be improved by pruning alone; scoring above 0.2778 with a
-*unique* submission requires placing new dots near hidden truth that the family does not
-already cover — i.e. new geological information (hypotheses H2/H3 in
-`knowledge/preregistration-2026-10-28-khd.md`).
-
-## Verification addendum — 2026-10-29 (mechanism, verified bytes; score still unproven)
-
-Sources: [`evidence/focus_files_verification_2026-10-29.json`](../evidence/focus_files_verification_2026-10-29.json)
-(script `scripts/verify_focus_files.py`), and the organizer statements in
-[`evidence/official_source_check_2026-10-29.json`](../evidence/official_source_check_2026-10-29.json).
-
-1. **Exact construction, verified.** GEMSDOE32's 37,654 positive cells are a subset of the 40,199
-   positive cells of the GEMSDOE28 H27-4 base, and the removed set is exactly the base cells within
-   2.0 px of a catalogue fault. Rule "base AND distance > 2.0 px" reproduces GEMSDOE32 with **0
-   mismatches** over the 12.28 M-cell grid. GEMSDOE31's dot set is identical to the base. So the
-   owner-reported pair GEMSDOE31 (0.2708) → GEMSDOE32 (0.2778) differs **only** by this exclusion.
-   Owner-reported difference: +0.0070 (not a receipt).
-2. **Organizer masking rule, verified (forum staff reply).** DrivenData staff say pixels "corresponding to
-   known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards
-   penalty terms." The reply does not say that neighbouring pixels are masked. A prediction 1.4–2 px
-   from a catalogue fault therefore keeps its false-positive weight, unless the hidden test faults lie
-   within 300 m of it. That is the mechanism proposed here: removing low-credit cells near the catalogue
-   lowers FP mass. Whether the 300 m kernel gives back enough TP credit is **unknown**.
-3. **Pattern across the nine owner-reported scores (descriptive, n = 9).** The two top files (GEMSDOE32
-   0.2778, GEMSDOE36 0.2750) are the only two with **0.0%** of dots within 2 px of the catalogue; the
-   other seven have 6.2%–14.6%. Dot count vs owner score: Spearman ρ = −0.983. Catalogue-ring fraction vs
-   owner score: ρ = −0.895. These are correlations over nine self-reported numbers from different authors.
-   They are not evidence of causation.
-4. **Counter-evidence from the only holdout test of the same idea.** The historical H6-1 proxy
-   (`evidence/h6_1_proximity_pruning_holdout.json`, HOLDOUT-DTI, evaluator gems57-pooled-hide-v2) pruned
-   ≤2 px cells and changed DTI from 0.13520 to 0.13526 (paired Δ +0.000054, CI [+0.000027, +0.000089]).
-   Its FP mass fell by about 32 units out of 32,206 (0.1%), and TP was unchanged. The proxy's scope
-   excludes the near-catalogue new-fault regime, and it did not score GEMSDOE32's file. So it neither
-   confirms nor refutes a +0.007 owner-reported gain, but the owner gain is about 130× larger than the
-   proxy gain. This discrepancy is recorded as an irregularity to review, not as an explanation.
-5. **Why this does not give a new TIF.** Any variant that changes only the exclusion radius, or applies
-   the same rule to another focus file, lands at more than 0.97 directed 3-px overlap with the focus set
-   and fails the literal uniqueness rule. A new candidate needs a different evidence source (see the
-   preregistered H1–H5 and the session review), and none has been validated. No holdout was run here.
+No new candidate was generated or validated. The literal uniqueness stop remains active on the hash-pinned owner-mirrored registry witness; the required method-lane paragraph is missing; and the shared cached feature/runtime was not restored or verified. There is no current file safe to download or submit, no HOLDOUT-DTI for a candidate, and no slot was used. See the [current negative run card](../evidence/session_2026-10-31_run_card.json), [current site](../docs/index.html), and [current source/leaderboard audit](../evidence/official_source_check_2026-10-31.json).

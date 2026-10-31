@@ -1,0 +1,146 @@
+{
+  "schema": "gems-session-run-card-v1",
+  "session_branch": "arena/c71d77d7-wbggemsdoe3",
+  "review_date_utc": "2026-10-31",
+  "evidence_class": "NEGATIVE PREFLIGHT / NO CANDIDATE RUN",
+  "verdict": "negative",
+  "okay_to_submit": false,
+  "okay_to_download_for_submission": false,
+  "decision_reason": "No method-lane paragraph is assigned; the literal registry witness stop remains active; and the shared cached feature stack/evaluator runtime is not restored or verified. Stop before any candidate surface, experiment, holdout, dot placement, or selector action.",
+  "lane_assignment": {
+    "assigned": false,
+    "method_lane": null,
+    "source": "PROJECT_PROMPT.md and README.md reconstructed brief",
+    "reason": "The referenced single method paragraph is absent. No lane was inferred."
+  },
+  "hypothesis": {
+    "rank": 1,
+    "id": "H1-HFLOW-RESID",
+    "name": "Positive well heat-flow residual corridors",
+    "status": "PREREGISTERED_NOT_TESTED",
+    "mechanism": "A positive point residual from local conductive heat-flow background may indicate convective hydrothermal or groundwater influence; a quality- and sampling-corrected corridor that aligns with independent structure could mark a concealed permeable fault.",
+    "named_non_fault_mimic": "Shallow groundwater circulation unrelated to a tectonic conduit; lithologic thermal-conductivity contrasts; biased exploration-well placement; measurement-quality or depth artifacts.",
+    "preregistration": "knowledge/preregistration-2026-10-31.md",
+    "machine_readable_preregistration": "evidence/preregistration_2026-10-31.json",
+    "official_source": "https://doi.org/10.5066/P9BZPVUC"
+  },
+  "shared_runtime": {
+    "cached_feature_stack": "NOT_AVAILABLE_IN_THIS_CHECKOUT",
+    "shared_evaluate_holdout_runtime": "NOT_RESTORED_OR_VERIFIED_FOR_AN_ASSIGNED_LANE",
+    "shared_submission_writer_runtime": "NOT_RESTORED_OR_VERIFIED_FOR_AN_ASSIGNED_LANE",
+    "repository_contains_historical_copies": true,
+    "action": "Do not substitute a historical copy or private fork."
+  },
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "status": "BLOCKED_BEFORE_EXPERIMENT",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No lane is assigned, the literal uniqueness stop is active, and no candidate feature/surface was constructed. The shared cached stack and common evaluator runtime were not restored or verified.",
+    "required_method_if_resumed": "Reuse the shared evaluator only after gates are cleared: withhold whole fault segments plus buffer; derive catalogue features only from visible faults; pixel-exactly mask visible faults; pooled DTI alpha=0.2, beta=0.8, 300 m triangular kernel; report evaluator version, withheld positives, and spatial-cluster 95% CI."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES",
+    "n_features_tested": 0,
+    "max_auc": null,
+    "reason": "No experiment was eligible; do not infer a leakage result."
+  },
+  "registry": {
+    "complete_registry_audit": false,
+    "provenance": "Hash-pinned owner mirrors in the committed registry; organizer provenance and complete portal-registry coverage are not authenticated.",
+    "surface_rank_correlation": {
+      "status": "NOT_RUN_NO_SURFACE",
+      "max_abs_spearman": null,
+      "stop_threshold": 0.90
+    },
+    "final_dot_overlap": {
+      "status": "NOT_RUN_NO_CANDIDATE",
+      "max_directed_overlap_within_3px": null,
+      "stop_threshold": 0.70,
+      "radius_px": 3
+    },
+    "literal_dense_witness": {
+      "status": "MEASURED_ON_HASH_PINNED_OWNER_MIRRORS",
+      "registry_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_cells_inside_sample_footprint": 5167373,
+      "sample_footprint_cells": 5167373,
+      "conditional_directed_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
+      "threshold_exceeded": true,
+      "evidence": "evidence/registry_witness_recheck_2026-10-27.json",
+      "interpretation": "A conditional support-overlap stop under the documented owner-mirror support rule, not a candidate-specific surface correlation, complete registry census, or organizer-provenance finding."
+    }
+  },
+  "raster": {
+    "generated": false,
+    "path": null,
+    "sha256": null,
+    "positive_cells": null
+  },
+  "validator": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "passed": false,
+    "single_band_float32": null,
+    "values_in_0_1": null,
+    "no_inf": null,
+    "no_nan_inside_footprint": null,
+    "outside_footprint_null_or_nan": null,
+    "crs_shape_transform_match": null,
+    "saved_bytes_match_audited_prediction": null,
+    "reason": "No new TIFF exists. A local validator result from a historical raster would not validate a new candidate or establish portal acceptance."
+  },
+  "submission": {
+    "name": null,
+    "note": "No candidate; stop active, lane and shared runtime unavailable.",
+    "note_characters": 63,
+    "note_is_upload_instruction": false,
+    "status": "NO_FILE_SAFE_TO_DOWNLOAD_OR_SUBMIT"
+  },
+  "experiments": {
+    "geological_experiments_completed": 0,
+    "maximum": 3,
+    "experiment_hours": 0,
+    "maximum_hours": 2
+  },
+  "selector": {
+    "action": "NONE",
+    "weekly_slots_used": 0,
+    "separate_selector_approval": false,
+    "organizer_receipt": null
+  },
+  "focus_site_claims": {
+    "status": "OWNER_REPORTED_UNVERIFIED",
+    "scores": {
+      "GEMSDOE24": 0.2477,
+      "GEMSDOE25": 0.2600,
+      "GEMSDOE27": 0.2449,
+      "GEMSDOE28": 0.2710,
+      "GEMSDOE30": 0.2600,
+      "GEMSDOE31": 0.2708,
+      "GEMSDOE32": 0.2778,
+      "GEMSDOE33": 0.2632,
+      "GEMSDOE36": 0.2750
+    },
+    "organizer_receipts": null
+  },
+  "gemsdoe32_explanation": {
+    "finding": "Repository byte/mask audits report that GEMSDOE32 B2 contains 37,654 positive cells, an exact subset of a 40,199-cell H27-4 base, with 2,545 cells removed near a mirrored fault catalogue. The reported 0.2778 is not tied to an organizer receipt or hidden labels.",
+    "mechanism_status": "Plausible metric mechanism only: pruning low-credit predictions may reduce false-positive mass while nearby predictions retain some distance-kernel credit; the net effect cannot be decomposed without hidden labels and the evaluated bytes.",
+    "label": "OWNER-REPORTED SCORE; CAUSAL EXPLANATION UNVERIFIED",
+    "reported_score": 0.2778,
+    "score_status": "OWNER_REPORTED_UNVERIFIED",
+    "receipt": null,
+    "details": "content/why-0.2778.md"
+  },
+  "public_leaderboard_observation": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not a repository file score or receipt",
+    "date_utc": "2026-10-31",
+    "rank_1": "0.4544",
+    "rank_2": "0.3925",
+    "rank_50": "0.3195",
+    "source": "evidence/leaderboard_observation_2026-10-31.json"
+  },
+  "official_source_check": "evidence/official_source_check_2026-10-31.json",
+  "preregistration": "evidence/preregistration_2026-10-31.json"
+}

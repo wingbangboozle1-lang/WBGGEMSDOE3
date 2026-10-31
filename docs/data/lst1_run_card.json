@@ -1,5 +1,5 @@
 {
-  "_archive_notice": "Historical lane record only. This does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload.",
+  "_archive_notice": "Historical lane record only. It does not override the current project-level DO-NOT-SUBMIT decision or authorize a portal upload.",
   "authoritative_current_card": "evidence/run_card.json",
   "historical_original_readiness_claims": {
     "ready_to_submit": true,

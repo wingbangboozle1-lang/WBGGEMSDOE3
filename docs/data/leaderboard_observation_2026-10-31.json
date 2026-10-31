@@ -1,0 +1,27 @@
+{
+  "schema": "gems-public-leaderboard-observation-v1",
+  "observed_date_utc": "2026-10-31",
+  "observation_time_precision": "date only; functions.fetch_page does not expose the exact retrieval timestamp",
+  "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt, project-file score, or private-test result",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "retrieval_method": "Official public leaderboard page fetched in content chunks 0, 1, and 2 via Arena functions.fetch_page; no authenticated account was used.",
+  "visible_public_scores": {
+    "rank_1": "0.4544",
+    "rank_2": "0.3925",
+    "rank_25": "0.3396",
+    "rank_26": "0.3396",
+    "rank_48": "0.3231",
+    "rank_49": "0.3217",
+    "rank_50": "0.3195"
+  },
+  "scope": "The captured public page showed ranks through 50. The leaderboard is time-dependent; this observation does not identify any repository raster, private score, final-round score, account quota, or submission receipt.",
+  "corrections": {
+    "0.3195": "Appears at rank 50 in this capture, not at rank 26 or at the top.",
+    "rank_1": "The current captured public leader is 0.4544."
+  },
+  "limitations": [
+    "The observation is a page capture, not a result returned by a user's submission page.",
+    "The capture timestamp is not available beyond the date exposed by the session.",
+    "Ranks can change after this capture; the scheduled fragment refresh is a separate process."
+  ]
+}

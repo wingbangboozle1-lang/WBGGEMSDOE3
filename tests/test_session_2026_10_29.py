@@ -54,8 +54,10 @@ def test_official_deadline_resolution_is_conservative():
     assert any("5:00 p.m. ET" in fact for fact in rules["verified_facts"])
 
 
-def test_published_index_states_not_ok_to_submit():
+def test_published_index_states_current_negative_and_public_feed():
     page = (ROOT / "docs/index.html").read_text(encoding="utf-8")
-    assert "Not OK to download or submit" in page
-    assert "Q1" in page and "Q2" in page
-    assert "0.3328" in page
+    assert "DO NOT DOWNLOAD OR SUBMIT" in page
+    assert "no file is cleared" in page.lower()
+    assert "0.4544" in page and "0.3925" in page and "0.3195" in page
+    assert "data/decision.json" in page
+    assert "Q1" not in page and "Q2" not in page

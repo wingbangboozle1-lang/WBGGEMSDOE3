@@ -10,34 +10,35 @@
     "raster_sha256": null
   },
   "blocking_reasons": [
-    "The literal registered dense-witness stop is active: any nonempty in-footprint candidate would have 100% directed overlap under the documented owner-mirror support rule, above the 70% threshold.",
-    "No candidate raster, byte hash, or submission name exists in this review.",
-    "No compliant shared-tool HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI was run.",
+    "The literal owner-mirror witness stop is active: any nonempty in-footprint candidate has 100% conditional directed overlap under the documented support rule, above the 70% threshold.",
+    "The assigned single method lane paragraph is absent; no lane was inferred.",
+    "The shared cached feature stack and assigned shared evaluator/writer runtime are unavailable or unverified.",
+    "No candidate raster, byte hash, submission name, surface correlation, or final-dot overlap exists in this review.",
+    "No compliant shared-tool HOLDOUT-DTI, leakage canary, evaluator version, withheld-positive count, or 95% CI was run.",
     "No separate selector approval exists; no weekly slot was selected or spent.",
-    "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
-    "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
+    "The registry witness and competition inputs are owner mirrors; organizer provenance and complete portal-registry coverage are not authenticated."
   ],
-  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
+  "decision_scope": "Project-wide status for the 2026-10-31 review; no candidate was created, no experiment was run, and no slot was selected.",
   "source_cards": {
     "run_card": {
-      "path": "evidence/session_7393d521_run_card.json",
-      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
+      "path": "evidence/session_2026-10-31_run_card.json",
+      "sha256": "f55fba80b9287bb2144af3814e3abb1e42c2b370e681ca37219e08d7345aab68"
     },
     "witness_recheck": {
       "path": "evidence/registry_witness_recheck_2026-10-27.json",
       "sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
     },
     "preregistration": {
-      "path": "evidence/preregistration_2026-10-28.json",
-      "sha256": "09338a4a92de88b4968f4eeb7ddd917001a3afe555a599a854a4cbfcf203c137"
+      "path": "evidence/preregistration_2026-10-31.json",
+      "sha256": "0043b7f01d2a5277a5773b5540ef0eb315cbef4444218b9a342d344fba2ac5b4"
     },
     "official_sources": {
-      "path": "evidence/official_source_check_2026-10-28.json",
-      "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
+      "path": "evidence/official_source_check_2026-10-31.json",
+      "sha256": "c0d95c79642e30acf7d8e2fa546a837193bc24d5c21bdb9475bc8fb87cce39b9"
     },
     "leaderboard_snapshot": {
-      "path": "evidence/leaderboard_observation_2026-10-28.json",
-      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
+      "path": "evidence/leaderboard_observation_2026-10-31.json",
+      "sha256": "0be3fe563b491d8e49ee05c980ba0aed6f2f6200522d6ac38602a88a04360351"
     }
   }
 }

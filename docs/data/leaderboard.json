@@ -2,26 +2,23 @@
   "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt or candidate score",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "best_public_dti": "0.4544",
-  "rank_2_public_dti": "0.3916",
-  "rank_25_public_dti": "0.3217",
-  "rank_26_public_dti": "0.3195",
-  "rank_26_note": "2026-10-28 value. On 2026-10-29 rank 26 was 0.3328 (newway); 0.3195 is historical, not the high. Source: evidence/leaderboard_observation_2026-10-29.json.",
-  "rank_48_public_dti": "0.2895",
-  "last_success_utc": "2026-10-28",
-  "last_attempt_utc": "2026-10-28",
+  "rank_2_public_dti": "0.3925",
+  "rank_25_public_dti": "0.3396",
+  "rank_26_public_dti": "0.3396",
+  "rank_48_public_dti": "0.3231",
+  "rank_49_public_dti": "0.3217",
+  "rank_50_public_dti": "0.3195",
+  "last_success_utc": "2026-10-31",
+  "last_attempt_utc": "2026-10-31",
   "last_attempt_error": null,
-  "observation_method": "Official public leaderboard page and official HTMX fragment fetched on 2026-10-28; ranks 1-48 inspected. Exact fetch time is not exposed; automated scheduled refresh remains separate.",
+  "observation_method": "Manual official leaderboard page capture in three content chunks via Arena functions.fetch_page. Exact retrieval time is not exposed. The automated HTMX-fragment refresh was not run in this session.",
+  "automated_refresh_status": "NOT_RUN_THIS_SESSION; the last prior automated-feed success recorded in the superseded file was 2026-10-28",
   "fragment_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1",
-  "scope": "Public top-ranked and captured page rows only; private-test scores, final-round scores, any repository file's organizer score, account quota, and submission receipts are unavailable.",
-  "snapshot": "evidence/leaderboard_observation_2026-10-28.json",
-  "superseded_by": {
-    "date_utc": "2026-10-29",
-    "capture": "evidence/leaderboard_observation_2026-10-29.json",
-    "method": "fetch_page on the official leaderboard URL (ranks 1-47 read; rank 48 not re-read)",
-    "best_public_dti": "0.4544",
-    "rank_2_public_dti": "0.3916",
-    "rank_25_public_dti": "0.3330",
-    "rank_26_public_dti": "0.3328",
-    "note": "The 2026-10-29 capture supersedes the fields above for ranks 1, 2, 25, 26. Rank 48 is still the 2026-10-28 value. The brief's 0.4413 and 0.3195 'highest' figures are not on the live page."
-  }
+  "scope": "Public rows captured on the official page only; no project-file score identity, private/final score, account quota, or submission receipt is available.",
+  "snapshot": "evidence/leaderboard_observation_2026-10-31.json",
+  "supersedes": [
+    "evidence/leaderboard_observation_2026-10-29.json",
+    "evidence/leaderboard_observation_2026-10-28.json"
+  ],
+  "correction": "The 2026-10-31 capture places 0.3195 at rank 50. It is not the current leader."
 }

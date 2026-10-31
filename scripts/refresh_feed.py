@@ -19,7 +19,7 @@ URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderbo
 # The public page loads its table via this official HTMX fragment. The top-level
 # HTML is only a shell, so parsing that document alone cannot refresh the score.
 PARTIAL_URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1"
-TRACKED_RANKS = (1, 2, 25, 26, 48)
+TRACKED_RANKS = (1, 2, 25, 26, 48, 50)
 
 
 class Rows(HTMLParser):
@@ -101,6 +101,7 @@ def refresh(path: Path = PATH) -> dict:
             raise ValueError("leaderboard response too large")
         scores = parse_public_scores(html.decode("utf-8", errors="replace"))
         old.update(source=URL, best_public_dti=scores[1], last_success_utc=now, last_attempt_error=None,
+                   automated_refresh_status="FETCHED_THIS_RUN",
                    evidence_class="PUBLIC-LEADERBOARD OBSERVATION; not an upload receipt or candidate score",
                    scope="Captured public leaderboard rows only; private scores, project file identities, user quota, and receipts are unavailable.",
                    observation_method="Official public leaderboard HTMX fragment parsed automatically.")
@@ -115,6 +116,7 @@ def refresh(path: Path = PATH) -> dict:
         old["captured_ranks"] = {str(rank): scores[rank] for rank in TRACKED_RANKS if rank in scores}
     except Exception as exc:
         # Avoid publishing a traceback or secrets. Preserve but mark the prior value stale.
+        old["automated_refresh_status"] = "FAILED_THIS_RUN; retained prior labeled observation"
         old["last_attempt_error"] = type(exc).__name__ + ": " + str(exc)[:160]
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".tmp")

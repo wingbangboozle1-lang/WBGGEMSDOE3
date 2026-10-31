@@ -29,6 +29,7 @@ def test_failed_refresh_preserves_snapshot_and_marks_stale(tmp_path):
     assert result['best_public_dti'] == '0.4437'
     assert result['last_success_utc'] == '2026-01-01T00:00:00+00:00'
     assert result['last_attempt_error'].startswith('OSError')
+    assert result['automated_refresh_status'].startswith('FAILED_THIS_RUN')
 
 
 def test_refresh_reads_public_htmx_fragment_and_rejects_redirect(tmp_path):
@@ -51,6 +52,7 @@ def test_refresh_reads_public_htmx_fragment_and_rejects_redirect(tmp_path):
     assert result['rank_25_public_dti'] == '0.3125'
     assert result['captured_ranks'] == {'1': '0.4567', '25': '0.3125'}
     assert result['last_attempt_error'] is None and result['last_success_utc']
+    assert result['automated_refresh_status'] == 'FETCHED_THIS_RUN'
     with patch('urllib.request.urlopen', return_value=Response('https://www.drivendata.org/accounts/login/')):
         rejected = refresh(path)
     assert rejected['best_public_dti'] == '0.4567'

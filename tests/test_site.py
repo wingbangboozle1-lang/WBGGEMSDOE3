@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
               "method.html", "evidence.html", "session-review.html", "submission.html")
-CURRENT_CARD = "evidence/session_7393d521_run_card.json"
+CURRENT_CARD = "evidence/session_2026-10-31_run_card.json"
 
 
 def _json(path: str) -> dict:
@@ -81,16 +81,15 @@ def test_current_run_card_is_a_complete_negative_not_a_fake_score():
     assert card["submission"]["note_characters"] == len(card["submission"]["note"])
     assert card["experiments"]["geological_experiments_completed"] == 0
     assert card["selector"]["weekly_slots_used"] == 0
-    prior = card["preexisting_main_artifact"]
-    assert prior["status"] == "UNAPPROVED_ARCHIVE_ONLY"
-    assert prior["byte_identity_rechecked_against_upstream_record"] is True
-    assert prior["scientific_or_format_validation_in_this_review"] is False
-    prior_path = ROOT / prior["path"]
-    assert prior_path.is_file() and _sha(prior_path) == prior["upstream_recorded_sha256"]
+    assert card["lane_assignment"]["assigned"] is False
+    assert card["registry"]["complete_registry_audit"] is False
+    assert card["selector"]["action"] == "NONE"
+    assert card["selector"]["weekly_slots_used"] == 0
+    assert card["submission"]["status"] == "NO_FILE_SAFE_TO_DOWNLOAD_OR_SUBMIT"
 
 
-def test_preregistration_has_five_distinct_testable_hypotheses():
-    prereg = _json("evidence/preregistration_2026-10-28.json")
+def test_preregistration_has_three_distinct_prospective_hypotheses():
+    prereg = _json("evidence/preregistration_2026-10-31.json")
     rows = prereg["hypotheses"]
     assert 3 <= len(rows) <= 5
     assert len({r["id"] for r in rows}) == len(rows)
@@ -102,7 +101,9 @@ def test_preregistration_has_five_distinct_testable_hypotheses():
         assert row["expected_dti"] is None
         assert row["validation_status"].startswith("NOT RUN")
     assert prereg["global_stop"]["active"] is True
-    assert prereg["experiment_budget"]["experiments_completed_at_preregistration"] == 0
+    assert prereg["experiment_budget"]["geological_experiments_completed"] == 0
+    assert prereg["lane_assignment"]["assigned"] is False
+    assert all(row["viable_now"] is False for row in rows)
 
 
 def test_literal_witness_is_recorded_as_a_stop_not_a_clearance():
@@ -110,7 +111,7 @@ def test_literal_witness_is_recorded_as_a_stop_not_a_clearance():
     assert witness["universal_blocker"] is True
     assert witness["witness_positive_inside"] == witness["footprint_cells"] == 5_167_373
     assert witness["sha256"] == "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
-    assert "owner mirrors" in _json("evidence/preregistration_2026-10-28.json")["global_stop"]["provenance_caveat"]
+    assert "owner mirrors" in _json("evidence/preregistration_2026-10-31.json")["global_stop"]["provenance_caveat"]
 
 
 def test_every_current_page_is_tagged_negative_and_has_no_clearance_claim():
@@ -153,16 +154,28 @@ def test_latest_upstream_identity_feed_is_published_and_never_implies_approval()
     assert "data/latest-upstream-check.json" in page
 
 
+def test_retired_projections_are_not_presented_as_current_scores():
+    archived = _json("docs/data/focus_estimates.json")
+    assert archived["schema"] == "gems-focus-projections-archive-v1"
+    assert archived["current_score_estimate"] == "NOT ESTIMABLE"
+    assert all(row["status"] == "RETIRED_UNVALIDATED_PROJECTION_NOT_A_SCORE" for row in archived["rows"])
+    for name in ("candidate_run_card.json", "nine_site_table.json", "ledger_inversion.json",
+                 "estimate.json", "khd_release.json", "session2_run_card.json",
+                 "run_card_unique_submission.json", "unique_submission_run_card.json"):
+        assert not (DOCS / "data" / name).exists(), name
+
+
 def test_current_leaderboard_and_official_source_captures_are_labeled():
-    obs = _json("evidence/leaderboard_observation_2026-10-28.json")
+    obs = _json("evidence/leaderboard_observation_2026-10-31.json")
     assert obs["visible_public_scores"]["rank_1"] == "0.4544"
-    assert obs["visible_public_scores"]["rank_25"] == "0.3217"
-    assert obs["visible_public_scores"]["rank_26"] == "0.3195"
-    assert "not a submission receipt" in obs["evidence_class"].lower()
-    source = _json("evidence/official_source_check_2026-10-28.json")
+    assert obs["visible_public_scores"]["rank_2"] == "0.3925"
+    assert obs["visible_public_scores"]["rank_25"] == "0.3396"
+    assert obs["visible_public_scores"]["rank_50"] == "0.3195"
+    assert "not an upload receipt" in obs["evidence_class"].lower()
+    source = _json("evidence/official_source_check_2026-10-31.json")
     ids = {row["id"] for row in source["sources"]}
-    assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
-    assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
+    assert {"competition_problem_and_format", "public_leaderboard", "geodawn_usgs", "gdr_1391", "usgs_heat_flow", "landsat_collection_2"} <= ids
+    assert source["deadline_status"]["rechecked_on_2026-10-31"] is False
 
 
 def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
@@ -175,10 +188,14 @@ def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
     listed = {line.strip() for line in notice.splitlines() if line.startswith("  ") and line.strip().endswith(".tif")}
     present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
     assert listed == present
-    assert "No TIFF in this directory is cleared" in notice
+    assert "No TIFF or ZIP in this directory is cleared" in notice
     assert "DO NOT SUBMIT" in notice
-    prior = _json(CURRENT_CARD)["preexisting_main_artifact"]
-    assert Path(prior["path"]).name in notice
+    listed_zips = {line.strip() for line in notice.splitlines() if line.startswith("  ") and line.strip().lower().endswith(".zip")}
+    present_zips = {p.name for p in (DOCS / "downloads").glob("*.zip")}
+    assert listed_zips == present_zips
+    card = _json(CURRENT_CARD)
+    assert card["raster"]["generated"] is False
+    assert card["raster"]["sha256"] is None
 
 
 def test_all_site_links_resolve_inside_docs():
@@ -195,7 +212,7 @@ def test_all_site_links_resolve_inside_docs():
 
 def test_retired_positive_builders_stop_before_writing_docs():
     before = (DOCS / "index.html").read_bytes()
-    for name in ("build_site_v3.py", "build_release_gate_v2.py", "build_evidence_page.py"):
+    for name in ("build_site_v3.py", "build_release_gate_v2.py", "build_evidence_page.py", "build_site_fchd.py"):
         proc = subprocess.run([sys.executable, str(ROOT / "scripts" / name)], cwd=ROOT,
                               capture_output=True, text=True, timeout=15)
         assert proc.returncode != 0, name
@@ -206,9 +223,12 @@ def test_retired_positive_builders_stop_before_writing_docs():
 def test_active_site_builder_is_deterministic():
     from build_site import main
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
-             "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
-             "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
-             "data/latest-upstream-check.json", "data/leaderboard.json",
+             "data/release_gate.json", "data/decision.json", "data/run_card.json",
+             "data/session_2026-10-31_run_card.json", "data/session_7393d521_run_card.json",
+             "data/preregistration_2026-10-31.json", "data/official_source_check_2026-10-31.json",
+             "data/leaderboard_observation_2026-10-31.json", "data/latest-upstream-check.json",
+             "data/leaderboard.json", "data/focus_audit.json", "data/focus_estimates.json",
+             "data/h6_1_proximity_pruning_holdout.json", "data/review-2026-10-31.md",
              "data/fchd_run_card.json", "data/amdc_run_card.json",
              "fchd/index.html", "amdc/index.html"]
     before = {name: (DOCS / name).read_bytes() for name in names}
