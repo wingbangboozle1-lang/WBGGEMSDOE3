@@ -611,6 +611,11 @@ def main() -> int:
     release_main()
     print("Built legacy lane archives and the release pages from "
           "evidence/release/candidate_run_card.json.")
+    # The download desk is rendered last so the landing pages always match
+    # evidence/ggo_run_card.json (scripts/build_feed.py is deterministic: its timestamp comes from
+    # the run card, not the clock).
+    from build_feed import build as feed_build
+    feed_build()
     return 0
 
 

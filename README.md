@@ -1,5 +1,33 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+<!-- FEED:BEGIN -->
+## Current desk state — regenerated 2026-10-31 01:47 UTC by `scripts/build_readme_feed.py`
+
+**Decision: NOT CLEARED — do not upload.**
+Do not read any number below as an organizer-confirmed score: no submission was uploaded from this
+environment, so no receipt exists.
+
+| | |
+|---|---|
+| File | [`docs/downloads/wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif`](docs/downloads/wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif) · sha256 `348605467b0c868925a0d6bb…` |
+| Format gates | 4/6 true · all-pass True |
+| Estimate | **0.0774** LEDGER-INVERSION ESTIMATE (60000 dots), CV MAE 0.06476, estimator Spearman 0.3376 on 118 public probes — an estimate, never a score |
+| HOLDOUT-DTI | 0.019485 (60988 withheld positives, CI [0.0, 0.047918]); arm A3_ggo_plus_morphology beats incumbent on the holdout: True |
+| Uniqueness | 138 sibling rasters censused, 2 blockers, worst informative 3-px overlap 0.748683, worst |ρ| 0.859966 |
+| Leakage canary | max single-feature AUC 0.8261 (bar 0.90) |
+| Live public leaderboard | rank 1 = **None** (—); the brief's 0.4413 / 0.3195 are stale (IR-31-01) |
+
+Holdout arms (pooled, best first): `A3_ggo_plus_morphology` 0.0319, `A1_morphology_incumbent` 0.0273, `A3_ggo_plus_morphology` 0.0195, `A3_ggo_plus_morphology` 0.0119.
+
+Read next: [docs/index.html](docs/index.html) (one-click download desk),
+[docs/executive-summary.html](docs/executive-summary.html) (nine-site table with estimates and
+uniqueness), [docs/how-to-submit.html](docs/how-to-submit.html) (exact portal steps and the root
+cause of `Predicted values must be in range [0, 1]`),
+[docs/research.html](docs/research.html) (instruments, sources, census),
+`evidence/ggo_run_card.json` (machine-readable run card).
+<!-- FEED:END -->
+
+
 ## Start here — 2026-10-31: one file is cleared
 
 **Live decision: OK to download and submit — one file.**
@@ -513,3 +541,19 @@ identity, not organizer provenance.
   of winning. Set emotions aside.
 - Own the Outcome: own results end to end. When problems arise and we have the means to act, do
   so without waiting for permission. Treat failure and success as signals.
+
+### Addendum — requirements added on 2026-10-31 (verbatim from the operator)
+
+* "The site should make downloading the submission tif the obvious first action and fix the
+  portal error `Predicted values must be in range [0, 1]`. There should be an easy to download
+  submission tif file. Use a unique submission name and short note."
+* "In order for a submission to be validated it needs to pass certain high-scoring validation
+  gates before confirming whether a file is unique and can be submitted for scoring."
+* "Put this prompt in the readme of the repo. So it can be read each session."
+
+Live-board check for the quoted figures (same day, `evidence/leaderboard_observation_2026-10-31.json`,
+two independent captures agreeing): rank 1 is **0.4544**, so "high score 0.4413" and "0.3195 is the
+highest score right now" are both stale — 0.3195 was rank 26 on 2026-10-28 and is now outside the
+top 23. Recorded as **IR-31-01**, not silently corrected. The GGO lane's own desk — including the
+download of the file it generated and why its performance gate failed — is
+[docs/desk.html](docs/desk.html).

@@ -34,5 +34,185 @@
   "The user brief's '0.4413 current high' and '0.3195 highest now' do not match this dated capture; 0.4544 remains rank 1.",
   "Public-test scores only; not private-test results; not this project's scores; not organizer receipts.",
   "The board moved fast: multiple teams improved within the last hour of this capture (leaderboard churn, not contradiction)."
- ]
+ ],
+ "ggo_lane_capture": {
+  "rows": [
+   {
+    "rank": 1,
+    "participant": "xiaofanhu",
+    "best_public_dti": 0.4544,
+    "submissions": 35,
+    "last_submit_age": "3d 23h ago"
+   },
+   {
+    "rank": 2,
+    "participant": "cfld__",
+    "best_public_dti": 0.3925,
+    "submissions": 22,
+    "last_submit_age": "19h 52min ago"
+   },
+   {
+    "rank": 3,
+    "participant": "Batik Shirt Brothers (rariwa, masterozone0617, omizutani)",
+    "best_public_dti": 0.3917,
+    "submissions": 61,
+    "last_submit_age": "43min ago"
+   },
+   {
+    "rank": 4,
+    "participant": "BrandenKMurray",
+    "best_public_dti": 0.386,
+    "submissions": 36,
+    "last_submit_age": "19h 10min ago"
+   },
+   {
+    "rank": 5,
+    "participant": "op01",
+    "best_public_dti": 0.3642,
+    "submissions": 16,
+    "last_submit_age": "1d 12h ago"
+   },
+   {
+    "rank": 6,
+    "participant": "No Fault of Our Own (exposed, mgzucker)",
+    "best_public_dti": 0.3631,
+    "submissions": 53,
+    "last_submit_age": "40min ago"
+   },
+   {
+    "rank": 7,
+    "participant": "tommymaherregen",
+    "best_public_dti": 0.3558,
+    "submissions": 3,
+    "last_submit_age": "57min ago"
+   },
+   {
+    "rank": 8,
+    "participant": "sevenrights0",
+    "best_public_dti": 0.3557,
+    "submissions": 3,
+    "last_submit_age": "55min ago"
+   },
+   {
+    "rank": 9,
+    "participant": "luh.correia98",
+    "best_public_dti": 0.3544,
+    "submissions": 4,
+    "last_submit_age": "2h 49min ago"
+   },
+   {
+    "rank": 10,
+    "participant": "jaydevelop111",
+    "best_public_dti": 0.3533,
+    "submissions": 3,
+    "last_submit_age": "4h 46min ago"
+   },
+   {
+    "rank": 11,
+    "participant": "herculesschonfeldt6",
+    "best_public_dti": 0.3522,
+    "submissions": 1,
+    "last_submit_age": "5h 2min ago"
+   },
+   {
+    "rank": 12,
+    "participant": "holandakrait",
+    "best_public_dti": 0.352,
+    "submissions": 4,
+    "last_submit_age": "3h 2min ago"
+   },
+   {
+    "rank": 13,
+    "participant": "j234",
+    "best_public_dti": 0.35,
+    "submissions": 3,
+    "last_submit_age": "3h 3min ago"
+   },
+   {
+    "rank": 14,
+    "participant": "xlgracias",
+    "best_public_dti": 0.348,
+    "submissions": 3,
+    "last_submit_age": "2h 19min ago"
+   },
+   {
+    "rank": 15,
+    "participant": "mzoorob",
+    "best_public_dti": 0.3476,
+    "submissions": 50,
+    "last_submit_age": "46min ago"
+   },
+   {
+    "rank": 16,
+    "participant": "raulcbrooks0909",
+    "best_public_dti": 0.3467,
+    "submissions": 4,
+    "last_submit_age": "5h 5min ago"
+   },
+   {
+    "rank": 17,
+    "participant": "joeyfezster",
+    "best_public_dti": 0.3447,
+    "submissions": 44,
+    "last_submit_age": "4d 3h ago"
+   },
+   {
+    "rank": 18,
+    "participant": "liel93",
+    "best_public_dti": 0.344,
+    "submissions": 3,
+    "last_submit_age": "2h 52min ago"
+   },
+   {
+    "rank": 19,
+    "participant": "JerryDataWorks",
+    "best_public_dti": 0.3418,
+    "submissions": 22,
+    "last_submit_age": "3w ago"
+   },
+   {
+    "rank": 20,
+    "participant": "jay398144",
+    "best_public_dti": 0.3417,
+    "submissions": 4,
+    "last_submit_age": "4h 47min ago"
+   },
+   {
+    "rank": 21,
+    "participant": "alexoktaba",
+    "best_public_dti": 0.3416,
+    "submissions": 35,
+    "last_submit_age": "2w ago"
+   },
+   {
+    "rank": 22,
+    "participant": "DARD",
+    "best_public_dti": 0.3407,
+    "submissions": 32,
+    "last_submit_age": "9h 1min ago"
+   },
+   {
+    "rank": 23,
+    "participant": "zeaal (vladee, ahome)",
+    "best_public_dti": null,
+    "submissions": 19,
+    "last_submit_age": "1d 17h ago",
+    "note": "the fetched page chunk was cut mid-row at rank 23; no score is recorded rather than guessed"
+   }
+  ],
+  "irregularities_flagged": [
+   {
+    "id": "IR-31-01",
+    "finding": "The task brief states 'Current competition leaderboard GEMSDOE high score: 0.4413' and elsewhere '0.3195 is the highest score right now'. The live public board on 2026-10-31 shows rank 1 = 0.4544 and 0.3195 no longer in the top 23 (it was rank 26 in the 2026-10-28 capture). Neither brief figure is the current high."
+   },
+   {
+    "id": "IR-31-02",
+    "finding": "Rank 23's value was cut off by the page chunk boundary; it is recorded without a score rather than guessed."
+   }
+  ],
+  "method": "fetch_page of the official public leaderboard page from this sandbox; the page HTML renders 'Best public DW-Tversky (in descending order)' with each team's last-submit age and submission count. No login, no private scores.",
+  "note_on_precision": "Values are transcribed exactly as displayed (4 dp). 'Shared work' column empty for all rows read.",
+  "limits": "Public test-set scores of other teams. Not private-test, not final-round, not a receipt for any file in this repository, and not a statement about our own account or quota."
+ },
+ "cross_check": "two independent fetches of the same page on 2026-10-31 agree: rank 1 = 0.4544 and rank 2 = 0.3925 (this file keeps the main-side structure and appends the second capture as ggo_lane_capture)"
 }
