@@ -64,7 +64,7 @@ def main() -> int:
         "witness_recheck": "evidence/registry_witness_recheck_2026-10-27.json",
         "preregistration": "evidence/preregistration_2026-10-28.json",
         "official_sources": "evidence/official_source_check_2026-10-28.json",
-        "leaderboard_snapshot": "evidence/leaderboard_observation_2026-10-31.json",
+        "leaderboard_snapshot": "evidence/leaderboard_observation_2026-10-28.json",
     }
     gate_path = DOCS / "data/release_gate.json"
     current_card_path = ROOT / expected_sources["run_card"]
@@ -157,10 +157,12 @@ def main() -> int:
 
         if sources.get("checked_date_utc") != "2026-10-28":
             errors.append("official-source audit date mismatch")
-        if snapshot.get("observed_date_utc") != "2026-10-31":
+        if snapshot.get("observed_date_utc") != "2026-10-28":
             errors.append("public leaderboard snapshot date mismatch")
         if snapshot.get("visible_public_scores", {}).get("rank_1") != "0.4544":
             errors.append("public leaderboard snapshot leader value changed")
+        if snapshot.get("visible_public_scores", {}).get("rank_25") != "0.3217" or snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3195":
+            errors.append("public leaderboard ranks 25/26 do not match the dated capture")
 
         copied_card = json.loads((DOCS / "data/session_7393d521_run_card.json").read_text())
         if copied_card != card:

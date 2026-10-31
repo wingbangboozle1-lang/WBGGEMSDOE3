@@ -28,7 +28,9 @@ PREREG = ROOT / "evidence/preregistration_2026-10-28.json"
 PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
 OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
 LEADERBOARD = ROOT / "registry/leaderboard.json"
-LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-31.json"
+LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"  # gate provenance pin
+LATEST_LEADERBOARD = ROOT / "evidence/leaderboard_observation_2026-10-29.json"
+OBS_1031_LEADERBOARD = ROOT / "evidence/leaderboard_observation_2026-10-31.json"
 TWR1_CARD = ROOT / "evidence/twr1_run_card.json"
 TWR1_UNIQUE = ROOT / "evidence/twr1r_uniqueness.json"
 TWR1_READBACK = ROOT / "evidence/twr1_focus_readback.json"
@@ -37,6 +39,7 @@ TWR1_CANARY = ROOT / "evidence/twr1_canary.json"
 FOCUS = ROOT / "evidence/focus_audit.json"
 REVIEW_MD = ROOT / "knowledge/review-2026-10-31-session.md"
 UNIQUE_SUBMISSION = ROOT / "evidence/unique_submission_run_card.json"
+UPSTREAM_CHECK = ROOT / "evidence/latest-upstream-check.json"
 
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
@@ -117,19 +120,26 @@ def leaderboard_panel(feed: dict, snapshot: dict) -> str:
     ranks = snapshot["visible_public_scores"]
     freshness = feed.get("last_success_utc") or "unknown"
     error = "yes" if feed.get("last_attempt_error") else "no"
-    stale_text = "refresh attempt failed; last success retained" if error == "yes" else "latest successful public feed check"
+    stale_text = "refresh attempt failed; last success retained" if error == "yes" else "automated feed last succeeded"
     return f'''<article class="card"><div class="small">Public leaderboard observation — not our score</div>
 <div class="metric">{esc(ranks['rank_1'])}</div>
-<div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
-<p>Rank 2: <strong>{esc(ranks['rank_2'])}</strong> · rank 3: <strong>{esc(ranks['rank_3'])}</strong> ·
-rank 4: <strong>{esc(ranks['rank_4'])}</strong> · rank 5: <strong>{esc(ranks['rank_5'])}</strong>.
-The requested figures 0.4413/0.3195 do not match this dated capture; 0.4544 remains rank 1. The official feed's
-latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
-<h3>Focus-site source freshness</h3><p class="small">Pinned focus-site mirrors re-fetched 2026-10-31 through the
-hash-verified GitHub bridge (session2_restore: all_ok); SHA-256s unchanged since the 2026-10-28 observation.
-Public leaderboard feeds never approve a submission; they only date public scores.</p>
+<div class="small">Rank 1 in saved official-page capture · {esc(date)} · {esc(stale_text)}</div>
+<p>Automated leaderboard feed last success: <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>. The separately saved official-page observation is dated {esc(date)}; neither is a project-file score or receipt.</p>
+<p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
+The cited 0.3195 was rank 26 on 2026-10-28; the latest saved capture has rank 26 at 0.3328. Rank 1 is 0.4544 in both dated captures. These public scores are not project-file scores or receipts.
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
-· <a href="data/leaderboard_observation_2026-10-31.json">captured rows and limits ↓</a></p></article>'''
+· <a href="data/leaderboard_observation_2026-10-29.json">latest saved capture ↓</a> · <a href="data/leaderboard_observation_2026-10-31.json">2026-10-31 capture ↓</a> (rank 2 = 0.3925, rank 3 = 0.3917; churn ongoing; the brief's 0.4413/0.3195 are stale: IR-31-01)</p></article>'''
+
+
+def upstream_freshness_card(upstream: dict) -> str:
+    checked = esc(upstream.get("checked_at", "unknown"))
+    rows = upstream.get("repositories", [])
+    fetched = sum(row.get("fetch_status") == "FETCHED" for row in rows)
+    changed = sum(row.get("comparison_to_baseline") == "CHANGED" for row in rows)
+    return f'''<article class="card"><h3>Focus-site source freshness</h3>
+<p>GitHub HEAD identity check: <strong>{fetched}/{len(rows)} repositories fetched</strong>; {changed} differ from the historical 2026-10-26 baseline. Checked {checked}.</p>
+<p>This only detects repository-head changes. It does not prove a score, TIFF, receipt, full registry coverage, or changed submission bytes; every focus site remains unapproved for submission.</p>
+<a href="data/latest-upstream-check.json">Open machine-readable freshness check ↓</a></article>'''
 
 
 READBACK_NAME = {"GEMSDOE24": "GEMSDOE24.tif", "GEMSDOE25": "GEMSDOE25.tif", "GEMSDOE27": "GEMSDOE27.tif",
@@ -164,7 +174,7 @@ the closest quantitative proxy is the read-back column</small></td>
 <th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
 
 
-def index_page(feed: dict, snapshot: dict, card: dict) -> str:
+def index_page(feed: dict, snapshot: dict, card: dict, upstream: dict) -> str:
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
@@ -174,7 +184,8 @@ def index_page(feed: dict, snapshot: dict, card: dict) -> str:
 <p>3 geological experiments · shared validator PASS · uniqueness PASS · holdout bar FAIL → verdict negative ·
 0 portal slots used.</p></article>
 {leaderboard_panel(feed, snapshot)}
-<article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository. A public leaderboard score does not prove a score, TIFF, receipt, or approval relationship.</p></article>
+{upstream_freshness_card(upstream)}
+<article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
 <h2>Nine historical claims, no submission recommendation</h2>
@@ -188,8 +199,8 @@ comparators cannot universal-block; every literal number stays published per com
 fails on <em>science</em>: HOLDOUT-DTI 0.02879 vs the 0.0992 comparable holdout best. A projection is never
 written as a score; no organizer receipt exists for any focus file.</p>
 <a href="evidence.html">Read the evidence and caveats →</a></article>
-<article class="card"><h3>Research program</h3><p>Five hypotheses remain preregistered with mechanisms, non-fault mimics, and difference checks. 2026-10-31: the envelope arm of H4 was tested and decisively refuted on the shared instrument; three new ranked hypotheses (fault prior surface, spacing law, anisotropic smoothing) were registered with a validated negative/zero result each. <a href="data/hypotheses-2026-10-31.json">Today's hypothesis card ↓</a></p><a href="research.html">Read the preregistration →</a></article>
-<article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
+<article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
+<article class="card"><h3>Latest saved official-source check</h3><p>Competition metric/format, rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-29. This is a dated observation, not a live check; login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-29.json">Open source audit JSON ↓</a></article></div></section>
 <section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the current DO NOT SUBMIT decision; archived scores and format passes are not project-level clearance.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
 <section><div class="decision"><strong>Deadline irregularity:</strong> the competition homepage shows 2026-12-03 23:59 UTC, while the September 2026 official rules state 5:00 p.m. ET on the deadline date. Effective cutoff is unresolved; use the earlier time unless the organizer confirms otherwise. The live account quota could not be viewed.</div></section>
 <section><div class="section-head"><h2>Decision questions, answered by machine evidence</h2></div>
@@ -344,11 +355,12 @@ def evidence_page(card: dict, prereg: dict, source_check: dict, focus: dict) -> 
 <section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div>'''
 
 
-def session_review_page(card: dict) -> str:
+def session_review_page(card: dict, latest_snapshot: dict) -> str:
     prior = card.get("preexisting_main_artifact", {})
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-28</div>
-<h1>Negative preflight. Zero experiments.</h1><p class="lede">Three implementation/review passes reconciled the publication path, gate, evidence, and safeguards.</p>{decision_panel()}</div></section>
-<div class="wrap"><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Current repository review · 2026-10-31</div>
+<h1>No submission candidate cleared.</h1><p class="lede">The current review refreshed focus-site GitHub identities, found publication freshness/status gaps, hardened the site generator, and reran verification. It did not run a geological experiment or create a TIFF.</p>{decision_panel()}
+<div class="card"><h2>Current review record</h2><p>GitHub HEAD identities: 9/9 repositories fetched; all changed from the 2026-10-26 baseline. This is not a TIFF-content, score, or receipt audit. Latest saved public leaderboard capture is dated 2026-10-29 and was not live-refreshed today. Automated checks: site checker PASS; 260 passed, 4 skipped.</p><p><a href="data/review-2026-10-31.md">Read the full three-pass repository review ↓</a> · <a href="data/executive-summary-2026-10-31.md">Measured nine-site executive summary ↓</a> · <a href="data/focus_measure_2026_10_31.json">Raster measurements ↓</a> · <a href="data/review_2026-10-31_run_card.json">Negative run card ↓</a></p></div></div></section>
+<div class="wrap"><section><div class="section-head"><h2>Previous evidence review · 2026-10-28</h2><p>Historical gate record, retained below for audit context.</p></div></section><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
 <article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
 <article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
 <section><div class="section-head"><h2>Final status</h2></div><div class="card"><ul>
@@ -357,8 +369,10 @@ def session_review_page(card: dict) -> str:
 <li>HOLDOUT-DTI: not run; no evaluator version, withheld-positive count, value, or CI is claimed.</li>
 <li>Registry surface correlation: not run. The literal witness is positive on the entire mirrored sample footprint; a nonempty candidate would fail the directed overlap threshold at 100% under the documented rule.</li>
 <li>Experiments: 0/3; experimental time: 0/2 hours; selector actions: 0; weekly slots: 0.</li>
-<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only, not a project score.</li>
-</ul><p><a href="data/session_7393d521_run_card.json">Download current negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div>'''
+<li>Latest saved public leaderboard capture (2026-10-29): rank 1 0.4544; rank 25 0.3330; rank 26 0.3328. Public-only, not a project score; no live refresh was available in this sandbox.</li>
+<li>Latest repository identity check (2026-10-31): 9/9 focus-site GitHub HEADs fetched; all differ from the 2026-10-26 audit baseline. This is not a content or score re-audit.</li>
+<li>Open decisions Q1 (dot definition) and Q2 (lattice comparator) remain unresolved; the literal stop remains active.</li>
+</ul><p><a href="data/session_7393d521_run_card.json">Download project negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-29.json">Download latest saved official-source audit ↓</a> · <a href="data/latest-upstream-check.json">Focus-site HEAD freshness ↓</a></p></div></section></div>'''
 
 
 def submission_page() -> str:
@@ -431,13 +445,19 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
     for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json",
-                   UNIQUE_SUBMISSION, TWR1_CARD, TWR1_UNIQUE, TWR1_READBACK, TWR1_HOLDOUT,
-                   TWR1_CANARY, ROOT / "evidence/twr1_e3_variants.json",
-                   ROOT / "evidence/hypotheses-2026-10-31.json"):
+                   LEADERBOARD_SNAPSHOT, LATEST_LEADERBOARD, OBS_1031_LEADERBOARD, UPSTREAM_CHECK, FOCUS,
+                   ROOT / "evidence/official_source_check_2026-10-29.json",
+                   ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json",
+                   ROOT / "evidence/focus_measure_2026_10_31.json",
+                   ROOT / "evidence/pair_identification.json", UNIQUE_SUBMISSION,
+                   TWR1_CARD, TWR1_UNIQUE, TWR1_READBACK, TWR1_HOLDOUT, TWR1_CANARY,
+                   ROOT / "evidence/twr1_e3_variants.json", ROOT / "evidence/hypotheses-2026-10-31.json"):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / REVIEW_MD.name)
+    shutil.copyfile(ROOT / "knowledge/review-2026-10-31.md", data / "review-2026-10-31.md")
+    shutil.copyfile(ROOT / "knowledge/executive-summary-2026-10-31.md", data / "executive-summary-2026-10-31.md")
+    shutil.copyfile(ROOT / "evidence/review_2026-10-31_run_card.json", data / "review_2026-10-31_run_card.json")
     for _, (_, card_name) in ARCHIVE_LANES.items():
         source_card = ROOT / "evidence" / card_name
         if source_card.is_file():
@@ -468,7 +488,9 @@ def render() -> None:
     source_check = read_json(OFFICIAL_SOURCES)
     focus = read_json(FOCUS)
     feed = read_json(LEADERBOARD)
-    snapshot = read_json(LEADERBOARD_SNAPSHOT)
+    snapshot = read_json(LEADERBOARD_SNAPSHOT)  # immutable provenance for the existing gate
+    latest_snapshot = read_json(LATEST_LEADERBOARD)
+    upstream = read_json(UPSTREAM_CHECK)
 
     if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
             or card.get("raster", {}).get("sha256") is not None
@@ -484,25 +506,33 @@ def render() -> None:
         raise ValueError("preregistration must contain 3-5 distinct hypotheses")
     if any(h.get("expected_dti") is not None for h in prereg["hypotheses"]):
         raise ValueError("preregistered hypotheses must not be rendered as score projections")
-    if snapshot.get("observed_date_utc") != "2026-10-31" or snapshot["visible_public_scores"].get("rank_1") != "0.4544":
+    if snapshot.get("observed_date_utc") != "2026-10-28" or snapshot["visible_public_scores"].get("rank_1") != "0.4544":
         raise ValueError("dated official leaderboard observation changed; re-review before publishing")
+    if (read_json(OBS_1031_LEADERBOARD).get("observed_date_utc") != "2026-10-31"
+            or read_json(OBS_1031_LEADERBOARD).get("visible_public_scores", {}).get("rank_1") != "0.4544"):
+        raise ValueError("the 2026-10-31 leaderboard observation is missing or changed; re-review before publishing")
     if source_check.get("checked_date_utc") != "2026-10-28":
         raise ValueError("official source check date is not current for this review")
+    if (latest_snapshot.get("observed_date_utc") != "2026-10-29"
+            or latest_snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3328"):
+        raise ValueError("latest saved public leaderboard observation changed; re-review before publishing")
+    if (len(upstream.get("repositories", [])) != 9
+            or upstream.get("approved_for_submission") is not False):
+        raise ValueError("focus-site identity feed is incomplete or does not fail closed")
+
     gate = build_gate(card)
     copy_site_data(card, prereg, focus, gate)
 
-    unique = None
-    if UNIQUE_SUBMISSION.is_file():
-        unique = json.loads(UNIQUE_SUBMISSION.read_text(encoding="utf-8"))
-
+    # Historical candidate artifacts remain quarantined. Do not surface them as
+    # downloadable candidates without a fresh candidate-specific selector approval.
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card, unique)),
+        "index.html": ("Overview", index_page(feed, latest_snapshot, card, upstream)),
+        "executive-summary.html": ("Executive summary", executive_page(focus, card, None)),
         "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
         "research.html": ("Research hypotheses", hypothesis_page(prereg)),
         "method.html": ("Method and safeguards", method_page(card, prereg)),
         "evidence.html": ("Evidence and limitations", evidence_page(card, prereg, source_check, focus)),
-        "session-review.html": ("Latest review", session_review_page(card)),
+        "session-review.html": ("Latest review", session_review_page(card, latest_snapshot)),
         "submission.html": ("Submission status", submission_page()),
     }
     for name, (title, body) in pages.items():

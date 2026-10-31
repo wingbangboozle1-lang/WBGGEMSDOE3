@@ -151,6 +151,17 @@ def test_latest_upstream_identity_feed_is_published_and_never_implies_approval()
     assert "Focus-site source freshness" in page
     assert "does not prove a score, TIFF, receipt" in page
     assert "data/latest-upstream-check.json" in page
+    assert "9/9 repositories fetched" in page
+    assert "0.3328" in page
+    assert "DO NOT SUBMIT" in page and "portal upload" in page and "not authorized" in page
+    assert "Q1" in page and "Q2" in page
+    review_page = (DOCS / "session-review.html").read_text()
+    assert "Current repository review · 2026-10-31" in review_page
+    assert "data/review-2026-10-31.md" in review_page
+    # A historical locally format-checked artifact is not a release candidate.
+    executive = (DOCS / "executive-summary.html").read_text()
+    assert "wbg-gems-offnet-conduit" not in executive
+    assert "Download latest unique TIF" not in executive
 
 
 def test_current_leaderboard_and_official_source_captures_are_labeled():
@@ -163,6 +174,22 @@ def test_current_leaderboard_and_official_source_captures_are_labeled():
     ids = {row["id"] for row in source["sources"]}
     assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
     assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
+
+
+def test_current_repository_review_card_is_negative_and_not_a_score():
+    card = _json("evidence/review_2026-10-31_run_card.json")
+    assert card["verdict"] == "negative"
+    assert card["holdout_dti"]["label"] == "NOT-RUN"
+    assert card["holdout_dti"]["value"] is None
+    assert card["raster_sha256"] is None
+    assert card["validator_output"]["status"] == "NOT-RUN-NO-CANDIDATE"
+    assert card["submission"]["okay_to_download_and_submit"] is False
+    assert len(card["submission"]["note"]) <= 140
+    assert card["selector_approval"] is False
+    assert card["weekly_slots_used"] == 0
+    assert card["github_focus_site_identity_check"]["fetched_repositories"] == 9
+    assert card["github_focus_site_identity_check"]["changed_vs_2026_10_26_baseline"] == 9
+    assert card["latest_saved_public_leaderboard_observation"]["live_refreshed_2026_10_31"] is False
 
 
 def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():

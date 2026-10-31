@@ -36,8 +36,8 @@
       "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
     },
     "leaderboard_snapshot": {
-      "path": "evidence/leaderboard_observation_2026-10-31.json",
-      "sha256": "4bf0ee089bb42bc3ab93fbd57360e83af25b557e1a16b611c40919559a76b772"
+      "path": "evidence/leaderboard_observation_2026-10-28.json",
+      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
     }
   }
 }
