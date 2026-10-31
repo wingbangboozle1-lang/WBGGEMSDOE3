@@ -314,7 +314,7 @@
   "config_note": "3\u201312 px",
   "footprint_px": 5167373,
   "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-  "labels_sha256_source": "recomputed from data/official/labels.tif",
+  "labels_sha256_source": "recomputed from data/official/labels.tif when present, otherwise taken from evidence/newfaults/run_card_2026_10_31.json",
   "registry_checked": 28,
   "checks_passed": 10,
   "sibling_candidates": [

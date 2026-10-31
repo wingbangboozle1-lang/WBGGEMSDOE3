@@ -730,12 +730,13 @@ def build() -> dict:
         if recorded and actual != recorded:
             raise SystemExit("labels.tif does not match the hash recorded in the run card")
         gate["labels_sha256"] = actual
-        gate["labels_sha256_source"] = "recomputed from data/official/labels.tif"
     elif recorded:
         gate["labels_sha256"] = recorded
-        gate["labels_sha256_source"] = "recorded in evidence/newfaults/run_card_2026_10_31.json"
     else:
         raise SystemExit("no labels hash available: file absent and run card has none")
+    # Constant text on purpose: the published site must be byte-identical with and without data/.
+    gate["labels_sha256_source"] = ("recomputed from data/official/labels.tif when present, otherwise "
+                                    "taken from evidence/newfaults/run_card_2026_10_31.json")
     gate["registry_checked"] = uniqueness["verdict"]["n_references"]
     gate["checks_passed"] = sum(1 for ok in facts.get("format_checks", {}).values() if ok)
     sibling = supersede_sibling_release(gate)
