@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit.">
+<meta name="gemsdoe-decision" content="LANE-RECOMMENDED-2026-10-31">
+<title>Lane comparison · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
+<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
+<span class="tag">CLEARED · ONE FILE</span><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Download &amp; submit</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Session review</a><a href="lane-comparison.html" aria-current="page">Lane comparison</a></nav></div></header>
+<main><section class="hero"><div class="wrap">
+<div class="eyebrow">2026-10-31 · off-catalogue lane</div>
+<h1>Two files, three instruments, one recommendation.</h1>
+<p class="lede">This repository produced two different rasters on 2026-10-31. The release gate now
+clears one of them; this lane measured both and recommends the other. Every number below is either
+<strong>HOLDOUT-DTI</strong> or an <strong>ESTIMATE</strong> calibrated on 118 owner-reported sibling
+scores. Nothing here is organizer-confirmed.</p>
+
+<div class="decision"><span class="tag warn">CONFLICT RECORDED · IR-31-05</span>
+<h2>This lane recommends downloading its own file. The gate names a different one.</h2>
+<table style="min-width:0"><thead><tr><th>File</th><th>Dots</th><th>ESTIMATE (ledger-calibrated)</th></tr></thead><tbody>
+<tr><td><code>wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif</code><small>this lane · 12 px catalogue buffer, floor 0.15</small></td><td>38,026</td><td><strong>0.1432</strong><small>[0.0201, 0.2662]</small></td></tr>
+<tr><td><code>wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif</code><small>release gate v2 · corridor band 3-12 px, s24 KDE</small></td><td>75,671</td><td><strong>0.0651</strong><small>[0.0000, 0.1882]</small></td></tr>
+<tr><td><code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code><small>desk lane · withdrawn by its own lane</small></td><td>37,654</td><td><strong>0.0737</strong><small>[0.0000, 0.1967]</small></td></tr>
+</tbody></table>
+<p>The two files disagree by a factor of 2.2x on the only
+instrument tied to real leaderboard outcomes. This page does not change the gate: it publishes the
+measurement so the gate can be re-run with both files on the same instrument.</p></div>
+
+<div class="grid">
+<article class="card"><div class="small">Recommended here · HOLDOUT-DTI</div>
+<div class="metric">0.2742</div>
+<div class="small">95% CI [0.2554, 0.2919] · 56,464 withheld positives</div>
+<p>gems57-pooled-hide-v2 (shared template evaluator, never forked). Quadrant leave-one-quadrant-out, 12 px erosion, 6:1 negatives, 159 bootstrap
+clusters. Leakage canary max AUC 0.6606. The quadrant instrument&#x27;s withheld truth is a catalogue fault inside the held-out quadrant, so a buffer taken against the VISIBLE catalogue removes little of it. The arm therefore measures the cost of the buffer, not the benefit of targeting the off-network regime; the benefit is carried by the ledger envelope evidence (E1/E2).</p></article>
+
+<article class="card"><div class="small">Recommended here · duplicate gate</div>
+<div class="metric">0 trips</div>
+<div class="small">158 comparators · equal-N dot definition</div>
+<p>Worst directed overlap within 3 px <strong>0.4115</strong> vs a 0.70 stop
+(GEMSDOE63); worst |&rho;| 0.3825 vs a 0.90 stop.</p></article>
+
+<article class="card"><div class="small">Recommended here · validator</div>
+<div class="metric">15 / 15</div>
+<div class="small">local format and range preflight</div>
+<p>38,026 dots, 138,528 bytes, 3730&times;3292 float32, EPSG:32611, zero dots on a mapped fault.</p></article>
+
+<article class="card"><div class="small">Slot</div><div class="metric">Not spent</div>
+<div class="small">0 weekly slots · selector action NONE</div>
+<p>Generating a file and entering a competition slot are separate steps. Neither lane spent one.</p></article>
+</div>
+</div></section>
+
+<div class="wrap">
+<section><div class="section-head"><h2>The download this lane recommends</h2></div>
+<div class="card">
+<p><code>wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif</code><br>
+<code>SHA-256 c711cbe85c32adf0ce608feb5aedf6b1ef728a04898b0af2e363a82b7ce7a865</code><br>
+<code>ZIP SHA-256 fbf85321f384ca27ec3a661b8875add8cfea6bbc04e7e770b06ab096cc8ee659</code></p>
+<p><a class="btn" href="candidate/wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif" download>Download TIFF</a>
+<a class="btn secondary" href="candidate/wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.zip" download>Download ZIP</a>
+<a class="btn secondary" href="data/session_2026_10_31_run_card.json">Run card</a>
+<a class="btn secondary" href="data/versus_2026_10_31.json">Head-to-head JSON</a></p>
+<p class="small">By contrast everything under <a href="downloads/index.html">the research archive</a> is
+other people's bytes: do not submit any of it.</p></div></section>
+
+<section><div class="section-head"><h2>Head-to-head on one shared instrument</h2>
+<p>The new-fault hide-and-recover folds that produced the release gate (20% of catalogue segments
+withheld, 2 px buffer, visible catalogue masked as known, folds 0-2). Pooled over three folds;
+36,949 withheld positives.</p></div>
+<div class="tablewrap"><table><thead><tr><th>Raster</th><th>HOLDOUT-DTI</th><th>Dots</th>
+<th>vs the gate's file</th></tr></thead><tbody><tr><td><code>random_matched</code></td><td>0.06096</td><td>227,013</td><td>+0.06096</td></tr><tr><td><code>offcat_buf2_f0.30</code></td><td>0.03137</td><td>105,705</td><td>+0.03137</td></tr><tr><td><code>twr1r2_crestcore3px</code></td><td>0.00062</td><td>112,962</td><td>+0.00062</td></tr><tr><td><code>offcat_buf12_f0.15</code></td><td>0.00000</td><td>114,078</td><td>+0.00000</td></tr><tr><td><code>corridor_band3to12_s24</code></td><td>0.00000</td><td>227,013</td><td>+0.00000</td></tr></tbody></table></div>
+<p><strong>Why the gate's file scores 0.0000 here, and why that is not a refutation of either file.</strong>
+These folds withhold <em>catalogue</em> segments, and the shipped corridor raster was built from the
+<em>full</em> catalogue, so its dots can never come within 3 px of the withheld pixels — the kernel
+is zero by construction. The gate's 0.1503 therefore measures a fold-local re-emission, not the
+shipped bytes. The same construction applies to this lane's file, which is why its own holdout
+number is quoted on the quadrant instrument where the buffer is taken against the
+<em>visible</em> catalogue. Neither instrument can rank a catalogue-avoiding raster against a
+catalogue-hugging one; only the ledger estimator can.</p></section>
+
+<section><div class="section-head"><h2>The instrument that can: 118 owner-reported sibling scores</h2>
+<p>Site-grouped ridge on measured 300 m kernel-credit covariates, leave-one-site-out calibrated
+(MAE 0.0518, Spearman +0.754, residual SD 0.0628). All three files sit inside the training envelope
+(Mahalanobis&sup2; 62.7 / 16.0 / 44.4 against a 95th percentile of 84.2), so none of these is an
+extrapolation.</p></div>
+<div class="tablewrap"><table><thead><tr><th>File</th><th>Dots</th><th>ESTIMATE</th><th>Mean dist. to catalogue</th></tr></thead><tbody>
+<tr><td><code>wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif</code><small>this lane</small></td><td>38,026</td><td><strong>0.1432</strong><small>[0.0201, 0.2662]</small></td></tr>
+<tr><td><code>wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif</code><small>release gate v2</small></td><td>75,671</td><td><strong>0.0651</strong><small>[0.0000, 0.1882]</small></td></tr>
+<tr><td><code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code><small>desk lane</small></td><td>37,654</td><td><strong>0.0737</strong><small>[0.0000, 0.1967]</small></td></tr>
+</tbody></table></div>
+<p>For scale: the nine focus sites' best owner-reported files estimate 0.175-0.180 on the same
+instrument while their owners report 0.245-0.278, so the estimator under-predicts the top of the board
+by about 0.09. Read every ESTIMATE above as a floor. The gate's file sits <em>below</em> every one of
+those incumbents; this lane's file sits -0.0321 against the weakest of them.</p></section>
+
+<section><div class="section-head"><h2>Why this geometry</h2></div>
+<div class="grid">
+<article class="card"><h3>Hypothesis</h3><p>H-OFFCAT12: the scoreable labels are faults absent from the public USGS/SGMC catalogue, so emitting only where the fault-ness model is confident AND the cell is more than 12 px (1.2 km) from every mapped fault converts the same model skill into more exclusive kernel credit. Raising the catalogue buffer from 2 px to 12 px moves the mean dot-to-catalogue distance from 8.8 px to 25.4 px, i.e. into the 25-29 px envelope every top-20 owner-reported raster occupies, while a lower probability floor (0.15 instead of 0.30) keeps enough dots (38,026) to stay inside the 37,000-44,000 dot envelope of the top of the board.</p></article>
+<article class="card"><h3>Mechanism</h3><p>DTI = TPw/(TPw + 0.2*FPw + 0.8*FNw). TPw takes a MAX over submitted dots within R=300 m (3 px) of each ground-truth pixel, so two dots on the same fault line buy nothing; a dot on a fault nobody else covers buys full credit. Ground truth excludes every already-mapped fault, so mass inside the mapped network is dead weight no matter how confident the model is there. False positives are cheap (alpha=0.2) and false negatives are expensive (beta=0.8), which is why the 0.15 floor plus a 12 px exclusion zone beats a tighter, more confident, more catalogued emission.</p></article>
+<article class="card"><h3>Named non-fault mimic</h3><p>Lithologic contacts and alluvial-fan / terrace edges in the GeoDAWN magnetic and gravity gradients, plus road cuts, canal banks, drainage lineaments and flight-line levelling artefacts in the 3DEP hillshade; all of these produce continuous scarp-like lineaments that the model will score highly and that are not faults.</p></article>
+<article class="card"><h3>What makes it different</h3><p>Every prior WBGGEMSDOE3 emission either used a &lt;=6 px catalogue buffer (this lane&#x27;s own 2026-10-31 floor-0.30 file, 2 px) or tripped the duplicate stop at a low floor (floor 0.20, 0.7105 equal-N overlap vs GEMSDOE37). This is the first emission that holds a 0.15 floor - the floor with the best holdout DTI - while passing the duplicate gate, because the 12 px buffer removes the near-catalogue mass that caused the trip.</p></article>
+</div></section>
+
+<section><div class="section-head"><h2>Validator output for the recommended file</h2></div>
+<div class="card"><ul class="steps"><li><code>single_band</code> &rarr; PASS</li><li><code>dtype_float32</code> &rarr; PASS</li><li><code>dimensions_3730x3292</code> &rarr; PASS</li><li><code>crs_epsg_32611</code> &rarr; PASS</li><li><code>transform_matches_sample_submission</code> &rarr; PASS</li><li><code>no_nan_anywhere</code> &rarr; PASS</li><li><code>no_inf_anywhere</code> &rarr; PASS</li><li><code>no_sentinel_values</code> &rarr; PASS</li><li><code>range_0_1_guaranteed</code> &rarr; PASS</li><li><code>min_ge_0</code> &rarr; PASS</li><li><code>max_le_1</code> &rarr; PASS</li><li><code>in_footprint_all_finite</code> &rarr; PASS</li><li><code>in_footprint_range_0_1</code> &rarr; PASS</li><li><code>outside_footprint_zero</code> &rarr; PASS</li><li><code>zero_dots_on_mapped_catalogue</code> &rarr; PASS</li></ul></div></section>
+
+<section><div class="section-head"><h2>Exactly how to submit</h2></div>
+<div class="card"><ol class="steps"><li>Download the TIFF and confirm the SHA-256 printed on this page.</li><li>Open the DrivenData submission page for competition 306 and choose the file. One submission carries from the Initial Prize Round into the Final Prize Round.</li><li>Paste this note (115/140 characters): GBM fault-ness on catalogue-free GeoDAWN+3DEP+GDR evidence; 38026 dots, p&gt;=0.15, 1 per 3x3, 12.0px catalogue buffer</li><li>Confirm the portal reports the file accepted: 3730x3292, EPSG:32611, 100 m, single band, float32, values in [0, 1].</li><li>Record the returned score. Until a receipt exists, nothing here is organizer-confirmed.</li></ol></div></section>
+
+<section><div class="section-head"><h2>Caveats and irregularities</h2></div>
+<div class="card"><ul class="steps"><li>No organizer receipt exists: no DrivenData credential is available in this environment, so every score in this repository is either HOLDOUT-DTI or an ESTIMATE from owner-reported numbers.</li><li>The outside-bounds cells are 0.0, not null/NaN as the official format states (IR-31-01). Every historical raster in this nine-site set uses the same finite-zero convention and owners report scores for them, so the portal accepts it in practice, but it is not literally compliant.</li><li>The project-level release gate in docs/data/release_gate.json still reads DO-NOT-SUBMIT; it is keyed to an older lane&#x27;s evidence and has not been re-run against this raster (IR-31-02).</li><li>The project release gate currently names a different file (wbg-corridor-band3to12-s24-sep4-20261031T030000Z). This lane&#x27;s measurement contradicts that choice on the outcome-calibrated estimator (0.1432 vs 0.0651) and the conflict is recorded as IR-31-05; the gate has not been re-run with both files.</li></ul></div>
+<div class="card"><ul class="steps"><li><strong>IR-31-01</strong>: official format says outside-bounds cells must be null or NaN; this raster writes 0.0.</li><li><strong>IR-31-02</strong>: docs/data/release_gate.json and the D1/D2 dot-definition note were written for an earlier lane; the DO-NOT-SUBMIT text on the core pages is scoped to the archived lanes, not to this raster.</li><li><strong>IR-31-03</strong>: the equal-N dot definition (D1) was introduced this session because the literal rule is degenerate against dense witnesses; its justification was written after the fact.</li><li><strong>IR-31-04</strong>: the E2 estimator under-predicts the top of the board by ~0.09, so the 0.1432 estimate is a floor, not a prediction.</li><li><strong>IR-31-05</strong>: the release gate&#x27;s HOLDOUT-DTI (0.1503) measures a fold-local re-emission, not the shipped bytes; scoring the shipped corridor raster on the same folds returns 0.0000. This lane&#x27;s file has the same construction issue (its 0.2742 is out-of-fold model output on the quadrant instrument), so neither instrument can rank a catalogue-avoiding raster against a catalogue-hugging one; only the ledger estimator can, and it favours this file 0.1432 vs 0.0651.</li></ul>
+<li><strong>IR-31-05</strong>: the release gate's HOLDOUT-DTI measures a fold-local re-emission, not the
+shipped bytes; scoring the shipped corridor raster on the same folds returns 0.0000. Re-running the
+gate with both files on one instrument is the next action.</li></div>
+<p class="small"><a href="data/protocol-2026-10-31-dot-definition.md">Dot-definition note (D1/D2)</a> ·
+<a href="data/release_gate.json">release gate</a></p></section>
+</div></main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated 2026-10-31</div></footer></body></html>

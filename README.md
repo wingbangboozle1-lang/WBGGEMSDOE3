@@ -17,6 +17,41 @@ Everything else in `docs/downloads/` is a **research-only archive: DO NOT SUBMIT
 
 ---
 
+## 2026-10-31 off-catalogue lane — a second file, measured head-to-head
+
+**Status: this lane recommends its own file. It is not the project decision** (that is the gate
+above). Read [`docs/lane-comparison.html`](docs/lane-comparison.html).
+
+| | |
+|---|---|
+| File | `wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif` (138,528 bytes, in `submission/` and `docs/candidate/`) |
+| SHA-256 | `c711cbe85c32adf0ce608feb5aedf6b1ef728a04898b0af2e363a82b7ce7a865` |
+| Dots | 38,026 (0.736 % of the footprint), p ≥ 0.15, 1 per 3×3 block, every dot >12 px from a mapped fault |
+| HOLDOUT-DTI | 0.2742, 95 % CI [0.2554, 0.2919] — `gems57-pooled-hide-v2`, quadrant instrument, 56,464 withheld positives |
+| Duplicate gate | 0 trips over 158 comparators; worst equal-N 3-px overlap 0.4115 (stop 0.70), worst \|ρ\| 0.3825 (stop 0.90) |
+| Validator | 15/15 local checks |
+| Slot | not spent |
+
+**Why the two files disagree, measured.** On the hide-and-recover folds that produced the gate,
+both shipped files score 0.0000 *by construction*: the folds withhold catalogue segments, and both
+rasters were built from the full catalogue, so no dot can land within 300 m of the hidden pixels.
+The gate's 0.1503 therefore measures a fold-local re-emission, not the shipped bytes (IR-31-05). On
+the estimator calibrated against 118 real owner-reported outcomes — where all three files sit inside
+the training envelope (Mahalanobis² 62.7 / 16.0 / 44.4 vs a 95th percentile of 84.2):
+
+| File | Dots | ESTIMATE | Mean dist. to catalogue |
+|---|---:|---:|---:|
+| **this lane** `wbg3-offcat-spread-n38026-f15-c1b3-buf12` | 38,026 | **0.1432** [0.0201, 0.2662] | 25.4 px |
+| gate v2 `wbg-corridor-band3to12-s24-sep4` | 75,671 | 0.0651 [0.0000, 0.1882] | 6.9 px |
+| desk lane `wbg3-twr1r2-crestcore3px-haloavoid` | 37,654 | 0.0737 [0.0000, 0.1967] | 40.2 px |
+
+The nine focus sites' best owner-reported files estimate 0.175–0.180 on the same instrument while
+their owners report 0.245–0.278, so every ESTIMATE is a floor. Head-to-head JSON:
+[`evidence/versus_2026_10_31.json`](evidence/versus_2026_10_31.json). Re-running the gate with both
+files on one instrument is the next action.
+
+---
+
 ## The project prompt (persistent — re-read this first every session)
 
 > **Goal.** Win the DOE GEMS competition

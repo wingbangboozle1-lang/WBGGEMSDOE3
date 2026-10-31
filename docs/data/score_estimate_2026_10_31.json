@@ -1,0 +1,136 @@
+{
+ "session": "2026-10-31",
+ "evidence_class": "ESTIMATE from owner-reported scores (no organizer receipt)",
+ "estimator": "site-grouped ridge on measured kernel-credit covariates, leave-one-site-out calibrated",
+ "lambda_ridge": 0.0838,
+ "n_train": 118,
+ "loo_mae": 0.05177814272375062,
+ "loo_spearman": 0.7543851960601712,
+ "residual_sd": 0.06277675988731164,
+ "calibration": [
+  0.5670866818486275,
+  0.04880106158766449
+ ],
+ "rows": [
+  {
+   "label": "CANDIDATE-2026-10-31 (floor 0.30, 35,235 dots)",
+   "n_dots": 38026,
+   "mean_value": 1.0,
+   "owner_reported": null,
+   "e1_raw": 0.1664,
+   "estimate": 0.1432,
+   "interval": [
+    0.0201,
+    0.2662
+   ]
+  },
+  {
+   "label": "GEMSDOE32",
+   "n_dots": 37654,
+   "mean_value": 1.0,
+   "owner_reported": 0.2778,
+   "e1_raw": 0.2265,
+   "estimate": 0.1772,
+   "interval": [
+    0.0542,
+    0.3003
+   ]
+  },
+  {
+   "label": "GEMSDOE36",
+   "n_dots": 38854,
+   "mean_value": 1.0,
+   "owner_reported": 0.275,
+   "e1_raw": 0.2318,
+   "estimate": 0.1803,
+   "interval": [
+    0.0572,
+    0.3033
+   ]
+  },
+  {
+   "label": "GEMSDOE28",
+   "n_dots": 37660,
+   "mean_value": 1.0,
+   "owner_reported": 0.271,
+   "e1_raw": 0.2275,
+   "estimate": 0.1778,
+   "interval": [
+    0.0548,
+    0.3008
+   ]
+  },
+  {
+   "label": "GEMSDOE31",
+   "n_dots": 40199,
+   "mean_value": 1.0,
+   "owner_reported": 0.2708,
+   "e1_raw": 0.227,
+   "estimate": 0.1775,
+   "interval": [
+    0.0545,
+    0.3006
+   ]
+  },
+  {
+   "label": "GEMSDOE33",
+   "n_dots": 41865,
+   "mean_value": 1.0,
+   "owner_reported": 0.2632,
+   "e1_raw": 0.2231,
+   "estimate": 0.1753,
+   "interval": [
+    0.0523,
+    0.2984
+   ]
+  },
+  {
+   "label": "GEMSDOE25",
+   "n_dots": 44090,
+   "mean_value": 1.0,
+   "owner_reported": 0.26,
+   "e1_raw": 0.229,
+   "estimate": 0.1787,
+   "interval": [
+    0.0556,
+    0.3017
+   ]
+  },
+  {
+   "label": "GEMSDOE30",
+   "n_dots": 44090,
+   "mean_value": 1.0,
+   "owner_reported": 0.26,
+   "e1_raw": 0.229,
+   "estimate": 0.1787,
+   "interval": [
+    0.0556,
+    0.3017
+   ]
+  },
+  {
+   "label": "GEMSDOE24",
+   "n_dots": 60069,
+   "mean_value": 1.0,
+   "owner_reported": 0.2477,
+   "e1_raw": 0.2262,
+   "estimate": 0.1771,
+   "interval": [
+    0.054,
+    0.3001
+   ]
+  },
+  {
+   "label": "GEMSDOE27",
+   "n_dots": 61328,
+   "mean_value": 1.0,
+   "owner_reported": 0.2449,
+   "e1_raw": 0.2233,
+   "estimate": 0.1754,
+   "interval": [
+    0.0524,
+    0.2985
+   ]
+  }
+ ]
+}

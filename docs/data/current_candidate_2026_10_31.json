@@ -1,0 +1,35 @@
+{
+  "schema": "gems-lane-candidate-v1",
+  "lane": "2026-10-31 off-catalogue",
+  "status": "LANE-RECOMMENDED-2026-10-31",
+  "is_project_decision": false,
+  "project_decision": "data/release_gate.json",
+  "file": "wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif",
+  "url": "candidate/wbg3-offcat-spread-n38026-f15-c1b3-buf12-20261031-zeros.tif",
+  "sha256": "c711cbe85c32adf0ce608feb5aedf6b1ef728a04898b0af2e363a82b7ce7a865",
+  "zip_sha256": "fbf85321f384ca27ec3a661b8875add8cfea6bbc04e7e770b06ab096cc8ee659",
+  "bytes": 138528,
+  "n_dots": 38026,
+  "holdout_dti": {
+    "value": 0.2742,
+    "ci95": [
+      0.2554,
+      0.2919
+    ],
+    "evaluator": "gems57-pooled-hide-v2 (shared template evaluator, never forked)"
+  },
+  "score_estimate": {
+    "value": 0.1432,
+    "interval": [
+      0.0201,
+      0.2662
+    ]
+  },
+  "uniqueness": {
+    "comparators": 158,
+    "trips": 0,
+    "worst_equal_n_overlap_3px": 0.411482,
+    "worst_abs_rank_correlation": 0.382457
+  },
+  "run_card": "session_2026_10_31_run_card.json"
+}

@@ -1,0 +1,129 @@
+{
+ "session": "2026-10-31",
+ "evidence_class": "HOLDOUT-DTI head-to-head on one shared instrument",
+ "evaluator": "src/gemsw/metric.py dti_binary (alpha 0.2, beta 0.8, R=3 px)",
+ "protocol": "hide-and-recover, 20% of catalogue segments withheld, 2 px buffer, visible catalogue masked as known, folds 0-2",
+ "withheld_positives_total": 36949,
+ "pooled": {
+  "offcat_buf12_f0.15": {
+   "dti": 0.0,
+   "tp": 0.0,
+   "fp": 114078.0,
+   "n_truth": 36949,
+   "n_dots": 114078
+  },
+  "corridor_band3to12_s24": {
+   "dti": 0.0,
+   "tp": 0.0,
+   "fp": 227013.0,
+   "n_truth": 36949,
+   "n_dots": 227013
+  },
+  "twr1r2_crestcore3px": {
+   "dti": 0.0006224420041400193,
+   "tp": 32.463015000025436,
+   "fp": 112942.94045797983,
+   "n_truth": 36949,
+   "n_dots": 112962
+  },
+  "offcat_buf2_f0.30": {
+   "dti": 0.03136942951860174,
+   "tp": 1592.6774398485825,
+   "fp": 104469.53169719379,
+   "n_truth": 36949,
+   "n_dots": 105705
+  },
+  "random_matched": {
+   "dti": 0.06096343942684561,
+   "tp": 4602.521893938383,
+   "fp": 225083.61635231972,
+   "n_truth": 36949,
+   "n_dots": 227013
+  }
+ },
+ "ci95_mean_per_fold": {
+  "offcat_buf12_f0.15": [
+   0.0,
+   0.0
+  ],
+  "corridor_band3to12_s24": [
+   0.0,
+   0.0
+  ],
+  "twr1r2_crestcore3px": [
+   0.0003522001129659413,
+   0.0009384768829779614
+  ],
+  "offcat_buf2_f0.30": [
+   0.027916675574303256,
+   0.03460505211141412
+  ],
+  "random_matched": [
+   0.052752222742009226,
+   0.06870236256321995
+  ]
+ },
+ "vs_baseline": {
+  "offcat_buf12_f0.15": {
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "per_fold": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "corridor_band3to12_s24": {
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "per_fold": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "twr1r2_crestcore3px": {
+   "delta": 0.0006224420041400193,
+   "ci95": [
+    0.0003522001129659413,
+    0.0009384768829779614
+   ],
+   "per_fold": [
+    0.00042853476246975926,
+    0.0007956490982516737,
+    0.0006441102613705431
+   ]
+  },
+  "offcat_buf2_f0.30": {
+   "delta": 0.03136942951860174,
+   "ci95": [
+    0.027916675574303256,
+    0.03460505211141412
+   ],
+   "per_fold": [
+    0.03176317921330167,
+    0.031771984877005596,
+    0.030573894346553356
+   ]
+  },
+  "random_matched": {
+   "delta": 0.06096343942684561,
+   "ci95": [
+    0.052752222742009226,
+    0.06870236256321995
+   ],
+   "per_fold": [
+    0.06231523905092034,
+    0.060393185104119756,
+    0.06017835092690483
+   ]
+  }
+ },
+ "note": "CI rows are the mean of the three per-fold 95% block-bootstrap CIs, not a pooled resample; the paired deltas are the decision statistic."
+}

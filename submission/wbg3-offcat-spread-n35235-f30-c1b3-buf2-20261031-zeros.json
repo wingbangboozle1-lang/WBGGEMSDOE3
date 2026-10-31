@@ -1,0 +1,133 @@
+{
+  "file": "wbg3-offcat-spread-n35235-f30-c1b3-buf2-20261031-zeros.tif",
+  "sha256": "27a43d8b2f958000d302009f30bc19ef6ee9cf005c392ab125b9b7dc8c3a81ec",
+  "bytes": 134515,
+  "submission_name": "wbg3-offcat-spread-n35235-f30-c1b3-buf2-20261031-zeros",
+  "note": "GBM fault-ness on catalogue-free GeoDAWN+3DEP+GDR evidence; 35235 dots, p>=0.3, 1 per 3x3, 2.0px catalogue buffer",
+  "note_chars": 113,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE3/submission/wbg3-offcat-spread-n35235-f30-c1b3-buf2-20261031-zeros.tif",
+    "bytes": 134515,
+    "sha256": "27a43d8b2f958000d302009f30bc19ef6ee9cf005c392ab125b9b7dc8c3a81ec",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002869495889171958,
+    "emitted_positive_pixels": 35235,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 35235,
+    "footprint_fraction": 0.006818745230893919
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE3/submission/wbg3-offcat-spread-n35235-f30-c1b3-buf2-20261031-zeros.tif",
+    "bytes": 134515,
+    "sha256": "27a43d8b2f958000d302009f30bc19ef6ee9cf005c392ab125b9b7dc8c3a81ec",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002869495889171958,
+    "n_nonzero": 35235,
+    "mass": 35235.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbg3-offcat-spread-n35235-f30-c1b3-buf2-20261031-zeros.zip",
+  "zip_sha256": "c3038f34395e116a733c43ca3ea4ae61ea9ad37245e779ed95cda166ca4e6fd9",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "session": "2026-10-31",
+    "hypothesis": "H-A",
+    "floor": 0.3,
+    "capacity": 1,
+    "block": 3,
+    "catalogue_buffer_px": 2.0,
+    "ensemble": 2,
+    "feature_count": 46,
+    "footprint_fraction": 0.006819,
+    "dots_on_catalogue": 0,
+    "dots_within_1px_catalogue": 0,
+    "evaluated_by": "gems57-pooled-hide-v2 quadrant holdout"
+  }
+}
