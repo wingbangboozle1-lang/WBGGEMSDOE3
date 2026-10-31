@@ -1,54 +1,40 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-## Start here — 2026-10-31 session (read first)
+## Start here — 2026-10-31 repository review
 
-> **DECISION: DO NOT DOWNLOAD OR SUBMIT ANY FILE.** No TIFF is cleared and none was generated.
-> Full executive summary with the per-site table: **[knowledge/executive-summary-2026-10-31.md](knowledge/executive-summary-2026-10-31.md)**.
-> Run card: [evidence/run_card_2026_10_31.json](evidence/run_card_2026_10_31.json) · measurements: [evidence/focus_measure_2026_10_31.json](evidence/focus_measure_2026_10_31.json) (reproduce with `.venv/bin/python scripts/measure_focus_files_2026_10_31.py`).
+Read the measured [focus-site executive summary](knowledge/executive-summary-2026-10-31.md), this
+[three-pass repository review](knowledge/review-2026-10-31.md), and the
+[negative run card](evidence/review_2026-10-31_run_card.json) first. The site has been regenerated
+from its fail-closed publisher; the standing task and full safeguards remain preserved below and
+in `PROJECT_PROMPT.md`.
 
-**Why nothing can be cleared yet**
-
-1. **Not unique.** Every focus file has ≥97.6% of its positive cells within 3 px of another focus file. GEMSDOE25 and GEMSDOE30 have identical positive sets; GEMSDOE24 ⊂ GEMSDOE27; GEMSDOE32 ⊂ GEMSDOE31/25/30/36.
-2. **No score can be measured here.** Competition labels sit behind a DrivenData login. `drivendata.org`, `dropbox.com`, `docs.nlr.gov` and `github.io` return HTTP 000 from this sandbox. No HOLDOUT-DTI exists, and no candidate can be validated before a slot.
-3. **Open protocol stop.** The release gate is still DO-NOT-SUBMIT. Choosing between owner options A/B/C is the owner's decision.
-
-**Highest owner-reported file:** GEMSDOE32 `…e5eb6e7e-zeros.tif`, **0.2778** (owner report, not a receipt). Its positive support is verified to be 37,654 cells, all inside GEMSDOE31, with 2,545 cells removed from GEMSDOE31's 40,199. Owner-reported scores are not estimates; "Estimated score" is **not estimable** for every site.
-
-**Format finding:** five of the nine focus files (`-nan`) contain 7,111,787 NaN cells across the whole array and fail a strict [0,1] check. That is the likely source of `Predicted values must be in range [0, 1]`. The official text requires NaN outside the bounds, while the `-zeros` files use finite 0. These two requirements conflict. The portal's real behaviour is unknown.
-
-**Requirement status (2026-10-31 request, condensed)**
-
-| Requirement | Status |
-|---|---|
-| Executive summary for GEMSDOE 24/25/27/28/30/31/32/33/36 with file, estimate, uniqueness | Done, with estimates marked *not estimable*; see the summary above |
-| Explain why GEMSDOE32 scored highest | Done, verified by bytes; the mechanism is the owner's explanation, not proved |
-| Generate a unique, downloadable TIF | **Not done.** Blocked by the owner decision, no labels, and no holdout |
-| Holdout validation before any slot | **Not possible here.** Needs the competition data placed under `data/` |
-| Labels: HOLDOUT-DTI vs ORGANIZER-CONFIRMED | No holdout ran; the only scores are OWNER-REPORTED |
-| Official sources with links, no hallucinations | Done for measured items; blocked sources listed as unreachable |
-| Flag irregularities | Done; see the summary (§5) |
-
-**Owner decision needed:** choose A, B, or C in [knowledge/executive-summary-2026-10-31.md §6](knowledge/executive-summary-2026-10-31.md#6-what-is-needed-to-clear-a-file). Also place the competition files in `data/` from your own DrivenData login.
-
-**Test-suite caveats (pre-existing, found this session):** on the clean tree, `pytest` fails two tests (`test_published_index_states_not_ok_to_submit`, `test_latest_upstream_identity_feed_is_published_and_never_implies_approval`) because the committed `docs/` text differs from `scripts/build_site.py`. Running the suite also rewrites nine tracked `docs/` pages; restore them with `git checkout -- docs/`.
+- **Decision: NOT OK to download or submit any file.** No candidate was generated or promoted in
+  this review. The release gate remains DO-NOT-SUBMIT. The dense-witness/dot-definition questions
+  Q1 and Q2 remain unresolved, so candidate generation and holdout are stopped.
+- **Target-site result:** GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` is
+  **OWNER-REPORTED / UNVERIFIED 0.2778**, not an organizer receipt. Its pinned file has 37,654
+  positive cells and is an exact support subset of several other focus-site files; 2,545 cells
+  distinguish it from a 40,199-positive base. Pruning may explain the reported gain, but causality
+  cannot be established without the hidden labels. A new score estimate is **not estimable**.
+- **Measured uniqueness:** all nine focus-site files exceed the 70% directed 3-pixel overlap stop
+  within the focus set; GEMSDOE25 and GEMSDOE30 have identical positive support. See the byte-level
+  [measurement](evidence/focus_measure_2026_10_31.json) and [summary table](knowledge/executive-summary-2026-10-31.md).
+- **Format irregularity:** five `-nan` files contain 7,111,787 NaNs each and fail a strict whole-array
+  [0,1] check. This is a plausible source of the reported portal range error, not a confirmed cause
+  for the user's missing rejected file. The saved official text says outside cells are null/NaN,
+  while zero-outside artifacts pass the simple range check; portal behavior is unverified.
+- **Freshness:** on 2026-10-31, 9/9 focus-site GitHub `main` HEAD identities were fetched and all
+  differed from the 2026-10-26 baseline. This is metadata freshness only; no claim that the TIFFs,
+  scores, or receipts changed. The latest saved public leaderboard capture is dated 2026-10-29
+  (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328); it was not live-refreshed on 2026-10-31.
+- **Verification after fixes:** site checker PASS; `pytest` **260 passed, 4 skipped**. No experiment,
+  HOLDOUT-DTI, candidate TIFF, selector action, or weekly slot was produced.
+- **Next blockers:** record Q1/Q2 protocol decisions; obtain data/cache and labels through an
+  authenticated/official route; refresh the content hashes for the changed upstream repositories;
+  then preregister and run a compliant leakage canary and buffered spatial holdout. Do not submit
+  until the exact saved bytes pass the full gates and a separate selector approves them.
 
 ---
-
-## Start here — 2026-10-29 executive summary
-
-**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
-(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
-
-- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
-  2026-10-29, and no holdout score or slot selection exists.
-- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
-  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
-- **Why no new file yet:** the competition labels cannot be reached from this sandbox
-  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
-  portal's `Predicted values must be in range [0, 1]` error is unexplained.
-- **Reproduce the summary and verification record:**
-  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
-  writes `evidence/verification_2026_10_29.json` and the summary above.
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
