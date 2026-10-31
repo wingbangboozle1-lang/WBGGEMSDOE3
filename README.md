@@ -1,20 +1,29 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-## Start here — 2026-10-29 executive summary
+## Start here — 2026-10-31 repository review
 
-**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
-(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+**Read first: [knowledge/review-2026-10-31.md](knowledge/review-2026-10-31.md)** and its
+[machine-readable negative run card](evidence/review_2026-10-31_run_card.json). This session
+reviewed the repository, refreshed the allowed-host identity feed, hardened the site publisher,
+and reran all tests. The standing task and safeguards remain below and in `PROJECT_PROMPT.md`.
 
-- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
-  2026-10-29, and no holdout score or slot selection exists.
-- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
-  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
-- **Why no new file yet:** the competition labels cannot be reached from this sandbox
-  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
-  portal's `Predicted values must be in range [0, 1]` error is unexplained.
-- **Reproduce the summary and verification record:**
-  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
-  writes `evidence/verification_2026_10_29.json` and the summary above.
+- **Decision: NOT OK to download a TIFF for competition submission; DO NOT SUBMIT.** No
+  candidate was generated or promoted in this review. The literal registry stop remains active;
+  protocol questions Q1 (dot definition) and Q2 (lattice comparator) are unresolved.
+- **Best target-site result:** GEMSDOE32, **OWNER-REPORTED 0.2778** (not an organizer receipt).
+  Why its file may have scored higher is mechanistically plausible but unproved; whether we can
+  beat it is unknown. New estimates remain **not estimable** without compliant holdout evidence.
+- **Latest saved public leaderboard observation (2026-10-29):** rank 1 0.4544, rank 25 0.3330,
+  rank 26 0.3328. These are PUBLIC-LEADERBOARD OBSERVATIONS for other entries, not project-file
+  scores or receipts; DrivenData could not be live-refreshed on 2026-10-31.
+- **Source freshness (2026-10-31):** 9/9 focus-site GitHub `main` heads fetched, all changed
+  relative to the 2026-10-26 baseline. This detects repository-head changes only; TIFF bytes,
+  scores, and receipts were not re-audited by that monitor.
+- **Verification:** site checker PASS; pytest **260 passed, 4 skipped**; no geological experiment,
+  holdout, candidate TIFF, selector action, or weekly slot.
+- **Main blockers:** unresolved uniqueness definition; missing shared cache/labels/folds; owner-mirror
+  provenance; no current portal quota/receipt; outside-footprint encoding and the prior range error
+  still require validation against the actual rejected file and current official guidance.
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
