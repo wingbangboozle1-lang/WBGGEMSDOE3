@@ -1,0 +1,87 @@
+{
+ "lane": "TWR-1 tapered widened recall (multi-sensor anisotropic crest envelope)",
+ "hypothesis": "soft 1-3 px crest-halo widening of a fold-local multi-sensor ridge core beats hard-dot emission under alpha=0.2/beta=0.8",
+ "score_label": "HOLDOUT-DTI",
+ "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "cells": [
+  "draw20_fold0",
+  "draw20_fold1",
+  "draw20_fold2",
+  "draw20_fold3",
+  "draw21_fold0",
+  "draw21_fold1",
+  "draw21_fold2",
+  "draw21_fold3"
+ ],
+ "n_withheld_positives": 22232,
+ "frozen_params": {
+  "K": 37654,
+  "core_nms_px": 2.0,
+  "band_in_px": 1.4,
+  "band_ramp_px": 2.4,
+  "halo_px": 3,
+  "halo_q": 0.75,
+  "q75": 0.619245171546936,
+  "weights": {
+   "crest_log3": 0.28,
+   "crest_log15": 0.12,
+   "gm_elev15": 0.22,
+   "gm_tc": 0.15,
+   "gm_strain": 0.13,
+   "crossgrad": 0.1
+  }
+ },
+ "results": {
+  "envelope": {
+   "pooled_dti": 0.007945417722478955,
+   "ci95_cluster_bootstrap": [
+    0.006339911391416233,
+    0.009572157313826582
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "pooled_emitted": 2081062
+  },
+  "core_only": {
+   "pooled_dti": 0.020819046184281428,
+   "ci95_cluster_bootstrap": [
+    0.01650148379978679,
+    0.02550466013324209
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "pooled_emitted": 301232
+  },
+  "champion_d28_replay": {
+   "pooled_dti": 0.09920232315251679,
+   "ci95_cluster_bootstrap": [
+    0.08595140754809347,
+    0.11266835751415871
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI",
+   "pooled_emitted": 311112
+  }
+ },
+ "paired_envelope_minus_core": {
+  "delta": -0.012873628461802473,
+  "ci95": [
+   -0.01609745471613635,
+   -0.009806223279091938
+  ],
+  "p_delta_le_0": 1.0
+ },
+ "paired_envelope_minus_champion": {
+  "delta": -0.09125690543003784,
+  "ci95": [
+   -0.10463839167718937,
+   -0.07810563177786772
+  ],
+  "p_delta_le_0": 1.0
+ },
+ "canary_file": "evidence/twr1_canary.json",
+ "elapsed_s": 45.4
+}

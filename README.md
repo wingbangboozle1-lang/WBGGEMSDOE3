@@ -1,5 +1,31 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+## Start here — 2026-10-31 session (supersedes the 2026-10-29 block below)
+
+**Read first: [knowledge/review-2026-10-31-session.md](knowledge/review-2026-10-31-session.md)** and
+`evidence/twr1_run_card.json`. The Arena mega-prompt for this workstream is kept verbatim in
+[knowledge/PROJECT_PROMPT.md](knowledge/PROJECT_PROMPT.md) — read it at the start of every session.
+
+- **A unique TIF was generated, gated, and published** (highest-urgency ask):
+  `docs/downloads/wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif` (+ ZIP, manifest). Verdict,
+  plainly: **download for research — OK; cleared for portal submission — NO** (fails the pre-registered
+  holdout promotion bar: HOLDOUT-DTI 0.02879 vs 0.0992 comparable best). No slot was spent, none selected.
+- **Gates ran inside the project, no human steps:** leakage canaries (max AUC 0.571), buffered whole-fault
+  holdout v3.0 with paired CIs, ratified content-aware uniqueness audit vs 140 hash-verified sibling rasters
+  (0 flags; all literal numbers published), shared writer + validator on saved bytes, run card JSON.
+  The 2026-10-29 degenerate-literal stop is resolved by documented rule in `knowledge/protocol.md` (2026-10-31
+  revision), not by waiving thresholds.
+- **Executive table** (file | estimated score | unique?) with instrument read-backs for all nine focus sites is
+  on the site: `docs/executive-summary.html` / published Pages copy; every focus file: **not estimable** score,
+  **not unique** (up to 100% 3-px overlap), DO NOT SUBMIT.
+- **Why GEMSDOE32 hit 0.2778:** metric inversion — pruning 2,545 catalogue-adjacent dots (1–2 px band) against
+  the new-fault truth; read-backs show that pattern collapses to 0.0045 on the honest instrument. Bounded and
+  beatable in principle only by ideas that win on organizer labels, which none of ours did; see
+  `knowledge/content/why-0.2778.md` and the review.
+- **Reproduce:** commands in the review's "Reproduce" section. Site contract: `scripts/build_site.py` +
+  `scripts/check_site.py` + full pytest pass (263 tests) on this commit.
+
+
 ## Start here — 2026-10-31 repository review
 
 Read the measured [focus-site executive summary](knowledge/executive-summary-2026-10-31.md), this

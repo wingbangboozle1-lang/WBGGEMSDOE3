@@ -1,6 +1,6 @@
 # Working agreement
 
-**Latest (2026-10-29):** read `knowledge/review-2026-10-29-session.md` and `evidence/session_2026-10-29_gate-recheck_run_card.json` first (the parallel session card is `evidence/session_2026-10-29_run_card.json`). The release gate is still the 2026-10-28 card; the 2026-10-29 card is a re-verification addendum and changes no decision. Two protocol decisions (dot definition; lattice comparator) are open with the user.
+**Latest (2026-10-31):** read `knowledge/review-2026-10-31-session.md`, `evidence/twr1_run_card.json`, and the 2026-10-31 protocol revision in `knowledge/protocol.md` first. A unique, validated, uniqueness-passing candidate TIFF is published for research but FAILS the holdout promotion bar — still DO NOT SUBMIT / no slot. Prior: 2026-10-29 gate recheck (`knowledge/review-2026-10-29-session.md`).
 
 At the start of every session read `README.md`, `PROJECT_PROMPT.md`, the latest
 `knowledge/review-2026-10-28-session.md` and

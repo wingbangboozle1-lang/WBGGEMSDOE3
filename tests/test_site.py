@@ -153,7 +153,7 @@ def test_latest_upstream_identity_feed_is_published_and_never_implies_approval()
     assert "data/latest-upstream-check.json" in page
     assert "9/9 repositories fetched" in page
     assert "0.3328" in page
-    assert "Not OK to download or submit" in page
+    assert "DO NOT SUBMIT" in page and "portal upload" in page and "not authorized" in page
     assert "Q1" in page and "Q2" in page
     review_page = (DOCS / "session-review.html").read_text()
     assert "Current repository review · 2026-10-31" in review_page
