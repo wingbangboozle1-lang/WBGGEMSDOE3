@@ -216,7 +216,8 @@ def main() -> int:
   <p class="mono">{sub['file']}</p>
   <a class="btn" href="downloads/release/{sub['file']}" download>Download the .tif</a>
   <a class="btn alt" href="downloads/release/{Path(sub['file']).stem}.json">Download its receipt (JSON)</a>
-  <p class="small">sha256 <span class="mono">{sub['sha256']}</span><br>
+  <p class="small">sha256 <span class="mono">{sub['sha256']}</span> ·
+  <a href="data/release_decision.json">machine-readable decision</a><br>
   {n_dots:,} dots &middot; {sub['bytes']:,} bytes &middot; float32 &middot; EPSG:32611 &middot;
   NaN outside the study footprint</p>
   <p class="small"><b>Submission note (paste into the portal, {len(card['note'])} characters):</b>
@@ -751,6 +752,25 @@ prize submission, as the rules require.</li>
 </table>
 """
 
+    (DOCS / "data").mkdir(parents=True, exist_ok=True)
+    (DOCS / "data" / "release_decision.json").write_text(json.dumps({
+        "schema": "gems-release-decision-v1",
+        "generated_by": "scripts/build_release_site.py",
+        "decision": DECISION["value"],
+        "okay_to_submit": verdict_ok,
+        "file": sub["file"] if verdict_ok else None,
+        "path": sub["path"] if verdict_ok else None,
+        "sha256": sub["sha256"] if verdict_ok else None,
+        "dots": n_dots,
+        "format_passed": fmtv["passed"],
+        "uniqueness_passed": uniq["passed"],
+        "format_checks": len(fmtv["checks"]),
+        "uniqueness_checks": len(uniq["checks"]),
+        "note": card["note"],
+        "note_characters": len(card["note"]),
+        "evidence": "evidence/release/candidate_run_card.json",
+        "archive_lane_gate": "data/release_gate.json (2026-10-30 lane, DO-NOT-SUBMIT by design)",
+    }, indent=2) + "\n")
     (DOCS / "index.html").write_text(page("Download the submission", index, "index.html"))
     (DOCS / "executive-summary.html").write_text(
         page("Executive summary", exec_summary, "executive-summary.html"))

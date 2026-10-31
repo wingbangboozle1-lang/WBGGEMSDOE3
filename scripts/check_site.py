@@ -143,6 +143,22 @@ def main() -> int:
     if "PROJECTION" not in (DOCS / "executive-summary.html").read_text().upper():
         errors.append("executive summary does not label its projected score")
 
+    # The machine-readable live decision must agree with the card, and must not be
+    # confused with the archive lane's own gate (data/release_gate.json).
+    decision_path = DOCS / "data" / "release_decision.json"
+    if not decision_path.is_file():
+        errors.append("missing machine-readable release decision: data/release_decision.json")
+    else:
+        dec = json.loads(decision_path.read_text())
+        if dec.get("decision") != decision:
+            errors.append("release_decision.json decision disagrees with the card")
+        if dec.get("okay_to_submit") is not promote:
+            errors.append("release_decision.json okay_to_submit disagrees with the card")
+        if promote and dec.get("sha256") != sub.get("sha256"):
+            errors.append("release_decision.json sha256 disagrees with the card")
+        if dec.get("note_characters", 0) > 140:
+            errors.append("release_decision.json note exceeds 140 characters")
+
     # ---------------------------------------------------------------------
     # Every published number must be reproducible from the evidence files.
     # This is the "verified line by line" rule made executable: if a page and
