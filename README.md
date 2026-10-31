@@ -1,5 +1,39 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+## Start here — 2026-10-31 session (read first)
+
+> **DECISION: DO NOT DOWNLOAD OR SUBMIT ANY FILE.** No TIFF is cleared and none was generated.
+> Full executive summary with the per-site table: **[knowledge/executive-summary-2026-10-31.md](knowledge/executive-summary-2026-10-31.md)**.
+> Run card: [evidence/run_card_2026_10_31.json](evidence/run_card_2026_10_31.json) · measurements: [evidence/focus_measure_2026_10_31.json](evidence/focus_measure_2026_10_31.json) (reproduce with `.venv/bin/python scripts/measure_focus_files_2026_10_31.py`).
+
+**Why nothing can be cleared yet**
+
+1. **Not unique.** Every focus file has ≥97.6% of its positive cells within 3 px of another focus file. GEMSDOE25 and GEMSDOE30 have identical positive sets; GEMSDOE24 ⊂ GEMSDOE27; GEMSDOE32 ⊂ GEMSDOE31/25/30/36.
+2. **No score can be measured here.** Competition labels sit behind a DrivenData login. `drivendata.org`, `dropbox.com`, `docs.nlr.gov` and `github.io` return HTTP 000 from this sandbox. No HOLDOUT-DTI exists, and no candidate can be validated before a slot.
+3. **Open protocol stop.** The release gate is still DO-NOT-SUBMIT. Choosing between owner options A/B/C is the owner's decision.
+
+**Highest owner-reported file:** GEMSDOE32 `…e5eb6e7e-zeros.tif`, **0.2778** (owner report, not a receipt). Its positive support is verified to be 37,654 cells, all inside GEMSDOE31, with 2,545 cells removed from GEMSDOE31's 40,199. Owner-reported scores are not estimates; "Estimated score" is **not estimable** for every site.
+
+**Format finding:** five of the nine focus files (`-nan`) contain 7,111,787 NaN cells across the whole array and fail a strict [0,1] check. That is the likely source of `Predicted values must be in range [0, 1]`. The official text requires NaN outside the bounds, while the `-zeros` files use finite 0. These two requirements conflict. The portal's real behaviour is unknown.
+
+**Requirement status (2026-10-31 request, condensed)**
+
+| Requirement | Status |
+|---|---|
+| Executive summary for GEMSDOE 24/25/27/28/30/31/32/33/36 with file, estimate, uniqueness | Done, with estimates marked *not estimable*; see the summary above |
+| Explain why GEMSDOE32 scored highest | Done, verified by bytes; the mechanism is the owner's explanation, not proved |
+| Generate a unique, downloadable TIF | **Not done.** Blocked by the owner decision, no labels, and no holdout |
+| Holdout validation before any slot | **Not possible here.** Needs the competition data placed under `data/` |
+| Labels: HOLDOUT-DTI vs ORGANIZER-CONFIRMED | No holdout ran; the only scores are OWNER-REPORTED |
+| Official sources with links, no hallucinations | Done for measured items; blocked sources listed as unreachable |
+| Flag irregularities | Done; see the summary (§5) |
+
+**Owner decision needed:** choose A, B, or C in [knowledge/executive-summary-2026-10-31.md §6](knowledge/executive-summary-2026-10-31.md#6-what-is-needed-to-clear-a-file). Also place the competition files in `data/` from your own DrivenData login.
+
+**Test-suite caveats (pre-existing, found this session):** on the clean tree, `pytest` fails two tests (`test_published_index_states_not_ok_to_submit`, `test_latest_upstream_identity_feed_is_published_and_never_implies_approval`) because the committed `docs/` text differs from `scripts/build_site.py`. Running the suite also rewrites nine tracked `docs/` pages; restore them with `git checkout -- docs/`.
+
+---
+
 ## Start here — 2026-10-29 executive summary
 
 **Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
