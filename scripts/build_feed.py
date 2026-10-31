@@ -283,7 +283,7 @@ for upload, and the nine sibling rasters are copies of other people's submission
 <p>{badge("Recommended file: " + (file_name or "none"), "ok" if cleared else "stop")} {verdict_badge}</p>
 <section><h2>1. The instruction, and how it was met</h2>
 <table class="data"><tbody>
-<tr><td>Executive summary per site, best file obvious</td><td>{link('index.html#download','table on the desk','')}</td></tr>
+<tr><td>Executive summary per site, best file obvious</td><td>{link('desk.html#download','the desk table','')}</td></tr>
 <tr><td>Estimated score for a submission</td><td>one-parameter ledger inversion over {esc(est.get('n_probes','—'))} pinned sibling rasters; MAE {esc(lab(est.get('estimator_mae')))}, Spearman {esc(lab(est.get('estimator_spearman')))}</td></tr>
 <tr><td>Unique TIF generated</td><td>{esc(file_name)} — {esc(raster.get('bytes','—'))} bytes</td></tr>
 <tr><td>Obvious download / submit status</td><td>the hero badge on the
@@ -464,10 +464,27 @@ pre{background:#0d1117;color:#e6edf3;padding:12px;border-radius:9px;overflow:aut
                  "listed on the executive summary are copies for study, so do not submit those.</p>")
 
     index_html = index_html.replace("</main>", authority + disclosures + freshness + "</main>")
-    (DOCS / "index.html").write_text(index_html, encoding="utf-8")
-    (DOCS / "executive-summary.html").write_text(executive_html, encoding="utf-8")
-    (DOCS / "how-to-submit.html").write_text(how_html, encoding="utf-8")
-    (DOCS / "research.html").write_text(research_html, encoding="utf-8")
+    # Lane-scoped publication. The four top-level pages (index, executive-summary,
+    # how-to-submit, research) belong to scripts/build_release_site.py, which renders the
+    # PROJECT-level release decision; a lane must not overwrite that page with a lane verdict,
+    # or one site would carry two different "can I submit?" answers. This lane's desk therefore
+    # lives at docs/desk.html and states its own (negative) gate, cross-linked from the README
+    # feed block and from the project pages' lane list.
+    (DOCS / "desk.html").write_text(index_html.replace('href="index.html"', 'href="index.html"'), encoding="utf-8")
+    def to_lane_dir(body: str) -> str:
+        """Rebase doc-relative links for a page published one directory down in docs/ggo/."""
+        for a, b in (('href="assets/', 'href="../assets/'), ('href="data/', 'href="../data/'),
+                     ('href="index.html"', 'href="../index.html"'), ('href="downloads/', 'href="../downloads/'),
+                     ('href="index.html#', 'href="../index.html#'), ('href="desk.html#', 'href="../desk.html#'),
+                     ('href="desk.html"', 'href="../desk.html"'),
+                     ('href="evidence/', 'href="../evidence/')):
+            body = body.replace(a, b)
+        return body
+
+    (DOCS / "ggo").mkdir(exist_ok=True)
+    (DOCS / "ggo" / "executive-summary.html").write_text(to_lane_dir(executive_html), encoding="utf-8")
+    (DOCS / "ggo" / "how-to-submit.html").write_text(to_lane_dir(how_html), encoding="utf-8")
+    (DOCS / "ggo" / "research.html").write_text(to_lane_dir(research_html), encoding="utf-8")
     feeds = {"ggo_run_card.json": card, "ggo_experiment.json": exp,
              "focus_estimates_2026_10_31.json": {"rows": card.get("focus_site_estimates") or []},
              "registry_census_2026_10_31.json": {"blocked_by": uniq.get("blocked_by"),

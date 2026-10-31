@@ -1,0 +1,12 @@
+{
+  "generated_by": "hand-written lane registry; every path is inside this repository",
+  "lanes": [
+    {
+      "site": "TWR-1r2 (this repo, other lane)",
+      "path": "docs/downloads/wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif",
+      "owner_reported_score": null,
+      "lane_status": "negative: failed its own pre-registered holdout bar (0.02879 vs 0.0992)",
+      "note": "same dot count as GEMSDOE32 (37,654) but zero shared dots and 0.15% within 3 px: a matched-budget benchmark, not a copy"
+    }
+  ]
+}

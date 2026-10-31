@@ -1,0 +1,41 @@
+[setup] planes=14 footprint=5,167,373 catalogue=60,988 sgmc_off=62,649
+[folds] {"NW": {"n_truth": 29244, "n_withheld_raw": 29319, "n_dropped_by_buffer": 75, "n_active": 5135704}, "NE": {"n_truth": 12558, "n_withheld_raw": 12596, "n_dropped_by_buffer": 38, "n_active": 5118981}, "SW": {"n_truth": 9354, "n_withheld_raw": 9473, "n_dropped_by_buffer": 119, "n_active": 5115858}, "SE": {"n_truth": 9536, "n_withheld_raw": 9600, "n_dropped_by_buffer": 64, "n_active": 5115985}}
+[canary] {"NW": {"topo_ridge": 0.553, "topo_valley": 0.571, "topo_curv": 0.548, "topo_relief": 0.505, "mag_hg_line": 0.533, "mag_vg_line": 0.533, "mag_low_line": 0.531, "grav_hg_line": 0.542, "grav_bp_line": 0.573, "strain_line": 0.542, "seis_line": 0.508, "cond_line": 0.498, "depth_bp_line": 0.524, "concord": 0.539}, "NE": {"topo_ridge": 0.524, "topo_valley": 0.563, "topo_curv": 0.525, "topo_relief": 0.443, "mag_hg_line": 0.472, "mag_vg_line": 0.468, "mag_low_line": 0.476, "grav_hg_line": 0.57, "grav_bp_line": 0.603, "strain_line": 0.479, "seis_line": 0.49, "cond_line": 0.495, "depth_bp_line": 0.529, "concord": 0.484}, "SW": {"topo_ridge": 0.601, "topo_valley": 0.633, "topo_curv": 0.595, "topo_relief": 0.556, "mag_hg_line": 0.56, "mag_vg_line": 0.558, "mag_low_line": 0.534, "grav_hg_line": 0.501, "grav_bp_line": 0.505, "strain_line": 0.563, "seis_line": 0.501, "cond_line": 0.491, "depth_bp_line": 0.481, "concord": 0.563}, "SE": {"topo_ridge": 0.546, "topo_valley": 0.577, "topo_curv": 0.545, "topo_relief": 0.446, "mag_hg_line": 0.494, "mag_vg_line": 0.496, "mag_low_line": 0.505, "grav_hg_line": 0.507, "grav_bp_line": 0.534, "strain_line": 0.52, "seis_line": 0.519, "cond_line": 0.499, "depth_bp_line": 0.568, "concord": 0.506}}
+[fit] CAT_NW pos=25000 neg=40000 valid=2,449,030 16s
+[fit] CAT_NE pos=25000 neg=40000 valid=1,366,431 11s
+[fit] CAT_SW pos=25000 neg=40000 valid=564,135 7s
+[fit] CAT_SE pos=25000 neg=40000 valid=787,777 8s
+[fit] UNION_NW pos=25000 neg=40000 valid=2,449,030 16s
+[fit] UNION_NE pos=25000 neg=40000 valid=1,366,431 11s
+[fit] UNION_SW pos=25000 neg=40000 valid=564,135 7s
+[fit] UNION_SE pos=25000 neg=40000 valid=787,777 8s
+[sweep] CAT NW done
+[sweep] CAT NE done
+[sweep] CAT SW done
+[sweep] CAT SE done
+[sweep] UNION NW done
+[sweep] UNION NE done
+[sweep] UNION SW done
+[sweep] UNION SE done
+[control] NW oracle=1.0000 random=0.0895
+[control] NE oracle=1.0000 random=0.0864
+[control] SW oracle=1.0000 random=0.0930
+[control] SE oracle=1.0000 random=0.0904
+[best] {
+ "arm": "CAT",
+ "density": 45000,
+ "separation": 2,
+ "dti": 0.2291982340824652,
+ "tp": 18590.64825831916,
+ "fp": 144199.63042436636,
+ "fn": 42101.35174168083,
+ "n_truth": 60692,
+ "n_emitted": 153020,
+ "recall": 0.3063113467725427,
+ "hit_rate_within_3px": 0.12053326362566985,
+ "ci95": [
+  0.21453048002121214,
+  0.24395462230716186
+ ]
+}
+[done] /home/user/WBGGEMSDOE3/evidence/release/experiments.json

@@ -82,7 +82,7 @@ def main() -> int:
           ",".join(k for k, v in rep["checks"].items() if not v) or "all true")
 
     print("[3] evidence classes are attached to every published number")
-    idx = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    idx = (ROOT / "docs" / "desk.html").read_text(encoding="utf-8")
     for tag in ("LEDGER", "HOLDOUT-DTI", "OWNER", "REGISTRY-MEASUREMENT"):
         check(f"page labels {tag}", tag in idx or tag == "OWNER", "")
     check("page states no receipt", "no receipt" in idx or "never a score" in idx.lower(), "")

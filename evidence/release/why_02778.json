@@ -1,0 +1,330 @@
+{
+  "generated_by": "scripts/release_why_02778.py",
+  "question": "why did GEMSDOE32's h33-2-b2 file score 0.2778 and can a different emission beat it?",
+  "measured_table": [
+    {
+      "site": "GEMSDOE24",
+      "dots": 60069,
+      "owner_reported_score": 0.2477,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.08914748039754282,
+      "frac_within_2px": 0.14598212056135446,
+      "frac_within_3px": 0.19873811783116083,
+      "frac_beyond_3px": 0.8012618821688392,
+      "median_distance_px": 14.866068747318506,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE25",
+      "dots": 44090,
+      "owner_reported_score": 0.26,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.08825130415060105,
+      "frac_within_2px": 0.1459741437967793,
+      "frac_within_3px": 0.19521433431617147,
+      "frac_beyond_3px": 0.8047856656838285,
+      "median_distance_px": 15.0,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE27",
+      "dots": 61328,
+      "owner_reported_score": 0.2449,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.08826310983563788,
+      "frac_within_2px": 0.14471367075397862,
+      "frac_within_3px": 0.1987183668145056,
+      "frac_beyond_3px": 0.8012816331854944,
+      "median_distance_px": 14.142135623730951,
+      "max_overlap_within_3px": 0.9801884946517089,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE28",
+      "dots": 37660,
+      "owner_reported_score": 0.271,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.0,
+      "frac_within_2px": 0.06248008497079129,
+      "frac_within_3px": 0.11622411046202867,
+      "frac_beyond_3px": 0.8837758895379714,
+      "median_distance_px": 17.72004514666935,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE30",
+      "dots": 44090,
+      "owner_reported_score": 0.26,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.08825130415060105,
+      "frac_within_2px": 0.1459741437967793,
+      "frac_within_3px": 0.19521433431617147,
+      "frac_beyond_3px": 0.8047856656838285,
+      "median_distance_px": 15.0,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE31",
+      "dots": 40199,
+      "owner_reported_score": 0.2708,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.0,
+      "frac_within_2px": 0.06331003258787532,
+      "frac_within_3px": 0.11731635115301375,
+      "frac_beyond_3px": 0.8826836488469862,
+      "median_distance_px": 17.69180601295413,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE32",
+      "dots": 37654,
+      "owner_reported_score": 0.2778,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.0,
+      "frac_within_2px": 0.0,
+      "frac_within_3px": 0.057656557072289796,
+      "frac_beyond_3px": 0.9423434429277102,
+      "median_distance_px": 19.6468827043885,
+      "max_overlap_within_3px": 1.0,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE33",
+      "dots": 41865,
+      "owner_reported_score": 0.2632,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.03289143676101756,
+      "frac_within_2px": 0.09301325689716948,
+      "frac_within_3px": 0.14389107846649946,
+      "frac_beyond_3px": 0.8561089215335005,
+      "median_distance_px": 16.64331697709324,
+      "max_overlap_within_3px": 0.9970858712528365,
+      "unique_vs_focus_set": false
+    },
+    {
+      "site": "GEMSDOE36",
+      "dots": 38854,
+      "owner_reported_score": 0.275,
+      "frac_on_catalogue": 0.0,
+      "frac_within_1px": 0.0,
+      "frac_within_2px": 0.0,
+      "frac_within_3px": 0.0587069542389458,
+      "frac_beyond_3px": 0.9412930457610542,
+      "median_distance_px": 19.235384061671343,
+      "max_overlap_within_3px": 0.9757811293560509,
+      "unique_vs_focus_set": false
+    }
+  ],
+  "rank_correlations": {
+    "spearman_score_vs_near_catalogue_fraction": -0.9831932773109244,
+    "spearman_score_vs_dot_count": -0.9831932773109244,
+    "n_sites": 9,
+    "reading": "a negative value means fewer near-catalogue dots go with a higher published score; n=9, observational, owner-reported scores, so this is supporting evidence and not a controlled experiment"
+  },
+  "mechanism": [
+    "Known USGS/INGENIOUS fault pixels are excluded from the score entirely (staff post, topic 11516), so a dot on the mask is wasted budget.",
+    "A dot 1-3 px from the mask is NOT masked: it is an active cell whose nearest hidden truth is a *new* fault, so it contributes p(x)=1 to FP_w unless a new fault happens to be within 300 m. The collar is therefore pure false-positive mass in the initial round.",
+    "The 0.2778 file is the only focus file whose near-catalogue fraction was pruned twice (its own audit records '0 within 100 m and 0 within 200 m'), and it has the lowest measured near-catalogue fraction of the nine.",
+    "The score is pooled over the public subset (staff post, topic 11550), so dot count enters only through the ratio n/|G|."
+  ],
+  "score_inversion": {
+    "h=0.1": {
+      "GEMSDOE24": {
+        "n_over_G": 3.927,
+        "implied_G": 15296,
+        "implied_recall": 0.393
+      },
+      "GEMSDOE25": {
+        "n_over_G": 4.333,
+        "implied_G": 10175,
+        "implied_recall": 0.433
+      },
+      "GEMSDOE27": {
+        "n_over_G": 3.84,
+        "implied_G": 15971,
+        "implied_recall": 0.384
+      },
+      "GEMSDOE28": {
+        "n_over_G": 4.734,
+        "implied_G": 7956,
+        "implied_recall": 0.473
+      },
+      "GEMSDOE30": {
+        "n_over_G": 4.333,
+        "implied_G": 10175,
+        "implied_recall": 0.433
+      },
+      "GEMSDOE31": {
+        "n_over_G": 4.726,
+        "implied_G": 8506,
+        "implied_recall": 0.473
+      },
+      "GEMSDOE32": {
+        "n_over_G": 5.001,
+        "implied_G": 7529,
+        "implied_recall": 0.5
+      },
+      "GEMSDOE33": {
+        "n_over_G": 4.446,
+        "implied_G": 9416,
+        "implied_recall": 0.445
+      },
+      "GEMSDOE36": {
+        "n_over_G": 4.889,
+        "implied_G": 7947,
+        "implied_recall": 0.489
+      }
+    },
+    "h=0.15": {
+      "GEMSDOE24": {
+        "n_over_G": 1.973,
+        "implied_G": 30453,
+        "implied_recall": 0.296
+      },
+      "GEMSDOE25": {
+        "n_over_G": 2.122,
+        "implied_G": 20773,
+        "implied_recall": 0.318
+      },
+      "GEMSDOE27": {
+        "n_over_G": 1.939,
+        "implied_G": 31622,
+        "implied_recall": 0.291
+      },
+      "GEMSDOE28": {
+        "n_over_G": 2.263,
+        "implied_G": 16641,
+        "implied_recall": 0.339
+      },
+      "GEMSDOE30": {
+        "n_over_G": 2.122,
+        "implied_G": 20773,
+        "implied_recall": 0.318
+      },
+      "GEMSDOE31": {
+        "n_over_G": 2.26,
+        "implied_G": 17784,
+        "implied_recall": 0.339
+      },
+      "GEMSDOE32": {
+        "n_over_G": 2.353,
+        "implied_G": 16001,
+        "implied_recall": 0.353
+      },
+      "GEMSDOE33": {
+        "n_over_G": 2.163,
+        "implied_G": 19358,
+        "implied_recall": 0.324
+      },
+      "GEMSDOE36": {
+        "n_over_G": 2.316,
+        "implied_G": 16778,
+        "implied_recall": 0.347
+      }
+    },
+    "h=0.2": {
+      "GEMSDOE24": {
+        "n_over_G": 1.317,
+        "implied_G": 45610,
+        "implied_recall": 0.263
+      },
+      "GEMSDOE25": {
+        "n_over_G": 1.405,
+        "implied_G": 31372,
+        "implied_recall": 0.281
+      },
+      "GEMSDOE27": {
+        "n_over_G": 1.297,
+        "implied_G": 47273,
+        "implied_recall": 0.259
+      },
+      "GEMSDOE28": {
+        "n_over_G": 1.487,
+        "implied_G": 25327,
+        "implied_recall": 0.297
+      },
+      "GEMSDOE30": {
+        "n_over_G": 1.405,
+        "implied_G": 31372,
+        "implied_recall": 0.281
+      },
+      "GEMSDOE31": {
+        "n_over_G": 1.485,
+        "implied_G": 27062,
+        "implied_recall": 0.297
+      },
+      "GEMSDOE32": {
+        "n_over_G": 1.539,
+        "implied_G": 24472,
+        "implied_recall": 0.308
+      },
+      "GEMSDOE33": {
+        "n_over_G": 1.429,
+        "implied_G": 29299,
+        "implied_recall": 0.286
+      },
+      "GEMSDOE36": {
+        "n_over_G": 1.517,
+        "implied_G": 25608,
+        "implied_recall": 0.303
+      }
+    },
+    "h=0.25": {
+      "GEMSDOE24": {
+        "n_over_G": 0.989,
+        "implied_G": 60766,
+        "implied_recall": 0.247
+      },
+      "GEMSDOE25": {
+        "n_over_G": 1.051,
+        "implied_G": 41970,
+        "implied_recall": 0.263
+      },
+      "GEMSDOE27": {
+        "n_over_G": 0.975,
+        "implied_G": 62924,
+        "implied_recall": 0.244
+      },
+      "GEMSDOE28": {
+        "n_over_G": 1.107,
+        "implied_G": 34012,
+        "implied_recall": 0.277
+      },
+      "GEMSDOE30": {
+        "n_over_G": 1.051,
+        "implied_G": 41970,
+        "implied_recall": 0.263
+      },
+      "GEMSDOE31": {
+        "n_over_G": 1.106,
+        "implied_G": 36339,
+        "implied_recall": 0.277
+      },
+      "GEMSDOE32": {
+        "n_over_G": 1.143,
+        "implied_G": 32944,
+        "implied_recall": 0.286
+      },
+      "GEMSDOE33": {
+        "n_over_G": 1.067,
+        "implied_G": 39240,
+        "implied_recall": 0.267
+      },
+      "GEMSDOE36": {
+        "n_over_G": 1.128,
+        "implied_G": 34439,
+        "implied_recall": 0.282
+      }
+    }
+  },
+  "answer": {
+    "why_it_scored_best_of_the_nine": "it placed the same structural dots as the family but removed the near-catalogue subset that the official masking rule turns into false positives",
+    "can_a_different_emission_beat_it": "yes if the new emission raises the hit rate h or the coverage ratio n/|G| without lowering h faster; the fold sweep and the off-catalogue axis in this release both test that directly"
+  },
+  "constraint_on_the_hidden_truth": "for any file, DTI <= 1.25*R at n->0 and DTI -> 5*h as n/|G| grows, so 0.2778 requires h >= 0.0556 or, equivalently, R >= 0.2222 in the limit of negligible false positives"
+}

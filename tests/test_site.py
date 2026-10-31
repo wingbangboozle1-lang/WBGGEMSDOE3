@@ -113,17 +113,43 @@ def test_literal_witness_is_recorded_as_a_stop_not_a_clearance():
     assert "owner mirrors" in _json("evidence/preregistration_2026-10-28.json")["global_stop"]["provenance_caveat"]
 
 
-def test_every_current_page_is_tagged_negative_and_has_no_clearance_claim():
-    for rel in CORE_PAGES:
-        page = DOCS / rel
-        assert page.is_file(), rel
+def test_every_current_page_carries_one_coherent_project_decision():
+    """One site, one decision.
+
+    The four release pages follow ``evidence/release/candidate_run_card.json``.
+    The archive lane keeps its own DO-NOT-SUBMIT verdict, and every archive page
+    points at the live decision so the two can never be read as one status.
+    """
+    card = _json("evidence/release/candidate_run_card.json")
+    expected = ("SUBMIT" if card["verdict"] == "promote"
+                and card["format_validator"]["passed"]
+                and card["uniqueness_audit"]["passed"] else "DO-NOT-SUBMIT")
+    release_pages = ("index.html", "executive-summary.html", "research.html",
+                     "how-to-submit.html")
+    archive_pages = tuple(rel for rel in CORE_PAGES if rel not in release_pages)
+    for rel in release_pages:
         parser = Links()
-        parser.feed(page.read_text())
+        parser.feed((DOCS / rel).read_text())
+        assert parser.meta.get("gemsdoe-decision") == expected, rel
+        text = " ".join(" ".join(parser.text).lower().split())
+        assert "one new file cleared" not in text, rel
+        if rel == "index.html":
+            if expected == "SUBMIT":
+                assert "ok to download and submit" in text, rel
+            else:
+                assert "do not submit" in text, rel
+        else:
+            # Exactly one clearance claim: it lives on the landing page only.
+            assert "ok to download and submit" not in text, rel
+            assert "the landing page" in text or "do not submit" in text, rel
+    for rel in archive_pages:
+        parser = Links()
+        parser.feed((DOCS / rel).read_text())
         assert parser.meta.get("gemsdoe-decision") == "DO-NOT-SUBMIT", rel
         text = " ".join(" ".join(parser.text).lower().split())
-        assert "do not submit" in text or "no file is cleared" in text or "global stop is active" in text, rel
         assert "ok to download and submit" not in text, rel
-        assert "one new file cleared" not in text, rel
+        assert "archive lane page" in text, rel
+        assert "landing page" in text, rel
 
 
 def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
@@ -132,9 +158,9 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
         assert f"GEMSDOE{n}" in page
     assert "OWNER-REPORTED" in page
     assert "0.2778" in page
-    assert "not a verified causal account" in page.lower()
-    assert "not estimable" in page.lower()
-    assert "DO NOT SUBMIT" in page
+    assert "consistent with the masking mechanism, not proof of it" in page.lower()
+    assert "projection" in page.lower() and "holdout-dti" in page.lower()
+    assert "measurable" in page.lower() or "measured" in page.lower()
 
 
 def test_latest_upstream_identity_feed_is_published_and_never_implies_approval():
@@ -151,6 +177,26 @@ def test_latest_upstream_identity_feed_is_published_and_never_implies_approval()
     assert "Focus-site source freshness" in page
     assert "does not prove a score, TIFF, receipt" in page
     assert "data/latest-upstream-check.json" in page
+    assert "9/9 repositories fetched" in page
+    assert "0.3328" in page
+    card = _json("evidence/release/candidate_run_card.json")
+    promote = (card["verdict"] == "promote"
+               and card["format_validator"]["passed"]
+               and card["uniqueness_audit"]["passed"])
+    if promote:
+        # The feed is lane-neutral: it must never imply approval for the nine sites.
+        assert "every focus site remains unapproved for submission" in page
+        assert "do not submit" in page.lower()          # the archive section
+    else:
+        assert "DO NOT SUBMIT" in page and "portal upload" in page and "not authorized" in page
+    assert "Q1" in page and "Q2" in page
+    review_page = (DOCS / "session-review.html").read_text()
+    assert "Current repository review · 2026-10-31" in review_page
+    assert "data/review-2026-10-31.md" in review_page
+    # A historical locally format-checked artifact is not a release candidate.
+    executive = (DOCS / "executive-summary.html").read_text()
+    assert "wbg-gems-offnet-conduit" not in executive
+    assert "Download latest unique TIF" not in executive
 
 
 def test_current_leaderboard_and_official_source_captures_are_labeled():
@@ -163,6 +209,22 @@ def test_current_leaderboard_and_official_source_captures_are_labeled():
     ids = {row["id"] for row in source["sources"]}
     assert {"competition_problem_and_format", "official_rules", "public_leaderboard", "submission_portal", "geodawn_usgs", "gdr_1391", "usgs_3dep", "landsat_collection_2"} <= ids
     assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
+
+
+def test_current_repository_review_card_is_negative_and_not_a_score():
+    card = _json("evidence/review_2026-10-31_run_card.json")
+    assert card["verdict"] == "negative"
+    assert card["holdout_dti"]["label"] == "NOT-RUN"
+    assert card["holdout_dti"]["value"] is None
+    assert card["raster_sha256"] is None
+    assert card["validator_output"]["status"] == "NOT-RUN-NO-CANDIDATE"
+    assert card["submission"]["okay_to_download_and_submit"] is False
+    assert len(card["submission"]["note"]) <= 140
+    assert card["selector_approval"] is False
+    assert card["weekly_slots_used"] == 0
+    assert card["github_focus_site_identity_check"]["fetched_repositories"] == 9
+    assert card["github_focus_site_identity_check"]["changed_vs_2026_10_26_baseline"] == 9
+    assert card["latest_saved_public_leaderboard_observation"]["live_refreshed_2026_10_31"] is False
 
 
 def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():

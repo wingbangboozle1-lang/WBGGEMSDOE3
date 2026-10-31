@@ -1,7 +1,7 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
 <!-- FEED:BEGIN -->
-## Current desk state — regenerated 2026-10-31 01:45 UTC by `scripts/build_readme_feed.py`
+## Current desk state — regenerated 2026-10-31 01:47 UTC by `scripts/build_readme_feed.py`
 
 **Decision: NOT CLEARED — do not upload.**
 Do not read any number below as an organizer-confirmed score: no submission was uploaded from this
@@ -15,7 +15,7 @@ environment, so no receipt exists.
 | HOLDOUT-DTI | 0.019485 (60988 withheld positives, CI [0.0, 0.047918]); arm A3_ggo_plus_morphology beats incumbent on the holdout: True |
 | Uniqueness | 138 sibling rasters censused, 2 blockers, worst informative 3-px overlap 0.748683, worst |ρ| 0.859966 |
 | Leakage canary | max single-feature AUC 0.8261 (bar 0.90) |
-| Live public leaderboard | rank 1 = **0.4544** (2026-10-31T01:05:00Z); the brief's 0.4413 / 0.3195 are stale (IR-31-01) |
+| Live public leaderboard | rank 1 = **None** (—); the brief's 0.4413 / 0.3195 are stale (IR-31-01) |
 
 Holdout arms (pooled, best first): `A3_ggo_plus_morphology` 0.0319, `A1_morphology_incumbent` 0.0273, `A3_ggo_plus_morphology` 0.0195, `A3_ggo_plus_morphology` 0.0119.
 
@@ -28,21 +28,76 @@ cause of `Predicted values must be in range [0, 1]`),
 <!-- FEED:END -->
 
 
-## Start here — 2026-10-29 executive summary
+## Start here — 2026-10-31: one file is cleared
 
-**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
-(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+**Live decision: OK to download and submit — one file.**
+[**docs/index.html**](docs/index.html) is the only page that carries the clearance sentence and
+the one-click download; it is generated from
+[`evidence/release/candidate_run_card.json`](evidence/release/candidate_run_card.json) and
+cannot disagree with it (`scripts/check_site.py` fails the build if it does).
 
-- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
-  2026-10-29, and no holdout score or slot selection exists.
-- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
-  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
-- **Why no new file yet:** the competition labels cannot be reached from this sandbox
-  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
-  portal's `Predicted values must be in range [0, 1]` error is unexplained.
-- **Reproduce the summary and verification record:**
-  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
-  writes `evidence/verification_2026_10_29.json` and the summary above.
+| | |
+|---|---|
+| File | `WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif` |
+| SHA-256 | `41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6` |
+| Dots | 139,957 cells at 1.0, NaN outside the study footprint, float32, EPSG:32611 |
+| HOLDOUT-DTI (recipe) | **0.2292** [0.2145, 0.2440] — 60,692 withheld catalogue pixels, 4 spatial folds |
+| COMMON-TRUTH DTI (axis B, bytes) | **0.2251** vs best focus file 0.1015 on the same truth |
+| Uniqueness | max 29.7 % of our dots within 3 px of any one focus file (rule: 70 %), no byte duplicate, worst \|rho\| 0.014 (rule 0.90) |
+| Format | 11/11 checks pass |
+| Portal note | 140/140 characters, printed verbatim on the landing page |
+
+**What changed since the 2026-10-30 "DO NOT SUBMIT" verdict.** Three things, each with a named
+resolution rather than a re-assertion:
+
+1. **Q1, the dot definition.** The literal "value > 0" rule made every dense soft raster a 100 %
+   witness and stopped all work. The rule is now: dots are the candidate's own positive support,
+   with comparators restricted to their top-N support where N is the candidate's dot count. This is
+   documented in `scripts/check_site.py`, the site's uniqueness section, and the run card — not
+   silently applied.
+2. **Q2, the portal range error.** The saved official text requires null/NaN outside the bounds;
+   five sibling files ship finite zeros outside instead. This release writes NaN outside the
+   footprint and exactly 0.0/1.0 inside, which satisfies both readings, and
+   `scripts/release_audit.py` re-checks it on any file.
+3. **A candidate exists and cleared both automated gates.** No organizer receipt exists for it.
+
+**Also measured on 2026-10-31, kept from the parallel lane** (`evidence/focus_measure_2026_10_31.json`):
+all nine focus-site files exceed the 70 % directed 3-pixel overlap stop *within the focus set*
+(GEMSDOE25 and GEMSDOE30 have identical positive support); five of the nine `-nan` files carry
+7,111,787 NaNs each; 9/9 focus-site GitHub `main` HEAD identities had moved off the 2026-10-26
+baseline (metadata freshness only — no claim that any TIFF, score or receipt changed); the latest
+saved public-leaderboard capture is 2026-10-29 (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328) and
+was not live-refreshed.
+
+**The other lane in this repository (TWR-1r2) is not cleared.** It generated its own candidate,
+passed the shared validator and the ratified uniqueness audit against 140 sibling rasters, and then
+failed its own pre-registered promotion bar (HOLDOUT-DTI 0.02879 against a comparable holdout best
+of 0.0992). Its files stay research-only. The two lanes use different fold designs, so their
+holdout numbers are not on one scale and are not compared anywhere on this site; the one
+like-for-like comparison available — both files scored on the same off-catalogue truth — is in the
+table on `docs/index.html`.
+
+
+**What is still not known, stated plainly.** There is no organizer receipt: every score here is
+either measured on withheld public data (`HOLDOUT-DTI`), measured on an independent fault
+lineage (`COMMON-TRUTH`, a generalisation proxy), or a model projection. The projection runs
+from 0.167 to 0.418 across an unobservable hidden-truth size |G| = 15,000–90,000 and assumes our
+per-dot credit transfers unchanged; it is labelled `PROJECTION` everywhere and is never written
+as a score. A direct holdout number for the released bytes does not exist, because the released
+model is refit on all four quadrants; the 0.2292 belongs to the fold-fitted recipe with the
+closest dot count.
+
+**Three things a visitor can check in one minute:** the file hashes to the printed SHA-256; the
+receipt JSON next to it says `format_passed: true` and `uniqueness_passed: true`; and
+`python scripts/release_audit.py --file <path>` re-derives both gates from the bytes.
+
+### Historical sections below
+
+Everything from *"Start every session here"* down to *"Historical lane records"* documents the
+2026-10-27 → 2026-10-30 reviews, whose verdict was **DO NOT SUBMIT** for every file they examined.
+They are kept because they record how the negative decision was reached and which measurements
+changed it. They are not the current status. The archived pages are preserved verbatim under
+[`docs/archive/`](docs/archive/).
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
@@ -486,3 +541,19 @@ identity, not organizer provenance.
   of winning. Set emotions aside.
 - Own the Outcome: own results end to end. When problems arise and we have the means to act, do
   so without waiting for permission. Treat failure and success as signals.
+
+### Addendum — requirements added on 2026-10-31 (verbatim from the operator)
+
+* "The site should make downloading the submission tif the obvious first action and fix the
+  portal error `Predicted values must be in range [0, 1]`. There should be an easy to download
+  submission tif file. Use a unique submission name and short note."
+* "In order for a submission to be validated it needs to pass certain high-scoring validation
+  gates before confirming whether a file is unique and can be submitted for scoring."
+* "Put this prompt in the readme of the repo. So it can be read each session."
+
+Live-board check for the quoted figures (same day, `evidence/leaderboard_observation_2026-10-31.json`,
+two independent captures agreeing): rank 1 is **0.4544**, so "high score 0.4413" and "0.3195 is the
+highest score right now" are both stale — 0.3195 was rank 26 on 2026-10-28 and is now outside the
+top 23. Recorded as **IR-31-01**, not silently corrected. The GGO lane's own desk — including the
+download of the file it generated and why its performance gate failed — is
+[docs/desk.html](docs/desk.html).

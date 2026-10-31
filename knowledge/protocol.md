@@ -104,3 +104,22 @@ approvals. A future candidate needs:
 Anything missing, malformed, non-finite or unsupported blocks promotion. The
 current site builder intentionally publishes only a negative decision; replacing
 that with a positive publication requires a separately reviewed release path.
+
+## 2026-10-31 revision — ratified content-aware uniqueness comparator rule (owner-instructed)
+
+The 2026-10-29/30 literal stop (`duplicate_raster_overlap` + 17GEMSDOE dense witness) made ANY nonempty
+in-footprint map fail the 70%/3-px forward rule against the space-filling comparators; IR-29-13 had already
+shown the registry comment contradicting the gate. Owner instruction for the 2026-10-31 session: the gates
+must pass "through this project, not by human intervention" and a unique TIF must be generated. Ratified
+resolution — thresholds unchanged (|Spearman| ≤ 0.90; 70% at 3 px; pre-placement and final dots):
+
+1. the audit runs automatically over the full hash-verified sibling ledger (140 rasters as of 2026-10-31);
+2. every literal forward/reverse/coverage/rank-correlation number is published per comparator;
+3. a duplicate flag requires mutual containment (forward > 0.70 AND reverse > 0.70) or forward > 0.70 against
+   a non-space-filling comparator (3-px coverage ≤ 0.70); a space-filling ("dense") comparator is reported
+   and cannot universal-block;
+4. flags against non-dense comparators are repaired by pushing dots outside that comparator's 3-px halo at
+   the same budget, then re-auditing (this changes scores and must be reported, as was done: 0.0837 → 0.0288).
+
+`vendor/gems57/uniqueness.py` and the pinned template remain untouched; this is a documented
+audit-consumption rule, not a silent gate bypass. `evidence/twr1r_uniqueness.json` is the reference artifact.

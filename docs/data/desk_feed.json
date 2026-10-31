@@ -1,5 +1,5 @@
 {
- "built_utc": "2026-10-31 01:45 UTC",
+ "built_utc": "2026-10-31 01:47 UTC",
  "cleared": false,
  "raster": {
   "file": "wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif",
@@ -193,5 +193,5 @@
   ],
   "note": "shared hide-and-recover instrument (whole connected catalogue components withheld, global scored domain). This repo measured the instrument as ANTI-correlated with organizer scores (Spearman -0.15, src/gemsdoe/validation.py); it is reported as required, not as the promotion criterion."
  },
- "leaderboard_top1": 0.4544
+ "leaderboard_top1": null
 }

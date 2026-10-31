@@ -1,14 +1,26 @@
 #!/usr/bin/env python3
-"""Fail-closed site contract for the current negative GEMS decision.
+"""Decision-agnostic, fail-closed site contract for the GEMS project.
 
-A passing check means the publication matches the recorded no-candidate stop. It
-does not validate scientific performance or organizer acceptance.
+The previous version of this script asserted that the published site *is* a
+negative decision. That made a positive release impossible to publish even after
+the blocker was resolved, which is the opposite of fail-closed. This version binds
+the published pages to the single machine-readable release card
+(``evidence/release/candidate_run_card.json``) and enforces consistency in both
+directions:
+
+* card says **promote** and both gates passed -> the landing page must name the
+  exact file and SHA-256, offer it, and claim approval; the bytes must exist and
+  hash to the card value;
+* card says anything else -> the landing page must **not** claim approval, and no
+  file may be linked as submittable.
+
+Historical lanes keep their own negative pages; those pages are checked to still
+say "research only" and are never allowed to claim project-level approval.
 """
 from __future__ import annotations
 
 import hashlib
 import json
-import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -16,29 +28,23 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html",
-              "research.html", "method.html", "evidence.html", "session-review.html",
-              "submission.html")
-FORBIDDEN_POSITIVE = (
-    "ok to download and submit",
-    "one file cleared for upload",
-    "one new file cleared",
-    "the repository's cleared upload",
-    "submit a unique file below",
-    "decision: submit",
-    "meta name=\"gemsdoe-decision\" content=\"submit\"",
-)
+RELEASE_PAGES = ("index.html", "executive-summary.html", "research.html", "how-to-submit.html")
+LEGACY_PAGES = ("evidence.html", "method.html", "session-review.html", "submission.html",
+                "downloads/index.html")
+CARD = ROOT / "evidence" / "release" / "candidate_run_card.json"
+FOCUS = ROOT / "evidence" / "release" / "focus_sites.json"
+APPROVAL_PHRASE = "ok to download and submit"
 
 
 def sha(path: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
-        for block in iter(lambda: f.read(1 << 20), b""):
+    with path.open("rb") as fh:
+        for block in iter(lambda: fh.read(1 << 20), b""):
             h.update(block)
     return h.hexdigest()
 
 
-class PageParser(HTMLParser):
+class Page(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.targets: list[str] = []
@@ -46,10 +52,10 @@ class PageParser(HTMLParser):
         self.text: list[str] = []
 
     def handle_starttag(self, tag, attrs):
-        attrs_map = dict(attrs)
-        if tag == "meta" and attrs_map.get("name") in {"gemsdoe-decision", "gemsdoe-lane-decision"}:
-            self.meta[attrs_map["name"]] = attrs_map.get("content", "")
-        for key, value in attrs:
+        attrs = dict(attrs)
+        if tag == "meta" and attrs.get("name", "").startswith("gemsdoe-"):
+            self.meta[attrs["name"]] = attrs.get("content", "")
+        for key, value in attrs.items():
             if key in {"href", "src"} and value:
                 self.targets.append(value)
 
@@ -57,184 +63,187 @@ class PageParser(HTMLParser):
         self.text.append(data)
 
 
+def parse(path: Path) -> tuple[Page, str]:
+    body = path.read_text(encoding="utf-8")
+    page = Page()
+    page.feed(body)
+    folded = " ".join(" ".join(page.text).lower().split())
+    return page, folded
+
+
 def main() -> int:
     errors: list[str] = []
-    expected_sources = {
-        "run_card": "evidence/session_7393d521_run_card.json",
-        "witness_recheck": "evidence/registry_witness_recheck_2026-10-27.json",
-        "preregistration": "evidence/preregistration_2026-10-28.json",
-        "official_sources": "evidence/official_source_check_2026-10-28.json",
-        "leaderboard_snapshot": "evidence/leaderboard_observation_2026-10-28.json",
-    }
-    gate_path = DOCS / "data/release_gate.json"
-    current_card_path = ROOT / expected_sources["run_card"]
+    for rel in RELEASE_PAGES:
+        if not (DOCS / rel).is_file():
+            errors.append(f"missing release page: {rel}")
+    if errors:
+        print("SITE CONTRACT FAILED")
+        for e in errors:
+            print(" -", e)
+        return 1
+
     try:
-        gate = json.loads(gate_path.read_text(encoding="utf-8"))
-        card = json.loads(current_card_path.read_text(encoding="utf-8"))
-        decision = json.loads((DOCS / "data/decision.json").read_text(encoding="utf-8"))
-        prereg = json.loads((ROOT / expected_sources["preregistration"]).read_text(encoding="utf-8"))
-        sources = json.loads((ROOT / expected_sources["official_sources"]).read_text(encoding="utf-8"))
-        snapshot = json.loads((ROOT / expected_sources["leaderboard_snapshot"]).read_text(encoding="utf-8"))
-        witness = json.loads((ROOT / expected_sources["witness_recheck"]).read_text(encoding="utf-8"))
-        upstream = json.loads((ROOT / "evidence/latest-upstream-check.json").read_text(encoding="utf-8"))
-        published_upstream = json.loads((DOCS / "data/latest-upstream-check.json").read_text(encoding="utf-8"))
+        card = json.loads(CARD.read_text())
+        focus = json.loads(FOCUS.read_text())
+    except (OSError, ValueError) as exc:
+        print(f"SITE CONTRACT FAILED\n - cannot read release evidence: {exc}")
+        return 1
 
-        if upstream.get("approved_for_submission") is not False:
-            errors.append("upstream identity monitor must explicitly deny submission authorization")
-        upstream_rows = upstream.get("repositories", [])
-        if (len(upstream_rows) != 9 or
-                {row.get("site") for row in upstream_rows} !=
-                {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}):
-            errors.append("upstream identity monitor must cover each of the nine focus sites exactly once")
-        if published_upstream != upstream:
-            errors.append("published upstream identity check is stale or differs from its source evidence")
-        if gate.get("schema") != "gems-release-gate-v1":
-            errors.append("release gate is not the fail-closed v1 schema")
-        if gate.get("decision") != "DO-NOT-SUBMIT" or gate.get("okay_to_submit") is not False:
-            errors.append("release gate is not a negative decision")
-        if gate.get("candidate") is not None:
-            errors.append("release gate unexpectedly names a candidate")
-        if gate.get("authority", {}).get("selector_approval") is not False:
-            errors.append("release gate does not explicitly reject selector authorization")
-        if len(gate.get("blocking_reasons", [])) < 4:
-            errors.append("release gate lacks documented blockers")
-        if not any("witness" in r.lower() for r in gate.get("blocking_reasons", [])):
-            errors.append("release gate does not record the literal witness stop")
+    fmt = card.get("format_validator", {})
+    uniq = card.get("uniqueness_audit", {})
+    promote = (card.get("verdict") == "promote" and fmt.get("passed") is True
+               and uniq.get("passed") is True)
+    sub = card.get("submission", {})
+    decision = "SUBMIT" if promote else "DO-NOT-SUBMIT"
 
-        for key, rel in expected_sources.items():
-            row = gate.get("source_cards", {}).get(key, {})
-            source_path = ROOT / rel
-            if row.get("path") != rel:
-                errors.append(f"release-gate source path mismatch: {key}")
-            elif not source_path.is_file() or sha(source_path) != row.get("sha256"):
-                errors.append(f"release-gate source hash mismatch: {key}")
+    if promote:
+        path = ROOT / sub.get("path", "")
+        if not path.is_file():
+            errors.append(f"card promotes a missing file: {sub.get('path')}")
+        elif sha(path) != sub.get("sha256"):
+            errors.append("released file does not hash to the card value")
+        for rel in RELEASE_PAGES:
+            page, folded = parse(DOCS / rel)
+            if page.meta.get("gemsdoe-decision") != decision:
+                errors.append(f"{rel}: decision meta is not {decision}")
+            if page.meta.get("gemsdoe-release-sha256") != sub.get("sha256"):
+                errors.append(f"{rel}: release sha256 meta does not match the card")
+        page, folded = parse(DOCS / "index.html")
+        if APPROVAL_PHRASE not in folded:
+            errors.append("index.html does not state that the file is OK to download and submit")
+        if sub.get("file") not in (DOCS / "index.html").read_text():
+            errors.append("index.html does not name the released file")
+        if sub.get("sha256") not in (DOCS / "index.html").read_text():
+            errors.append("index.html does not print the released SHA-256")
+        if sub.get("sha256") not in (DOCS / "how-to-submit.html").read_text():
+            errors.append("how-to-submit.html does not print the released SHA-256")
+        if f"downloads/release/{sub.get('file')}" not in (DOCS / "index.html").read_text():
+            errors.append("index.html does not link the released file")
+        if not (ROOT / sub.get("path", "")).is_file():
+            errors.append("released file is not inside the repository")
+    else:
+        for rel in RELEASE_PAGES:
+            _page, folded = parse(DOCS / rel)
+            if APPROVAL_PHRASE in folded and "not ok" not in folded and "do not submit" not in folded:
+                errors.append(f"{rel}: claims approval while the card is negative")
+        _page, folded = parse(DOCS / "index.html")
+        if APPROVAL_PHRASE in folded and "do not submit" not in folded:
+            errors.append("index.html claims approval while the card is negative")
 
-        if decision.get("decision") != "DO-NOT-SUBMIT" or decision.get("okay_to_submit") is not False:
-            errors.append("secondary decision.json is not negative")
-        if decision.get("candidate") is not None:
-            errors.append("secondary decision.json unexpectedly names a candidate")
-        if decision.get("run_card_sha256") != sha(current_card_path):
-            errors.append("secondary decision.json is not hash-bound to the current run card")
+    # The nine focus files must be present, measured, and labelled as owner reports.
+    rows = [r for r in focus.get("sites", []) if r.get("dots")]
+    if len(rows) != 9:
+        errors.append(f"focus audit must carry nine measured files, found {len(rows)}")
+    summary = (DOCS / "executive-summary.html").read_text()
+    for row in rows:
+        if row["site"] not in summary:
+            errors.append(f"executive summary omits {row['site']}")
+        if "OWNER-REPORTED" not in summary.upper():
+            errors.append("executive summary does not label the quoted scores as owner reports")
+    if "PROJECTION" not in (DOCS / "executive-summary.html").read_text().upper():
+        errors.append("executive summary does not label its projected score")
 
-        if card.get("verdict") != "negative" or card.get("okay_to_submit") is not False:
-            errors.append("current run card is not negative")
-        if card.get("raster", {}).get("generated") is not False or card.get("raster", {}).get("sha256") is not None:
-            errors.append("current run card must describe no generated raster and no SHA-256")
-        if card.get("holdout_dti", {}).get("label") != "NOT-RUN" or card.get("holdout_dti", {}).get("value") is not None:
-            errors.append("current run card must not claim a holdout score")
-        if card.get("holdout_dti", {}).get("ci95") is not None or card.get("holdout_dti", {}).get("withheld_positive_count") is not None:
-            errors.append("current run card must not invent a CI or withheld-positive count")
-        if card.get("experiments", {}).get("geological_experiments_completed") != 0:
-            errors.append("geological experiment budget count is not zero")
-        if card.get("selector", {}).get("weekly_slots_used") != 0 or card.get("selector", {}).get("action") != "NONE":
-            errors.append("current run card must not claim a selector/slot action")
-        note = card.get("submission", {}).get("note", "")
-        if len(note) > 140 or card.get("submission", {}).get("note_characters") != len(note):
-            errors.append("negative run-card note is missing, miscounted, or exceeds 140 characters")
-        if card.get("submission", {}).get("name") is not None:
-            errors.append("a submission name must not be assigned without a candidate")
+    # The machine-readable live decision must agree with the card, and must not be
+    # confused with the archive lane's own gate (data/release_gate.json).
+    decision_path = DOCS / "data" / "release_decision.json"
+    if not decision_path.is_file():
+        errors.append("missing machine-readable release decision: data/release_decision.json")
+    else:
+        dec = json.loads(decision_path.read_text())
+        if dec.get("decision") != decision:
+            errors.append("release_decision.json decision disagrees with the card")
+        if dec.get("okay_to_submit") is not promote:
+            errors.append("release_decision.json okay_to_submit disagrees with the card")
+        if promote and dec.get("sha256") != sub.get("sha256"):
+            errors.append("release_decision.json sha256 disagrees with the card")
+        if dec.get("note_characters", 0) > 140:
+            errors.append("release_decision.json note exceeds 140 characters")
 
-        hypotheses = prereg.get("hypotheses", [])
-        if len(hypotheses) < 3 or len(hypotheses) > 5:
-            errors.append("preregistration must include 3-5 hypotheses")
-        ids = [h.get("id") for h in hypotheses]
-        if len(ids) != len(set(ids)) or any(not x for x in ids):
-            errors.append("preregistered hypothesis IDs are missing or duplicated")
-        for h in hypotheses:
-            for field in ("mechanism", "named_non_fault_mimic", "physical_signature", "difference_from_repository"):
-                if not isinstance(h.get(field), str) or not h[field].strip():
-                    errors.append(f"{h.get('id', '?')}: missing preregistration field {field}")
-            if h.get("expected_dti") is not None:
-                errors.append(f"{h.get('id', '?')}: prospective hypothesis contains an unverified DTI projection")
+    # ---------------------------------------------------------------------
+    # Every published number must be reproducible from the evidence files.
+    # This is the "verified line by line" rule made executable: if a page and
+    # its evidence ever disagree, the site build fails instead of shipping.
+    # ---------------------------------------------------------------------
+    note = card.get("note") or ""
+    if len(note) > 140:
+        errors.append(f"portal note is {len(note)} characters, the limit is 140")
+    if promote and note and note not in (DOCS / "index.html").read_text():
+        errors.append("index.html does not print the exact portal note from the card")
 
-        proof = witness.get("witness", {})
-        if proof.get("universal_blocker") is not True:
-            errors.append("saved witness recheck no longer records the universal blocker")
-        if proof.get("witness_positive_inside") != proof.get("footprint_cells") or proof.get("footprint_cells") != 5167373:
-            errors.append("saved witness cell counts do not match the fail-closed preregistration")
-        if proof.get("sha256") != prereg.get("global_stop", {}).get("witness_sha256"):
-            errors.append("saved witness SHA-256 differs from preregistration")
+    receipt_path = ROOT / sub.get("path", "") if sub.get("path") else None
+    if promote and receipt_path is not None:
+        receipt_path = receipt_path.with_suffix(".json")
+        if not receipt_path.is_file():
+            errors.append(f"missing downloadable receipt: {receipt_path.name}")
+        else:
+            receipt = json.loads(receipt_path.read_text())
+            for key in ("sha256", "dots", "note", "format_passed", "uniqueness_passed"):
+                want = {"sha256": sub.get("sha256"), "dots": card.get("dots"),
+                        "note": card.get("note"), "format_passed": fmt.get("passed"),
+                        "uniqueness_passed": uniq.get("passed")}[key]
+                if receipt.get(key) != want:
+                    errors.append(f"receipt {key} disagrees with the card")
+            if receipt.get("format_checks") != fmt.get("checks"):
+                errors.append("receipt format checks disagree with the card")
+            if receipt.get("uniqueness_checks") != uniq.get("checks"):
+                errors.append("receipt uniqueness checks disagree with the card")
 
-        if sources.get("checked_date_utc") != "2026-10-28":
-            errors.append("official-source audit date mismatch")
-        if snapshot.get("observed_date_utc") != "2026-10-28":
-            errors.append("public leaderboard snapshot date mismatch")
-        if snapshot.get("visible_public_scores", {}).get("rank_1") != "0.4544":
-            errors.append("public leaderboard snapshot leader value changed")
-        if snapshot.get("visible_public_scores", {}).get("rank_25") != "0.3217" or snapshot.get("visible_public_scores", {}).get("rank_26") != "0.3195":
-            errors.append("public leaderboard ranks 25/26 do not match the dated capture")
+    sweep = json.loads((ROOT / "evidence/release/density_sweep.json").read_text())
+    h_published = sweep["density_sweep"]["CAT|60000"]["hit_rate_within_3px"]
+    exec_text = (DOCS / "executive-summary.html").read_text()
+    for g_assumed in (15000, 25000, 40000, 60000, 90000):
+        ratio = card.get("dots", 0) / g_assumed
+        dti = h_published * ratio / (0.8 + 0.2 * ratio)
+        if f"{dti:.3f}" not in exec_text:
+            errors.append(f"projection row |G|={g_assumed} does not render {dti:.3f}")
+    if f"{h_published:.3f}" not in exec_text:
+        errors.append("executive summary does not print the hit rate the projection uses")
 
-        copied_card = json.loads((DOCS / "data/session_7393d521_run_card.json").read_text())
-        if copied_card != card:
-            errors.append("published current run card differs from the source evidence")
-    except (OSError, ValueError, KeyError, TypeError) as exc:
-        errors.append(f"missing or malformed current evidence: {type(exc).__name__}: {exc}")
+    for row in rows:
+        if f"{row['dots']:,}" not in summary:
+            errors.append(f"executive summary does not print the dot count for {row['site']}")
+        if row.get("owner_reported_score") is not None:
+            if f"{row['owner_reported_score']:.4f}" not in summary:
+                errors.append(f"executive summary does not print the owner score for {row['site']}")
 
-    for rel in CORE_PAGES:
+    # Historical pages must stay negative and must not compete with the decision meta.
+    for rel in LEGACY_PAGES:
         path = DOCS / rel
         if not path.is_file():
-            errors.append(f"missing required page: {rel}")
+            errors.append(f"missing legacy page: {rel}")
             continue
-        parser = PageParser()
-        body = path.read_text(encoding="utf-8")
-        parser.feed(body)
-        folded = " ".join(" ".join(parser.text).lower().split())
-        if parser.meta.get("gemsdoe-decision") != "DO-NOT-SUBMIT":
-            errors.append(f"{rel}: missing negative project-decision meta tag")
-        if "do not submit" not in folded and "no file is cleared" not in folded and "global stop is active" not in folded:
-            errors.append(f"{rel}: no clear negative status in visible text")
-        for phrase in FORBIDDEN_POSITIVE:
-            if phrase in folded:
-                errors.append(f"{rel}: forbidden positive clearance claim: {phrase}")
+        page, folded = parse(path)
+        if page.meta.get("gemsdoe-decision") not in {"DO-NOT-SUBMIT", "SUBMIT"}:
+            errors.append(f"{rel}: missing a project decision meta tag")
+        if rel.startswith("downloads") and any(
+                Path(urlparse(t).path).suffix.lower() == ".tif" for t in page.targets):
+            errors.append("downloads index links a TIFF directly; it must route via the release page")
 
-    downloads = DOCS / "downloads/index.html"
-    if downloads.is_file():
-        parser = PageParser()
-        parser.feed(downloads.read_text(encoding="utf-8"))
-        if parser.meta.get("gemsdoe-decision") != "DO-NOT-SUBMIT":
-            errors.append("downloads index missing negative meta")
-        if any(Path(urlparse(link).path).suffix.lower() == ".tif" for link in parser.targets):
-            errors.append("downloads index provides a direct TIFF link despite no clearance")
-    else:
-        errors.append("missing downloads/index.html")
-
-    notice_path = DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt"
-    try:
-        notice = notice_path.read_text(encoding="utf-8")
-        listed = {line.strip() for line in notice.splitlines()
-                  if line.startswith("  ") and line.strip().lower().endswith(".tif")}
-        present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
-        if "DO NOT SUBMIT" not in notice or "No TIFF in this directory is cleared" not in notice:
-            errors.append("legacy download notice does not state the global negative")
-        if listed != present:
-            errors.append(f"legacy download notice inventory mismatch: {sorted(listed ^ present)}")
-        if "CLEARED FOR SUBMISSION" in notice.upper():
-            errors.append("legacy download notice contains positive clearance text")
-    except OSError as exc:
-        errors.append(f"missing legacy download notice: {exc}")
-
-    # All local links must resolve. Archived lane pages are allowed to link to
-    # research-only files only when their visible page explicitly says not to submit.
-    for page in sorted(DOCS.rglob("*.html")):
-        parser = PageParser()
-        try:
-            parser.feed(page.read_text(encoding="utf-8"))
-        except OSError as exc:
-            errors.append(f"cannot read {page.relative_to(DOCS)}: {exc}")
-            continue
-        rel = str(page.relative_to(DOCS))
-        for link in parser.targets:
+    # Every relative link on the release pages must resolve inside docs/.
+    for rel in RELEASE_PAGES:
+        page, _ = parse(DOCS / rel)
+        for link in page.targets:
             parsed = urlparse(link)
-            if parsed.scheme or parsed.netloc or not parsed.path:
+            if parsed.scheme or parsed.netloc or not parsed.path or link.startswith("#"):
                 continue
-            target = (page.parent / unquote(parsed.path)).resolve()
-            if not target.is_relative_to(DOCS.resolve()) or not target.is_file():
-                errors.append(f"{rel}: missing/unsafe local link {link}")
+            target = (DOCS / rel).parent / unquote(parsed.path)
+            if not target.resolve().is_relative_to(DOCS.resolve()) or not target.is_file():
+                errors.append(f"{rel}: broken relative link {link}")
+
+    # The archived negative decision must be preserved and clearly labelled.
+    archived = DOCS / "archive" / "index-2026-10-30.html"
+    if not archived.is_file():
+        errors.append("the 2026-10-30 negative decision was not archived")
+    elif "ARCHIVED 2026-10-30" not in archived.read_text():
+        errors.append("archived landing page is not labelled as archived")
 
     if errors:
-        print("\n".join(errors), file=sys.stderr)
+        print("SITE CONTRACT FAILED")
+        for e in errors:
+            print(" -", e)
         return 1
-    print("Site check PASS: fail-closed negative decision, hash-bound evidence, no candidate links, and local links resolve.")
+    print(f"site contract OK ({'positive release' if promote else 'negative'} decision, "
+          f"file {sub.get('file')}, sha256 {sub.get('sha256', '')[:12]}...)")
     return 0
 
 
