@@ -1,6 +1,21 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-## Start here — 2026-10-29 executive summary
+## Start here — 2026-10-31 (latest)
+
+**Read first: [knowledge/review-2026-10-31-session.md](knowledge/review-2026-10-31-session.md)**
+(official-source check, focus-site table, GEMSDOE32 analysis, irregularities, owner decision).
+
+- **Decision: DO NOT DOWNLOAD OR SUBMIT. No TIFF is cleared.** No candidate, holdout, or slot in this session.
+- **Official leaderboard (fetched 2026-10-31):** #1 **0.4544**, #2 0.3925, #3 0.3917. The brief's
+  0.4413 / 0.3195 figures do not match this page (IR-31-04).
+- **Two protocol blockers remain, and both need an owner decision:** (1) the literal per-raster 70% uniqueness
+  rule cannot be met (the 13GEMSDOE lattice leaves 0.14% of the footprint free); (2) the literal dense-witness
+  definition contradicts the repo's own code comment. Options A/B/C are in §6 of the review.
+- **Fixed this session:** three uninventoried TIFFs in `docs/downloads/` were added to the do-not-submit
+  notice (IR-31-01), and `scripts/check_site.py` now passes. Two wording tests still fail (IR-31-03, open).
+- **Run card:** [evidence/session_2026-10-31_run_card.json](evidence/session_2026-10-31_run_card.json) (negative, 0 experiments).
+
+## Previous — 2026-10-29 executive summary
 
 **Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
 (nine-site table with file, owner-reported score, projection, uniqueness, and decision).
