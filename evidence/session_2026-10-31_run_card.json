@@ -1,0 +1,58 @@
+{
+  "schema": "gems-run-card-v1",
+  "session": "2026-10-31",
+  "branch": "arena/33eb077e-wbggemsdoe3",
+  "base_commit": "b245a327546900629bda6de25eac49c358f89c86",
+  "verdict": "negative",
+  "decision": "DO-NOT-SUBMIT",
+  "okay_to_download_or_submit": false,
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout": {
+    "run": false,
+    "label": "HOLDOUT-DTI",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "reason_not_run": "Labels not present in sandbox (DrivenData login-walled; Dropbox unreachable, HTTP 000). Literal uniqueness and witness gates still active."
+  },
+  "correlation_and_overlap": {
+    "run": false,
+    "surface_rank_correlation_max": null,
+    "final_dot_overlap_max_3px": null,
+    "reference_measurement": "evidence/uniqueness_coverage_2026-10-28.json (prior session, not recomputed): footprint within 3 px of any of 457 submissions = 1.0; binding comparator 13GEMSDOE lattice free fraction 0.001375."
+  },
+  "raster": {
+    "generated": false,
+    "sha256": null,
+    "validator": null
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "weekly_slot_used": false,
+    "selector_action": false
+  },
+  "experiments_run": 0,
+  "budget": {"max_experiments": 3, "max_hours": 2, "used_experiments": 0},
+  "official_checks": [
+    {"claim": "Predictions float32 in [0,1]; outside bounds null or nan", "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/", "verified_2026_10_31": true},
+    {"claim": "Top public DW-Tversky 0.4544 (xiaofanhu); #2 0.3925; #3 0.3917", "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/", "verified_2026_10_31": true},
+    {"claim": "Data page login-walled from this sandbox", "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/", "verified_2026_10_31": false, "note": "Prior sessions recorded redirect to login; not re-fetched this session."}
+  ],
+  "validator_output": {
+    "run": true,
+    "check_site": "PASS (scripts/check_site.py exit 0)",
+    "pytest": "257 passed, 4 skipped, 2 failed (IR-31-03, wording/heading drift)",
+    "nan_inside_footprint_check": null,
+    "value_range_check": null,
+    "crs_shape_transform_check": null
+  },
+  "irregularities": ["IR-31-01 fixed", "IR-31-02 open", "IR-31-03 open", "IR-31-04 open", "IR-31-05 open", "IR-31-06 open", "IR-31-07 open", "IR-31-08 open"],
+  "reviewed_files": [
+    "README.md", "AGENTS.md", "PROJECT_PROMPT.md", "docs/data/release_gate.json",
+    "knowledge/review-2026-10-31-session.md"
+  ]
+}
