@@ -74,9 +74,9 @@ def test_uniqueness_claims_within_protocol_limits():
 def test_historical_lane_pages_do_not_recommend_submission():
     for name in ("index.html", "how-to-submit.html"):
         body = (ROOT / "docs/session-1f0b051d" / name).read_text()
-        assert "Global release gate: DO NOT SUBMIT" in body
+        assert "DO NOT SUBMIT this lane" in body and "this lane: DO NOT SUBMIT" in body
         assert "research only" in body.lower()
-        assert "../data/session_1f0b051d_run_card.json" in body
+        assert "../data/release_gate.json" in body
         assert "submit it only as" not in body.lower()
     # The historical file and its actual hash remain available for reproducibility.
     assert (ROOT / "submission" / NAME).is_file()

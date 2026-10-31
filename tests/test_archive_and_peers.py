@@ -42,9 +42,9 @@ def test_old_lst1_pages_are_unambiguously_research_only():
     for name in ('index.html','summary.html','how-to-submit.html','why.html',
                  'hypotheses.html','evidence.html','limitations.html'):
         body = (pages/name).read_text()
-        assert 'No competition file is cleared.' in body
-        assert 'Do not submit' in body and '100% witness overlap' in body
-        assert 'portal acceptance' in body
+        assert 'DO NOT SUBMIT this lane' in body
+        assert 'research only' in body.lower()
+        assert 'does not' in body and 'clear anything' in body
     assert not (pages/'downloads').exists()
     assert not (pages/'lst1_run_card.json').exists()
     assert (ROOT/'submission').exists()  # archival bytes have not been deleted

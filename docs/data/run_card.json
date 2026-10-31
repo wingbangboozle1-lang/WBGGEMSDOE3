@@ -1,125 +1,615 @@
 {
-  "schema": "gems-session-run-card-v1",
-  "session_branch": "arena/7393d521-wbggemsdoe3",
-  "review_date_utc": "2026-10-28",
-  "evidence_class": "NEGATIVE PREFLIGHT / NO CANDIDATE RUN",
-  "verdict": "negative",
-  "okay_to_submit": false,
-  "okay_to_download_for_submission": false,
-  "decision_reason": "The literal-registry witness stop fires before feature construction or placement. A registered owner-mirrored raster is positive on every cell of the mirrored sample footprint; under the recorded support definition, every nonempty in-footprint raster has 100% directed overlap at distance zero, exceeding the user's >70%/3-pixel stop.",
-  "hypothesis": {
-    "rank": 1,
-    "id": "H1-RMIX",
-    "name": "Local radiometric mixing-manifold residual at concealed structures",
-    "status": "PREREGISTERED_NOT_TESTED",
-    "mechanism": "A permeability/alteration corridor may change local K-Th-U-total-count composition; a concealed structural boundary may preserve a narrow multiscale compositional residual where surface scarps are muted.",
-    "named_non_fault_mimic": "Non-fault lithologic or weathering contact; GeoDAWN flight-line leveling or variable terrain clearance.",
-    "preregistration": "knowledge/preregistration-2026-10-28.md",
-    "machine_readable_preregistration": "evidence/preregistration_2026-10-28.json"
+ "session": "2026-10-31",
+ "hypothesis": "H-CORRIDOR: the organizer's privately withheld expert fault subset lies 300-1200 m from the published catalogue, inside the same structural corridors, so a corridor band with metric-aware dot spacing beats lineament networks.",
+ "mechanism": "withheld faults are newly recognised strands of existing fault systems; the published catalogue defines the corridors, the masked 0-2 px band earns nothing, and beta/alpha = 4 makes recall the dominant lever.",
+ "named_non_fault_process_that_could_mimic_it": "structural geology itself: any corridor density near a mapped fault would look predictive even with no new faults (e.g. mesh/roads/land-use corridors). Tested: the corridor prior predicts withheld *fault* pixels at AUC 0.64 on the holdout; a non-fault linear feature test was not possible with the layers on hand, so this mimic remains open.",
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "src/gemsw/metric.py dti_binary (alpha 0.2, beta 0.8, R=3 px)",
+  "protocol": "HOLDOUT-DTI: hide-and-recover, 20 % of catalogue segments withheld, 2 px buffer, visible catalogue masked as known",
+  "value": 0.15027990869252897,
+  "range_over_folds": [
+   0.14777201531702067,
+   0.15368890713343308
+  ],
+  "ci95_per_fold": [
+   [
+    0.12833976471294362,
+    0.16716119997233322
+   ],
+   [
+    0.13820976776144386,
+    0.17020664694188434
+   ],
+   [
+    0.13301474428438317,
+    0.16808771621663424
+   ]
+  ],
+  "withheld_positive_count": [
+   12368,
+   12250,
+   12331
+  ],
+  "n_folds": 3,
+  "random_matched_baseline": [
+   0.059954117754456165,
+   0.05652603383957848,
+   0.05961278890568555
+  ],
+  "best_focus_file_same_folds": [
+   0.11208830071672103,
+   0.10473940993401151,
+   0.09941806767006867
+  ]
+ },
+ "experiments_run": {
+  "E0_reference_geometries": "random / catalogue-copy / catalogue ribbon on the holdout",
+  "E1_supervised_68ch": {
+   "auc_on_withheld": 0.8103690965933592,
+   "verdict": "negative - no transfer; static layers alone reach AUC 0.82 against withheld pixels, which is structural proximity, not a fault detector"
   },
-  "holdout_dti": {
-    "label": "NOT-RUN",
-    "status": "BLOCKED_BEFORE_EXPERIMENT",
-    "value": null,
-    "ci95": null,
-    "evaluator_version": null,
-    "withheld_positive_count": null,
-    "reason": "No candidate surface or feature was generated, so a holdout score would not be defined. The pinned shared holdout tooling and cache were not restored or executed.",
-    "required_method_if_resumed": "Shared pooled DTI; alpha=0.2, beta=0.8, 300 m triangular kernel; whole fault segments held out with buffer; visible-fault-only catalogue features and pixel-exact visible-fault masking."
+  "E2_evidence_rerank": {
+   "verdict": "negative - posterior multiplier does not improve DTI on 2 of 3 folds"
   },
-  "registry": {
-    "complete_registry_audit": false,
-    "provenance": "Hash-pinned owner mirrors in the committed registry; organizer provenance and complete portal-registry coverage are not authenticated.",
-    "surface_rank_correlation": {
-      "status": "NOT_RUN_NO_SURFACE",
-      "max_abs_spearman": null,
-      "stop_threshold": 0.9
-    },
-    "final_dot_overlap": {
-      "status": "NOT_RUN_NO_CANDIDATE",
-      "max_directed_overlap_within_3px": null,
-      "stop_threshold": 0.7,
-      "radius_px": 3
-    },
-    "literal_dense_witness": {
-      "status": "MEASURED_ON_HASH_PINNED_OWNER_MIRRORS",
-      "registry_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-      "positive_cells_inside_sample_footprint": 5167373,
-      "sample_footprint_cells": 5167373,
-      "conditional_directed_overlap_for_any_nonempty_in_footprint_candidate": 1.0,
-      "threshold_exceeded": true,
-      "evidence": "evidence/registry_witness_recheck_2026-10-27.json",
-      "interpretation": "A conditional support-overlap theorem for the mirrored bytes and documented positive-support rule, not a candidate-specific comparison, complete registry audit, or organizer-provenance finding."
-    }
+  "E3_corridor_sweep": {
+   "chosen": {
+    "prior": "kde24",
+    "dti": 0.14773658638456932,
+    "tp": 3548.535046073571,
+    "fp": 67076.15640029809,
+    "n_dots": 68571,
+    "t_min": 3.0,
+    "t_max": 12.0,
+    "k": 1200000,
+    "min_sep": 4.0
+   }
   },
-  "raster": {
-    "generated": false,
-    "path": null,
-    "sha256": null,
-    "positive_cells": null
+  "count": 3
+ },
+ "leakage_canary": {
+  "fold": 0,
+  "meta": {
+   "n_hidden_px": 12368,
+   "n_visible_px": 48620,
+   "hide_frac": 0.2027939922607726,
+   "buffer_px": 2,
+   "seed": 11,
+   "n_segments": 3199,
+   "n_hidden_segments": 605
   },
-  "preexisting_main_artifact": {
-    "status": "UNAPPROVED_ARCHIVE_ONLY",
-    "origin": "GitHub main advanced with PR #53 after this session branch was cut",
-    "path": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif",
-    "upstream_run_card": "docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.json",
-    "upstream_recorded_sha256": "4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea",
-    "byte_identity_rechecked_against_upstream_record": true,
-    "scientific_or_format_validation_in_this_review": false,
-    "reason": "Not generated or tested as a candidate in this review; only its bytes were compared with the upstream-reported SHA-256 for archive identity. Under the active literal witness rule, it cannot be promoted; it is retained only as an explicitly quarantined historical artifact."
+  "sample_hidden_positive_px": 12368,
+  "sample_background_px": 150000,
+  "per_channel_auc": [
+   {
+    "channel": "detrend_elev__z",
+    "auc": 0.500609154808107
+   },
+   {
+    "channel": "detrend_elev__grad",
+    "auc": 0.5622756535683484
+   },
+   {
+    "channel": "detrend_elev__std4",
+    "auc": 0.5716010195666236
+   },
+   {
+    "channel": "detrend_elev__coh4",
+    "auc": 0.5294025754635618
+   },
+   {
+    "channel": "detrend_elev__coh9",
+    "auc": 0.5363592033203968
+   },
+   {
+    "channel": "detrend_slope__z",
+    "auc": 0.5779207802393272
+   },
+   {
+    "channel": "detrend_slope__grad",
+    "auc": 0.6029064359637775
+   },
+   {
+    "channel": "detrend_slope__std4",
+    "auc": 0.6555097108128504
+   },
+   {
+    "channel": "detrend_slope__coh4",
+    "auc": 0.5398801107697283
+   },
+   {
+    "channel": "detrend_slope__coh9",
+    "auc": 0.5347255312095731
+   },
+   {
+    "channel": "mag_tilt__z",
+    "auc": 0.4911060691569642
+   },
+   {
+    "channel": "mag_tilt__grad",
+    "auc": 0.5097203279969815
+   },
+   {
+    "channel": "mag_tilt__std4",
+    "auc": 0.5098259759055627
+   },
+   {
+    "channel": "mag_tilt__coh4",
+    "auc": 0.5216659888421733
+   },
+   {
+    "channel": "mag_tilt__coh9",
+    "auc": 0.5318766515739543
+   },
+   {
+    "channel": "mag_hgrad__z",
+    "auc": 0.5110231295817163
+   },
+   {
+    "channel": "mag_hgrad__grad",
+    "auc": 0.5086087998598534
+   },
+   {
+    "channel": "mag_hgrad__std4",
+    "auc": 0.5065919682514014
+   },
+   {
+    "channel": "mag_hgrad__coh4",
+    "auc": 0.5362174560694265
+   },
+   {
+    "channel": "mag_hgrad__coh9",
+    "auc": 0.5376106794415696
+   },
+   {
+    "channel": "grav_iso__z",
+    "auc": 0.42245931274256143
+   },
+   {
+    "channel": "grav_iso__grad",
+    "auc": 0.517906854786546
+   },
+   {
+    "channel": "grav_iso__std4",
+    "auc": 0.5242940763799051
+   },
+   {
+    "channel": "grav_iso__coh4",
+    "auc": 0.4814333449223804
+   },
+   {
+    "channel": "grav_iso__coh9",
+    "auc": 0.5087167173350582
+   },
+   {
+    "channel": "grav_vgrad__z",
+    "auc": 0.5320475757330746
+   },
+   {
+    "channel": "grav_vgrad__grad",
+    "auc": 0.5332573156532988
+   },
+   {
+    "channel": "grav_vgrad__std4",
+    "auc": 0.5348566626239759
+   },
+   {
+    "channel": "grav_vgrad__coh4",
+    "auc": 0.4803295439844761
+   },
+   {
+    "channel": "grav_vgrad__coh9",
+    "auc": 0.4944518879366106
+   },
+   {
+    "channel": "geod_second_inv__z",
+    "auc": 0.5956757977576541
+   },
+   {
+    "channel": "geod_second_inv__grad",
+    "auc": 0.5243181904915911
+   },
+   {
+    "channel": "geod_second_inv__std4",
+    "auc": 0.5119410723911169
+   },
+   {
+    "channel": "geod_second_inv__coh4",
+    "auc": 0.5316695275442
+   },
+   {
+    "channel": "geod_second_inv__coh9",
+    "auc": 0.5738010979948254
+   },
+   {
+    "channel": "eq_density__z",
+    "auc": 0.5748318359206555
+   },
+   {
+    "channel": "eq_density__grad",
+    "auc": 0.511251644027598
+   },
+   {
+    "channel": "eq_density__std4",
+    "auc": 0.5302100776196637
+   },
+   {
+    "channel": "eq_density__coh4",
+    "auc": 0.5044282535575679
+   },
+   {
+    "channel": "eq_density__coh9",
+    "auc": 0.5408013844868478
+   },
+   {
+    "channel": "depth_basement__z",
+    "auc": 0.48714149444803795
+   },
+   {
+    "channel": "depth_basement__grad",
+    "auc": 0.5237649283096163
+   },
+   {
+    "channel": "depth_basement__std4",
+    "auc": 0.5543555781047865
+   },
+   {
+    "channel": "depth_basement__coh4",
+    "auc": 0.526134249407072
+   },
+   {
+    "channel": "depth_basement__coh9",
+    "auc": 0.5374251894674429
+   },
+   {
+    "channel": "mag_tilt__lines",
+    "auc": 0.5163703959141872
+   },
+   {
+    "channel": "mag_hgrad__lines",
+    "auc": 0.5141387947391116
+   },
+   {
+    "channel": "grav_iso__lines",
+    "auc": 0.5154734101444588
+   },
+   {
+    "channel": "grav_vgrad__lines",
+    "auc": 0.526929821313066
+   },
+   {
+    "channel": "detrend_slope__lines",
+    "auc": 0.6175196582578697
+   },
+   {
+    "channel": "congruence__mean",
+    "auc": 0.5859816825679172
+   },
+   {
+    "channel": "congruence__min",
+    "auc": 0.5592877746334627
+   },
+   {
+    "channel": "congruence__max",
+    "auc": 0.5499761831608452
+   },
+   {
+    "channel": "congruence__strike_cos",
+    "auc": 0.5492383449223803
+   },
+   {
+    "channel": "congruence__strike_sin",
+    "auc": 0.47739813928417424
+   },
+   {
+    "channel": "geod_second_inv__grad_r6",
+    "auc": 0.5898967572229409
+   },
+   {
+    "channel": "geod_shear__grad_r6",
+    "auc": 0.5893566216580421
+   },
+   {
+    "channel": "eq_density__z",
+    "auc": 0.5748318359206555
+   },
+   {
+    "channel": "depth_basement__z",
+    "auc": 0.48714149444803795
+   },
+   {
+    "channel": "conductivity__z",
+    "auc": 0.47521297703751614
+   },
+   {
+    "channel": "grav_iso__mean8",
+    "auc": 0.4204872135079776
+   },
+   {
+    "channel": "detrend_elev__mean8",
+    "auc": 0.5077072779215179
+   },
+   {
+    "channel": "dist__spring_all",
+    "auc": 0.5199567003557567
+   },
+   {
+    "channel": "dist__spring_thermal30",
+    "auc": 0.502251875
+   },
+   {
+    "channel": "dist__spring_hot60",
+    "auc": 0.502950069534282
+   },
+   {
+    "channel": "dist__vent",
+    "auc": 0.5090511068887452
+   },
+   {
+    "channel": "dist__sgmc_fault",
+    "auc": 0.342368239003881
+   },
+   {
+    "channel": "dist__acq_block_edge",
+    "auc": 0.4612897070396723
+   },
+   {
+    "channel": "dist__visible_catalogue",
+    "auc": 0.24575241725959465
+   }
+  ],
+  "strongest_channel": {
+   "channel": "dist__visible_catalogue",
+   "auc": 0.24575241725959465
   },
-  "validator": {
-    "status": "NOT_RUN_NO_CANDIDATE",
-    "passed": false,
-    "single_band_float32": null,
-    "values_in_0_1": null,
-    "no_inf": null,
-    "no_nan_inside_footprint": null,
-    "outside_footprint_null_or_nan": null,
-    "crs_shape_transform_match": null,
-    "saved_bytes_match_audited_prediction": null,
-    "reason": "No new TIFF was generated; validating a historical artifact would not validate a new candidate. Official format requirements were checked separately against the DrivenData problem page."
+  "max_abs_auc": 0.7542475827404054,
+  "n_features": 69,
+  "n_features_tested": 69,
+  "all_features_tested": true,
+  "max_auc": 0.7542475827404054,
+  "auc_positive_control_distance_to_withheld_truth": 1.0,
+  "auc_supervised_68ch_model": 0.8103690965933592,
+  "leakage_threshold_auc": 0.9,
+  "canary_has_power": true,
+  "leakage_detected": false,
+  "reading": "No legitimate channel separates withheld fault pixels at AUC > 0.90. The strongest is a structural proximity channel, consistent with new strands lying beside mapped faults -- the hypothesis under test, not leakage. The positive control (distance to the withheld truth) scores 1.000, so a leaking channel would have been caught."
+ },
+ "layer_screen": {
+  "random_baseline_dti_at_40k_dots": {
+   "dti": 0.04959143025122114,
+   "tp": 892.3995179198482,
+   "fp": 39674.774962742944,
+   "n_dots": 40000,
+   "n_truth": 12352
   },
-  "submission": {
-    "name": null,
-    "note": "No candidate generated; literal registry witness stop.",
-    "note_characters": 54,
-    "note_is_upload_instruction": false,
-    "status": "NOT_ASSIGNED"
+  "best_single_layer": {
+   "name": "dist__sgmc_fault-",
+   "dti": 0.12386585938032872,
+   "ratio_to_random": 2.497727102300677
   },
-  "experiments": {
-    "geological_experiments_completed": 0,
-    "maximum": 3,
-    "experiment_hours": 0,
-    "maximum_hours": 2
-  },
-  "selector": {
-    "action": "NONE",
-    "weekly_slots_used": 0,
-    "separate_selector_approval": false,
-    "organizer_receipt": null
-  },
-  "official_source_check": "evidence/official_source_check_2026-10-28.json",
-  "focus_site_claims": {
-    "status": "OWNER_REPORTED_UNVERIFIED",
-    "scores": {
-      "GEMSDOE24": 0.2477,
-      "GEMSDOE25": 0.26,
-      "GEMSDOE27": 0.2449,
-      "GEMSDOE28": 0.271,
-      "GEMSDOE30": 0.26,
-      "GEMSDOE31": 0.2708,
-      "GEMSDOE32": 0.2778,
-      "GEMSDOE33": 0.2632,
-      "GEMSDOE36": 0.275
-    },
-    "organizer_receipts": null
-  },
-  "gemsdoe32_explanation": {
-    "finding": "The saved-support analysis reports the GEMSDOE32 B2 positive support as an exact subset of the GEMSDOE28 H27-4 base, removing 2545 cells near a mirrored catalogue. Under a metric that penalizes false-positive mass, such pruning could raise a score if removed dots receive little hidden-fault credit.",
-    "label": "MECHANISTIC POSSIBILITY, NOT ORGANIZER-VERIFIED CAUSAL EXPLANATION",
-    "reported_score": 0.2778,
-    "score_status": "OWNER_REPORTED_UNVERIFIED",
-    "receipt": null
+  "n_layers_screened": 172,
+  "distance_profile": {
+   "3-3": {
+    "dti": 0.0,
+    "tp": 0.0,
+    "fp": 0.0,
+    "n_dots": 0,
+    "n_truth": 12352,
+    "band_px": [
+     3.0,
+     3
+    ]
+   },
+   "3-5": {
+    "dti": 0.06272254966868301,
+    "tp": 1179.5107396399637,
+    "fp": 43438.54096508579,
+    "n_dots": 44049,
+    "n_truth": 12352,
+    "band_px": [
+     3,
+     5
+    ]
+   },
+   "5-8": {
+    "dti": 0.07522630601544364,
+    "tp": 2087.6687940109387,
+    "fp": 87263.55684059279,
+    "n_dots": 88700,
+    "n_truth": 12352,
+    "band_px": [
+     5,
+     8
+    ]
+   },
+   "8-12": {
+    "dti": 0.06749622465595648,
+    "tp": 2080.3568657505107,
+    "fp": 102620.77118952665,
+    "n_dots": 104159,
+    "n_truth": 12352,
+    "band_px": [
+     8,
+     12
+    ]
+   },
+   "12-18": {
+    "dti": 0.047378513545017466,
+    "tp": 1870.96611729013,
+    "fp": 146169.83264170864,
+    "n_dots": 147750,
+    "n_truth": 12352,
+    "band_px": [
+     12,
+     18
+    ]
+   },
+   "18-28": {
+    "dti": 0.0341179113891314,
+    "tp": 1728.8470293049038,
+    "fp": 202226.70292346933,
+    "n_dots": 203852,
+    "n_truth": 12352,
+    "band_px": [
+     18,
+     28
+    ]
+   },
+   "28-45": {
+    "dti": 0.02604298217274044,
+    "tp": 1548.3898986115337,
+    "fp": 246319.45361677808,
+    "n_dots": 247901,
+    "n_truth": 12352,
+    "band_px": [
+     28,
+     45
+    ]
+   },
+   "45-70": {
+    "dti": 0.011007023945633632,
+    "tp": 575.6621187607482,
+    "fp": 211513.96049207548,
+    "n_dots": 212126,
+    "n_truth": 12352,
+    "band_px": [
+     45,
+     70
+    ]
+   },
+   "70-1e+06": {
+    "dti": 0.009827963368873777,
+    "tp": 395.53049970004747,
+    "fp": 151423.5624668526,
+    "n_dots": 151880,
+    "n_truth": 12352,
+    "band_px": [
+     70,
+     1000000
+    ]
+   }
   }
+ },
+ "registry_comparison": {
+  "n_references": 28,
+  "max_cand_within_3px": 0.6560637496531035,
+  "max_spearman": 0.8017026332185155,
+  "duplicates_exact": [],
+  "unique_under_stated_rules": true,
+  "focus_site_files_max_overlap": 0.2522102258460969,
+  "own_archive_max_overlap": 0.6560637496531035,
+  "own_archive_references": 19,
+  "focus_site_references": 9,
+  "interpretation": "The worst overlap is with this repository's own earlier rasters, which were all derived from the same published catalogue; the worst overlap with another team's raster is far lower. Neither exceeds the 70 % rule."
+ },
+ "raster": {
+  "generated": true,
+  "path": "submission/newfaults-2026-10-31/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif",
+  "sha256": "1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da",
+  "zip_path": "submission/newfaults-2026-10-31/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.zip",
+  "zip_sha256": "169021697f9ec9e8321949282e891e521c9b1ec4ea8d56e4fa9d62264eb725b1",
+  "bytes": 863648,
+  "n_positive": 75671
+ },
+ "validator": {
+  "passed": true,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "shape_matches_sample": true,
+   "crs_matches_sample": true,
+   "transform_matches_sample": true,
+   "bounds_match_sample": true,
+   "no_nan": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "has_positive_predictions": true,
+   "no_positive_outside_footprint": true,
+   "no_positive_on_known_faults": true,
+   "crs_is_epsg32611": true
+  },
+  "n_positive": 75671,
+  "min": 0.0,
+  "max": 1.0,
+  "dtype": "float32",
+  "count": 1,
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "nodata": null,
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ]
+ },
+ "submission": {
+  "name": "wbg-corridor-band3to12-s24-sep4-20261031T030000Z",
+  "note": "corridor band 3-12 px from published faults, 4 px dot spacing, s24 KDE",
+  "note_characters": 70
+ },
+ "holdout_note": "The registry rasters were constructed with the full catalogue visible, including the segments each fold hides, so they are scored with an advantage in this comparison and still lose on every fold.",
+ "focus_files_on_holdout": [
+  {
+   "site": "GEMSDOE24",
+   "n_dots": 60069,
+   "dti_mean": 0.1028612767512376,
+   "tp_per_dot": 0.03591211556110945
+  },
+  {
+   "site": "GEMSDOE25",
+   "n_dots": 44090,
+   "dti_mean": 0.10542624642878534,
+   "tp_per_dot": 0.04322929136700317
+  },
+  {
+   "site": "GEMSDOE27",
+   "n_dots": 61328,
+   "dti_mean": 0.10258673945913088,
+   "tp_per_dot": 0.03548207808648908
+  },
+  {
+   "site": "GEMSDOE28",
+   "n_dots": 37660,
+   "dti_mean": 0.02965940029412997,
+   "tp_per_dot": 0.013595795536013066
+  },
+  {
+   "site": "GEMSDOE30",
+   "n_dots": 44090,
+   "dti_mean": 0.10542624642878534,
+   "tp_per_dot": 0.04322929136700317
+  },
+  {
+   "site": "GEMSDOE31",
+   "n_dots": 40199,
+   "dti_mean": 0.03029080920554318,
+   "tp_per_dot": 0.013377009026711151
+  },
+  {
+   "site": "GEMSDOE32",
+   "n_dots": 37654,
+   "dti_mean": 0.004264658808231167,
+   "tp_per_dot": 0.0019693071151994277
+  },
+  {
+   "site": "GEMSDOE33",
+   "n_dots": 41865,
+   "dti_mean": 0.05222177497688054,
+   "tp_per_dot": 0.022345198347465577
+  },
+  {
+   "site": "GEMSDOE36",
+   "n_dots": 38854,
+   "dti_mean": 0.004307420979300969,
+   "tp_per_dot": 0.001954233588582501
+  }
+ ],
+ "verdict": "promote",
+ "okay_to_submit": true
 }

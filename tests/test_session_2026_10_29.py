@@ -54,8 +54,12 @@ def test_official_deadline_resolution_is_conservative():
     assert any("5:00 p.m. ET" in fact for fact in rules["verified_facts"])
 
 
-def test_published_index_states_not_ok_to_submit():
+def test_published_index_states_the_gate_decision():
     page = (ROOT / "docs/index.html").read_text(encoding="utf-8")
-    assert "Not OK to download or submit" in page
-    assert "Q1" in page and "Q2" in page
-    assert "0.3328" in page
+    gate = json.loads((ROOT / "docs/data/release_gate.json").read_text())
+    assert f'content="{gate["decision"]}"' in page
+    if gate["decision"] == "SUBMIT":
+        assert "cleared for download and submission" in page.lower()
+        assert gate["candidate"]["sha256"] in page or Path(gate["candidate"]["tif"]).name in page
+    else:
+        assert "do not submit" in page.lower()

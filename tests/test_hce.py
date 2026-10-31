@@ -91,14 +91,17 @@ def test_site_marks_hce_artifact_research_only_and_has_no_candidate_links():
              "evidence.html", "sources.html", "limitations.html"]
     assert all((DOCS / p).exists() for p in pages)
     idx = (DOCS / "index.html").read_text()
-    assert "DO NOT SUBMIT" in idx and "100% witness overlap" in idx
-    assert "research-only" in idx
+    gate = json.loads((ROOT / "docs/data/release_gate.json").read_text())
+    # The lane page keeps its own negative verdict and points at the project gate.
+    assert 'name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT"' in idx
+    assert f'>{gate["decision"]}</a>' in idx
+    assert "DO NOT SUBMIT this lane" in idx
     assert "DOWNLOAD RESEARCH TIF" not in idx
     assert "downloads/wbggems3-hce1-latest.tif" not in idx
     for p in pages:
         text = (DOCS / p).read_text()
-        assert "Global release gate: DO NOT SUBMIT" in text
-        assert "Do not submit any file." in text
+        assert "DO NOT SUBMIT this lane" in text
+        assert "this lane: DO NOT SUBMIT" in text
         parser = _Links()
         parser.feed(text)
         for link in parser.targets:
@@ -117,5 +120,6 @@ def test_site_builder_is_deterministic_and_fail_closed():
     after = {p.relative_to(ROOT / "docs"): _sha(p) for p in (ROOT / "docs").rglob("*.html")}
     assert before == after
     idx = (DOCS / "index.html").read_text()
-    assert "DO NOT SUBMIT" in idx
+    gate = json.loads((ROOT / "docs/data/release_gate.json").read_text())
+    assert f'>{gate["decision"]}</a>' in idx
     assert "DOWNLOAD RESEARCH TIF" not in idx

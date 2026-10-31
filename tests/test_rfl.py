@@ -69,9 +69,9 @@ def test_rfl_banner_and_site_wiring():
     assert "rfl/index.html" in RFL_BANNER and "DO NOT SUBMIT" in RFL_BANNER
     for name in ("index.html", "how-to-submit.html"):
         body = (ROOT / "docs/rfl" / name).read_text()
-        assert "Global release gate: DO NOT SUBMIT" in body
+        assert "DO NOT SUBMIT this lane" in body and "this lane: DO NOT SUBMIT" in body
         assert "research only" in body.lower()
-        assert "../data/rfl_run_card.json" in body
+        assert "../data/release_gate.json" in body
         assert "cleared upload" not in body.lower()
 
 

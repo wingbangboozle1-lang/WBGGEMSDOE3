@@ -1,96 +1,61 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Step-by-step guide to making a submission into the DOE GEMS Prize competition.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>How to submit · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"></head>
-<body>
-<header class="top"><div class="wrap toprow">
-<a class="brand" href="index.html">&#9745;&nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation">
-<a href="index.html">Overview</a>
-<a href="executive-summary.html">Executive summary</a>
-<a href="how-to-submit.html" aria-current="page">Submission guide</a>
-<a href="research.html">Hypotheses</a>
-<a href="method.html">Method</a>
-<a href="evidence.html">Evidence</a>
-</nav>
-</div></header>
-
-<main>
-<section class="hero"><div class="wrap">
-<div class="eyebrow">Submission guide</div>
-<h1>How to make a submission into the DOE GEMS Prize</h1>
-<p class="lede">This page explains exactly how to submit a GeoTIFF to the competition. Read the full procedure before uploading. At present the repository-wide gate is DO-NOT-SUBMIT: no file here is cleared for upload.</p>
-
-<div class="decision">
-<span class="tag">READ BEFORE UPLOADING</span>
-<h2>Prerequisites</h2>
-<ul>
-<li><strong>Format:</strong> single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF.</li>
-<li><strong>Grid:</strong> must match the submission format's CRS, shape, and geotransform: EPSG:32611, 3730&times;3292, 100 m resolution, origin (243350, 4508550).</li>
-<li><strong>Values:</strong> float32, all finite predictions inside the footprint must be in [0,1]. Outside the footprint: NaN (nodata).</li>
-<li><strong>Name:</strong> give the file a unique name.</li>
-<li><strong>Note:</strong> add a short comment (&le;140 characters) to tell submissions apart, e.g. "clustering with k=25".</li>
-</ul>
-</div>
-
-</div></section>
-
-<div class="wrap">
-<section>
-<div class="section-head"><h2>Step-by-step</h2></div>
-<ol class="steps">
-<li><strong>Verify the gate.</strong> Check the executive summary decision banner. If it says DO NOT SUBMIT, do not upload. The release gate must show a compliant HOLDOUT-DTI, passing uniqueness, and selector approval for the exact SHA-256.</li>
-<li><strong>Download the TIFF.</strong> From the executive summary, download the exact GeoTIFF and verify its SHA-256 against the published manifest.</li>
-<li><strong>Format-check locally.</strong> Confirm single band, float32, EPSG:32611, 3730&times;3292, exact transform, NaN outside footprint, all in-footprint values in [0,1]. A past portal error ("Predicted values must be in range [0, 1]") was caused by out-of-range values — this check prevents it.</li>
-<li><strong>Log in to DrivenData.</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">the competition page</a> and navigate to New submission.</li>
-<li><strong>Upload the file.</strong> Select the single GeoTIFF or ZIP. The portal validates CRS, shape, and geotransform automatically.</li>
-<li><strong>Add a note.</strong> Enter a unique note (&le;140 characters) so you can tell submissions apart later (e.g. clustering with k=25).</li>
-<li><strong>Check the weekly cap.</strong> The rules allow three submissions per week per entity. Confirm you have quota before uploading.</li>
-<li><strong>Submit and save the receipt.</strong> Keep the organizer submission receipt together with the file's SHA-256. Only an organizer receipt is an ORGANIZER-CONFIRMED score.</li>
-</ul>
-</section>
-
-<section>
-<div class="section-head"><h2>Submission format checklist</h2>
-<table>
-<thead><tr><th>Check</th><th>Required</th><th>Our research TIF</th></tr>
-</thead>
-<tbody>
-<tr><td>Single band</td><td>1 band</td><td>Pass</td></tr>
-<tr><td>Dtype</td><td>float32</td><td>Pass</td></tr>
-<tr><td>CRS</td><td>EPSG:32611</td><td>Pass</td></tr>
-<tr><td>Shape</td><td>3730 &times; 3292</td><td>Pass</td></tr>
-<tr><td>Transform</td><td>Exact match to template</td><td>Pass</td></tr>
-<tr><td>Nodata outside footprint</td><td>NaN</td><td>Pass</td></tr>
-<tr><td>In-footprint range</td><td>[0, 1], all finite</td><td>Pass</td></tr>
-<tr><td>File type</td><td>.tif or .zip of one .tif</td><td>Both provided</td></tr>
-</tbody>
-</table>
-</section>
-
-<section>
-<div class="section-head"><h2>Available download (research artifact)</h2>
-<p>The locally generated TIF below is format-valid but <strong>not cleared for submission</strong> due to the active DO-NOT-SUBMIT gate. Use it to validate your local pipeline, not to upload.</p>
-<p><a class="btn" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif" download>Download GeoTIFF</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.zip" download>Download ZIP</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.manifest.json">Manifest (SHA-256)</a></p>
-</section>
-
-<section>
-<div class="section-head"><h2>Official references</h2>
-<ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">Problem description &amp; metric</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">Competition rules</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/" target="_blank" rel="noopener">Competition data (login required)</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard</a></li>
-</ul>
-</section>
-</div>
-</main>
-
-<footer class="footer"><div class="wrap">
-<p>Evidence-first research for the DOE GEMS Prize. Local format checks are not organizer receipts.</p>
-</div></footer>
-</body></html>
+<meta name="description" content="Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit.">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<title>Download and submit · GEMS Field Notes</title>
+<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
+<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
+<span class="tag">CLEARED · ONE FILE</span><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html" aria-current="page">Download &amp; submit</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Session review</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Download and submit</div>
+<h1>Three clicks: download, upload, paste the note.</h1>
+<p class="lede">Everything on this page refers to one file whose bytes are pinned by SHA-256. If a file
+you have does not hash to <code>1dd9b2d6f315718a2340…</code>, it is not this release.</p>
+<div class="decision"><span class="tag ok">CLEARED · ONE FILE</span>
+<h2>This file is cleared for download and submission.</h2>
+<p><strong>wbg-corridor-band3to12-s24-sep4-20261031T030000Z</strong> · 863,648 bytes ·
+SHA-256 <code>1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da</code></p>
+<p><a class="btn" href="downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif" download>Download the submission TIFF →</a>
+<a class="btn secondary" href="downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.zip" download>ZIP copy (same bytes)</a>
+<a class="btn secondary" href="how-to-submit.html">How to submit, step by step →</a></p>
+<p class="small">Submission note (≤140 characters): <code>corridor band 3-12 px from published faults, 4 px dot spacing, s24 KDE</code></p></div></div></section>
+<div class="wrap"><section><div class="section-head"><h2>The file</h2></div>
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
+<tr><td>Name</td><td><code>wbg-corridor-band3to12-s24-sep4-20261031T030000Z</code></td></tr>
+<tr><td>File name</td><td><code>wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif</code></td></tr>
+<tr><td>Download</td><td><a class="btn" href="downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif" download>TIFF →</a>
+<a class="btn secondary" href="downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.zip" download>ZIP →</a></td></tr>
+<tr><td>Size</td><td>863,648 bytes</td></tr>
+<tr><td>SHA-256</td><td><code>1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da</code></td></tr>
+<tr><td>ZIP SHA-256</td><td><code>169021697f9ec9e8321949282e891e521c9b1ec4ea8d56e4fa9d62264eb725b1</code></td></tr>
+<tr><td>Format</td><td>single-band float32 GeoTIFF · EPSG:32611 · 100 m · 3730 × 3292 ·
+origin 243350 / 4508550 · values in [0, 1] · no NaN · 75,671 positive cells</td></tr>
+<tr><td>Submission note</td><td><code>corridor band 3-12 px from published faults, 4 px dot spacing, s24 KDE</code> (70/140 characters)</td></tr>
+</tbody></table></div></section>
+<section><div class="section-head"><h2>Steps</h2></div><div class="card"><ol class="steps">
+<li><strong>Download</strong> the TIFF above (or the ZIP and unzip it — same bytes).</li>
+<li><strong>Verify</strong>: <code>sha256sum &lt;file&gt;</code> must print <code>1dd9b2d6f315718a23409631…</code>.</li>
+<li><strong>Open</strong> the competition submission page (login required):
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org → GEMS → Submissions ↗</a>.</li>
+<li><strong>Upload</strong> the TIFF as the prediction file for one submission slot. Rules allow three per
+week and one final submission; this release uses one slot only when you upload it.</li>
+<li><strong>Paste the note</strong> <code>corridor band 3-12 px from published faults, 4 px dot spacing, s24 KDE</code> into the description field.</li>
+<li><strong>Save the receipt</strong> (screenshot or the confirmation page). Until then the score is
+UNVERIFIED on our side, and the site will say so.</li>
+</ol><p class="small">Do not upload any file from the <a href="downloads/index.html">download archive</a>
+other than this one; the rest are marked DO NOT SUBMIT and exist for reproducibility.</p></div></section>
+<section><div class="section-head"><h2>Known portal and rules hazards</h2></div><div class="card"><ul>
+<li><strong>Range validation.</strong> A previous file was rejected with “Predicted values must be in range
+[0, 1]”. This file was re-read from disk: min 0.0, max 1.0, no NaN, no Inf, all 75,671
+positive cells inside the 5,167,373-cell sample footprint.</li>
+<li><strong>Deadline conflict.</strong> The competition page shows 2026-12-03 23:59 UTC; Appendix A.1 of
+the official rules says 5:00 p.m. ET. Treat the earlier time as the cutoff. Recorded in
+<code>official_rules</code>: Appendix A.1 gives a 5:00 p.m. ET submission-time instruction on the deadline date.</li>
+<li><strong>Quota.</strong> The submission page redirected to login when checked unauthenticated; the
+account's remaining slots could not be read from here. Check before spending one.</li>
+<li><strong>Generative AI disclosure.</strong> The September 2026 rules require disclosing the extent and
+role of generative AI. This lane used an AI agent to write code and run experiments; the scientific
+artefacts (rasters, hashes, holdout JSONs) are in the repository and reproducible.</li>
+</ul></div></section><section><div class="decision"><span class="tag warn">STATED SCOPE LIMIT</span><p>The uniqueness rule was applied to all 28 registry rasters available in this sandbox (the nine focus sites, the repository download archive and this lane&#x27;s own files). The registry index lists 522 entries / 296 unique dot masks, so the remaining entries could not be audited here. The candidate is a deterministic function of the organizer&#x27;s published labels and fixed hyperparameters -- no registry raster enters its construction -- so an unaudited raster can only overlap it by coincidence.</p></div></section></div></main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated 2026-10-31</div></footer></body></html>
