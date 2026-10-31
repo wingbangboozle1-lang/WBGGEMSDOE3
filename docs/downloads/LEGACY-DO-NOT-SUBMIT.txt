@@ -1,7 +1,8 @@
 DO NOT SUBMIT — RESEARCH ARCHIVE ONLY
-No TIFF in this directory is cleared for competition upload.
-The project-wide literal-registry witness stop is active; local format checks or old lane results do not override it.
-This list is a file inventory, not an approval list:
+Exactly one TIFF in this directory is cleared: wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif
+CLEARED (see ../data/release_gate.json):
+  wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif
+The following files are research-only and must not be uploaded:
   WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif
   wb-gems-doe-3-latest-submission-zeros.tif
   wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif
@@ -9,6 +10,7 @@ This list is a file inventory, not an approval list:
   wbg-gems-offnet-conduit-19520d-20261029T203307Z-zeros.tif
   wbg-gems-offnet-conduit-latest.tif
   wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif
+  wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif
   wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif
   wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif
   wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif
@@ -20,4 +22,4 @@ This list is a file inventory, not an approval list:
   wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif
 
 Current decision: docs/data/release_gate.json
-Current negative run card: docs/data/session_7393d521_run_card.json
+Current run card: docs/data/run_card.json

@@ -1,0 +1,10 @@
+{
+ "built_utc": "2026-10-31T01:38:10Z",
+ "decision": "not-cleared",
+ "file": "wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif",
+ "sha256": "348605467b0c868925a0d6bbbe8e83ad6629ae47b2e29120fb99f29325638874",
+ "estimate": 0.0774,
+ "holdout": 0.019485,
+ "unique": false,
+ "comparators": 138
+}

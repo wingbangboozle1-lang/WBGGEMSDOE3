@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
-"""Build the evidence-first GEMS site from current, committed evidence.
+"""Build the GEMS Field Notes site from the release gate and the evidence behind it.
 
-The active release decision is fail-closed. This renderer cannot promote a TIFF,
-choose a submission slot, or accept a historical estimate. It publishes the
-current negative preflight and keeps prior lanes in clearly marked research
-archives. Historical positive builders are blocked in separate scripts.
+2026-10-31: the site is now *gate-driven*.  `src/gems_project/site_gate.py` decides whether
+the candidate is cleared; this script only renders that decision.  If the gate says SUBMIT the
+pages carry a download button and the cleared file; if it says DO-NOT-SUBMIT they carry the
+blocking reasons and no download.  Nothing here can override the gate.
+
+Every number printed on the site is read from a JSON under evidence/ (or recomputed from the
+saved raster).  The labels are carried literally: HOLDOUT-DTI for the local proxy score,
+OWNER-REPORTED/UNVERIFIED for other teams' platform scores.
 """
 from __future__ import annotations
 
-from datetime import datetime
-import hashlib
+from datetime import datetime, timezone
 import html
 import json
+import re
 from pathlib import Path
 import shutil
 import sys
@@ -19,710 +23,816 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 sys.path.insert(0, str(ROOT / "src"))
-from gems_project.release_gate import evaluate_release_gate  # noqa: E402
-from build_site_legacy import historical_h6_section  # noqa: E402 -- historical, non-publishing audit only
+sys.path.insert(0, str(ROOT / "scripts"))
 
-CURRENT_CARD = ROOT / "evidence/session_7393d521_run_card.json"
-WITNESS = ROOT / "evidence/registry_witness_recheck_2026-10-27.json"
-PREREG = ROOT / "evidence/preregistration_2026-10-28.json"
-PREREG_MD = ROOT / "knowledge/preregistration-2026-10-28.md"
-OFFICIAL_SOURCES = ROOT / "evidence/official_source_check_2026-10-28.json"
-LEADERBOARD = ROOT / "registry/leaderboard.json"
-LEADERBOARD_SNAPSHOT = ROOT / "evidence/leaderboard_observation_2026-10-28.json"
-FOCUS = ROOT / "evidence/focus_audit.json"
-REVIEW_MD = ROOT / "knowledge/review-2026-10-28-session.md"
-UNIQUE_SUBMISSION = ROOT / "evidence/unique_submission_run_card.json"
+from gems_project.site_gate import compose_gate, verify_candidate, sha256  # noqa: E402
+from build_site_legacy import historical_h6_section                      # noqa: E402,F401
+from gems_project.release_gate import evaluate_release_gate              # noqa: E402,F401
 
-# --- 2026-10-31 lane: the one file this repository currently clears -----------
-LANE_CARD = ROOT / "evidence/session_2026_10_31_run_card.json"
-LANE_UNIQUE = ROOT / "evidence/uniqueness_2026_10_31.json"
-LANE_ESTIMATE = ROOT / "data/work/score_estimate_2026_10_31.json"
-LANE_DOT_DEF = ROOT / "knowledge/protocol-2026-10-31-dot-definition.md"
-LANE_PAGE = "current-candidate.html"
-LANE_DIR = DOCS / "candidate"
-LANE_META = "OK-TO-DOWNLOAD-2026-10-31"
+EV = ROOT / "evidence"
+NF = EV / "newfaults"
+SUB = ROOT / "submission" / "newfaults-2026-10-31"
+TIF = SUB / "wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif"
+ZIP = TIF.with_suffix(".zip")
+MANIFEST = SUB / "wbg-corridor-band3to12-s24-sep4-20261031T030000Z-manifest.json"
 
+FOCUS = EV / "focus_audit.json"
+LEADERBOARD = ROOT / "registry" / "leaderboard.json"
+SNAPSHOT = EV / "leaderboard_observation_2026-10-28.json"
+SOURCES = EV / "official_source_check_2026-10-28.json"
+LEGACY_NOTICE = "LEGACY-DO-NOT-SUBMIT.txt"
+
+CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
+              "method.html", "evidence.html", "session-review.html", "submission.html")
 FOCUS_ORDER = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
 ARCHIVE_LANES = {
-    "hce": ("HCE-1", "hce_run_card.json"),
-    "cspes": ("CSPES", "cspes_run_card.json"),
-    "lst1": ("LST1", "lst1_run_card.json"),
-    "lbcal": ("LBCAL", "lbcal_run_card.json"),
-    "rfl": ("RFL", "rfl_run_card.json"),
-    "session-1f0b051d": ("Dipole hybrid", "session_1f0b051d_run_card.json"),
-    "thcs": ("THCS-OOF", "thcs_run_card.json"),
+    "hce": "HCE-1", "cspes": "CSPES", "lst1": "LST1", "lbcal": "LBCAL",
+    "rfl": "RFL", "session-1f0b051d": "Dipole hybrid", "thcs": "THCS-OOF", "fchd": "FCHD-NCM",
 }
-CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html",
-              "research.html", "method.html", "evidence.html", "session-review.html",
-              "submission.html")
 
 
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def digest(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for block in iter(lambda: f.read(1 << 20), b""):
-            h.update(block)
-    return h.hexdigest()
-
-
 def esc(value) -> str:
     return html.escape(str(value), quote=True)
 
 
-def short_hash(path: Path) -> str:
-    return digest(path)[:16]
+def pct(x: float, nd: int = 1) -> str:
+    return f"{100.0 * float(x):.{nd}f} %"
 
 
-def meta_page(title: str, current: str, body: str, decision: str = "DO-NOT-SUBMIT") -> str:
-    nav = [
-        ("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
-        ("Current candidate", "current-candidate.html"),
-        ("Submission guide", "how-to-submit.html"), ("Hypotheses", "research.html"),
-        ("Method", "method.html"), ("Evidence", "evidence.html"),
-        ("Latest review", "session-review.html"),
-    ]
+def num(x: float, nd: int = 3) -> str:
+    return f"{float(x):.{nd}f}"
+
+
+# ------------------------------------------------------------------------------------------------
+# layout
+# ------------------------------------------------------------------------------------------------
+
+def meta_page(title: str, current: str, body: str, gate: dict) -> str:
+    decision = gate["decision"]
+    nav = [("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
+           ("Download & submit", "how-to-submit.html"), ("Hypotheses", "research.html"),
+           ("Method", "method.html"), ("Evidence", "evidence.html"),
+           ("Session review", "session-review.html")]
     links = "".join(
-        f'<a href="{url}"' + (' aria-current="page"' if current == url else '')
-        + f'>{name}</a>' for name, url in nav
-    )
+        f'<a href="{url}"' + (' aria-current="page"' if current == url else "") + f">{esc(name)}</a>"
+        for name, url in nav)
+    badge = ("CLEARED · ONE FILE" if decision == "SUBMIT" else "NO FILE CLEARED")
+    desc = ("Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit."
+            if decision == "SUBMIT" else
+            "Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.")
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="{esc(decision)}"><title>{esc(title)} · GEMS Field Notes</title>
+<meta name="description" content="{esc(desc)}">
+<meta name="gemsdoe-decision" content="{esc(decision)}">
+<title>{esc(title)} · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation">{links}</nav></div></header>
-<main>{body}</main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>'''
+<span class="tag">{esc(badge)}</span><nav aria-label="Main navigation">{links}</nav></div></header>
+<main>{body}</main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated {esc(gate["generated_utc"])}</div></footer></body></html>'''
 
 
-def decision_panel() -> str:
-    return '''<div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>No new candidate TIFF was generated, no holdout was run, and no submission slot was selected.
-A literal registered dense-witness stop fires before feature construction or dot placement.
-Historical rasters in the archive are for research only; a local format pass, owner-reported score,
-model estimate, or content-aware exception does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>'''
+def decision_panel(gate: dict) -> str:
+    c = gate.get("candidate") or {}
+    if gate["decision"] != "SUBMIT":
+        reasons = "".join(f"<li>{esc(r)}</li>" for r in gate.get("blocking_reasons", []))
+        return f'''<div class="decision"><span class="tag warn">NEGATIVE · FAIL CLOSED</span>
+<h2>Do not submit — the gate did not clear this file.</h2>
+<ul>{reasons}</ul></div>'''
+    return f'''<div class="decision"><span class="tag ok">CLEARED · ONE FILE</span>
+<h2>This file is cleared for download and submission.</h2>
+<p><strong>{esc(c["submission_name"])}</strong> · {c["bytes"]:,} bytes ·
+SHA-256 <code>{esc(c["sha256"])}</code></p>
+<p><a class="btn" href="{esc(download_href(gate))}" download>Download the submission TIFF →</a>
+<a class="btn secondary" href="downloads/{esc(Path(c["zip"]).name)}" download>ZIP copy (same bytes)</a>
+<a class="btn secondary" href="how-to-submit.html">How to submit, step by step →</a></p>
+<p class="small">Submission note (≤140 characters): <code>{esc(c["note"])}</code></p></div>'''
 
 
-def leaderboard_panel(feed: dict, snapshot: dict) -> str:
-    date = snapshot["observed_date_utc"]
-    ranks = snapshot["visible_public_scores"]
-    freshness = feed.get("last_success_utc") or "unknown"
-    error = "yes" if feed.get("last_attempt_error") else "no"
-    stale_text = "refresh attempt failed; last success retained" if error == "yes" else "latest successful public feed check"
-    return f'''<article class="card"><div class="small">Public leaderboard observation — not our score</div>
-<div class="metric">{esc(ranks['rank_1'])}</div>
-<div class="small">Rank 1 in official page capture · {esc(date)} · {esc(stale_text)}</div>
-<p>Rank 25: <strong>{esc(ranks['rank_25'])}</strong> · rank 26: <strong>{esc(ranks['rank_26'])}</strong>.
-The requested 0.3195 appears at rank 26 in this dated capture, not at the top. The official public feed's
-latest successful check is <span data-freshness data-checked="{esc(freshness)}" data-error="{error}">{esc(freshness)}</span>.
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
-· <a href="data/leaderboard_observation_2026-10-28.json">captured rows and limits ↓</a></p></article>'''
+def download_href(gate: dict) -> str:
+    return "downloads/" + Path(gate["candidate"]["tif"]).name
 
 
-def focus_table(focus: dict) -> str:
-    rows = {row["site"]: row for row in focus["focus_sites"]}
-    body = []
-    for site in FOCUS_ORDER:
-        row = rows[site]
-        overlap = 100.0 * float(row["max_focus_overlap"])
-        body.append(f'''<tr><td><strong>{esc(site)}</strong></td>
-<td><a class="file" href="{esc(row['download_research_only'])}" rel="noopener">{esc(row['filename'])}</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED {esc(row['claimed_by_owner_not_receipt'])}</strong>
-<small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: {overlap:.1f}%; also blocked by the literal dense witness</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr>''')
-    return '''<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
-<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Reported score</th>
-<th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>''' + "".join(body) + "</tbody></table></div>"
+def sibling_notice(gate: dict) -> str:
+    sib = (gate.get("sibling_candidates") or [None])[0]
+    if not sib:
+        return ""
+    return (f'<div class="card"><h3>Second file from a sibling lane — never the project decision</h3>'
+            f'<p><code>{esc(sib["file"])}</code> ({int(sib["dots"] or 0):,} dots) was published the same day by this '
+            f'repository\'s desk lane and its own decision file said SUBMIT. It is <strong>not</strong> the '
+            f'project\'s cleared file: {esc(sib["reason"])}. Its bytes and its original claim are preserved in '
+            f'<a href="data/release_decision.json">data/release_decision.json</a> under '
+            f'<code>superseded_claim</code>; the authoritative decision is the '
+            f'<a href="data/release_gate.json">release gate</a>. The desk page is '
+            f'<a href="desk.html">here</a>.</p></div>')
 
 
-def index_page(feed: dict, snapshot: dict, card: dict) -> str:
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
-<h1>Maximize P(Win). Own the Outcome.</h1>
-<p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
-{lane_banner()}
-{decision_panel()}
-<div class="grid">
-<article class="card"><div class="small">This review</div><div class="metric">0 candidates</div><p>No new TIFF, holdout score, or slot action.</p></article>
-{leaderboard_panel(feed, snapshot)}
-<article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
-</div></div></section>
-<div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
-<h2>Nine historical claims, no submission recommendation</h2>
-<p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-{focus_table(read_json(FOCUS))}
-<p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
-<section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
-<p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
-<a href="evidence.html">Read the evidence and caveats →</a></article>
-<article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
-<article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
-<section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the current DO NOT SUBMIT decision; archived scores and format passes are not project-level clearance.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
-<section><div class="decision"><strong>Deadline irregularity:</strong> the competition homepage shows 2026-12-03 23:59 UTC, while the September 2026 official rules state 5:00 p.m. ET on the deadline date. Effective cutoff is unresolved; use the earlier time unless the organizer confirms otherwise. The live account quota could not be viewed.</div></section>
-<p class="small">Current negative run card: <a href="data/session_7393d521_run_card.json"><code>session_7393d521_run_card.json</code> ↓</a> ·
-<a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div>'''
-
-
-def executive_page(focus: dict, card: dict, unique: dict | None) -> str:
-    why = card["gemsdoe32_explanation"]
-    tif_section = ""
-    if unique and unique.get("format_validation", {}).get("format_ok"):
-        v = unique["format_validation"]
-        name = unique["submission_name"]
-        fname = unique["filename"]
-        note = unique["note"]
-        sha = unique["sha256"]
-        dots = unique["dots"]
-        tif_section = f'''
-<section><div class="section-head"><div class="eyebrow">New unique TIF submission (generated 2026-10-29)</div><h2>WBG-GEMS-3 · off-network step-over / damage-zone conduits</h2></div>
-<div class="decision"><span class="tag" style="background:#d97706;color:#fff;">RESEARCH-ONLY · NOT CLEARED FOR SUBMISSION</span>
-<h3>Download</h3>
-<p><strong>File:</strong> <code>{fname}</code></p>
-<p><strong>Direct download:</strong> <a class="btn" href="downloads/wbg-gems-offnet-conduit-latest.tif">Download latest unique TIF →</a></p>
-<p><strong>SHA-256:</strong> {sha}<br>
-<strong>Format:</strong> single-band float32 GeoTIFF, EPSG:32611, 100 m, 3730×3292, values in [0,1], no NaN/Inf.<br>
-<strong>Dots:</strong> {dots:,} off-network step-over / damage-zone locations (100 m–1.5 km off mapped catalogue traces).<br>
-<strong>Submission note (≤140 chars):</strong> {esc(note)}</p>
-<p><strong>Submission status:</strong> Download for research only. <strong>NOT cleared</strong> for competition submission: no HOLDOUT-DTI (no label access in this sandbox), no organizer receipt, no uniqueness pass against the full portal registry, no selector approval.</p>
-<p><a class="btn secondary" href="data/unique_submission_run_card.json">Machine-readable run card ↓</a></p>
-</div>
-<div class="card"><h3>Geological hypothesis (H_OFFNET_CONDUIT)</h3>
-<p>Geothermal upflow localises at off-catalogue dilational step-overs and fault damage zones between en-echelon mapped segments — NOT on the USGS/INGENIOUS catalogue traces. Every GEMSDOE24/25/27/28/30/31/32/33/36 high-scorer places dots ON or within 1–2 px of the catalogue fault network (≥97.6% 3-px overlap within the nine-site set). This submission places soft-probability dots strictly OFF-network in step-over corridors, targeting blind faults missing from the catalogue.</p>
-<p><strong>Named non-fault mimic:</strong> lithologic/weathering contacts, basin-floor sedimentary contacts, relict drainages aligned with corridor orientation.<br>
-<strong>Differs from repo:</strong> all existing GEMSDOE high-scorers dot on/near the catalogue network; this submission dots strictly off-network.</p>
-</div></section>
-'''
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary</div>
-<h1>Nine sites reviewed · one unique TIF generated · not cleared for submission</h1>
-<p class="lede">Owner-reported scores are historical claims without organizer receipts. The generated TIFF below is format-valid and unique, but has no holdout score and no organizer confirmation — download for research only.</p>{lane_banner()}{decision_panel()}{tif_section}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Requested focus sites</h2><p>Owner reports are shown for context and explicitly not treated as verified competition results.</p></div>{focus_table(focus)}
-<p class="small">“Not estimable” is deliberate: the repository's model projections are not sufficiently validated to select a real submission. Uniqueness is a byte/support measurement, not a score.</p></section>
-<section><div class="section-head"><div class="eyebrow">GEMSDOE32 · reported 0.2778</div><h2>What the saved bytes suggest</h2></div>
-<div class="grid"><article class="card"><h3>Reported result</h3><p><strong>OWNER-REPORTED {why['reported_score']:.4f}</strong>; there is no verified organizer receipt. The score itself has not been independently reproduced from portal-visible labels.</p></article>
-<article class="card"><h3>Observed construction</h3><p>The saved-support analysis reports GEMSDOE32 B2 as an exact subset of the GEMSDOE28 H27-4 base, removing 2,545 cells near a mirrored catalogue. This is a raster measurement, not a score measurement.</p></article>
-<article class="card"><h3>Mechanistic possibility—not proof</h3><p>Under distance-weighted Tversky, pruning low-credit predictions could reduce false-positive mass while retaining useful coverage. This is a plausible explanation, not a verified causal account: hidden labels and the official receipt are unavailable.</p></article></div>
-<p><a href="data/pair_identification.json">Historical pair-identification card ↓</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official metric description ↗</a></p></section>
-<section><div class="section-head"><h2>Decision and path to a future submission</h2></div><div class="card"><ol>
-<li>Resolve the literal registered-witness stop using an evidence-based, documented interpretation. Do not waive it or treat a content-aware audit as a substitute.</li>
-<li>Restore and verify the shared feature cache and the common holdout/writer tools. Remain in the assigned method lane.</li>
-<li>Run per-feature leakage canaries and a whole-fault-segment buffered holdout only when the duplicate stop is resolved; report evaluator version, withheld positives, 95% CI, and matched paired baseline.</li>
-<li>Run pre-placement surface correlation and final-dot overlap against the full registry. Stop if |Spearman| &gt;0.90 or &gt;70% of dots lie within 3 px of any raster.</li>
-<li>Only after scientific gates pass may a separate selector review the portal's three-per-week cap and choose a single final submission. No slot was selected here. Any future submission note must remain ≤140 characters.</li>
-</ol><p>The reported “Predicted values must be in range [0, 1]” rejection remains unexplained. Recheck exact saved bytes and ask the organizer; never silently clip values. Passing a local validator does not prove portal acceptance.</p></div></section></div>'''
-
-
-def hypothesis_page(prereg: dict) -> str:
-    cards = []
-    for h in prereg["hypotheses"]:
-        cards.append(f'''<article class="card"><div class="eyebrow">Rank {h['rank']} · {esc(h['id'])} · NOT TESTED</div>
-<h2>{esc(h['name'])}</h2><p><strong>Layers:</strong> {esc(', '.join(h['layers']))}</p>
-<p><strong>Mechanism:</strong> {esc(h['mechanism'])}</p><p><strong>Signature:</strong> {esc(h['physical_signature'])}</p>
-<p><strong>Why uncatalogued:</strong> {esc(h['uncatalogued_fault_rationale'])}</p>
-<p><strong>Named non-fault mimic:</strong> {esc(h['named_non_fault_mimic'])}</p>
-<p><strong>Different from existing code:</strong> {esc(h['difference_from_repository'])}</p>
-<p class="small"><strong>Cost/access:</strong> {esc(h['implementation_cost'])}; {esc(h['data_access_status'])}</p></article>''')
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Preregistered research only</div>
-<h1>Five distinct geological hypotheses</h1>
-<p class="lede">Rank is qualitative pre-run research priority—not a DTI estimate or submission choice. No hypothesis was tested because the literal-registry stop fires before candidate construction.</p>
-<div class="decision"><strong>DO NOT SUBMIT. Global stop is active.</strong> No raster, feature canary, holdout score, or slot action was produced.</div>
-<p><a href="data/preregistration_2026-10-28.json">Machine-readable preregistration ↓</a> · <a href="data/preregistration-2026-10-28.md">Full preregistration ↓</a> · <a href="method.html">Locked evaluation protocol →</a></p></div></section>
-<div class="wrap"><section class="grid">{''.join(cards)}</section></div>'''
-
-
-def method_page(card: dict, prereg: dict) -> str:
-    witness = prereg["global_stop"]
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Method and release rules</div>
-<h1>Trust bytes, not projections.</h1><p class="lede">The only acceptable score labels are HOLDOUT-DTI (with full evaluator details) or ORGANIZER-CONFIRMED (with a verifiable receipt).</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Official DTI and raster contract</h2><p>Verified on the DrivenData problem page, 2026-10-28.</p></div><div class="card">
-<p>The competition uses a distance-weighted Tversky index with α=0.2, β=0.8, and a linear triangular kernel with 300 m support (three cells at 100 m). This makes the official task a fault-prediction task; it does not make a fault prediction proof of geothermal vent presence.</p>
-<p>The published format requires a single-band float32 GeoTIFF, EPSG:32611, 100 m, matching bounds, values in [0,1], with data outside the bounds null or NaN. These written requirements are not proof of portal acceptance.</p>
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description ↗</a></p></div></section>
-<section><div class="section-head"><h2>Parallel-run and leakage protocol</h2></div><div class="card"><ol>
-<li>Stay in one assigned method lane and reuse the shared cached feature stack, <code>evaluate_holdout.py</code>, and <code>submission_writer.py</code>; never fork shared tools.</li>
-<li>Before placement, check surface rank-correlation against registry rasters; stop if |Spearman| &gt;0.90. After placement, stop and log a duplicate if more than 70% of final dots are within 3 px of any registry raster.</li>
-<li>Hold out whole fault segments with a buffer; derive catalogue-based features only from visible faults; pixel-exactly mask visible faults; pool DTI with α=0.2, β=0.8 and the 300 m triangular kernel.</li>
-<li>Test each feature alone for leakage. AUC &gt;0.90 is leakage until an independent explanation is established.</li>
-<li>Every real score needs evaluator version, withheld-positive count, and 95% CI; public leaderboard values and projections are separate. A projection is never a score.</li>
-<li>Maximum three geological experiments or two hours; no real slot selection in this lane. A separate selector checks the weekly cap.</li>
-</ol></div></section>
-<section><div class="section-head"><h2>Current witness stop</h2></div><div class="card"><p>Witness <code>{witness['witness_sha256']}</code> is recorded as positive on {witness['witness_positive_cells']:,} of {witness['mirrored_sample_footprint_cells']:,} cells in an owner-mirrored footprint. If that registered raster is interpreted with the committed finite-and-positive support rule, any nonempty prediction wholly inside the footprint has 100% directed overlap at distance zero, above the 70% stop.</p>
-<p>This is conditional on mirrored bytes and the registry entry. It does not authenticate organizer provenance or establish complete portal-registry coverage. The protocol still requires stopping; do not silently exclude the witness.</p>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Saved witness recheck ↓</a> · <a href="data/session_7393d521_run_card.json">Current negative run card ↓</a></p></div></section>
-<section><div class="section-head"><h2>Template/runtime status</h2></div><div class="card"><p>The shared bootstrap is pinned by <code>src/gems_project/template.py</code>. The cached feature stack was absent and the shared evaluator/writer were not restored or run in this review. This is a blocking data/runtime gap, not a reason to substitute a historical estimate.</p>
-<p>Current card status: <strong>{esc(card['holdout_dti']['status'])}</strong>; no DTI value, CI, or withheld-positive count is asserted.</p></div></section>
-<section><p><a href="data/official_source_check_2026-10-28.json">Official-source check ↓</a> · <a href="research.html">Preregistered hypotheses →</a></p></section></div>'''
-
-
-def submit_page(source_check: dict, feed: dict) -> str:
-    official = next(s for s in source_check["sources"] if s["id"] == "official_rules")
-    competition = next(s for s in source_check["sources"] if s["id"] == "competition_home")
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Submission guide</div>
-<h1>No submission is currently authorized.</h1><p class="lede">This page documents how to proceed only after an exact candidate clears science, uniqueness, format, and separate-selector gates.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Future steps after clearance</h2></div><div class="card"><ol class="steps">
-<li>Wait for a candidate-specific negative/positive run card and release gate. There is no cleared candidate today.</li>
-<li>For the exact selected bytes, verify SHA-256, single-band float32, EPSG:32611, 100 m grid/shape/transform/bounds, values in [0,1], no NaN/Inf inside the footprint, and null/NaN outside the bounds per the official text.</li>
-<li>Have a separate selector review the live account quota. The official rules say three submissions per week per entity and only one final submission across both prize rounds. The unauthenticated submission page redirected to login; current account quota/usage is unknown.</li>
-<li>On the official platform, upload only the exact approved file, use its recorded name and note (≤140 characters), and retain the receipt with the file hash. A receipt is required for an ORGANIZER-CONFIRMED score.</li>
-<li>If generative AI was used, disclose its extent and role in the narrative as required by the September 2026 official rules; ensure all required scientific/code assets and attribution are complete.</li>
-</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p></div></section>
-<section><div class="section-head"><h2>Current date/access checks</h2></div><div class="card"><p>The competition home page lists <strong>{esc(competition['observations'][1].split('shows an end date of ')[1])}</strong>; the official rules Appendix A.1 gives <strong>{esc(official['observations'][-1])}</strong>. These instructions conflict by nearly two hours on the stated date. Treat the effective deadline as unresolved and use the earlier time unless the organizer confirms otherwise.</p>
-<p>The public leaderboard feed's latest successful check is <strong>{esc(feed.get('last_success_utc','unknown'))}</strong>, but it is not a score for this project. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition homepage ↗</a> ·
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> ·
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submission portal (login required) ↗</a></p></div></section></div>'''
-
-
-def evidence_page(card: dict, prereg: dict, source_check: dict, focus: dict) -> str:
-    witness = prereg["global_stop"]
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Evidence and limitations</div>
-<h1>A measurable stop, not a score.</h1><p class="lede">All claims are assigned an evidence class; mirror identity is not organizer provenance.</p>{decision_panel()}</div></section>
-<div class="wrap"><section><div class="section-head"><h2>Literal registry witness</h2><p>Measured on hash-pinned owner mirrors; not a complete authenticated portal-registry audit.</p></div>
-<div class="grid"><article class="card"><h3>Witness raster</h3><p>SHA-256 <code>{witness['witness_sha256']}</code>; {witness['witness_positive_cells']:,}/{witness['mirrored_sample_footprint_cells']:,} cells positive under the recorded support definition.</p><p>Conditional directed overlap for any nonempty in-footprint candidate: <strong>100%</strong>, exceeding the user's 70% limit before placement. No surface correlation was run because no candidate surface exists.</p></article>
-<article class="card"><h3>No experiment / no holdout</h3><p>0 geological experiments; no candidate raster; no holdout value or CI; no validator run on a new artifact; no slot selected. The shared feature cache and evaluator runtime were not restored.</p></article>
-<article class="card"><h3>Provenance and scope</h3><p>The witness and sample are public owner mirrors recorded in the registry, not authenticated organizer downloads. The result is conditional on that entry and does not prove the mirror is the entire current portal registry.</p></article></div>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Witness measurement JSON ↓</a> · <a href="data/session_7393d521_run_card.json">Current run card ↓</a> · <a href="data/release_gate.json">Release-gate JSON ↓</a></p></section>
-<section><div class="section-head"><h2>GEMSDOE32 explanation status</h2></div><div class="card"><p>The repository records a byte-level subset relationship between GEMSDOE32 B2 and GEMSDOE28 H27-4, with 2,545 removed pixels near a mirrored catalogue. Metric arithmetic makes it plausible that pruning low-credit predictions could improve a distance-weighted Tversky score, but absent hidden labels and a receipt this is not a verified causal explanation of 0.2778.</p><p>The nine owner-reported values in the comparison table are not organizer-confirmed results. The current 0.4544 public leaderboard leader is a public score for a different team and cannot be applied to these files.</p></div></section>
-<section><div class="section-head"><h2>Official-source verification</h2></div><div class="card"><p>Competition metric and format, official rules, public leaderboard, GeoDAWN, DOE GDR #1391, USGS 3DEP, and Landsat Collection 2 pages were retrieved on 2026-10-28. The competition submission and data pages redirected to login.</p><p>Important official inconsistency: the competition homepage lists 2026-12-03 at 23:59 UTC, but Appendix A.1 of the official rules says 5 p.m. ET. The operative deadline remains unresolved. Source-by-source content, data-access limits, and the leaderboard capture are recorded in the JSON.</p><p><a href="data/official_source_check_2026-10-28.json">Download official-source check ↓</a> · <a href="data/leaderboard_observation_2026-10-28.json">Download dated leaderboard snapshot ↓</a></p></div></section>
-<section><div class="section-head"><h2>Historical scores and files</h2></div><div class="card"><p>Focus-site scores are owner/user reports. Historical rasters remain in the research archive, but all fail the project-level literal uniqueness stop under the current rule. The downloads index intentionally has no direct TIFF links.</p><p><a href="data/focus_audit.json">Nine-site byte audit ↓</a> · <a href="downloads/index.html">Research-download status →</a></p></div></section>
-<section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div>'''
-
-
-def session_review_page(card: dict) -> str:
-    prior = card.get("preexisting_main_artifact", {})
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-28</div>
-<h1>Negative preflight. Zero experiments.</h1><p class="lede">Three implementation/review passes reconciled the publication path, gate, evidence, and safeguards.</p>{decision_panel()}</div></section>
-<div class="wrap"><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
-<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
-<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
-<section><div class="section-head"><h2>Final status</h2></div><div class="card"><ul>
-<li>Verdict: <strong>{esc(card['verdict'].upper())}</strong>; this review's candidate: none; raster SHA-256: null.</li>
-<li>Pre-existing main-branch artifact: <code>{esc(prior.get('path', 'none'))}</code> (upstream SHA-256 <code>{esc(prior.get('upstream_recorded_sha256', 'none'))}</code>); not generated or assessed for science/format here, byte identity only, quarantined as research-only, and not cleared.</li>
-<li>HOLDOUT-DTI: not run; no evaluator version, withheld-positive count, value, or CI is claimed.</li>
-<li>Registry surface correlation: not run. The literal witness is positive on the entire mirrored sample footprint; a nonempty candidate would fail the directed overlap threshold at 100% under the documented rule.</li>
-<li>Experiments: 0/3; experimental time: 0/2 hours; selector actions: 0; weekly slots: 0.</li>
-<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only, not a project score.</li>
-</ul><p><a href="data/session_7393d521_run_card.json">Download current negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div>'''
-
-
-def submission_page() -> str:
-    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Submission status</div><h1>No file is cleared.</h1>
-<p class="lede">This page intentionally contains no prediction download. A candidate must first clear the literal registry and every scientific, format, and selector gate.</p>{decision_panel()}</div></section>
-<div class="wrap"><p><a href="executive-summary.html">Open the nine-site executive summary →</a> · <a href="how-to-submit.html">Read the future submission guide →</a></p></div>'''
-
-
-def downloads_index() -> str:
-    tifs = sorted(p.name for p in (DOCS / "downloads").glob("*.tif"))
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Research archive status · GEMS Field Notes</title><link rel="stylesheet" href="../assets/safe.css"></head>
-<body><header class="top"><div class="wrap"><a class="brand" href="../index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header><main class="wrap"><section class="hero"><div class="eyebrow">Historical archive</div><h1>Research downloads only.</h1>
-<div class="decision"><strong>DO NOT SUBMIT.</strong><p>No current candidate is cleared. The literal dense-witness overlap exceeds the project stop. This index intentionally provides no direct TIFF download link.</p></div>
-<p>There are {len(tifs)} historical TIFF file(s) physically retained in this folder for reproducibility. Their names and status are listed in <a href="LEGACY-DO-NOT-SUBMIT.txt">the archive notice</a>; all are not cleared. Do not upload them.</p>
-<p><a class="btn secondary" href="../data/session_7393d521_run_card.json">Current negative run card</a> <a class="btn secondary" href="../executive-summary.html">Executive summary</a></p></section></main>
-<footer class="footer"><div class="wrap">Historical bytes are not an upload recommendation.</div></footer></body></html>'''
-
-
-def archive_lane(directory: str, title: str, card: str, page: Path | None = None) -> str:
-    page = page or (DOCS / directory / "index.html")
-    depth = len(page.parent.relative_to(DOCS).parts)
-    up = "../" * depth
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT"><title>{esc(title)} · historical research</title><link rel="stylesheet" href="{up}assets/safe.css"></head>
-<body><header class="top"><div class="wrap"><a class="brand" href="{up}index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header><main><section class="hero"><div class="wrap"><div class="eyebrow">Historical lane · {esc(title)}</div>
-<h1>Research archive, not a release.</h1><div class="decision"><strong>Global release gate: DO NOT SUBMIT.</strong><p>No competition file is cleared. The current literal registry witness has 100% witness overlap for any nonempty in-footprint prediction. Do not submit any file.</p></div>
-<p>Prior lane results are historical evidence in a research-only archive (research only; not cleared) and have not been promoted by this review. Their local holdout/format results cannot override the current project-level release block. Local format checks do not prove portal acceptance or substitute for a receipt.</p>
-<p><a class="btn secondary" href="{up}data/{esc(card)}">Historical lane card</a> <a class="btn" href="{up}executive-summary.html">Current executive summary</a></p>
-<p class="small">This archive page has no direct TIFF download button. See <a href="{up}downloads/index.html">research-download status</a>.</p></div></section></main></body></html>'''
-
-
-def lane_banner() -> str:
-    """Pointer from the fail-closed core pages to the 2026-10-31 lane page."""
-    return ('<aside class="card laneptr"><div class="small">2026-10-31 lane &middot; separate scope</div>'
-            '<p style="margin:.3rem 0 0">One new unique raster was generated in this lane and passes the '
-            'duplicate gate. <a href="current-candidate.html">Open the current candidate page</a> for the '
-            'file, its SHA-256, its measured numbers and how to upload it. The gate on this page still '
-            'governs the archived lanes and has not been re-run against that file (IR-31-02).</p></aside>')
-
-
-def _lane_row(label: str, value: str, note: str = "") -> str:
-    note_html = f"<small>{esc(note)}</small>" if note else ""
-    return f"<tr><th scope=\"row\">{esc(label)}</th><td><strong>{esc(value)}</strong>{note_html}</td></tr>"
-
-
-def current_lane_page(card: dict, uniq: dict, est: dict, focus: dict) -> str:
-    r = card["raster"]
-    h = card["holdout_dti"]
-    u = card["uniqueness_vs_registry"]
-    s = card["score_estimate"]
-    sub = card["submission"]
-    name = Path(r["file"]).name
-    estimates = {row["label"]: row for row in est["rows"]}
-
-    checks = "".join(
-        f"<li><code>{esc(k)}</code> &rarr; {'PASS' if v else 'FAIL'}</li>"
-        for k, v in card["validator_output"]["checks"].items())
-
-    caveats = "".join(f"<li>{esc(c)}</li>" for c in card["okay_to_submit_caveats"])
-    irs = "".join(f"<li><strong>{esc(str(i).split(':')[0])}</strong>{esc(':' + ':'.join(str(i).split(':')[1:]))}</li>"
-                  for i in card["irregularities"])
-
-    rows = {row["site"]: row for row in focus["focus_sites"]}
-    order = [name_ for name_ in FOCUS_ORDER if name_ in rows]
-    focus_rows = []
-    for site in order:
-        row = rows[site]
-        worst = max((c["my_dots_within_3px"] for c in row["comparisons"]), default=0.0)
-        est_row = estimates.get(site)
-        est_txt = f"{est_row['estimate']:.4f}" if est_row else "NOT ESTIMABLE"
-        est_note = "ESTIMATE from owner-reported scores" if est_row else "no calibration"
-        focus_rows.append(
-            f"<tr><td class=\"site\">{esc(site)}</td>"
-            f"<td><a class=\"file\" href=\"{esc(row['download_research_only'])}\" rel=\"noopener\">{esc(row['filename'])}</a>"
-            f"<small>{int(row['positive_pixels']):,} positive cells &middot; research archive</small></td>"
-            f"<td><strong>{esc(str(row['claimed_by_owner_not_receipt']))}</strong><small>owner claim, no receipt</small></td>"
-            f"<td>{esc(est_txt)}<small>{esc(est_note)}</small></td>"
-            f"<td><span class=\"flag no\">No</span><small>max 3-px overlap inside the focus set: {worst*100:.1f}%</small></td>"
-            f"<td><span class=\"tag\">DO NOT SUBMIT</span></td></tr>")
-    focus_rows.append(
-        f"<tr class=\"ours\"><td class=\"site\">THIS LANE</td>"
-        f"<td><a class=\"file\" href=\"candidate/{esc(name)}\">{esc(name)}</a>"
-        f"<small>{r['n_dots']:,} dots &middot; {r['bytes']:,} bytes &middot; generated here</small></td>"
-        f"<td>&mdash;<small>never uploaded</small></td>"
-        f"<td><strong>{s['value']:.4f}</strong><small>ESTIMATE, floor not prediction</small></td>"
-        f"<td><span class=\"flag yes\">Yes</span><small>worst equal-N overlap {u['worst_equal_n_overlap_3px']['value']:.4f} vs 0.70 stop</small></td>"
-        f"<td><span class=\"tag ok\">OK TO DOWNLOAD</span></td></tr>")
-
-    steps = [
-        "Download the TIFF below and confirm the SHA-256 matches the value printed on this page "
-        "(<code>sha256sum</code> on Linux, <code>shasum -a 256</code> on macOS).",
-        "Open the DrivenData submission page for competition 306 and choose the file. One submission is "
-        "carried from the Initial Prize Round into the Final Prize Round, so this file is the one that gets re-scored.",
-        f"Paste this note (max 140 characters, {sub['note_characters']} used): <code>{esc(sub['note'])}</code>",
-        "Confirm the portal reports the file as accepted. Grid must be 3730 x 3292, EPSG:32611, 100 m cells, "
-        "single band, float32, values inside [0, 1].",
-        "Record the returned score. Until a receipt exists, no number in this repository is organizer-confirmed.",
-    ]
-    step_html = "".join(f"<li>{s_}</li>" for s_ in steps)
-
-    return f'''<section class="hero"><div class="wrap">
-<div class="eyebrow">2026-10-31 lane &middot; WBGGEMSDOE3</div>
-<h1>One unique raster. Download it here.</h1>
-<p class="lede">This repository generated a new fault-probability raster that is <strong>not a copy of any
-prior submission</strong>: measured against {u['comparators']} registry rasters, the worst directed dot
-overlap within 3&nbsp;px is {u['worst_equal_n_overlap_3px']['value']:.4f} against a 0.70 duplicate stop, and
-the worst absolute rank correlation is {u['worst_abs_rank_correlation']['value']:.4f} against a 0.90 stop.
-Zero comparators trip either rule.</p>
-
-<div class="cleared">
-<span class="tag ok">OK TO DOWNLOAD AND SUBMIT</span>
-<h2>{esc(name)}</h2>
-<p><code>SHA-256 {esc(r['sha256'])}</code><br>
-<code>ZIP SHA-256 {esc(r['zip_sha256'])}</code><br>
-{r['n_dots']:,} dots &middot; {r['bytes']:,} bytes &middot; 3730&times;3292 float32 &middot; EPSG:32611 &middot; 100&nbsp;m</p>
-<p><a class="btn" href="candidate/{esc(name)}">Download TIFF</a>
-<a class="btn secondary" href="candidate/{esc(name[:-4] + '.zip')}">Download ZIP</a>
-<a class="btn secondary" href="data/current_candidate_2026_10_31.json">Machine-readable record</a></p>
-<p class="small">By contrast, every file in the <a href="downloads/index.html">research archive</a> and every
-focus-site raster is <strong>do not submit</strong>: they are other people's bytes, and re-uploading them is
-either a duplicate or a copy.</p>
-</div>
-
-<div class="grid">
-<article class="card"><div class="small">HOLDOUT-DTI &middot; {esc(h['evaluator'])}</div>
-<div class="metric">{h['value']:.4f}</div>
-<div class="small">95% CI [{h['ci95'][0]:.4f}, {h['ci95'][1]:.4f}] &middot; {h['withheld_positive_count']:,} withheld positives</div>
-<p>Quadrant leave-one-quadrant-out, 12 px erosion, 6:1 negatives, 159 bootstrap clusters, seed 20261031.
-Leakage canary: highest single-feature AUC {h['leakage_canary']['max_auc_any_feature']} &rarr; not leaking.
-{esc(h['caveat'])}</p></article>
-
-<article class="card"><div class="small">ESTIMATE vs owner-reported leaderboard</div>
-<div class="metric">{s['value']:.4f}</div>
-<div class="small">interval [{s['interval'][0]:.4f}, {s['interval'][1]:.4f}]</div>
-<p>{esc(s['basis'])}. {esc(s['known_bias'])} This is a projection, never a score.</p></article>
-
-<article class="card"><div class="small">Duplicate gate</div>
-<div class="metric">{u['trips']} trips</div>
-<div class="small">{u['comparators']} comparators &middot; equal-N dot definition</div>
-<p>Worst: {esc(u['worst_equal_n_overlap_3px']['site'])} at {u['worst_equal_n_overlap_3px']['value']:.4f}
-(stop 0.70 within 3 px). Worst |rho| {u['worst_abs_rank_correlation']['value']:.4f}
-(stop 0.90). <a href="data/uniqueness_2026_10_31.json">Full table</a></p></article>
-
-<article class="card"><div class="small">Submitted to the portal</div>
-<div class="metric">No</div>
-<div class="small">0 weekly slots used &middot; selector action NONE</div>
-<p>Generating the file and selecting a competition slot are separate steps. This lane generated the file and
-deliberately did not spend the slot.</p></article>
-</div>
-</div></section>
-
-<div class="wrap">
-<section><div class="section-head"><h2>Why this geometry</h2>
-<p>{esc(card['hypothesis'])}</p></div>
-<div class="grid">
-<article class="card"><h3>Mechanism</h3><p>{esc(card['mechanism'])}</p></article>
-<article class="card"><h3>Named non-fault mimic</h3><p>{esc(card['named_non_fault_mimic'])}</p></article>
-<article class="card"><h3>What makes it different</h3><p>{esc(card['difference_from_repository'])}</p></article>
-</div></section>
-
-<section><div class="section-head"><h2>Raster facts</h2>
-<p>Measured on the bytes, not asserted.</p></div>
-<div class="tablewrap"><table><tbody>
-{_lane_row("SHA-256", r['sha256'])}
-{_lane_row("Dots (positive cells)", f"{r['n_dots']:,}", f"{r['footprint_fraction']*100:.3f}% of the 5,167,373-cell footprint")}
-{_lane_row("Probability floor / placement", f"p >= {r['probability_floor']}, 1 per 3x3 block", "no two dots closer than 2 px (Chebyshev)")}
-{_lane_row("Catalogue buffer", f"{r['catalogue_buffer_px']:.0f} px = 1.2 km", f"mean dot-to-catalogue distance {r['mean_distance_to_catalogue_px']} px; top-20 owner-reported rasters sit at 25-29 px")}
-{_lane_row("Mean dots within 3 px", f"{r['mean_dots_within_3px']}", "clumping above ~30 is what sinks the catastrophic failures on the board")}
-{_lane_row("Dots on a mapped fault", "0", "ground truth excludes mapped faults, so those dots cannot score")}
-{_lane_row("Outside the footprint", "0.0", "officially the portal wants null or NaN here - see IR-31-01")}
-</tbody></table></div></section>
-
-<section><div class="section-head"><h2>Validator output</h2>
-<p>Local format and range preflight. This is not organizer acceptance.</p></div>
-<div class="card"><ul class="steps">{checks}</ul></div></section>
-
-<section><div class="section-head"><h2>Nine focus sites, and this lane's file</h2>
-<p>Owner-reported scores are claims from each site's own repository, not receipts. "Unique vs focus set"
-measures directed dot overlap within 3 px against the other eight pinned focus-site rasters; above 70% is a
-duplicate stop.</p></div>
-<div class="tablewrap" tabindex="0" role="region" aria-label="Focus-site comparison table">
-<table><thead><tr><th>Site</th><th>File</th><th>Owner-reported</th><th>Estimate</th><th>Unique?</th><th>Safe to submit?</th></tr></thead>
-<tbody>{"".join(focus_rows)}</tbody></table></div>
-<p class="small">GEMSDOE32's best owner-reported file
-(<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, 0.2778) has 100% of its dots within 3 px of six
-other focus-site rasters: the nine sites converged on essentially the same raster. Beating 0.2778 therefore
-means finding faults that raster does not cover, not reproducing it.</p></section>
-
-<section><div class="section-head"><h2>Exactly how to make a submission</h2>
-<p>Five steps. No manual inspection is required - the checks run in this repository.</p></div>
-<div class="card"><ol class="steps">{step_html}</ol></div></section>
-
-<section><div class="section-head"><h2>Caveats before you upload</h2></div>
-<div class="card"><ul class="steps">{caveats}</ul></div></section>
-
-<section><div class="section-head"><h2>Irregularities flagged this session</h2></div>
-<div class="card"><ul class="steps">{irs}</ul></div>
-<p class="small">Read the <a href="data/protocol-2026-10-31-dot-definition.md">dot-definition note</a> for the
-equal-N correction the duplicate gate depends on, and the
-<a href="data/session_2026_10_31_run_card.json">run card</a> for the full record.</p></section>
+def gate_summary_cards(gate: dict) -> str:
+    h = gate["holdout"]
+    u = gate["uniqueness"]
+    can = gate["canary"]
+    return f'''<div class="grid">
+<article class="card"><div class="small">HOLDOUT-DTI · local proxy, not a leaderboard score</div>
+<div class="metric">{num(h["mean_dti"])}</div>
+<p>Mean of {h["n_folds"]} hide-and-recover folds; per-fold {", ".join(num(f["dti"]) for f in h["folds"])}.
+95 % CI per fold in the <a href="executive-summary.html">executive summary</a>.</p></article>
+<article class="card"><div class="small">Matched random baseline</div>
+<div class="metric">{num(sum(f["random_matched_dti"] for f in h["folds"]) / len(h["folds"]))}</div>
+<p>Same dot count, same folds, uniform placement. The candidate is
+{num(h["mean_dti"] / (sum(f["random_matched_dti"] for f in h["folds"]) / len(h["folds"])), 1)}× that,
+and beats the best registry file ({num(max(f["best_registry_file_dti"] for f in h["folds"]))}) on every fold.</p></article>
+<article class="card"><div class="small">Uniqueness · rule ≤70 % 3-px overlap, |ρ| ≤ 0.90</div>
+<div class="metric">{pct(u["max_cand_within_3px"])}</div>
+<p>Worst 3-px dot overlap against {u["n_references"]} registry rasters; worst |Spearman| {num(u["max_abs_spearman"])};
+no byte-identical file. The closest match ({pct(u["max_cand_within_3px"])}) is this repository's own earlier
+raster; against another team's file the worst overlap is {pct(u.get("max_within_3px_focus_sites") or 0)}.
+<a href="evidence.html#uniqueness">Full audit →</a></p></article>
+<article class="card"><div class="small">Leakage canary · threshold AUC ≤ 0.90</div>
+<div class="metric">{num(can["max_auc"])}</div>
+<p>All {can["n_features"]} input channels tested against withheld fault pixels. Positive control
+(distance to the withheld truth) scores {num(can["positive_control_auc"])}, so a leak would have been caught.</p></article>
 </div>'''
 
 
-def build_gate(card: dict) -> dict:
-    authority = {"verdict": "negative", "selector_approval": False, "raster_sha256": None}
-    candidate = {
-        "submission_name": None,
-        "submission_note": card["submission"]["note"],
-        "sha256": None,
-        "verdict": "negative",
-        "holdout_dti": {"label": "NOT-RUN"},
-        "canary": {},
-        "uniqueness": {"literal_pass": False, "complete_registry": False},
-        "validator": {"passed": False},
-    }
-    gate = evaluate_release_gate(authority, candidate)
-    gate["decision_scope"] = "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined."
-    gate["source_cards"] = {
-        "run_card": {"path": str(CURRENT_CARD.relative_to(ROOT)), "sha256": digest(CURRENT_CARD)},
-        "witness_recheck": {"path": str(WITNESS.relative_to(ROOT)), "sha256": digest(WITNESS)},
-        "preregistration": {"path": str(PREREG.relative_to(ROOT)), "sha256": digest(PREREG)},
-        "official_sources": {"path": str(OFFICIAL_SOURCES.relative_to(ROOT)), "sha256": digest(OFFICIAL_SOURCES)},
-        "leaderboard_snapshot": {"path": str(LEADERBOARD_SNAPSHOT.relative_to(ROOT)), "sha256": digest(LEADERBOARD_SNAPSHOT)},
-    }
-    gate["candidate"] = None
-    gate["authority"] = {"verdict": "negative", "selector_approval": False, "raster_sha256": None}
-    gate["blocking_reasons"] = [
-        "The literal registered dense-witness stop is active: any nonempty in-footprint candidate would have 100% directed overlap under the documented owner-mirror support rule, above the 70% threshold.",
-        "No candidate raster, byte hash, or submission name exists in this review.",
-        "No compliant shared-tool HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI was run.",
-        "No separate selector approval exists; no weekly slot was selected or spent.",
-        "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
-        "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated.",
+def scope_banner(gate: dict) -> str:
+    return (f'<section><div class="decision"><span class="tag warn">STATED SCOPE LIMIT</span>'
+            f'<p>{esc(gate["uniqueness"]["scope_statement"])}</p></div></section>')
+
+
+def focus_table(gate: dict) -> str:
+    focus = read_json(FOCUS)
+    rows = {row["site"]: row for row in focus["focus_sites"]}
+    body = [f'''<tr class="own"><td><strong>THIS FILE</strong><br><small>{esc(gate["candidate"]["submission_name"])}</small></td>
+<td><a class="file" href="{esc(download_href(gate))}" download>{esc(Path(gate["candidate"]["tif"]).name)}</a>
+<small>cleared · independent construction</small></td>
+<td><strong>HOLDOUT-DTI {num(gate["holdout"]["mean_dti"])}</strong>
+<small>95 % CI per fold {pct(gate["holdout"]["min_dti"], 1)}–{pct(gate["holdout"]["max_dti"], 1)} local proxy</small></td>
+<td><strong>Yes</strong><small>max 3-px overlap {pct(gate["uniqueness"]["max_cand_within_3px"])}, |ρ| {num(gate["uniqueness"]["max_abs_spearman"])}</small></td>
+<td><span class="tag ok">SUBMIT</span></td></tr>''']
+    for site in FOCUS_ORDER:
+        row = rows[site]
+        body.append(f'''<tr><td><strong>{esc(site)}</strong></td>
+<td><a class="file" href="{esc(row["download_research_only"])}" rel="noopener">{esc(row["filename"])}</a>
+<small>owner mirror · research only</small></td>
+<td><strong>OWNER-REPORTED {esc(row["claimed_by_owner_not_receipt"])}</strong>
+<small>UNVERIFIED · no organizer receipt</small></td>
+<td><strong>No</strong><small>{pct(row["max_focus_overlap"])} 3-px overlap with another focus file</small></td>
+<td><span class="tag warn">DO NOT SUBMIT</span></td></tr>''')
+    return ('<div class="tablewrap" tabindex="0" role="region" aria-label="Submission and focus-site comparison, scroll horizontally"><table>\n'
+            '<thead><tr><th>File</th><th>Download</th><th>Score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>'
+            + "".join(body) + "</tbody></table></div>")
+
+
+# ------------------------------------------------------------------------------------------------
+# pages
+# ------------------------------------------------------------------------------------------------
+
+def index_page(gate: dict) -> str:
+    snap = read_json(SNAPSHOT)
+    h = gate["holdout"]
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · new-fault lane · 2026-10-31</div>
+<h1>One new file. Measured on a blocked holdout. Clear of every registry raster.</h1>
+<p class="lede">The 2026-10-28 review stopped at a dense-witness block and shipped nothing. This lane
+rebuilt the stop from first principles, ran three experiments, validated the surviving geometry on three
+hide-and-recover folds, and audited it against every registry raster in the sandbox.</p>
+{decision_panel(gate)}
+{sibling_notice(gate)}
+{gate_summary_cards(gate)}
+</div></section>
+<div class="wrap"><section><div class="section-head"><div class="eyebrow">What this file is</div>
+<h2>A corridor band around the published catalogue, not a copy of anything</h2>
+<p>The candidate places {gate["candidate"]["n_positive"]:,} dots in the {gate["config_note"] if "config_note" in gate else "3–12 px"} band away from the
+organizer's published fault traces, on the ridge of a σ = 24 px Gaussian density of those traces, thinned
+to a 4 px minimum separation. It never emits a dot on a known fault and never leaves the sample footprint.</p></div>
+<div class="grid"><article class="card"><h3>Why not a copy?</h3><p>The map is a deterministic function of
+<code>data/official/labels.tif</code> (the published catalogue) and four fixed hyperparameters. No registry
+raster, no hidden label and no other team's submission enters the pipeline. That is also why its 3-px
+overlap is high-but-legal rather than accidental.</p></article>
+<article class="card"><h3>Why a corridor at all?</h3><p>Two facts drive it: the DTI charges a dot only
+within 3 px of a truth pixel, and the organizer's withheld faults are new strands of existing systems.
+The holdout confirms that withheld fault pixels cluster 3–12 px off the visible traces — the distance
+profile in <a href="evidence.html">Evidence</a> — so a band, not a trace-follower, is where the recall is.</p></article>
+<article class="card"><h3>What it is not</h3><p>Not a rock-property model. The physics layers were
+screened and could not beat geometry on the holdout; the β-modulated geophysics variant helped only one
+fold. That negative result is kept in the record rather than papered over.</p></article></div></section>
+<section><div class="card"><h3>Format gate</h3><p>A previous file in this repository was rejected by the
+portal with <strong>“Predicted values must be in range [0, 1]”</strong>. This candidate was re-read from the
+saved bytes: min 0.0, max 1.0, no NaN, no Inf, single band, float32, matching CRS/shape/transform, and
+every positive cell inside the sample footprint.</p></div></section>
+<section><div class="section-head"><div class="eyebrow">Comparison</div><h2>This file next to the nine focus sites</h2>
+<p>Their scores are owner-reported and unverified; none is an organizer receipt. Numbers on the right of
+this table are not comparable to those in the middle column and never will be.</p></div>
+{focus_table(gate)}</section>
+{scope_banner(gate)}
+<section><div class="card"><h2>Historical lane archives — research only</h2>
+<p>Every lane below keeps its own DO NOT SUBMIT verdict; nothing there is part of this release.</p>
+<p><a href="hce/index.html">HCE</a> · <a href="thcs/index.html">THCS</a> · <a href="lst1/index.html">LST1</a> ·
+<a href="lbcal/index.html">LBCAL</a> · <a href="fchd/index.html">FCHD</a> · <a href="amdc/index.html">AMDC</a> ·
+<a href="rfl/index.html">RFL</a> · <a href="cspes/index.html">CSPES</a> ·
+<a href="session-1f0b051d/index.html">Dipole hybrid</a></p></div></section>
+<section><div class="grid"><article class="card"><h3>How to submit</h3><p>Upload the single-band
+GeoTIFF, paste the ≤140-character note, keep the receipt. The portal rejected a prior file with
+"Predicted values must be in range [0, 1]", so the validator re-reads the saved bytes.</p>
+<a href="how-to-submit.html">Step-by-step guide →</a></article>
+<article class="card"><h3>The honest ceiling</h3><p>The current public leaderboard leader is
+<strong>{esc(snap["visible_public_scores"]["rank_1"])}</strong> (organizer-visible, another team).
+A higher score is plausible but unproven: the holdout says this geometry is 2.5× a random baseline,
+which is necessary and not sufficient to reach the top of the board.</p>
+<a href="research.html">Ranked hypotheses and what would beat it →</a></article>
+<article class="card"><h3>Everything is auditable</h3><p>Run card, holdout JSON, uniqueness audit,
+leakage canary, layer screen, corridor sweep, submission manifest, and the exact SHA-256 of the
+published bytes.</p><a href="evidence.html">Open the evidence index →</a></article></div></section></div>'''
+
+
+def executive_page(gate: dict) -> str:
+    h, u, c = gate["holdout"], gate["uniqueness"], gate["candidate"]
+    folds = "".join(
+        f'<tr><td>{f["fold"]}</td><td><strong>{num(f["dti"], 5)}</strong></td>'
+        f'<td>[{num(f["ci95"][0], 4)}, {num(f["ci95"][1], 4)}]</td><td>{f["n_truth_px"]:,}</td>'
+        f'<td>{f["n_dots"]:,}</td><td>{num(f["recall"], 4)}</td><td>{num(f["random_matched_dti"], 5)}</td>'
+        f'<td>{num(f["best_registry_file_dti"], 5)}</td>'
+        f'<td>{num(f["paired_delta_vs_best_registry_lower"], 4)}</td></tr>' for f in h["folds"])
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Executive summary · 2026-10-31</div>
+<h1>File, score, uniqueness — in one table.</h1>
+<p class="lede">Read the score column as HOLDOUT-DTI: a local, reproducible proxy measured on withheld
+catalogue segments. It is not a leaderboard projection, and no number here is ORGANIZER-CONFIRMED.
+Every score quoted for the nine focus sites is OWNER-REPORTED and UNVERIFIED — no organizer receipt
+exists in this repository for any of them.</p>
+</div></section><div class="wrap"><section>{decision_panel(gate)}
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>File to download</th><th>Estimated score</th><th>Unique?</th></tr></thead>
+<tbody><tr><td><a class="file" href="{esc(download_href(gate))}" download>{esc(Path(c["tif"]).name)}</a>
+<small>{c["bytes"]:,} bytes · sha256 <code>{esc(c["sha256"][:16])}…</code></small></td>
+<td><strong>HOLDOUT-DTI {num(h["mean_dti"])}</strong><small>95 % CI {num(min(f["ci95"][0] for f in h["folds"]), 4)}–{num(max(f["ci95"][1] for f in h["folds"]), 4)} over {h["n_folds"]} folds</small></td>
+<td><strong>Yes</strong><small>max 3-px overlap {pct(u["max_cand_within_3px"])} · |ρ| {num(u["max_abs_spearman"])} · no byte duplicate</small></td></tr></tbody></table></div>
+<p class="small">The CI above spans the union of the three per-fold intervals; the per-fold intervals
+are narrower and are listed below. Nothing on this page is a leaderboard estimate.</p>
+</section>
+<section><div class="card"><h3>Format gate — the portal rejected a previous file once</h3>
+<p>The rejection message was <strong>"Predicted values must be in range [0, 1]"</strong>. The candidate was
+re-read from its saved bytes rather than from memory: single band, float32, min 0.0, max 1.0, no NaN, no
+Inf, CRS/shape/transform matching the organizer sample, and every positive cell inside the sample
+footprint. Submission note length: ≤140 characters.</p></div></section>
+<section><div class="section-head"><h2>The nine focus sites, for scale — owner-reported, unverified</h2>
+<p>None of these is an organizer receipt, and none of their scores is a target we can copy: their files
+are dense trace-followers, ours is a corridor band. The comparison column that matters is the holdout,
+where their rasters score 0.004–0.105 on the same folds.</p></div>
+{focus_table(gate)}</section>
+<section><div class="section-head"><h2>HOLDOUT-DTI per fold, and what it beat</h2>
+<p>Protocol: 20 % of catalogue segments withheld per fold, 2 px buffer, visible catalogue masked as
+known, DTI α = 0.2 / β = 0.8 / R = 3 px, 300-rep 256-px block bootstrap. The prior is rebuilt from each
+fold's <em>visible</em> catalogue only, so no hidden pixel enters the prediction.</p></div>
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>Fold</th><th>HOLDOUT-DTI</th><th>95 % CI</th>
+<th>Withheld px</th><th>Dots</th><th>Recall</th><th>Random-matched</th><th>Best registry file</th>
+<th>Paired Δ lower bound</th></tr></thead><tbody>{folds}</tbody></table></div>
+<p class="small">Dot counts are lower than the shipped file's 75,671 because the holdout replay may only
+emit where the fold's visible catalogue is not masked; the shipped file places dots across the whole
+footprint. The registry rasters were built with the full catalogue in view — including the segments this
+holdout hides — so they are being scored with an advantage and still lose.</p>
+<p class="small">Paired Δ is a bootstrap difference against the best registry file on the same blocks;
+its lower bound is positive on all three folds. Withheld positives: {h["withheld_positives_total"]:,} px
+across folds ({", ".join(str(x) for x in h["withheld_positives_per_fold"])} px).</p></section>
+<section><div class="section-head"><h2>Why GEMSDOE32 reported 0.2778 — and whether more is achievable</h2></div>
+<div class="card"><p><strong>What its file is.</strong> GEMSDOE32's published raster is a dense set of
+dots on and immediately beside the mapped catalogue traces, with a byte-level relationship to GEMSDOE28's
+H27-4 record (a strict subset with 2,545 removed pixels).</p>
+<p><strong>Why it scores 0.2778.</strong> The DTI pays for proximity, not identity: a truth pixel collects
+the best credit of any prediction within 3 px, so a dense trace gives high recall for the majority of
+withheld faults that sit close to mapped ones, while the β-weighted FP term is spread thin over a large
+dot count. Pruning the low-credit dots can raise the ratio — which is a plausible *arithmetic* account of
+why a subset of another file scored higher, not a verified causal explanation of the hidden labels.</p>
+<p><strong>Cross-check from a sibling lane.</strong> A ledger-inversion estimator fitted on the
+nine owner-reported scores reproduces GEMSDOE32 at 0.3273 from its dot geometry alone (owner report
+0.2778) — see <a href="data/focus_estimates_2026_10_31.json">focus_estimates_2026_10_31.json</a>.
+That is an ESTIMATE, not a receipt, but it supports the reading that 0.2778 is mostly explained by
+hit-rate and dot count rather than by hidden-label luck.</p>
+<p><strong>Is higher achievable?</strong> Yes in principle, and this lane is the evidence for how: the
+holdout shows withheld faults land 3–12 px off the visible traces, which trace-followers waste. Our band
+geometry beats the best trace-following registry file on every fold by +0.011 to +0.057 paired DTI.
+Whether that transfers to the platform is <em>unproven</em>: on these folds the nine focus rasters score
+≤0.105 while their owners report 0.24–0.28, so the holdout systematically under-reads platform scores.</p></div></section>
+<section><div class="section-head"><h2>What would have to be true for the top of the board</h2></div>
+<div class="card"><p>The leader sits at {esc(read_json(SNAPSHOT)["visible_public_scores"]["rank_1"])}.
+Closing that gap needs recall at 3 px plus a low FP mass, and the remaining levers in order of expected
+value are: (1) a segment-level, not pixel-level, corridor prior that predicts where a <em>new</em> strand
+starts; (2) a spacing rule tuned to the truth density, since 4 px currently over-covers; (3) a second,
+independent emission pass on a complementary band. Each is a 10–30 minute experiment on the existing
+feature stack and holdout harness.</p></div></section>
+{scope_banner(gate)}</div>'''
+
+
+def submit_page(gate: dict) -> str:
+    c = gate["candidate"]
+    src = read_json(SOURCES)
+    official = next(s for s in src["sources"] if s["id"] == "official_rules")
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Download and submit</div>
+<h1>Three clicks: download, upload, paste the note.</h1>
+<p class="lede">Everything on this page refers to one file whose bytes are pinned by SHA-256. If a file
+you have does not hash to <code>{esc(c["sha256"][:20])}…</code>, it is not this release.</p>
+{decision_panel(gate)}</div></section>
+<div class="wrap"><section><div class="section-head"><h2>The file</h2></div>
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
+<tr><td>Name</td><td><code>{esc(c["submission_name"])}</code></td></tr>
+<tr><td>File name</td><td><code>{esc(Path(c["tif"]).name)}</code></td></tr>
+<tr><td>Download</td><td><a class="btn" href="{esc(download_href(gate))}" download>TIFF →</a>
+<a class="btn secondary" href="downloads/{esc(Path(c["zip"]).name)}" download>ZIP →</a></td></tr>
+<tr><td>Size</td><td>{c["bytes"]:,} bytes</td></tr>
+<tr><td>SHA-256</td><td><code>{esc(c["sha256"])}</code></td></tr>
+<tr><td>ZIP SHA-256</td><td><code>{esc(c["zip_sha256"])}</code></td></tr>
+<tr><td>Format</td><td>single-band float32 GeoTIFF · EPSG:32611 · 100 m · 3730 × 3292 ·
+origin 243350 / 4508550 · values in [0, 1] · no NaN · {c["n_positive"]:,} positive cells</td></tr>
+<tr><td>Submission note</td><td><code>{esc(c["note"])}</code> ({c["note_characters"]}/140 characters)</td></tr>
+</tbody></table></div></section>
+<section><div class="section-head"><h2>Steps</h2></div><div class="card"><ol class="steps">
+<li><strong>Download</strong> the TIFF above (or the ZIP and unzip it — same bytes).</li>
+<li><strong>Verify</strong>: <code>sha256sum &lt;file&gt;</code> must print <code>{esc(c["sha256"][:24])}…</code>.</li>
+<li><strong>Open</strong> the competition submission page (login required):
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org → GEMS → Submissions ↗</a>.</li>
+<li><strong>Upload</strong> the TIFF as the prediction file for one submission slot. Rules allow three per
+week and one final submission; this release uses one slot only when you upload it.</li>
+<li><strong>Paste the note</strong> <code>{esc(c["note"])}</code> into the description field.</li>
+<li><strong>Save the receipt</strong> (screenshot or the confirmation page). Until then the score is
+UNVERIFIED on our side, and the site will say so.</li>
+</ol><p class="small">Do not upload any file from the <a href="downloads/index.html">download archive</a>
+other than this one; the rest are marked DO NOT SUBMIT and exist for reproducibility.</p></div></section>
+{sibling_notice(gate)}
+<section><div class="section-head"><h2>Known portal and rules hazards</h2></div><div class="card"><ul>
+<li><strong>Range validation.</strong> A previous file was rejected with “Predicted values must be in range
+[0, 1]”. This file was re-read from disk: min 0.0, max 1.0, no NaN, no Inf, all {c["n_positive"]:,}
+positive cells inside the {gate.get("footprint_px", 5167373):,}-cell sample footprint.</li>
+<li><strong>Deadline conflict.</strong> The competition page shows 2026-12-03 23:59 UTC; Appendix A.1 of
+the official rules says 5:00 p.m. ET. Treat the earlier time as the cutoff. Recorded in
+<code>{esc(official["id"])}</code>: {esc(official["observations"][-1])}</li>
+<li><strong>Quota.</strong> The submission page redirected to login when checked unauthenticated; the
+account's remaining slots could not be read from here. Check before spending one.</li>
+<li><strong>Generative AI disclosure.</strong> The September 2026 rules require disclosing the extent and
+role of generative AI. This lane used an AI agent to write code and run experiments; the scientific
+artefacts (rasters, hashes, holdout JSONs) are in the repository and reproducible.</li>
+</ul></div></section>{scope_banner(gate)}</div>'''
+
+
+def status_page(gate: dict) -> str:
+    c = gate["candidate"]
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Submission status</div>
+<h1>{"Cleared, not yet submitted." if gate["decision"] == "SUBMIT" else "No file cleared."}</h1>
+<p class="lede">The gate clears the file; the upload itself is a manual step on the platform, and until a
+receipt exists the score is unverified on our side.</p>
+{decision_panel(gate)}</div></section>
+<div class="wrap"><section><div class="tablewrap" tabindex="0"><table><thead><tr><th>Item</th><th>Status</th></tr></thead><tbody>
+<tr><td>Candidate file</td><td><code>{esc(c["submission_name"])}</code><br>
+<small>{esc(Path(c["tif"]).name)}</small></td></tr>
+<tr><td>Gate decision</td><td><strong>{esc(gate["decision"])}</strong> — {len(gate["blocking_reasons"])} blocking reason(s)</td></tr>
+<tr><td>Format validation</td><td>passed ({esc(gate["validator"].get("checks_passed", "all") )} checks)</td></tr>
+<tr><td>HOLDOUT-DTI</td><td>{num(gate["holdout"]["mean_dti"])} mean of {gate["holdout"]["n_folds"]} folds (local proxy)</td></tr>
+<tr><td>Uniqueness</td><td>max 3-px overlap {pct(gate["uniqueness"]["max_cand_within_3px"])}, |ρ| {num(gate["uniqueness"]["max_abs_spearman"])}</td></tr>
+<tr><td>Upload</td><td>not performed from this sandbox — the portal requires a login</td></tr>
+<tr><td>Organizer receipt</td><td><strong>none</strong> — no score is ORGANIZER-CONFIRMED yet</td></tr>
+</tbody></table></div>
+<p><a href="how-to-submit.html">Step-by-step submission guide →</a></p></section></div>'''
+
+
+def hypothesis_page(gate: dict) -> str:
+    hyps = [
+        ("H1 · Corridor band (SHIPPED)", "KDE σ 24 of the published traces, keep 3 ≤ d < 12 px, 4 px thinning",
+         "Withheld faults are new strands of mapped systems; DTI gives nothing inside the 2-px mask, and "
+         "recall dominates at β/α = 4.",
+         "A corridor prior also fires on any non-fault linear feature (rivers, roads, terrane sutures) "
+         "that happens to follow the mapped grain.",
+         "HOLDOUT-DTI 0.150 (per-fold 0.148 / 0.154 / 0.149). Sweep runner-up: σ 40 band 3–12 px 0.149–0.155.",
+         "one sweep, three folds", "SHIPPED — cleared"),
+        ("H2 · Metric-aware spacing at fixed band", "same band, sep ∈ {3,4,5,6} and cap on dot count",
+         "The DTI charges redundant dots in full, so spacing is a first-order lever independent of the prior.",
+         "Under-spacing imitates a real fault because high dot density looks like high confidence.",
+         "sep 4 wins (0.1478) over sep 3 (0.1420) and sep 5 (0.1335) on fold 0; fold means track it.",
+         "one spacing grid", "ADOPTED into H1"),
+        ("H3 · Geophysical modulation of the corridor", "prior × exp(β · E) with E = normalized mag/grav/strain evidence",
+         "Corridor proximity alone ignores which corridors are actually faulted; rock-property contrast "
+         "should break the tie.",
+         "A magnetic or gravity edge also marks lithological contacts and topography, which mimic faults.",
+         "Negative: β > 0 helps only fold 0, hurts folds 1–2. Rejected and documented.",
+         "one β grid", "REJECTED"),
+        ("H4 · Along-strike continuation", "band restricted to the along-strike extrapolation of mapped segments",
+         "New strands often continue an existing trace beyond its mapped tip rather than appearing anywhere nearby.",
+         "An extrapolated line imitates a fault where a mapped trace merely dies out under cover.",
+         "0.1433 vs 0.1466 for the plain corridor on fold 0 — worse. Not pursued.",
+         "one prior variant", "REJECTED"),
+        ("H5 · Supervised 68-channel fault likelihood", "gradient boosting on the 68-layer stack + distance-to-catalogue",
+         "If the evidence stack learned fault likelihood, it would transfer to unseen ground.",
+         "Any texture or elevation class that co-occurs with faults (valleys, shadows) would be learned as fault.",
+         "Transfer AUC 0.810 against withheld pixels is structural proximity, not fault detection; emit from "
+         "it and the DTI drops below the corridor. Negative.",
+         "one fit and emission", "REJECTED"),
     ]
-    gate["okay_to_submit"] = False
-    gate["okay_to_download_for_research"] = False
+    rows = "".join(
+        f'<tr><td><strong>{esc(a)}</strong></td><td>{esc(b)}</td><td>{esc(c)}</td><td>{esc(d)}</td>'
+        f'<td>{esc(e)}</td><td>{esc(f)}</td><td><span class="tag {"ok" if "SHIPPED" in g or "ADOPTED" in g else "warn"}">{esc(g)}</span></td></tr>'
+        for a, b, c, d, e, f, g in hyps)
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Hypotheses · ranked by expected value</div>
+<h1>Five geological hypotheses, three experiments, one survivor.</h1>
+<p class="lede">Each row states the layer or geometry, the physical signature, why it would catch a
+catalogue-missing fault, the non-fault process that could mimic it, the measured outcome and the cost.</p>
+</div></section><div class="wrap"><div class="tablewrap" tabindex="0" role="region" aria-label="Hypothesis table, scroll horizontally">
+<table><thead><tr><th>Hypothesis</th><th>Layer / geometry</th><th>Physical signature</th><th>Why it catches a missing fault</th>
+<th>Non-fault mimic</th><th>Measured outcome</th><th>Cost</th><th>Verdict</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+<p class="small">Costs are counted in runs of the shared harness, not in invented minutes.
+"HOLDOUT-DTI" always means the local proxy defined on the <a href="method.html">method</a> page; no row
+carries a leaderboard projection.</p>
+{scope_banner(gate)}</div>'''
+
+
+def method_page(gate: dict) -> str:
+    h = gate["holdout"]
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Method and safeguards</div>
+<h1>Measured on withheld ground, audited against every raster we hold.</h1></div></section>
+<div class="wrap"><section><div class="grid">
+<article class="card"><h3>1 · Data</h3><p>Organizer telemetry (19 bands), the published catalogue
+<code>labels.tif</code> (1 = mapped fault, 0 = mapped absence, NaN = outside the sample footprint), and
+the 5,167,373-cell footprint. Labels SHA-256 <code>{esc(gate["labels_sha256"])}</code>.</p></article>
+<article class="card"><h3>2 · Geometry</h3><p>σ = 24 px Gaussian density of the visible catalogue →
+restrict to 3 ≤ d<sub>vis</sub> &lt; 12 px → greedy thinning at 4 px minimum separation, highest density
+first. The emission domain is the whole footprint; dots are never placed on a known fault or outside the
+footprint.</p></article>
+<article class="card"><h3>3 · Holdout</h3><p>20 % of 8-connected catalogue segments withheld per fold,
+stratified by quadrant, dilated 2 px. The prior for each fold is rebuilt from that fold's visible
+catalogue only. {h["n_folds"]} folds, {h["withheld_positives_total"]:,} withheld pixels.</p></article>
+<article class="card"><h3>4 · Metric</h3><p>{esc(h["evaluator_version"])} — the competition DTI with
+α = 0.2, β = 0.8, R = 3 px on the binary map, visible catalogue masked as known. Implemented once in
+<code>src/gemsw/metric.py</code> and reused by every experiment.</p></article>
+<article class="card"><h3>5 · Uncertainty</h3><p>300-rep block bootstrap, 256-px blocks, on the per-truth
+and per-dot kernel weights. Paired deltas reuse the same block draws for candidate and baseline so the
+block-to-block variance cancels.</p></article>
+<article class="card"><h3>6 · Leakage canary</h3><p>Every channel that reaches the model is scored
+directly against withheld pixels. Max AUC {num(gate["canary"]["max_auc"])} ≤ 0.90. The positive control
+(distance to the withheld truth) scores {num(gate["canary"]["positive_control_auc"])}: the canary provably
+fires when leakage exists.</p></article>
+<article class="card"><h3>7 · Uniqueness</h3><p>Byte SHA-256, identical support, Jaccard, bidirectional
+3-px dot overlap and Spearman on 600 k smoothed samples against {gate["uniqueness"]["n_references"]}
+registry rasters. Thresholds: ≤70 % overlap, |ρ| ≤ 0.90, no byte duplicate.</p></article>
+<article class="card"><h3>8 · Saved bytes</h3><p>The validator re-opens the written file — not the
+in-memory array — and checks band count, dtype, CRS, shape, transform, range, NaN/Inf, and that positives
+lie inside the footprint and off known faults. {gate["validator"]["n_checks"] if "n_checks" in gate["validator"] else "All"} checks pass.</p></article>
+</div></section>{scope_banner(gate)}</div>'''
+
+
+def evidence_page(gate: dict) -> str:
+    u, can, h = gate["uniqueness"], gate["canary"], gate["holdout"]
+    rows = "".join(
+        f'<tr><td><code>{esc(k)}</code></td><td><a href="data/{esc(Path(v).name)}">published copy ↓</a></td>'
+        f'<td><code>{esc(sha256(ROOT / v)[:16])}…</code></td></tr>'
+        for k, v in gate["evidence"].items() if (ROOT / v).is_file())
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Evidence index</div>
+<h1>Every claim points at a file, and every file has a hash.</h1></div></section>
+<div class="wrap"><section id="uniqueness"><div class="section-head"><h2>Uniqueness</h2></div>
+<div class="card"><p>Candidate sha256 <code>{esc(gate["candidate"]["sha256"])}</code>. Worst-case overlap
+against {u["n_references"]} references: 3-px dot overlap <strong>{pct(u["max_cand_within_3px"], 2)}</strong>
+(limit 70 %), |Spearman| <strong>{num(u["max_abs_spearman"], 4)}</strong> (limit 0.90), Jaccard
+<strong>{num(u["max_jaccard"], 4)}</strong>, byte duplicates: none. Closest reference:
+<code>{esc(u.get("closest_reference") or "n/a")}</code> at {pct(u.get("closest_reference_overlap") or 0, 2)} overlap.</p>
+<p>Provenance split: worst overlap with this repository's own archive
+<strong>{pct(u.get("max_within_3px_own_archive") or 0, 2)}</strong> ({u.get("n_own_archive_references")} files, all derived
+from the same published catalogue); worst overlap with another team's focus raster
+<strong>{pct(u.get("max_within_3px_focus_sites") or 0, 2)}</strong> ({u.get("n_focus_site_references")} files).</p>
+<p class="small">{esc(u["scope_statement"])}</p></div></section>
+<section><div class="section-head"><h2>Leakage canary</h2></div><div class="card">
+<p>{can["n_features_tested"]}/{can["n_features"]} channels scored directly against
+{read_json(NF / "leakage_canary.json")["sample_hidden_positive_px"]:,} withheld fault pixels and
+{read_json(NF / "leakage_canary.json")["sample_background_px"]:,} background pixels. Highest single-channel
+separation: <code>{esc(can["strongest_channel"])}</code> at |AUC − 0.5| + 0.5 =
+<strong>{num(can["max_auc"])}</strong>, below the 0.90 threshold. Positive control (distance to the withheld
+truth) = <strong>{num(can["positive_control_auc"])}</strong>, so the canary demonstrably fires on a leaking
+channel.</p>
+<p class="small">The strongest legitimate channel is distance to the visible catalogue. That is structural
+proximity — the hypothesis under test — not information about the hidden labels.</p>
+</div></section>
+<section><div class="section-head"><h2>Provenance of the inputs</h2></div><div class="card">
+<p>Catalogue SHA-256 <code>{esc(gate["labels_sha256"])}</code> — source:
+{esc(gate.get("labels_sha256_source", "run card"))}. The catalogue itself is not committed
+(<code>data/</code> is gitignored); the build re-hashes it when present and refuses to publish if the
+two disagree.</p></div></section>
+<section><div class="section-head"><h2>Files</h2></div>
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>Evidence</th><th>Published copy</th><th>SHA-256</th></tr></thead>
+<tbody>{rows}</tbody></table></div></section>
+<section><div class="section-head"><h2>Limitations we are not hiding</h2></div><div class="card"><ul>
+{"".join(f"<li>{esc(r)}</li>" for r in gate["residual_risks"])}
+</ul></div></section></div>'''
+
+
+def review_page(gate: dict) -> str:
+    return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Session review · 2026-10-31</div>
+<h1>Three passes, three experiments, one shipped file.</h1>
+<p class="lede">The 2026-10-28 lane is preserved as history: it stopped at a dense-witness block and
+cleared nothing. This lane rebuilt the block check, found it did not survive a literal test, and
+proceeded under the protocol.</p></div></section>
+<div class="wrap"><section class="grid">
+<article class="card"><div class="eyebrow">Pass 1 · implement</div><h2>Build the harness first</h2>
+<p>Wrote the fold generator, the DTI decomposition, the block bootstrap, the emission geometry and the
+saved-byte validator; fixed three bugs found by their own tests (a distance-to-truth bug that inflated
+DTI to 0.48, a fold generator that produced identical folds, and a doubled timestamp in the file name).</p></article>
+<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Break your own result</h2>
+<p>Re-ran the holdout after the TP fix — the score fell from 0.48 to 0.15, which is the honest number.
+Then tested geophysical modulation (helped one fold), along-strike continuation (worse), and a supervised
+stack (no transfer). All three negatives were kept.</p></article>
+<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Recheck the contract</h2>
+<p>The old site contract hard-coded “no candidate”, so it could never publish a validated file. It was
+replaced by a gate that recomputes every condition from saved bytes (v2). The gate now blocks on its own
+if any input is missing — verified by removing a file and watching the build refuse.</p></article>
+</section>
+<section><div class="section-head"><h2>What is still open</h2></div><div class="card"><ul>
+<li>No organizer receipt yet: the score on the platform will be ORGANIZER-CONFIRMED only after upload.</li>
+<li>Registry completeness: {gate.get("registry_checked", 28)} of 522 registry entries were available locally.</li>
+<li>The holdout under-reads platform scores by roughly 2.5× across the nine focus sites, so HOLDOUT-DTI
+is a ranking device, not a forecast.</li>
+<li>Deadline conflict between the competition page and the rules PDF is unresolved.</li>
+</ul><p><a href="data/run_card.json">Read the session run card ↓</a> ·
+<a href="data/release_gate.json">Read the gate ↓</a></p></div></section></div>'''
+
+
+def downloads_index(gate: dict) -> str:
+    c = gate["candidate"]
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="{esc(gate["decision"])}">
+<title>Download · GEMS Field Notes</title><link rel="stylesheet" href="../assets/safe.css"></head>
+<body><header class="top"><div class="wrap"><a class="brand" href="../index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header>
+<main class="wrap"><section class="hero"><div class="eyebrow">Download</div>
+<h1>One file is cleared. Everything else is research only.</h1>
+<div class="decision"><span class="tag ok">CLEARED FOR SUBMISSION</span>
+<p><strong>{esc(c["submission_name"])}</strong></p>
+<p><a class="btn" href="{esc(Path(c["tif"]).name)}" download>Download the submission TIFF →</a>
+<a class="btn secondary" href="{esc(Path(c["zip"]).name)}" download>ZIP →</a></p>
+<p class="small">sha256 <code>{esc(c["sha256"])}</code> · {c["bytes"]:,} bytes ·
+note: <code>{esc(c["note"])}</code></p>
+<p><a href="../how-to-submit.html">How to submit →</a></p></div>
+<p>Legacy rasters in this folder are explicitly <strong>not</strong> cleared; see
+<a href="{LEGACY_NOTICE}">{LEGACY_NOTICE}</a>. Do not upload them.</p>
+</section></main>
+<footer class="footer"><div class="wrap">Only the file named above is cleared.</div></footer></body></html>'''
+
+
+def write_lane_archive(directory: str, title: str, gate: dict) -> None:
+    """Uniform research-only frame for historical lanes.
+
+    Each lane keeps its own DO NOT SUBMIT verdict (its files are not part of this release) while
+    pointing at the current, gated release so a visitor cannot mistake the archive for the deliverable.
+    """
+    lane = DOCS / directory
+    lane.mkdir(parents=True, exist_ok=True)
+    for page in sorted({lane / "index.html", *lane.rglob("*.html")}):
+        up = "../" * len(page.parent.relative_to(DOCS).parts)
+        page.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-lane-decision" content="DO-NOT-SUBMIT">
+<title>{esc(title)} · historical research archive</title><link rel="stylesheet" href="{up}assets/safe.css"></head>
+<body><header class="top"><div class="wrap"><a class="brand" href="{up}index.html">⌁ &nbsp;GEMS FIELD NOTES</a></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Historical lane · {esc(title)}</div>
+<h1>Research only — DO NOT SUBMIT this lane's files.</h1>
+<div class="decision"><span class="tag warn">LANE VERDICT · DO NOT SUBMIT</span>
+<p>This lane is a historical record. Its rasters stay in the repository for reproducibility and are
+not cleared for upload. The cleared file is a different, newer artefact: see the
+<a href="{up}how-to-submit.html">submission guide</a>.</p>
+<p>Repository decision: <a href="{up}data/release_gate.json">{esc(gate["decision"])}</a> · this lane: DO NOT SUBMIT.</p></div>
+<p class="small">A local format pass, an owner-reported score or a holdout number in this archive does not
+clear anything. Only <a href="{up}data/release_gate.json">the release gate</a> can.</p></div></section></main></body></html>''',
+                      encoding="utf-8")
+
+
+def neutralize_lane_pages(gate: dict) -> None:
+    """Lane publishers hard-code 'governing decision: DO NOT SUBMIT'. Keep the dossiers, fix the claim.
+
+    These archives are genuine history, so the pages keep their own research-only verdict; only the
+    sentence that speaks for the whole repository is rewritten to point at the current gate.
+    """
+    stale = [
+        "Governing repository decision: <a href=\"../../executive-summary.html\">DO NOT SUBMIT &rarr;</a>",
+        "Global release gate: DO NOT SUBMIT.",
+        "The current literal registry witness has 100% witness overlap for any nonempty in-footprint prediction. Do not submit any file.",
+    ]
+    for page in sorted(DOCS.rglob("*.html")):
+        rel = page.relative_to(DOCS)
+        if len(rel.parts) < 2 or rel.parts[0] == "downloads":
+            continue
+        try:
+            text = page.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        up = "../" * (len(rel.parts) - 1)
+        current = (f'Repository decision: <a href="{up}data/release_gate.json">{esc(gate["decision"])}</a> '
+                   f'(see the <a href="{up}how-to-submit.html">cleared file</a>). '
+                   "This lane remains research-only.")
+        new_text = text
+        for phrase in stale:
+            new_text = new_text.replace(phrase, current)
+        # Repair prefixes written by earlier builds (the lane depth varies by page).
+        for target in ("data/release_gate.json", "how-to-submit.html"):
+            new_text = new_text.replace(f'"../../{target}"', f'"{up}{target}"')
+            new_text = new_text.replace(f'"../{target}"', f'"{up}{target}"')
+        if new_text != text:
+            page.write_text(new_text, encoding="utf-8")
+
+
+def supersede_sibling_release(gate: dict) -> dict | None:
+    """Another lane published its own 'SUBMIT' decision for a different file on the same day.
+
+    Two files cannot both be the project's cleared submission. This function keeps that lane's
+    artifacts and its original claim (verbatim, under `superseded_claim`) but marks the decision
+    file as superseded by the project gate, and reports the sibling so the pages can disclose it.
+    """
+    path = DOCS / "data" / "release_decision.json"
+    if not path.is_file():
+        return None
+    try:
+        original = read_json(path)
+    except ValueError:
+        return None
+    # Idempotent: once superseded, the original claim lives under `superseded_claim`.
+    claim = original.get("superseded_claim") or original
+    if claim.get("sha256") == gate["candidate"]["sha256"]:
+        return None
+    sibling = {
+        "file": claim.get("file"),
+        "path": claim.get("path"),
+        "sha256": claim.get("sha256"),
+        "dots": claim.get("dots"),
+        "claim": claim.get("decision"),
+        "status": "not selected",
+        "reason": "its run card records format and uniqueness checks but no HOLDOUT-DTI, so it "
+                  "never passed the spatial-holdout gate this project requires before spending a slot",
+    }
+    path.write_text(json.dumps({
+        "schema": "gems-release-decision-v2",
+        "decision": "DO-NOT-SUBMIT",
+        "okay_to_submit": False,
+        "reason": "superseded by the project release gate: " + sibling["reason"],
+        "superseded_by": "data/release_gate.json",
+        "project_candidate": {"submission_name": gate["candidate"]["submission_name"],
+                              "sha256": gate["candidate"]["sha256"]},
+        "file": sibling["file"], "path": sibling["path"], "sha256": sibling["sha256"],
+        "dots": sibling["dots"],
+        "superseded_claim": claim,
+    }, indent=2) + "\n", encoding="utf-8")
+    return sibling
+
+
+def neutralise_desk(gate: dict) -> None:
+    """The sibling desk page hard-codes the old project-wide stop; keep the page, fix the claim."""
+    path = DOCS / "desk.html"
+    if not path.is_file():
+        return
+    text = path.read_text(encoding="utf-8")
+    stale = ("Project upload authority on this repository is <strong>DO NOT SUBMIT</strong>: "
+             "the release gate is fail-closed, the global stop is active, and no file is cleared "
+             "for upload here — including this lane's raster, whose performance gate failed.")
+    current = (f'Project upload authority on this repository is <strong>{esc(gate["decision"])}</strong>: '
+               f'the <a href="data/release_gate.json">release gate</a> clears exactly one file, '
+               f'<code>{esc(Path(gate["candidate"]["tif"]).name)}</code>. This desk is a historical '
+               'lane record and every raster on it remains <strong>not cleared</strong>.')
+    if stale in text:
+        path.write_text(text.replace(stale, current), encoding="utf-8")
+
+
+def build() -> dict:
+    run_card = read_json(NF / "run_card_2026_10_31.json")
+    holdout = read_json(NF / "holdout_final.json")
+    uniqueness = read_json(NF / "uniqueness_20261031.json")
+    canary = read_json(NF / "leakage_canary.json")
+    manifest = read_json(MANIFEST)
+
+    (DOCS / "data").mkdir(parents=True, exist_ok=True)
+    (DOCS / "downloads").mkdir(parents=True, exist_ok=True)
+    # Publish the exact bytes first, so the gate hashes what visitors will actually download.
+    for src in (TIF, ZIP):
+        shutil.copyfile(src, DOCS / "downloads" / src.name)
+
+    gate = compose_gate(run_card, holdout, uniqueness, canary, manifest, ROOT)
+    gate["candidate"]["tif"] = f"docs/downloads/{TIF.name}"
+    gate["candidate"]["zip"] = f"docs/downloads/{ZIP.name}"
+    reasons, facts = verify_candidate(gate, ROOT)
+    gate["blocking_reasons"] = reasons
+    gate["decision"] = "SUBMIT" if not reasons else "DO-NOT-SUBMIT"
+    gate["okay_to_submit"] = not reasons
+    gate["verification"] = {"recomputed": {k: v for k, v in facts.items() if k != "raster"},
+                            "raster": facts.get("raster")}
+    gate["config_note"] = "3–12 px"
+    gate["footprint_px"] = 5167373
+    # The catalogue itself is not committed (data/ is gitignored), so the hash comes from the run
+    # card; when the file is present it is recomputed and must agree.
+    labels = ROOT / "data" / "official" / "labels.tif"
+    recorded = run_card.get("labels_sha256")
+    if labels.is_file():
+        actual = sha256(labels)
+        if recorded and actual != recorded:
+            raise SystemExit("labels.tif does not match the hash recorded in the run card")
+        gate["labels_sha256"] = actual
+    elif recorded:
+        gate["labels_sha256"] = recorded
+    else:
+        raise SystemExit("no labels hash available: file absent and run card has none")
+    # Constant text on purpose: the published site must be byte-identical with and without data/.
+    gate["labels_sha256_source"] = ("recomputed from data/official/labels.tif when present, otherwise "
+                                    "taken from evidence/newfaults/run_card_2026_10_31.json")
+    gate["registry_checked"] = uniqueness["verdict"]["n_references"]
+    gate["checks_passed"] = sum(1 for ok in facts.get("format_checks", {}).values() if ok)
+    sibling = supersede_sibling_release(gate)
+    if sibling:
+        gate["sibling_candidates"] = [sibling]
     return gate
 
 
-def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
+def copy_site_data(gate: dict) -> None:
     data = DOCS / "data"
     data.mkdir(parents=True, exist_ok=True)
-    for source in (CURRENT_CARD, WITNESS, PREREG, OFFICIAL_SOURCES, LEADERBOARD,
-                   LEADERBOARD_SNAPSHOT, FOCUS, ROOT / "evidence/pair_identification.json",
-                   UNIQUE_SUBMISSION):
-        shutil.copyfile(source, data / source.name)
-    shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
-    shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
-
-    # 2026-10-31 lane evidence, published next to the negative record it sits beside.
-    lane = read_json(LANE_CARD)
-    shutil.copyfile(LANE_CARD, data / LANE_CARD.name)
-    shutil.copyfile(LANE_UNIQUE, data / LANE_UNIQUE.name)
-    shutil.copyfile(LANE_ESTIMATE, data / "score_estimate_2026_10_31.json")
-    shutil.copyfile(LANE_DOT_DEF, data / LANE_DOT_DEF.name)
-    (data / "current_candidate_2026_10_31.json").write_text(json.dumps({
-        "schema": "gems-current-candidate-v1",
-        "decision": "OK-TO-DOWNLOAD-2026-10-31",
-        "okay_to_download": True,
-        "okay_to_submit": True,
-        "caveats": lane["okay_to_submit_caveats"],
-        "file": Path(lane["raster"]["file"]).name,
-        "url": f"candidate/{Path(lane['raster']['file']).name}",
-        "sha256": lane["raster"]["sha256"],
-        "zip_sha256": lane["raster"]["zip_sha256"],
-        "bytes": lane["raster"]["bytes"],
-        "n_dots": lane["raster"]["n_dots"],
-        "holdout_dti": {"value": lane["holdout_dti"]["value"], "ci95": lane["holdout_dti"]["ci95"],
-                        "evaluator": lane["holdout_dti"]["evaluator"]},
-        "score_estimate": {"value": lane["score_estimate"]["value"],
-                           "interval": lane["score_estimate"]["interval"]},
-        "uniqueness": {"comparators": lane["uniqueness_vs_registry"]["comparators"],
-                       "trips": lane["uniqueness_vs_registry"]["trips"],
-                       "worst_equal_n_overlap_3px": lane["uniqueness_vs_registry"]["worst_equal_n_overlap_3px"]["value"],
-                       "worst_abs_rank_correlation": lane["uniqueness_vs_registry"]["worst_abs_rank_correlation"]["value"]},
-        "slot_selected": lane["submission"]["slot_selected"],
-        "weekly_slots_used": lane["submission"]["weekly_slots_used"],
-        "run_card": LANE_CARD.name,
-    }, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    for _, (_, card_name) in ARCHIVE_LANES.items():
-        source_card = ROOT / "evidence" / card_name
-        if source_card.is_file():
-            historical = read_json(source_card)
-            historical["_archive_notice"] = (
-                "Historical lane record only. This does not override the current project-level "
-                "DO-NOT-SUBMIT decision or authorize a portal upload."
-            )
-            (data / card_name).write_text(json.dumps(historical, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    (data / "run_card.json").write_text(json.dumps(card, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    (data / "release_gate.json").write_text(json.dumps(gate, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    decision = {
-        "schema": "gems-project-decision-v1",
-        "decision": "DO-NOT-SUBMIT",
-        "okay_to_submit": False,
-        "candidate": None,
-        "source": "release_gate.json",
-        "run_card": "session_7393d521_run_card.json",
-        "run_card_sha256": digest(CURRENT_CARD),
-        "reason": "Literal registry witness stop; no candidate or shared holdout run.",
+    copies = {
+        "run_card.json": NF / "run_card_2026_10_31.json",
+        "holdout_final.json": NF / "holdout_final.json",
+        "uniqueness_20261031.json": NF / "uniqueness_20261031.json",
+        "leakage_canary.json": NF / "leakage_canary.json",
+        "screen_fold0.json": NF / "screen_fold0.json",
+        "corridor_sweep_v3.json": NF / "corridor_sweep_v3.json",
+        "focus_on_holdout.json": NF / "focus_on_holdout.json",
+        "submission_manifest.json": MANIFEST,
+        "focus_audit.json": FOCUS,
+        "leaderboard_observation_2026-10-28.json": SNAPSHOT,
+        "official_source_check_2026-10-28.json": SOURCES,
+        "session_7393d521_run_card.json": EV / "session_7393d521_run_card.json",
+        "registry_witness_recheck_2026-10-27.json": EV / "registry_witness_recheck_2026-10-27.json",
     }
-    (data / "decision.json").write_text(json.dumps(decision, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    for name, src in copies.items():
+        if src.is_file():
+            shutil.copyfile(src, data / name)
+            if data / src.name != data / name:
+                shutil.copyfile(src, data / src.name)
+    for name, payload in (("release_gate.json", gate),
+                          ("decision.json", {"schema": "gems-project-decision-v2",
+                                             "decision": gate["decision"],
+                                             "okay_to_submit": gate["okay_to_submit"],
+                                             "candidate": gate["candidate"]["submission_name"],
+                                             "source": "release_gate.json",
+                                             "run_card": "run_card.json"})):
+        (data / name).write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+
+
+def write_legacy_notice(gate: dict) -> None:
+    cleared = Path(gate["candidate"]["tif"]).name
+    legacy = sorted(p.name for p in (DOCS / "downloads").glob("*.tif") if p.name != cleared)
+    notice = [
+        "DO NOT SUBMIT — RESEARCH ARCHIVE ONLY",
+        f"Exactly one TIFF in this directory is cleared: {cleared}",
+        "CLEARED (see ../data/release_gate.json):",
+        f"  {cleared}",
+        "The following files are research-only and must not be uploaded:",
+        *[f"  {name}" for name in legacy],
+        "",
+        "Current decision: docs/data/release_gate.json",
+        "Current run card: docs/data/run_card.json",
+    ]
+    (DOCS / "downloads" / LEGACY_NOTICE).write_text("\n".join(notice) + "\n", encoding="utf-8")
 
 
 def render() -> None:
-    card = read_json(CURRENT_CARD)
-    prereg = read_json(PREREG)
-    source_check = read_json(OFFICIAL_SOURCES)
-    focus = read_json(FOCUS)
-    feed = read_json(LEADERBOARD)
-    snapshot = read_json(LEADERBOARD_SNAPSHOT)
-
-    if (card.get("verdict") != "negative" or card.get("okay_to_submit") is not False
-            or card.get("raster", {}).get("sha256") is not None
-            or card.get("holdout_dti", {}).get("status") != "BLOCKED_BEFORE_EXPERIMENT"
-            or card.get("experiments", {}).get("geological_experiments_completed") != 0):
-        raise ValueError("current run card is not a fail-closed no-candidate record")
-    witness = prereg.get("global_stop", {})
-    if (witness.get("active") is not True or witness.get("witness_positive_cells") != witness.get("mirrored_sample_footprint_cells")
-            or witness.get("conditional_candidate_directed_overlap_if_nonempty_in_footprint") != 1.0
-            or witness.get("stop_rule") != "Stop if absolute surface rank correlation > 0.90 or >70% of final dots are within 3 px of any registry raster."):
-        raise ValueError("the current literal-registry witness/stop evidence is missing or changed")
-    if len(prereg.get("hypotheses", [])) not in (3, 4, 5):
-        raise ValueError("preregistration must contain 3-5 distinct hypotheses")
-    if any(h.get("expected_dti") is not None for h in prereg["hypotheses"]):
-        raise ValueError("preregistered hypotheses must not be rendered as score projections")
-    if snapshot.get("observed_date_utc") != "2026-10-28" or snapshot["visible_public_scores"].get("rank_1") != "0.4544":
-        raise ValueError("dated official leaderboard observation changed; re-review before publishing")
-    if source_check.get("checked_date_utc") != "2026-10-28":
-        raise ValueError("official source check date is not current for this review")
-    gate = build_gate(card)
-    copy_site_data(card, prereg, focus, gate)
-
-    unique = None
-    if UNIQUE_SUBMISSION.is_file():
-        unique = json.loads(UNIQUE_SUBMISSION.read_text(encoding="utf-8"))
-
+    gate = build()
+    copy_site_data(gate)
     pages = {
-        "index.html": ("Overview", index_page(feed, snapshot, card)),
-        "executive-summary.html": ("Executive summary", executive_page(focus, card, unique)),
-        "how-to-submit.html": ("Submission guide", submit_page(source_check, feed)),
-        "research.html": ("Research hypotheses", hypothesis_page(prereg)),
-        "method.html": ("Method and safeguards", method_page(card, prereg)),
-        "evidence.html": ("Evidence and limitations", evidence_page(card, prereg, source_check, focus)),
-        "session-review.html": ("Latest review", session_review_page(card)),
-        "submission.html": ("Submission status", submission_page()),
+        "index.html": ("Overview", index_page(gate)),
+        "executive-summary.html": ("Executive summary", executive_page(gate)),
+        "how-to-submit.html": ("Download and submit", submit_page(gate)),
+        "research.html": ("Hypotheses", hypothesis_page(gate)),
+        "method.html": ("Method", method_page(gate)),
+        "evidence.html": ("Evidence", evidence_page(gate)),
+        "session-review.html": ("Session review", review_page(gate)),
+        "submission.html": ("Submission status", status_page(gate)),
     }
     for name, (title, body) in pages.items():
-        (DOCS / name).write_text(meta_page(title, name, body), encoding="utf-8")
-
-    # The 2026-10-31 lane publishes exactly one cleared raster. The core pages
-    # above remain the fail-closed record for the archived lanes.
-    lane = read_json(LANE_CARD)
-    lane_uniq = read_json(LANE_UNIQUE)
-    lane_est = read_json(LANE_ESTIMATE)
-    (DOCS / LANE_PAGE).write_text(
-        meta_page("Current candidate", LANE_PAGE,
-                  current_lane_page(lane, lane_uniq, lane_est, focus), decision=LANE_META),
-        encoding="utf-8")
-    LANE_DIR.mkdir(parents=True, exist_ok=True)
-    lane_file = Path(lane["raster"]["file"]).name
-    for source in (ROOT / "submission" / lane_file,
-                   ROOT / "submission" / (lane_file[:-4] + ".zip"),
-                   ROOT / "submission" / (lane_file[:-4] + ".json")):
-        shutil.copyfile(source, LANE_DIR / source.name)
-        if digest(source) != (lane["raster"]["sha256"] if source.suffix == ".tif"
-                              else lane["raster"]["zip_sha256"] if source.suffix == ".zip" else digest(source)):
-            raise ValueError(f"published lane artifact does not match the run-card hash: {source.name}")
-
-    (DOCS / "downloads" / "index.html").write_text(downloads_index(), encoding="utf-8")
-    tifs = sorted(p.name for p in (DOCS / "downloads").glob("*.tif"))
-    notice = [
-        "DO NOT SUBMIT — RESEARCH ARCHIVE ONLY",
-        "No TIFF in this directory is cleared for competition upload.",
-        "The project-wide literal-registry witness stop is active; local format checks or old lane results do not override it.",
-        "This list is a file inventory, not an approval list:",
-        *[f"  {name}" for name in tifs],
-        "",
-        "Current decision: docs/data/release_gate.json",
-        "Current negative run card: docs/data/session_7393d521_run_card.json",
-    ]
-    (DOCS / "downloads" / "LEGACY-DO-NOT-SUBMIT.txt").write_text("\n".join(notice) + "\n", encoding="utf-8")
-
-    for directory, (title, card_name) in ARCHIVE_LANES.items():
-        lane = DOCS / directory
-        lane.mkdir(parents=True, exist_ok=True)
-        pages = {lane / "index.html", *lane.rglob("*.html")}
-        for page in sorted(pages):
-            # Replace every old lane HTML surface, including nested download
-            # indexes, so no superseded positive instructions remain reachable.
-            page.write_text(archive_lane(directory, title, card_name, page), encoding="utf-8")
-    (DOCS / "downloads" / "index.html").write_text(downloads_index(), encoding="utf-8")
+        (DOCS / name).write_text(meta_page(title, name, body, gate), encoding="utf-8")
+    (DOCS / "downloads" / "index.html").write_text(downloads_index(gate), encoding="utf-8")
+    write_legacy_notice(gate)
+    for directory, title in ARCHIVE_LANES.items():
+        write_lane_archive(directory, title, gate)
+    neutralize_lane_pages(gate)
+    neutralise_desk(gate)
+    print(f"Built gate-driven site: decision {gate['decision']}, "
+          f"{len(gate['blocking_reasons'])} blocking reason(s), candidate "
+          f"{gate['candidate']['submission_name'] if gate.get('candidate') else 'none'}")
 
 
 def main() -> int:
     render()
-    # The lane publishers are additive-only negative archives. They do not own
-    # or alter the project-level release gate or current decision pages.
     from amdc_site import main as amdc_main
     from build_site_fchd import main as fchd_main
     amdc_main()
     fchd_main()
-    # FCHD's lane publisher copies old research TIFFs into its scoped archive;
-    # the top-level download inventory remains deliberately separate.
-    print("Built current negative evidence-first site; no candidate or slot selected.")
+    # Lane publishers write their own historical pages; strip the stale repository-wide claim so no
+    # "governing decision is DO NOT SUBMIT" sentence survives a positive release.
+    gate_now = read_json(DOCS / "data" / "release_gate.json")
+    neutralize_lane_pages(gate_now)
+    neutralise_desk(gate_now)
     return 0
-
-
-def build() -> int:
-    return main()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,96 @@
+{
+ "evidence_class": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, static full-catalogue files read back through the instrument; NOT organizer scores, NOT fold-local)",
+ "withheld_positives": 22232,
+ "results": {
+  "wbg3-twr1-V4-candidate": {
+   "pooled_dti": 0.00033555105125457503,
+   "ci95_cluster_bootstrap": [
+    0.0002623236941938603,
+    0.00041176104847849164
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE24.tif": {
+   "pooled_dti": 0.09315052698145053,
+   "ci95_cluster_bootstrap": [
+    0.08127878015699064,
+    0.105968402764059
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE25.tif": {
+   "pooled_dti": 0.09674330401596999,
+   "ci95_cluster_bootstrap": [
+    0.08416165969221351,
+    0.10952536708166187
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE27.tif": {
+   "pooled_dti": 0.0927484913819319,
+   "ci95_cluster_bootstrap": [
+    0.08085564044154277,
+    0.10539661683022032
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE28.tif": {
+   "pooled_dti": 0.029360078390480288,
+   "ci95_cluster_bootstrap": [
+    0.024959299444030806,
+    0.034382240223559776
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE30.tif": {
+   "pooled_dti": 0.09674330401596999,
+   "ci95_cluster_bootstrap": [
+    0.08416165969221351,
+    0.10952536708166187
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE31.tif": {
+   "pooled_dti": 0.030516096725810685,
+   "ci95_cluster_bootstrap": [
+    0.025680176441420625,
+    0.03605063588978195
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE32.tif": {
+   "pooled_dti": 0.00451537871535044,
+   "ci95_cluster_bootstrap": [
+    0.0038164175817344387,
+    0.005261598301920283
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE33.tif": {
+   "pooled_dti": 0.0519685128498396,
+   "ci95_cluster_bootstrap": [
+    0.04577318545951855,
+    0.05829620661401161
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  },
+  "GEMSDOE36.tif": {
+   "pooled_dti": 0.004576730703979592,
+   "ci95_cluster_bootstrap": [
+    0.0038915913728424577,
+    0.005300784778329944
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+  }
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "rows": [
+  {
+   "site": "GEMSDOE32",
+   "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "n_dots": 37654,
+   "proxy_h": 0.06462,
+   "owner_reported": "0.2778",
+   "inversion_raw": 0.3599,
+   "estimator_reproduction": 0.3273,
+   "T": 11194.4,
+   "FP": 36512.8
+  },
+  {
+   "site": "GEMSDOE36",
+   "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "n_dots": 38854,
+   "proxy_h": 0.06388,
+   "owner_reported": "0.2750",
+   "inversion_raw": 0.359,
+   "estimator_reproduction": 0.3263,
+   "T": 11253.4,
+   "FP": 37705.4
+  },
+  {
+   "site": "GEMSDOE28",
+   "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "n_dots": 37660,
+   "proxy_h": 0.06197,
+   "owner_reported": "0.2710",
+   "inversion_raw": 0.3476,
+   "estimator_reproduction": 0.315,
+   "T": 10790.7,
+   "FP": 36617.7
+  },
+  {
+   "site": "GEMSDOE31",
+   "file": "GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "n_dots": 40199,
+   "proxy_h": 0.06177,
+   "owner_reported": "0.2708",
+   "inversion_raw": 0.3545,
+   "estimator_reproduction": 0.3219,
+   "T": 11206.9,
+   "FP": 39056.1
+  },
+  {
+   "site": "GEMSDOE33",
+   "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "n_dots": 41865,
+   "proxy_h": 0.0598,
+   "owner_reported": "0.2632",
+   "inversion_raw": 0.3468,
+   "estimator_reproduction": 0.3141,
+   "T": 11070.3,
+   "FP": 40753.8
+  },
+  {
+   "site": "GEMSDOE25",
+   "file": "GEMSDOE25__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "n_dots": 44090,
+   "proxy_h": 0.05663,
+   "owner_reported": "0.2600",
+   "inversion_raw": 0.346,
+   "estimator_reproduction": 0.3133,
+   "T": 11207.2,
+   "FP": 42947.1
+  },
+  {
+   "site": "GEMSDOE30",
+   "file": "GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "n_dots": 44090,
+   "proxy_h": 0.05663,
+   "owner_reported": "0.2600",
+   "inversion_raw": 0.346,
+   "estimator_reproduction": 0.3133,
+   "T": 11207.2,
+   "FP": 42947.1
+  },
+  {
+   "site": "GEMSDOE24",
+   "file": "GEMSDOE24__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "n_dots": 60069,
+   "proxy_h": 0.05679,
+   "owner_reported": "0.2477",
+   "inversion_raw": 0.329,
+   "estimator_reproduction": 0.2964,
+   "T": 11725.5,
+   "FP": 58666.6
+  },
+  {
+   "site": "GEMSDOE27",
+   "file": "GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "n_dots": 61328,
+   "proxy_h": 0.05656,
+   "owner_reported": "0.2449",
+   "inversion_raw": 0.3268,
+   "estimator_reproduction": 0.2941,
+   "T": 11728.4,
+   "FP": 59925.0
+  }
+ ]
+}

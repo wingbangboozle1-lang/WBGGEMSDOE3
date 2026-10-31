@@ -1,0 +1,36 @@
+{
+ "model": "DTI = T/(0.2*(T+kappa*m)+0.8*K), T = (a*h_proxy + b*frac_on_catalogue)*m",
+ "params": {
+  "a": 16.72197,
+  "kappa": 36.74414,
+  "K_px": 138692.0,
+  "b": -1.24198
+ },
+ "n_probes": 118,
+ "in_sample": {
+  "mae": 0.06107,
+  "rmse": 0.07974,
+  "spearman": 0.4925,
+  "r2": 0.0741,
+  "bias": -0.02368,
+  "max_abs": 0.1825
+ },
+ "site_grouped_cv": {
+  "mae": 0.06476,
+  "rmse": 0.08323,
+  "p90_abs": 0.1579,
+  "max_abs": 0.1838,
+  "n": 118,
+  "n_groups": 85,
+  "spearman": 0.3376,
+  "note": "leave-one-site-out; rows from the same site never share train and test"
+ },
+ "observed": {
+  "min": 0.0,
+  "max": 0.2778,
+  "median": 0.08574999999999999
+ },
+ "estimator_version": "gems-3param-ledger-calib-v1",
+ "evidence_class": "LEDGER CALIBRATION on owner-reported scores (no organizer receipts)",
+ "utc": "2026-10-31T01:12:27Z"
+}

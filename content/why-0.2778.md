@@ -170,3 +170,69 @@ Sources: [`evidence/focus_files_verification_2026-10-29.json`](../evidence/focus
    the same rule to another focus file, lands at more than 0.97 directed 3-px overlap with the focus set
    and fails the literal uniqueness rule. A new candidate needs a different evidence source (see the
    preregistered H1–H5 and the session review), and none has been validated. No holdout was run here.
+
+## Addendum 2026-10-31 — the question re-measured on a common truth
+
+Everything above predates a candidate that exists. This addendum supersedes the
+"no new TIF / not demonstrated" conclusions in §"Can a new TIF beat it?" and
+addendum item 5 of 2026-10-29. It does **not** upgrade the owner-reported 0.2778
+to a receipt: the number is still what GEMSDOE32 published, not what an organizer
+returned to this project.
+
+**1. The nine files and this release, scored against one truth.** Hidden labels are
+unavailable, so every file was scored with the official formula (α = 0.2, β = 0.8,
+300 m triangular kernel, catalogue masked, NaN outside the footprint) against USGS
+State Geologic Map Compilation faults that lie more than 300 m from the competition
+catalogue — 62,649 cells, an independent mapping lineage
+(`evidence/release/truth_b.json`). This is a generalisation proxy, not truth, and it
+contains non-Quaternary bedrock structure.
+
+| File | Dots | Axis-B DTI | Recall | Hit rate ≤3 px |
+|---|---:|---:|---:|---:|
+| this release (CIFS CAT, 139,957 dots) | 139,957 | **0.2251** | 0.288 | 0.117 |
+| GEMSDOE27 | 61,328 | 0.1015 | 0.102 | 0.122 |
+| GEMSDOE24 | 60,069 | 0.1002 | 0.100 | 0.122 |
+| GEMSDOE36 | 38,854 | 0.0961 | 0.090 | 0.130 |
+| GEMSDOE33 | 41,865 | 0.0956 | 0.090 | 0.127 |
+| GEMSDOE31 | 40,199 | 0.0951 | 0.089 | 0.129 |
+| GEMSDOE32 (0.2778) | 37,654 | 0.0947 | 0.088 | 0.131 |
+| GEMSDOE30 | 44,090 | 0.0944 | 0.090 | 0.122 |
+| GEMSDOE25 | 44,090 | 0.0944 | 0.090 | 0.122 |
+| GEMSDOE28 | 37,660 | 0.0931 | 0.087 | 0.129 |
+
+The family's dots are *slightly better placed* than ours (hit rate 0.122–0.131 vs
+0.117) and its recall is *three times worse* (0.087–0.102 vs 0.288). The axis-B lead
+is therefore a coverage effect, not a ranking effect — an earlier density ablation of
+our own candidate makes the same point: at the family's ~40,000-dot budget we scored
+0.0860, *below* every sibling (`evidence/release/density_ablation.json`).
+
+**2. What the algebra now forces.** With a binary dot field,
+`TP_w + FN_w = |G|` exactly, so `DTI = TP_w / (0.2·TP_w + 0.8·|G| + 0.2·FP_w)`.
+With `FP_w = 0`, DTI ≤ R/0.8, hence a score of 0.2778 *requires* recall ≥ 0.222 and
+a hit rate ≥ 0.056. Inverting at a stated hit rate h bounds the hidden truth
+(|G| ≈ 7,531 at h = 0.10; 16,001 at 0.15; 32,940 at 0.25) — the same table as before,
+now with a measured h to anchor it (ours 0.117, theirs 0.122–0.131 on axis B).
+
+**3. The correlations, stated with their fragility.** Across the nine files,
+ρ(owner score, dots) = −0.983 and ρ(owner score, ≤3 px near-catalogue fraction) =
+−0.983, with the two predictors collinear in this sample (n = 9, self-reported
+scores from different authors). The 2026-10-29 addendum quoted −0.895 for the *≤2 px*
+band; the statistic moves with the band width, which is exactly why it is supporting
+evidence and not proof. The mechanism it supports is organizer-confirmed: known-fault
+pixels are masked in both rounds, so a dot on the mask earns nothing, and a dot
+1–3 px off it is an active cell that pays false-positive weight unless a hidden new
+fault happens to lie within 300 m.
+
+**4. Can a new TIF beat 0.2778?** On the only truth where both can be measured, yes:
+0.2251 vs 0.0947, a factor of 2.4, with a 3 px collar rather than the family's 2 px
+and 3.7× more dots. Whether that transfers to the hidden label set is **not
+identified**: the projection `DTI = h·(n/|G|)/(0.8 + 0.2·n/|G|)` runs from 0.167 to
+0.418 across |G| = 15,000–90,000, and it assumes our per-dot credit on axis B carries
+over unchanged. That is a projection with a named assumption, not a score. The one
+number that is neither conditional nor owner-reported is the holdout DTI of the
+fold-fitted recipe: **0.2292 [0.2145, 0.2440]** on 60,692 withheld catalogue pixels
+(`evidence/release/density_sweep.json`). The released bytes are a refit on all four
+quadrants, so no uncontaminated axis-A number exists for them and none is claimed.
+
+Records: `evidence/release/{truth_b,density_ablation,why_02778,density_sweep,experiments}.json`
+· live decision `docs/index.html`.

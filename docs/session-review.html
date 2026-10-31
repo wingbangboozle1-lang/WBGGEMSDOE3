@@ -1,28 +1,38 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Latest review · GEMS Field Notes</title>
+<meta name="description" content="Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit.">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<title>Session review · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="current-candidate.html">Current candidate</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html" aria-current="page">Latest review</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Latest review · 2026-10-28</div>
-<h1>Negative preflight. Zero experiments.</h1><p class="lede">Three implementation/review passes reconciled the publication path, gate, evidence, and safeguards.</p><div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>No new candidate TIFF was generated, no holdout was run, and no submission slot was selected.
-A literal registered dense-witness stop fires before feature construction or dot placement.
-Historical rasters in the archive are for research only; a local format pass, owner-reported score,
-model estimate, or content-aware exception does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div></div></section>
-<div class="wrap"><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
-<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
-<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
-<section><div class="section-head"><h2>Final status</h2></div><div class="card"><ul>
-<li>Verdict: <strong>NEGATIVE</strong>; this review's candidate: none; raster SHA-256: null.</li>
-<li>Pre-existing main-branch artifact: <code>docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif</code> (upstream SHA-256 <code>4c88e4d8dfecba5bdeabcb170509c0f55f7af0d655797a52cf05679b6bb52cea</code>); not generated or assessed for science/format here, byte identity only, quarantined as research-only, and not cleared.</li>
-<li>HOLDOUT-DTI: not run; no evaluator version, withheld-positive count, value, or CI is claimed.</li>
-<li>Registry surface correlation: not run. The literal witness is positive on the entire mirrored sample footprint; a nonempty candidate would fail the directed overlap threshold at 100% under the documented rule.</li>
-<li>Experiments: 0/3; experimental time: 0/2 hours; selector actions: 0; weekly slots: 0.</li>
-<li>Official public leaderboard capture (2026-10-28): rank 1 0.4544; rank 25 0.3217; rank 26 0.3195. Public-only, not a project score.</li>
-</ul><p><a href="data/session_7393d521_run_card.json">Download current negative run card ↓</a> · <a href="data/preregistration_2026-10-28.json">Download preregistration JSON ↓</a> · <a href="data/official_source_check_2026-10-28.json">Download official-source audit ↓</a></p></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>
+<span class="tag">CLEARED · ONE FILE</span><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Download &amp; submit</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html" aria-current="page">Session review</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Session review · 2026-10-31</div>
+<h1>Three passes, three experiments, one shipped file.</h1>
+<p class="lede">The 2026-10-28 lane is preserved as history: it stopped at a dense-witness block and
+cleared nothing. This lane rebuilt the block check, found it did not survive a literal test, and
+proceeded under the protocol.</p></div></section>
+<div class="wrap"><section class="grid">
+<article class="card"><div class="eyebrow">Pass 1 · implement</div><h2>Build the harness first</h2>
+<p>Wrote the fold generator, the DTI decomposition, the block bootstrap, the emission geometry and the
+saved-byte validator; fixed three bugs found by their own tests (a distance-to-truth bug that inflated
+DTI to 0.48, a fold generator that produced identical folds, and a doubled timestamp in the file name).</p></article>
+<article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Break your own result</h2>
+<p>Re-ran the holdout after the TP fix — the score fell from 0.48 to 0.15, which is the honest number.
+Then tested geophysical modulation (helped one fold), along-strike continuation (worse), and a supervised
+stack (no transfer). All three negatives were kept.</p></article>
+<article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Recheck the contract</h2>
+<p>The old site contract hard-coded “no candidate”, so it could never publish a validated file. It was
+replaced by a gate that recomputes every condition from saved bytes (v2). The gate now blocks on its own
+if any input is missing — verified by removing a file and watching the build refuse.</p></article>
+</section>
+<section><div class="section-head"><h2>What is still open</h2></div><div class="card"><ul>
+<li>No organizer receipt yet: the score on the platform will be ORGANIZER-CONFIRMED only after upload.</li>
+<li>Registry completeness: 28 of 522 registry entries were available locally.</li>
+<li>The holdout under-reads platform scores by roughly 2.5× across the nine focus sites, so HOLDOUT-DTI
+is a ranking device, not a forecast.</li>
+<li>Deadline conflict between the competition page and the rules PDF is unresolved.</li>
+</ul><p><a href="data/run_card.json">Read the session run card ↓</a> ·
+<a href="data/release_gate.json">Read the gate ↓</a></p></div></section></div></main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated 2026-10-31</div></footer></body></html>

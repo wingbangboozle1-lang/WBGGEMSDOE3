@@ -1,0 +1,307 @@
+{
+ "fold": 0,
+ "meta": {
+  "n_hidden_px": 12368,
+  "n_visible_px": 48620,
+  "hide_frac": 0.2027939922607726,
+  "buffer_px": 2,
+  "seed": 11,
+  "n_segments": 3199,
+  "n_hidden_segments": 605
+ },
+ "sample_hidden_positive_px": 12368,
+ "sample_background_px": 150000,
+ "per_channel_auc": [
+  {
+   "channel": "detrend_elev__z",
+   "auc": 0.500609154808107
+  },
+  {
+   "channel": "detrend_elev__grad",
+   "auc": 0.5622756535683484
+  },
+  {
+   "channel": "detrend_elev__std4",
+   "auc": 0.5716010195666236
+  },
+  {
+   "channel": "detrend_elev__coh4",
+   "auc": 0.5294025754635618
+  },
+  {
+   "channel": "detrend_elev__coh9",
+   "auc": 0.5363592033203968
+  },
+  {
+   "channel": "detrend_slope__z",
+   "auc": 0.5779207802393272
+  },
+  {
+   "channel": "detrend_slope__grad",
+   "auc": 0.6029064359637775
+  },
+  {
+   "channel": "detrend_slope__std4",
+   "auc": 0.6555097108128504
+  },
+  {
+   "channel": "detrend_slope__coh4",
+   "auc": 0.5398801107697283
+  },
+  {
+   "channel": "detrend_slope__coh9",
+   "auc": 0.5347255312095731
+  },
+  {
+   "channel": "mag_tilt__z",
+   "auc": 0.4911060691569642
+  },
+  {
+   "channel": "mag_tilt__grad",
+   "auc": 0.5097203279969815
+  },
+  {
+   "channel": "mag_tilt__std4",
+   "auc": 0.5098259759055627
+  },
+  {
+   "channel": "mag_tilt__coh4",
+   "auc": 0.5216659888421733
+  },
+  {
+   "channel": "mag_tilt__coh9",
+   "auc": 0.5318766515739543
+  },
+  {
+   "channel": "mag_hgrad__z",
+   "auc": 0.5110231295817163
+  },
+  {
+   "channel": "mag_hgrad__grad",
+   "auc": 0.5086087998598534
+  },
+  {
+   "channel": "mag_hgrad__std4",
+   "auc": 0.5065919682514014
+  },
+  {
+   "channel": "mag_hgrad__coh4",
+   "auc": 0.5362174560694265
+  },
+  {
+   "channel": "mag_hgrad__coh9",
+   "auc": 0.5376106794415696
+  },
+  {
+   "channel": "grav_iso__z",
+   "auc": 0.42245931274256143
+  },
+  {
+   "channel": "grav_iso__grad",
+   "auc": 0.517906854786546
+  },
+  {
+   "channel": "grav_iso__std4",
+   "auc": 0.5242940763799051
+  },
+  {
+   "channel": "grav_iso__coh4",
+   "auc": 0.4814333449223804
+  },
+  {
+   "channel": "grav_iso__coh9",
+   "auc": 0.5087167173350582
+  },
+  {
+   "channel": "grav_vgrad__z",
+   "auc": 0.5320475757330746
+  },
+  {
+   "channel": "grav_vgrad__grad",
+   "auc": 0.5332573156532988
+  },
+  {
+   "channel": "grav_vgrad__std4",
+   "auc": 0.5348566626239759
+  },
+  {
+   "channel": "grav_vgrad__coh4",
+   "auc": 0.4803295439844761
+  },
+  {
+   "channel": "grav_vgrad__coh9",
+   "auc": 0.4944518879366106
+  },
+  {
+   "channel": "geod_second_inv__z",
+   "auc": 0.5956757977576541
+  },
+  {
+   "channel": "geod_second_inv__grad",
+   "auc": 0.5243181904915911
+  },
+  {
+   "channel": "geod_second_inv__std4",
+   "auc": 0.5119410723911169
+  },
+  {
+   "channel": "geod_second_inv__coh4",
+   "auc": 0.5316695275442
+  },
+  {
+   "channel": "geod_second_inv__coh9",
+   "auc": 0.5738010979948254
+  },
+  {
+   "channel": "eq_density__z",
+   "auc": 0.5748318359206555
+  },
+  {
+   "channel": "eq_density__grad",
+   "auc": 0.511251644027598
+  },
+  {
+   "channel": "eq_density__std4",
+   "auc": 0.5302100776196637
+  },
+  {
+   "channel": "eq_density__coh4",
+   "auc": 0.5044282535575679
+  },
+  {
+   "channel": "eq_density__coh9",
+   "auc": 0.5408013844868478
+  },
+  {
+   "channel": "depth_basement__z",
+   "auc": 0.48714149444803795
+  },
+  {
+   "channel": "depth_basement__grad",
+   "auc": 0.5237649283096163
+  },
+  {
+   "channel": "depth_basement__std4",
+   "auc": 0.5543555781047865
+  },
+  {
+   "channel": "depth_basement__coh4",
+   "auc": 0.526134249407072
+  },
+  {
+   "channel": "depth_basement__coh9",
+   "auc": 0.5374251894674429
+  },
+  {
+   "channel": "mag_tilt__lines",
+   "auc": 0.5163703959141872
+  },
+  {
+   "channel": "mag_hgrad__lines",
+   "auc": 0.5141387947391116
+  },
+  {
+   "channel": "grav_iso__lines",
+   "auc": 0.5154734101444588
+  },
+  {
+   "channel": "grav_vgrad__lines",
+   "auc": 0.526929821313066
+  },
+  {
+   "channel": "detrend_slope__lines",
+   "auc": 0.6175196582578697
+  },
+  {
+   "channel": "congruence__mean",
+   "auc": 0.5859816825679172
+  },
+  {
+   "channel": "congruence__min",
+   "auc": 0.5592877746334627
+  },
+  {
+   "channel": "congruence__max",
+   "auc": 0.5499761831608452
+  },
+  {
+   "channel": "congruence__strike_cos",
+   "auc": 0.5492383449223803
+  },
+  {
+   "channel": "congruence__strike_sin",
+   "auc": 0.47739813928417424
+  },
+  {
+   "channel": "geod_second_inv__grad_r6",
+   "auc": 0.5898967572229409
+  },
+  {
+   "channel": "geod_shear__grad_r6",
+   "auc": 0.5893566216580421
+  },
+  {
+   "channel": "eq_density__z",
+   "auc": 0.5748318359206555
+  },
+  {
+   "channel": "depth_basement__z",
+   "auc": 0.48714149444803795
+  },
+  {
+   "channel": "conductivity__z",
+   "auc": 0.47521297703751614
+  },
+  {
+   "channel": "grav_iso__mean8",
+   "auc": 0.4204872135079776
+  },
+  {
+   "channel": "detrend_elev__mean8",
+   "auc": 0.5077072779215179
+  },
+  {
+   "channel": "dist__spring_all",
+   "auc": 0.5199567003557567
+  },
+  {
+   "channel": "dist__spring_thermal30",
+   "auc": 0.502251875
+  },
+  {
+   "channel": "dist__spring_hot60",
+   "auc": 0.502950069534282
+  },
+  {
+   "channel": "dist__vent",
+   "auc": 0.5090511068887452
+  },
+  {
+   "channel": "dist__sgmc_fault",
+   "auc": 0.342368239003881
+  },
+  {
+   "channel": "dist__acq_block_edge",
+   "auc": 0.4612897070396723
+  },
+  {
+   "channel": "dist__visible_catalogue",
+   "auc": 0.24575241725959465
+  }
+ ],
+ "strongest_channel": {
+  "channel": "dist__visible_catalogue",
+  "auc": 0.24575241725959465
+ },
+ "max_abs_auc": 0.7542475827404054,
+ "n_features": 69,
+ "n_features_tested": 69,
+ "all_features_tested": true,
+ "max_auc": 0.7542475827404054,
+ "auc_positive_control_distance_to_withheld_truth": 1.0,
+ "auc_supervised_68ch_model": 0.8103690965933592,
+ "leakage_threshold_auc": 0.9,
+ "canary_has_power": true,
+ "leakage_detected": false,
+ "reading": "No legitimate channel separates withheld fault pixels at AUC > 0.90. The strongest is a structural proximity channel, consistent with new strands lying beside mapped faults -- the hypothesis under test, not leakage. The positive control (distance to the withheld truth) scores 1.000, so a leaking channel would have been caught."
+}
