@@ -10,6 +10,7 @@ The following files are research-only and must not be uploaded:
   wbg-gems-offnet-conduit-19520d-20261029T203307Z-zeros.tif
   wbg-gems-offnet-conduit-latest.tif
   wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif
+  wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif
   wbggems3-adjdis-23127d-20261028T171558Z-07355e06-zeros.tif
   wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif
   wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif

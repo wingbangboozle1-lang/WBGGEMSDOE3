@@ -611,5 +611,6 @@
   }
  ],
  "verdict": "promote",
- "okay_to_submit": true
+ "okay_to_submit": true,
+ "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
 }

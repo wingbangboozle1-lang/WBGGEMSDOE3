@@ -1,0 +1,54 @@
+{
+  "schema": "wbg.hypotheses.2026-10-31.v1",
+  "status": "registered_and_partially_validated",
+  "tested": [
+    {
+      "id": "TWR-1-env",
+      "hypothesis": "Soft 1-3 px crest halos carry more expected DTI credit than catalogue-adjacent FP cost",
+      "verdict": "REFUTED",
+      "evidence": "HOLDOUT-DTI 0.00795 vs core 0.02082; paired delta -0.01287 CI [-0.0161,-0.00981]",
+      "artifact": "evidence/twr1_holdout.json"
+    },
+    {
+      "id": "TWR-1-nms",
+      "hypothesis": "Dot-spacing law (2px->3px NMS) is the dominant controllable lever on clustered emission",
+      "verdict": "SUPPORTED",
+      "evidence": "0.02082 -> 0.06282 fold-local, all else frozen",
+      "artifact": "evidence/twr1_e3_variants.json"
+    },
+    {
+      "id": "TWR-1-halo-avoid",
+      "hypothesis": "Excluding sibling-raster 3-px halos improves honest recovery (removes mimic regions)",
+      "verdict": "SUPPORTED_ON_HOLDOUT_BUT_COSTLY_VS_UNIQUENESS",
+      "evidence": "fold-local 0.0628 -> 0.0837 after first halo; 0.0288 final after full three-halo avoidance",
+      "artifact": "evidence/twr1_run_card.json"
+    }
+  ],
+  "ranked_future": [
+    {
+      "rank": 1,
+      "name": "Catalogue prior surface as emission cost, not exclusion mask",
+      "mechanism": "Replace binary catalogue exclusion with a signed-distance cost field so dots sit in the 1-2 px credit band only where alluvial/analog evidence is strong",
+      "non_fault_mimic": "alluvium-thickness gravity smooths",
+      "planned_check": "paired vs hard-mask lane on v3.0 folds",
+      "budget": "1 experiment"
+    },
+    {
+      "rank": 2,
+      "name": "Zone-scale spacing calibration per geologic province",
+      "mechanism": "Fit NMS radius (2-4 px) to local dot-density of the 0.099-champion pattern per province rather than a global radius",
+      "non_fault_mimic": "sampling-lattice artifacts",
+      "planned_check": "grid sweep fold-local + uniqueness re-audit",
+      "budget": "1 experiment"
+    },
+    {
+      "rank": 3,
+      "name": "Anisotropic smoothing with stress-field eigenvectors (already partially in lane)",
+      "mechanism": "Per-facet fold-local anisotropic diffusion; extend along mapped slip-sense corridors only where strain invariant supports it",
+      "non_fault_mimic": "foliation bands in TMI",
+      "planned_check": "ablate with/without corridor gating",
+      "budget": "1 experiment"
+    }
+  ],
+  "notes": "Numbers are HOLDOUT-DTI (hide-and-recover surrogate, evaluator GEMSDOE32-HIDE-RECOVER-v3.0), never organizer scores; no receipts exist in-repo."
+}

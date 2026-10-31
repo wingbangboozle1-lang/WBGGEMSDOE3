@@ -1,0 +1,43 @@
+{
+ "status": "pass",
+ "threshold": 0.9,
+ "canary": {
+  "gm_elev15": {
+   "auc": 0.5710232655444104,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  },
+  "gm_tc": {
+   "auc": 0.5196828806262744,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  },
+  "gm_strain": {
+   "auc": 0.5262618340117848,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  },
+  "crest_log3": {
+   "auc": 0.4197770331054336,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  },
+  "crossgrad": {
+   "auc": 0.5329142864639559,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  },
+  "fused_surface_fold_local": {
+   "auc": 0.3997418281268742,
+   "n_pos": 22232,
+   "n_neg": 48000,
+   "alarm": false
+  }
+ },
+ "design": "single field alone; pooled over the 8 hide-and-recover cells; 6,000 sampled active-domain negatives per cell"
+}

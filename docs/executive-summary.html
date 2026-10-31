@@ -122,6 +122,11 @@ the best credit of any prediction within 3 px, so a dense trace gives high recal
 withheld faults that sit close to mapped ones, while the β-weighted FP term is spread thin over a large
 dot count. Pruning the low-credit dots can raise the ratio — which is a plausible *arithmetic* account of
 why a subset of another file scored higher, not a verified causal explanation of the hidden labels.</p>
+<p><strong>Cross-check from a sibling lane.</strong> A ledger-inversion estimator fitted on the
+nine owner-reported scores reproduces GEMSDOE32 at 0.3273 from its dot geometry alone (owner report
+0.2778) — see <a href="data/focus_estimates_2026_10_31.json">focus_estimates_2026_10_31.json</a>.
+That is an ESTIMATE, not a receipt, but it supports the reading that 0.2778 is mostly explained by
+hit-rate and dot count rather than by hidden-label luck.</p>
 <p><strong>Is higher achievable?</strong> Yes in principle, and this lane is the evidence for how: the
 holdout shows withheld faults land 3–12 px off the visible traces, which trace-followers waste. Our band
 geometry beats the best trace-following registry file on every fold by +0.011 to +0.057 paired DTI.

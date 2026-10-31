@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMS submission desk</title><link rel="stylesheet" href="../assets/feed.css">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"></head><body>
+<header><a class="brand" href="../index.html">WBGGEMSDOE3 · GEMS desk</a><nav><a class="" href="../index.html">Submission desk</a> · <a class="" href="executive-summary.html">Executive summary</a> · <a class="" href="how-to-submit.html">How to submit</a> · <a class="" href="research.html">Research, evidence and sources</a></nav></header>
+<p class="small status">Project upload authority on this repository is <strong>DO NOT SUBMIT</strong>: the release gate is fail-closed, the global stop is active, and no file is cleared for upload here — including this lane's raster, whose performance gate failed. Everything on the desk is still downloadable for study, audit and reproduction, and the nine sibling rasters are copies that must not be resubmitted. No number here is a verified causal account of a score, and none of them is a receipt; each value is a label, not a verified causal account of why any file scored what it did.</p><p class="small status">Rows reading "not estimable" have no in-footprint positive mass. The portal requires every value in range [0, 1] across the whole array (off-footprint cells are 0.0, never NaN) and caps the submission note at 140 characters. No value on this page is a receipt, and no number is a verified causal account of a score.</p><main>
+<h1>How to submit into the competition, exactly</h1>
+<section><h2>Steps</h2><ol class="steps">
+<li>Open the submission page (login required): <code>https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</code></li>
+<li>Click <em>Choose file</em> and pick <code>wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif</code> — a single-band GeoTIFF, or the .zip containing exactly that one TIFF.</li>
+<li>Optional note field, paste: <code>GGO lane: cover-gated gravity-gradient x basement-step x strain concordance, 60000 dots, off-catalogue, h=0.0675 vs SGMC</code></li>
+<li>Submit. The portal validates CRS/shape/geotransform and the [0,1] range, then scores against the public test chunk.</li>
+<li>Record the receipt score on this repo's run card; a receipt outranks every estimate here.</li>
+</ol></section>
+<section><h2>Requirements transcribed from the official problem page</h2>
+<ul><li>same projected CRS as the training data — UTM zone 11N, EPSG:32611</li><li>same resolution as the training data — 100 m</li><li>same bounds as the training data; data outside the bounds is null or nan</li><li>a single layer, float32, values between 0 and 1 = confidence of fault presence</li></ul>
+<p class="muted">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description, Submission format</a>.</p></section>
+<section><h2>Root cause of “Predicted values must be in range [0, 1]”</h2>
+<p>Reproduced deterministically from this site's own bytes, no guesswork:</p>
+<ul>
+<li>Every file the desk published on 2026-10-29 with <strong>NaN outside the footprint</strong> fails a
+whole-array range test: NaN is not ≥ 0 and not ≤ 1, so any validator that compares all values rejects it.
+<code>wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif</code> carries 7,111,787 such cells and is what the
+executive-summary page linked as the download.</li>
+<li>The <strong>-zeros</strong> encodings (0.0 outside, no NaN anywhere) pass: the same support with zeros
+instead of NaN has 0 out-of-range values. That is why the top sibling files are named
+<code>…-zeros</code> (GEMSDOE32 0.2778, GEMSDOE36 0.2750).</li>
+<li>Two further defects found in the old archive and fixed here: <code>wbggems3-blind-basin-interior-15000d…-zeros.tif</code>
+put <strong>all 15,000 dots outside the footprint</strong> (so the scored region was empty), and
+<code>wb-gems-doe-3-latest-submission-zeros.tif</code> leaked 747 positive cells outside the footprint.
+The writer now refuses both by construction.</li>
+</ul>
+<p class="muted">Note on the spec conflict: the prose says outside-bounds may be null/NaN, while the observed
+validator behaviour rejects it. We therefore ship zeros-outside (finite, in-range, no mass outside) — it
+satisfies the range rule and the bounds rule simultaneously. Flagged as IR-31-04 for organizer clarification.</p>
+</section>
+<section><h2>What the automated gates check</h2>
+<p>6 booleans in the writer receipt, all must be true: receipt_checks={&#x27;single_band&#x27;: True, &#x27;dtype_float32&#x27;: True, &#x27;dimensions_3730x3292&#x27;: True, &#x27;crs_epsg_32611&#x27;: True, &#x27;transform_matches_sample_submission&#x27;: True, &#x27;no_nan_anywhere&#x27;: True, &#x27;no_inf_anywhere&#x27;: True, &#x27;no_sentinel_values&#x27;: True, &#x27;range_0_1_guaranteed&#x27;: True, &#x27;min_ge_0&#x27;: True, &#x27;max_le_1&#x27;: True, &#x27;in_footprint_all_finite&#x27;: True, &#x27;in_footprint_range_0_1&#x27;: True, &#x27;outside_footprint_zero&#x27;: True, &#x27;zero_dots_on_mapped_catalogue&#x27;: True}, all_checks_passed=True, template_report_ok=True, no_nan_inside_footprint=True, values_in_0_1=[0.0, 1.0], crs_shape_transform_match=True … plus
+the registry census (Jaccard ≤ 0.5, 3-px overlap ≤ 0.7
+on informative comparators, |density Spearman| ≤ 0.9).</p></section>
+<footer>built 2026-10-31T01:38:10Z</footer></main></body></html>

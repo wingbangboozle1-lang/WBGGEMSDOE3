@@ -236,6 +236,9 @@ def main() -> None:
         "verdict": "promote",
         "okay_to_submit": True,
     }
+    labels = ROOT / "data" / "official" / "labels.tif"
+    if labels.is_file():
+        run_card["labels_sha256"] = sha256(labels)
     (EV / "run_card_2026_10_31.json").write_text(json.dumps(run_card, indent=1, default=float))
     print("run card written; holdout value", run_card["holdout"]["value"])
 

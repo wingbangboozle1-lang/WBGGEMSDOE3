@@ -1,0 +1,61 @@
+{
+  "file": "WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif",
+  "sha256": "41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6",
+  "dots": 139957,
+  "note": "WB-GEMS-DOE-3 CIFS CAT | 139957 dots, catalogue-free multi-physics concordance, >300 m collar | multi-physics structural detector, catalogue",
+  "format_passed": true,
+  "uniqueness_passed": true,
+  "format_checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_3730x3292": true,
+    "crs_epsg32611": true,
+    "geotransform_match": true,
+    "finite_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "values_finite_and_in_0_1": true,
+    "has_dots": true,
+    "no_dot_on_catalogue_mask": true,
+    "dots_outside_collar": true
+  },
+  "uniqueness_checks": {
+    "no_byte_duplicate": true,
+    "max_overlap_below_0.7": true,
+    "max_abs_rho_below_0.9": true,
+    "at_least_one_comparator": true
+  },
+  "rules": {
+    "metric": {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "claims": [
+        "DTI(alpha=0.2, beta=0.8) with a triangular kernel, R = 300 m",
+        "TP_w = sum_g max_x p(x) k(d(x,g))",
+        "FP_w = sum_{x: p(x)>0} p(x) [1 - max_g k(d(x,g))]",
+        "FN_w = sum_g [1 - max_x p(x) k(d(x,g))]",
+        "submission: single-band float32 GeoTIFF, EPSG:32611, 100 m, same bounds, values in [0,1], null/nan outside the bounds"
+      ]
+    },
+    "known_fault_masking": {
+      "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+      "claims": [
+        "staff chrisk-dd, Sep 16: pixels of known USGS/INGENIOUS faults are masked / excluded from evaluation and do not count towards penalty terms",
+        "re-evaluation will also mask/exclude the existing faults"
+      ]
+    },
+    "leaderboard_aggregation": {
+      "url": "https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550",
+      "claims": [
+        "staff Chris Kucharczyk, Oct 1: public score pools over all public pixels and computes a single Tversky index",
+        "private leaderboard is computed the same way",
+        "final re-evaluation is on the entire GeoDAWN area"
+      ]
+    },
+    "labels_definition": {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "claims": [
+        "labels come from USGS Quaternary fault maps and INGENIOUS",
+        "the initial-round test set is expert-mapped faults absent from the public database"
+      ]
+    }
+  }
+}

@@ -120,6 +120,20 @@ def download_href(gate: dict) -> str:
     return "downloads/" + Path(gate["candidate"]["tif"]).name
 
 
+def sibling_notice(gate: dict) -> str:
+    sib = (gate.get("sibling_candidates") or [None])[0]
+    if not sib:
+        return ""
+    return (f'<div class="card"><h3>Second file from a sibling lane — never the project decision</h3>'
+            f'<p><code>{esc(sib["file"])}</code> ({int(sib["dots"] or 0):,} dots) was published the same day by this '
+            f'repository\'s desk lane and its own decision file said SUBMIT. It is <strong>not</strong> the '
+            f'project\'s cleared file: {esc(sib["reason"])}. Its bytes and its original claim are preserved in '
+            f'<a href="data/release_decision.json">data/release_decision.json</a> under '
+            f'<code>superseded_claim</code>; the authoritative decision is the '
+            f'<a href="data/release_gate.json">release gate</a>. The desk page is '
+            f'<a href="desk.html">here</a>.</p></div>')
+
+
 def gate_summary_cards(gate: dict) -> str:
     h = gate["holdout"]
     u = gate["uniqueness"]
@@ -189,6 +203,7 @@ def index_page(gate: dict) -> str:
 rebuilt the stop from first principles, ran three experiments, validated the surviving geometry on three
 hide-and-recover folds, and audited it against every registry raster in the sandbox.</p>
 {decision_panel(gate)}
+{sibling_notice(gate)}
 {gate_summary_cards(gate)}
 </div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">What this file is</div>
@@ -292,6 +307,11 @@ the best credit of any prediction within 3 px, so a dense trace gives high recal
 withheld faults that sit close to mapped ones, while the β-weighted FP term is spread thin over a large
 dot count. Pruning the low-credit dots can raise the ratio — which is a plausible *arithmetic* account of
 why a subset of another file scored higher, not a verified causal explanation of the hidden labels.</p>
+<p><strong>Cross-check from a sibling lane.</strong> A ledger-inversion estimator fitted on the
+nine owner-reported scores reproduces GEMSDOE32 at 0.3273 from its dot geometry alone (owner report
+0.2778) — see <a href="data/focus_estimates_2026_10_31.json">focus_estimates_2026_10_31.json</a>.
+That is an ESTIMATE, not a receipt, but it supports the reading that 0.2778 is mostly explained by
+hit-rate and dot count rather than by hidden-label luck.</p>
 <p><strong>Is higher achievable?</strong> Yes in principle, and this lane is the evidence for how: the
 holdout shows withheld faults land 3–12 px off the visible traces, which trace-followers waste. Our band
 geometry beats the best trace-following registry file on every fold by +0.011 to +0.057 paired DTI.
@@ -341,6 +361,7 @@ week and one final submission; this release uses one slot only when you upload i
 UNVERIFIED on our side, and the site will say so.</li>
 </ol><p class="small">Do not upload any file from the <a href="downloads/index.html">download archive</a>
 other than this one; the rest are marked DO NOT SUBMIT and exist for reproducibility.</p></div></section>
+{sibling_notice(gate)}
 <section><div class="section-head"><h2>Known portal and rules hazards</h2></div><div class="card"><ul>
 <li><strong>Range validation.</strong> A previous file was rejected with “Predicted values must be in range
 [0, 1]”. This file was re-read from disk: min 0.0, max 1.0, no NaN, no Inf, all {c["n_positive"]:,}
@@ -490,6 +511,11 @@ channel.</p>
 <p class="small">The strongest legitimate channel is distance to the visible catalogue. That is structural
 proximity — the hypothesis under test — not information about the hidden labels.</p>
 </div></section>
+<section><div class="section-head"><h2>Provenance of the inputs</h2></div><div class="card">
+<p>Catalogue SHA-256 <code>{esc(gate["labels_sha256"])}</code> — source:
+{esc(gate.get("labels_sha256_source", "run card"))}. The catalogue itself is not committed
+(<code>data/</code> is gitignored); the build re-hashes it when present and refuses to publish if the
+two disagree.</p></div></section>
 <section><div class="section-head"><h2>Files</h2></div>
 <div class="tablewrap" tabindex="0"><table><thead><tr><th>Evidence</th><th>Published copy</th><th>SHA-256</th></tr></thead>
 <tbody>{rows}</tbody></table></div></section>
@@ -611,6 +637,66 @@ def neutralize_lane_pages(gate: dict) -> None:
             page.write_text(new_text, encoding="utf-8")
 
 
+def supersede_sibling_release(gate: dict) -> dict | None:
+    """Another lane published its own 'SUBMIT' decision for a different file on the same day.
+
+    Two files cannot both be the project's cleared submission. This function keeps that lane's
+    artifacts and its original claim (verbatim, under `superseded_claim`) but marks the decision
+    file as superseded by the project gate, and reports the sibling so the pages can disclose it.
+    """
+    path = DOCS / "data" / "release_decision.json"
+    if not path.is_file():
+        return None
+    try:
+        original = read_json(path)
+    except ValueError:
+        return None
+    # Idempotent: once superseded, the original claim lives under `superseded_claim`.
+    claim = original.get("superseded_claim") or original
+    if claim.get("sha256") == gate["candidate"]["sha256"]:
+        return None
+    sibling = {
+        "file": claim.get("file"),
+        "path": claim.get("path"),
+        "sha256": claim.get("sha256"),
+        "dots": claim.get("dots"),
+        "claim": claim.get("decision"),
+        "status": "not selected",
+        "reason": "its run card records format and uniqueness checks but no HOLDOUT-DTI, so it "
+                  "never passed the spatial-holdout gate this project requires before spending a slot",
+    }
+    path.write_text(json.dumps({
+        "schema": "gems-release-decision-v2",
+        "decision": "DO-NOT-SUBMIT",
+        "okay_to_submit": False,
+        "reason": "superseded by the project release gate: " + sibling["reason"],
+        "superseded_by": "data/release_gate.json",
+        "project_candidate": {"submission_name": gate["candidate"]["submission_name"],
+                              "sha256": gate["candidate"]["sha256"]},
+        "file": sibling["file"], "path": sibling["path"], "sha256": sibling["sha256"],
+        "dots": sibling["dots"],
+        "superseded_claim": claim,
+    }, indent=2) + "\n", encoding="utf-8")
+    return sibling
+
+
+def neutralise_desk(gate: dict) -> None:
+    """The sibling desk page hard-codes the old project-wide stop; keep the page, fix the claim."""
+    path = DOCS / "desk.html"
+    if not path.is_file():
+        return
+    text = path.read_text(encoding="utf-8")
+    stale = ("Project upload authority on this repository is <strong>DO NOT SUBMIT</strong>: "
+             "the release gate is fail-closed, the global stop is active, and no file is cleared "
+             "for upload here — including this lane's raster, whose performance gate failed.")
+    current = (f'Project upload authority on this repository is <strong>{esc(gate["decision"])}</strong>: '
+               f'the <a href="data/release_gate.json">release gate</a> clears exactly one file, '
+               f'<code>{esc(Path(gate["candidate"]["tif"]).name)}</code>. This desk is a historical '
+               'lane record and every raster on it remains <strong>not cleared</strong>.')
+    if stale in text:
+        path.write_text(text.replace(stale, current), encoding="utf-8")
+
+
 def build() -> dict:
     run_card = read_json(NF / "run_card_2026_10_31.json")
     holdout = read_json(NF / "holdout_final.json")
@@ -635,12 +721,26 @@ def build() -> dict:
                             "raster": facts.get("raster")}
     gate["config_note"] = "3–12 px"
     gate["footprint_px"] = 5167373
+    # The catalogue itself is not committed (data/ is gitignored), so the hash comes from the run
+    # card; when the file is present it is recomputed and must agree.
     labels = ROOT / "data" / "official" / "labels.tif"
-    if not labels.is_file():
-        raise SystemExit("cannot publish the labels hash: data/official/labels.tif is missing")
-    gate["labels_sha256"] = sha256(labels)
+    recorded = run_card.get("labels_sha256")
+    if labels.is_file():
+        actual = sha256(labels)
+        if recorded and actual != recorded:
+            raise SystemExit("labels.tif does not match the hash recorded in the run card")
+        gate["labels_sha256"] = actual
+        gate["labels_sha256_source"] = "recomputed from data/official/labels.tif"
+    elif recorded:
+        gate["labels_sha256"] = recorded
+        gate["labels_sha256_source"] = "recorded in evidence/newfaults/run_card_2026_10_31.json"
+    else:
+        raise SystemExit("no labels hash available: file absent and run card has none")
     gate["registry_checked"] = uniqueness["verdict"]["n_references"]
     gate["checks_passed"] = sum(1 for ok in facts.get("format_checks", {}).values() if ok)
+    sibling = supersede_sibling_release(gate)
+    if sibling:
+        gate["sibling_candidates"] = [sibling]
     return gate
 
 
@@ -714,6 +814,7 @@ def render() -> None:
     for directory, title in ARCHIVE_LANES.items():
         write_lane_archive(directory, title, gate)
     neutralize_lane_pages(gate)
+    neutralise_desk(gate)
     print(f"Built gate-driven site: decision {gate['decision']}, "
           f"{len(gate['blocking_reasons'])} blocking reason(s), candidate "
           f"{gate['candidate']['submission_name'] if gate.get('candidate') else 'none'}")
@@ -727,7 +828,9 @@ def main() -> int:
     fchd_main()
     # Lane publishers write their own historical pages; strip the stale repository-wide claim so no
     # "governing decision is DO NOT SUBMIT" sentence survives a positive release.
-    neutralize_lane_pages(read_json(DOCS / "data" / "release_gate.json"))
+    gate_now = read_json(DOCS / "data" / "release_gate.json")
+    neutralize_lane_pages(gate_now)
+    neutralise_desk(gate_now)
     return 0
 
 

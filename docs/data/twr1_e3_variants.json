@@ -1,0 +1,80 @@
+{
+ "evidence_class": "HOLDOUT-DTI + SGMC-DTI (config selection channel)",
+ "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+ "n_withheld_positives": 22232,
+ "variants_holdout": {
+  "V1_multi_C_core": {
+   "pooled_dti": 0.020819046184281428,
+   "ci95_cluster_bootstrap": [
+    0.01650148379978679,
+    0.02550466013324209
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI"
+  },
+  "V2_topo_T_core": {
+   "pooled_dti": 0.03518962031961777,
+   "ci95_cluster_bootstrap": [
+    0.0288688131522795,
+    0.041684872167955536
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI"
+  },
+  "V3_topo_T_halo3": {
+   "pooled_dti": 0.010928699654650686,
+   "ci95_cluster_bootstrap": [
+    0.008869401230051801,
+    0.013032203334601178
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI"
+  },
+  "V4_topo_T_nms3": {
+   "pooled_dti": 0.06281765597508736,
+   "ci95_cluster_bootstrap": [
+    0.05394833921789309,
+    0.07108883147827127
+   ],
+   "n_withheld_positives": 22232,
+   "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+   "score_label": "HOLDOUT-DTI"
+  }
+ },
+ "variants_sgmc": {
+  "V1_multi_C_core": {
+   "n_dots": 37654,
+   "sgmc_raw_dti": 0.9170683046122979,
+   "sgmc_coverage": 0.9962904812744667
+  },
+  "V2_topo_T_core": {
+   "n_dots": 37654,
+   "sgmc_raw_dti": 0.9174821174369159,
+   "sgmc_coverage": 0.9957755029412381
+  },
+  "V3_topo_T_halo3": {
+   "n_dots": 364585,
+   "sgmc_raw_dti": 0.5063442783629557,
+   "sgmc_coverage": 0.9190010685649097
+  },
+  "V4_topo_T_nms3": {
+   "n_dots": 37654,
+   "sgmc_raw_dti": 0.9174848410467636,
+   "sgmc_coverage": 0.9957043270740439
+  }
+ },
+ "selection": {
+  "rule": "mean of scaled holdout DTI and scaled SGMC off-catalogue raw DTI, frozen before compute",
+  "combined": {
+   "V1_multi_C_core": 1.632542405275237,
+   "V2_topo_T_core": 1.7050849639929486,
+   "V3_topo_T_halo3": 0.8985506288781796,
+   "V4_topo_T_nms3": 1.8432296816200429
+  },
+  "selected": "V4_topo_T_nms3"
+ },
+ "elapsed_s": 60.7
+}

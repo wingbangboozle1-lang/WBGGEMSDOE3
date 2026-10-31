@@ -1,0 +1,302 @@
+{
+  "generated_by": "scripts/release_build_features.py",
+  "design_rule": "no plane uses the fault catalogue; catalogue is used only for supervised labels under spatial blocking and for the official masking geometry",
+  "provenance": {
+    "template": "/home/user/WBGGEMSDOE3/.cache/57GEMSDOE-822a0ce5546c7b6749cdd82eb145b6b3e616603d",
+    "files": {
+      "official/labels.tif": {
+        "exists": true,
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830
+      },
+      "official/existing_faults.tif": {
+        "exists": true,
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830
+      },
+      "official/sample_submission.tif": {
+        "exists": true,
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597
+      },
+      "official/training_features.tif": {
+        "exists": true,
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "bytes": 418912844
+      },
+      "external/sgmc_faults_100m.tif": {
+        "exists": true,
+        "sha256": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c",
+        "bytes": 213034
+      },
+      "external/derived_sgmc_faults_100m.tif": {
+        "exists": true,
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602
+      },
+      "external/trace_segments_utm11.csv": {
+        "exists": true,
+        "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+        "bytes": 5283577
+      }
+    }
+  },
+  "planes": [
+    {
+      "name": "concord",
+      "bands": [
+        "topographic",
+        "magnetic",
+        "gravity",
+        "strain"
+      ],
+      "category": "fusion",
+      "target": "multi-physics strike concordance",
+      "mimic": "any single-physics linear artefact that coincides by chance with one other category",
+      "path": "data/work/planes/concord.npy",
+      "dtype": "float32",
+      "sha256": "7f4d368d6a2b9dbc90a2d18f54bdb52a510f94c6d873468b494c1b88b15e4955",
+      "footprint_valid": 4872686,
+      "footprint_valid_fraction": 0.9429716027853998,
+      "z_min": -7.222891807556152,
+      "z_max": 78.74433135986328,
+      "z_median": -0.004217393696308136,
+      "seconds": 6.8
+    },
+    {
+      "name": "cond_line",
+      "bands": [
+        "cond_surf"
+      ],
+      "category": "subsurface",
+      "target": "conductivity-gradient corridors (fluid pathways)",
+      "mimic": "clay/saline playa conductivity unrelated to structure",
+      "path": "data/work/planes/cond_line.npy",
+      "dtype": "float32",
+      "sha256": "398709f76bbb7c1dfaa5c8334e467868ca7a7f7fb67d746b64f138cd4f71cb2e",
+      "footprint_valid": 4826459,
+      "footprint_valid_fraction": 0.9340256644914157,
+      "z_min": -5.011383533477783,
+      "z_max": 39.379005432128906,
+      "z_median": -0.004005996976047754,
+      "seconds": 2.5
+    },
+    {
+      "name": "depth_bp_line",
+      "bands": [
+        "depth_to_base_surf"
+      ],
+      "category": "subsurface",
+      "target": "basement-thickness band-pass",
+      "mimic": "depocentre geometry without fault control",
+      "path": "data/work/planes/depth_bp_line.npy",
+      "dtype": "float32",
+      "sha256": "b602e34c2adb5e608c6eb7b2cbae04a7933339cb5853934c26a437c7ac2b2fe0",
+      "footprint_valid": 4053465,
+      "footprint_valid_fraction": 0.7844343731331181,
+      "z_min": -2.2702412605285645,
+      "z_max": 36.646053314208984,
+      "z_median": -0.0003183259104844183,
+      "seconds": 3.6
+    },
+    {
+      "name": "grav_bp_line",
+      "bands": [
+        "iso_grav_anom"
+      ],
+      "category": "gravity",
+      "target": "basin-scale structural steps",
+      "mimic": "isostatic compensation of topography",
+      "path": "data/work/planes/grav_bp_line.npy",
+      "dtype": "float32",
+      "sha256": "b4378a7e85effc1d2b578d6ca25d59c96497075c0987fa237c43c28c0d901551",
+      "footprint_valid": 4053465,
+      "footprint_valid_fraction": 0.7844343731331181,
+      "z_min": -3.1028785705566406,
+      "z_max": 51.581050872802734,
+      "z_median": -7.577027281513438e-05,
+      "seconds": 3.6
+    },
+    {
+      "name": "grav_hg_line",
+      "bands": [
+        "iso_grav_anom_hg"
+      ],
+      "category": "gravity",
+      "target": "basement fabric and basin-bounding steps",
+      "mimic": "density contrasts from lithology alone",
+      "path": "data/work/planes/grav_hg_line.npy",
+      "dtype": "float32",
+      "sha256": "3a8b975652ad967a8c55d902ead5c586dfbaa0bfad996fe04c3d427c5602a208",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -5.689425468444824,
+      "z_max": 54.36806869506836,
+      "z_median": 0.0021580636966973543,
+      "seconds": 2.2
+    },
+    {
+      "name": "mag_hg_line",
+      "bands": [
+        "tmi_hg"
+      ],
+      "category": "magnetic",
+      "target": "contact/edge lineaments",
+      "mimic": "cultural noise, survey flight-line striping",
+      "path": "data/work/planes/mag_hg_line.npy",
+      "dtype": "float32",
+      "sha256": "33483923d5bec26a147f6c648ea2ccb49b02609bef5d40315f94f5141bc6a708",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -5.694446563720703,
+      "z_max": 80.24677276611328,
+      "z_median": 0.0005514259682968259,
+      "seconds": 2.0
+    },
+    {
+      "name": "mag_low_line",
+      "bands": [
+        "rtp"
+      ],
+      "category": "magnetic",
+      "target": "linear magnetic lows (magnetite destruction by hydrothermal fluid)",
+      "mimic": "sedimentary basins and non-magnetic intrusive bodies",
+      "path": "data/work/planes/mag_low_line.npy",
+      "dtype": "float32",
+      "sha256": "d6cd4c5b5b2fffee7e4f4641b2b04878b463415b4a789ba6b9461242fde441f6",
+      "footprint_valid": 4182876,
+      "footprint_valid_fraction": 0.8094782397167768,
+      "z_min": -10.912654876708984,
+      "z_max": 58.96553039550781,
+      "z_median": 0.0015684422105550766,
+      "seconds": 3.4
+    },
+    {
+      "name": "mag_vg_line",
+      "bands": [
+        "tmi_vg"
+      ],
+      "category": "magnetic",
+      "target": "vertical-gradient lineaments",
+      "mimic": "terrain effect on draped surveys",
+      "path": "data/work/planes/mag_vg_line.npy",
+      "dtype": "float32",
+      "sha256": "c2a0cb36a88e6dad79f4bd36a6e13f24fb053f63f0d7d3017bf17336ab387082",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -7.905529975891113,
+      "z_max": 85.32408142089844,
+      "z_median": 0.0009791410993784666,
+      "seconds": 2.2
+    },
+    {
+      "name": "seis_line",
+      "bands": [
+        "ieq_n100a15"
+      ],
+      "category": "seismic",
+      "target": "seismicity lineaments",
+      "mimic": "quarry blasts and induced seismicity from fluid operations",
+      "path": "data/work/planes/seis_line.npy",
+      "dtype": "float32",
+      "sha256": "fb08a33f84ec0e350b690f541ac1bf56c7cf435886a478c5e4bc57be0661b57c",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -3.324355363845825,
+      "z_max": 13.461652755737305,
+      "z_median": 0.010355117730796337,
+      "seconds": 2.1
+    },
+    {
+      "name": "strain_line",
+      "bands": [
+        "geod_dilaterate",
+        "geod_2ndinv"
+      ],
+      "category": "strain",
+      "target": "strain-magnitude lineaments",
+      "mimic": "interseismic loading unrelated to near-surface faults",
+      "path": "data/work/planes/strain_line.npy",
+      "dtype": "float32",
+      "sha256": "5a671d7739712367b2e297cccda89f5f462b3900a4a60908ce4fe58c14b3342a",
+      "footprint_valid": 4838005,
+      "footprint_valid_fraction": 0.9362600687041559,
+      "z_min": -9.279351234436035,
+      "z_max": 56.085636138916016,
+      "z_median": -0.005647370591759682,
+      "seconds": 2.4
+    },
+    {
+      "name": "topo_curv",
+      "bands": [
+        "det_elev"
+      ],
+      "category": "topographic",
+      "target": "scarp-face curvature",
+      "mimic": "landslide headscarps, wave-cut benches, playa margins",
+      "path": "data/work/planes/topo_curv.npy",
+      "dtype": "float32",
+      "sha256": "e9822e28a322b1e72c1943922fef6e846f039e2e25b6b5fb5540c292f8923bb9",
+      "footprint_valid": 4917413,
+      "footprint_valid_fraction": 0.95162725818322,
+      "z_min": -0.3653923273086548,
+      "z_max": 20.274887084960938,
+      "z_median": 0.0013045413652434945,
+      "seconds": 0.6
+    },
+    {
+      "name": "topo_relief",
+      "bands": [
+        "det_elev"
+      ],
+      "category": "topographic",
+      "target": "local relief context",
+      "mimic": "volcanic centres and buttresses",
+      "path": "data/work/planes/topo_relief.npy",
+      "dtype": "float32",
+      "sha256": "d96b25c83ebc77437e85feba5bb57333f13629827e9b6cae96f65ffd4f253e48",
+      "footprint_valid": 2500774,
+      "footprint_valid_fraction": 0.48395461291453123,
+      "z_min": -2.359748601913452,
+      "z_max": 8.236810684204102,
+      "z_median": -0.00032029859721660614,
+      "seconds": 5.3
+    },
+    {
+      "name": "topo_ridge",
+      "bands": [
+        "det_elev"
+      ],
+      "category": "topographic",
+      "target": "range-front crest axes",
+      "mimic": "stream terraces and eolian ridges produce the same crest axis",
+      "path": "data/work/planes/topo_ridge.npy",
+      "dtype": "float32",
+      "sha256": "b4797cdb22a0a39fd8f9bb0d8fa8b869b7671d16c7b7cc7e8e7772a9cdfe48be",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -2.10341739654541,
+      "z_max": 21.01559066772461,
+      "z_median": -0.00014718747115693986,
+      "seconds": 2.0
+    },
+    {
+      "name": "topo_valley",
+      "bands": [
+        "det_elev"
+      ],
+      "category": "topographic",
+      "target": "trough axes along hanging-wall margins",
+      "mimic": "drainages incised along non-tectonic gradients",
+      "path": "data/work/planes/topo_valley.npy",
+      "dtype": "float32",
+      "sha256": "884cbadd5f55f537df4506a8af5b2b939cadf2b8548cfbfa294b1080d3f71472",
+      "footprint_valid": 4927153,
+      "footprint_valid_fraction": 0.9535121617889787,
+      "z_min": -3.686187267303467,
+      "z_max": 15.101031303405762,
+      "z_median": -0.0011666985228657722,
+      "seconds": 2.1
+    }
+  ]
+}

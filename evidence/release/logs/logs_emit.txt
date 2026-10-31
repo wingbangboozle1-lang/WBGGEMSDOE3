@@ -1,0 +1,11 @@
+[fit] arm=CAT pos=40000 total=100000
+[emit] density=60000/M k_target=165,000 dots=139,957
+{
+ "file": "WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif",
+ "sha256": "41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6",
+ "format_passed": true,
+ "uniqueness_passed": false,
+ "failed_checks": [
+  "max_abs_rho_below_0.9"
+ ]
+}

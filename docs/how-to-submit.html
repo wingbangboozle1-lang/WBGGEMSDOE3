@@ -43,6 +43,7 @@ week and one final submission; this release uses one slot only when you upload i
 UNVERIFIED on our side, and the site will say so.</li>
 </ol><p class="small">Do not upload any file from the <a href="downloads/index.html">download archive</a>
 other than this one; the rest are marked DO NOT SUBMIT and exist for reproducibility.</p></div></section>
+<div class="card"><h3>Second file from a sibling lane — never the project decision</h3><p><code>None</code> (0 dots) was published the same day by this repository's desk lane and its own decision file said SUBMIT. It is <strong>not</strong> the project's cleared file: its run card records format and uniqueness checks but no HOLDOUT-DTI, so it never passed the spatial-holdout gate this project requires before spending a slot. Its bytes and its original claim are preserved in <a href="data/release_decision.json">data/release_decision.json</a> under <code>superseded_claim</code>; the authoritative decision is the <a href="data/release_gate.json">release gate</a>. The desk page is <a href="desk.html">here</a>.</p></div>
 <section><div class="section-head"><h2>Known portal and rules hazards</h2></div><div class="card"><ul>
 <li><strong>Range validation.</strong> A previous file was rejected with “Predicted values must be in range
 [0, 1]”. This file was re-read from disk: min 0.0, max 1.0, no NaN, no Inf, all 75,671

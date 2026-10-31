@@ -1,0 +1,436 @@
+{
+ "run_card_version": "wbg-gems-run-card-v3",
+ "run_utc": "2026-10-31T01:38:10Z",
+ "lane": "GGO",
+ "hypothesis": "Expert-added faults concentrate where the public catalogue is structurally blind: thick alluvial cover with weak surface expression. Emitting on cover-gated basement/gravity/geodetic concordance rather than on ridge strength targets that blind zone.",
+ "mechanism": "crest-normalised ridge of |grad(isostatic gravity anomaly)| colinear within 2 px with a depth-to-basement step, weighted by the second invariant + shear rate of the geodetic strain-rate tensor, multiplied by a weakness gate (low detrended-elevation curvature, high basement depth) and a >=3 px separation from mapped traces; DTI-thinned to local crests, level 1.0, zeros outside the footprint.",
+ "non_fault_mimic": "lithologic and intrusive contacts produce the same gravity step without faulting; geodetic fields carry atmospheric/thermal InSAR ramps and groundwater or mining subsidence; cover thickness correlates with basins that are simply unmapped at any resolution, which caps recall rather than creating false positives on ridges.",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+  "arm": "A3_ggo_plus_morphology",
+  "beats_incumbent": true,
+  "incumbent_holdout_dti": 0.027347,
+  "holdout_ranking": {
+   "A1_morphology_incumbent|N=20000": 0.001492,
+   "A1_morphology_incumbent|N=37654": 0.004301,
+   "A1_morphology_incumbent|N=60000": 0.010877,
+   "A1_morphology_incumbent|N=100000": 0.027347,
+   "A2_ggo_lane|N=20000": 0.001096,
+   "A2_ggo_lane|N=37654": 0.001587,
+   "A2_ggo_lane|N=60000": 0.002255,
+   "A2_ggo_lane|N=100000": 0.003173,
+   "A3_ggo_plus_morphology|N=20000": 0.006953,
+   "A3_ggo_plus_morphology|N=37654": 0.011892,
+   "A3_ggo_plus_morphology|N=60000": 0.01948,
+   "A3_ggo_plus_morphology|N=100000": 0.031921,
+   "A4_gno_weakness_gate|N=20000": 0.001096,
+   "A4_gno_weakness_gate|N=37654": 0.001587,
+   "A4_gno_weakness_gate|N=60000": 0.002255,
+   "A4_gno_weakness_gate|N=100000": 0.003173
+  },
+  "value": 0.019485,
+  "withheld_positives": 60988,
+  "ci95_mean_of_folds": [
+   0.0,
+   0.047918
+  ],
+  "ci_note": "mean of the four per-fold 95% spatial-block bootstrap intervals (124.2 km blocks)",
+  "pooled_bootstrap_ci": true,
+  "per_fold": [
+   0.02129,
+   0.0296,
+   0.01107,
+   0.01672
+  ],
+  "note": "shared hide-and-recover instrument (whole connected catalogue components withheld, global scored domain). This repo measured the instrument as ANTI-correlated with organizer scores (Spearman -0.15, src/gemsdoe/validation.py); it is reported as required, not as the promotion criterion."
+ },
+ "ledger_estimate": {
+  "label": "LEDGER-INVERSION ESTIMATE",
+  "value": 0.0774,
+  "band": [
+   0.0401,
+   0.1147
+  ],
+  "raw": 0.11,
+  "bias_correction": -0.03267,
+  "T": 3769.0,
+  "FP": 59711.5,
+  "n_dots": 60000,
+  "proxy_hit_rate": 0.06755,
+  "instrument": "gemsw.inversion v2 via scripts/invert_ledger.py (no forked math)",
+  "reproduced_published_full_sample": true,
+  "reproduced_metrics": {
+   "mae": 0.03729,
+   "rmse": 0.044954,
+   "r2": 0.705726,
+   "max_abs": 0.086014,
+   "spearman": 0.987849,
+   "n": 118.0
+  },
+  "site_grouped_cv": {
+   "mae": 0.037336973056575594,
+   "rmse": 0.04983300093566254,
+   "r2": 0.6383841711185084,
+   "max_abs": 0.15068942081501696,
+   "spearman": 0.9459446629190249,
+   "n": 118
+  },
+  "budget_curve": {
+   "20000": {
+    "n_dots": 20000,
+    "proxy_h": 0.0774,
+    "inversion_raw": 0.0482,
+    "inversion_corrected": 0.0155,
+    "T": 1242.6,
+    "FP": 19911.9
+   },
+   "37654": {
+    "n_dots": 37654,
+    "proxy_h": 0.07607,
+    "inversion_raw": 0.0797,
+    "inversion_corrected": 0.047,
+    "T": 2353.8,
+    "FP": 37484.9
+   },
+   "60000": {
+    "n_dots": 60000,
+    "proxy_h": 0.06755,
+    "inversion_raw": 0.11,
+    "inversion_corrected": 0.0774,
+    "T": 3769.0,
+    "FP": 59711.5
+   },
+   "100000": {
+    "n_dots": 100000,
+    "proxy_h": 0.052,
+    "inversion_raw": 0.0841,
+    "inversion_corrected": 0.0514,
+    "T": 3550.8,
+    "FP": 99713.6
+   },
+   "160000": {
+    "n_dots": 160000,
+    "proxy_h": 0.06132,
+    "inversion_raw": 0.1259,
+    "inversion_corrected": 0.0932,
+    "T": 6900.3,
+    "FP": 159395.3
+   },
+   "250000": {
+    "n_dots": 199122,
+    "proxy_h": 0.05022,
+    "inversion_raw": 0.113,
+    "inversion_corrected": 0.0804,
+    "T": 7085.4,
+    "FP": 198500.8
+   },
+   "400000": {
+    "n_dots": 199122,
+    "proxy_h": 0.05022,
+    "inversion_raw": 0.113,
+    "inversion_corrected": 0.0804,
+    "T": 7085.4,
+    "FP": 198500.8
+   },
+   "600000": {
+    "n_dots": 199122,
+    "proxy_h": 0.05022,
+    "inversion_raw": 0.113,
+    "inversion_corrected": 0.0804,
+    "T": 7085.4,
+    "FP": 198500.8
+   }
+  },
+  "selected_N": 60000,
+  "cap_px": 100000,
+  "uncapped_argmax_N": 160000,
+  "cap_reason": "no sibling evidence above 100k dots; GEMSDOE22's 6%/10% emission scored 0.1002/0.0748 (owner-reported)",
+  "hit_rate_definition": "SGMC off-catalogue cells, 300 m triangular kernel",
+  "not_a_score": true,
+  "not_a_score_because": "derived from owner-reported sibling scores; no organizer receipt exists for any file",
+  "receipt": "none; no upload was performed from this environment"
+ },
+ "uniqueness": {
+  "registry_comparators": 138,
+  "guard_fast_equals_shared": false,
+  "guard_samples": [
+   {
+    "peer": "GEMSDOE51__gemsdoe51-h53-twostage-20261008T040951Z-9a0b32c871.tif",
+    "shared": {
+     "j": 0.005216,
+     "o": 0.325943,
+     "r": 0.102367
+    },
+    "fast": {
+     "j": 0.005216,
+     "o": 0.153817,
+     "r": 0.102367
+    },
+    "equal": false
+   },
+   {
+    "peer": "13GEMSDOE__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "shared": {
+     "j": 0.009173,
+     "o": 0.293042,
+     "r": 0.060386
+    },
+    "fast": {
+     "j": 0.009173,
+     "o": 0.998,
+     "r": 0.060386
+    },
+    "equal": false
+   },
+   {
+    "peer": "GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+    "shared": {
+     "j": 0.005716,
+     "o": 0.394062,
+     "r": 0.369893
+    },
+    "fast": {
+     "j": 0.005716,
+     "o": 0.147683,
+     "r": 0.369893
+    },
+    "equal": false
+   },
+   {
+    "peer": "GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+    "shared": {
+     "j": 0.008733,
+     "o": 0.382717,
+     "r": 0.459293
+    },
+    "fast": {
+     "j": 0.008733,
+     "o": 0.194867,
+     "r": 0.459293
+    },
+    "equal": false
+   }
+  ],
+  "worst_informative_overlap": {
+   "peer": "ledger/GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+   "value": 0.748683
+  },
+  "worst_abs_rho": {
+   "peer": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+   "value": 0.859966
+  },
+  "worst_jaccard": {
+   "peer": "submission/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+   "value": 0.053262
+  },
+  "blocked_by": [
+   {
+    "jaccard": 0.01114,
+    "within_3px_of_comparator": 0.748683,
+    "within_3px_of_candidate": 0.301733,
+    "rho_density": 0.440755,
+    "comparator_3px_coverage": 0.734134,
+    "space_filling_comparator": false,
+    "reasons": [
+     "within3px>0.7"
+    ],
+    "blocked": true,
+    "intersection": 2369,
+    "n_cand_dots": 60000,
+    "n_other_dots": 155021,
+    "peer": "ledger/GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+    "peer_sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad"
+   },
+   {
+    "jaccard": 0.010447,
+    "within_3px_of_comparator": 0.727867,
+    "within_3px_of_candidate": 0.295876,
+    "rho_density": 0.464463,
+    "comparator_3px_coverage": 0.735046,
+    "space_filling_comparator": false,
+    "reasons": [
+     "within3px>0.7"
+    ],
+    "blocked": true,
+    "intersection": 2223,
+    "n_cand_dots": 60000,
+    "n_other_dots": 155021,
+    "peer": "ledger/GEMSDOE3__pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+    "peer_sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca"
+   }
+  ],
+  "space_filling_comparators_reported": [
+   {
+    "peer": "ledger/13GEMSDOE__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "coverage": 0.998713,
+    "overlap": 0.998
+   }
+  ],
+  "thresholds": {
+   "rho": 0.9,
+   "overlap": 0.7,
+   "jaccard": 0.5,
+   "spacefill": 0.9
+  },
+  "unique": false,
+  "evidence_class": "REGISTRY-MEASUREMENT over accessible public mirrors; not organizer-complete",
+  "guard_caveat": "guard_fast_equals_shared is False: the lane's vectorised fast_pair comparator does not reproduce the shared gemsdoe.uniqueness.compare on 4 sampled peers, so the overlap/jaccard/rho numbers above are fast_pair values and are NOT independently confirmed. This is a defect in the lane's own code, reported not repaired silently."
+ },
+ "raster": {
+  "file": "wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif",
+  "sha256": "348605467b0c868925a0d6bbbe8e83ad6629ae47b2e29120fb99f29325638874",
+  "bytes": 198321,
+  "zip_sha256": "bebe43d5d21dd1c3c56a77f71a6cc4ff7ba1047e6565c12841fadf34ca2083ca",
+  "decoded_dots": 60000
+ },
+ "validator": {
+  "receipt_checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "template_report_ok": true,
+  "no_nan_inside_footprint": true,
+  "values_in_0_1": [
+   0.0,
+   1.0
+  ],
+  "crs_shape_transform_match": true
+ },
+ "submission_name": "wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros",
+ "submission_note": "GGO lane: cover-gated gravity-gradient x basement-step x strain concordance, 60000 dots, off-catalogue, h=0.0675 vs SGMC",
+ "focus_site_estimates": [
+  {
+   "site": "GEMSDOE32",
+   "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "n_dots": 37654,
+   "proxy_h": 0.06462,
+   "owner_reported": "0.2778",
+   "inversion_raw": 0.3599,
+   "estimator_reproduction": 0.3273,
+   "T": 11194.4,
+   "FP": 36512.8
+  },
+  {
+   "site": "GEMSDOE36",
+   "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "n_dots": 38854,
+   "proxy_h": 0.06388,
+   "owner_reported": "0.2750",
+   "inversion_raw": 0.359,
+   "estimator_reproduction": 0.3263,
+   "T": 11253.4,
+   "FP": 37705.4
+  },
+  {
+   "site": "GEMSDOE28",
+   "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "n_dots": 37660,
+   "proxy_h": 0.06197,
+   "owner_reported": "0.2710",
+   "inversion_raw": 0.3476,
+   "estimator_reproduction": 0.315,
+   "T": 10790.7,
+   "FP": 36617.7
+  },
+  {
+   "site": "GEMSDOE31",
+   "file": "GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "n_dots": 40199,
+   "proxy_h": 0.06177,
+   "owner_reported": "0.2708",
+   "inversion_raw": 0.3545,
+   "estimator_reproduction": 0.3219,
+   "T": 11206.9,
+   "FP": 39056.1
+  },
+  {
+   "site": "GEMSDOE33",
+   "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "n_dots": 41865,
+   "proxy_h": 0.0598,
+   "owner_reported": "0.2632",
+   "inversion_raw": 0.3468,
+   "estimator_reproduction": 0.3141,
+   "T": 11070.3,
+   "FP": 40753.8
+  },
+  {
+   "site": "GEMSDOE25",
+   "file": "GEMSDOE25__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "n_dots": 44090,
+   "proxy_h": 0.05663,
+   "owner_reported": "0.2600",
+   "inversion_raw": 0.346,
+   "estimator_reproduction": 0.3133,
+   "T": 11207.2,
+   "FP": 42947.1
+  },
+  {
+   "site": "GEMSDOE30",
+   "file": "GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "n_dots": 44090,
+   "proxy_h": 0.05663,
+   "owner_reported": "0.2600",
+   "inversion_raw": 0.346,
+   "estimator_reproduction": 0.3133,
+   "T": 11207.2,
+   "FP": 42947.1
+  },
+  {
+   "site": "GEMSDOE24",
+   "file": "GEMSDOE24__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "n_dots": 60069,
+   "proxy_h": 0.05679,
+   "owner_reported": "0.2477",
+   "inversion_raw": 0.329,
+   "estimator_reproduction": 0.2964,
+   "T": 11725.5,
+   "FP": 58666.6
+  },
+  {
+   "site": "GEMSDOE27",
+   "file": "GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "n_dots": 61328,
+   "proxy_h": 0.05656,
+   "owner_reported": "0.2449",
+   "inversion_raw": 0.3268,
+   "estimator_reproduction": 0.2941,
+   "T": 11728.4,
+   "FP": 59925.0
+  }
+ ],
+ "verdict": "negative",
+ "verdict_reason": "uniqueness or validator gate failed (see uniqueness/validator blocks)",
+ "limits": "no organizer receipt; hidden labels unavailable; proxy is an external catalogue, not the private test set; registry census covers accessible public mirrors only; the weekly slot was NOT used and no upload was attempted; fast_pair vs shared compare disagreement recorded in uniqueness.guard_caveat; the weekly slot was not used and no upload was attempted",
+ "performance_gate": {
+  "rule": "upper 1-sigma band of the LEDGER-INVERSION ESTIMATE must exceed the best sibling owner-reported score among the nine focus sites",
+  "estimate": 0.0774,
+  "band": [
+   0.0401,
+   0.1147
+  ],
+  "best_sibling_owner_reported": "0.2778",
+  "passed": false,
+  "holdout_dti": 0.019485,
+  "holdout_beats_incumbent": true,
+  "note": "the holdout is the mandated instrument but this repository measured it as anti-correlated with organizer scores (Spearman -0.15, src/gemsdoe/validation.py); the ledger inversion is the only estimator with site-grouped CV Spearman 0.946, so it is the binding performance gate"
+ },
+ "okay_to_submit": false,
+ "verdict_derived_utc": "2026-10-31T01:40:26Z",
+ "verdict_derivation": "recomputed from the card's own stored gate fields by scripts/rederive_verdict.py calling scripts/lane_ggo_release.py:decide()"
+}

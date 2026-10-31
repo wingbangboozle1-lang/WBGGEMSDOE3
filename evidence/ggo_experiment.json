@@ -1,0 +1,924 @@
+{
+ "run_utc": "2026-10-31T01:15:48Z",
+ "lane": "GGO gravity-gradient/geodetic-strain concordance under cover",
+ "data_pin_matches": {
+  "training_features.tif": true,
+  "labels.tif": true,
+  "sample_submission.tif": true
+ },
+ "footprint_pixels": 5167373,
+ "catalogue_pixels": 60988,
+ "folds": {
+  "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+  "n_components": 3199,
+  "catalogue_px": 60988,
+  "block_px": 621,
+  "n_folds": 4,
+  "folds": [
+   {
+    "fold": 0,
+    "withheld_px": 17268,
+    "visible_px": 43720,
+    "withheld_components": 886
+   },
+   {
+    "fold": 1,
+    "withheld_px": 13669,
+    "visible_px": 47319,
+    "withheld_components": 791
+   },
+   {
+    "fold": 2,
+    "withheld_px": 15810,
+    "visible_px": 45178,
+    "withheld_components": 849
+   },
+   {
+    "fold": 3,
+    "withheld_px": 14241,
+    "visible_px": 46747,
+    "withheld_components": 673
+   }
+  ]
+ },
+ "leakage_canary": {
+  "iso_grav_anom_hg": {
+   "per_fold_auc": [
+    0.7653,
+    0.7227,
+    0.7559,
+    0.7491
+   ],
+   "max_auc": 0.7653,
+   "leaked": false
+  },
+  "iso_grav_anom": {
+   "per_fold_auc": [
+    0.7527,
+    0.7341,
+    0.6977,
+    0.735
+   ],
+   "max_auc": 0.7527,
+   "leaked": false
+  },
+  "iso_grav_anom_log_s2": {
+   "per_fold_auc": [
+    0.769,
+    0.7538,
+    0.7508,
+    0.7656
+   ],
+   "max_auc": 0.769,
+   "leaked": false
+  },
+  "depth_to_base_surf": {
+   "per_fold_auc": [
+    0.7674,
+    0.7366,
+    0.7556,
+    0.7593
+   ],
+   "max_auc": 0.7674,
+   "leaked": false
+  },
+  "depth_hg_s2": {
+   "per_fold_auc": [
+    0.7844,
+    0.7456,
+    0.768,
+    0.7589
+   ],
+   "max_auc": 0.7844,
+   "leaked": false
+  },
+  "geod_2ndinv": {
+   "per_fold_auc": [
+    0.7626,
+    0.8042,
+    0.8103,
+    0.7621
+   ],
+   "max_auc": 0.8103,
+   "leaked": false
+  },
+  "geod_shearrate": {
+   "per_fold_auc": [
+    0.7186,
+    0.7924,
+    0.8056,
+    0.7389
+   ],
+   "max_auc": 0.8056,
+   "leaked": false
+  },
+  "geod_dilaterate": {
+   "per_fold_auc": [
+    0.8181,
+    0.6729,
+    0.7545,
+    0.7854
+   ],
+   "max_auc": 0.8181,
+   "leaked": false
+  },
+  "det_elev": {
+   "per_fold_auc": [
+    0.7223,
+    0.7285,
+    0.7362,
+    0.7845
+   ],
+   "max_auc": 0.7845,
+   "leaked": false
+  },
+  "det_elev_slope": {
+   "per_fold_auc": [
+    0.7653,
+    0.7719,
+    0.791,
+    0.7862
+   ],
+   "max_auc": 0.791,
+   "leaked": false
+  },
+  "de_cplan_s2": {
+   "per_fold_auc": [
+    0.7554,
+    0.7579,
+    0.761,
+    0.7521
+   ],
+   "max_auc": 0.761,
+   "leaked": false
+  },
+  "de_log_s2": {
+   "per_fold_auc": [
+    0.7086,
+    0.7187,
+    0.7041,
+    0.7205
+   ],
+   "max_auc": 0.7205,
+   "leaked": false
+  },
+  "de_paired_scarp": {
+   "per_fold_auc": [
+    0.7439,
+    0.7372,
+    0.7389,
+    0.7361
+   ],
+   "max_auc": 0.7439,
+   "leaked": false
+  },
+  "tmi_log_s2": {
+   "per_fold_auc": [
+    0.7415,
+    0.7443,
+    0.7425,
+    0.7425
+   ],
+   "max_auc": 0.7443,
+   "leaked": false
+  },
+  "rtp_log_s2": {
+   "per_fold_auc": [
+    0.738,
+    0.7465,
+    0.7405,
+    0.7455
+   ],
+   "max_auc": 0.7465,
+   "leaked": false
+  },
+  "cond_log_s2": {
+   "per_fold_auc": [
+    0.7541,
+    0.7452,
+    0.7481,
+    0.7467
+   ],
+   "max_auc": 0.7541,
+   "leaked": false
+  },
+  "ieq_g_s2": {
+   "per_fold_auc": [
+    0.8261,
+    0.7527,
+    0.7983,
+    0.75
+   ],
+   "max_auc": 0.8261,
+   "leaked": false
+  }
+ },
+ "holdout": {
+  "A1_morphology_incumbent|N=20000": {
+   "holdout_dti": 0.001492,
+   "ci95_mean_of_folds": [
+    2.4e-05,
+    0.003738
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 20000,
+   "emitted_mass": 20000.0,
+   "hit_rate": 0.003939,
+   "per_fold_dti": [
+    0.00121,
+    0.00062,
+    0.0014,
+    0.00277
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A1_morphology_incumbent|N=37654": {
+   "holdout_dti": 0.004301,
+   "ci95_mean_of_folds": [
+    0.001411,
+    0.007549
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 37652,
+   "emitted_mass": 37652.0,
+   "hit_rate": 0.006437,
+   "per_fold_dti": [
+    0.0046,
+    0.00394,
+    0.00374,
+    0.0049
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A1_morphology_incumbent|N=60000": {
+   "holdout_dti": 0.010877,
+   "ci95_mean_of_folds": [
+    0.00534,
+    0.016135
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 60000,
+   "emitted_mass": 60000.0,
+   "hit_rate": 0.011035,
+   "per_fold_dti": [
+    0.01458,
+    0.0081,
+    0.00848,
+    0.01184
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A1_morphology_incumbent|N=100000": {
+   "holdout_dti": 0.027347,
+   "ci95_mean_of_folds": [
+    0.018003,
+    0.034061
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 100000,
+   "emitted_mass": 100000.0,
+   "hit_rate": 0.018876,
+   "per_fold_dti": [
+    0.03319,
+    0.02235,
+    0.02418,
+    0.02889
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A2_ggo_lane|N=20000": {
+   "holdout_dti": 0.001096,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.003049
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 20000,
+   "emitted_mass": 20000.0,
+   "hit_rate": 0.002893,
+   "per_fold_dti": [
+    0.00185,
+    0.00159,
+    0.0,
+    0.00093
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A2_ggo_lane|N=37654": {
+   "holdout_dti": 0.001587,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.004314
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 37652,
+   "emitted_mass": 37652.0,
+   "hit_rate": 0.002373,
+   "per_fold_dti": [
+    0.00251,
+    0.00268,
+    0.0,
+    0.00118
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A2_ggo_lane|N=60000": {
+   "holdout_dti": 0.002255,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.005979
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 60000,
+   "emitted_mass": 60000.0,
+   "hit_rate": 0.002283,
+   "per_fold_dti": [
+    0.00397,
+    0.00352,
+    0.0,
+    0.00148
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A2_ggo_lane|N=100000": {
+   "holdout_dti": 0.003173,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.008278
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 100000,
+   "emitted_mass": 100000.0,
+   "hit_rate": 0.00218,
+   "per_fold_dti": [
+    0.00595,
+    0.00461,
+    0.0,
+    0.00201
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A3_ggo_plus_morphology|N=20000": {
+   "holdout_dti": 0.006953,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.019397
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 20000,
+   "emitted_mass": 20000.0,
+   "hit_rate": 0.018368,
+   "per_fold_dti": [
+    0.00548,
+    0.0111,
+    0.00477,
+    0.00713
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A3_ggo_plus_morphology|N=37654": {
+   "holdout_dti": 0.011892,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.031418
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 37652,
+   "emitted_mass": 37652.0,
+   "hit_rate": 0.017814,
+   "per_fold_dti": [
+    0.01195,
+    0.01736,
+    0.00786,
+    0.01096
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A3_ggo_plus_morphology|N=60000": {
+   "holdout_dti": 0.01948,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.047917
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 60000,
+   "emitted_mass": 60000.0,
+   "hit_rate": 0.019784,
+   "per_fold_dti": [
+    0.02129,
+    0.02958,
+    0.01107,
+    0.01672
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A3_ggo_plus_morphology|N=100000": {
+   "holdout_dti": 0.031921,
+   "ci95_mean_of_folds": [
+    0.002771,
+    0.061309
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 100000,
+   "emitted_mass": 100000.0,
+   "hit_rate": 0.022045,
+   "per_fold_dti": [
+    0.02891,
+    0.04259,
+    0.02613,
+    0.03121
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A4_gno_weakness_gate|N=20000": {
+   "holdout_dti": 0.001096,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.003049
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 20000,
+   "emitted_mass": 20000.0,
+   "hit_rate": 0.002893,
+   "per_fold_dti": [
+    0.00185,
+    0.00159,
+    0.0,
+    0.00093
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A4_gno_weakness_gate|N=37654": {
+   "holdout_dti": 0.001587,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.004314
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 37652,
+   "emitted_mass": 37652.0,
+   "hit_rate": 0.002373,
+   "per_fold_dti": [
+    0.00251,
+    0.00268,
+    0.0,
+    0.00118
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A4_gno_weakness_gate|N=60000": {
+   "holdout_dti": 0.002255,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.005979
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 60000,
+   "emitted_mass": 60000.0,
+   "hit_rate": 0.002283,
+   "per_fold_dti": [
+    0.00397,
+    0.00352,
+    0.0,
+    0.00148
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  },
+  "A4_gno_weakness_gate|N=100000": {
+   "holdout_dti": 0.003173,
+   "ci95_mean_of_folds": [
+    0.0,
+    0.008278
+   ],
+   "withheld_positives": 60988,
+   "emitted_dots": 100000,
+   "emitted_mass": 100000.0,
+   "hit_rate": 0.00218,
+   "per_fold_dti": [
+    0.00595,
+    0.00461,
+    0.0,
+    0.00201
+   ],
+   "evaluator_version": "gemsdoe-dti-hide-recover-v1.0",
+   "evidence_class": "HOLDOUT-DTI"
+  }
+ },
+ "evaluator_cross_check": {
+  "my_dti": 0.0025071122518125484,
+  "shared_dti": 0.002507,
+  "abs_diff": 1.1225181254827243e-07,
+  "my_tp": 39.333333760499954,
+  "shared_tp": 39.333,
+  "my_fp": 9332.17020714283,
+  "shared_fp": 9332.17,
+  "my_n_dots": 9413,
+  "shared_mass": 9413.0,
+  "verdict": "identical at the shared report's precision"
+ },
+ "proxy": {
+  "model": "DTI = h*m / (0.2*(h*m + (1-h)*m) + 0.8*|G|)",
+  "G_fitted_px": 58608.9,
+  "n_probes": 117,
+  "mae": 0.09043,
+  "rmse": 0.14489,
+  "r2": -2.0325,
+  "spearman": 0.2247,
+  "observed_range": [
+   0.0,
+   0.2778
+  ],
+  "worst_abs_error": 0.8841,
+  "evidence_class": "LEDGER-INVERSION ESTIMATE (owner-reported scores, no organizer receipts)"
+ },
+ "estimates": {
+  "A2_ggo_lane": {
+   "N=20000,sep=2": {
+    "n_dots": 20000,
+    "proxy_tp": 451.9,
+    "proxy_hit_rate": 0.0226,
+    "ledger_estimate": 0.0089,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=20000,sep=3": {
+    "n_dots": 20000,
+    "proxy_tp": 463.1,
+    "proxy_hit_rate": 0.02315,
+    "ledger_estimate": 0.0091,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=37654,sep=2": {
+    "n_dots": 37654,
+    "proxy_tp": 841.1,
+    "proxy_hit_rate": 0.02234,
+    "ledger_estimate": 0.0155,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=37654,sep=3": {
+    "n_dots": 37654,
+    "proxy_tp": 832.9,
+    "proxy_hit_rate": 0.02212,
+    "ledger_estimate": 0.0153,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=60000,sep=2": {
+    "n_dots": 60000,
+    "proxy_tp": 1266.9,
+    "proxy_hit_rate": 0.02111,
+    "ledger_estimate": 0.0215,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=60000,sep=3": {
+    "n_dots": 60000,
+    "proxy_tp": 1271.5,
+    "proxy_hit_rate": 0.02119,
+    "ledger_estimate": 0.0216,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=100000,sep=2": {
+    "n_dots": 100000,
+    "proxy_tp": 2105.6,
+    "proxy_hit_rate": 0.02106,
+    "ledger_estimate": 0.0315,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   },
+   "N=100000,sep=3": {
+    "n_dots": 100000,
+    "proxy_tp": 2093.3,
+    "proxy_hit_rate": 0.02093,
+    "ledger_estimate": 0.0313,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   }
+  },
+  "A1_morphology_incumbent": {
+   "N=20000,sep=2": {
+    "n_dots": 20000,
+    "proxy_tp": 1815.4,
+    "proxy_hit_rate": 0.09077,
+    "ledger_estimate": 0.0357,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=20000,sep=3": {
+    "n_dots": 20000,
+    "proxy_tp": 1809.3,
+    "proxy_hit_rate": 0.09046,
+    "ledger_estimate": 0.0356,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=37654,sep=2": {
+    "n_dots": 37654,
+    "proxy_tp": 3170.5,
+    "proxy_hit_rate": 0.0842,
+    "ledger_estimate": 0.0583,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=37654,sep=3": {
+    "n_dots": 37654,
+    "proxy_tp": 3145.8,
+    "proxy_hit_rate": 0.08355,
+    "ledger_estimate": 0.0578,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=60000,sep=2": {
+    "n_dots": 60000,
+    "proxy_tp": 3948.7,
+    "proxy_hit_rate": 0.06581,
+    "ledger_estimate": 0.0671,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=60000,sep=3": {
+    "n_dots": 60000,
+    "proxy_tp": 3839.9,
+    "proxy_hit_rate": 0.064,
+    "ledger_estimate": 0.0652,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=100000,sep=2": {
+    "n_dots": 100000,
+    "proxy_tp": 5495.6,
+    "proxy_hit_rate": 0.05496,
+    "ledger_estimate": 0.0822,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   },
+   "N=100000,sep=3": {
+    "n_dots": 100000,
+    "proxy_tp": 4871.9,
+    "proxy_hit_rate": 0.04872,
+    "ledger_estimate": 0.0728,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   }
+  },
+  "A3_ggo_plus_morphology": {
+   "N=20000,sep=2": {
+    "n_dots": 20000,
+    "proxy_tp": 1547.9,
+    "proxy_hit_rate": 0.0774,
+    "ledger_estimate": 0.0304,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=20000,sep=3": {
+    "n_dots": 20000,
+    "proxy_tp": 1548.7,
+    "proxy_hit_rate": 0.07744,
+    "ledger_estimate": 0.0304,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00387
+   },
+   "N=37654,sep=2": {
+    "n_dots": 37654,
+    "proxy_tp": 2864.5,
+    "proxy_hit_rate": 0.07607,
+    "ledger_estimate": 0.0526,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=37654,sep=3": {
+    "n_dots": 37654,
+    "proxy_tp": 2855.7,
+    "proxy_hit_rate": 0.07584,
+    "ledger_estimate": 0.0525,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.00729
+   },
+   "N=60000,sep=2": {
+    "n_dots": 60000,
+    "proxy_tp": 4052.9,
+    "proxy_hit_rate": 0.06755,
+    "ledger_estimate": 0.0688,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=60000,sep=3": {
+    "n_dots": 60000,
+    "proxy_tp": 4017.9,
+    "proxy_hit_rate": 0.06697,
+    "ledger_estimate": 0.0682,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01161
+   },
+   "N=100000,sep=2": {
+    "n_dots": 100000,
+    "proxy_tp": 5199.6,
+    "proxy_hit_rate": 0.052,
+    "ledger_estimate": 0.0777,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   },
+   "N=100000,sep=3": {
+    "n_dots": 100000,
+    "proxy_tp": 5346.0,
+    "proxy_hit_rate": 0.05346,
+    "ledger_estimate": 0.0799,
+    "dots_on_catalogue": 0,
+    "fraction_of_footprint": 0.01935
+   }
+  }
+ },
+ "gate_stats": {
+  "r_grav": {
+   "mean": 0.00020677309657912701,
+   "frac_above_0p5": 0.000206773101743116
+  },
+  "r_dep": {
+   "mean": 0.00018201570492237806,
+   "frac_above_0p5": 0.00018201570791487366
+  },
+  "strain": {
+   "mean": 0.4099941551685333,
+   "frac_above_0p5": 0.371023913687907
+  },
+  "conc": {
+   "mean": 3.9090620703063905e-05,
+   "frac_above_0p5": 3.909062183406682e-05
+  },
+  "cover": {
+   "mean": 0.16008740663528442,
+   "frac_above_0p5": 0.06796800432602881
+  },
+  "morph": {
+   "mean": 0.10822857916355133,
+   "frac_above_0p5": 0.03935554223578812
+  },
+  "off": {
+   "mean": 0.9496867656707764,
+   "frac_above_0p5": 0.9469690923483365
+  },
+  "gate": {
+   "mean": 0.2889255881309509,
+   "frac_above_0p5": 0.14393175103182954
+  }
+ },
+ "holdout_fold0": {
+  "A1_morphology_incumbent|N=20000": {
+   "dti": 0.0012053132428484407,
+   "n_dots": 5000,
+   "ci": [
+    0.0,
+    0.003423
+   ]
+  },
+  "A1_morphology_incumbent|N=37654": {
+   "dti": 0.004599643204784418,
+   "n_dots": 9413,
+   "ci": [
+    0.00157,
+    0.00764
+   ]
+  },
+  "A1_morphology_incumbent|N=60000": {
+   "dti": 0.014578122130456804,
+   "n_dots": 15000,
+   "ci": [
+    0.007706,
+    0.022003
+   ]
+  },
+  "A1_morphology_incumbent|N=100000": {
+   "dti": 0.03319004769551329,
+   "n_dots": 25000,
+   "ci": [
+    0.020245,
+    0.043839
+   ]
+  },
+  "A2_ggo_lane|N=20000": {
+   "dti": 0.0018455720603746482,
+   "n_dots": 5000,
+   "ci": [
+    0.0,
+    0.005804
+   ]
+  },
+  "A2_ggo_lane|N=37654": {
+   "dti": 0.0025071122518125484,
+   "n_dots": 9413,
+   "ci": [
+    0.0,
+    0.007784
+   ]
+  },
+  "A2_ggo_lane|N=60000": {
+   "dti": 0.0039689391458136766,
+   "n_dots": 15000,
+   "ci": [
+    0.0,
+    0.011857
+   ]
+  },
+  "A2_ggo_lane|N=100000": {
+   "dti": 0.005946044446767536,
+   "n_dots": 25000,
+   "ci": [
+    0.0,
+    0.017499
+   ]
+  },
+  "A3_ggo_plus_morphology|N=20000": {
+   "dti": 0.005477726734361686,
+   "n_dots": 5000,
+   "ci": [
+    0.0,
+    0.016418
+   ]
+  },
+  "A3_ggo_plus_morphology|N=37654": {
+   "dti": 0.011946552567946269,
+   "n_dots": 9413,
+   "ci": [
+    0.0,
+    0.031059
+   ]
+  },
+  "A3_ggo_plus_morphology|N=60000": {
+   "dti": 0.021287308022279287,
+   "n_dots": 15000,
+   "ci": [
+    0.0,
+    0.047228
+   ]
+  },
+  "A3_ggo_plus_morphology|N=100000": {
+   "dti": 0.028913287363132638,
+   "n_dots": 25000,
+   "ci": [
+    0.002238,
+    0.058298
+   ]
+  },
+  "A4_gno_weakness_gate|N=20000": {
+   "dti": 0.0018455720603746482,
+   "n_dots": 5000,
+   "ci": [
+    0.0,
+    0.005804
+   ]
+  },
+  "A4_gno_weakness_gate|N=37654": {
+   "dti": 0.0025071122518125484,
+   "n_dots": 9413,
+   "ci": [
+    0.0,
+    0.007784
+   ]
+  },
+  "A4_gno_weakness_gate|N=60000": {
+   "dti": 0.0039689391458136766,
+   "n_dots": 15000,
+   "ci": [
+    0.0,
+    0.011857
+   ]
+  },
+  "A4_gno_weakness_gate|N=100000": {
+   "dti": 0.005946044446767536,
+   "n_dots": 25000,
+   "ci": [
+    0.0,
+    0.017499
+   ]
+  }
+ },
+ "best_candidate": {
+  "arm": "A2_ggo_lane",
+  "key": "N=100000,sep=2",
+  "n_dots": 100000,
+  "proxy_tp": 2105.6,
+  "proxy_hit_rate": 0.02106,
+  "ledger_estimate": 0.0315,
+  "dots_on_catalogue": 0,
+  "fraction_of_footprint": 0.01935
+ },
+ "seconds": 322.4
+}

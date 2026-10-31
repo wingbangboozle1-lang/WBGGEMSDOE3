@@ -314,6 +314,18 @@
   "config_note": "3\u201312 px",
   "footprint_px": 5167373,
   "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "labels_sha256_source": "recomputed from data/official/labels.tif",
   "registry_checked": 28,
-  "checks_passed": 10
+  "checks_passed": 10,
+  "sibling_candidates": [
+    {
+      "file": null,
+      "path": null,
+      "sha256": null,
+      "dots": null,
+      "claim": "DO-NOT-SUBMIT",
+      "status": "not selected",
+      "reason": "its run card records format and uniqueness checks but no HOLDOUT-DTI, so it never passed the spatial-holdout gate this project requires before spending a slot"
+    }
+  ]
 }
