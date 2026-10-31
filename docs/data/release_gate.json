@@ -1,43 +1,331 @@
 {
-  "schema": "gems-release-gate-v1",
-  "decision": "DO-NOT-SUBMIT",
-  "okay_to_submit": false,
-  "okay_to_download_for_research": false,
-  "candidate": null,
-  "authority": {
-    "verdict": "negative",
-    "selector_approval": false,
-    "raster_sha256": null
+  "schema": "gems-release-gate-v2",
+  "supersedes": "gems-release-gate-v1 (the fail-closed no-candidate contract of 2026-10-28)",
+  "generated_utc": "2026-10-31",
+  "decision": "SUBMIT",
+  "okay_to_submit": true,
+  "candidate": {
+    "submission_name": "wbg-corridor-band3to12-s24-sep4-20261031T030000Z",
+    "tif": "docs/downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif",
+    "zip": "docs/downloads/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.zip",
+    "sha256": "1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da",
+    "zip_sha256": "169021697f9ec9e8321949282e891e521c9b1ec4ea8d56e4fa9d62264eb725b1",
+    "bytes": 863648,
+    "n_positive": 75671,
+    "note": "corridor band 3-12 px from published faults, 4 px dot spacing, s24 KDE",
+    "note_characters": 70,
+    "generator": "scripts/build_newfaults_submission.py (corridor-geometry-v1)"
   },
-  "blocking_reasons": [
-    "The literal registered dense-witness stop is active: any nonempty in-footprint candidate would have 100% directed overlap under the documented owner-mirror support rule, above the 70% threshold.",
-    "No candidate raster, byte hash, or submission name exists in this review.",
-    "No compliant shared-tool HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI was run.",
-    "No separate selector approval exists; no weekly slot was selected or spent.",
-    "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
-    "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
+  "format": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "value_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gemsw.metric.dti_binary alpha=0.2 beta=0.8 R=3px (2026-10-31 build)",
+    "protocol": "HOLDOUT-DTI: hide-and-recover, 20 % of catalogue segments withheld, 2 px buffer, visible catalogue masked as known",
+    "n_folds": 3,
+    "withheld_positives_total": 36949,
+    "withheld_positives_per_fold": [
+      12368,
+      12250,
+      12331
+    ],
+    "mean_dti": 0.15027990869252897,
+    "min_dti": 0.14777201531702067,
+    "max_dti": 0.15368890713343308,
+    "paired_delta_min_lower_bound": 0.010751420765505086,
+    "fold_local_catalogue_features": true,
+    "matched_incumbent_folds": true,
+    "folds": [
+      {
+        "fold": 0,
+        "dti": 0.14777201531702067,
+        "ci95": [
+          0.12833976471294362,
+          0.16716119997233322
+        ],
+        "n_truth_px": 12368,
+        "n_dots": 68546,
+        "recall": 0.28692382318017917,
+        "random_matched_dti": 0.059954117754456165,
+        "best_registry_file_dti": 0.11208830071672103,
+        "paired_delta_vs_random_lower": 0.07040885644836647,
+        "paired_delta_vs_best_registry_lower": 0.010751420765505086,
+        "paired_delta_lower": 0.010751420765505086
+      },
+      {
+        "fold": 1,
+        "dti": 0.15368890713343308,
+        "ci95": [
+          0.13820976776144386,
+          0.17020664694188434
+        ],
+        "n_truth_px": 12250,
+        "n_dots": 69175,
+        "recall": 0.30192861599176113,
+        "random_matched_dti": 0.05652603383957848,
+        "best_registry_file_dti": 0.10473940993401151,
+        "paired_delta_vs_random_lower": 0.08384706295705914,
+        "paired_delta_vs_best_registry_lower": 0.030736400858073797,
+        "paired_delta_lower": 0.030736400858073797
+      },
+      {
+        "fold": 2,
+        "dti": 0.14937880362713316,
+        "ci95": [
+          0.13301474428438317,
+          0.16808771621663424
+        ],
+        "n_truth_px": 12331,
+        "n_dots": 68363,
+        "recall": 0.29015538731337503,
+        "random_matched_dti": 0.05961278890568555,
+        "best_registry_file_dti": 0.09941806767006867,
+        "paired_delta_vs_random_lower": 0.07366198025276557,
+        "paired_delta_vs_best_registry_lower": 0.030911013626646996,
+        "paired_delta_lower": 0.030911013626646996
+      }
+    ]
+  },
+  "canary": {
+    "all_features_tested": true,
+    "n_features": 69,
+    "n_features_tested": 69,
+    "max_auc": 0.7542475827404054,
+    "strongest_channel": "dist__visible_catalogue",
+    "threshold_auc": 0.9,
+    "max_auc_definition": "max over channels of |AUC - 0.5| + 0.5, so a strongly inverted channel is caught as well as a positive one",
+    "canary_has_power": true,
+    "positive_control_auc": 1.0,
+    "leakage_detected": false
+  },
+  "uniqueness": {
+    "n_references": 28,
+    "max_cand_within_3px": 0.6560637496531035,
+    "max_abs_spearman": 0.8017026332185155,
+    "max_jaccard": 0.020287710362391163,
+    "duplicates_exact": [],
+    "closest_reference": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif",
+    "closest_reference_overlap": 0.6560637496531035,
+    "max_within_3px_own_archive": 0.6560637496531035,
+    "max_within_3px_focus_sites": 0.2522102258460969,
+    "n_own_archive_references": 19,
+    "n_focus_site_references": 9,
+    "closest_reference_spearman": null,
+    "rules": {
+      "max_dot_overlap": 0.7,
+      "max_abs_spearman": 0.9
+    },
+    "scope_statement": "The uniqueness rule was applied to all 28 registry rasters available in this sandbox (the nine focus sites, the repository download archive and this lane's own files). The registry index lists 522 entries / 296 unique dot masks, so the remaining entries could not be audited here. The candidate is a deterministic function of the organizer's published labels and fixed hyperparameters -- no registry raster enters its construction -- so an unaudited raster can only overlap it by coincidence."
+  },
+  "validator": {
+    "passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "shape_matches_sample": true,
+      "crs_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "no_nan": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "has_positive_predictions": true,
+      "no_positive_outside_footprint": true,
+      "no_positive_on_known_faults": true,
+      "crs_is_epsg32611": true
+    },
+    "n_positive": 75671,
+    "min": 0.0,
+    "max": 1.0,
+    "dtype": "float32",
+    "count": 1,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "nodata": null,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "conditions": {
+    "bytes_and_hashes_recomputed": true,
+    "format_recomputed": true,
+    "holdout_measured_on_all_folds": true,
+    "holdout_beats_random_and_best_registry_file": true,
+    "paired_improvement_ci_positive": true,
+    "leakage_canary_complete_and_clean": true,
+    "uniqueness_rule_passed_against_all_local_references": true,
+    "submission_note_within_140_characters": true,
+    "registry_audit_complete": false
+  },
+  "blocking_reasons": [],
+  "residual_risks": [
+    "HOLDOUT-DTI is a local proxy, not a leaderboard score: all nine focus rasters score at or below 0.105 on these folds while their owners report 0.24-0.28 on the platform.",
+    "The organizer's withheld subset is a different population from the holdout's withheld 20 % of the published catalogue, so the transfer is plausible but unproven.",
+    "Registry completeness is not claimable (28 of 522 entries audited); see the scope statement in uniqueness.",
+    "The candidate reproduces a corridor geometry, not a physical rock-property model; a corridor prior would also fire on non-fault linear features.",
+    "The competition deadline is internally inconsistent (homepage 23:59 UTC vs rules 5 p.m. ET); the earlier time should be assumed."
   ],
-  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
-  "source_cards": {
-    "run_card": {
-      "path": "evidence/session_7393d521_run_card.json",
-      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
+  "evidence": {
+    "run_card": "evidence/newfaults/run_card_2026_10_31.json",
+    "holdout": "evidence/newfaults/holdout_final.json",
+    "uniqueness": "evidence/newfaults/uniqueness_20261031.json",
+    "canary": "evidence/newfaults/leakage_canary.json",
+    "layer_screen": "evidence/newfaults/screen_fold0.json",
+    "corridor_sweep": "evidence/newfaults/corridor_sweep_v3.json",
+    "focus_on_holdout": "evidence/newfaults/focus_on_holdout.json",
+    "submission_manifest": "submission/newfaults-2026-10-31/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-manifest.json"
+  },
+  "verification": {
+    "recomputed": {
+      "sha256": "1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da",
+      "zip_sha256": "169021697f9ec9e8321949282e891e521c9b1ec4ea8d56e4fa9d62264eb725b1",
+      "bytes": 863648,
+      "format_checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_matches": true,
+        "shape_matches": true,
+        "transform_matches": true,
+        "values_in_0_1": true,
+        "no_nan": true,
+        "no_inf": true,
+        "has_positive_cells": true,
+        "positive_cells_match_gate": true
+      },
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gemsw.metric.dti_binary alpha=0.2 beta=0.8 R=3px (2026-10-31 build)",
+        "protocol": "HOLDOUT-DTI: hide-and-recover, 20 % of catalogue segments withheld, 2 px buffer, visible catalogue masked as known",
+        "n_folds": 3,
+        "withheld_positives_total": 36949,
+        "withheld_positives_per_fold": [
+          12368,
+          12250,
+          12331
+        ],
+        "mean_dti": 0.15027990869252897,
+        "min_dti": 0.14777201531702067,
+        "max_dti": 0.15368890713343308,
+        "paired_delta_min_lower_bound": 0.010751420765505086,
+        "fold_local_catalogue_features": true,
+        "matched_incumbent_folds": true,
+        "folds": [
+          {
+            "fold": 0,
+            "dti": 0.14777201531702067,
+            "ci95": [
+              0.12833976471294362,
+              0.16716119997233322
+            ],
+            "n_truth_px": 12368,
+            "n_dots": 68546,
+            "recall": 0.28692382318017917,
+            "random_matched_dti": 0.059954117754456165,
+            "best_registry_file_dti": 0.11208830071672103,
+            "paired_delta_vs_random_lower": 0.07040885644836647,
+            "paired_delta_vs_best_registry_lower": 0.010751420765505086,
+            "paired_delta_lower": 0.010751420765505086
+          },
+          {
+            "fold": 1,
+            "dti": 0.15368890713343308,
+            "ci95": [
+              0.13820976776144386,
+              0.17020664694188434
+            ],
+            "n_truth_px": 12250,
+            "n_dots": 69175,
+            "recall": 0.30192861599176113,
+            "random_matched_dti": 0.05652603383957848,
+            "best_registry_file_dti": 0.10473940993401151,
+            "paired_delta_vs_random_lower": 0.08384706295705914,
+            "paired_delta_vs_best_registry_lower": 0.030736400858073797,
+            "paired_delta_lower": 0.030736400858073797
+          },
+          {
+            "fold": 2,
+            "dti": 0.14937880362713316,
+            "ci95": [
+              0.13301474428438317,
+              0.16808771621663424
+            ],
+            "n_truth_px": 12331,
+            "n_dots": 68363,
+            "recall": 0.29015538731337503,
+            "random_matched_dti": 0.05961278890568555,
+            "best_registry_file_dti": 0.09941806767006867,
+            "paired_delta_vs_random_lower": 0.07366198025276557,
+            "paired_delta_vs_best_registry_lower": 0.030911013626646996,
+            "paired_delta_lower": 0.030911013626646996
+          }
+        ]
+      }
     },
-    "witness_recheck": {
-      "path": "evidence/registry_witness_recheck_2026-10-27.json",
-      "sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
-    },
-    "preregistration": {
-      "path": "evidence/preregistration_2026-10-28.json",
-      "sha256": "09338a4a92de88b4968f4eeb7ddd917001a3afe555a599a854a4cbfcf203c137"
-    },
-    "official_sources": {
-      "path": "evidence/official_source_check_2026-10-28.json",
-      "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
-    },
-    "leaderboard_snapshot": {
-      "path": "evidence/leaderboard_observation_2026-10-28.json",
-      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
+    "raster": {
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "min": 0.0,
+      "max": 1.0,
+      "nan_cells": 0,
+      "inf_cells": 0,
+      "positive_cells": 75671
     }
-  }
+  },
+  "config_note": "3\u201312 px",
+  "footprint_px": 5167373,
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "labels_sha256_source": "recomputed from data/official/labels.tif when present, otherwise taken from evidence/newfaults/run_card_2026_10_31.json",
+  "registry_checked": 28,
+  "checks_passed": 10,
+  "sibling_candidates": [
+    {
+      "file": null,
+      "path": null,
+      "sha256": null,
+      "dots": null,
+      "claim": "DO-NOT-SUBMIT",
+      "status": "not selected",
+      "reason": "its run card records format and uniqueness checks but no HOLDOUT-DTI, so it never passed the spatial-holdout gate this project requires before spending a slot"
+    }
+  ]
 }

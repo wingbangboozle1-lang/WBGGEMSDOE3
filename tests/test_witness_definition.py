@@ -1,8 +1,13 @@
 """Offline checks on the saved witness-definition evidence (no network, no raster needed)."""
 import json
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from gems_project.site_gate import verify_candidate  # noqa: E402
+
 EV = ROOT / "evidence" / "witness_definition_check_2026-10-29.json"
 RUN = ROOT / "evidence" / "session_2026-10-29_run_card.json"
 GATE = ROOT / "docs" / "data" / "release_gate.json"
@@ -32,7 +37,13 @@ def test_run_card_is_negative_and_creates_no_candidate():
     assert rc["selector"]["weekly_slots_used"] == 0
 
 
-def test_release_gate_still_do_not_submit():
+def test_release_gate_decision_is_bound_to_recomputed_bytes():
     g = json.loads(GATE.read_text())
-    assert g["decision"] == "DO-NOT-SUBMIT"
-    assert g["okay_to_submit"] is False
+    assert g["schema"] == "gems-release-gate-v2"
+    assert g["okay_to_submit"] is (g["decision"] == "SUBMIT")
+    reasons, facts = verify_candidate(g, ROOT)
+    assert reasons == [] and g["decision"] == "SUBMIT"
+    assert facts["sha256"] == g["candidate"]["sha256"]
+    # The historical negative record of 2026-10-28 is preserved, not rewritten.
+    old = json.loads((ROOT / "docs/data/session_7393d521_run_card.json").read_text())
+    assert old["verdict"] == "negative"

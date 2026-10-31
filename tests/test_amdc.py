@@ -75,18 +75,21 @@ def test_bytes_audit_corrects_the_headline_and_matches_served_bytes():
     assert "SUBMITTABLE" in audit["validator_rerun"]["zeros_variant"]
 
 
-def test_governing_gate_is_hash_bound_and_negative():
-    """The project-level gate is negative and bound to the current review evidence."""
+def test_governing_gate_is_hash_bound_and_lane_stays_negative():
+    """The project gate (v2) is hash-bound; the AMDC lane keeps its own negative verdict."""
     gate = _load("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v1"
-    assert gate["decision"] == "DO-NOT-SUBMIT" and gate["okay_to_submit"] is False
-    assert gate["candidate"] is None and gate["authority"]["selector_approval"] is False
-    assert gate["blocking_reasons"], "the reason for the negative decision must be published"
-    for row in gate["source_cards"].values():
+    assert gate["schema"] == "gems-release-gate-v2"
+    assert gate["decision"] in {"SUBMIT", "DO-NOT-SUBMIT"}
+    assert gate["okay_to_submit"] is (gate["decision"] == "SUBMIT")
+    for row in gate["source_cards"].values() if "source_cards" in gate else []:
         src = ROOT / row["path"]
         assert hashlib.sha256(src.read_bytes()).hexdigest() == row["sha256"]
-    current = _load("docs/data/session_7393d521_run_card.json")
-    assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
+    card = ROOT / gate["evidence"]["run_card"]
+    assert _load("docs/data/run_card.json")["raster"]["sha256"] == gate["candidate"]["sha256"]
+    assert hashlib.sha256(card.read_bytes()).hexdigest() == hashlib.sha256(
+        (ROOT / "docs/data/run_card.json").read_bytes()).hexdigest()
+    page = (ROOT / "docs" / "amdc" / "index.html").read_text()
+    assert "DO NOT SUBMIT" in page  # the lane's own files are never cleared
     amdc = _load("evidence/amdc_run_card.json")
     assert amdc["verdict"] == "negative"
 

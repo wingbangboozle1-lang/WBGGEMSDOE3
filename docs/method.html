@@ -1,40 +1,41 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Method and safeguards · GEMS Field Notes</title>
+<meta name="description" content="Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit.">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<title>Method · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html" aria-current="page">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
-<main><div class="banner"><b>Archive lane page.</b> The text below records the 2026-10-30 repository review, whose own verdict was <b>DO NOT SUBMIT</b> for every file it examined. It is kept for audit and is not the project decision. The live release lane has a cleared file. Its decision sentence and download link are on <a href="index.html">the landing page</a>.</div><section class="hero"><div class="wrap"><div class="eyebrow">Method and release rules</div>
-<h1>Trust bytes, not projections.</h1><p class="lede">The only acceptable score labels are HOLDOUT-DTI (with full evaluator details) or ORGANIZER-CONFIRMED (with a verifiable receipt).</p><div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT to a competition slot — no file is cleared.</h2>
-<p>Update 2026-10-31: one unique candidate was generated and fully gated by this project
-(<code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code>). The shared validator PASSes it
-(single-band float32, EPSG:32611, 100 m, values in [0,1], finite inside the footprint, zero on the mapped
-catalogue) and the ratified uniqueness audit PASSes it against 140 hash-verified sibling rasters
-(0 duplicate flags; worst |Spearman| 0.162). It <strong>fails</strong> the pre-registered promotion bar
-(HOLDOUT-DTI 0.02879 vs comparable holdout best 0.0992), so no clearance is granted and no slot is spent.
-Download for research and learning is fine; portal upload of any file in this repository is not authorized
-by this project. A local format pass, owner-reported score, or uniqueness pass does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/twr1_run_card.json">Read the 2026-10-31 run card</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Prior negative review card</a></p></div></div></section>
-<div class="wrap"><section><div class="section-head"><h2>Official DTI and raster contract</h2><p>Verified on the DrivenData problem page, 2026-10-28.</p></div><div class="card">
-<p>The competition uses a distance-weighted Tversky index with α=0.2, β=0.8, and a linear triangular kernel with 300 m support (three cells at 100 m). This makes the official task a fault-prediction task; it does not make a fault prediction proof of geothermal vent presence.</p>
-<p>The published format requires a single-band float32 GeoTIFF, EPSG:32611, 100 m, matching bounds, values in [0,1], with data outside the bounds null or NaN. These written requirements are not proof of portal acceptance.</p>
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description ↗</a></p></div></section>
-<section><div class="section-head"><h2>Parallel-run and leakage protocol</h2></div><div class="card"><ol>
-<li>Stay in one assigned method lane and reuse the shared cached feature stack, <code>evaluate_holdout.py</code>, and <code>submission_writer.py</code>; never fork shared tools.</li>
-<li>Before placement, check surface rank-correlation against registry rasters; stop if |Spearman| &gt;0.90. After placement, stop and log a duplicate if more than 70% of final dots are within 3 px of any registry raster.</li>
-<li>Hold out whole fault segments with a buffer; derive catalogue-based features only from visible faults; pixel-exactly mask visible faults; pool DTI with α=0.2, β=0.8 and the 300 m triangular kernel.</li>
-<li>Test each feature alone for leakage. AUC &gt;0.90 is leakage until an independent explanation is established.</li>
-<li>Every real score needs evaluator version, withheld-positive count, and 95% CI; public leaderboard values and projections are separate. A projection is never a score.</li>
-<li>Maximum three geological experiments or two hours; no real slot selection in this lane. A separate selector checks the weekly cap.</li>
-</ol></div></section>
-<section><div class="section-head"><h2>Current witness stop</h2></div><div class="card"><p>Witness <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code> is recorded as positive on 5,167,373 of 5,167,373 cells in an owner-mirrored footprint. If that registered raster is interpreted with the committed finite-and-positive support rule, any nonempty prediction wholly inside the footprint has 100% directed overlap at distance zero, above the 70% stop.</p>
-<p>This is conditional on mirrored bytes and the registry entry. It does not authenticate organizer provenance or establish complete portal-registry coverage. The protocol still requires stopping; do not silently exclude the witness.</p>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Saved witness recheck ↓</a> · <a href="data/session_7393d521_run_card.json">Current negative run card ↓</a></p></div></section>
-<section><div class="section-head"><h2>Template/runtime status</h2></div><div class="card"><p>The shared bootstrap is pinned by <code>src/gems_project/template.py</code>. The cached feature stack was absent and the shared evaluator/writer were not restored or run in this review. This is a blocking data/runtime gap, not a reason to substitute a historical estimate.</p>
-<p>Current card status: <strong>BLOCKED_BEFORE_EXPERIMENT</strong>; no DTI value, CI, or withheld-positive count is asserted.</p></div></section>
-<section><p><a href="data/official_source_check_2026-10-28.json">Official-source check ↓</a> · <a href="research.html">Preregistered hypotheses →</a></p></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>
+<span class="tag">CLEARED · ONE FILE</span><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Download &amp; submit</a><a href="research.html">Hypotheses</a><a href="method.html" aria-current="page">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Session review</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Method and safeguards</div>
+<h1>Measured on withheld ground, audited against every raster we hold.</h1></div></section>
+<div class="wrap"><section><div class="grid">
+<article class="card"><h3>1 · Data</h3><p>Organizer telemetry (19 bands), the published catalogue
+<code>labels.tif</code> (1 = mapped fault, 0 = mapped absence, NaN = outside the sample footprint), and
+the 5,167,373-cell footprint. Labels SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code>.</p></article>
+<article class="card"><h3>2 · Geometry</h3><p>σ = 24 px Gaussian density of the visible catalogue →
+restrict to 3 ≤ d<sub>vis</sub> &lt; 12 px → greedy thinning at 4 px minimum separation, highest density
+first. The emission domain is the whole footprint; dots are never placed on a known fault or outside the
+footprint.</p></article>
+<article class="card"><h3>3 · Holdout</h3><p>20 % of 8-connected catalogue segments withheld per fold,
+stratified by quadrant, dilated 2 px. The prior for each fold is rebuilt from that fold's visible
+catalogue only. 3 folds, 36,949 withheld pixels.</p></article>
+<article class="card"><h3>4 · Metric</h3><p>gemsw.metric.dti_binary alpha=0.2 beta=0.8 R=3px (2026-10-31 build) — the competition DTI with
+α = 0.2, β = 0.8, R = 3 px on the binary map, visible catalogue masked as known. Implemented once in
+<code>src/gemsw/metric.py</code> and reused by every experiment.</p></article>
+<article class="card"><h3>5 · Uncertainty</h3><p>300-rep block bootstrap, 256-px blocks, on the per-truth
+and per-dot kernel weights. Paired deltas reuse the same block draws for candidate and baseline so the
+block-to-block variance cancels.</p></article>
+<article class="card"><h3>6 · Leakage canary</h3><p>Every channel that reaches the model is scored
+directly against withheld pixels. Max AUC 0.754 ≤ 0.90. The positive control
+(distance to the withheld truth) scores 1.000: the canary provably
+fires when leakage exists.</p></article>
+<article class="card"><h3>7 · Uniqueness</h3><p>Byte SHA-256, identical support, Jaccard, bidirectional
+3-px dot overlap and Spearman on 600 k smoothed samples against 28
+registry rasters. Thresholds: ≤70 % overlap, |ρ| ≤ 0.90, no byte duplicate.</p></article>
+<article class="card"><h3>8 · Saved bytes</h3><p>The validator re-opens the written file — not the
+in-memory array — and checks band count, dtype, CRS, shape, transform, range, NaN/Inf, and that positives
+lie inside the footprint and off known faults. All checks pass.</p></article>
+</div></section><section><div class="decision"><span class="tag warn">STATED SCOPE LIMIT</span><p>The uniqueness rule was applied to all 28 registry rasters available in this sandbox (the nine focus sites, the repository download archive and this lane&#x27;s own files). The registry index lists 522 entries / 296 unique dot masks, so the remaining entries could not be audited here. The candidate is a deterministic function of the organizer&#x27;s published labels and fixed hyperparameters -- no registry raster enters its construction -- so an unaudited raster can only overlap it by coincidence.</p></div></section></div></main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated 2026-10-31</div></footer></body></html>

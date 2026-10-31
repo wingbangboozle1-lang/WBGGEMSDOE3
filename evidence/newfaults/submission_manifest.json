@@ -1,0 +1,58 @@
+{
+ "submission_name": "wbg-corridor-band3to12-s24-sep4-20261031T030000Z",
+ "file_tif": "submission/newfaults-2026-10-31/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif",
+ "file_zip": "submission/newfaults-2026-10-31/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.zip",
+ "sha256_tif": "1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da",
+ "sha256_zip": "169021697f9ec9e8321949282e891e521c9b1ec4ea8d56e4fa9d62264eb725b1",
+ "bytes_tif": 863648,
+ "build": {
+  "version": "corridor-geometry-v1",
+  "sigma_px": 24.0,
+  "t_min_px": 3.0,
+  "t_max_px": 12.0,
+  "min_sep_px": 4.0,
+  "n_dots": 75671,
+  "footprint_px": 5167373,
+  "dots_outside_footprint": 0,
+  "dots_on_known_faults": 0,
+  "min_dist_to_catalogue_px": 3.0
+ },
+ "validation": {
+  "passed": true,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "shape_matches_sample": true,
+   "crs_matches_sample": true,
+   "transform_matches_sample": true,
+   "bounds_match_sample": true,
+   "no_nan": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "has_positive_predictions": true,
+   "no_positive_outside_footprint": true,
+   "no_positive_on_known_faults": true,
+   "crs_is_epsg32611": true
+  },
+  "n_positive": 75671,
+  "min": 0.0,
+  "max": 1.0,
+  "dtype": "float32",
+  "count": 1,
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "nodata": null,
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ]
+ },
+ "note": "corridor band 3-12 px, sep 4 px, sigma 24 px; unique lane"
+}

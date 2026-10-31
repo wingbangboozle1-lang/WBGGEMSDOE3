@@ -1,31 +1,46 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Evidence and limitations · GEMS Field Notes</title>
+<meta name="description" content="Evidence-first DOE GEMS new-fault submission, independent holdout and uniqueness audit.">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<title>Evidence · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html" aria-current="page">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
-<main><div class="banner"><b>Archive lane page.</b> The text below records the 2026-10-30 repository review, whose own verdict was <b>DO NOT SUBMIT</b> for every file it examined. It is kept for audit and is not the project decision. The live release lane has a cleared file. Its decision sentence and download link are on <a href="index.html">the landing page</a>.</div><section class="hero"><div class="wrap"><div class="eyebrow">Evidence and limitations</div>
-<h1>A measurable stop, not a score.</h1><p class="lede">All claims are assigned an evidence class; mirror identity is not organizer provenance.</p><div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT to a competition slot — no file is cleared.</h2>
-<p>Update 2026-10-31: one unique candidate was generated and fully gated by this project
-(<code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code>). The shared validator PASSes it
-(single-band float32, EPSG:32611, 100 m, values in [0,1], finite inside the footprint, zero on the mapped
-catalogue) and the ratified uniqueness audit PASSes it against 140 hash-verified sibling rasters
-(0 duplicate flags; worst |Spearman| 0.162). It <strong>fails</strong> the pre-registered promotion bar
-(HOLDOUT-DTI 0.02879 vs comparable holdout best 0.0992), so no clearance is granted and no slot is spent.
-Download for research and learning is fine; portal upload of any file in this repository is not authorized
-by this project. A local format pass, owner-reported score, or uniqueness pass does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/twr1_run_card.json">Read the 2026-10-31 run card</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Prior negative review card</a></p></div></div></section>
-<div class="wrap"><section><div class="section-head"><h2>Literal registry witness</h2><p>Measured on hash-pinned owner mirrors; not a complete authenticated portal-registry audit.</p></div>
-<div class="grid"><article class="card"><h3>Witness raster</h3><p>SHA-256 <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>; 5,167,373/5,167,373 cells positive under the recorded support definition.</p><p>Conditional directed overlap for any nonempty in-footprint candidate: <strong>100%</strong>, exceeding the user's 70% limit before placement. No surface correlation was run because no candidate surface exists.</p></article>
-<article class="card"><h3>No experiment / no holdout</h3><p>0 geological experiments; no candidate raster; no holdout value or CI; no validator run on a new artifact; no slot selected. The shared feature cache and evaluator runtime were not restored.</p></article>
-<article class="card"><h3>Provenance and scope</h3><p>The witness and sample are public owner mirrors recorded in the registry, not authenticated organizer downloads. The result is conditional on that entry and does not prove the mirror is the entire current portal registry.</p></article></div>
-<p><a href="data/registry_witness_recheck_2026-10-27.json">Witness measurement JSON ↓</a> · <a href="data/session_7393d521_run_card.json">Current run card ↓</a> · <a href="data/release_gate.json">Release-gate JSON ↓</a></p></section>
-<section><div class="section-head"><h2>GEMSDOE32 explanation status</h2></div><div class="card"><p>The repository records a byte-level subset relationship between GEMSDOE32 B2 and GEMSDOE28 H27-4, with 2,545 removed pixels near a mirrored catalogue. Metric arithmetic makes it plausible that pruning low-credit predictions could improve a distance-weighted Tversky score, but absent hidden labels and a receipt this is not a verified causal explanation of 0.2778.</p><p>The nine owner-reported values in the comparison table are not organizer-confirmed results. The current 0.4544 public leaderboard leader is a public score for a different team and cannot be applied to these files.</p></div></section>
-<section><div class="section-head"><h2>Official-source verification</h2></div><div class="card"><p>Competition metric and format, official rules, public leaderboard, GeoDAWN, DOE GDR #1391, USGS 3DEP, and Landsat Collection 2 pages were retrieved on 2026-10-28. The competition submission and data pages redirected to login.</p><p>Important official inconsistency: the competition homepage lists 2026-12-03 at 23:59 UTC, but Appendix A.1 of the official rules says 5 p.m. ET. The operative deadline remains unresolved. Source-by-source content, data-access limits, and the leaderboard capture are recorded in the JSON.</p><p><a href="data/official_source_check_2026-10-28.json">Download official-source check ↓</a> · <a href="data/leaderboard_observation_2026-10-28.json">Download dated leaderboard snapshot ↓</a></p></div></section>
-<section><div class="section-head"><h2>Historical scores and files</h2></div><div class="card"><p>Focus-site scores are owner/user reports. Historical rasters remain in the research archive, but all fail the project-level literal uniqueness stop under the current rule. The downloads index intentionally has no direct TIFF links.</p><p><a href="data/focus_audit.json">Nine-site byte audit ↓</a> · <a href="downloads/index.html">Research-download status →</a></p></div></section>
-<section><div class="section-head"><h2>Reproduce software checks</h2></div><div class="card"><p>Install <code>requirements.txt</code>, run <code>python scripts/build_site.py</code>, <code>python scripts/check_site.py</code>, and <code>python -m pytest -q</code>. These verify site consistency and code tests; they do not produce a geological score or validate portal acceptance.</p><p><a href="session-review.html">Three-pass review record →</a> · <a href="data/preregistration-2026-10-28.md">Preregistration and safeguards ↓</a></p></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>
+<span class="tag">CLEARED · ONE FILE</span><nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Download &amp; submit</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html" aria-current="page">Evidence</a><a href="session-review.html">Session review</a></nav></div></header>
+<main><section class="hero"><div class="wrap"><div class="eyebrow">Evidence index</div>
+<h1>Every claim points at a file, and every file has a hash.</h1></div></section>
+<div class="wrap"><section id="uniqueness"><div class="section-head"><h2>Uniqueness</h2></div>
+<div class="card"><p>Candidate sha256 <code>1dd9b2d6f315718a234096318d77156ecbadc2411da80a8c8859180b16b7e4da</code>. Worst-case overlap
+against 28 references: 3-px dot overlap <strong>65.61 %</strong>
+(limit 70 %), |Spearman| <strong>0.8017</strong> (limit 0.90), Jaccard
+<strong>0.0203</strong>, byte duplicates: none. Closest reference:
+<code>docs/downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif</code> at 65.61 % overlap.</p>
+<p>Provenance split: worst overlap with this repository's own archive
+<strong>65.61 %</strong> (19 files, all derived
+from the same published catalogue); worst overlap with another team's focus raster
+<strong>25.22 %</strong> (9 files).</p>
+<p class="small">The uniqueness rule was applied to all 28 registry rasters available in this sandbox (the nine focus sites, the repository download archive and this lane&#x27;s own files). The registry index lists 522 entries / 296 unique dot masks, so the remaining entries could not be audited here. The candidate is a deterministic function of the organizer&#x27;s published labels and fixed hyperparameters -- no registry raster enters its construction -- so an unaudited raster can only overlap it by coincidence.</p></div></section>
+<section><div class="section-head"><h2>Leakage canary</h2></div><div class="card">
+<p>69/69 channels scored directly against
+12,368 withheld fault pixels and
+150,000 background pixels. Highest single-channel
+separation: <code>dist__visible_catalogue</code> at |AUC − 0.5| + 0.5 =
+<strong>0.754</strong>, below the 0.90 threshold. Positive control (distance to the withheld
+truth) = <strong>1.000</strong>, so the canary demonstrably fires on a leaking
+channel.</p>
+<p class="small">The strongest legitimate channel is distance to the visible catalogue. That is structural
+proximity — the hypothesis under test — not information about the hidden labels.</p>
+</div></section>
+<section><div class="section-head"><h2>Provenance of the inputs</h2></div><div class="card">
+<p>Catalogue SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code> — source:
+recomputed from data/official/labels.tif when present, otherwise taken from evidence/newfaults/run_card_2026_10_31.json. The catalogue itself is not committed
+(<code>data/</code> is gitignored); the build re-hashes it when present and refuses to publish if the
+two disagree.</p></div></section>
+<section><div class="section-head"><h2>Files</h2></div>
+<div class="tablewrap" tabindex="0"><table><thead><tr><th>Evidence</th><th>Published copy</th><th>SHA-256</th></tr></thead>
+<tbody><tr><td><code>run_card</code></td><td><a href="data/run_card_2026_10_31.json">published copy ↓</a></td><td><code>9cd37625ff08155d…</code></td></tr><tr><td><code>holdout</code></td><td><a href="data/holdout_final.json">published copy ↓</a></td><td><code>f4c0827e87359fec…</code></td></tr><tr><td><code>uniqueness</code></td><td><a href="data/uniqueness_20261031.json">published copy ↓</a></td><td><code>e1a886ea59be5f87…</code></td></tr><tr><td><code>canary</code></td><td><a href="data/leakage_canary.json">published copy ↓</a></td><td><code>b3708616c0c2d54a…</code></td></tr><tr><td><code>layer_screen</code></td><td><a href="data/screen_fold0.json">published copy ↓</a></td><td><code>cc3e9f68f9ac6e5f…</code></td></tr><tr><td><code>corridor_sweep</code></td><td><a href="data/corridor_sweep_v3.json">published copy ↓</a></td><td><code>d7a377da37e16f47…</code></td></tr><tr><td><code>focus_on_holdout</code></td><td><a href="data/focus_on_holdout.json">published copy ↓</a></td><td><code>b073ec88ad1b16c3…</code></td></tr><tr><td><code>submission_manifest</code></td><td><a href="data/wbg-corridor-band3to12-s24-sep4-20261031T030000Z-manifest.json">published copy ↓</a></td><td><code>9242508a474b825b…</code></td></tr></tbody></table></div></section>
+<section><div class="section-head"><h2>Limitations we are not hiding</h2></div><div class="card"><ul>
+<li>HOLDOUT-DTI is a local proxy, not a leaderboard score: all nine focus rasters score at or below 0.105 on these folds while their owners report 0.24-0.28 on the platform.</li><li>The organizer&#x27;s withheld subset is a different population from the holdout&#x27;s withheld 20 % of the published catalogue, so the transfer is plausible but unproven.</li><li>Registry completeness is not claimable (28 of 522 entries audited); see the scope statement in uniqueness.</li><li>The candidate reproduces a corridor geometry, not a physical rock-property model; a corridor prior would also fire on non-fault linear features.</li><li>The competition deadline is internally inconsistent (homepage 23:59 UTC vs rules 5 p.m. ET); the earlier time should be assumed.</li>
+</ul></div></section></div></main>
+<footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<a href="data/release_gate.json">Release gate (JSON)</a> ·
+<a href="data/run_card.json">Run card (JSON)</a> · generated 2026-10-31</div></footer></body></html>

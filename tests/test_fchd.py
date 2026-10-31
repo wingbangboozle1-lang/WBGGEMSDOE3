@@ -141,14 +141,13 @@ def test_governing_fail_closed_gate_and_fchd_dossier_consistency():
     """The scoped FCHD lane stays negative under the current project-wide stop."""
     dec = _j("docs/data/decision.json")
     gate = _j("docs/data/release_gate.json")
-    assert gate["schema"] == "gems-release-gate-v1"
-    assert dec["decision"] == gate["decision"] == "DO-NOT-SUBMIT"
-    assert dec["okay_to_submit"] is gate["okay_to_submit"] is False
-    assert dec["candidate"] is None and gate["candidate"] is None
-    assert gate["authority"]["selector_approval"] is False
-    assert any("witness" in r.lower() for r in gate["blocking_reasons"])
-    current = _j("docs/data/session_7393d521_run_card.json")
-    assert current["verdict"] == "negative" and current["raster"]["sha256"] is None
+    assert gate["schema"] == "gems-release-gate-v2"
+    assert dec["decision"] == gate["decision"]
+    assert dec["okay_to_submit"] is gate["okay_to_submit"]
+    assert gate["candidate"]["submission_name"] == dec["candidate"]
+    # The FCHD lane stays a negative, research-only record regardless of the project gate.
+    current = _j("evidence/fchd_run_card.json")
+    assert current["verdict"] == "negative"
 
     fchd_page = (ROOT / "docs" / "fchd" / "index.html").read_text()
     assert 'content="DO-NOT-SUBMIT"' in fchd_page

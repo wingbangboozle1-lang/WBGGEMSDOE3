@@ -1,7 +1,8 @@
 DO NOT SUBMIT — RESEARCH ARCHIVE ONLY
-No TIFF in this directory is cleared for competition upload.
-The project-wide literal-registry witness stop is active; local format checks or old lane results do not override it.
-This list is a file inventory, not an approval list:
+Exactly one TIFF in this directory is cleared: wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif
+CLEARED (see ../data/release_gate.json):
+  wbg-corridor-band3to12-s24-sep4-20261031T030000Z-zeros.tif
+The following files are research-only and must not be uploaded:
   WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif
   wb-gems-doe-3-latest-submission-zeros.tif
   wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif
@@ -21,4 +22,4 @@ This list is a file inventory, not an approval list:
   wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif
 
 Current decision: docs/data/release_gate.json
-Current negative run card: docs/data/session_7393d521_run_card.json
+Current run card: docs/data/run_card.json
