@@ -2,28 +2,39 @@
 
 ## Start here — 2026-10-31 repository review
 
-**Read first: [knowledge/review-2026-10-31.md](knowledge/review-2026-10-31.md)** and its
-[machine-readable negative run card](evidence/review_2026-10-31_run_card.json). This session
-reviewed the repository, refreshed the allowed-host identity feed, hardened the site publisher,
-and reran all tests. The standing task and safeguards remain below and in `PROJECT_PROMPT.md`.
+Read the measured [focus-site executive summary](knowledge/executive-summary-2026-10-31.md), this
+[three-pass repository review](knowledge/review-2026-10-31.md), and the
+[negative run card](evidence/review_2026-10-31_run_card.json) first. The site has been regenerated
+from its fail-closed publisher; the standing task and full safeguards remain preserved below and
+in `PROJECT_PROMPT.md`.
 
-- **Decision: NOT OK to download a TIFF for competition submission; DO NOT SUBMIT.** No
-  candidate was generated or promoted in this review. The literal registry stop remains active;
-  protocol questions Q1 (dot definition) and Q2 (lattice comparator) are unresolved.
-- **Best target-site result:** GEMSDOE32, **OWNER-REPORTED 0.2778** (not an organizer receipt).
-  Why its file may have scored higher is mechanistically plausible but unproved; whether we can
-  beat it is unknown. New estimates remain **not estimable** without compliant holdout evidence.
-- **Latest saved public leaderboard observation (2026-10-29):** rank 1 0.4544, rank 25 0.3330,
-  rank 26 0.3328. These are PUBLIC-LEADERBOARD OBSERVATIONS for other entries, not project-file
-  scores or receipts; DrivenData could not be live-refreshed on 2026-10-31.
-- **Source freshness (2026-10-31):** 9/9 focus-site GitHub `main` heads fetched, all changed
-  relative to the 2026-10-26 baseline. This detects repository-head changes only; TIFF bytes,
-  scores, and receipts were not re-audited by that monitor.
-- **Verification:** site checker PASS; pytest **260 passed, 4 skipped**; no geological experiment,
-  holdout, candidate TIFF, selector action, or weekly slot.
-- **Main blockers:** unresolved uniqueness definition; missing shared cache/labels/folds; owner-mirror
-  provenance; no current portal quota/receipt; outside-footprint encoding and the prior range error
-  still require validation against the actual rejected file and current official guidance.
+- **Decision: NOT OK to download or submit any file.** No candidate was generated or promoted in
+  this review. The release gate remains DO-NOT-SUBMIT. The dense-witness/dot-definition questions
+  Q1 and Q2 remain unresolved, so candidate generation and holdout are stopped.
+- **Target-site result:** GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` is
+  **OWNER-REPORTED / UNVERIFIED 0.2778**, not an organizer receipt. Its pinned file has 37,654
+  positive cells and is an exact support subset of several other focus-site files; 2,545 cells
+  distinguish it from a 40,199-positive base. Pruning may explain the reported gain, but causality
+  cannot be established without the hidden labels. A new score estimate is **not estimable**.
+- **Measured uniqueness:** all nine focus-site files exceed the 70% directed 3-pixel overlap stop
+  within the focus set; GEMSDOE25 and GEMSDOE30 have identical positive support. See the byte-level
+  [measurement](evidence/focus_measure_2026_10_31.json) and [summary table](knowledge/executive-summary-2026-10-31.md).
+- **Format irregularity:** five `-nan` files contain 7,111,787 NaNs each and fail a strict whole-array
+  [0,1] check. This is a plausible source of the reported portal range error, not a confirmed cause
+  for the user's missing rejected file. The saved official text says outside cells are null/NaN,
+  while zero-outside artifacts pass the simple range check; portal behavior is unverified.
+- **Freshness:** on 2026-10-31, 9/9 focus-site GitHub `main` HEAD identities were fetched and all
+  differed from the 2026-10-26 baseline. This is metadata freshness only; no claim that the TIFFs,
+  scores, or receipts changed. The latest saved public leaderboard capture is dated 2026-10-29
+  (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328); it was not live-refreshed on 2026-10-31.
+- **Verification after fixes:** site checker PASS; `pytest` **260 passed, 4 skipped**. No experiment,
+  HOLDOUT-DTI, candidate TIFF, selector action, or weekly slot was produced.
+- **Next blockers:** record Q1/Q2 protocol decisions; obtain data/cache and labels through an
+  authenticated/official route; refresh the content hashes for the changed upstream repositories;
+  then preregister and run a compliant leakage canary and buffered spatial holdout. Do not submit
+  until the exact saved bytes pass the full gates and a separate selector approves them.
+
+---
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 

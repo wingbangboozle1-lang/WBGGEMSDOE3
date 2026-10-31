@@ -306,7 +306,7 @@ def session_review_page(card: dict, latest_snapshot: dict) -> str:
     prior = card.get("preexisting_main_artifact", {})
     return f'''<section class="hero"><div class="wrap"><div class="eyebrow">Current repository review · 2026-10-31</div>
 <h1>No submission candidate cleared.</h1><p class="lede">The current review refreshed focus-site GitHub identities, found publication freshness/status gaps, hardened the site generator, and reran verification. It did not run a geological experiment or create a TIFF.</p>{decision_panel()}
-<div class="card"><h2>Current review record</h2><p>GitHub HEAD identities: 9/9 repositories fetched; all changed from the 2026-10-26 baseline. This is not a TIFF-content, score, or receipt audit. Latest saved public leaderboard capture is dated 2026-10-29 and was not live-refreshed today. Automated checks: site checker PASS; 260 passed, 4 skipped.</p><p><a href="data/review-2026-10-31.md">Read the full three-pass repository review ↓</a> · <a href="data/review_2026-10-31_run_card.json">Negative run card ↓</a></p></div></div></section>
+<div class="card"><h2>Current review record</h2><p>GitHub HEAD identities: 9/9 repositories fetched; all changed from the 2026-10-26 baseline. This is not a TIFF-content, score, or receipt audit. Latest saved public leaderboard capture is dated 2026-10-29 and was not live-refreshed today. Automated checks: site checker PASS; 260 passed, 4 skipped.</p><p><a href="data/review-2026-10-31.md">Read the full three-pass repository review ↓</a> · <a href="data/executive-summary-2026-10-31.md">Measured nine-site executive summary ↓</a> · <a href="data/focus_measure_2026_10_31.json">Raster measurements ↓</a> · <a href="data/review_2026-10-31_run_card.json">Negative run card ↓</a></p></div></div></section>
 <div class="wrap"><section><div class="section-head"><h2>Previous evidence review · 2026-10-28</h2><p>Historical gate record, retained below for audit context.</p></div></section><section class="grid"><article class="card"><div class="eyebrow">Pass 1 · implementation</div><h2>Preregistered before changes</h2><p>Created five distinct geological hypotheses and locked their mechanisms, signatures, non-fault mimics, repository differences, access caveats, lane, canaries, holdout, and stop rules. No hypothesis was run.</p></article>
 <article class="card"><div class="eyebrow">Pass 2 · adversarial review</div><h2>Removed positive bypasses</h2><p>Made the current site generator, checker, and tests fail closed against the dense-witness stop; blocked the retired positive renderer and release-gate builders; retained lane-level negative evidence and shared-tool boundaries.</p></article>
 <article class="card"><div class="eyebrow">Pass 3 · requirements check</div><h2>Rechecked sources and release claims</h2><p>Fetched official competition format/metric, rules, public leaderboard, GeoDAWN, GDR #1391, 3DEP, and Landsat pages. Confirmed the submission/data pages require login and flagged a deadline conflict. Updated the public-feed snapshot and rank parsing.</p></article></section>
@@ -395,11 +395,13 @@ def copy_site_data(card: dict, prereg: dict, focus: dict, gate: dict) -> None:
                    LEADERBOARD_SNAPSHOT, LATEST_LEADERBOARD, UPSTREAM_CHECK, FOCUS,
                    ROOT / "evidence/official_source_check_2026-10-29.json",
                    ROOT / "evidence/session_2026-10-29_gate-recheck_run_card.json",
+                   ROOT / "evidence/focus_measure_2026_10_31.json",
                    ROOT / "evidence/pair_identification.json", UNIQUE_SUBMISSION):
         shutil.copyfile(source, data / source.name)
     shutil.copyfile(PREREG_MD, data / "preregistration-2026-10-28.md")
     shutil.copyfile(REVIEW_MD, data / "review-2026-10-28-session.md")
     shutil.copyfile(ROOT / "knowledge/review-2026-10-31.md", data / "review-2026-10-31.md")
+    shutil.copyfile(ROOT / "knowledge/executive-summary-2026-10-31.md", data / "executive-summary-2026-10-31.md")
     shutil.copyfile(ROOT / "evidence/review_2026-10-31_run_card.json", data / "review_2026-10-31_run_card.json")
     for _, (_, card_name) in ARCHIVE_LANES.items():
         source_card = ROOT / "evidence" / card_name
