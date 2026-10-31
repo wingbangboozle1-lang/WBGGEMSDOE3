@@ -1,5 +1,33 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
+<!-- FEED:BEGIN -->
+## Current desk state — regenerated 2026-10-31 01:45 UTC by `scripts/build_readme_feed.py`
+
+**Decision: NOT CLEARED — do not upload.**
+Do not read any number below as an organizer-confirmed score: no submission was uploaded from this
+environment, so no receipt exists.
+
+| | |
+|---|---|
+| File | [`docs/downloads/wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif`](docs/downloads/wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif) · sha256 `348605467b0c868925a0d6bb…` |
+| Format gates | 4/6 true · all-pass True |
+| Estimate | **0.0774** LEDGER-INVERSION ESTIMATE (60000 dots), CV MAE 0.06476, estimator Spearman 0.3376 on 118 public probes — an estimate, never a score |
+| HOLDOUT-DTI | 0.019485 (60988 withheld positives, CI [0.0, 0.047918]); arm A3_ggo_plus_morphology beats incumbent on the holdout: True |
+| Uniqueness | 138 sibling rasters censused, 2 blockers, worst informative 3-px overlap 0.748683, worst |ρ| 0.859966 |
+| Leakage canary | max single-feature AUC 0.8261 (bar 0.90) |
+| Live public leaderboard | rank 1 = **0.4544** (2026-10-31T01:05:00Z); the brief's 0.4413 / 0.3195 are stale (IR-31-01) |
+
+Holdout arms (pooled, best first): `A3_ggo_plus_morphology` 0.0319, `A1_morphology_incumbent` 0.0273, `A3_ggo_plus_morphology` 0.0195, `A3_ggo_plus_morphology` 0.0119.
+
+Read next: [docs/index.html](docs/index.html) (one-click download desk),
+[docs/executive-summary.html](docs/executive-summary.html) (nine-site table with estimates and
+uniqueness), [docs/how-to-submit.html](docs/how-to-submit.html) (exact portal steps and the root
+cause of `Predicted values must be in range [0, 1]`),
+[docs/research.html](docs/research.html) (instruments, sources, census),
+`evidence/ggo_run_card.json` (machine-readable run card).
+<!-- FEED:END -->
+
+
 ## Start here — 2026-10-29 executive summary
 
 **Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**

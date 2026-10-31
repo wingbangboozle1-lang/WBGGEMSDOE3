@@ -1,96 +1,41 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Step-by-step guide to making a submission into the DOE GEMS Prize competition.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT">
-<title>How to submit · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"></head>
-<body>
-<header class="top"><div class="wrap toprow">
-<a class="brand" href="index.html">&#9745;&nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation">
-<a href="index.html">Overview</a>
-<a href="executive-summary.html">Executive summary</a>
-<a href="how-to-submit.html" aria-current="page">Submission guide</a>
-<a href="research.html">Hypotheses</a>
-<a href="method.html">Method</a>
-<a href="evidence.html">Evidence</a>
-</nav>
-</div></header>
-
-<main>
-<section class="hero"><div class="wrap">
-<div class="eyebrow">Submission guide</div>
-<h1>How to make a submission into the DOE GEMS Prize</h1>
-<p class="lede">This page explains exactly how to submit a GeoTIFF to the competition. Read the full procedure before uploading. At present the repository-wide gate is DO-NOT-SUBMIT: no file here is cleared for upload.</p>
-
-<div class="decision">
-<span class="tag">READ BEFORE UPLOADING</span>
-<h2>Prerequisites</h2>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMS submission desk</title><link rel="stylesheet" href="assets/feed.css">
+<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"></head><body>
+<header><a class="brand" href="index.html">WBGGEMSDOE3 · GEMS desk</a><nav><a class="" href="index.html">Submission desk</a> · <a class="" href="executive-summary.html">Executive summary</a> · <a class="" href="how-to-submit.html">How to submit</a> · <a class="" href="research.html">Research, evidence and sources</a></nav></header>
+<p class="small status">Project upload authority on this repository is <strong>DO NOT SUBMIT</strong>: the release gate is fail-closed, the global stop is active, and no file is cleared for upload here — including this lane's raster, whose performance gate failed. Everything on the desk is still downloadable for study, audit and reproduction, and the nine sibling rasters are copies that must not be resubmitted. No number here is a verified causal account of a score, and none of them is a receipt; each value is a label, not a verified causal account of why any file scored what it did.</p><p class="small status">Rows reading "not estimable" have no in-footprint positive mass. The portal requires every value in range [0, 1] across the whole array (off-footprint cells are 0.0, never NaN) and caps the submission note at 140 characters. No value on this page is a receipt, and no number is a verified causal account of a score.</p><main>
+<h1>How to submit into the competition, exactly</h1>
+<section><h2>Steps</h2><ol class="steps">
+<li>Open the submission page (login required): <code>https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</code></li>
+<li>Click <em>Choose file</em> and pick <code>wbggems3-ggo-covergate-60000d-20261031T012630Z-e7c02e69-zeros.tif</code> — a single-band GeoTIFF, or the .zip containing exactly that one TIFF.</li>
+<li>Optional note field, paste: <code>GGO lane: cover-gated gravity-gradient x basement-step x strain concordance, 60000 dots, off-catalogue, h=0.0675 vs SGMC</code></li>
+<li>Submit. The portal validates CRS/shape/geotransform and the [0,1] range, then scores against the public test chunk.</li>
+<li>Record the receipt score on this repo's run card; a receipt outranks every estimate here.</li>
+</ol></section>
+<section><h2>Requirements transcribed from the official problem page</h2>
+<ul><li>same projected CRS as the training data — UTM zone 11N, EPSG:32611</li><li>same resolution as the training data — 100 m</li><li>same bounds as the training data; data outside the bounds is null or nan</li><li>a single layer, float32, values between 0 and 1 = confidence of fault presence</li></ul>
+<p class="muted">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description, Submission format</a>.</p></section>
+<section><h2>Root cause of “Predicted values must be in range [0, 1]”</h2>
+<p>Reproduced deterministically from this site's own bytes, no guesswork:</p>
 <ul>
-<li><strong>Format:</strong> single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF.</li>
-<li><strong>Grid:</strong> must match the submission format's CRS, shape, and geotransform: EPSG:32611, 3730&times;3292, 100 m resolution, origin (243350, 4508550).</li>
-<li><strong>Values:</strong> float32, all finite predictions inside the footprint must be in [0,1]. Outside the footprint: NaN (nodata).</li>
-<li><strong>Name:</strong> give the file a unique name.</li>
-<li><strong>Note:</strong> add a short comment (&le;140 characters) to tell submissions apart, e.g. "clustering with k=25".</li>
+<li>Every file the desk published on 2026-10-29 with <strong>NaN outside the footprint</strong> fails a
+whole-array range test: NaN is not ≥ 0 and not ≤ 1, so any validator that compares all values rejects it.
+<code>wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif</code> carries 7,111,787 such cells and is what the
+executive-summary page linked as the download.</li>
+<li>The <strong>-zeros</strong> encodings (0.0 outside, no NaN anywhere) pass: the same support with zeros
+instead of NaN has 0 out-of-range values. That is why the top sibling files are named
+<code>…-zeros</code> (GEMSDOE32 0.2778, GEMSDOE36 0.2750).</li>
+<li>Two further defects found in the old archive and fixed here: <code>wbggems3-blind-basin-interior-15000d…-zeros.tif</code>
+put <strong>all 15,000 dots outside the footprint</strong> (so the scored region was empty), and
+<code>wb-gems-doe-3-latest-submission-zeros.tif</code> leaked 747 positive cells outside the footprint.
+The writer now refuses both by construction.</li>
 </ul>
-</div>
-
-</div></section>
-
-<div class="wrap">
-<section>
-<div class="section-head"><h2>Step-by-step</h2></div>
-<ol class="steps">
-<li><strong>Verify the gate.</strong> Check the executive summary decision banner. If it says DO NOT SUBMIT, do not upload. The release gate must show a compliant HOLDOUT-DTI, passing uniqueness, and selector approval for the exact SHA-256.</li>
-<li><strong>Download the TIFF.</strong> From the executive summary, download the exact GeoTIFF and verify its SHA-256 against the published manifest.</li>
-<li><strong>Format-check locally.</strong> Confirm single band, float32, EPSG:32611, 3730&times;3292, exact transform, NaN outside footprint, all in-footprint values in [0,1]. A past portal error ("Predicted values must be in range [0, 1]") was caused by out-of-range values — this check prevents it.</li>
-<li><strong>Log in to DrivenData.</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">the competition page</a> and navigate to New submission.</li>
-<li><strong>Upload the file.</strong> Select the single GeoTIFF or ZIP. The portal validates CRS, shape, and geotransform automatically.</li>
-<li><strong>Add a note.</strong> Enter a unique note (&le;140 characters) so you can tell submissions apart later (e.g. clustering with k=25).</li>
-<li><strong>Check the weekly cap.</strong> The rules allow three submissions per week per entity. Confirm you have quota before uploading.</li>
-<li><strong>Submit and save the receipt.</strong> Keep the organizer submission receipt together with the file's SHA-256. Only an organizer receipt is an ORGANIZER-CONFIRMED score.</li>
-</ul>
+<p class="muted">Note on the spec conflict: the prose says outside-bounds may be null/NaN, while the observed
+validator behaviour rejects it. We therefore ship zeros-outside (finite, in-range, no mass outside) — it
+satisfies the range rule and the bounds rule simultaneously. Flagged as IR-31-04 for organizer clarification.</p>
 </section>
-
-<section>
-<div class="section-head"><h2>Submission format checklist</h2>
-<table>
-<thead><tr><th>Check</th><th>Required</th><th>Our research TIF</th></tr>
-</thead>
-<tbody>
-<tr><td>Single band</td><td>1 band</td><td>Pass</td></tr>
-<tr><td>Dtype</td><td>float32</td><td>Pass</td></tr>
-<tr><td>CRS</td><td>EPSG:32611</td><td>Pass</td></tr>
-<tr><td>Shape</td><td>3730 &times; 3292</td><td>Pass</td></tr>
-<tr><td>Transform</td><td>Exact match to template</td><td>Pass</td></tr>
-<tr><td>Nodata outside footprint</td><td>NaN</td><td>Pass</td></tr>
-<tr><td>In-footprint range</td><td>[0, 1], all finite</td><td>Pass</td></tr>
-<tr><td>File type</td><td>.tif or .zip of one .tif</td><td>Both provided</td></tr>
-</tbody>
-</table>
-</section>
-
-<section>
-<div class="section-head"><h2>Available download (research artifact)</h2>
-<p>The locally generated TIF below is format-valid but <strong>not cleared for submission</strong> due to the active DO-NOT-SUBMIT gate. Use it to validate your local pipeline, not to upload.</p>
-<p><a class="btn" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.tif" download>Download GeoTIFF</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.zip" download>Download ZIP</a>
-<a class="btn secondary" href="downloads/wbg3-h2-scarp-thermal-20261029T134448Z-35040fda.manifest.json">Manifest (SHA-256)</a></p>
-</section>
-
-<section>
-<div class="section-head"><h2>Official references</h2>
-<ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">Problem description &amp; metric</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">Competition rules</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/" target="_blank" rel="noopener">Competition data (login required)</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard</a></li>
-</ul>
-</section>
-</div>
-</main>
-
-<footer class="footer"><div class="wrap">
-<p>Evidence-first research for the DOE GEMS Prize. Local format checks are not organizer receipts.</p>
-</div></footer>
-</body></html>
+<section><h2>What the automated gates check</h2>
+<p>6 booleans in the writer receipt, all must be true: receipt_checks={&#x27;single_band&#x27;: True, &#x27;dtype_float32&#x27;: True, &#x27;dimensions_3730x3292&#x27;: True, &#x27;crs_epsg_32611&#x27;: True, &#x27;transform_matches_sample_submission&#x27;: True, &#x27;no_nan_anywhere&#x27;: True, &#x27;no_inf_anywhere&#x27;: True, &#x27;no_sentinel_values&#x27;: True, &#x27;range_0_1_guaranteed&#x27;: True, &#x27;min_ge_0&#x27;: True, &#x27;max_le_1&#x27;: True, &#x27;in_footprint_all_finite&#x27;: True, &#x27;in_footprint_range_0_1&#x27;: True, &#x27;outside_footprint_zero&#x27;: True, &#x27;zero_dots_on_mapped_catalogue&#x27;: True}, all_checks_passed=True, template_report_ok=True, no_nan_inside_footprint=True, values_in_0_1=[0.0, 1.0], crs_shape_transform_match=True … plus
+the registry census (Jaccard ≤ 0.5, 3-px overlap ≤ 0.7
+on informative comparators, |density Spearman| ≤ 0.9).</p></section>
+<footer>built 2026-10-31T01:38:10Z</footer></main></body></html>

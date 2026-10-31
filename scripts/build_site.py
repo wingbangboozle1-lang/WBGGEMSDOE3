@@ -484,7 +484,13 @@ def main() -> int:
     fchd_main()
     # FCHD's lane publisher copies old research TIFFs into its scoped archive;
     # the top-level download inventory remains deliberately separate.
-    print("Built current negative evidence-first site; no candidate or slot selected.")
+    # The current download desk is owned by scripts/build_feed.py, which renders
+    # index/executive-summary/how-to-submit/research from evidence/ggo_run_card.json and the
+    # other evidence JSON. It is called last so the desk always matches the run card, and it is
+    # deterministic (its timestamp comes from the card, not the clock).
+    from build_feed import build as feed_build
+    feed_build()
+    print("Built current evidence-first site; desk rendered from the run card; no slot selected.")
     return 0
 
 
