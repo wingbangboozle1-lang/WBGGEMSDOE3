@@ -1,34 +1,153 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Submission guide · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
-<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html" aria-current="page">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">Submission guide</div>
-<h1>No submission is currently authorized.</h1><p class="lede">This page documents how to proceed only after an exact candidate clears science, uniqueness, format, and separate-selector gates.</p><div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT to a competition slot — no file is cleared.</h2>
-<p>Update 2026-10-31: one unique candidate was generated and fully gated by this project
-(<code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code>). The shared validator PASSes it
-(single-band float32, EPSG:32611, 100 m, values in [0,1], finite inside the footprint, zero on the mapped
-catalogue) and the ratified uniqueness audit PASSes it against 140 hash-verified sibling rasters
-(0 duplicate flags; worst |Spearman| 0.162). It <strong>fails</strong> the pre-registered promotion bar
-(HOLDOUT-DTI 0.02879 vs comparable holdout best 0.0992), so no clearance is granted and no slot is spent.
-Download for research and learning is fine; portal upload of any file in this repository is not authorized
-by this project. A local format pass, owner-reported score, or uniqueness pass does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/twr1_run_card.json">Read the 2026-10-31 run card</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Prior negative review card</a></p></div></div></section>
-<div class="wrap"><section><div class="section-head"><h2>Future steps after clearance</h2></div><div class="card"><ol class="steps">
-<li>Wait for a candidate-specific negative/positive run card and release gate. There is no cleared candidate today.</li>
-<li>For the exact selected bytes, verify SHA-256, single-band float32, EPSG:32611, 100 m grid/shape/transform/bounds, values in [0,1], no NaN/Inf inside the footprint, and null/NaN outside the bounds per the official text.</li>
-<li>Have a separate selector review the live account quota. The official rules say three submissions per week per entity and only one final submission across both prize rounds. The unauthenticated submission page redirected to login; current account quota/usage is unknown.</li>
-<li>On the official platform, upload only the exact approved file, use its recorded name and note (≤140 characters), and retain the receipt with the file hash. A receipt is required for an ORGANIZER-CONFIRMED score.</li>
-<li>If generative AI was used, disclose its extent and role in the narrative as required by the September 2026 official rules; ensure all required scientific/code assets and attribution are complete.</li>
-</ol><p>No candidate name or upload note is assigned because no candidate exists. The negative run-card note is not an upload instruction.</p></div></section>
-<section><div class="section-head"><h2>Current date/access checks</h2></div><div class="card"><p>The competition home page lists <strong>2026-12-03 at 11:59 p.m. UTC.</strong>; the official rules Appendix A.1 gives <strong>Appendix A.1 gives a 5:00 p.m. ET submission-time instruction on the deadline date.</strong>. These instructions conflict by nearly two hours on the stated date. Treat the effective deadline as unresolved and use the earlier time unless the organizer confirms otherwise.</p>
-<p>The public leaderboard feed's latest successful check is <strong>2026-10-31T01:21:46Z</strong>, but it is not a score for this project. The submission and data pages redirected to login. No quota, upload, or receipt was viewed.</p>
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition homepage ↗</a> ·
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> ·
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submission portal (login required) ↗</a></p></div></section></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<meta name="gemsdoe-release-sha256" content="41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6">
+<title>How to submit — GEMS Prize release</title>
+<style>
+:root{--ink:#101418;--muted:#5b6875;--line:#dfe5ec;--bg:#ffffff;--panel:#f6f8fb;
+--go:#0b7a3b;--go-bg:#e8f7ee;--no:#a11616;--no-bg:#fdecec;--warn:#8a5a00;--warn-bg:#fff7e6;
+--link:#0b57d0}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav{max-width:1060px;margin:0 auto;padding:.6rem 1rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+nav b{margin-right:.6rem}
+nav a{color:var(--muted);text-decoration:none;font-size:.94rem}
+nav a:hover,nav a.on{color:var(--ink)}
+main{max-width:1060px;margin:0 auto;padding:1.6rem 1rem 4rem}
+h1{font-size:1.75rem;line-height:1.2;margin:.2rem 0 .8rem}
+h2{font-size:1.22rem;margin:2.2rem 0 .6rem;padding-bottom:.25rem;border-bottom:1px solid var(--line)}
+h3{font-size:1.02rem;margin:1.3rem 0 .4rem}
+p,li{color:#1d2530}
+small,.small{font-size:.86rem;color:var(--muted)}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--panel);
+padding:.1rem .3rem;border-radius:4px;word-break:break-all}
+table{border-collapse:collapse;width:100%;margin:.7rem 0 1rem;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:.45rem .55rem;text-align:left;vertical-align:top}
+th{background:var(--panel);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.banner{border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0 1.4rem}
+.go{background:var(--go-bg);border:2px solid var(--go)}
+.no{background:var(--no-bg);border:2px solid var(--no)}
+.warn{background:var(--warn-bg);border:1px solid #e8c98a}
+.banner h2{border:0;margin:0 0 .35rem;padding:0;font-size:1.15rem}
+.verdict{display:inline-block;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+font-size:.78rem;padding:.22rem .5rem;border-radius:999px}
+.v-go{background:var(--go);color:#fff}.v-no{background:var(--no);color:#fff}
+.v-warn{background:var(--warn);color:#fff}
+.btn{display:inline-block;background:var(--go);color:#fff;text-decoration:none;font-weight:700;
+padding:.8rem 1.1rem;border-radius:8px;margin:.5rem .5rem .2rem 0}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:#243447}
+.btn.no{background:var(--no)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin:1rem 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem;background:#fff}
+.card .k{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.card .v{font-size:1.35rem;font-weight:700;font-variant-numeric:tabular-nums}
+.pass{color:var(--go);font-weight:700}.fail{color:var(--no);font-weight:700}
+.mono{font:.82rem ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
+ul.tight{margin:.3rem 0 .8rem;padding-left:1.2rem}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding:1.2rem 1rem;color:var(--muted);font-size:.85rem}
+footer div{max-width:1060px;margin:0 auto}
+details{margin:.5rem 0}
+summary{cursor:pointer;color:var(--link)}
+</style></head>
+<body>
+<header><nav><b>GEMS release</b><a href="index.html">Download</a><a href="executive-summary.html">Executive summary</a><a href="research.html">Research &amp; evidence</a><a href="how-to-submit.html" class="on">How to submit</a>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard&#8599;</a>
+</nav></header>
+<main>
+
+<h1>How to submit</h1>
+<div class="banner go">
+<span class="verdict v-go">OK to submit</span>
+<h2>1. Download</h2>
+<p class="ok"><b>Clearance lives on one page only.</b> The sentence that says whether you may
+spend a slot is on <a href="index.html">the landing page</a>; this page never restates it, so
+there is exactly one place to check. It is derived from
+<code>evidence/release/candidate_run_card.json</code> — promote with
+11/11 format checks and
+4/4 uniqueness checks
+passing.</p>
+<p><a class="btn" href="downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif" download>Download the .tif</a></p>
+<p class="small mono">WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif<br>sha256 41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6</p>
+
+<h2>2. Create the submission</h2>
+<ol>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the submission page</a>
+and choose <b>New submission</b>.</li>
+<li><b>File to submit:</b> the downloaded <code>.tif</code>. Do not zip it and do not
+re-save it in image software — a round-trip can change the dtype or the geotransform.</li>
+<li><b>Note</b> (optional, ≤ 140 characters) — paste this exactly:
+<div class="card mono">WB-GEMS-DOE-3 CIFS CAT | 139957 dots, catalogue-free multi-physics concordance, >300 m collar | multi-physics structural detector, catalogue</div></li>
+<li>Submit. A weekly slot is consumed by the attempt, so check step 3 first.</li>
+</ol>
+
+<h2>3. Check before you spend a slot</h2>
+<table>
+<tr><th>Requirement (official text)</th><th>Measured in this file</th><th>Result</th></tr>
+<tr><td>Single band</td><td>float32, 1 band</td>
+<td class="pass">pass</td></tr>
+<tr><td>32-bit float</td><td>float32</td><td class="pass">pass</td></tr>
+<tr><td>Same CRS as training (EPSG:32611)</td><td>EPSG:32611</td><td class="pass">pass</td></tr>
+<tr><td>Same bounds / 100 m resolution</td><td>3730 × 3292, 100 m</td><td class="pass">pass</td></tr>
+<tr><td>Values between 0 and 1</td><td>min 0.0, max
+1.0, 139,957 cells at 1.0</td>
+<td class="pass">pass</td></tr>
+<tr><td>Outside the bounds null or nan</td><td>NaN on
+7,111,787 cells outside the footprint, all
+5,167,373 inside cells finite</td><td class="pass">pass</td></tr>
+<tr><td>Single layer</td><td>1</td><td class="pass">pass</td></tr>
+</table>
+
+<h3>If the portal still says "Predicted values must be in range [0, 1]"</h3>
+<p class="small">That message means at least one <i>finite</i> cell outside [0, 1], or a NaN
+where the reader expects a number. This file has neither: every finite cell is exactly 0.0 or
+1.0 and the only non-finite cells are the NaN cells outside the footprint, which the official
+format requires. To prove it for any file yourself:</p>
+<pre class="mono">python scripts/release_audit.py --file &lt;path-to-your-tif&gt;</pre>
+<p class="small">The script re-runs all 11 format checks and all
+4 uniqueness checks and prints the exact failing check name.</p>
+</div>
+
+<h2>What the file is</h2>
+<ul class="tight">
+<li>139,957 cells at probability 1.0, 5,167,373 cells at 0.0
+inside the study footprint, NaN outside.</li>
+<li>Every 1.0 cell is at least 3.16 px (300 m)
+from the nearest mapped fault and none is on the mask.</li>
+<li>Minimum separation between dots: 2 px, so the budget buys distinct
+structure rather than blobs.</li>
+<li>The model, features, holdout and controls are on the
+<a href="research.html">research page</a>; the numbers behind every claim are in
+<code>evidence/release/</code>.</li>
+</ul>
+
+<h2>Rules to keep in mind</h2>
+<ul class="tight">
+<li>Three submissions per week per entity and one final submission across both prize rounds
+(official rules). A slot is a scarce resource — this site tells you exactly one file to spend
+it on.</li>
+<li>The public score is not the final score: the private leaderboard and the final
+re-evaluation are re-scored on a different label set; the final re-evaluation covers the
+entire GeoDAWN area and also masks the existing faults.</li>
+<li>Disclose generative-AI assistance in the written narrative if you use this work in a
+prize submission, as the rules require.</li>
+</ul>
+
+<h2>Automated gate output</h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td><code>single_band</code></td><td class="pass">pass</td></tr><tr><td><code>dtype_float32</code></td><td class="pass">pass</td></tr><tr><td><code>shape_3730x3292</code></td><td class="pass">pass</td></tr><tr><td><code>crs_epsg32611</code></td><td class="pass">pass</td></tr><tr><td><code>geotransform_match</code></td><td class="pass">pass</td></tr><tr><td><code>finite_inside_footprint</code></td><td class="pass">pass</td></tr><tr><td><code>nan_outside_footprint</code></td><td class="pass">pass</td></tr><tr><td><code>values_finite_and_in_0_1</code></td><td class="pass">pass</td></tr><tr><td><code>has_dots</code></td><td class="pass">pass</td></tr><tr><td><code>no_dot_on_catalogue_mask</code></td><td class="pass">pass</td></tr><tr><td><code>dots_outside_collar</code></td><td class="pass">pass</td></tr><tr><td><code>no_byte_duplicate</code></td><td class="pass">pass</td></tr><tr><td><code>max_overlap_below_0.7</code></td><td class="pass">pass</td></tr><tr><td><code>max_abs_rho_below_0.9</code></td><td class="pass">pass</td></tr><tr><td><code>at_least_one_comparator</code></td><td class="pass">pass</td></tr>
+</table>
+
+</main>
+<footer><div>All scores on this site are labelled <b>HOLDOUT-DTI</b> (measured on withheld
+fault segments with the official formula), <b>OWNER-REPORTED</b> (the number a sibling site
+published, not an organizer receipt), or <b>PROJECTION</b> (a model of the leaderboard
+score, never presented as a measured score). No number here is an
+<b>ORGANIZER-CONFIRMED</b> receipt, because this project has no submission receipt.
+Sources are linked on the <a href="research.html">research page</a>.</div></footer>
+</body></html>

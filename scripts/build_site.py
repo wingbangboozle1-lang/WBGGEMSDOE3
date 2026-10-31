@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Build the evidence-first GEMS site from current, committed evidence.
 
-The active release decision is fail-closed. This renderer cannot promote a TIFF,
-choose a submission slot, or accept a historical estimate. It publishes the
-current negative preflight and keeps prior lanes in clearly marked research
-archives. Historical positive builders are blocked in separate scripts.
+This renderer publishes the *archive* lane: the 2026-10-30 review and its
+negative preflight, plus earlier lanes in marked research archives. It never
+promotes a TIFF. The live release decision is rendered by
+``build_release_site.py``, which runs last and owns index.html,
+executive-summary.html, research.html and how-to-submit.html. Every page built
+here carries a banner pointing at that single live decision so that a visitor
+cannot mistake an archived "do not submit" for the current status.
 """
 from __future__ import annotations
 
@@ -77,6 +80,34 @@ def short_hash(path: Path) -> str:
     return digest(path)[:16]
 
 
+RELEASE_CARD = ROOT / "evidence" / "release" / "candidate_run_card.json"
+
+
+def release_lane_state() -> tuple[str, str]:
+    """Return (lane word, sentence) for the live release lane, from its card."""
+    try:
+        card = json.loads(RELEASE_CARD.read_text())
+        ok = (card.get("verdict") == "promote"
+              and card.get("format_validator", {}).get("passed") is True
+              and card.get("uniqueness_audit", {}).get("passed") is True)
+    except (OSError, ValueError):
+        return "unknown", ("The release lane has no readable run card, so nothing on this site "
+                           "is cleared.")
+    if ok:
+        return "positive", ("The live release lane has a cleared file. Its decision sentence and "
+                            "download link are on <a href=\"index.html\">the landing page</a>.")
+    return "negative", ("The live release lane is stopped too: there is no cleared file. See "
+                        "<a href=\"index.html\">the landing page</a>.")
+
+
+def legacy_banner() -> str:
+    _lane, sentence = release_lane_state()
+    return ('<div class="banner"><b>Archive lane page.</b> The text below records the '
+            '2026-10-30 repository review, whose own verdict was <b>DO NOT SUBMIT</b> for every '
+            'file it examined. It is kept for audit and is not the project decision. '
+            f'{sentence}</div>')
+
+
 def meta_page(title: str, current: str, body: str) -> str:
     nav = [
         ("Overview", "index.html"), ("Executive summary", "executive-summary.html"),
@@ -95,7 +126,7 @@ def meta_page(title: str, current: str, body: str) -> str:
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
 <nav aria-label="Main navigation">{links}</nav></div></header>
-<main>{body}</main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
+<main>{legacy_banner()}{body}</main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
 <a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>'''
 
 
@@ -573,7 +604,13 @@ def main() -> int:
     fchd_main()
     # FCHD's lane publisher copies old research TIFFs into its scoped archive;
     # the top-level download inventory remains deliberately separate.
-    print("Built current negative evidence-first site; no candidate or slot selected.")
+    # The four top-level pages are owned by the release renderer, which publishes
+    # whatever the machine-readable release card says (positive or negative).
+    # It runs last so the published landing page can never contradict the card.
+    from build_release_site import main as release_main
+    release_main()
+    print("Built legacy lane archives and the release pages from "
+          "evidence/release/candidate_run_card.json.")
     return 0
 
 

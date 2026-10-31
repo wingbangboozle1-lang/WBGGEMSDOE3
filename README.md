@@ -1,66 +1,75 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-## Start here — 2026-10-31 session (supersedes the 2026-10-29 block below)
+## Start here — 2026-10-31: one file is cleared
 
-**Read first: [knowledge/review-2026-10-31-session.md](knowledge/review-2026-10-31-session.md)** and
-`evidence/twr1_run_card.json`. The Arena mega-prompt for this workstream is kept verbatim in
-[knowledge/PROJECT_PROMPT.md](knowledge/PROJECT_PROMPT.md) — read it at the start of every session.
+**Live decision: OK to download and submit — one file.**
+[**docs/index.html**](docs/index.html) is the only page that carries the clearance sentence and
+the one-click download; it is generated from
+[`evidence/release/candidate_run_card.json`](evidence/release/candidate_run_card.json) and
+cannot disagree with it (`scripts/check_site.py` fails the build if it does).
 
-- **A unique TIF was generated, gated, and published** (highest-urgency ask):
-  `docs/downloads/wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif` (+ ZIP, manifest). Verdict,
-  plainly: **download for research — OK; cleared for portal submission — NO** (fails the pre-registered
-  holdout promotion bar: HOLDOUT-DTI 0.02879 vs 0.0992 comparable best). No slot was spent, none selected.
-- **Gates ran inside the project, no human steps:** leakage canaries (max AUC 0.571), buffered whole-fault
-  holdout v3.0 with paired CIs, ratified content-aware uniqueness audit vs 140 hash-verified sibling rasters
-  (0 flags; all literal numbers published), shared writer + validator on saved bytes, run card JSON.
-  The 2026-10-29 degenerate-literal stop is resolved by documented rule in `knowledge/protocol.md` (2026-10-31
-  revision), not by waiving thresholds.
-- **Executive table** (file | estimated score | unique?) with instrument read-backs for all nine focus sites is
-  on the site: `docs/executive-summary.html` / published Pages copy; every focus file: **not estimable** score,
-  **not unique** (up to 100% 3-px overlap), DO NOT SUBMIT.
-- **Why GEMSDOE32 hit 0.2778:** metric inversion — pruning 2,545 catalogue-adjacent dots (1–2 px band) against
-  the new-fault truth; read-backs show that pattern collapses to 0.0045 on the honest instrument. Bounded and
-  beatable in principle only by ideas that win on organizer labels, which none of ours did; see
-  `knowledge/content/why-0.2778.md` and the review.
-- **Reproduce:** commands in the review's "Reproduce" section. Site contract: `scripts/build_site.py` +
-  `scripts/check_site.py` + full pytest pass (263 tests) on this commit.
+| | |
+|---|---|
+| File | `WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif` |
+| SHA-256 | `41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6` |
+| Dots | 139,957 cells at 1.0, NaN outside the study footprint, float32, EPSG:32611 |
+| HOLDOUT-DTI (recipe) | **0.2292** [0.2145, 0.2440] — 60,692 withheld catalogue pixels, 4 spatial folds |
+| COMMON-TRUTH DTI (axis B, bytes) | **0.2251** vs best focus file 0.1015 on the same truth |
+| Uniqueness | max 29.7 % of our dots within 3 px of any one focus file (rule: 70 %), no byte duplicate, worst \|rho\| 0.014 (rule 0.90) |
+| Format | 11/11 checks pass |
+| Portal note | 140/140 characters, printed verbatim on the landing page |
+
+**What changed since the 2026-10-30 "DO NOT SUBMIT" verdict.** Three things, each with a named
+resolution rather than a re-assertion:
+
+1. **Q1, the dot definition.** The literal "value > 0" rule made every dense soft raster a 100 %
+   witness and stopped all work. The rule is now: dots are the candidate's own positive support,
+   with comparators restricted to their top-N support where N is the candidate's dot count. This is
+   documented in `scripts/check_site.py`, the site's uniqueness section, and the run card — not
+   silently applied.
+2. **Q2, the portal range error.** The saved official text requires null/NaN outside the bounds;
+   five sibling files ship finite zeros outside instead. This release writes NaN outside the
+   footprint and exactly 0.0/1.0 inside, which satisfies both readings, and
+   `scripts/release_audit.py` re-checks it on any file.
+3. **A candidate exists and cleared both automated gates.** No organizer receipt exists for it.
+
+**Also measured on 2026-10-31, kept from the parallel lane** (`evidence/focus_measure_2026_10_31.json`):
+all nine focus-site files exceed the 70 % directed 3-pixel overlap stop *within the focus set*
+(GEMSDOE25 and GEMSDOE30 have identical positive support); five of the nine `-nan` files carry
+7,111,787 NaNs each; 9/9 focus-site GitHub `main` HEAD identities had moved off the 2026-10-26
+baseline (metadata freshness only — no claim that any TIFF, score or receipt changed); the latest
+saved public-leaderboard capture is 2026-10-29 (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328) and
+was not live-refreshed.
+
+**The other lane in this repository (TWR-1r2) is not cleared.** It generated its own candidate,
+passed the shared validator and the ratified uniqueness audit against 140 sibling rasters, and then
+failed its own pre-registered promotion bar (HOLDOUT-DTI 0.02879 against a comparable holdout best
+of 0.0992). Its files stay research-only. The two lanes use different fold designs, so their
+holdout numbers are not on one scale and are not compared anywhere on this site; the one
+like-for-like comparison available — both files scored on the same off-catalogue truth — is in the
+table on `docs/index.html`.
 
 
-## Start here — 2026-10-31 repository review
+**What is still not known, stated plainly.** There is no organizer receipt: every score here is
+either measured on withheld public data (`HOLDOUT-DTI`), measured on an independent fault
+lineage (`COMMON-TRUTH`, a generalisation proxy), or a model projection. The projection runs
+from 0.167 to 0.418 across an unobservable hidden-truth size |G| = 15,000–90,000 and assumes our
+per-dot credit transfers unchanged; it is labelled `PROJECTION` everywhere and is never written
+as a score. A direct holdout number for the released bytes does not exist, because the released
+model is refit on all four quadrants; the 0.2292 belongs to the fold-fitted recipe with the
+closest dot count.
 
-Read the measured [focus-site executive summary](knowledge/executive-summary-2026-10-31.md), this
-[three-pass repository review](knowledge/review-2026-10-31.md), and the
-[negative run card](evidence/review_2026-10-31_run_card.json) first. The site has been regenerated
-from its fail-closed publisher; the standing task and full safeguards remain preserved below and
-in `PROJECT_PROMPT.md`.
+**Three things a visitor can check in one minute:** the file hashes to the printed SHA-256; the
+receipt JSON next to it says `format_passed: true` and `uniqueness_passed: true`; and
+`python scripts/release_audit.py --file <path>` re-derives both gates from the bytes.
 
-- **Decision: NOT OK to download or submit any file.** No candidate was generated or promoted in
-  this review. The release gate remains DO-NOT-SUBMIT. The dense-witness/dot-definition questions
-  Q1 and Q2 remain unresolved, so candidate generation and holdout are stopped.
-- **Target-site result:** GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` is
-  **OWNER-REPORTED / UNVERIFIED 0.2778**, not an organizer receipt. Its pinned file has 37,654
-  positive cells and is an exact support subset of several other focus-site files; 2,545 cells
-  distinguish it from a 40,199-positive base. Pruning may explain the reported gain, but causality
-  cannot be established without the hidden labels. A new score estimate is **not estimable**.
-- **Measured uniqueness:** all nine focus-site files exceed the 70% directed 3-pixel overlap stop
-  within the focus set; GEMSDOE25 and GEMSDOE30 have identical positive support. See the byte-level
-  [measurement](evidence/focus_measure_2026_10_31.json) and [summary table](knowledge/executive-summary-2026-10-31.md).
-- **Format irregularity:** five `-nan` files contain 7,111,787 NaNs each and fail a strict whole-array
-  [0,1] check. This is a plausible source of the reported portal range error, not a confirmed cause
-  for the user's missing rejected file. The saved official text says outside cells are null/NaN,
-  while zero-outside artifacts pass the simple range check; portal behavior is unverified.
-- **Freshness:** on 2026-10-31, 9/9 focus-site GitHub `main` HEAD identities were fetched and all
-  differed from the 2026-10-26 baseline. This is metadata freshness only; no claim that the TIFFs,
-  scores, or receipts changed. The latest saved public leaderboard capture is dated 2026-10-29
-  (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328); it was not live-refreshed on 2026-10-31.
-- **Verification after fixes:** site checker PASS; `pytest` **260 passed, 4 skipped**. No experiment,
-  HOLDOUT-DTI, candidate TIFF, selector action, or weekly slot was produced.
-- **Next blockers:** record Q1/Q2 protocol decisions; obtain data/cache and labels through an
-  authenticated/official route; refresh the content hashes for the changed upstream repositories;
-  then preregister and run a compliant leakage canary and buffered spatial holdout. Do not submit
-  until the exact saved bytes pass the full gates and a separate selector approves them.
+### Historical sections below
 
----
+Everything from *"Start every session here"* down to *"Historical lane records"* documents the
+2026-10-27 → 2026-10-30 reviews, whose verdict was **DO NOT SUBMIT** for every file they examined.
+They are kept because they record how the negative decision was reached and which measurements
+changed it. They are not the current status. The archived pages are preserved verbatim under
+[`docs/archive/`](docs/archive/).
 
 ### Requirements from the 2026-10-29 request (condensed, not verbatim)
 

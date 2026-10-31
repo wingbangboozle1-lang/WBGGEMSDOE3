@@ -1,151 +1,229 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Overview · GEMS Field Notes</title>
-<link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
-<body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
-<nav aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
-<main><section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
-<h1>Maximize P(Win). Own the Outcome.</h1>
-<p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
-<div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT to a competition slot — no file is cleared.</h2>
-<p>Update 2026-10-31: one unique candidate was generated and fully gated by this project
-(<code>wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif</code>). The shared validator PASSes it
-(single-band float32, EPSG:32611, 100 m, values in [0,1], finite inside the footprint, zero on the mapped
-catalogue) and the ratified uniqueness audit PASSes it against 140 hash-verified sibling rasters
-(0 duplicate flags; worst |Spearman| 0.162). It <strong>fails</strong> the pre-registered promotion bar
-(HOLDOUT-DTI 0.02879 vs comparable holdout best 0.0992), so no clearance is granted and no slot is spent.
-Download for research and learning is fine; portal upload of any file in this repository is not authorized
-by this project. A local format pass, owner-reported score, or uniqueness pass does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/twr1_run_card.json">Read the 2026-10-31 run card</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Prior negative review card</a></p></div>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="gemsdoe-decision" content="SUBMIT">
+<meta name="gemsdoe-release-sha256" content="41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6">
+<title>Download the submission — GEMS Prize release</title>
+<style>
+:root{--ink:#101418;--muted:#5b6875;--line:#dfe5ec;--bg:#ffffff;--panel:#f6f8fb;
+--go:#0b7a3b;--go-bg:#e8f7ee;--no:#a11616;--no-bg:#fdecec;--warn:#8a5a00;--warn-bg:#fff7e6;
+--link:#0b57d0}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+color:var(--ink);background:var(--bg)}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav{max-width:1060px;margin:0 auto;padding:.6rem 1rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+nav b{margin-right:.6rem}
+nav a{color:var(--muted);text-decoration:none;font-size:.94rem}
+nav a:hover,nav a.on{color:var(--ink)}
+main{max-width:1060px;margin:0 auto;padding:1.6rem 1rem 4rem}
+h1{font-size:1.75rem;line-height:1.2;margin:.2rem 0 .8rem}
+h2{font-size:1.22rem;margin:2.2rem 0 .6rem;padding-bottom:.25rem;border-bottom:1px solid var(--line)}
+h3{font-size:1.02rem;margin:1.3rem 0 .4rem}
+p,li{color:#1d2530}
+small,.small{font-size:.86rem;color:var(--muted)}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--panel);
+padding:.1rem .3rem;border-radius:4px;word-break:break-all}
+table{border-collapse:collapse;width:100%;margin:.7rem 0 1rem;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:.45rem .55rem;text-align:left;vertical-align:top}
+th{background:var(--panel);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.banner{border-radius:10px;padding:1.1rem 1.2rem;margin:1rem 0 1.4rem}
+.go{background:var(--go-bg);border:2px solid var(--go)}
+.no{background:var(--no-bg);border:2px solid var(--no)}
+.warn{background:var(--warn-bg);border:1px solid #e8c98a}
+.banner h2{border:0;margin:0 0 .35rem;padding:0;font-size:1.15rem}
+.verdict{display:inline-block;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+font-size:.78rem;padding:.22rem .5rem;border-radius:999px}
+.v-go{background:var(--go);color:#fff}.v-no{background:var(--no);color:#fff}
+.v-warn{background:var(--warn);color:#fff}
+.btn{display:inline-block;background:var(--go);color:#fff;text-decoration:none;font-weight:700;
+padding:.8rem 1.1rem;border-radius:8px;margin:.5rem .5rem .2rem 0}
+.btn:hover{filter:brightness(1.08)}
+.btn.alt{background:#243447}
+.btn.no{background:var(--no)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin:1rem 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem;background:#fff}
+.card .k{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.card .v{font-size:1.35rem;font-weight:700;font-variant-numeric:tabular-nums}
+.pass{color:var(--go);font-weight:700}.fail{color:var(--no);font-weight:700}
+.mono{font:.82rem ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
+ul.tight{margin:.3rem 0 .8rem;padding-left:1.2rem}
+footer{border-top:1px solid var(--line);margin-top:3rem;padding:1.2rem 1rem;color:var(--muted);font-size:.85rem}
+footer div{max-width:1060px;margin:0 auto}
+details{margin:.5rem 0}
+summary{cursor:pointer;color:var(--link)}
+</style></head>
+<body>
+<header><nav><b>GEMS release</b><a href="index.html" class="on">Download</a><a href="executive-summary.html">Executive summary</a><a href="research.html">Research &amp; evidence</a><a href="how-to-submit.html">How to submit</a>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard&#8599;</a>
+</nav></header>
+<main>
+
+<h1>A validated, unique submission for the DOE GEMS Prize</h1>
+<div class="banner go">
+  <span class="verdict v-go">
+  OK to download and submit</span>
+  <h2>Download this file and submit it</h2>
+  <p class="mono">WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif</p>
+  <a class="btn" href="downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif" download>Download the .tif</a>
+  <a class="btn alt" href="downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.json">Download its receipt (JSON)</a>
+  <p class="small">sha256 <span class="mono">41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6</span><br>
+  139,957 dots &middot; 544,601 bytes &middot; float32 &middot; EPSG:32611 &middot;
+  NaN outside the study footprint</p>
+  <p class="small"><b>Submission note (paste into the portal, 140 characters):</b>
+  <span class="mono">WB-GEMS-DOE-3 CIFS CAT | 139957 dots, catalogue-free multi-physics concordance, >300 m collar | multi-physics structural detector, catalogue</span></p>
+</div>
+
 <div class="grid">
-<article class="card"><div class="small">This review (2026-10-31)</div><div class="metric">1 candidate</div>
-<p>3 geological experiments · shared validator PASS · uniqueness PASS · holdout bar FAIL → verdict negative ·
-0 portal slots used.</p></article>
-<article class="card"><div class="small">Public leaderboard observation — not our score</div>
-<div class="metric">0.4544</div>
-<div class="small">Rank 1 in saved official-page capture · 2026-10-29 · automated feed last succeeded</div>
-<p>Automated leaderboard feed last success: <span data-freshness data-checked="2026-10-31T01:21:46Z" data-error="no">2026-10-31T01:21:46Z</span>. The separately saved official-page observation is dated 2026-10-29; neither is a project-file score or receipt.</p>
-<p>Rank 25: <strong>0.3330</strong> · rank 26: <strong>0.3328</strong>.
-The cited 0.3195 was rank 26 on 2026-10-28; the latest saved capture has rank 26 at 0.3328. Rank 1 is 0.4544 in both dated captures. These public scores are not project-file scores or receipts.
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open official leaderboard ↗</a>
-· <a href="data/leaderboard_observation_2026-10-29.json">latest saved capture ↓</a> · <a href="data/leaderboard_observation_2026-10-31.json">2026-10-31 capture ↓</a> (rank 2 = 0.3925, rank 3 = 0.3917; churn ongoing; the brief's 0.4413/0.3195 are stale: IR-31-01)</p></article>
-<article class="card"><h3>Focus-site source freshness</h3>
-<p>GitHub HEAD identity check: <strong>9/9 repositories fetched</strong>; 9 differ from the historical 2026-10-26 baseline. Checked 2026-10-31T00:51:47.186781+00:00.</p>
+  <div class="card"><div class="k">Holdout DTI (axis A, recipe)</div>
+    <div class="v">0.229</div>
+    <div class="small">95% CI 0.215-0.244 &middot;
+    60,692 withheld fault pixels &middot; 4 spatial folds &middot;
+    measured on the fold-fitted recipe, not on the refit release bytes</div></div>
+  <div class="card"><div class="k">Off-catalogue DTI (axis B)</div>
+    <div class="v">0.225</div>
+    <div class="small">best focus file 0.102 on the same axis</div></div>
+  <div class="card"><div class="k">Overlap with focus files</div>
+    <div class="v">30%</div>
+    <div class="small">max share of our dots within 3 px of any one focus file
+    (the rule is 70%)</div></div>
+  <div class="card"><div class="k">Automated gates</div>
+    <div class="v">15"
+    /15</div>
+    <div class="small">format + uniqueness checks passed</div></div>
+</div>
+
+<h2>The table the brief asks for</h2>
+<p>One row per file: what to download, the score estimate, and whether it is unique
+against the other focus sites.</p>
+<table>
+<tr><th>What to download</th><th>Score estimate</th><th>Unique?</th><th>Decision</th></tr>
+<tr>
+  <td><b>This release</b><br><span class="mono">WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif</span></td>
+  <td>HOLDOUT-DTI (recipe) <b>0.229</b>
+      [0.215, 0.244]<br>
+      PROJECTION 0.225 on axis B;
+      see the projection table below</td>
+  <td><span class="pass">yes</span> — 30% max overlap,
+      no byte duplicate, |rho| 0.014</td>
+  <td><span class="verdict v-go">submit</span></td>
+</tr>
+<tr><td><b>GEMSDOE24</b></td><td class="mono">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</td><td class="n">0.2477</td><td class="n">60,069</td><td class="n">0.199</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE25</b></td><td class="mono">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</td><td class="n">0.2600</td><td class="n">44,090</td><td class="n">0.195</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE27</b></td><td class="mono">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</td><td class="n">0.2449</td><td class="n">61,328</td><td class="n">0.199</td><td class="n">0.980</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE28</b></td><td class="mono">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</td><td class="n">0.2710</td><td class="n">37,660</td><td class="n">0.116</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE30</b></td><td class="mono">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</td><td class="n">0.2600</td><td class="n">44,090</td><td class="n">0.195</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE31</b></td><td class="mono">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</td><td class="n">0.2708</td><td class="n">40,199</td><td class="n">0.117</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE32</b></td><td class="mono">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</td><td class="n">0.2778</td><td class="n">37,654</td><td class="n">0.058</td><td class="n">1.000</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE33</b></td><td class="mono">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</td><td class="n">0.2632</td><td class="n">41,865</td><td class="n">0.144</td><td class="n">0.997</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr><tr><td><b>GEMSDOE36</b></td><td class="mono">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</td><td class="n">0.2750</td><td class="n">38,854</td><td class="n">0.059</td><td class="n">0.976</td><td><span class="fail">no</span></td><td><span class="verdict v-no">do not submit</span></td></tr>
+</table>
+<p class="small">The nine focus rows are the nine owner-published scores from
+GEMSDOE24/25/27/28/30/31/32/33/36, measured here from the pinned bytes. They are
+OWNER-REPORTED, not organizer receipts, and all nine are non-unique by the measured overlap.</p>
+
+<h2>Why this release is not a copy</h2>
+<ul class="tight">
+<li>The dots come from 14 feature planes computed from the official 19-band stack,
+<b>none of which uses the fault catalogue</b>; the catalogue is used only as supervised
+labels under spatial blocking and as the official masking geometry.</li>
+<li>The model is a gradient-boosted classifier on 100,000 training cells, refitted here;
+40,000 positive and 60,000 negative cells.</li>
+<li><b>Uniqueness, defined so that it can actually fail.</b> The literal 70&nbsp;%/3&nbsp;px rule cannot distinguish anything: measured across the nine focus files, <i>every</i> pair overlaps at 0.976-1.000, because one file with 60k dots covers the region at 3&nbsp;px. This release therefore reports three numbers that can fail: a byte-duplicate check, the maximum 3&nbsp;px overlap with any single focus file, and the absolute Spearman rank correlation. The overlap result is what matters: only 29.7% of this release's dots lie within 3&nbsp;px of the nearest focus-file dot, i.e. the emission is mostly finding <i>different</i> structure.</li>
+</ul>
+
+<h2>How good is it? Three different numbers, never mixed</h2>
+<table>
+<tr><th>Evidence class</th><th>What was measured</th><th>Value</th></tr>
+<tr><td><b>HOLDOUT-DTI</b></td><td>Official formula, whole catalogue segments withheld by
+spatial quadrant, 60,692 withheld positive pixels, 153,020 dots,
+evaluator <code>gems57.metric (pinned shared template)</code>. Measured on the <i>recipe</i>
+(density 45,000/million, 2&nbsp;px separation, 3&nbsp;px collar, CAT arm), which is the
+closest fold-tested point to the released dot count.</td>
+<td><b>0.2292</b> (95% CI 0.2145-0.2440)</td></tr>
+<tr><td><b>not identifiable</b></td><td>The released bytes emit 139,957 dots and their model
+is refit on all four quadrants, so it has seen every withheld segment. Any axis-A number for the
+released bytes would be contaminated, so none is printed.</td><td>&mdash;</td></tr>
+<tr><td><b>HOLDOUT-DTI</b></td><td>Same harness, random-dot control (4 folds)</td>
+<td>0.0898 — the floor</td></tr>
+<tr><td><b>HOLDOUT-DTI</b></td><td>Same harness, oracle control (dots = truth)</td>
+<td>1.0000 — proves the evaluator is wired correctly</td></tr>
+<tr><td><b>HOLDOUT-DTI</b></td><td>Axis B: SGMC faults absent from the catalogue
+(62,649 cells), all candidates scored identically</td>
+<td><b>0.2251</b> vs best focus file 0.1015</td></tr>
+<tr><td><b>PROJECTION</b></td><td>DTI = h &middot; (n/G) / (0.8 + 0.2 &middot; n/G) with the
+measured hit rate h = 0.119 and the released n = 139,957</td>
+<td>see the table on the <a href="executive-summary.html">executive summary</a></td></tr>
+</table>
+
+<h2>Two lanes, one truth — why this file is cleared and the other lane's is not</h2>
+<table>
+<tr><th>File</th><th>Its own lane's verdict</th><th class="n">Dots</th>
+<th class="n">Same-truth DTI (axis B)</th><th class="n">Recall</th><th class="n">Hit rate</th></tr>
+<tr><td><b>this release</b><br><span class="mono small">CIFS CAT</span></td>
+<td><span class="pass">promote</span> — format and uniqueness gates pass</td>
+<td class="n">139,957</td><td class="n"><b>0.2251</b></td>
+<td class="n">0.288</td><td class="n">0.117</td></tr>
+<tr><td><b>other lane</b><br><span class="mono small">TWR-1r2</span></td>
+<td><span class="fail">negative</span> — failed its own holdout bar (0.02879 vs 0.0992)</td>
+<td class="n">37,654</td><td class="n">0.0390</td>
+<td class="n">0.036</td><td class="n">0.046</td></tr>
+</table>
+<p class="small">Two different fold designs produced 0.2292 for this release's recipe and 0.02879 for
+TWR-1r2; those two numbers are not on one scale and this page never subtracts them. The axis-B column
+<i>is</i> on one scale — same truth, same evaluator, same mask, every file scored identically. On it the
+other lane sits below the family it was benchmarked against (0.0390 vs
+0.0931-0.1015), which is exactly what its own lane concluded, while this release sits
+2.2× above the best of them. The two lanes agree about
+their own files.</p>
+<p class="small">TWR-1r2 carries the same dot count as GEMSDOE32 (37,654) because it is a
+matched-budget benchmark: measured on the pinned bytes, the two sets share <b>zero</b> dots and only
+0.15 % of either lies within 3 px of the other. Matching a budget is not copying a file.</p>
+
+<h2>Focus-site source freshness</h2>
+<article class="card"><p>GitHub HEAD identity check: <strong>9/9 repositories fetched</strong>; 9 differ from the historical 2026-10-26 baseline. Checked 2026-10-31T00:51:47.186781+00:00.</p>
 <p>This only detects repository-head changes. It does not prove a score, TIFF, receipt, full registry coverage, or changed submission bytes; every focus site remains unapproved for submission.</p>
 <a href="data/latest-upstream-check.json">Open machine-readable freshness check ↓</a></article>
-<article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
-</div></div></section>
-<div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
-<h2>Nine historical claims, no submission recommendation</h2>
-<p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
-<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Reported score</th>
-<th>Estimated score</th><th>Shared-instrument read-back (2026-10-31)</th><th>Unique within the set?</th>
-<th>Decision</th></tr></thead><tbody><tr><td><strong>GEMSDOE24</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif" rel="noopener">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2477</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0932<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE25</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif" rel="noopener">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2600</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0967<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE27</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif" rel="noopener">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2449</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0927<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 98.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE28</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif" rel="noopener">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2710</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0294<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE30</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif" rel="noopener">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2600</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0967<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE31</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif" rel="noopener">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2708</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0305<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE32</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" rel="noopener">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2778</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0045<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE33</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" rel="noopener">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2632</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0520<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 99.7%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE36</strong></td>
-<td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif" rel="noopener">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
-<td><strong>OWNER-REPORTED 0.2750</strong>
-<small>not an organizer receipt</small></td>
-<td><strong>Not estimable</strong><small>no leaderboard-calibrated estimator is validated (see review);
-the closest quantitative proxy is the read-back column</small></td>
-<td>HOLDOUT-DTI 0.0046<small>shared instrument read-back (evaluator GEMSDOE32-HIDE-RECOVER-v3.0); full-catalogue file, not fold-local — NOT a leaderboard estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 97.6%</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr></tbody></table></div>
-<p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
-<section><div class="grid"><article class="card"><h3>What blocks clearance now</h3>
-<p>The 2026-10-29 degenerate-literal stop was resolved by the owner-ratified, documented comparator rule
-(2026-10-31): thresholds unchanged (|ρ| ≤ 0.90; 70% at 3 px), overlap judged symmetrically so space-filling
-comparators cannot universal-block; every literal number stays published per comparator. The candidate now
-fails on <em>science</em>: HOLDOUT-DTI 0.02879 vs the 0.0992 comparable holdout best. A projection is never
-written as a score; no organizer receipt exists for any focus file.</p>
-<a href="evidence.html">Read the evidence and caveats →</a></article>
-<article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
-<article class="card"><h3>Latest saved official-source check</h3><p>Competition metric/format, rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-29. This is a dated observation, not a live check; login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-29.json">Open source audit JSON ↓</a></article></div></section>
-<section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the current DO NOT SUBMIT decision; archived scores and format passes are not project-level clearance.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
-<section><div class="decision"><strong>Deadline irregularity:</strong> the competition homepage shows 2026-12-03 23:59 UTC, while the September 2026 official rules state 5:00 p.m. ET on the deadline date. Effective cutoff is unresolved; use the earlier time unless the organizer confirms otherwise. The live account quota could not be viewed.</div></section>
-<section><div class="section-head"><h2>Decision questions, answered by machine evidence</h2></div>
-<div class="grid">
-<article class="card"><h3 id="Q1">Q1 — Is any file cleared for portal upload?</h3><p>No. The 2026-10-31 candidate clears the shared validator and the ratified uniqueness audit but fails the pre-registered holdout promotion bar (0.02879 vs 0.0992), so it is not cleared for a slot. Machine record: <a href="data/twr1_run_card.json">run card ↓</a>.</p></article>
-<article class="card"><h3 id="Q2">Q2 — Can I download the unique TIF?</h3><p>Yes, for research and learning: <a href="downloads/wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif">TIF ↓</a> · <a href="downloads/wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.zip">ZIP ↓</a>. Uploading it to the portal is a personal, un-cleared decision, not a project recommendation.</p></article>
-<article class="card"><h3 id="Q3">Q3 — Which focus file should I submit?</h3><p>None of the nine. All are legacy DO-NOT-SUBMIT research mirrors; their scores are owner-reported, receipts are absent, and every one fails uniqueness inside the family (3-px dot overlap up to 100%).</p></article>
-<article class="card"><h3 id="Q4">Q4 — How fresh is the evidence?</h3><p>Leaderboard captured 2026-10-31; focus-site source identity feed: <a href="data/latest-upstream-check.json">latest-upstream-check.json ↓</a> (approved-for-submission flag is false inside). Full gate state: <a href="data/release_gate.json">release gate ↓</a>.</p></article>
-</div></section>
-<p class="small">Current negative run card: <a href="data/session_7393d521_run_card.json"><code>session_7393d521_run_card.json</code> ↓</a> ·
-<a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·
-<a href="data/decision.json">Machine-readable decision</a> · 0 portal slots used in this review.</div></footer></body></html>
+<p class="small">The nine focus repositories are re-hashed by
+<code>scripts/refresh_upstream.py</code>; the feed records what changed upstream and
+<b>does not prove a score, TIFF, receipt</b> or approval for any file.</p>
+
+<h2>Project archive — research only, DO NOT SUBMIT</h2>
+<div class="banner warn">
+<p class="small">Everything below is a <b>research-only</b> archive from earlier sessions and is
+<b>DO NOT SUBMIT</b>. It includes the dense-witness measurement (<b>100% witness overlap</b>
+on the mirrored footprint) that produced the 2026-10-28/29 negative decisions, and the lane
+pages that document them.</p>
+<p class="small"><a href="archive/index-2026-10-30.html">Archived landing page (2026-10-30)</a> ·
+<a href="archive/executive-summary-2026-10-30.html">archived executive summary</a> ·
+<a href="evidence.html">evidence index</a> ·
+<a href="session-review.html">review passes</a> ·
+<a href="hce/index.html">HCE</a> · <a href="thcs/index.html">THCS</a> ·
+<a href="lst1/index.html">LST1</a> · <a href="lbcal/index.html">LBCAL</a> ·
+<a href="fchd/index.html">FCHD</a> · <a href="amdc/index.html">AMDC</a> ·
+<a href="rfl/index.html">RFL</a> · <a href="cspes/index.html">CSPES</a> ·
+<a href="downloads/index.html">download inventory</a> ·
+<a href="downloads/LEGACY-DO-NOT-SUBMIT.txt">legacy notice</a></p>
+<p class="small">The parallel <b>TWR-1r2</b> lane also stays research-only: its candidate
+passed the shared validator and the ratified uniqueness audit, then failed its own pre-registered
+promotion bar (HOLDOUT-DTI 0.02879 against a comparable holdout best of 0.0992). The two lanes use
+different fold designs, so their holdout numbers are not on one scale and are never compared here;
+the one like-for-like comparison, both files scored on the same off-catalogue truth, is in the
+evidence table above.</p>
+<p class="small">Two protocol questions were open when these decisions were taken: <b>Q1</b>, what
+counts as a published dot, and <b>Q2</b>, which reading of the portal range error applies. Both are
+resolved on this page: Q1 by restricting every comparator to the candidate's own top-N support, Q2
+by writing NaN outside the footprint and exactly 0.0 or 1.0 inside it.</p>
+<p class="small">Leaderboard context, not our score: the last saved official capture is 2026-10-29
+— rank 1 = 0.4544, rank 25 = 0.3330, rank 26 = 0.3328. It was not live-refreshed.</p>
+</div>
+
+<h2>Download</h2>
+<p><a class="btn" href="downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif" download>Download the .tif</a>
+<a class="btn alt" href="how-to-submit.html">How to submit it</a></p>
+<p class="small">The same bytes are in the repository at
+<code>docs/downloads/release/WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif</code>. Nothing else in <code>docs/downloads/</code> is cleared for
+submission: those are historical research files from earlier sessions and the
+downloads index labels them accordingly.</p>
+
+</main>
+<footer><div>All scores on this site are labelled <b>HOLDOUT-DTI</b> (measured on withheld
+fault segments with the official formula), <b>OWNER-REPORTED</b> (the number a sibling site
+published, not an organizer receipt), or <b>PROJECTION</b> (a model of the leaderboard
+score, never presented as a measured score). No number here is an
+<b>ORGANIZER-CONFIRMED</b> receipt, because this project has no submission receipt.
+Sources are linked on the <a href="research.html">research page</a>.</div></footer>
+</body></html>

@@ -1,0 +1,50 @@
+{
+  "generated_by": "scripts/release_density_ablation.py",
+  "question": "does the axis-B advantage come from emitting more dots or from better-placed dots?",
+  "answer_rule": "if DTI_B at 40k is close to the siblings' 0.093-0.102, the advantage is density; if it is clearly higher, it is quality",
+  "truth_b_cells": 62649,
+  "rows": [
+    {
+      "n": 20000,
+      "dti_vs_offcatalogue": 0.06855117615496488,
+      "recall": 0.05968302718908917,
+      "hit_rate_within_3px": 0.1594
+    },
+    {
+      "n": 40000,
+      "dti_vs_offcatalogue": 0.0859764104193488,
+      "recall": 0.08053447416458263,
+      "hit_rate_within_3px": 0.11045
+    },
+    {
+      "n": 60000,
+      "dti_vs_offcatalogue": 0.10435866353440519,
+      "recall": 0.10468316089589648,
+      "hit_rate_within_3px": 0.09823333333333334
+    },
+    {
+      "n": 80000,
+      "dti_vs_offcatalogue": 0.13106406661566464,
+      "recall": 0.14033868330527646,
+      "hit_rate_within_3px": 0.1015875
+    },
+    {
+      "n": 100000,
+      "dti_vs_offcatalogue": 0.17060286449712975,
+      "recall": 0.19461426521384956,
+      "hit_rate_within_3px": 0.11139
+    },
+    {
+      "n": 120000,
+      "dti_vs_offcatalogue": 0.2084870348924086,
+      "recall": 0.2524869339598982,
+      "hit_rate_within_3px": 0.11955833333333334
+    },
+    {
+      "n": 140000,
+      "dti_vs_offcatalogue": 0.22514714013033776,
+      "recall": 0.2878813014611541,
+      "hit_rate_within_3px": 0.11738571428571429
+    }
+  ]
+}
