@@ -1,0 +1,200 @@
+{
+ "evidence_class": "HOLDOUT-DTI",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "evaluator_sha256": {
+  "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+  "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+  "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+  "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+ },
+ "arm": "sp2_b80000",
+ "forbidden": [
+  {
+   "submission": "registry-cache:8624c5a58c681f57_gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/8624c5a58c681f57_gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "sha256": "8624c5a58c681f57a6d26cab0652cfe654bcd46dc8ba68a7d5a4c0feaa29bc89",
+   "forward_overlap": 0.865175,
+   "their_dots": 167597,
+   "support_coverage_3px": 0.5481466114406682
+  },
+  {
+   "submission": "registry-cache:d0c5fd6825b544eb_gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/d0c5fd6825b544eb_gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+   "forward_overlap": 0.8353375,
+   "their_dots": 516738,
+   "support_coverage_3px": 0.5343281779736048
+  },
+  {
+   "submission": "registry-cache:ce3f70fa2e1e7bbe_12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/ce3f70fa2e1e7bbe_12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+   "sha256": "ce3f70fa2e1e7bbea60c8c62a2f805c22d15b8a8905ebec757259617ceb02fbc",
+   "forward_overlap": 0.8322625,
+   "their_dots": 103347,
+   "support_coverage_3px": 0.32244430583973716
+  },
+  {
+   "submission": "registry-cache:47caaca53d2906f7_gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/47caaca53d2906f7_gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "sha256": "47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98",
+   "forward_overlap": 0.8202625,
+   "their_dots": 201260,
+   "support_coverage_3px": 0.5536799840073476
+  },
+  {
+   "submission": "registry-cache:ce749a992baec603_gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/ce749a992baec603_gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "sha256": "ce749a992baec603460dfeddd068758855cb8b12978268e6ef94f6e23ffd9ee7",
+   "forward_overlap": 0.8104375,
+   "their_dots": 80000,
+   "support_coverage_3px": 0.2659895076279572
+  },
+  {
+   "submission": "registry-cache:e5f3684e9b49e8f1_gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/e5f3684e9b49e8f1_gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+   "forward_overlap": 0.7435375,
+   "their_dots": 335879,
+   "support_coverage_3px": 0.41313429473738394
+  }
+ ],
+ "n_forbidden": 6,
+ "pooled_summary": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+   "candidate": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.013656059699945473,
+    "ci95": [
+     0.00948732692495882,
+     0.018636021356909824
+    ],
+    "withheld_positive_pixels": 11321,
+    "tpw": 332.72326386383367,
+    "fpw": 76205.84897678117,
+    "fnw": 10988.276736136166
+   },
+   "random_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.005526853787626612,
+    "ci95": [
+     0.0032783760622815137,
+     0.008112239098253442
+    ],
+    "withheld_positive_pixels": 11321,
+    "tpw": 134.3451364670177,
+    "fpw": 76120.18440432377,
+    "fnw": 11186.654863532982
+   }
+  },
+  "best_comparable_control": "random_control",
+  "paired_differences": {
+   "random_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.00812920591231886,
+    "ci95": [
+     0.0055754148529697165,
+     0.01118460551911875
+    ],
+    "withheld_positive_pixels": 11321
+   }
+  },
+  "bootstrap": {
+   "method": "paired physical spatial-cluster percentile",
+   "clusters": 156,
+   "draws": 1000,
+   "seed": 520810,
+   "confidence": 0.95,
+   "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+   "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+   "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+   "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+   "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  }
+ },
+ "best_pooled_dti": 0.013656059699945473,
+ "ci95": [
+  0.00948732692495882,
+  0.018636021356909824
+ ],
+ "baseline_pooled_dti": 0.005526853787626612,
+ "paired_delta_ci95": [
+  0.0055754148529697165,
+  0.01118460551911875
+ ],
+ "n_withheld_positives": 11321,
+ "per_fold": [
+  {
+   "fold": "NW",
+   "n_truth": 1923,
+   "n_dots": 80000,
+   "arm_dti": {
+    "candidate": 0.011272939040901622,
+    "random_control": 0.0036995219055423467
+   },
+   "train": {
+    "n_train": 108340,
+    "n_pos": 48340,
+    "n_neg": 60000,
+    "in_sample_accuracy": 0.8265922097101717
+   }
+  },
+  {
+   "fold": "NE",
+   "n_truth": 2367,
+   "n_dots": 80000,
+   "arm_dti": {
+    "candidate": 0.014729577695631645,
+    "random_control": 0.005655936302285331
+   },
+   "train": {
+    "n_train": 108340,
+    "n_pos": 48340,
+    "n_neg": 60000,
+    "in_sample_accuracy": 0.8265922097101717
+   }
+  },
+  {
+   "fold": "SW",
+   "n_truth": 3781,
+   "n_dots": 80000,
+   "arm_dti": {
+    "candidate": 0.011392455472765895,
+    "random_control": 0.0036103600503066607
+   },
+   "train": {
+    "n_train": 108340,
+    "n_pos": 48340,
+    "n_neg": 60000,
+    "in_sample_accuracy": 0.8265922097101717
+   }
+  },
+  {
+   "fold": "SE",
+   "n_truth": 3250,
+   "n_dots": 80000,
+   "arm_dti": {
+    "candidate": 0.017234893542796594,
+    "random_control": 0.00946539015345321
+   },
+   "train": {
+    "n_train": 108340,
+    "n_pos": 48340,
+    "n_neg": 60000,
+    "in_sample_accuracy": 0.8265922097101717
+   }
+  }
+ ],
+ "note": "Same fold-local rule as the first candidate plus the published forbidden-halo rule; catalogue band from the fold's visible faults only; the matched control is a uniform random dot field with the same dot count on the same folds.",
+ "elapsed_s": 538.7
+}

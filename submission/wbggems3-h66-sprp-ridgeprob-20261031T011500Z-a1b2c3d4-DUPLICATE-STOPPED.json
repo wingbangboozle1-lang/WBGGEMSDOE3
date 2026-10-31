@@ -1,0 +1,125 @@
+{
+  "file": "wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4.tif",
+  "sha256": "903067f6a472ae357f05eb5a386c44e302d00b86b0c9df6e4b837394ecdf2e8c",
+  "bytes": 210537,
+  "submission_name": "wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4",
+  "note": "H66-SPRP: supervised ridge probability on the official 19-band stack (no catalogue feature), DTI-bar emission, 2-px catalogue band excluded",
+  "note_chars": 139,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE3/submission/wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4.tif",
+    "bytes": 210537,
+    "sha256": "903067f6a472ae357f05eb5a386c44e302d00b86b0c9df6e4b837394ecdf2e8c",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.006515103857964277,
+    "emitted_positive_pixels": 80000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 80000,
+    "footprint_fraction": 0.015481754462083538
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE3/submission/wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4.tif",
+    "bytes": 210537,
+    "sha256": "903067f6a472ae357f05eb5a386c44e302d00b86b0c9df6e4b837394ecdf2e8c",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.006515103857964277,
+    "n_nonzero": 80000,
+    "mass": 80000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4.zip",
+  "zip_sha256": "17dde04de4de207d9f1efb81b4eac0d8e2f8918a8706ca34f1756863671620d3",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "h66_sprp",
+    "g_truth_hat": 1564556.875,
+    "surrogate_dti": null,
+    "arm": "sp2_b80000"
+  }
+}

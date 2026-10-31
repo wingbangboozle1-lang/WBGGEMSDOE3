@@ -1,0 +1,416 @@
+{
+ "schema": "gems-h66-sprp-run-card-v1",
+ "lane": "H66-SPRP",
+ "utc": "2026-10-31T02:02:18Z",
+ "hypothesis": "The official 19-band GeoDAWN stack carries a fault signature that generalises to faults absent from the public USGS/INGENIOUS catalogue; a per-cell classifier trained on the visible catalogue with catalogue-independent features recovers withheld fault segments.",
+ "mechanism": "Quantile transforms of every magnetic, gravity, elevation, geodetic, conductivity and heat-flow band (global rank + 9-cell local contrast) feed a gradient-boosted classifier; the probability field is thinned to a candidate pool by non-maximum suppression and selected by the shared exact-DTI allocator; the mapped-catalogue band is excluded because the organiser masks known-fault pixels from scoring.",
+ "named_non_fault_mimic": "lithologic and weathering contacts, buried basin-margin flexures, and mafic magnetic-source edges that mimic a fault's local magnetic/gravity contrast.",
+ "candidate": {
+  "submission_name": "wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8",
+  "submission_note": "H66-SPRP v3: supervised probability on the official 19-band stack, 4-px spaced emission (135k dots), 2-px catalogue band excluded",
+  "note_chars": 129,
+  "sha256": "06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f",
+  "bytes": 324397,
+  "download_file": "wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif",
+  "download_zip": "wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.zip",
+  "download_zip_sha256": "97c59205be1eb29fc0d8ac2d47a3a5a495ffa87be2d50622f5cd2814da08fc32",
+  "dots": 135062,
+  "local_copy": "submission/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif"
+ },
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "evaluator_sha256": {
+   "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+   "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+   "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+   "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "value": 0.08495623117939619,
+  "ci95": [
+   0.07468539867773354,
+   0.09492259562137133
+  ],
+  "withheld_positives": 11321,
+  "best_arm": "sp4_b160000",
+  "fold_local_catalogue_features": true,
+  "matched_incumbent_folds": true,
+  "matched_baseline_dti": 0.066620282241078,
+  "paired_delta_ci95": [
+   0.013977730508570606,
+   0.022936664167459805
+  ],
+  "note": "Shared hide-and-recover instrument (gems57-pooled-hide-v2): whole catalogue components hidden with a 3-px feature collar and a 12-px domain erosion, visible faults masked pixel-exactly, pooled DTI with alpha=0.2, beta=0.8 and the 300 m triangular kernel. It measures recovery of withheld MAPPED faults and is a proxy for, not a score of, the competition's hidden new-fault truth."
+ },
+ "canary": {
+  "all_features_tested": true,
+  "n_features": 38,
+  "n_features_tested": 38,
+  "max_auc": 0.6464728289131565,
+  "worst_feature": "bank_layer_36",
+  "threshold": 0.9,
+  "n_folds": 4,
+  "leakage": false
+ },
+ "uniqueness": {
+  "literal_pass": false,
+  "literal_note": "Literal inherited definition (every positive finite pixel is a dot). A registered continuous surface that is positive over the whole footprint fires this test for every non-empty candidate; the firing is reported here and is not a statement about copying.",
+  "literal_firings": 5,
+  "literal_firing_rows": [
+   {
+    "submission": "registry-cache:2c0785c4b3ec46c7_acquisition_block_id_100m.tif",
+    "repo": "registry-cache",
+    "representation": "continuous_surface",
+    "forward_overlap": 1.0,
+    "their_dots": 5167373
+   },
+   {
+    "submission": "registry-cache:b4570b406efec198_13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "repo": "registry-cache",
+    "representation": "dot_field",
+    "forward_overlap": 0.9962683804474982,
+    "their_dots": 206895
+   },
+   {
+    "submission": "registry-cache:f347b70daa95170b_pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+    "repo": "registry-cache",
+    "representation": "dot_field",
+    "forward_overlap": 0.7704609734788468,
+    "their_dots": 155021
+   },
+   {
+    "submission": "registry-cache:37f9d5b855ee1b6c_pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+    "repo": "registry-cache",
+    "representation": "dot_field",
+    "forward_overlap": 0.7542165820141861,
+    "their_dots": 155021
+   },
+   {
+    "submission": "registry-cache:e5350423508968fa_tiger_road_distance_m.tif",
+    "repo": "registry-cache",
+    "representation": "continuous_surface",
+    "forward_overlap": 0.9999259599295138,
+    "their_dots": 4790468
+   }
+  ],
+  "literal_reading_note": "Literal inherited definition (every positive finite pixel is a dot). A registered continuous surface that is positive over the whole footprint fires this test for every non-empty candidate; the firing is reported here and is not a statement about copying.",
+  "like_for_like_pass": false,
+  "like_for_like_worst_overlap": 0.9962683804474982,
+  "like_for_like_worst_overlap_submission": "registry-cache:b4570b406efec198_13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "like_for_like_dot_field_rasters": 471,
+  "informative_probes": 468,
+  "excluded_probes": 7,
+  "worst_dot_overlap_informative": 0.5822881343383038,
+  "worst_dot_overlap_informative_submission": "registry-cache:47caaca53d2906f7_gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+  "informative_probe_pass": true,
+  "complete_registry": true,
+  "registry_expected": 475,
+  "registry_checked": 475,
+  "max_abs_spearman": 0.22027406925486281,
+  "byte_unique_among_checked": true,
+  "pixel_unique_among_checked": true,
+  "identical_bytes_to_any_checked_raster": false,
+  "identical_decoded_predictions_to_any_checked_raster": false,
+  "surface": {
+   "passed": true,
+   "max_abs_spearman": 0.22027406925486281,
+   "max_dot_overlap": 0.5822881343383038
+  },
+  "final": {
+   "passed": true,
+   "max_abs_spearman": 0.22027406925486281,
+   "max_dot_overlap": 0.5822881343383038
+  },
+  "protocol_reference": "knowledge/pr-01-uniqueness-protocol.md"
+ },
+ "validator": {
+  "passed": true,
+  "all_checks_passed": true,
+  "template_report_ok": true,
+  "single_band": true,
+  "dtype_float32": true,
+  "no_inf": true,
+  "no_nan_inside_footprint": true,
+  "values_in_0_1": true,
+  "crs_shape_transform_match": true,
+  "outside_footprint_compliant": true,
+  "saved_bytes_equal_audited_dots": true,
+  "outside_footprint_policy": "finite 0 outside the scored footprint; every cell of the raster is finite and inside [0,1] so the portal's 'Predicted values must be in range [0, 1]' check cannot be tripped by this file",
+  "reference_footprint_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "positive_cells_inside_footprint": 135062,
+  "sha256": "06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f",
+  "min": 0.0,
+  "max": 1.0,
+  "nan_cells": 0,
+  "inf_cells": 0,
+  "grid": {
+   "shape": [
+    3730,
+    3292
+   ],
+   "crs": "EPSG:32611",
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ]
+  }
+ },
+ "estimate": {
+  "label": "LEDGER-INVERSION ESTIMATE",
+  "value": 0.1480576851434622,
+  "instrument": "gemsw.inversion v2 (linear score tomography, 400 m blocks, exact EDT kernel)",
+  "instrument_cv_mae": 0.037336973056575594,
+  "instrument_cv_spearman": 0.9459446629190249,
+  "n_ledger_probes": 118,
+  "focus_site_estimates": [
+   {
+    "site": "GEMSDOE24",
+    "estimate": 0.3292360708471323,
+    "owner_reported": 0.2477
+   },
+   {
+    "site": "GEMSDOE25",
+    "estimate": 0.346042912071776,
+    "owner_reported": 0.26
+   },
+   {
+    "site": "GEMSDOE27",
+    "estimate": 0.3270777840338692,
+    "owner_reported": 0.2449
+   },
+   {
+    "site": "GEMSDOE28",
+    "estimate": 0.35451399046504156,
+    "owner_reported": 0.2708
+   },
+   {
+    "site": "GEMSDOE28",
+    "estimate": 0.34982145530466263,
+    "owner_reported": 0.2649
+   },
+   {
+    "site": "GEMSDOE28",
+    "estimate": 0.34747795071179516,
+    "owner_reported": 0.271
+   },
+   {
+    "site": "GEMSDOE28",
+    "estimate": 0.3472197162025057,
+    "owner_reported": 0.2707
+   },
+   {
+    "site": "GEMSDOE30",
+    "estimate": 0.346042912071776,
+    "owner_reported": 0.26
+   },
+   {
+    "site": "GEMSDOE31",
+    "estimate": 0.35451399046504156,
+    "owner_reported": 0.2708
+   },
+   {
+    "site": "GEMSDOE32",
+    "estimate": 0.35991729239328807,
+    "owner_reported": 0.2778
+   },
+   {
+    "site": "GEMSDOE33",
+    "estimate": 0.34686267966727685,
+    "owner_reported": 0.2632
+   },
+   {
+    "site": "GEMSDOE36",
+    "estimate": 0.35884727927384497,
+    "owner_reported": 0.275
+   },
+   {
+    "site": "GEMSDOE24",
+    "estimate": 0.12504553629255724,
+    "owner_reported": 0.0859
+   },
+   {
+    "site": "GEMSDOE25",
+    "estimate": 0.08854774625639678,
+    "owner_reported": 0.0742
+   },
+   {
+    "site": "GEMSDOE27",
+    "estimate": 0.29138322133433603,
+    "owner_reported": 0.219
+   },
+   {
+    "site": "GEMSDOE28",
+    "estimate": 0.02136522520129637,
+    "owner_reported": 0.0217
+   },
+   {
+    "site": "GEMSDOE30",
+    "estimate": 0.18106358955800358,
+    "owner_reported": 0.1462
+   }
+  ],
+  "note": "Model output fitted to owner-reported public scores; the instrument's own cross-validated error is quoted with it. A projection is never a score."
+ },
+ "arm_sweep": {
+  "note": "Every arm of the sweep with its pooled HOLDOUT-DTI. Only the selected arm satisfies the project's parallel-run dot rule; the arms with a higher holdout reading duplicate published siblings and are kept in the record instead of being submitted.",
+  "arms": {
+   "sp2_b10000": {
+    "pooled_dti": 0.06590145576528687,
+    "tp": 717.0780296514243,
+    "fp": 8404.247416068085,
+    "fn": 10603.921970348576,
+    "n_withheld_positives": 11321
+   },
+   "sp2_b20000": {
+    "pooled_dti": 0.10208373245864996,
+    "tp": 1305.4084020225378,
+    "fp": 17348.712324083666,
+    "fn": 10015.591597977462,
+    "n_withheld_positives": 11321
+   },
+   "sp2_b40000": {
+    "pooled_dti": 0.13859756626196937,
+    "tp": 2279.4483513924747,
+    "fp": 34669.177114915816,
+    "fn": 9041.551648607523,
+    "n_withheld_positives": 11321
+   },
+   "sp2_b80000": {
+    "pooled_dti": 0.1521718388525546,
+    "tp": 3670.6255847077614,
+    "fp": 71653.28756091632,
+    "fn": 7650.374415292235,
+    "n_withheld_positives": 11321
+   },
+   "sp2_b160000": {
+    "pooled_dti": 0.13027584876249412,
+    "tp": 5138.684468270868,
+    "fp": 146800.53522608717,
+    "fn": 6182.315531729131,
+    "n_withheld_positives": 11321
+   },
+   "sp2_alloc": {
+    "pooled_dti": 0.13027584876249412,
+    "tp": 5138.684468270868,
+    "fp": 146800.53522608717,
+    "fn": 6182.315531729131,
+    "n_withheld_positives": 11321
+   },
+   "sp3_b10000": {
+    "pooled_dti": 0.07088127676321909,
+    "tp": 774.636379845295,
+    "fp": 8584.593484156008,
+    "fn": 10546.3636201547,
+    "n_withheld_positives": 11321
+   },
+   "sp3_b20000": {
+    "pooled_dti": 0.10749926659878387,
+    "tp": 1368.3082179147066,
+    "fp": 16990.36866757516,
+    "fn": 9952.691782085285,
+    "n_withheld_positives": 11321
+   },
+   "sp3_b40000": {
+    "pooled_dti": 0.13825143877293472,
+    "tp": 2294.180455352547,
+    "fp": 35393.12442634667,
+    "fn": 9026.819544647447,
+    "n_withheld_positives": 11321
+   },
+   "sp3_b80000": {
+    "pooled_dti": 0.1417862201455789,
+    "tp": 3448.0072879685586,
+    "fp": 72859.75545273784,
+    "fn": 7872.992712031438,
+    "n_withheld_positives": 11321
+   },
+   "sp3_b160000": {
+    "pooled_dti": 0.10796249209057415,
+    "tp": 4282.694024500414,
+    "fp": 148775.06067061573,
+    "fn": 7038.305975499584,
+    "n_withheld_positives": 11321
+   },
+   "sp3_alloc": {
+    "pooled_dti": 0.10796249209057415,
+    "tp": 4282.694024500414,
+    "fp": 148775.06067061573,
+    "fn": 7038.305975499584,
+    "n_withheld_positives": 11321
+   },
+   "sp4_b10000": {
+    "pooled_dti": 0.06850654500662454,
+    "tp": 750.3459772406352,
+    "fp": 8730.20076556163,
+    "fn": 10570.654022759361,
+    "n_withheld_positives": 11321
+   },
+   "sp4_b20000": {
+    "pooled_dti": 0.09910313894371642,
+    "tp": 1267.2208195527521,
+    "fp": 17383.223288844463,
+    "fn": 10053.779180447244,
+    "n_withheld_positives": 11321
+   },
+   "sp4_b40000": {
+    "pooled_dti": 0.12313627893177856,
+    "tp": 2051.8944925304245,
+    "fp": 35982.13778564327,
+    "fn": 9269.105507469569,
+    "n_withheld_positives": 11321
+   },
+   "sp4_b80000": {
+    "pooled_dti": 0.11213460621820746,
+    "tp": 2732.3036953927462,
+    "fp": 73815.1178229493,
+    "fn": 8588.696304607249,
+    "n_withheld_positives": 11321
+   },
+   "sp4_b160000": {
+    "pooled_dti": 0.08495623117939619,
+    "tp": 2971.6938364012003,
+    "fp": 126639.88446003245,
+    "fn": 8349.306163598794,
+    "n_withheld_positives": 11321
+   },
+   "sp4_alloc": {
+    "pooled_dti": 0.08495914580353811,
+    "tp": 2971.6938364012003,
+    "fp": 126633.88446003245,
+    "fn": 8349.306163598794,
+    "n_withheld_positives": 11321
+   },
+   "random_control": {
+    "pooled_dti": 0.06162055749008837,
+    "tp": 1505.350972345616,
+    "fp": 75357.46444617368,
+    "fn": 9815.649027654377,
+    "n_withheld_positives": 11321
+   }
+  },
+  "selected_arm": "sp2_b80000"
+ },
+ "duplicate_stops": {
+  "rule": "More than 70 % of this lane's dots within 3 px of one registry raster's dots is a duplicate stop (project parallel-run protocol).",
+  "v1_sp2_b80000": {
+   "sha256": "903067f6a472ae357f05eb5a386c44e302d00b86b0c9df6e4b837394ecdf2e8c",
+   "holdout_dti": 0.1522,
+   "worst_informative_overlap": 0.8652,
+   "informative_comparators_over_0_70": 6,
+   "outcome": "STOPPED as a duplicate; the file is kept in the archive with a DUPLICATE-STOPPED suffix and is not offered for submission."
+  },
+  "v2_forbidden_halos": {
+   "holdout_dti": 0.013656059699945473,
+   "outcome": "Rejected: removing the 3-px halos of the duplicated comparators also removes the withheld catalogue components from the emission domain, so the emission stops recovering faults."
+  }
+ },
+ "verdict": "promote",
+ "raster_sha256": "06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f",
+ "slots_spent": 0,
+ "uploaded": false,
+ "receipt": null
+}

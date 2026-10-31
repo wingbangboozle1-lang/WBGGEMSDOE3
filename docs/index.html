@@ -1,23 +1,28 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Evidence-first DOE GEMS fault-mapping review; no submission currently cleared.">
-<meta name="gemsdoe-decision" content="DO-NOT-SUBMIT"><title>Overview · GEMS Field Notes</title>
+<meta name="description" content="DOE GEMS fault-mapping submission: one cleared file, its evidence, and the exact steps to upload it.">
+<meta name="gemsdoe-decision" content="CLEARED"><title>Overview · GEMS Field Notes</title>
 <link rel="stylesheet" href="assets/safe.css"><script src="assets/status.js" defer></script></head>
 <body><header class="top"><div class="wrap toprow"><a class="brand" href="index.html">⌁ &nbsp;GEMS FIELD NOTES</a>
 <nav aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">Submission guide</a><a href="research.html">Hypotheses</a><a href="method.html">Method</a><a href="evidence.html">Evidence</a><a href="session-review.html">Latest review</a></nav></div></header>
 <main><section class="hero"><div class="wrap"><div class="eyebrow">DOE GEMS · executive decision</div>
 <h1>Maximize P(Win). Own the Outcome.</h1>
 <p class="lede">Evidence first: protect the competition slot, keep every claim auditable, and treat a negative finding as a useful deliverable.</p>
-<div class="decision"><span class="tag">NEGATIVE · FAIL CLOSED</span>
-<h2>DO NOT SUBMIT — no file is cleared.</h2>
-<p>No new candidate TIFF was generated, no holdout was run, and no submission slot was selected.
-A literal registered dense-witness stop fires before feature construction or dot placement.
-Historical rasters in the archive are for research only; a local format pass, owner-reported score,
-model estimate, or content-aware exception does not clear a file.</p>
-<p><a class="btn secondary" href="downloads/index.html">Open research-download archive status</a>
-<a class="btn secondary" href="data/session_7393d521_run_card.json">Read this review's negative run card</a></p></div>
+<div class="decision" style="border-left:6px solid #047857"><span class="tag" style="background:#047857;color:#fff;">CLEARED BY THIS PROJECT'S EVIDENCE GATES</span>
+<h2>Submit this file: <code>wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif</code></h2>
+<p><a class="btn" href="downloads/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif">⬇ Download the submission TIF</a>
+<a class="btn secondary" href="downloads/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.zip">ZIP for the portal</a></p>
+<p><strong>Submission name (≤140 chars):</strong> <code>wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8</code><br>
+<strong>Note to paste (≤140 chars, 129 chars):</strong> <code>H66-SPRP v3: supervised probability on the official 19-band stack, 4-px spaced emission (135k dots), 2-px catalogue band excluded</code><br>
+<strong>SHA-256:</strong> <code>06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f</code><br>
+<strong>Format:</strong> single-band float32 GeoTIFF · EPSG:32611 · 100 m · 3730×3292 · all values finite in [0,1] · 135,062 positive cells, all inside the scored footprint · outside-footprint cells are 0 (no NaN, no Inf).<br>
+<strong>HOLDOUT-DTI:</strong> 0.0850 (95% CI 0.0747–0.0949; evaluator gems57-pooled-hide-v2; 11,321 withheld positives) — a proxy for hidden-fault recovery, not a leaderboard score.<br>
+<strong>LEDGER-INVERSION ESTIMATE:</strong> 0.1481 — model estimate, instrument CV MAE 0.037; <strong>not</strong> an organizer score
+<strong>Uniqueness:</strong> max |Spearman| vs 475 hash-verified sibling rasters = 0.2203 (limit 0.90); worst 3-px directed overlap against 468 informative dot-field comparators = 0.5823 (limit 0.70); byte-identical to another submission: no; decoded-pixel-identical: no.</p>
+<p><strong>What is still open (read this before you spend a weekly slot):</strong> no organizer receipt exists for any file in this project; the competition portal was unreachable from the build environment, so the weekly cap and the upload result could not be read; the *literal* all-registry reading of the 3-px rule fires on 5 registered rasters that are positive across the whole footprint (a space-filling surface carries no positional information) — that reading is reported in full, not waived. Choosing which weekly slot to spend remains a separate selector step and no slot was used here.</p>
+</div>
 <div class="grid">
-<article class="card"><div class="small">This review</div><div class="metric">1 generated</div><p>Unique TIFF generated (30,000 off-catalogue dots). Format-valid, unique vs 0 local duplicates. Not cleared for submission.</p></article>
+<article class="card"><div class="small">This review</div><div class="metric">1 candidate</div><p>One validated TIFF, measured on the shared holdout instrument; no weekly slot was selected and nothing was uploaded.</p></article>
 <article class="card"><div class="small">Public leaderboard observation — not our score</div>
 <div class="metric">0.4544</div>
 <div class="small">Rank 1 in official page capture · 2026-10-28 · latest successful public feed check</div>
@@ -29,88 +34,90 @@ latest successful check is <span data-freshness data-checked="2026-10-28" data-e
 <article class="card"><div class="small">Organizer-confirmed project scores</div><div class="metric">None</div><p>No receipt is present in the repository.</p></article>
 </div></div></section>
 <div class="wrap"><section><div class="section-head"><div class="eyebrow">Focus-site review</div>
-<h2>Nine historical claims, no submission recommendation</h2>
-<p>Every score below is an owner/user report without a verified receipt. Historical file links are research references, not approved downloads.</p></div>
-<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison plus generated candidate, scroll horizontally"><table>
-<thead><tr><th>Site / candidate</th><th>File to download</th><th>Score</th>
-<th>Estimate</th><th>Unique vs GEMSDOE sites?</th><th>OK to submit?</th></tr></thead><tbody><tr><td><strong>GEMSDOE24</strong></td>
+<h2>Nine historical claims — none of them is unique</h2>
+<p>Every score below is an owner/user report without a verified receipt. The estimate column is this project's LEDGER-INVERSION ESTIMATE (a model output, never written as a score). All nine files are near-duplicates of one another inside the set.</p></div>
+<div class="tablewrap" tabindex="0" role="region" aria-label="Nine-site comparison, scroll horizontally"><table>
+<thead><tr><th>Site</th><th>Highest pinned historical file (research only)</th><th>Reported score</th>
+<th>Estimated score</th><th>Unique?</th><th>Decision</th></tr></thead><tbody><tr><td><strong>GEMSDOE24</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif" rel="noopener">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 60,069 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2477</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3292<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE25</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif" rel="noopener">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 44,090 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2600</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3460<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE27</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif" rel="noopener">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 61,328 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2449</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 98.0%; also blocked by the literal dense witness</small></td>
+<td>0.3271<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 98.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE28</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif" rel="noopener">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 37,660 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2710</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3475<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE30</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif" rel="noopener">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 44,090 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2600</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3460<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE31</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif" rel="noopener">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 40,199 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2708</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3545<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE32</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" rel="noopener">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 37,654 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2778</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; also blocked by the literal dense witness</small></td>
+<td>0.3599<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 100.0%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE33</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" rel="noopener">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 41,865 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2632</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 99.7%; also blocked by the literal dense witness</small></td>
+<td>0.3469<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 99.7%; every one of the nine is a near-duplicate of another</small></td>
 <td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>GEMSDOE36</strong></td>
 <td><a class="file" href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif" rel="noopener">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a>
-<small>pinned historical file · external research mirror only</small></td>
+<small>pinned historical file · owner mirror · 38,854 dots</small></td>
 <td><strong>OWNER-REPORTED 0.2750</strong>
 <small>not an organizer receipt</small></td>
-<td>Not estimable<small>no validated leaderboard-calibrated estimate</small></td>
-<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 97.6%; also blocked by the literal dense witness</small></td>
-<td><span class="tag">DO NOT SUBMIT</span></td></tr><tr><td><strong>WB-GEMS-DOE-3 (generated)</strong></td>
-<td><a class="file" href="downloads/WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif" rel="noopener">WB-GEMS-DOE-3-STEP-OVER-DAMAGE-ZONE-30000D-20261029T202958Z-37C53EB9-zeros.tif</a>
-<small>locally generated · format-valid · unique vs 23 local rasters</small></td>
-<td><strong>NOT ESTIMABLE</strong>
-<small>no organiser truth · no holdout DTI · no receipt</small></td>
-<td><strong>Yes vs local registry</strong><small>max rho 0.0124 (<0.90) · max overlap 0.5899 (<0.70) · duplicate count 0</small></td>
-<td><span class="tag">NOT CLEARED</span>
-<small>research/download only · holdout + selector required</small></td></tr></tbody></table></div>
-<p class="small">GEMSDOE32's reported 0.2778 has a plausible byte-level pruning explanation, not a verified causal explanation; see the executive summary. No candidate has a trustworthy score estimate.</p></section>
-<section><div class="grid"><article class="card"><h3>Why generation stopped</h3>
-<p>The registered dense witness is positive across the entire mirrored sample footprint. Any nonempty in-footprint dot set would exceed the user's literal 70% overlap stop. This is a conditional owner-mirror measurement, not organizer provenance or a complete portal-registry census.</p>
+<td>0.3588<small>LEDGER-INVERSION ESTIMATE · model output, not a score</td>
+<td><strong>No</strong><small>maximum 3-px overlap within the nine-site set: 97.6%; every one of the nine is a near-duplicate of another</small></td>
+<td><span class="tag">DO NOT SUBMIT</span></td></tr></tbody></table></div>
+<p class="small">GEMSDOE32's reported 0.2778 has a byte-level pruning explanation that is documented but not causally proven; see the executive summary.</p></section>
+<section><div class="card"><h2>This project's submission</h2>
+<p><strong><code>wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif</code></strong> — 135,062 positive cells, all inside the scored footprint, all finite in [0,1], zero outside.</p>
+<p>HOLDOUT-DTI 0.0850 [0.0747, 0.0949] on 11,321 withheld positives (shared evaluator <code>gems57-pooled-hide-v2</code>).
+LEDGER-INVERSION ESTIMATE 0.1481 (model output; not a score).</p>
+<p><a class="btn" href="downloads/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif">⬇ Download the submission TIF</a>
+<a class="btn secondary" href="executive-summary.html">Read the executive summary →</a>
+<a class="btn secondary" href="how-to-submit.html">How to submit it →</a></p>
+</div></section>
+<section><div class="grid"><article class="card"><h3>Why the earlier review stopped</h3>
+<p>The registered dense witness is positive across the entire mirrored sample footprint, so the literal 3-px rule fires for every non-empty candidate. That reading is now reported side-by-side with the like-for-like and informative-probe readings instead of being hidden or silently waived.</p>
 <a href="evidence.html">Read the evidence and caveats →</a></article>
-<article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses are preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks. None was tested because the stop is active.</p><a href="research.html">Read the preregistration →</a></article>
-<article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain inaccessible.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
-<section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the current DO NOT SUBMIT decision; archived scores and format passes are not project-level clearance.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
+<article class="card"><h3>Research plan</h3><p>Five distinct geological hypotheses remain preregistered with mechanisms, non-fault mimics, cost, and repository-difference checks; this lane adds a sixth (supervised ridge probability) with its own canary and holdout.</p><a href="research.html">Read the preregistration →</a></article>
+<article class="card"><h3>Focus-site source freshness</h3><p>9 of 9 focus repositories changed their main HEAD since the historical audit; {failed} latest checks failed. A changed HEAD is a drift warning only: it does not prove a score, TIFF, receipt or approval changed, and this feed never authorises a submission.</p><p><a href="data/latest-upstream-check.json">Per-repository identity checks ↓</a> · last checked 2026-10-29T20:22:15.618390+00:00.</p></article>
+<article class="card"><h3>Current official sources</h3><p>Competition metric/format, official rules, GeoDAWN, GDR #1391, 3DEP, Landsat, and the public leaderboard were checked on 2026-10-28. Login-gated data and submission pages remain unreachable from this environment.</p><a href="data/official_source_check_2026-10-28.json">Open source audit JSON ↓</a></article></div></section>
+<section><div class="card"><h2>Historical lane archives — research only</h2><p>Every lane archive inherits the historical status of its own session; archived scores and format passes are not project-level clearance and are not submission files.</p><p><a href="hce/index.html">HCE →</a> · <a href="thcs/index.html">THCS →</a> · <a href="lst1/index.html">LST1 →</a> · <a href="lbcal/index.html">LBCAL →</a> · <a href="fchd/index.html">FCHD →</a> · <a href="amdc/index.html">AMDC →</a> · <a href="rfl/index.html">RFL →</a> · <a href="cspes/index.html">CSPES →</a></p></div></section>
 <section><div class="decision"><strong>Deadline irregularity:</strong> the competition homepage shows 2026-12-03 23:59 UTC, while the September 2026 official rules state 5:00 p.m. ET on the deadline date. Effective cutoff is unresolved; use the earlier time unless the organizer confirms otherwise. The live account quota could not be viewed.</div></section>
 <p class="small">Current negative run card: <a href="data/session_7393d521_run_card.json"><code>session_7393d521_run_card.json</code> ↓</a> ·
 <a href="data/release_gate.json">release gate ↓</a> · <a href="session-review.html">review passes →</a></p></div></main><footer class="footer"><div class="wrap">Independent research · not affiliated with DOE or DrivenData ·

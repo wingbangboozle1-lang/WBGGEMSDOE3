@@ -1,0 +1,6 @@
+[load] 118 probes, 767036 blocks (932, 823)
+[fit ] mass=27,111 mae=0.0372 (249s)
+[fit ] full-sample {"mae": 0.03721212064779165, "rmse": 0.04494100884474709, "r2": 0.7058973180682342, "max_abs": 0.08603712197124264, "spearman": 0.9892206077995468, "n": 118}
+[cv  ] fold 0: n_test=35 mae=0.0474 (426s)
+[cv  ] fold 1: n_test=42 mae=0.0337 (625s)
+[cv  ] fold 2: n_test=41 mae=0.0324 (832s)

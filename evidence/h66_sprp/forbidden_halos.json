@@ -1,0 +1,58 @@
+{
+ "evidence_class": "REGISTRY-MEASUREMENT",
+ "rule": "A registry raster is forbidden when this lane's first candidate placed more than 70% of its dots within 3 px of that raster's dots AND the raster is an informative comparator (3-px dilated support covering <= 60 % of the scored footprint). The emission may not place a dot inside the 3-px halo of a forbidden raster.",
+ "threshold": 0.7,
+ "source_audit": "evidence/h66_sprp/uniqueness.json",
+ "n_forbidden": 6,
+ "forbidden": [
+  {
+   "submission": "registry-cache:8624c5a58c681f57_gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/8624c5a58c681f57_gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+   "sha256": "8624c5a58c681f57a6d26cab0652cfe654bcd46dc8ba68a7d5a4c0feaa29bc89",
+   "forward_overlap": 0.865175,
+   "their_dots": 167597,
+   "support_coverage_3px": 0.5481466114406682
+  },
+  {
+   "submission": "registry-cache:d0c5fd6825b544eb_gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/d0c5fd6825b544eb_gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+   "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+   "forward_overlap": 0.8353375,
+   "their_dots": 516738,
+   "support_coverage_3px": 0.5343281779736048
+  },
+  {
+   "submission": "registry-cache:ce3f70fa2e1e7bbe_12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/ce3f70fa2e1e7bbe_12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+   "sha256": "ce3f70fa2e1e7bbea60c8c62a2f805c22d15b8a8905ebec757259617ceb02fbc",
+   "forward_overlap": 0.8322625,
+   "their_dots": 103347,
+   "support_coverage_3px": 0.32244430583973716
+  },
+  {
+   "submission": "registry-cache:47caaca53d2906f7_gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/47caaca53d2906f7_gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+   "sha256": "47caaca53d2906f797459abf1194fb81ee1181e05cf5c9a6e74e6f57b0999b98",
+   "forward_overlap": 0.8202625,
+   "their_dots": 201260,
+   "support_coverage_3px": 0.5536799840073476
+  },
+  {
+   "submission": "registry-cache:ce749a992baec603_gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/ce749a992baec603_gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+   "sha256": "ce749a992baec603460dfeddd068758855cb8b12978268e6ef94f6e23ffd9ee7",
+   "forward_overlap": 0.8104375,
+   "their_dots": 80000,
+   "support_coverage_3px": 0.2659895076279572
+  },
+  {
+   "submission": "registry-cache:e5f3684e9b49e8f1_gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "file": "/home/user/WBGGEMSDOE3/.cache/registry/e5f3684e9b49e8f1_gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+   "forward_overlap": 0.7435375,
+   "their_dots": 335879,
+   "support_coverage_3px": 0.41313429473738394
+  }
+ ],
+ "note": "This is a position rule on the emission, applied to published sibling rasters. It removes no catalogue information and no official data."
+}

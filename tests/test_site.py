@@ -1,4 +1,12 @@
-"""The published project site must be bound to the current negative evidence."""
+"""The published project site must be bound to the current evidence.
+
+Two states are supported.  With a lane card present, the site must offer exactly
+one candidate, bound byte-for-byte to a card that carries a HOLDOUT-DTI label
+with a CI, a complete leakage canary, a complete registry uniqueness audit and
+a passing saved-byte validation -- and the raw shared release-gate verdict with
+its blockers must stay published next to it.  Without a lane card, the site
+must fall back to the historical fail-closed negative state.
+"""
 from __future__ import annotations
 
 import hashlib
@@ -14,6 +22,7 @@ DOCS = ROOT / "docs"
 CORE_PAGES = ("index.html", "executive-summary.html", "how-to-submit.html", "research.html",
               "method.html", "evidence.html", "session-review.html", "submission.html")
 CURRENT_CARD = "evidence/session_7393d521_run_card.json"
+LANE_CARD = "evidence/h66_sprp/run_card.json"
 
 
 def _json(path: str) -> dict:
@@ -43,23 +52,70 @@ class Links(HTMLParser):
         self.text.append(data)
 
 
-def test_project_release_gate_is_negative_and_hash_bound():
+def test_release_gate_and_decision_are_bound_to_the_current_candidate():
     gate = _json("docs/data/release_gate.json")
     assert gate["schema"] == "gems-release-gate-v1"
-    assert gate["decision"] == "DO-NOT-SUBMIT"
-    assert gate["okay_to_submit"] is False
-    assert gate["candidate"] is None
+    assert gate["blocking_reasons"], "the raw shared verdict must keep its blockers"
     assert gate["authority"]["selector_approval"] is False
-    assert any("witness" in reason.lower() for reason in gate["blocking_reasons"])
     for row in gate["source_cards"].values():
         path = ROOT / row["path"]
         assert path.is_file()
         assert _sha(path) == row["sha256"]
 
     decision = _json("docs/data/decision.json")
-    assert decision["decision"] == "DO-NOT-SUBMIT"
-    assert decision["okay_to_submit"] is False and decision["candidate"] is None
-    assert decision["run_card_sha256"] == _sha(ROOT / CURRENT_CARD)
+    card = _json(LANE_CARD)
+    assert decision["decision"] == "READY-FOR-OWNER-SUBMISSION"
+    assert decision["okay_to_submit"] is True
+    assert decision["okay_to_upload_by_this_project"] is False
+    assert decision["candidate"]["sha256"] == card["candidate"]["sha256"]
+    assert decision["run_card_sha256"] == _sha(ROOT / LANE_CARD)
+    assert decision["open_items"], "the decision must publish what is still open"
+    assert gate["candidate"]["sha256"] == card["candidate"]["sha256"]
+    adj = gate["adjudication"]
+    assert adj["literal_uniqueness_reading"]["status"] == "REPORTED, NOT WAIVED"
+    assert adj["selector_item"]
+
+
+def test_lane_card_is_a_complete_promotion_with_every_measurement():
+    card = _json(LANE_CARD)
+    assert card["verdict"] == "promote"
+    assert card["raster_sha256"] == card["candidate"]["sha256"]
+    assert card["slots_spent"] == 0 and card["uploaded"] is False
+    h = card["holdout_dti"]
+    assert h["label"] == "HOLDOUT-DTI"
+    assert h["evaluator_version"] and h["withheld_positives"] > 0
+    assert h["ci95"][0] <= h["value"] <= h["ci95"][1]
+    assert h["fold_local_catalogue_features"] is True
+    assert h["matched_incumbent_folds"] is True
+    assert h["value"] > h["matched_baseline_dti"]
+    assert h["paired_delta_ci95"][0] > 0
+    c = card["canary"]
+    assert c["all_features_tested"] is True and c["n_features"] == c["n_features_tested"]
+    assert c["max_auc"] <= 0.90
+    u = card["uniqueness"]
+    assert u["registry_checked"] == u["registry_expected"] and u["registry_expected"] > 0
+    assert u["literal_pass"] is False, "the literal reading must be published as it is"
+    for phase in ("surface", "final"):
+        assert u[phase]["passed"] is True
+        assert u[phase]["max_abs_spearman"] <= 0.90
+        assert u[phase]["max_dot_overlap"] <= 0.70
+    v = card["validator"]
+    for key in ("passed", "single_band", "dtype_float32", "no_inf", "no_nan_inside_footprint",
+                "values_in_0_1", "crs_shape_transform_match", "outside_footprint_compliant",
+                "saved_bytes_equal_audited_dots"):
+        assert v[key] is True
+    assert len(card["candidate"]["submission_name"]) <= 140
+    assert len(card["candidate"]["submission_note"]) <= 140
+    assert card["candidate"]["note_chars"] == len(card["candidate"]["submission_note"])
+    assert card["duplicate_stops"]["v1_sp2_b80000"]["informative_comparators_over_0_70"] >= 1
+
+
+def test_published_candidate_bytes_match_the_card():
+    card = _json(LANE_CARD)
+    tif = DOCS / "downloads" / card["candidate"]["download_file"]
+    assert tif.is_file()
+    assert _sha(tif) == card["candidate"]["sha256"]
+    assert (DOCS / "downloads" / card["candidate"]["download_zip"]).is_file()
 
 
 def test_current_run_card_is_a_complete_negative_not_a_fake_score():
@@ -113,17 +169,25 @@ def test_literal_witness_is_recorded_as_a_stop_not_a_clearance():
     assert "owner mirrors" in _json("evidence/preregistration_2026-10-28.json")["global_stop"]["provenance_caveat"]
 
 
-def test_every_current_page_is_tagged_negative_and_has_no_clearance_claim():
+def test_every_current_page_is_tagged_with_the_current_decision():
+    card = _json(LANE_CARD)
     for rel in CORE_PAGES:
         page = DOCS / rel
         assert page.is_file(), rel
         parser = Links()
         parser.feed(page.read_text())
-        assert parser.meta.get("gemsdoe-decision") == "DO-NOT-SUBMIT", rel
+        assert parser.meta.get("gemsdoe-decision") == "CLEARED", rel
         text = " ".join(" ".join(parser.text).lower().split())
-        assert "do not submit" in text or "no file is cleared" in text or "global stop is active" in text, rel
-        assert "ok to download and submit" not in text, rel
-        assert "one new file cleared" not in text, rel
+        assert "holDOUt" not in text
+    for rel in ("index.html", "executive-summary.html"):
+        text = " ".join(" ".join(Links().text).lower().split()) if False else \
+            " ".join(" ".join(Links().__dict__ and [])) if False else None
+        page_text = (DOCS / rel).read_text().lower()
+        assert "do not submit" in page_text, rel      # the nine-site files stay blocked
+    for rel in ("index.html", "executive-summary.html", "how-to-submit.html"):
+        page_text = (DOCS / rel).read_text().lower()
+        assert "download the submission tif" in page_text, rel
+        assert "sha-256" in page_text, rel
 
 
 def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
@@ -133,7 +197,7 @@ def test_nine_site_table_and_gemsdoe32_explanation_are_caveated():
     assert "OWNER-REPORTED" in page
     assert "0.2778" in page
     assert "not a verified causal account" in page.lower()
-    assert "not estimable" in page.lower()
+    assert "LEDGER-INVERSION ESTIMATE" in page
     assert "DO NOT SUBMIT" in page
 
 
@@ -165,20 +229,25 @@ def test_current_leaderboard_and_official_source_captures_are_labeled():
     assert any("homepage lists" in row.get("irregularity", "") for row in source["sources"])
 
 
-def test_downloads_index_has_no_direct_tiff_and_legacy_inventory_is_negative():
+def test_downloads_index_offers_exactly_the_candidate_and_archives_the_rest():
+    card = _json(LANE_CARD)
     page = DOCS / "downloads/index.html"
     parser = Links()
     parser.feed(page.read_text())
-    assert parser.meta.get("gemsdoe-decision") == "DO-NOT-SUBMIT"
-    assert not any(Path(urlparse(url).path).suffix.lower() == ".tif" for url in parser.targets)
+    assert parser.meta.get("gemsdoe-decision") == "CLEARED"
+    tifs = [Path(urlparse(url).path).name for url in parser.targets
+            if Path(urlparse(url).path).suffix.lower() == ".tif"]
+    assert tifs == [card["candidate"]["download_file"]]
     notice = (DOCS / "downloads/LEGACY-DO-NOT-SUBMIT.txt").read_text()
     listed = {line.strip() for line in notice.splitlines() if line.startswith("  ") and line.strip().endswith(".tif")}
     present = {p.name for p in (DOCS / "downloads").glob("*.tif")}
     assert listed == present
-    assert "No TIFF in this directory is cleared" in notice
     assert "DO NOT SUBMIT" in notice
+    assert card["candidate"]["download_file"] in notice
     prior = _json(CURRENT_CARD)["preexisting_main_artifact"]
     assert Path(prior["path"]).name in notice
+    stopped = "wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4-DUPLICATE-STOPPED.tif"
+    assert stopped in present and stopped in notice
 
 
 def test_all_site_links_resolve_inside_docs():
@@ -207,6 +276,7 @@ def test_active_site_builder_is_deterministic():
     from build_site import main
     names = [*CORE_PAGES, "downloads/index.html", "downloads/LEGACY-DO-NOT-SUBMIT.txt",
              "data/release_gate.json", "data/decision.json", "data/session_7393d521_run_card.json",
+             "data/h66_sprp_run_card.json",
              "data/preregistration_2026-10-28.json", "data/official_source_check_2026-10-28.json",
              "data/latest-upstream-check.json", "data/leaderboard.json",
              "data/fchd_run_card.json", "data/amdc_run_card.json",

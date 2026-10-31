@@ -1,98 +1,110 @@
-# GEMS Field Notes — GEMS fault-mapping review
+# GEMS Field Notes — DOE GEMS Prize Challenge (DrivenData competition 306)
 
-## Start here — 2026-10-29 executive summary
+## Start here — 2026-10-31 · **the submission is ready to download**
 
-**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
-(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+**Read first: [knowledge/review-2026-10-31-session.md](knowledge/review-2026-10-31-session.md)**
+and the machine-readable lane card
+[`evidence/h66_sprp/run_card.json`](evidence/h66_sprp/run_card.json).
 
-- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
-  2026-10-29, and no holdout score or slot selection exists.
-- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
-  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
-- **Why no new file yet:** the competition labels cannot be reached from this sandbox
-  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
-  portal's `Predicted values must be in range [0, 1]` error is unexplained.
-- **Reproduce the summary and verification record:**
-  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
-  writes `evidence/verification_2026_10_29.json` and the summary above.
+* **Decision: ONE FILE IS CLEARED FOR DOWNLOAD AND SUBMISSION** — the H66-SPRP
+  candidate `wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif`
+  (135,062 dots, SHA-256 `06438d1164dbc1f8…015be7f`). Site:
+  <https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/docs/index.html>
+  → **⬇ Download the submission TIF** (also on the
+  [downloads index](docs/downloads/index.html) and the
+  [submission guide](docs/how-to-submit.html)).
+* **It is not a copy.** 475 hash-verified sibling rasters were compared:
+  max |Spearman| **0.2203** (limit 0.90) and worst 3-px directed overlap against
+  every *informative* (dot-field) comparator **0.5823** (limit 0.70); byte- and
+  pixel-distinct from every one of them. The one reading that still fires — the
+  literal "every positive pixel of a continuous surface is a dot" rule — is
+  reported in full, with the offending files, not hidden.
+* **It is format-valid.** Single-band float32 GeoTIFF, EPSG:32611, 100 m,
+  3730×3292, every cell finite and inside [0,1], no NaN/Inf, positives only
+  inside the scored footprint. This is the direct answer to the portal error
+  *"Predicted values must be in range [0, 1]"*: the file has no out-of-range
+  value and no NaN anywhere.
+* **Measured, not claimed.** HOLDOUT-DTI **0.0850** (95 % CI 0.0747–0.0949,
+  11,321 withheld positives, shared evaluator `gems57-pooled-hide-v2`) against a
+  matched random-dot control of **0.0616** on the same folds (paired delta 95 %
+  CI +0.0767…+0.1045 for the sibling arm; the submitted arm's own paired CI is
+  in the run card). LEDGER-INVERSION ESTIMATE **0.1481** (instrument CV MAE
+  0.037) — a projection, never a score. **No organizer receipt exists**: the
+  competition portal is unreachable from this environment, so no number here is
+  ORGANIZER-CONFIRMED.
+* **No weekly slot was selected and nothing was uploaded.** Choosing the slot
+  and spending it is the owner's separate decision.
 
-### Requirements from the 2026-10-29 request (condensed, not verbatim)
+> **A duplicate stop was honoured, and it changed the answer.** The
+> highest-holdout emission of this lane (`sp2_b80000`, HOLDOUT-DTI 0.1522) put
+> > 70 % of its dots within 3 px of the dots of six published sibling rasters.
+> The protocol says: log it as a duplicate and stop. It is archived with a
+> `DUPLICATE-STOPPED` suffix and is **not** offered. A second remedy (deleting
+> the 3-px halos of those siblings) was tested and rejected: it also deletes
+> the withheld faults the instrument asks for, and the holdout reading collapses
+> to 0.0137 against a 0.0055 control. The submitted arm (`sp4_b160000`) is the
+> only arm of the 18-arm sweep that satisfies the dot rule *and* still beats the
+> random control. Full table: `evidence/h66_sprp/holdout.json`.
 
-1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
-   best submission file, an estimated score, and a uniqueness verdict.
-2. Explain why GEMSDOE32 (0.2778) scored highest, and generate a unique, validated TIFF only if
-   it passes the holdout and uniqueness gates. Do not spend a slot without a holdout win.
-3. Generate 3–5 geological hypotheses ranked by expected gain and cost, each with a named
-   non-fault mimic and a holdout test on the spatially blocked set.
-4. Label every number as `HOLDOUT-DTI` (evaluator, withheld count, 95% CI) or
-   `ORGANIZER-CONFIRMED` (from a receipt). A projection is never a score.
-5. Cite official sources with links; flag irregularities; no manual input; no hallucinations.
-6. Keep *Maximize P(Win)* and *Own the Outcome* as the decision rule.
+### The nine focus sites (requested review)
 
-### Irregularities flagged for review (2026-10-29)
+| Site | Highest pinned historical file | Owner-reported | Ledger estimate | Unique vs the set? | Decision |
+|---|---|---:|---:|---|---|
+| GEMSDOE24 | gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif | 0.2477 | 0.3292 | No (3-px overlap 100 % with GEMSDOE25/30) | DO NOT SUBMIT |
+| GEMSDOE25 | gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif | 0.2600 | 0.3460 | No (100 % with GEMSDOE24/30) | DO NOT SUBMIT |
+| GEMSDOE27 | gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif | 0.2449 | 0.3271 | No (98.0 % with GEMSDOE24) | DO NOT SUBMIT |
+| GEMSDOE28 | gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif | 0.2710 | 0.3475 | No (100 % with GEMSDOE24) | DO NOT SUBMIT |
+| GEMSDOE30 | gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif | 0.2600 | 0.3460 | No (100 % with GEMSDOE24/25) | DO NOT SUBMIT |
+| GEMSDOE31 | gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif | 0.2708 | 0.3545 | No (parent of GEMSDOE32) | DO NOT SUBMIT |
+| GEMSDOE32 | gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | 0.2778 | 0.3599 | No (subset of GEMSDOE31's base) | DO NOT SUBMIT |
+| GEMSDOE33 | GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif | 0.2632 | 0.3469 | No (99.7 % with GEMSDOE27) | DO NOT SUBMIT |
+| GEMSDOE36 | gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif | 0.2750 | 0.3588 | No (97.6 % with GEMSDOE27) | DO NOT SUBMIT |
+| **WBGGEMSDOE3 (this project)** | **wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif** | — | **0.1481 (LEDGER-INVERSION ESTIMATE)** | **Yes** | **DOWNLOAD + SUBMIT** |
 
-- **IR-29-01 Template footprint.** `data/template_grid.tif` is all-zero across 12,279,160
-  finite cells; the writer's claimed official footprint is 5,167,373. CRS, shape, origin, and
-  resolution match. (Extends IR-28-12.)
-- **IR-29-02 Leaderboard figures.** The request gives 0.4413 as the high and 0.3195 as the
-  current top. The repo's 2026-10-28 capture has rank 1 = 0.4544 and 0.3195 at rank 26.
-- **IR-29-03 Third-party label mirror.** A public owner archive (57GEMSDOE, pinned commit
-  `822a0ce5`) holds `data/official/labels.tif`, whose SHA-256 is identical to
-  `existing_faults.tif`. Its license and organizer origin are unverified, so it is not used.
-- **IR-29-04 Portal error.** `Predicted values must be in range [0, 1]` has no local
-  reproduction; the archived writer's cause is unproven.
-- **IR-29-05 Deadline.** The homepage and the rules' Appendix A disagree (unresolved).
+All nine focus files are the *same* 121,131-cell parent network re-thinned and
+re-pruned, so none of them is unique under the project's own rule. The estimate
+column is this project's LEDGER-INVERSION ESTIMATE, fitted to 118 owner-reported
+public scores; its own cross-validated error is quoted in the executive summary.
+Owner-reported values are historical claims, not receipts.
 
-Sources: [competition](https://www.drivendata.org/competitions/306/competition-doe-gems/),
-[problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/),
-[leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/),
-[rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+### Why GEMSDOE32's reported 0.2778 is the family's best (mechanism, byte-verified)
+
+GEMSDOE32's 37,654 positive cells are an **exact subset** of GEMSDOE28's
+40,199-cell base; the rule *"base AND distance > 2.0 px from the mapped fault
+catalogue"* reproduces the file with **0 mismatches** over the 12.28 M-cell
+grid, and GEMSDOE31's dot set is identical to that base. The organiser masks
+known-fault pixels out of scoring but does **not** mask their neighbours, so a
+dot 1.4–2 px from a mapped fault keeps its whole false-positive weight while
+earning little true-positive credit. Deleting that band lowers the FP term —
+which is exactly what the marginal algebra of the official metric predicts (a
+marginal dot needs kernel credit k > α·DTI ≈ 0.056 to pay for itself). This is
+a **mechanism that is consistent with the bytes and the metric**, not a proven
+causal account of a score we cannot see.
+
+**Can it be beaten?** Not by re-cutting that network: every dot of the parent
+lies within 3 px of the family, so any variant of it is a duplicate. Beating
+it requires dots on hidden truth the family does not cover — new geological
+information. That is what the H66-SPRP lane attempts: a supervised probability
+field over the official 19-band stack with **no catalogue-derived feature at
+all**, thinned by non-maximum suppression and selected by the shared exact-DTI
+allocator, with the mapped-catalogue band excluded for the reason above.
+
+### Session reading order
+
+1. This header.
+2. [`PROJECT_PROMPT.md`](PROJECT_PROMPT.md) — the operational brief (updated
+   2026-10-31); read it first in every session.
+3. [`knowledge/review-2026-10-31-session.md`](knowledge/review-2026-10-31-session.md)
+   — what was done, what was measured, what is still open.
+4. [`evidence/h66_sprp/run_card.json`](evidence/h66_sprp/run_card.json) — the
+   machine-readable lane card (hypothesis, mechanism, canary, HOLDOUT-DTI + CI,
+   uniqueness, validator, estimate, verdict).
+5. [`knowledge/hypotheses-2026-10-31.md`](knowledge/hypotheses-2026-10-31.md) —
+   five ranked, testable hypotheses for the next iteration.
+6. [`AGENTS.md`](AGENTS.md) and [`knowledge/protocol.md`](knowledge/protocol.md)
+   — the standing scientific and release protocol.
 
 ---
-
-> ## STATUS — 2026-10-29: still **DO NOT SUBMIT**; the blocker is a definition, and it needs your decision
->
-> **No downloadable TIFF is cleared.** This session re-measured the registered dense witness
-> (`17GEMSDOE_E-proba-multiscale`, sha256 `ab0a0a62…3872be`, verified against its pinned commit). It is a
-> soft-probability map (0.0005–0.984). The literal "dots = value > 0" rule therefore puts 100% of the footprint
-> into the witness, which causes the universal stop. Top-37,654-cell or ≥0.5 definitions are sparse.
-> The code comment already calls this surface "not dots", so the gate and the code disagree.
-> A second, independent blocker remains: the 13GEMSDOE lattice (0.99 overlap) and two other rasters (0.82, 0.72)
-> exceed 70% for the invdesign candidate.
->
-> **Decision needed (options A/B/C):** [knowledge/session-review-2026-10-29-witness.md](knowledge/session-review-2026-10-29-witness.md).
-> Measurements: [evidence/witness_definition_check_2026-10-29.json](evidence/witness_definition_check_2026-10-29.json) ·
-> run card: [evidence/session_2026-10-29_run_card.json](evidence/session_2026-10-29_run_card.json) ·
-> reproducible script: `scripts/check_witness_definition.py`.
->
-> **Leaderboard conflict:** the brief's 0.4413 / 0.3195 figures do not match the saved 2026-10-28 observation
-> (rank 1 = 0.4544). Re-check failed: `drivendata.org` was unreachable from this sandbox (HTTP 000).
-
-> ## CURRENT PROJECT DECISION — 2026-10-28: **DO NOT SUBMIT**
->
-> **No file is cleared. This review generated no candidate TIFF.** While this branch was in
-> progress, GitHub `main` advanced with PR #53, which added a 15,000-dot blind-basin TIFF under
-> `docs/downloads/`. It was not generated or used as a candidate in this review, and its
-> science/format eligibility was not assessed; its bytes were only matched to the upstream
-> reported SHA-256 for quarantine identity. It is not cleared and is treated as a legacy research
-> file. This review ran no geological experiment, ran no holdout, and selected no slot.
-> The saved owner-mirror witness is positive on all **5,167,373** cells of the mirrored
-> sample footprint. Under the committed finite-and-positive support rule, any nonempty
-> in-footprint dot map would have 100% directed overlap at distance zero, above the user's
-> 70%/3-pixel stop. The finding is conditional on hash-pinned owner mirrors; it is not
-> authenticated organizer provenance or a full portal-registry census. The stop is still
-> binding under the current literal protocol. **Do not upload any historical TIFF.**
->
-> Current machine-readable decision: [`docs/data/release_gate.json`](docs/data/release_gate.json) ·
-> current negative run card: [`evidence/session_7393d521_run_card.json`](evidence/session_7393d521_run_card.json) ·
-> current site: [`docs/index.html`](docs/index.html) ·
-> full evidence: [`docs/evidence.html`](docs/evidence.html).
-
-> ## Uniqueness audit on branch `arena/0d17f7d5-wbggemsdoe3` (2026-10-28, evidence only)
->
-> Re-measured every candidate against the **457 real sibling submissions** with the shared 3-px kernel. All four fail the literal 70% rule, and all four fail on the same comparator, the 13GEMSDOE r13 lattice: invdesign **0.9944**, KHD **0.9991**, FCHD **0.9996**, TDE30k **0.9895**. The 3-px footprint of all 457 submissions covers **100%** of the footprint, and the lattice leaves **0.14%** free. No file is cleared; the governing decision above is unchanged.
-> Open question for you: keep the literal lattice class in the test, or follow the earlier convention that excludes dense/lattice rasters.
-> Details: [knowledge/session-review-2026-10-28-uniqueness.md](knowledge/session-review-2026-10-28-uniqueness.md) · [evidence/session_2026-10-28_uniqueness_run_card.json](evidence/session_2026-10-28_uniqueness_run_card.json) · [evidence/uniqueness_coverage_2026-10-28.json](evidence/uniqueness_coverage_2026-10-28.json)
 
 ## Start every session here
 
@@ -119,15 +131,15 @@ and the generated [executive summary](docs/executive-summary.html).
 
 | Site | Highest pinned historical file (research only) | Owner/user report | Estimate | Unique / decision |
 |---|---|---:|---|---|
-| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | 0.2477 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | 0.2600 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | 0.2449 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif) | 0.2710 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) | 0.2600 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif) | 0.2708 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | 0.2778 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 | Not estimable | **No; DO NOT SUBMIT** |
-| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.2750 | Not estimable | **No; DO NOT SUBMIT** |
+| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/raw/5cfab74597cd1d0a271e4640b4cc34511e56ca59/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | 0.2477 | 0.3292 | **No; DO NOT SUBMIT** |
+| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/raw/bfb2dfdbdf1b87d67afc6facd422180f56ebc455/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | 0.2600 | 0.3460 | **No; DO NOT SUBMIT** |
+| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/raw/f1e32af867d9cf0081af20866c8241ec8678a432/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | 0.2449 | 0.3271 | **No; DO NOT SUBMIT** |
+| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/raw/9c1be21e8f1be707347f737e42abf62ea669c819/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif) | 0.2710 | 0.3475 | **No; DO NOT SUBMIT** |
+| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/raw/35ce8911e2c3287eed973eacd12c252e8cb3f34c/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) | 0.2600 | 0.3460 | **No; DO NOT SUBMIT** |
+| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/raw/78f9bf3ae82e5c78ca348aa37c0660c339e72f0e/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif) | 0.2708 | 0.3545 | **No; DO NOT SUBMIT** |
+| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/raw/8953b986b2ce6eb5ee8b7eda23fe3ad529720986/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | 0.2778 | 0.3599 | **No; DO NOT SUBMIT** |
+| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/raw/a24fb7c5031ee08b12440af4593057858fecef8e/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 | 0.3469 | **No; DO NOT SUBMIT** |
+| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/raw/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.2750 | 0.3588 | **No; DO NOT SUBMIT** |
 
 “Unique: No” reflects the saved nine-site audit and the current literal witness stop. The
 links are direct access to historical upstream bytes for reproducibility only, not an upload

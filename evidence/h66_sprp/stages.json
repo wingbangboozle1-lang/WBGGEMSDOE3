@@ -1,0 +1,7 @@
+{
+ "stages": {
+  "ci": 446.0
+ },
+ "wall_clock_s": 448.9,
+ "best_arm": "sp4_b160000"
+}

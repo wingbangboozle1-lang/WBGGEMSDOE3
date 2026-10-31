@@ -1,0 +1,11 @@
+[01:41:19] footprint=5167373 catalogue=60988
+[01:41:22] forbidden halo covers 4,133,433 cells (80.0% of the footprint)
+[01:41:34] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:43:33]   NW: candidate=0.0113 control=0.0037
+[01:43:43] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:45:47]   NE: candidate=0.0147 control=0.0057
+[01:45:57] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:48:05]   SW: candidate=0.0114 control=0.0036
+[01:48:16] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:50:18]   SE: candidate=0.0172 control=0.0095
+[01:50:18] variant HOLDOUT-DTI 0.0137 CI [0.00948732692495882, 0.018636021356909824] control 0.0055

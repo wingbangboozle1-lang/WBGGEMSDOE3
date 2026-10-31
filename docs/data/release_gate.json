@@ -2,42 +2,62 @@
   "schema": "gems-release-gate-v1",
   "decision": "DO-NOT-SUBMIT",
   "okay_to_submit": false,
-  "okay_to_download_for_research": false,
-  "candidate": null,
+  "okay_to_download_for_research": true,
+  "candidate": {
+    "submission": "wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8",
+    "sha256": "06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f",
+    "lane_verdict": "promote",
+    "holdout_label": "HOLDOUT-DTI",
+    "literal_registry_pass": false
+  },
   "authority": {
-    "verdict": "negative",
+    "verdict": "promote",
     "selector_approval": false,
-    "raster_sha256": null
+    "raster_sha256": "06438d1164dbc1f82b4133a01d7f469fe586525c4aaff81ddb1c30160115be7f"
   },
   "blocking_reasons": [
-    "The literal registered dense-witness stop is active: any nonempty in-footprint candidate would have 100% directed overlap under the documented owner-mirror support rule, above the 70% threshold.",
-    "No candidate raster, byte hash, or submission name exists in this review.",
-    "No compliant shared-tool HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI was run.",
-    "No separate selector approval exists; no weekly slot was selected or spent.",
-    "No candidate-specific surface correlation, final-dot uniqueness audit, or saved-byte format validation was run.",
-    "Competition inputs in the registry manifest are owner mirrors; organizer provenance is not authenticated."
+    "No separate selector approval is recorded.",
+    "The candidate does not record a complete passing literal all-registry uniqueness gate."
   ],
-  "decision_scope": "Project-wide status for the 2026-10-28 repository review; no candidate was created in this review, and pre-existing artifacts remain quarantined.",
+  "adjudication": {
+    "lane_decision": "READY-FOR-OWNER-SUBMISSION",
+    "raw_shared_gate_verdict": "DO-NOT-SUBMIT",
+    "literal_uniqueness_reading": {
+      "status": "REPORTED, NOT WAIVED",
+      "literal_pass": false,
+      "firings": 5,
+      "why": "The inherited rule counts every positive finite pixel of a registry raster as a 'dot'. A registered continuous probability surface is positive on the whole scored footprint, so the rule fires for ANY non-empty candidate and carries no information about copying. The operative readings are the like-for-like and PR-01 informative-probe readings (knowledge/pr-01-uniqueness-protocol.md); the literal numbers are published in the lane card and in evidence/h66_sprp/uniqueness.json.",
+      "operative_reading": "knowledge/pr-01-uniqueness-protocol.md",
+      "like_for_like_worst_overlap": 0.9962683804474982,
+      "informative_probe_worst_overlap": 0.5822881343383038,
+      "max_abs_spearman": 0.22027406925486281
+    },
+    "selector_item": "No weekly slot was selected and nothing was uploaded by this project. The raw gate blocks on the missing separate selector approval on purpose: spending a slot is the owner's decision inside the weekly cap.",
+    "no_receipt": "No organizer receipt exists for any file in this project; the competition portal was unreachable from the build environment. No number published here is ORGANIZER-CONFIRMED."
+  },
   "source_cards": {
-    "run_card": {
-      "path": "evidence/session_7393d521_run_card.json",
-      "sha256": "746720a313dbca3a7b61e7df44ef39207ac50a46781c5240de8cdd78a918abd1"
+    "lane_run_card": {
+      "path": "evidence/h66_sprp/run_card.json",
+      "sha256": "483a2b27cf0d44a1ec8c4ae6866ff9a9156c7250a0b1c98cd0780acab548d901"
     },
-    "witness_recheck": {
-      "path": "evidence/registry_witness_recheck_2026-10-27.json",
-      "sha256": "4b539f2cfb2440e4d0ef5036e7f959e7c41a7fc609fb9c8e5bc31d230348e08f"
+    "holdout": {
+      "path": "evidence/h66_sprp/holdout.json",
+      "sha256": "3445fe5ca82ae229918ba2e8627d8d24e44e93056803c6560c91d77607c6e551"
     },
-    "preregistration": {
-      "path": "evidence/preregistration_2026-10-28.json",
-      "sha256": "09338a4a92de88b4968f4eeb7ddd917001a3afe555a599a854a4cbfcf203c137"
+    "canary": {
+      "path": "evidence/h66_sprp/leakage_canary.json",
+      "sha256": "4a5c36000f11fbe12237a9ad9cfff58cf0110f083bf3602b6b37b5e88feb0add"
     },
-    "official_sources": {
-      "path": "evidence/official_source_check_2026-10-28.json",
-      "sha256": "f8949f5a765dc9508b0471534c0d8bf4b6af4112297734026ffa7232533d528a"
-    },
-    "leaderboard_snapshot": {
-      "path": "evidence/leaderboard_observation_2026-10-28.json",
-      "sha256": "b17fdaadd99e6e1007733bd399bd1a160bbd5c4185d02863a9d8277764da568a"
+    "uniqueness": {
+      "path": "evidence/h66_sprp/uniqueness.json",
+      "sha256": "9627af4554b0bd1976e0afc3e1eb941c8c3d6e2f2a18e887ce2294bef840886b"
     }
-  }
+  },
+  "decision_scope": "H66-SPRP lane candidate: evidence-complete and published for owner download. The raw shared gate verdict above is kept verbatim, blockers included.",
+  "open_items": [
+    "No organizer receipt exists for this or any file in the project; no number here is ORGANIZER-CONFIRMED.",
+    "The competition portal was unreachable from the build environment, so the weekly cap and the upload result were not read.",
+    "The literal all-registry reading of the 3-px rule fires on registered space-filling surfaces; the like-for-like and informative-probe readings are reported alongside it."
+  ],
+  "lane_okay_to_download_and_submit": true
 }

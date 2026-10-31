@@ -8,6 +8,63 @@ exact original can only be restored from the source conversation. The historical
 site/score ledger is linked below. The README contains this reconstruction for
 session-start reading and the current negative decision.
 
+## Addendum — 2026-10-31 (the directive that produced the current submission)
+
+> This addendum is the operative brief for every session that follows. It sits
+> **above** the reconstructed brief below because it was issued later; where the
+> two differ, the addendum governs. It does not replace the evidence rules:
+> HOLDOUT-DTI / ORGANIZER-CONFIRMED labelling, the leakage canary, the shared
+> tools, and the lane/stop discipline still apply.
+
+**Core values (decision rule for every choice made in this project).**
+
+* **Maximize P(Win).** Weigh trade-offs, accept risk that buys information,
+  and choose the path that maximises the probability that this project wins the
+  competition. State the trade-off out loud in the run card.
+* **Own the Outcome.** We own results end to end. When a problem arises and we
+  have the means to act, we act without waiting for permission; failures and
+  successes are both signals to improve the system.
+
+**The hard requirements.**
+
+1. **Generate a unique TIF submission.** Do not copy a previous submission.
+   Copying is acceptable only for learning and education. The generated file
+   must be *obvious* to the reader: either clearly OK to download and submit,
+   or clearly not.
+2. **Validate without human intervention.** Any inspection the prompt mentions
+   (a human inspector, a manual review) must be implemented inside the project
+   and must pass automatically before the file is offered.
+3. **One obvious download.** The site must make it immediate to find the file
+   to submit, with a unique name and a short comment (≤140 characters) to
+   distinguish submissions.
+4. **Explain the range error.** The portal rejected a previous file with
+   *"Predicted values must be in range [0, 1]"*. Every generated file must
+   therefore be proven finite and inside [0,1] on every cell, with NaN/Inf
+   checks on the saved bytes, and the site must explain the error.
+5. **Estimate the score.** Every candidate needs an estimate with its
+   instrument and its error, labelled as an estimate — never as a score.
+6. **Keep iterating.** Test, keep the winner, document the losers as
+   deliverables, and record what still blocks a top-of-leaderboard result.
+
+**Reading order for the 2026-10-31 session.**
+
+1. This addendum.
+2. `README.md` — current decision and the download link.
+3. `knowledge/review-2026-10-31-session.md` — what was done and measured.
+4. `evidence/h66_sprp/run_card.json` — the lane card for the current candidate.
+5. `knowledge/hypotheses-2026-10-31.md` — the five ranked next hypotheses.
+6. `AGENTS.md`, `knowledge/protocol.md` — standing protocol and stop rules.
+
+**Standing access limits (re-verified 2026-10-31).** `github.com`,
+`codeload.github.com`, `api.github.com`, `pypi.org` are reachable;
+`drivendata.org` and the Dropbox competition links are **not** (HTTP 000).
+The competition data, the shared template and its cached feature stack, and
+the sibling rasters used for the uniqueness audit are therefore restored from
+**hash-pinned public GitHub mirrors**. Mirror identity proves integrity, never
+organizer provenance.
+
+---
+
 ---
 
 Review the repo.

@@ -1,0 +1,14 @@
+[01:52:55] footprint=5167373 catalogue=60988
+[01:52:58] seed=20: 4 folds, withheld truth px=11321
+[01:52:58] --- stage: ci ---
+[01:53:05] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:54:58]   20_NW: candidate emitted 135750 dots, control 135750
+[01:55:06] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:57:02]   20_NE: candidate emitted 135750 dots, control 135750
+[01:57:10] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[01:58:59]   20_SW: candidate emitted 135750 dots, control 135750
+[01:59:05] train n=108340 pos=48340 neg=60000 in-sample acc=0.8266
+[02:00:24]   20_SE: candidate emitted 135750 dots, control 135750
+[02:00:24] HOLDOUT-DTI 0.0850 CI [0.07468539867773354, 0.09492259562137133] (withheld 11321)
+[02:00:24] --- done: ci (446.0s) ---
+[02:00:24] total 448.9s

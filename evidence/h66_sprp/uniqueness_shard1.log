@@ -1,0 +1,14 @@
+[registry] excluded (candidate bytes): /home/user/WBGGEMSDOE3/submission/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif
+[registry] 475 hash-verified sibling rasters
+[shard 1/2] 237 rasters
+  [25/237] registry-cache:19fc681f3c6d1894_gems27-topo-gap-closure-t-v2-plus-h27-4-r1-on-d1-5-20261002-d466b251f309-allfinite.tif
+  [50/237] registry-cache:35e1b1400a5a2057_gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif
+  [75/237] registry-cache:551c8fb4d7bd80ad_gems24-dkrn1-negative-d8-knick-kernel-20261026-7f031285130c-nan.tif
+  [100/237] registry-cache:76f9e157d01bb9be_gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif
+  [125/237] registry-cache:8aaa2a9b6a78419b_gems28-h32-1-tip-euler-dejitter-d2-8-20261003-c3aeda1d31a3-allfinite.tif
+  [150/237] registry-cache:a6b9dc58c9ab74e9_gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif
+  [175/237] registry-cache:c11e495e5817730a_18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif
+  [200/237] registry-cache:dee5c5c6bc390ed3_gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif
+  [225/237] registry-cache:fa2a8525f5235a55_gems27-h28-3-strain-conductivity-negative-research-20261025-27d6875f3b22-allfinite.tif
+[shard] 237 rows -> evidence/h66_sprp/uniqueness_shard1.json
+[done] 365s

@@ -1,0 +1,7 @@
+[01:26:27] footprint=5167373 catalogue=60988
+[01:26:30] seed=20: 4 folds, withheld truth px=11321
+[01:26:30] --- stage: build ---
+[01:26:37] train n=120988 pos=60988 neg=60000 in-sample acc=0.8216
+[01:27:53] final emission: 80000 dots -> /home/user/WBGGEMSDOE3/submission/wbggems3-h66-sprp-ridgeprob-20261031T011500Z-a1b2c3d4.tif
+[01:27:53] --- done: build (82.7s) ---
+[01:27:53] total 85.5s

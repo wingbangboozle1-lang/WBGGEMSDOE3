@@ -1,0 +1,14 @@
+[registry] excluded (candidate bytes): /home/user/WBGGEMSDOE3/submission/wbggems3-h66-sprp-sp4-135k-20261031T015500Z-e5f6a7b8.tif
+[registry] 475 hash-verified sibling rasters
+[shard 0/2] 238 rasters
+  [25/238] registry-cache:186d35d8c671cb36_gemsdoe31-h31s-udap-sslic-37654-20261026-9355f21d9f-zeros.tif
+  [50/238] registry-cache:359227961da5f8b8_gems31-xfcoh31-xfield-coherence-37654-20261026-nan.tif
+  [75/238] registry-cache:54f493f4fa5c74ed_gemsdoe36-atvr36-20261026.tif
+  [100/238] registry-cache:76d58f4a28ef6112_gemsdoe31-h31e-surfexpr-20261025-8817f551-nan.tif
+  [125/238] registry-cache:8a954440f358a55e_gems28-h32-1-tip-euler-dejitter-d2-8-20261003-c3aeda1d31a3-nan.tif
+  [150/238] registry-cache:a59b772423a42676_24gems-blind-upwelling-20261026T162611Z-a23f2207f2c0-zeros.tif
+  [175/238] registry-cache:c1173e63bec4f2f6_gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif
+  [200/238] registry-cache:deda0533e4aa041e_gemsdoe31-add-arm-d28-20261004-8acb75e1-allfinite.tif
+  [225/238] registry-cache:f9cd56a71550b42f_gemsdoe31-h31b-corroborated-b2-hybrid-20261025-37654-allfinite.tif
+[shard] 238 rows -> evidence/h66_sprp/uniqueness_shard0.json
+[done] 341s
