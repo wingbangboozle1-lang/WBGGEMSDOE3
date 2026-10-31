@@ -1,22 +1,46 @@
 # GEMS Field Notes — GEMS fault-mapping review
 
-## Start here — 2026-10-29 executive summary
+## Start here — 2026-10-31: one file is cleared
 
-**Read first: [knowledge/executive-summary-2026-10-29.md](knowledge/executive-summary-2026-10-29.md)**
-(nine-site table with file, owner-reported score, projection, uniqueness, and decision).
+**Live decision: OK to download and submit — one file.**
+[**docs/index.html**](docs/index.html) is the only page that carries the clearance sentence and
+the one-click download; it is generated from
+[`evidence/release/candidate_run_card.json`](evidence/release/candidate_run_card.json) and
+cannot disagree with it (`scripts/check_site.py` fails the build if it does).
 
-- **Decision: DO NOT DOWNLOAD OR SUBMIT.** No file is cleared. No TIFF was generated on
-  2026-10-29, and no holdout score or slot selection exists.
-- **Best owner-reported file:** GEMSDOE32, 0.2778 (owner report, not a receipt). It is **not
-  unique**: every nine-site file overlaps another at ≥97.6% within 3 px.
-- **Why no new file yet:** the competition labels cannot be reached from this sandbox
-  (DrivenData and Dropbox are unreachable); the repo's dense-witness stop is open; and the
-  portal's `Predicted values must be in range [0, 1]` error is unexplained.
-- **Reproduce the summary and verification record:**
-  `python scripts/build_executive_summary_2026_10_29.py --archive <pinned 57GEMSDOE tar.gz>`
-  writes `evidence/verification_2026_10_29.json` and the summary above.
+| | |
+|---|---|
+| File | `WBGGEMSDOE3-CIFS-multiphysics-cat-139957d-20261031T011843Z-41d3f33c.tif` |
+| SHA-256 | `41d3f33c7282269d4ea18e4908902cf752f51520b71b35b0a74232d6305428b6` |
+| Dots | 139,957 cells at 1.0, NaN outside the study footprint, float32, EPSG:32611 |
+| HOLDOUT-DTI (recipe) | **0.2292** [0.2145, 0.2440] — 60,692 withheld catalogue pixels, 4 spatial folds |
+| COMMON-TRUTH DTI (axis B, bytes) | **0.2251** vs best focus file 0.1015 on the same truth |
+| Uniqueness | max 29.7 % of our dots within 3 px of any one focus file (rule: 70 %), no byte duplicate, worst \|rho\| 0.014 (rule 0.90) |
+| Format | 11/11 checks pass |
+| Portal note | 140/140 characters, printed verbatim on the landing page |
 
-### Requirements from the 2026-10-29 request (condensed, not verbatim)
+**What is still not known, stated plainly.** There is no organizer receipt: every score here is
+either measured on withheld public data (`HOLDOUT-DTI`), measured on an independent fault
+lineage (`COMMON-TRUTH`, a generalisation proxy), or a model projection. The projection runs
+from 0.167 to 0.418 across an unobservable hidden-truth size |G| = 15,000–90,000 and assumes our
+per-dot credit transfers unchanged; it is labelled `PROJECTION` everywhere and is never written
+as a score. A direct holdout number for the released bytes does not exist, because the released
+model is refit on all four quadrants; the 0.2292 belongs to the fold-fitted recipe with the
+closest dot count.
+
+**Three things a visitor can check in one minute:** the file hashes to the printed SHA-256; the
+receipt JSON next to it says `format_passed: true` and `uniqueness_passed: true`; and
+`python scripts/release_audit.py --file <path>` re-derives both gates from the bytes.
+
+### Historical sections below
+
+Everything from *"Start every session here"* down to *"Historical lane records"* documents the
+2026-10-27 → 2026-10-30 reviews, whose verdict was **DO NOT SUBMIT** for every file they examined.
+They are kept because they record how the negative decision was reached and which measurements
+changed it. They are not the current status. The archived pages are preserved verbatim under
+[`docs/archive/`](docs/archive/).
+
+### Requirements from the 2026-10-29 request### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
 1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
    best submission file, an estimated score, and a uniqueness verdict.

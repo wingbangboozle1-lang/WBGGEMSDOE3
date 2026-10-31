@@ -54,8 +54,11 @@ def test_official_deadline_resolution_is_conservative():
     assert any("5:00 p.m. ET" in fact for fact in rules["verified_facts"])
 
 
-def test_published_index_states_not_ok_to_submit():
-    page = (ROOT / "docs/index.html").read_text(encoding="utf-8")
-    assert "Not OK to download or submit" in page
-    assert "Q1" in page and "Q2" in page
+def test_archived_index_preserves_the_2026_10_30_negative_decision():
+    """The 2026-10-29 decision is superseded but must remain auditable byte-for-byte."""
+    page = (ROOT / "docs/archive/index-2026-10-30.html").read_text(encoding="utf-8")
+    assert "ARCHIVED 2026-10-30" in page
+    assert "DO NOT SUBMIT" in page
+    assert "witness" in page.lower()
+    assert "do not submit" in page.lower()
     assert "0.3328" in page

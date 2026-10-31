@@ -6,7 +6,14 @@ incorrectly called this file verbatim. Do not invent missing wording. The curren
 session's instructions and the standing requirements below govern; the complete
 exact original can only be restored from the source conversation. The historical
 site/score ledger is linked below. The README contains this reconstruction for
-session-start reading and the current negative decision.
+session-start reading together with the current decision.
+
+**Current status (2026-10-31):** the project has one cleared file. The clearance
+sentence, the one-click download, the SHA-256 and the 140-character portal note are on
+[`docs/index.html`](docs/index.html); they are generated from
+[`evidence/release/candidate_run_card.json`](evidence/release/candidate_run_card.json).
+The 2026-10-27 → 2026-10-30 verdicts were **DO NOT SUBMIT** and are preserved as dated
+archives under [`docs/archive/`](docs/archive/) and in the README's historical sections.
 
 ---
 

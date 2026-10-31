@@ -1,0 +1,15 @@
+[density] CAT|30000 dti=0.2178 n=130,541 h=0.125
+[density] CAT|45000 dti=0.2292 n=153,020 h=0.121
+[density] CAT|60000 dti=0.2368 n=165,694 h=0.119
+[density] CAT|80000 dti=0.2373 n=168,309 h=0.119
+[density] CAT|100000 dti=0.2373 n=168,309 h=0.119
+[density] UNION|30000 dti=0.1970 n=130,334 h=0.116
+[density] UNION|45000 dti=0.2105 n=151,366 h=0.114
+[density] UNION|60000 dti=0.2184 n=161,688 h=0.114
+[density] UNION|80000 dti=0.2187 n=162,874 h=0.114
+[density] UNION|100000 dti=0.2187 n=162,874 h=0.114
+[collar] 0.0: dti=0.2176 n=130,550 h=0.125
+[collar] 1.0: dti=0.2168 n=130,546 h=0.125
+[collar] 2.0: dti=0.2173 n=130,547 h=0.125
+[collar] 3.0: dti=0.2178 n=130,541 h=0.125
+[collar] 5.0: dti=0.2181 n=130,552 h=0.125
