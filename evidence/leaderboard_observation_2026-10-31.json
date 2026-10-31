@@ -1,0 +1,38 @@
+{
+ "evidence_class": "PUBLIC-LEADERBOARD-OBSERVATION (page text capture via agent fetch tool; exact server timestamp unverified)",
+ "observed_date_utc": "2026-10-31",
+ "page": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+ "metric_column": "Best public DW-Tversky (descending)",
+ "visible_public_scores": {
+  "rank_1": "0.4544",
+  "rank_2": "0.3925",
+  "rank_3": "0.3917",
+  "rank_4": "0.3860",
+  "rank_5": "0.3642"
+ },
+ "rank1": {
+  "team": "xiaofanhu",
+  "best_public": "0.4544",
+  "submissions": 35,
+  "last_activity": "4d ago (as displayed)"
+ },
+ "recent_activity_examples": [
+  {
+   "team": "Batik Shirt Brothers",
+   "best_public": "0.3917",
+   "submissions": 61,
+   "last_activity": "1h 16min ago (as displayed)"
+  },
+  {
+   "team": "tommymaherregen",
+   "best_public": "0.3558",
+   "submissions": 3,
+   "last_activity": "1h 30min ago (as displayed)"
+  }
+ ],
+ "notes": [
+  "The user brief's '0.4413 current high' and '0.3195 highest now' do not match this dated capture; 0.4544 remains rank 1.",
+  "Public-test scores only; not private-test results; not this project's scores; not organizer receipts.",
+  "The board moved fast: multiple teams improved within the last hour of this capture (leaderboard churn, not contradiction)."
+ ]
+}

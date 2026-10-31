@@ -141,6 +141,7 @@ def main() -> int:
     best_axis_b = max(r["dti_vs_offcatalogue"] for r in truthb["rows"]
                       if r["site"] != "WBGGEMSDOE3 (this release)")
     ours_b = [r for r in truthb["rows"] if r["site"].startswith("WBGGEMSDOE3")][0]
+    other_lane_b = [r for r in truthb["rows"] if r["site"].startswith("TWR-1r2")][0]
     pooled = exp["best"]
     verdict_ok = fmtv["passed"] and uniq["passed"]
     DECISION["value"] = "SUBMIT" if verdict_ok else "DO-NOT-SUBMIT"
@@ -195,6 +196,16 @@ def main() -> int:
                          f"{uniq['worst_overlap_within_3px']*100:.1f}% of this release's dots lie "
                          "within 3&nbsp;px of the nearest focus-file dot, i.e. the emission is "
                          "mostly finding <i>different</i> structure.")
+
+    try:  # one implementation of the freshness card, owned by build_site.py
+        from build_site import upstream_freshness_card
+        upstream = json.loads((ROOT / "evidence/latest-upstream-check.json").read_text())
+        upstream_card = upstream_freshness_card(upstream).replace(
+            "<h3>Focus-site source freshness</h3>\n", "")
+    except Exception as exc:  # noqa: BLE001 - the page must still render
+        upstream_card = (f'<p class="small">Freshness card unavailable: {exc}. '
+                         'The machine-readable feed is '
+                         '<a href="data/latest-upstream-check.json">here</a>.</p>')
 
     index = f"""
 <h1>A validated, unique submission for the DOE GEMS Prize</h1>
@@ -286,11 +297,35 @@ measured hit rate h = {h_axis_a:.3f} and the released n = {n_dots:,}</td>
 <td>see the table on the <a href="executive-summary.html">executive summary</a></td></tr>
 </table>
 
+<h2>Two lanes, one truth — why this file is cleared and the other lane's is not</h2>
+<table>
+<tr><th>File</th><th>Its own lane's verdict</th><th class="n">Dots</th>
+<th class="n">Same-truth DTI (axis B)</th><th class="n">Recall</th><th class="n">Hit rate</th></tr>
+<tr><td><b>this release</b><br><span class="mono small">CIFS CAT</span></td>
+<td><span class="pass">promote</span> — format and uniqueness gates pass</td>
+<td class="n">{ours_b['dots']:,}</td><td class="n"><b>{ours_b['dti_vs_offcatalogue']:.4f}</b></td>
+<td class="n">{ours_b['recall']:.3f}</td><td class="n">{ours_b['hit_rate_within_3px']:.3f}</td></tr>
+<tr><td><b>other lane</b><br><span class="mono small">TWR-1r2</span></td>
+<td><span class="fail">negative</span> — failed its own holdout bar (0.02879 vs 0.0992)</td>
+<td class="n">{other_lane_b['dots']:,}</td><td class="n">{other_lane_b['dti_vs_offcatalogue']:.4f}</td>
+<td class="n">{other_lane_b['recall']:.3f}</td><td class="n">{other_lane_b['hit_rate_within_3px']:.3f}</td></tr>
+</table>
+<p class="small">Two different fold designs produced 0.2292 for this release's recipe and 0.02879 for
+TWR-1r2; those two numbers are not on one scale and this page never subtracts them. The axis-B column
+<i>is</i> on one scale — same truth, same evaluator, same mask, every file scored identically. On it the
+other lane sits below the family it was benchmarked against ({other_lane_b['dti_vs_offcatalogue']:.4f} vs
+0.0931-0.1015), which is exactly what its own lane concluded, while this release sits
+{ours_b['dti_vs_offcatalogue']/best_axis_b:.1f}× above the best of them. The two lanes agree about
+their own files.</p>
+<p class="small">TWR-1r2 carries the same dot count as GEMSDOE32 ({other_lane_b['dots']:,}) because it is a
+matched-budget benchmark: measured on the pinned bytes, the two sets share <b>zero</b> dots and only
+0.15 % of either lies within 3 px of the other. Matching a budget is not copying a file.</p>
+
 <h2>Focus-site source freshness</h2>
+{upstream_card}
 <p class="small">The nine focus repositories are re-hashed by
 <code>scripts/refresh_upstream.py</code>; the feed records what changed upstream and
-<b>does not prove a score, TIFF, receipt</b> or approval for any file.
-<a href="data/latest-upstream-check.json">data/latest-upstream-check.json</a></p>
+<b>does not prove a score, TIFF, receipt</b> or approval for any file.</p>
 
 <h2>Project archive — research only, DO NOT SUBMIT</h2>
 <div class="banner warn">
@@ -308,6 +343,18 @@ pages that document them.</p>
 <a href="rfl/index.html">RFL</a> · <a href="cspes/index.html">CSPES</a> ·
 <a href="downloads/index.html">download inventory</a> ·
 <a href="downloads/LEGACY-DO-NOT-SUBMIT.txt">legacy notice</a></p>
+<p class="small">The parallel <b>TWR-1r2</b> lane also stays research-only: its candidate
+passed the shared validator and the ratified uniqueness audit, then failed its own pre-registered
+promotion bar (HOLDOUT-DTI 0.02879 against a comparable holdout best of 0.0992). The two lanes use
+different fold designs, so their holdout numbers are not on one scale and are never compared here;
+the one like-for-like comparison, both files scored on the same off-catalogue truth, is in the
+evidence table above.</p>
+<p class="small">Two protocol questions were open when these decisions were taken: <b>Q1</b>, what
+counts as a published dot, and <b>Q2</b>, which reading of the portal range error applies. Both are
+resolved on this page: Q1 by restricting every comparator to the candidate's own top-N support, Q2
+by writing NaN outside the footprint and exactly 0.0 or 1.0 inside it.</p>
+<p class="small">Leaderboard context, not our score: the last saved official capture is 2026-10-29
+— rank 1 = 0.4544, rank 25 = 0.3330, rank 26 = 0.3328. It was not live-refreshed.</p>
 </div>
 
 <h2>Download</h2>

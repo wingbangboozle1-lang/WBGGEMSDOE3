@@ -1,0 +1,86 @@
+{
+  "schema": "gems-repository-review-run-card-v1",
+  "review_date_utc": "2026-10-31",
+  "evidence_class": "NEGATIVE REPOSITORY PREFLIGHT; no geological experiment, holdout, candidate, or organizer submission",
+  "hypothesis": {
+    "id": "H7-FM",
+    "status": "PRIORITIZED_RESEARCH_ONLY_NOT_TESTED",
+    "mechanism": "Spatially coherent USGS ComCat focal-mechanism nodal-plane orientations may expose active structures that are not represented by surface fault traces.",
+    "named_non_fault_mimic": "Quarry blasts or induced seismicity can produce clustered events or mechanism patterns that do not represent a natural geothermal fault system.",
+    "rank_basis": "Existing 2026-10-29 qualitative research ranking; no quantitative DTI expectation is supported."
+  },
+  "other_candidates": [
+    {
+      "id": "H6-ECO",
+      "status": "PRIORITIZED_RESEARCH_ONLY_NOT_TESTED",
+      "layers": ["NASA/JPL ECOSTRESS nighttime land-surface temperature"],
+      "signature": "Season- and quality-controlled thermal residuals aligned to independently defined structure.",
+      "named_non_fault_mimic": "Irrigation, vegetation, playa/albedo contrast, or uneven acquisition sampling.",
+      "source_status": "NASA/JPL public product page checked 2026-10-29; AOI coverage/data access unverified."
+    },
+    {
+      "id": "H8-MT",
+      "status": "BLOCKED_SOURCE_NOT_VERIFIED",
+      "layers": ["Magnetotelluric resistivity"],
+      "signature": "Conductive corridor or resistivity contrast.",
+      "named_non_fault_mimic": "Clay alteration or conductive basin fill.",
+      "source_status": "No suitable official source verified in the saved 2026-10-29 check."
+    }
+  ],
+  "holdout_dti": {
+    "label": "NOT-RUN",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "The literal registry stop blocks candidate-surface construction; the shared feature cache, labels/folds, and required evaluator runtime are absent from this checkout."
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap": null,
+    "candidate_tested": false,
+    "registered_witness_support_cells": 5167373,
+    "mirrored_footprint_cells": 5167373,
+    "conditional_overlap_for_any_nonempty_candidate_under_literal_positive_support": 1.0,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "provenance_scope": "Hash-pinned owner-mirror observation only; not authenticated organizer provenance or a complete portal-registry audit."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT-RUN-NO-CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No new candidate TIFF was made."
+  },
+  "submission": {
+    "name": null,
+    "note": "Negative preflight; no candidate cleared.",
+    "note_characters": 41,
+    "okay_to_download_and_submit": false
+  },
+  "verdict": "negative",
+  "selector_approval": false,
+  "weekly_slots_used": 0,
+  "github_focus_site_identity_check": {
+    "evidence_file": "evidence/latest-upstream-check.json",
+    "checked_at": "2026-10-31T00:51:47.186781+00:00",
+    "fetched_repositories": 9,
+    "changed_vs_2026_10_26_baseline": 9,
+    "meaning": "Repository main HEAD identity comparison only; does not establish changed TIFF bytes, scores, receipts, or approval."
+  },
+  "latest_saved_public_leaderboard_observation": {
+    "evidence_class": "PUBLIC-LEADERBOARD OBSERVATION; not an organizer-confirmed project score",
+    "observed_date_utc": "2026-10-29",
+    "rank_1": "0.4544",
+    "rank_25": "0.3330",
+    "rank_26": "0.3328",
+    "live_refreshed_2026_10_31": false
+  },
+  "test_results": {
+    "site_checker": "PASS",
+    "pytest": "260 passed, 4 skipped, 72 Rasterio PendingDeprecationWarnings",
+    "py_compile": "PASS",
+    "git_diff_check": "PASS"
+  }
+}

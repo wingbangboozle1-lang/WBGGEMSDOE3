@@ -47,6 +47,12 @@ def main() -> int:
     for row in json.loads((EVID / "comparators.json").read_text())["comparators"]:
         candidates.append({"site": row["site"], "path": row["path"],
                            "owner_reported_score": row["owner_reported_score"]})
+    # Another lane in this repository. Scored here so that the two lanes can be
+    # compared on one truth instead of on two different fold designs.
+    extra = json.loads((EVID / "other_lanes.json").read_text())["lanes"]
+    for row in extra:
+        candidates.append({"site": row["site"], "path": row["path"],
+                           "owner_reported_score": row.get("owner_reported_score")})
 
     rows = []
     for cand in candidates:

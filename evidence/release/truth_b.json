@@ -127,6 +127,18 @@
       "fn": 57025.34898603326,
       "recall": 0.08976441785131033,
       "hit_rate_within_3px": 0.1296391619910434
+    },
+    {
+      "site": "TWR-1r2 (this repo, other lane)",
+      "file": "wbg3-twr1r2-crestcore3px-haloavoid-37654-20261031-zeros.tif",
+      "owner_reported_score": null,
+      "dots": 37654,
+      "dti_vs_offcatalogue": 0.038999022472481874,
+      "tp": 2259.585169330272,
+      "fp": 36842.082371524004,
+      "fn": 60389.41483066973,
+      "recall": 0.03606737807994177,
+      "hit_rate_within_3px": 0.046050884368194614
     }
   ]
 }

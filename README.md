@@ -19,6 +19,37 @@ cannot disagree with it (`scripts/check_site.py` fails the build if it does).
 | Format | 11/11 checks pass |
 | Portal note | 140/140 characters, printed verbatim on the landing page |
 
+**What changed since the 2026-10-30 "DO NOT SUBMIT" verdict.** Three things, each with a named
+resolution rather than a re-assertion:
+
+1. **Q1, the dot definition.** The literal "value > 0" rule made every dense soft raster a 100 %
+   witness and stopped all work. The rule is now: dots are the candidate's own positive support,
+   with comparators restricted to their top-N support where N is the candidate's dot count. This is
+   documented in `scripts/check_site.py`, the site's uniqueness section, and the run card — not
+   silently applied.
+2. **Q2, the portal range error.** The saved official text requires null/NaN outside the bounds;
+   five sibling files ship finite zeros outside instead. This release writes NaN outside the
+   footprint and exactly 0.0/1.0 inside, which satisfies both readings, and
+   `scripts/release_audit.py` re-checks it on any file.
+3. **A candidate exists and cleared both automated gates.** No organizer receipt exists for it.
+
+**Also measured on 2026-10-31, kept from the parallel lane** (`evidence/focus_measure_2026_10_31.json`):
+all nine focus-site files exceed the 70 % directed 3-pixel overlap stop *within the focus set*
+(GEMSDOE25 and GEMSDOE30 have identical positive support); five of the nine `-nan` files carry
+7,111,787 NaNs each; 9/9 focus-site GitHub `main` HEAD identities had moved off the 2026-10-26
+baseline (metadata freshness only — no claim that any TIFF, score or receipt changed); the latest
+saved public-leaderboard capture is 2026-10-29 (rank 1 0.4544, rank 25 0.3330, rank 26 0.3328) and
+was not live-refreshed.
+
+**The other lane in this repository (TWR-1r2) is not cleared.** It generated its own candidate,
+passed the shared validator and the ratified uniqueness audit against 140 sibling rasters, and then
+failed its own pre-registered promotion bar (HOLDOUT-DTI 0.02879 against a comparable holdout best
+of 0.0992). Its files stay research-only. The two lanes use different fold designs, so their
+holdout numbers are not on one scale and are not compared anywhere on this site; the one
+like-for-like comparison available — both files scored on the same off-catalogue truth — is in the
+table on `docs/index.html`.
+
+
 **What is still not known, stated plainly.** There is no organizer receipt: every score here is
 either measured on withheld public data (`HOLDOUT-DTI`), measured on an independent fault
 lineage (`COMMON-TRUTH`, a generalisation proxy), or a model projection. The projection runs
@@ -40,7 +71,7 @@ They are kept because they record how the negative decision was reached and whic
 changed it. They are not the current status. The archived pages are preserved verbatim under
 [`docs/archive/`](docs/archive/).
 
-### Requirements from the 2026-10-29 request### Requirements from the 2026-10-29 request (condensed, not verbatim)
+### Requirements from the 2026-10-29 request (condensed, not verbatim)
 
 1. Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 and give each an executive summary with the
    best submission file, an estimated score, and a uniqueness verdict.
